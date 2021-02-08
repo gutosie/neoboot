@@ -2,9 +2,9 @@
 new version coming soon
 - NeoBoot 9.12
 
-#UpdateURL = 'https://github.com/gutosie/neoboot'
-*    ----------------Free donate----------------
-
+https://github.com/gutosie/neoboot
+    ----------------Free donate----------------   
+                    ¯\_(ツ)_/¯ 
 *    Donate to the project
 *    Spende
 *    Donaco
@@ -19,8 +19,8 @@ new version coming soon
 More information email 
 If you want to support the neoboot project, you can do so by contacting us by e-mail:         
 krzysztofgutosie@gmail.com        
-
-    ----------------Free donate----------------   
                     ¯\_(ツ)_/¯ 
+    ----------------Free donate----------------   
+
     We thank you for any help                 
     Have fun !!!
