@@ -17,6 +17,7 @@ if [ ! -e /tmp/main.zip ]; then
 fi
 unzip -qn ./neoboot.zip
 rm -f /tmp/neoboot.zip
+[ -e /tmp/main.zip ] && rm -rf /tmp/main.zip
 #kopiowanie
 [ $PL ] && echo "Instalowanie..." || echo "Instaling..."
 Cel="/usr/lib/enigma2/python/Plugins/Extensions"
@@ -27,7 +28,8 @@ cd $Cel/NeoBoot
 chmod 755 ./bin/*
 chmod 755 ./ex_init.py
 chmod 755 ./files/*.sh
-chmod -R +x ./ubi_reader/*
+chmod -R +x ./ubi_reader_arm/*
+chmod -R +x ./ubi_reader_mips/*
 if [ $PL ] ; then
   echo ""
   echo "#####################################################"
