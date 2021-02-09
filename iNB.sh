@@ -6,7 +6,7 @@ if `grep -q 'osd.language=pl_PL' </etc/enigma2/settings`; then
   PL=1
 fi
 [ -e /tmp/neoboot.zip ] && rm -f /tmp/neoboot.zip
-[ -e /tmp/neoboot-master ] && rm -rf /tmp/neoboot-master
+[ -e /tmp/neoboot-main ] && rm -rf /tmp/neoboot-main
 [ $PL ] && echo "Pobieranie archiwum..." || echo "Downloading archive file..."
 URL='https://github.com/gutosie/neoboot/archive/main.zip'
 curl -kLs $URL  -o /tmp/neoboot.zip
@@ -21,8 +21,8 @@ rm -f /tmp/neoboot.zip
 [ $PL ] && echo "Instalowanie..." || echo "Instaling..."
 Cel="/usr/lib/enigma2/python/Plugins/Extensions"
 [ -e $Cel/NeoBoot ] && rm -rf $Cel/NeoBoot/* || mkdir -p $Cel/NeoBoot
-mv -f /tmp/neoboot-master/NeoBoot/* $Cel/NeoBoot
-[ -e /tmp/neoboot-master ] && rm -rf /tmp/neoboot-master
+mv -f /tmp/neoboot-main/NeoBoot/* $Cel/NeoBoot
+[ -e /tmp/neoboot-main ] && rm -rf /tmp/neoboot-main
 cd $Cel/NeoBoot
 chmod 755 ./bin/*
 chmod 755 ./ex_init.py
