@@ -1,10 +1,11 @@
 # neoboot
 new version coming soon
-- NeoBoot 9.12
 
-Pierwsza instalacja neoboot-a
+EN - First installation of neoboot  
+EN - Run the following command in the terminal of a supported tuner 
+PL - Pierwsza instalacja neoboot-a
+PL - Uruchom poniższą komendę w terminalu wspieranego tunera
 
-Uruchom poniższą komendę w terminalu wspieranego tunera:
 #
 
 opkg update 
@@ -24,8 +25,6 @@ Autor NIE ponosi JAKIEJKOLWIEK odpowiedzialności za skutki użytkowania tego pr
 Instalację i modyfikacje przeprowadzasz na wlasne ryzyko!!! Przed instalacją lub aktualizacją Neoboot przeczytaj uważnie wszystkie informacje zawarte tu i w wtyczce. !
 
 Dziękuję wszystkim kolegom wpierającym projekt neoboot.
-
-Dziękuję też kolegom wspierającym projekt.
 
 pozdrawiam gutosie
 
