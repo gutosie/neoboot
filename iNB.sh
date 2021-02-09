@@ -11,9 +11,9 @@ fi
 URL='https://github.com/gutosie/neoboot/archive/main.zip'
 curl -kLs $URL  -o /tmp/neoboot.zip
 cd /tmp/
-if [ ! -e /tmp/master.zip ]; then 
+if [ ! -e /tmp/main.zip ]; then 
    wget $URL  
-   mv -f /tmp/master.zip /tmp/neoboot.zip  
+   mv -f /tmp/main.zip /tmp/neoboot.zip  
 fi
 unzip -qn ./neoboot.zip
 rm -f /tmp/neoboot.zip
