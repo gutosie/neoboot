@@ -3,6 +3,7 @@ new version coming soon
 
 EN - First installation of neoboot  
 EN - Run the following command in the terminal of a supported tuner 
+
 PL - Pierwsza instalacja neoboot-a
 PL - Uruchom poniższą komendę w terminalu wspieranego tunera
 
