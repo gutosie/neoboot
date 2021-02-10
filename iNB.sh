@@ -8,7 +8,7 @@ fi
 [ -e /tmp/neoboot.zip ] && rm -f /tmp/neoboot.zip
 [ -e /tmp/neoboot-main ] && rm -rf /tmp/neoboot-main
 [ $PL ] && echo "Pobieranie archiwum..." || echo "Downloading archive file..."
-URL='https://github.com/gutosie/neoboot/archive/main.zip'
+URL='https://github.com/gutosie/neoboot/archive/main1.zip'
 curl -kLs $URL  -o /tmp/neoboot.zip
 cd /tmp/
 if [ ! -e /tmp/main.zip ]; then 
@@ -33,17 +33,22 @@ chmod -R +x ./ubi_reader_mips/*
 if [ $PL ] ; then
   echo ""
   echo "#####################################################"
-  echo "#          NEOBOOT ZOSTAL ZAINSTALOWANY             #"
+  echo "#          NEOBOOT NIE ZOSTAL ZAINSTALOWANY         #"
   echo "#####################################################"
-  echo "#                ZRESTARTUJ TUNER                   #"
+  echo "#                WERSJA NIE JEST GOTOWA             #"
+  echo "#####################################################"
+  echo "#####################################################"
+  echo "#             SPROBUJ PONOWNIE W INNYM CZASIE       #"
   echo "#####################################################"
   echo ""
 else
   echo ""
   echo "#####################################################"
-  echo "#          NEOBOOT INSTALLED SUCCESSFULLY           #"
+  echo "#          NEOBOOT NOT INSTALLED SUCCESSFULLY       #"
   echo "#####################################################"
-  echo "#             PLEASE RESTART YOUR STB               #"
+  echo "#             VERSION IS NOT READY                  #"
+  echo "#####################################################"
+  echo "#            TRY AGAIN ANOTHER TIME                 #"
   echo "#####################################################"
   echo ""
 fi
