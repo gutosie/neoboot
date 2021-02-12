@@ -978,10 +978,10 @@ class NeoBootImageChoose(Screen):
 
     #Zablokowanie aktualizacji przez zmiane nazwy  neoboot_update na neoboot_update2 i likwidacja 3 lini hastagu wyzej  
     def neoboot_update(self):
-        if getTestInTime() == getTestOutTime() or getTestIn() != getTestOut():    
-                myerror = _('Sorry, this is not neoboot vip version.\nGet NEO-VIP version, more info press blue button.')
-                self.session.open(MessageBox, myerror, MessageBox.TYPE_INFO)
-        else:
+        #if getTestInTime() == getTestOutTime() or getTestIn() != getTestOut():    
+                #myerror = _('Sorry, this is not neoboot vip version.\nGet NEO-VIP version, more info press blue button.')
+                #self.session.open(MessageBox, myerror, MessageBox.TYPE_INFO)
+        #else:
             if fileExists('/.multinfo'):
                     mess = _('Downloading available only from the image Flash.')
                     self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
