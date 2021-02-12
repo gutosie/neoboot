@@ -803,12 +803,7 @@ class NeoBootImageChoose(Screen):
                     os.system('rm -f /.control_boot_new_image; echo "Image uruchomione OK\nNie kasuj tego pliku. \n\nImage started OK\nDo not delete this file."  > /.control_ok ')          
                 if not fileExists('/.control_boot_new_image'):  
                     os.system('echo "Image uruchomione OK\nNie kasuj tego pliku. \n\nImage started OK\nDo not delete this file."  > /.control_ok')
-                                
-        if getAccesDate() == 'isaccess':
-                pass
-        else:
-                system('rm /usr/lib/periodon/.kodn')                                           
-                                                
+                                                                                                        
         os.system('date "+%Y%m%d"  > /tmp/.finishdate')
         if fileExists('/tmp/.nkod'):
                 pass
