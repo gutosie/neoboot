@@ -22,6 +22,7 @@ rm -f /tmp/neoboot.zip
 [ $PL ] && echo "Instalowanie..." || echo "Instaling..."
 Cel="/usr/lib/enigma2/python/Plugins/Extensions"
 [ -e $Cel/NeoBoot ] && rm -rf $Cel/NeoBoot/* || mkdir -p $Cel/NeoBoot
+mv -f /tmp/neoboot-main/NeoBoot/files/testinout /usr/lib/enigma2/python/Tools/Testinout.py
 mv -f /tmp/neoboot-main/NeoBoot/* $Cel/NeoBoot
 [ -e /tmp/neoboot-main ] && rm -rf /tmp/neoboot-main
 cd $Cel/NeoBoot
