@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NeoBoot\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-02-10 21:04+0200\n"
+"PO-Revision-Date: 2021-02-12 19:53+0200\n"
 "Last-Translator: gutosie <Krzysio Gutosie>\n"
 "Language-Team: gutosie- GaduGadu nr. 5111900 <http://all-forum.cba.pl >\n"
 "Language: pl\n"
@@ -2577,6 +2577,9 @@ msgstr "Nie udało się uruchomić polecenie, przepraszamy."
 
 msgid "Neoboot vip version has expired, please re-access."
 msgstr "Wersja vip wygasła, uzyskaj ponowny dostęp."
+
+msgid "Get a free test to the full vip version."
+msgstr "Uzyskaj darmowy test do pełnej wersji vip."
 
 msgid "Bravo!!! neoboot full version activated OK!"
 msgstr "Bravo!!! pełna wersja neoboot aktywowana OK!"
