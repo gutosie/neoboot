@@ -1500,7 +1500,9 @@ def main(session, **kwargs):
     vip = checkimage()
     if vip == 1:	            
         if fileExists('' + LinkNeoBoot + '/.location'):
-                if not fileExists('/usr/lib/periodon/.accesdate') or getAccesDate() != 'isaccess' :
+                if not fileExists('/usr/lib/periodon/.kodn'):       
+                        session.open(MessageBox, _('Neoboot vip version has expired, please re-access.'), type=MessageBox.TYPE_ERROR)
+                elif not fileExists('/usr/lib/periodon/.accesdate') or getAccesDate() != 'isaccess' and fileExists('/usr/lib/periodon/.kodn'):
                         system('rm /usr/lib/periodon/.kodn')                                
                         session.open(MessageBox, _('Neoboot vip version has expired, please re-access.'), type=MessageBox.TYPE_ERROR)
                 else:
