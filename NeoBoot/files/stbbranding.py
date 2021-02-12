@@ -19,7 +19,6 @@ def getSupportedTuners():
             supportedT='%s' % getBoxHostName()
     return supportedT
     
-        
 def getFreespace(dev):
     statdev = os.statvfs(dev)
     space = statdev.f_bavail * statdev.f_frsize / 1024
