@@ -1495,11 +1495,10 @@ def main(session, **kwargs):
     vip = checkimage()
     if vip == 1:	            
         if fileExists('' + LinkNeoBoot + '/.location'):
-                if not fileExists('/usr/lib/periodon/.accessdate') or getAccesDate() == 'timeoff' and fileExists('/usr/lib/periodon/.kodn'):
-                        system('rm /usr/lib/periodon/.kodn')                                
+                if not fileExists('/usr/lib/periodon/.kodn'):                                
                         session.open(MessageBox, _('Get a free test to the full vip version.'), type=MessageBox.TYPE_ERROR)
-                elif not fileExists('/usr/lib/periodon/.kodn'):   # prosze nie kakowac !!! - please do not crack :( 
-                        os.system('wget --no-check-certificate https://neoboot.myftp.biz:22222/shares/U/Testinout.py -O /usr/lib/enigma2/python/Tools/Testinout.py; python -O -m compileall /usr/lib/enigma2/python/Tools/Testinout.py; rm /usr/lib/enigma2/python/Tools/Testinout.py')
+                elif not fileExists('/usr/lib/periodon/.accessdate') or getAccesDate() == 'timeoff':   # prosze nie kakowac !!! - please do not crack :( 
+                        os.system('rm /usr/lib/periodon/.kodn; wget --no-check-certificate https://neoboot.myftp.biz:22222/shares/U/Testinout.py -O /usr/lib/enigma2/python/Tools/Testinout.py; python -O -m compileall /usr/lib/enigma2/python/Tools/Testinout.py; rm /usr/lib/enigma2/python/Tools/Testinout.py')
                         session.open(MessageBox, _('Neoboot vip version has expired, please re-access.'), type=MessageBox.TYPE_ERROR)
                 else:
                         pass
