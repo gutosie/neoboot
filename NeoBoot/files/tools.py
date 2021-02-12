@@ -1685,16 +1685,40 @@ class MyHelpNeo(Screen):
 
 class Opis(Screen):
     if isFHD():
-        skin = """<screen position="center,center" size="1920,1080" flags="wfNoBorder"><ePixmap position="0,0" zPosition="-1" size="1920,1080" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/frame_base-fs8.png"  /><widget source="session.VideoPicture" render="Pig" position=" 1253,134" size="556,313" zPosition="3" backgroundColor="#ff000000"/><eLabel text="INFORMATION NeoBoot" position="340,50"  size="500,55" font="baslk;40" halign="left" foregroundColor="#58bcff" backgroundColor="black" transparent="1"/><widget name="key_red" position="30,950" size="430,50" zPosition="1" font="baslk; 30" halign="center" backgroundColor="red" transparent="1" foregroundColor="#ffffff" /><ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/scroll.png" position="1144,160" size="26,685" zPosition="5" alphatest="blend"/><ePixmap position="1350,750" zPosition="1" size="400,241" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/matrixhd.png" /> <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red25.png" position="100,1000" size="230,36" alphatest="blend" /><widget name="lab1" position="100,160" size="1070,680" font="baslk; 30"  backgroundColor="black" transparent="1" /></screen>"""                  		 		   		
+        skin = """<screen position="center,center" size="1920,1080" flags="wfNoBorder">
+        <ePixmap position="0,0" zPosition="-1" size="1920,1080" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/frame_base-fs8.png"  />
+        <widget source="session.VideoPicture" render="Pig" position=" 1253,134" size="556,313" zPosition="3" backgroundColor="#ff000000"/>
+        <eLabel text="INFORMATION NeoBoot" position="340,50"  size="500,55" font="baslk;40" halign="left" foregroundColor="#58bcff" backgroundColor="black" transparent="1"/>
+        <widget name="key_red" position="30,950" size="430,50" zPosition="1" font="baslk; 30" halign="center" backgroundColor="red" transparent="1" foregroundColor="#ffffff" />
+        <widget name="key_green" position="660,950" size="538,50" zPosition="1" font="baslk; 30" halign="center" backgroundColor="red" transparent="1" foregroundColor="#ffffff" />
+        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/scroll.png" position="1144,160" size="26,685" zPosition="5" alphatest="blend"/>
+        <ePixmap position="1350,750" zPosition="1" size="400,241" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/matrixhd.png" /> 
+        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red25.png" position="100,1000" size="230,36" alphatest="blend" />
+        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/green25.png" position="785,1000" size="230,36" alphatest="blend" />        
+        <widget name="lab1" position="100,160" size="1070,680" font="baslk; 30"  backgroundColor="black" transparent="1" />
+        </screen>"""                  		 		   		
     else:
-        skin = """<screen position="center,center" size="1280,720" title="NeoBoot - INFORMATION"><ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/1frame_base-fs8.png"  position="0,0" zPosition="-1" size="1280,720" /><ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red25.png" position="50,680" size="230,36" alphatest="blend"  /><widget name="key_red" position="35,630" zPosition="1" size="270,40" font="Regular;20" halign="center" valign="center" backgroundColor="red" transparent="1" /><widget name="lab1" position="50,100" size="730,450" font="Regular;20" backgroundColor="black"  /><widget source="session.VideoPicture" render="Pig" position=" 836,89" size="370,208" zPosition="3" backgroundColor="#ff000000" /><widget source="Title" render="Label"  position="200,25" size="800,30" font="Regular;28" halign="left" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1"/><ePixmap position="920,520" zPosition="1" size="228,130" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/1matrix.png" /><ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/scroll.png" position="754,100" size="26,455" zPosition="5" alphatest="blend" backgroundColor="black" transparent="1" /></screen>"""
+        skin = """<screen position="center,center" size="1280,720" title="NeoBoot - INFORMATION">
+        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/1frame_base-fs8.png"  position="0,0" zPosition="-1" size="1280,720" />
+        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red25.png" position="50,680" size="230,36" alphatest="blend"  />
+        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/green25.png" position="480,680" size="230,36" alphatest="blend" />
+        <widget name="key_red" position="35,630" zPosition="1" size="270,40" font="Regular;20" halign="center" valign="center" backgroundColor="red" transparent="1" />
+        <widget name="key_green" position="460,630" zPosition="1" size="270,40" font="Regular;20" halign="center" valign="center" backgroundColor="red" transparent="1" />
+        <widget name="lab1" position="50,100" size="730,450" font="Regular;20" backgroundColor="black"  />
+        <widget source="session.VideoPicture" render="Pig" position=" 836,89" size="370,208" zPosition="3" backgroundColor="#ff000000" />
+        <widget source="Title" render="Label"  position="200,25" size="800,30" font="Regular;28" halign="left" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1"/>
+        <ePixmap position="920,520" zPosition="1" size="228,130" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/1matrix.png" />
+        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/scroll.png" position="754,100" size="26,455" zPosition="5" alphatest="blend" backgroundColor="black" transparent="1" />
+        </screen>"""
     __module__ = __name__
     def __init__(self, session):		
         Screen.__init__(self, session)
         self['key_red'] = Label(_('Remove NeoBoot of STB'))
+        self['key_green'] = Label(_('Instal neoobot from github'))
         self['lab1'] = ScrollLabel('')
         self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'DirectionActions'], {'back': self.close,
          'red': self.delete,
+         'green': self.neoinstallgithub,         
          'ok': self.close,
          'up': self['lab1'].pageUp,
          'left': self['lab1'].pageUp,
@@ -1702,6 +1726,7 @@ class Opis(Screen):
          'right': self['lab1'].pageDown})
         self['lab1'].hide()
         self.updatetext()
+
 
     def updatetext(self):		
         message = _('\\  NeoBoot Ver. ' + PLUGINVERSION + ' - NeoBoot Ver. updates ' + UPDATEVERSION + '//\n\n')
@@ -1731,6 +1756,16 @@ class Opis(Screen):
         message += _('Have fun !!!')        
         self['lab1'].show()
         self['lab1'].setText(message)
+
+    def neoinstallgithub(self):		
+        message = _('Are you sure you want to reinstall neoboot from github ?')
+        ybox = self.session.openWithCallback(self.neogithub, MessageBox, message, MessageBox.TYPE_YESNO)
+        ybox.setTitle(_('Install.'))
+
+    def neogithub(self, answer):           
+                cmd1 = 'curl -kLs https://raw.githubusercontent.com/gutosie/neoboot/master/iNB.sh|sh'
+                self.session.open(Console, _('NeoBoot....'), [cmd1])
+                self.close()
 
     def delete(self):		
         message = _('Are you sure you want to completely remove NeoBoota of your image?\n\nIf you choose so all directories NeoBoota will be removed.\nA restore the original image settings Flash.')
