@@ -1762,10 +1762,13 @@ class Opis(Screen):
         ybox = self.session.openWithCallback(self.neogithub, MessageBox, message, MessageBox.TYPE_YESNO)
         ybox.setTitle(_('Install.'))
 
-    def neogithub(self, answer):           
+    def neogithub(self, answer):  
+        if answer is True:             
                 cmd1 = 'curl -kLs https://raw.githubusercontent.com/gutosie/neoboot/master/iNB.sh|sh'
                 self.session.open(Console, _('NeoBoot....'), [cmd1])
                 self.close()
+        else:
+            self.close() 
 
     def delete(self):		
         message = _('Are you sure you want to completely remove NeoBoota of your image?\n\nIf you choose so all directories NeoBoota will be removed.\nA restore the original image settings Flash.')
