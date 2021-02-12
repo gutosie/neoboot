@@ -983,7 +983,7 @@ class NeoBootImageChoose(Screen):
 
     #Zablokowanie aktualizacji przez zmiane nazwy  neoboot_update na neoboot_update2 i likwidacja 3 lini hastagu wyzej  
     def neoboot_update(self):
-        if getTestIn() != getTestOut():
+        if getTestInTime() == getTestOutTime() or getTestIn() != getTestOut():    
                 myerror = _('Sorry, this is not neoboot vip version.\nGet NEO-VIP version, more info press blue button.')
                 self.session.open(MessageBox, myerror, MessageBox.TYPE_INFO)
         else:
@@ -1500,7 +1500,7 @@ def main(session, **kwargs):
     vip = checkimage()
     if vip == 1:	            
         if fileExists('' + LinkNeoBoot + '/.location'):
-                if getTestInTime() == getTestOutTime() or not fileExists('/usr/lib/periodon/.accesdate') or getAccesDate() != 'isaccess' :
+                if not fileExists('/usr/lib/periodon/.accesdate') or getAccesDate() != 'isaccess' :
                         system('rm /usr/lib/periodon/.kodn')                                
                         session.open(MessageBox, _('Neoboot vip version has expired, please re-access.'), type=MessageBox.TYPE_ERROR)
                 else:
