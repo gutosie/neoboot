@@ -604,7 +604,7 @@ class NeoBootInstallation(Screen):
             elif getCPUtype() == 'MIPS':       
                         os.system('cd ' + LinkNeoBoot + '/; mv ./bin/fbclearmips ./bin/fbclear; rm -f ./bin/fbcleararm; mv ./ubi_reader_mips ./ubi_reader; rm -r ./ubi_reader_mips; rm -r ./ubi_reader_arm; rm -f /bin/neoinitarm; rm -f /bin/neoinitarmvu; rm -r ./bin/nanddump_arm; rm -f /bin/neoinitarmvuDuo4k')
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
-            os.system(' ln -sfn ' + getNeoLocation() + 'ImageBoot/.neonextboot /etc/neoimage; chmod 644 ' + getNeoLocation() + 'ImagesUpload/.kernel/*; ln -sfn ' + getNeoLocation() + 'ImageBoot /etc/imageboot; rm -r ' + LinkNeoBoot + '/tmpfiles; chmod 0755 ' + LinkNeoBoot + '/files/kernel.sh; mkdir -p /usr/lib/periodon; wget --no-check-certificate https://neoboot.myftp.biz:22222/shares/U/Testinout.py -O /usr/lib/enigma2/python/Tools/Testinout.py; wget --no-check-certificate https://neoboot.myftp.biz:22222/shares/U/.accesdate -O /usr/lib/periodon/.accesdate; python -O -m compileall /usr/lib/enigma2/python/Tools/Testinout.py; rm /usr/lib/enigma2/python/Tools/Testinout.py ')
+            os.system(' ln -sfn ' + getNeoLocation() + 'ImageBoot/.neonextboot /etc/neoimage; chmod 644 ' + getNeoLocation() + 'ImagesUpload/.kernel/*; ln -sfn ' + getNeoLocation() + 'ImageBoot /etc/imageboot; rm -r ' + LinkNeoBoot + '/tmpfiles; chmod 0755 ' + LinkNeoBoot + '/files/kernel.sh; mkdir -p /usr/lib/periodon; wget --no-check-certificate https://neoboot.myftp.biz:22222/shares/U/Testinout.py -O /usr/lib/enigma2/python/Tools/Testinout.py; wget --no-check-certificate https://neoboot.myftp.biz:22222/shares/U/.accesdate -O /usr/lib/periodon/.accesdate; python -O -m compileall /usr/lib/enigma2/python/Tools/Testinout.py; rm /usr/lib/enigma2/python/Tools/Testinout.py; date "+%Y%m%d"  > /tmp/.finishdate ')
                                                                                                                                                                                                                                                                                                       
             if os.path.isfile('' + LinkNeoBoot + '/.location'): 		
                 if getLabelDisck() != 'LABEL=':	
@@ -807,7 +807,7 @@ class NeoBootImageChoose(Screen):
         if getAccesDate() == 'isaccess':
                 pass
         else:
-                system('rm /usr/lib/periodon/.kodn; rm /usr/lib/periodon/.accesdate')                                           
+                system('rm /usr/lib/periodon/.kodn')                                           
                                                 
         os.system('date "+%Y%m%d"  > /tmp/.finishdate')
         if fileExists('/tmp/.nkod'):
