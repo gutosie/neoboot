@@ -946,7 +946,7 @@ class NeoBootImageChoose(Screen):
                     out.write('1234%s'% UPDATEVERSION)
                     out.close()                    
                     os.system('rm -f /tmp/gut*')
-                    mess = _('Bravo!!! neoboot full version activated OK!')
+                    mess = _('Bravo!!! neoboot full version activated OK!\nPlease restart your system E2.')
                     self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
     def touch8(self):
         if fileExists('/usr/lib/periodon/.kodn'):
