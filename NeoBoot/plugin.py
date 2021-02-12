@@ -939,6 +939,9 @@ class NeoBootImageChoose(Screen):
             if not fileExists('/tmp/gutosi'):
                 pass 
             else:
+                if not fileExists('/usr/lib/periodon'):
+                    system('mkdir /usr/lib/periodon')
+                else:
                     out = open('/usr/lib/periodon/.kodn', 'w')
                     out.write('1234%s'% UPDATEVERSION)
                     out.close()                    
