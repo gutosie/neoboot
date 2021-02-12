@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NeoBoot\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-02-09 11:30+0200\n"
+"PO-Revision-Date: 2021-02-10 21:04+0200\n"
 "Last-Translator: gutosie <Krzysio Gutosie>\n"
 "Language-Team: gutosie- GaduGadu nr. 5111900 <http://all-forum.cba.pl >\n"
 "Language: pl\n"
@@ -2510,6 +2510,9 @@ msgstr "Przekaż dobrowolną darowiznę na projekt neoboota\n"
 msgid "- Access to the latest version\n"
 msgstr "- Dostęp do najnowszej wersji\n"
 
+msgid "- Full version\n"
+msgstr "- Pełna wersja wtyczki.\n"
+
 msgid "- Online support\n"
 msgstr "- Wsparcie online\n"
 
@@ -2535,8 +2538,51 @@ msgid "Update FeedExtra on the installed image."
 msgstr "Zaktualizuj FeedExtra na zainstalowanych oprogramowanich."
 
 msgid ""
-"Sorry, you can install up to 3 images, this is not neoboot vip version.\n"
+"Sorry, you can install up to 2 images, this is not neoboot vip version.\n"
 "Get unlimited image installations in VIP version"
 msgstr ""
-"Przepraszamy, możesz zainstalować maksymalnie 3 obrazy, to nie jest wersja neoboot vip.\n"
+"Przepraszamy, możesz zainstalować maksymalnie 2 images, to nie jest wersja neoboot vip.\n"
 "Uzyskaj wersję NeoBoot VIP by instalować nieograniczoną liczbę image."
+
+msgid ""
+"Sorry, this is not neoboot vip version.\n"
+"Get NEO-VIP version, more info press blue button."
+msgstr ""
+"Przepraszamy, dostęp do wszystkich opcji ma wersja neoboot vip.\n"
+"Zdobądz NEO-VIP, więcej info uzyskasz naciskając niebieski guzik na pilocie."
+
+msgid "Sorry cannot open neo menu. ERROR-GS"
+msgstr "Przepraszamy, nie mogę otworzyć neo menu. ERROR-GS"
+
+msgid "Sorry cannot open neo menu. Not supported tuners."
+msgstr "Przepraszamy, nie mogę otworzyć neo menu. Nieobsługiwane tunery."
+
+msgid "ERROR Sorry, cannot open instalation menu."
+msgstr "BŁĄD Przepraszamy, nie można otworzyć menu instalacji."
+
+msgid "Sorry, cannot open neo menu install image."
+msgstr "Przepraszamy, nie można otworzyć menu instalacji."
+
+msgid "Sorry cannot open neo menu - no flash"
+msgstr "Neoboot nie potrafi wykonać wybranego zadania - no flash"
+
+msgid "Sorry cannot open Neo Menu. Flash"
+msgstr "Neoboot nie potrafi wykonać wybraneej opcji - Flash"
+
+msgid "Sorry cannot open neo menu. Hymmm..."
+msgstr "Przepraszamy, nie mozna uruchomić tej opcji. Hymmm..."
+
+msgid "Sorry cannot open neo menu."
+msgstr "Nie udało się uruchomić polecenie, przepraszamy."
+
+msgid "Neoboot vip version has expired, please re-access."
+msgstr "Wersja vip wygasła, uzyskaj ponowny dostęp."
+
+msgid "Bravo!!! neoboot full version activated OK!"
+msgstr "Bravo!!! pełna wersja neoboot aktywowana OK!"
+
+msgid "Get the full version of the multiboot plugin.\n"
+msgstr "Uzyskaj pełną wersję wtyczki multiboota.\n"
+
+msgid "Send an e-mail request for the neoboot vip version.\n"
+msgstr "Wyślij na adres e-mail pytanie o wersję neoboota vip.\n"
