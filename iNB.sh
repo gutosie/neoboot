@@ -48,6 +48,6 @@ else
   echo "#####################################################"
   echo ""
 fi
-echo "----- Restart GUI... -----"
+echo "       _(-_-)_ ----- Restart GUI... -----  ¯\_(ツ)_/¯  "
 sleep 5; killall -9 enigma2
 exit 0     
