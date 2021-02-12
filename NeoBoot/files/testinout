@@ -1,0 +1,48 @@
+# -*- coding: utf-8 -*-
+  
+import sys
+import os
+from os import system
+import time
+import random        
+from Tools.Directories import fileExists, SCOPE_PLUGINS
+
+
+def getAccesDate(): 
+    timego=''   
+    return timego
+
+
+def getTestCzas():
+    mytestnC=''   
+    return mytestnC
+
+
+def getTestToTest():
+    mytestnb=''   
+    return mytestnb
+                                                          
+
+def getTestIn():
+    neopluspro='UNKNOWN'
+    return neopluspro    
+
+
+def getTestOut():
+    neoplus='UNKNOWN' 
+    return neoplus 
+    
+
+def getAccessN():
+    neopro='UNKNOWN'
+    return neopro    
+
+
+def getTestInTime():  
+    mydatein='UNKNOWN'   
+    return mydatein 
+    
+
+def getTestOutTime():
+    mydateout='UNKNOWN'   
+    return mydateout
