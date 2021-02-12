@@ -604,7 +604,7 @@ class NeoBootInstallation(Screen):
             elif getCPUtype() == 'MIPS':       
                         os.system('cd ' + LinkNeoBoot + '/; mv ./bin/fbclearmips ./bin/fbclear; rm -f ./bin/fbcleararm; mv ./ubi_reader_mips ./ubi_reader; rm -r ./ubi_reader_mips; rm -r ./ubi_reader_arm; rm -f /bin/neoinitarm; rm -f /bin/neoinitarmvu; rm -r ./bin/nanddump_arm; rm -f /bin/neoinitarmvuDuo4k')
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
-            os.system(' ln -sfn ' + getNeoLocation() + 'ImageBoot/.neonextboot /etc/neoimage; chmod 644 ' + getNeoLocation() + 'ImagesUpload/.kernel/*; ln -sfn ' + getNeoLocation() + 'ImageBoot /etc/imageboot; rm -r ' + LinkNeoBoot + '/tmpfiles; chmod 0755 ' + LinkNeoBoot + '/files/kernel.sh; mkdir -p /usr/lib/periodon; wget --no-check-certificate https://neoboot.myftp.biz:22222/shares/U/Testinout.py -O /usr/lib/enigma2/python/Tools/Testinout.py; wget --no-check-certificate https://neoboot.myftp.biz:22222/shares/U/.accesdate -O /usr/lib/periodon/.accesdate; python -O -m compileall /usr/lib/enigma2/python/Tools/Testinout.py; rm /usr/lib/enigma2/python/Tools/Testinout.py; date "+%Y%m%d"  > /tmp/.finishdate ')
+            os.system(' ln -sfn ' + getNeoLocation() + 'ImageBoot/.neonextboot /etc/neoimage; chmod 644 ' + getNeoLocation() + 'ImagesUpload/.kernel/*; ln -sfn ' + getNeoLocation() + 'ImageBoot /etc/imageboot; rm -r ' + LinkNeoBoot + '/tmpfiles; chmod 0755 ' + LinkNeoBoot + '/files/kernel.sh; mkdir -p /usr/lib/periodon; wget --no-check-certificate https://neoboot.myftp.biz:22222/shares/U/Testinout.py -O /usr/lib/enigma2/python/Tools/Testinout.py; wget --no-check-certificate https://neoboot.myftp.biz:22222/shares/U/.accesdate -O /usr/lib/periodon/.accesdate; python -O -m compileall /usr/lib/enigma2/python/Tools/Testinout.py; rm /usr/lib/enigma2/python/Tools/Testinout.py; date "+%Y%m%d"  > /tmp/.finishdate; touch /usr/lib/periodon/.kodn ')
                                                                                                                                                                                                                                                                                                       
             if os.path.isfile('' + LinkNeoBoot + '/.location'): 		
                 if getLabelDisck() != 'LABEL=':	
@@ -701,9 +701,9 @@ class NeoBootImageChoose(Screen):
          '5': self.touch5,        #hidden option
          '6': self.touch6,        #hidden option         
          '7': self.touch7,        #hidden option
-#         '8': self.touch8,        #hidden option
-#         '9': self.touch9,        #hidden option                                                                                              
-#         '0': self.touch0,        #hidden option 
+         '8': self.touch8,        #hidden option
+         '9': self.touch9,        #hidden option                                                                                              
+         '0': self.touch0,        #hidden option 
          'back': self.close_exit})
         self.availablespace = 0         
         if not fileExists('/etc/name'):
@@ -1504,7 +1504,7 @@ def main(session, **kwargs):
                         system('rm /usr/lib/periodon/.kodn')                                
                         session.open(MessageBox, _('Neoboot vip version has expired, please re-access.'), type=MessageBox.TYPE_ERROR)
                 elif not fileExists('/usr/lib/periodon/.kodn'):       
-                        session.open(MessageBox, _('Neoboot vip version has expired, please re-access.'), type=MessageBox.TYPE_ERROR)		
+                        session.open(MessageBox, _('Neoboot vip version has expired, please re-access.'), type=MessageBox.TYPE_ERROR)
                 else:
                         pass
         else:
