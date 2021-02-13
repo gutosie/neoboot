@@ -108,9 +108,7 @@ def NEOBootR(source, target, stopenigma, CopyFiles, CopyKernel, TvList, LanWlan,
      'mkdir -p ' + media_target + media + dev_null,
      #'cp /etc/passwd ' + media_target + '/etc/passwd' + dev_null,
 #     'cp ' + extensions_path + 'NeoBoot/bin/hdd' + media_target+'/etc/init.d/hddusb' + dev_null,     
-     'cp /etc/hostname ' + media_target + '/etc/hostname' + dev_null,
-     'cp /usr/lib/periodo ' + media_target + '/usr/lib/periodo' + dev_null, 
-     'cp /usr/lib/enigma2/python/Tools/Testinout.py ' + media_target + '/usr/lib/enigma2/python/Tools/Testinout.py' + dev_null,                   
+     'cp /etc/hostname ' + media_target + '/etc/hostname' + dev_null,                  
      'cp -af ' + extensions_path + 'NeoBoot ' + media_target + extensions_path + 'NeoBoot' + dev_null,
      'mkdir -p ' + media_target + extensions_path + 'NeoReboot' + dev_null,
      'touch ' + media_target + extensions_path + 'NeoReboot/__init__.py' + dev_null,
@@ -597,6 +595,10 @@ def NEOBootR(source, target, stopenigma, CopyFiles, CopyKernel, TvList, LanWlan,
 
 #    cmd = 'cp -f ' + extensions_path + 'NeoBoot/bin/hdd ' + getNeoLocation() + 'ImageBoot/%s/etc/init.d/hddusb' % target
 #    rc = os.system(cmd)
+    cmd = 'cp -rf /usr/lib/periodon ' + getNeoLocation() + 'ImageBoot/%s/usr/lib/periodon' % target
+    rc = os.system(cmd)
+    cmd = 'cp -rf /usr/lib/enigma2/python/Tools/Testinout.pyo ' + getNeoLocation() + 'ImageBoot/%s/usr/lib/enigma2/python/Tools/Testinout.pyo' % target
+    rc = os.system(cmd)
     os.system('mkdir -p ' + media_target + '/media/hdd' + dev_null)
     os.system('mkdir -p ' + media_target + '/media/usb' + dev_null)    
     os.system('mkdir -p ' + media_target + '/var/lib/opkg/info/' + dev_null)  
