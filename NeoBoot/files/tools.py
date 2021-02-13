@@ -869,6 +869,8 @@ class MyUpgrade2(Screen):
              self.activityTimer.start(10)
 
         def updateInfo(self):
+            periodo = '/usr/lib/periodon'
+            testinout = '/usr/lib/enigma2/python/Tools/Testinout.pyo'        
             self.activityTimer.stop()
             f2 = open('%sImageBoot/.neonextboot' % getNeoLocation(), 'r')
             mypath2 = f2.readline().strip()
@@ -876,15 +878,21 @@ class MyUpgrade2(Screen):
             if mypath2 != 'Flash':
                 self.myClose(_('Sorry, NeoBoot can installed or upgraded only when booted from Flash STB'))
                 self.close()
-            else:
+            else: 
                 for fn in listdir('%sImageBoot'  % getNeoLocation() ):
                     dirfile = '%sImageBoot/'  % getNeoLocation() + fn
                     if isdir(dirfile):
                         target = dirfile + '' +LinkNeoBoot+ ''
+                        target1 = dirfile + '' +periodo+ ''
+                        target2 = dirfile + '' +testinout+ ''
                         cmd = 'rm -r ' + target + ' > /dev/null 2>&1'
                         system(cmd)
                         cmd = 'cp -r ' +LinkNeoBoot+ ' ' + target
                         system(cmd)
+                        cmd1 = 'cp -r ' +periodo+ ' ' + target1
+                        system(cmd1)
+                        cmd2 = 'cp -r ' +testinout+ ' ' + target2
+                        system(cmd2)
 
                 out = open('%sImageBoot/.version'  % getNeoLocation(), 'w')
                 out.write(PLUGINVERSION)
