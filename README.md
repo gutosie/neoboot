@@ -1,5 +1,5 @@
 # neoboot
-new version coming soon
+new version available
 
 Installation of neoboot.  Run the following command in the terminal of a supported tuner 
  
