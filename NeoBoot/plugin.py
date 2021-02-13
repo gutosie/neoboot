@@ -804,7 +804,7 @@ class NeoBootImageChoose(Screen):
                 if not fileExists('/.control_boot_new_image'):  
                     os.system('echo "Image uruchomione OK\nNie kasuj tego pliku. \n\nImage started OK\nDo not delete this file."  > /.control_ok')                                           
                                                 
-        os.system('date "+%Y%m%d"  > /tmp/.finishdate')
+        #os.system('date "+%Y%m%d"  > /tmp/.finishdate')
         if fileExists('/tmp/.nkod'):
                 pass
         else:
@@ -1498,6 +1498,7 @@ def main(session, **kwargs):
     vip = checkimage()
     if vip == 1:	            
         if fileExists('' + LinkNeoBoot + '/.location'):
+		os.system('date "+%Y%m%d"  > /tmp/.finishdate')
                 if not fileExists('/usr/lib/periodon/.kodn'):                                
                         session.open(MessageBox, _('Get a free test to the full vip version.'), type=MessageBox.TYPE_ERROR)
                 elif not fileExists('/usr/lib/periodon/.accessdate') or getAccesDate() == 'timeoff':   # prosze nie kakowac !!! - please do not crack :( 
