@@ -14,7 +14,8 @@ opkg install curl
 curl -kLs https://raw.githubusercontent.com/gutosie/neoboot/master/iNB.sh|sh
 
 
--jeśli w/w polecenie nie zadział próbujemy polecenia: 
+-jeśli w/w polecenie nie zadział próbujemy polecenia:
+
 -if the command doesn't work, try the command:
 
 
