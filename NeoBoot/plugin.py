@@ -44,7 +44,7 @@ from os import system, listdir, mkdir, chdir, getcwd, rename as os_rename, remov
 from os.path import dirname, isdir, isdir as os_isdir
 import os
 import time
-from Tools.Testinout import getTestIn, getTestOut, getTestInTime, getTestOutTime, getAccessN, getAccesDate
+from Tools.Testinout import getTestIn, getTestOut, getTestInTime, getTestOutTime, getAccessN, getAccesDate, getButtonPin
 if fileExists('/etc/vtiversion.info') or fileExists('/usr/lib/python3.8') and fileExists('/.multinfo'):   
     from Screens.Console import Console                   
 else:
@@ -942,19 +942,17 @@ class NeoBootImageChoose(Screen):
                 if not fileExists('/usr/lib/periodon'):
                     system('mkdir /usr/lib/periodon')
                 else:
-                    out = open('/usr/lib/periodon/.kodn', 'w')
-                    out.write('1234%s'% UPDATEVERSION)
-                    out.close()                    
-                    os.system('sleep 2; rm -f /tmp/gut*')
-                    if fileExists('/usr/lib/periodon/.accessdate') and fileExists('/usr/lib/periodon/.kodn'):
-                            mess = _('Bravo!!! neoboot full version activated OK!\nPlease restart your system E2.')
-                            self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
-                    elif not fileExists('/usr/lib/periodon/.accessdate'):
-                            mess = _('VIP Access Activation Fails with Error code 0x10.')
-                            self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)                    
-                    elif not fileExists('/usr/lib/periodon/.kodn'):                    
-                            mess = _('VIP Access Activation Fails with Error code 0x20.')
-                            self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
+                    if getButtonPin() == 'pinok':
+                        os.system('sleep 2; rm -f /tmp/gut*')
+                        if fileExists('/usr/lib/periodon/.accessdate') and fileExists('/usr/lib/periodon/.kodn'):
+                                mess = _('Bravo!!! neoboot full version activated OK!\nPlease restart your system E2.')
+                                self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
+                        elif not fileExists('/usr/lib/periodon/.accessdate'):
+                                mess = _('VIP Access Activation Fails with Error code 0x10.')
+                                self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)                    
+                        elif not fileExists('/usr/lib/periodon/.kodn'):                    
+                                mess = _('VIP Access Activation Fails with Error code 0x20.')
+                                self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
 
     def touch8(self):
         if fileExists('/usr/lib/periodon/.kodn'):
