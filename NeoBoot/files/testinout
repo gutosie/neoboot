@@ -3,46 +3,93 @@
 import sys
 import os
 from os import system
-import time
-import random        
+import time        
 from Tools.Directories import fileExists, SCOPE_PLUGINS
-
 
 def getAccesDate(): 
     timego=''   
+    dana = getTestOutTime()   #  etc   Nie! Szukana liczba jest wieksza!
+    strzal = getTestInTime()  #  tmp   Nie! Szukana liczba jest mniejsza!    
+    if strzal == dana:
+        timego='timeoff'
+        os.system('rm /usr/lib/periodon/.kodn; rm /usr/lib/periodon/.accessdate')        
+        # echo "Gratulacje! Zgadles"  > /tmp/time_finish; 
+    elif strzal < dana:
+        timego='isaccess'
+        #os.system('echo "Nie! Szukana liczba jest wieksza!"  > /tmp/time_ok')       
+    else:
+        timego='timeoff'
+        os.system('rm /usr/lib/periodon/.kodn; rm /usr/lib/periodon/.accessdate') 
+        #echo "Nie! Szukana liczba jest mniejsza!"  > /tmp/time_finish; 
     return timego
 
 
 def getTestCzas():
-    mytestnC=''   
+    mytestnC=''
+    if os.path.exists('/usr/lib/periodon/.accessdate'):        
+        with open('/usr/lib/periodon/.accessdate', 'r') as f:
+            mytestnC = f.readline().strip()
+            f.close()   
     return mytestnC
 
 
 def getTestToTest():
-    mytestnb=''   
+    mytestnb=''
+    if os.path.exists('/tmp/.nkod'):        
+        with open('/tmp/.nkod', 'r') as f:
+            mytestnb = f.readline().strip()
+            f.close()   
     return mytestnb
                                                           
 
 def getTestIn():
     neopluspro='UNKNOWN'
+    if os.path.exists('/usr/lib/periodon/.kodn'):
+        with open('/usr/lib/periodon/.kodn', 'r') as f:
+            lines = f.read()
+            f.close()
+        if lines.find('1234' + getTestToTest() + '') != -1:
+            neopluspro='1234%s' % getTestToTest()
     return neopluspro    
 
 
 def getTestOut():
-    neoplus='UNKNOWN' 
+    neoplus='UNKNOWN'
+    if os.path.exists('/tmp/.nkod'):
+        with open('/tmp/.nkod', 'r') as f:
+            lines2 = f.read()
+            f.close()            
+        if lines2.find("%s" %getTestToTest()) != -1:
+            neoplus='1234%s' % getTestToTest() 
     return neoplus 
     
 
 def getAccessN():
     neopro='UNKNOWN'
+    if os.path.exists('/usr/lib/periodon/.kodn'):
+        with open('/usr/lib/periodon/.kodn', 'r') as f:
+            lines3 = f.read()
+            f.close()            
+        if lines3.find('1234') != -1:       
+            neopro='1234'
+        elif not lines3.find('1234') != -1:
+            neopro='1235'
     return neopro    
 
 
 def getTestInTime():  
-    mydatein='UNKNOWN'   
+    mydatein='UNKNOWN'
+    if os.path.exists('/tmp/.finishdate'):
+        with open('/tmp/.finishdate', 'r') as f:
+            mydatein = f.readline().strip()
+            f.close()   
     return mydatein 
     
 
 def getTestOutTime():
-    mydateout='UNKNOWN'   
+    mydateout='UNKNOWN'
+    if os.path.exists('/usr/lib/periodon/.accessdate'):
+        with open('/usr/lib/periodon/.accessdate', 'r') as f:
+            mydateout = f.readline().strip()
+            f.close()   
     return mydateout
