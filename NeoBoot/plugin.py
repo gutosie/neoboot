@@ -945,9 +945,17 @@ class NeoBootImageChoose(Screen):
                     out = open('/usr/lib/periodon/.kodn', 'w')
                     out.write('1234%s'% UPDATEVERSION)
                     out.close()                    
-                    os.system('rm -f /tmp/gut*')
-                    mess = _('Bravo!!! neoboot full version activated OK!\nPlease restart your system E2.')
-                    self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
+                    os.system('sleep 2; rm -f /tmp/gut*')
+                    if fileExists('/usr/lib/periodon/.accessdate') and fileExists('/usr/lib/periodon/.kodn'):
+                            mess = _('Bravo!!! neoboot full version activated OK!\nPlease restart your system E2.')
+                            self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
+                    elif not fileExists('/usr/lib/periodon/.accessdate'):
+                            mess = _('VIP Access Activation Fails with Error code 0x10.')
+                            self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)                    
+                    elif not fileExists('/usr/lib/periodon/.kodn'):                    
+                            mess = _('VIP Access Activation Fails with Error code 0x20.')
+                            self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
+
     def touch8(self):
         if fileExists('/usr/lib/periodon/.kodn'):
             pass
@@ -1498,7 +1506,7 @@ def main(session, **kwargs):
     vip = checkimage()
     if vip == 1:	            
         if fileExists('' + LinkNeoBoot + '/.location'):
-		os.system('date "+%Y%m%d"  > /tmp/.finishdate')
+                os.system('date "+%Y%m%d"  > /tmp/.finishdate')
                 if not fileExists('/usr/lib/periodon/.kodn'):                                
                         session.open(MessageBox, _('Get a free test to the full vip version.'), type=MessageBox.TYPE_ERROR)
                 elif not fileExists('/usr/lib/periodon/.accessdate') or getAccesDate() == 'timeoff':   # prosze nie kakowac !!! - please do not crack :( 
@@ -1525,6 +1533,7 @@ def main(session, **kwargs):
             if getCheckInstal3() == '3':
                 os.system('echo "\nNeoboot installation errors 3:\nfile neo.sh is error - 3\n"  >> /tmp/error_neo')
                 session.open(MessageBox, _('Neoboot plugin installed with ERRORS! Not work properly! The error number is 3'), type=MessageBox.TYPE_ERROR)
+
 
         version = 0           
         if fileExists('%sImageBoot/.version' % getNeoLocation()):
