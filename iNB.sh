@@ -12,7 +12,11 @@ URL='https://github.com/gutosie/neoboot/archive/main.zip'
 curl -kLs $URL  -o /tmp/neoboot.zip
 cd /tmp/
 if [ ! -e /tmp/main.zip ]; then 
-   wget $URL  
+   wget --no-check-certificate $URL  
+   mv -f /tmp/main.zip /tmp/neoboot.zip  
+fi
+if [ ! -e /tmp/main.zip ]; then 
+   fullwget --no-check-certificate $URL  
    mv -f /tmp/main.zip /tmp/neoboot.zip  
 fi
 unzip -qn ./neoboot.zip
