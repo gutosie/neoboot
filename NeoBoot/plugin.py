@@ -1510,7 +1510,7 @@ def main(session, **kwargs):
                 if not fileExists('/usr/lib/periodon/.kodn'):                                
                         session.open(MessageBox, _('Get a free test to the full vip version.'), type=MessageBox.TYPE_ERROR)
                 elif not fileExists('/usr/lib/periodon/.accessdate') or getAccesDate() == 'timeoff':   # prosze nie kakowac !!! - please do not crack :( 
-                        os.system('rm /usr/lib/periodon/.kodn')
+                        os.system('rm /usr/lib/periodon/.kodn; wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/NeoBoot/files/ndate -O /usr/lib/periodon/.accessdate')
                         session.open(MessageBox, _('Neoboot vip version has expired, please re-access.'), type=MessageBox.TYPE_ERROR)
                 else:
                         pass
