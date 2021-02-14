@@ -6,6 +6,7 @@ from os import system
 import time        
 from Tools.Directories import fileExists, SCOPE_PLUGINS
 
+
 def getAccesDate(): 
     timego=''   
     dana = getTestOutTime()   #  etc   Nie! Szukana liczba jest wieksza!
@@ -93,3 +94,15 @@ def getTestOutTime():
             mydateout = f.readline().strip()
             f.close()   
     return mydateout
+    
+
+def getButtonPin():
+    mypin='UNKNOWN'  
+    if os.path.exists('/usr/lib/periodon'):                
+        out = open('/usr/lib/periodon/.kodn', 'w')
+        out.write('1234%s' % getTestToTest())
+        out.close() 
+        mypin='pinok'
+    return mypin                                   
+ 
+  
