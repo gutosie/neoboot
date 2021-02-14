@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NeoBoot\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-02-12 21:38+0200\n"
+"PO-Revision-Date: 2021-02-14 10:15+0200\n"
 "Last-Translator: gutosie <Krzysio Gutosie>\n"
 "Language-Team: gutosie- GaduGadu nr. 5111900 <http://all-forum.cba.pl >\n"
 "Language: pl\n"
@@ -2597,3 +2597,9 @@ msgstr "Uzyskaj pełną wersję wtyczki multiboota.\n"
 
 msgid "Send an e-mail request for the neoboot vip version.\n"
 msgstr "Wyślij na adres e-mail pytanie o wersję neoboota vip.\n"
+
+msgid "VIP Access Activation Fails with Error code 0x10."
+msgstr "Aktywacja dostępu VIP kończy się niepowodzeniem z kodem błędu 0x10"
+
+msgid "VIP Access Activation Fails with Error code 0x20."
+msgstr "Aktywacja dostępu VIP kończy się niepowodzeniem z kodem błędu 0x20"
