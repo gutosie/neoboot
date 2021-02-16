@@ -36,7 +36,7 @@ else
   TARGET=Flash              
 fi
                    
-if [ $VUMODEL = "bm750" ] || [ $VUMODEL = "duo" ] || [ $VUMODEL = "solo" ] || [ $VUMODEL = "uno" ] || [ $VUMODEL = "ultimo" ]; then
+if [ $VUMODEL = "bm750" ] || [ $BOXNAME = "vuduo" ] || [ $BOXNAME = "vusolo" ] || [ $BOXNAME = "vuuno" ] || [ $BOXNAME = "vuultimo" ]; then
     if [ $TARGET = "Flash" ]; then                    
                 if [ -e /.multinfo ]; then                                                
                             if [ -f /proc/stb/info/vumodel ] || [ ! -e /proc/stb/info/boxtype ]; then
@@ -45,15 +45,13 @@ if [ $VUMODEL = "bm750" ] || [ $VUMODEL = "duo" ] || [ $VUMODEL = "solo" ] || [ 
                                     sleep 2                                
                                     flash_eraseall /dev/mtd1  
                                     echo "Instalacja kernel do /dev/mtd1..." 
-                                    sleep 2                                                    
-		                    nandwrite -p /dev/mtd1 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXNAME.vmlinux.gz 
-                                    update-alternatives --remove vmlinux vmlinux-$KERNEL || true
-                                fi                           
-                            fi                          
-                        fi
-                        update-alternatives --remove vmlinux vmlinux-`uname -r` || true                                          
-                        echo "NEOBOOT is booting image from " $TARGET
-                        echo "Used Kernel: " $TARGET > $NEOBOOTMOUNT$UPLOAD/.kernel/used_flash_kernel                           
+                                    sleep 2
+		                                nandwrite -p /dev/mtd1 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXNAME.vmlinux.gz
+                                fi
+                            fi
+                            update-alternatives --remove vmlinux vmlinux-`uname -r` || true                                          
+                            echo "NEOBOOT is booting image from " $TARGET
+                            echo "Used Kernel: " $TARGET > $NEOBOOTMOUNT$UPLOAD/.kernel/used_flash_kernel                           
 
                 elif [ ! -e /.multinfo ]; then
                             if [ -f /proc/stb/info/vumodel ] || [ ! -e /proc/stb/info/boxtype ]; then 
@@ -63,18 +61,18 @@ if [ $VUMODEL = "bm750" ] || [ $VUMODEL = "duo" ] || [ $VUMODEL = "solo" ] || [ 
                                         sleep 2
                                         flash_eraseall /dev/mtd1   
                                         echo "Wgrywanie kernel do /dev/mtd1..."
-                                        sleep 2                                                   
-		                        nandwrite -p /dev/mtd1 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXNAME.vmlinux.gz 
-                                        update-alternatives --remove vmlinux vmlinux-$KERNEL || true
-                                    fi                                
-                            fi                            
+                                        sleep 2
+                                        nandwrite -p /dev/mtd1 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXNAME.vmlinux.gz
+                                    fi
+                                fi
+                            fi    
                             update-alternatives --remove vmlinux vmlinux-`uname -r` || true
                             echo "Used Kernel: " $TARGET > $NEOBOOTMOUNT$UPLOAD/.kernel/used_flash_kernel
                             echo " NEOBOOT - zainstalowano kernel-image - " $TARGET  "Za chwile nastapi restart systemu !!!" 
                 fi
                 echo "...............Shutdown Now..............."
                 sync && echo 3 > /proc/sys/vm/drop_caches
-                sleep 5 
+                sleep 10 
                 reboot -d -f 
     else              	    
         if [ $TARGET != "Flash" ]; then 
@@ -123,3 +121,4 @@ else
                     exit 0
 fi
 exit 0
+
