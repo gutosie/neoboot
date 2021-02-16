@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-
-from Plugins.Extensions.NeoBoot.__init__ import _                                                                                                                                                    
+ 
+from Plugins.Extensions.NeoBoot.__init__ import _                                                                                                                                                   
 from Plugins.Extensions.NeoBoot.files.stbbranding import getNeoLocation, getCPUtype, getCPUSoC,  getImageNeoBoot, getBoxVuModel, getBoxHostName, getNeoMount, getNeoMount2,getNeoMount3, getNeoMount4, getNeoMount5
 from enigma import getDesktop
 from enigma import eTimer
-from Screens.Screen import Screen 
-from Screens.Console import Console                                                                                                                                              
+from Screens.Screen import Screen                                                                                                                                               
+from Screens.Console import Console
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.VirtualKeyBoard import VirtualKeyBoard
@@ -28,7 +28,7 @@ from Tools.Directories import fileExists, pathExists, createDir, resolveFilename
 from os import system, listdir, mkdir, chdir, getcwd, rename as os_rename, remove as os_remove, popen
 from os.path import dirname, isdir, isdir as os_isdir
 import os
-import time                  
+import time                 
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
 
 
@@ -147,36 +147,46 @@ class StartImage(Screen):
                 os.system('rm -f /media/InternalFlash/etc/init.d/neobootmount.sh;')
 
 #################_____mips___########################## 
-                                                                                           
-            #VUPLUS MIPS vu_dev_mtd2.sh , #Miracle Box Ultra dev_mtd2.sh                        
-            if getCPUSoC() == '7356' or getCPUSoC() == '7429' or getCPUSoC() == '7424'  or getCPUSoC() == '7241' or getCPUSoC() == '7362' or getBoxHostName() == 'vusolo2' or getBoxHostName() == 'vusolose'  or getBoxHostName() == 'vuduo2' or getBoxHostName() == 'vuzero':
+                                                                                         
+            #VUPLUS MIPS vu_dev_mtd2.sh  
+            if getBoxHostName() == 'vusolo2' or getBoxHostName() == 'vusolose'  or getBoxHostName() == 'vuduo2' or getBoxHostName() == 'vuzero':                              
                         if not fileExists('%sImagesUpload/.kernel/%s.vmlinux.gz' % (getNeoLocation(), getBoxHostName()) ):
-                            self.myclose2(_('Error - in the location %sImagesUpload/.kernel/ \nkernel file not found flash kernel vmlinux.gz ' % getNeoLocation()  ))
-                        else:
-                        
+                            self.myclose2(_('Error - in the location %sImagesUpload/.kernel/ \nkernel file not found flash kernel vmlinux.gz ' % getNeoLocation() ))                                                                               
+                        else:                        
                             if getImageNeoBoot() == 'Flash':                    
-                                if fileExists('/.multinfo'):  
-                                    cmd = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/kernel.sh'                  
-                                elif not fileExists('/.multinfo'):  
-                                    cmd = 'ln -sfn /sbin/init.sysvinit /sbin/init; /etc/init.d/reboot'
+                                if fileExists('/.multinfo'): 
+                                    cmd = "echo -e '\n\n%s '" % _('...............NeoBoot  REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')                                                                                                       
+                                    cmd1 = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/kernel.sh'                  
+                                elif not fileExists('/.multinfo'):
+                                    cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT >> Reboot...............\nPlease wait, in a moment the decoder will be restarted...')                                                                      
+                                    cmd1 = 'ln -sfn /sbin/init.sysvinit /sbin/init; /etc/init.d/reboot'
 
                             elif getImageNeoBoot() != 'Flash':                       
                                 if not fileExists('/.multinfo'):                        
-                                    if not fileExists('%sImageBoot/%s/boot/%s.vmlinux.gz' % ( getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
-                                        os.system('ln -sfn /sbin/neoinitmipsvu /sbin/init')
-                                        cmd = '/etc/init.d/reboot'                                                                 
 
-                                    elif fileExists('%sImageBoot/%s/boot/%s.vmlinux.gz' % ( getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
-                                        os.system('ln -sfn /sbin/neoinitmipsvu /sbin/init')
-                                        cmd = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/kernel.sh'                  
+                                    if fileExists('' + getNeoLocation() + 'ImageBoot/' + getImageNeoBoot() + '/boot/' + getBoxHostName() + '.vmlinux.gz'):
+                                        cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT-REBOOT...............\nPlease wait, in a moment the decoder will be restarted...') 
+                                        cmd1 = 'ln -sfn /sbin/neoinitmipsvu /sbin/init; /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/kernel.sh'  
+
+                                    elif not fileExists('%sImageBoot/%s/boot/%s.vmlinux.gz' % ( getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
+                                        cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT > REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')                                    
+                                        cmd1 = 'ln -sfn /sbin/neoinitmipsvu /sbin/init; /etc/init.d/reboot'                                                                                 
 
                                 elif fileExists('/.multinfo'):    
                                     if not fileExists('%sImageBoot/%s/boot/%s.vmlinux.gz' % ( getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
-                                        cmd = 'flash_eraseall /dev/mtd2; sleep 2; nandwrite -p /dev/mtd2 %sImagesUpload/.kernel/%s.vmlinux.gz; /etc/init.d/reboot' % getNeoLocation(), getBoxHostName()
-                                    elif fileExists('%sImageBoot/%s/boot/%s.vmlinux.gz' % ( getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
-                                        cmd = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/kernel.sh'
+                                        cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT_REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')                                    
+                                        cmd1 = 'flash_eraseall /dev/mtd2; sleep 2; nandwrite -p /dev/mtd2 %sImagesUpload/.kernel/%s.vmlinux.gz; /etc/init.d/reboot' % getNeoLocation(), getBoxHostName()
 
-                            self.session.open(Console, _('NeoBoot MIPS....'), [cmd])
+                                    elif fileExists('%sImageBoot/%s/boot/%s.vmlinux.gz' % ( getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
+                                        cmd = "echo -e '\n\n%s '" % _('...............REBOOT now...............\nPlease wait, in a moment the decoder will be restarted...')                                    
+                                        cmd1 = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/kernel.sh'
+
+                            self.session.open(Console, _('NeoBoot MIPS....'), [cmd, cmd1])
+                            self.close()
+
+            else:
+                            os.system('echo "Flash "  >> ' + getNeoLocation() + 'ImageBoot/.neonextboot')
+                            self.messagebox = self.session.open(MessageBox, _('It looks like it that multiboot does not support this STB.'), MessageBox.TYPE_INFO, 8)
                             self.close()
 
     def myclose2(self, message):

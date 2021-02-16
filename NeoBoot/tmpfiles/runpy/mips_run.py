@@ -138,54 +138,39 @@ class StartImage(Screen):
             else:
                 system('touch %sImageBoot/%s/.control_boot_new_image ' % ( getNeoLocation(), getImageNeoBoot() ))
 
-        system('chmod 755 /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/kernel.sh')                                                  
+        #system('chmod 755 /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/kernel.sh')                                                  
         self.sel = self['list'].getCurrent()
         if self.sel:
             self.sel = self.sel[2]     
         if self.sel == 0:          
             if fileExists('/media/InternalFlash/etc/init.d/neobootmount.sh'):
                 os.system('rm -f /media/InternalFlash/etc/init.d/neobootmount.sh;')
-
-#################_____MIPS____################################## 
-            #MIPS procesor: MiracleBox, ET8500, Formuler F1, Formuler F3, Atemio6000 - MIPS                                                                                                                                                                       # test -  ultra, osmini 
-            if getCPUtype() != 'ARMv7' and getCPUSoC() or getBoxHostName() == ['bcm7358',
-             'ax60',
-             'bcm7362',
-             'bcm7356',
-             'bcm7241',
-             'bcm7362',
-             'bcm73625'
-             'mbmini',
-             'h3',
-             'ini-1000sv',
-             'osmini' 
-             'formuler4turbo'] :                                
-                        if getImageNeoBoot() == 'Flash':                                        
-                            self.session.open(TryQuitMainloop, 2)
-                        elif getImageNeoBoot() != 'Flash':  
-                                cmd = "echo -e '\n\n%s '" % _('NEOBOOT - Restart image flash....\nPlease wait, in a moment the decoder will be restarted...\n')           
-                                cmd1='sleep 5; ln -sfn /sbin/neoinitmips /sbin/init; reboot -d -f -h -i' 
-                                self.session.open(Console, _('NeoBoot ....'), [cmd, cmd1])                                                         
-                        else:
-                            os.system('echo "Flash "  >> ' + getNeoLocation() + 'ImageBoot/.neonextboot')
-                            self.messagebox = self.session.open(MessageBox, _('Wygląda na to że multiboot nie wspiera tego modelu STB !!! '), MessageBox.TYPE_INFO, 8)
-                            self.close()
-
-            elif getCPUtype() != 'ARMv7' and getCPUSoC() or getBoxHostName() == ['bcm7424',
-             'mbultra',
-             'ini-8000sv' ] :                                
-                        if getImageNeoBoot() == 'Flash':                                        
-                            self.session.open(TryQuitMainloop, 2)
-                        elif getImageNeoBoot() != 'Flash':  
-                                cmd = "echo -e '\n\n%s '" % _('NEOBOOT - Restart image flash....\nPlease wait, in a moment the decoder will be restarted...\n')           
-                                cmd1='sleep 5; ln -sfn /sbin/neoinitmipsvu /sbin/init; reboot -d -f -h -i' 
-                                self.session.open(Console, _('NeoBoot ....'), [cmd, cmd1])                                                         
+                
+            if getCPUtype() == 'MIPS' and getBoxHostName() == "vusolo" or getBoxHostName() == "mbmini" or getBoxHostName() == "mbultra" or getBoxHostName() == "osmini" or getBoxHostName() == "formuler4turbo" or getBoxHostName() == "h3" or getBoxHostName() == "formuler3" :                                
+                        if getImageNeoBoot() == 'Flash':  
+                                cmd = "echo -e '\n\n%s '" % _('NEOBOOT - Restart image flash....\nPlease wait, in a moment the decoder will be restarted...\n')
+                                cmd1='sleep 8; ln -sfn /sbin/init.sysvinit /sbin/init; reboot -f '
+                                self.session.open(Console, _('NeoBoot ....'), [cmd, cmd1])
+                        elif getImageNeoBoot() != 'Flash':
+                            if fileExists('/.multinfo'):
+                                cmd = "echo -e '\n\n%s '" % _('NEOBOOT - Restart image flash....\nPlease wait, in a moment the decoder will be restarted...\n')
+                                cmd1='sleep 5; reboot -f '
+                                self.session.open(Console, _('NeoBoot ....'), [cmd, cmd1])
+                            elif not fileExists('/.multinfo'):
+                                cmd = "echo -e '\n\n%s '" % _('NEOBOOT - Restart image flash....\nPlease wait, in a moment the decoder will be restarted...\n')
+                                cmd1='sleep 8; ln -sfn /sbin/neoinitmips /sbin/init; reboot -f '
+                                self.session.open(Console, _('NeoBoot ....'), [cmd, cmd1])
+                            else:
+                                cmd = "echo -e '\n\n%s '" % _('NEOBOOT - Restart image flash....\nPlease wait, in a moment the decoder will be restarted...\n')
+                                cmd1='sleep 8; ln -sfn /sbin/init.sysvinit /sbin/init; reboot -f '
+                                self.session.open(Console, _('NeoBoot-ERROR!!! ....'), [cmd, cmd1])
                         else:
                             os.system('echo "Flash "  >> ' + getNeoLocation() + 'ImageBoot/.neonextboot')
                             self.messagebox = self.session.open(MessageBox, _('It looks like it that multiboot does not support this STB.'), MessageBox.TYPE_INFO, 8)
-                            self.close()
+                            self.close() 
 
             else:
                             os.system('echo "Flash "  >> ' + getNeoLocation() + 'ImageBoot/.neonextboot')
                             self.messagebox = self.session.open(MessageBox, _('It looks like it that multiboot does not support this STB.'), MessageBox.TYPE_INFO, 8)
                             self.close()
+                            
