@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-  
 
-####################### _(-_-)_ gutosie _(-_-)_ ####################### 
+####################### _q(-_-)p_ gutosie _q(-_-)p_ ####################### 
 # Copyright (c) , gutosie  license
 # 
 # Redystrybucja wersji programu i dokonywania modyfikacji JEST DOZWOLONE, pod warunkiem zachowania niniejszej informacji o prawach autorskich. 
-# Autor NIE ponosi JAKIEJKOLWIEK odpowiedzialności za skutki użtkowania tego programu oraz za wykorzystanie zawartych tu informacji.
+# Autor NIE ponosi JAKIEJKOLWIEK odpowiedzialnoĹ›ci za skutki uĹĽtkowania tego programu oraz za wykorzystanie zawartych tu informacji.
 # Modyfikacje przeprowadzasz na wlasne ryzyko!!!
-# O wszelkich zmianach prosze poinformować na  http://all-forum.cba.pl w temacie pod nazwa  -#[NEOBOOT]#-
+# O wszelkich zmianach prosze poinformowaÄ‡ na  http://all-forum.cba.pl w temacie pod nazwa  -#[NEOBOOT]#-
 
 # This text/program is free document/software. Redistribution and use in
 # source and binary forms, with or without modification, ARE PERMITTED provided
@@ -16,7 +16,7 @@
 #--------------------------------------------- NEOBOOT ---------------------------------------------#
 from __future__ import absolute_import
 from . import _
-from Plugins.Extensions.NeoBoot.files.stbbranding import  fileCheck, getSupportedTuners, getLabelDisck, getINSTALLNeo, getNeoLocation, getLocationMultiboot, getNeoMount, getNeoMount2, getNeoMount3, getNeoMount4, getNeoMount5, getFSTAB, getFSTAB2, getKernelVersionString, getKernelImageVersion, getCPUtype, getCPUSoC,  getImageNeoBoot, getBoxVuModel, getBoxHostName, getTunerModel, getImageDistroN, getFormat, getNEO_filesystems                    
+from Plugins.Extensions.NeoBoot.files.stbbranding import  getSupportedTuners, getLabelDisck, getINSTALLNeo, getNeoLocation, getLocationMultiboot, getNeoMount, getNeoMount2, getNeoMount3, getNeoMount4, getNeoMount5, getFSTAB, getFSTAB2, getKernelVersionString, getKernelImageVersion, getCPUtype, getCPUSoC,  getImageNeoBoot, getBoxVuModel, getBoxHostName, getTunerModel, getImageDistroN, getFormat, getNEO_filesystems                    
 from Plugins.Extensions.NeoBoot.files import Harddisk 
 from Components.About import about                                                                                                                                                    
 from enigma import getDesktop, eTimer
@@ -808,13 +808,21 @@ class NeoBootImageChoose(Screen):
         if fileExists('/tmp/.nkod'):
                 pass
         else:
-            os.system('cd /tmp; wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt;cd /')            
-            if not fileExists('/tmp/ver.txt'):        
-                os.system('cd /tmp;curl -O --ftp-ssl https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt;cd /')
             if not fileExists('/tmp/ver.txt'):
-                os.system('cd /usr/lib/enigma2/python/Tools; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt;cd /')
-            os.system('mv /tmp/ver.txt /tmp/.nkod ;cd /')
+                    if fileExists('/usr/bin/fullwget'):            
+                            os.system('cd /tmp; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; cd /')           
+            if not fileExists('/tmp/ver.txt'):
+                    if fileExists('/usr/bin/curl'):                    
+                            os.system('cd /tmp; curl -O --ftp-ssl https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; cd /')
+            if not fileExists('/tmp/ver.txt'):
+                    if fileExists('/usr/bin/wget'):            
+                            os.system('cd /tmp; wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; cd /')                             
+            if fileExists('/tmp/ver.txt'):
+                    os.system('mv /tmp/ver.txt /tmp/.nkod ;cd /')
+            else:
+                    pass
   
+
     def DownloadImageOnline(self):				          	
             if not os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/ImageDownloader/download.py'):
                     message = _('Plugin ImageDownloader not installed!\nInstall plugin to download new image? \and---Continue ?---' )
@@ -828,12 +836,23 @@ class NeoBootImageChoose(Screen):
         if yesno:
             cmd = 'mkdir /tmp/install; touch /tmp/install/plugin.txt; rm -rf /tmp/*.ipk'
             system(cmd)
-            cmd1 = 'cd /tmp; wget http://read.cba.pl/panel_extra/enigma2-plugin-extensions-imagedownloader_2.6_all.ipk'
-            system(cmd1)
-            cmd2 = 'opkg install --force-overwrite --force-reinstall --force-downgrade /tmp/enigma2-plugin-extensions-imagedownloader_2.6_all.ipk'
-            system(cmd2)
-            self.session.open(MessageBox, _('The plug-in has been successfully installed.'), MessageBox.TYPE_INFO, 5)
-            self.close()
+            if fileExists('/usr/bin/fullwget'):
+                cmd1 = 'cd /tmp; fullwget --no-check-certificate http://read.cba.pl/panel_extra/enigma2-plugin-extensions-imagedownloader_2.6_all.ipk'
+                system(cmd1)
+            if not fileExists('/tmp/usr/enigma2-plugin-extensions-imagedownloader_2.6_all.ipk'): 
+                if fileExists('/usr/bin/curl'):                    
+                            os.system('cd /tmp; curl -O --ftp-ssl http://read.cba.pl/panel_extra/enigma2-plugin-extensions-imagedownloader_2.6_all.ipk')
+            if not fileExists('/tmp/usr/enigma2-plugin-extensions-imagedownloader_2.6_all.ipk'): 
+                if fileExists('/usr/bin/wget'):            
+                            os.system('cd /tmp; wget --no-check-certificate http://read.cba.pl/panel_extra/enigma2-plugin-extensions-imagedownloader_2.6_all.ipk')
+            if fileExists('/tmp/usr/enigma2-plugin-extensions-imagedownloader_2.6_all.ipk'): 
+                    cmd2 = 'opkg install --force-overwrite --force-reinstall --force-downgrade /tmp/enigma2-plugin-extensions-imagedownloader_2.6_all.ipk'
+                    system(cmd2)
+                    self.session.open(MessageBox, _('The plug-in has been successfully installed.'), MessageBox.TYPE_INFO, 5)
+                    self.close()
+            else:
+                    self.session.open(MessageBox, _('The plug-in not installed.'), MessageBox.TYPE_INFO, 10)
+                    self.close()            
         else:
                 mess = _('Upload image files in zip formats to the ImagesUpload location.' )
                 self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)  
@@ -910,10 +929,12 @@ class NeoBootImageChoose(Screen):
             except:
                     self.session.open(MessageBox, _('Sorry cannot open neo menu.'), MessageBox.TYPE_INFO, 5)    
 
-    def touch5(self):
+    def touch5(self):    
         if fileExists('/usr/lib/periodon/.kodn'):
-            pass
-            #os.system('echo "112345"  > /usr/lib/periodon/.kodn')
+            if getTestIn() == getTestOut():
+                    pass
+            else:
+                    system('touch /tmp/guto')
         else:
                     system('touch /tmp/guto')
     def touch4(self):
@@ -953,7 +974,7 @@ class NeoBootImageChoose(Screen):
                         elif not fileExists('/usr/lib/periodon/.kodn'):                    
                                 mess = _('VIP Access Activation Fails with Error code 0x20.')
                                 self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
-
+                       #os.system('echo "112345"  > /usr/lib/periodon/.kodn')
     def touch8(self):
         if fileExists('/usr/lib/periodon/.kodn'):
             pass
@@ -1013,11 +1034,14 @@ class NeoBootImageChoose(Screen):
             self.session.open(MessageBox, _('Canceled update.'), MessageBox.TYPE_INFO, 7)
                                            
     def chackupdate3(self):		                    
-        os.system('cd ' + LinkNeoBoot + ';curl -O --ftp-ssl https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt;sleep 3;cd /')            
+        if fileExists('/usr/bin/fullwget'):            
+                            os.system('cd ' + LinkNeoBoot + ';fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; sleep 3;cd /')           
         if not fileExists('' + LinkNeoBoot + '/ver.txt'):
-            os.system('cd ' + LinkNeoBoot + ';fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; sleep 3;cd /')
+                    if fileExists('/usr/bin/curl'):                    
+                            os.system('cd ' + LinkNeoBoot + ';curl -O --ftp-ssl https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt;sleep 3;cd /')
         if not fileExists('' + LinkNeoBoot + '/ver.txt'):
-            os.system('cd ' + LinkNeoBoot + ';wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; sleep 3;cd /')        
+                    if fileExists('/usr/bin/wget'):            
+                            os.system('cd ' + LinkNeoBoot + ';wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; sleep 3;cd /')      
         if fileExists('' + LinkNeoBoot + '/ver.txt'):
                 mypath = ''
                 version = open('' + LinkNeoBoot + '/ver.txt', 'r')
@@ -1042,15 +1066,16 @@ class NeoBootImageChoose(Screen):
         if yesno:
             if fileExists('/tmp/*.zip'):
                 os.system('rm /tmp/*.zip')
-            os.system('cd /tmp;rm ./*.zip; wget --no-check-certificate https://github.com/gutosie/neoboot/archive/main.zip; unzip -qn ./main.zip; sleep 2;cd / ')
-            if not fileExists('/neoboot-main/NeoBoot'):
-                    os.system('sync; cd /tmp; curl -O --ftp-ssl https://github.com/gutosie/neoboot/archive/main.zip; unzip -qn ./main.zip; sleep 2;sd cd /')
-                    if not fileExists('/neoboot-main/NeoBoot'):
-                        os.system('cd /tmp;rm ./*.zip;fullwget --no-check-certificate https://github.com/gutosie/neoboot/archive/main.zip; unzip -qn ./main.zip;sleep 2;cd /')
-                    if not fileExists('/neoboot-main/NeoBoot'):
+            if fileExists('/usr/bin/fullwget'):            
+                            os.system('cd ' + LinkNeoBoot + ';fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; sleep 3;cd /')           
+            if not fileExists('/tmp/neoboot-main/NeoBoot'):
+                    if fileExists('/usr/bin/curl'):                    
+                            os.system('sync; cd /tmp; curl -O --ftp-ssl https://github.com/gutosie/neoboot/archive/main.zip; unzip -qn ./main.zip; sleep 2;sd cd /')
+            if not fileExists('/tmp/neoboot-main/NeoBoot'):
+                    if fileExists('/usr/bin/wget'):            
+                            os.system('cd /tmp;rm ./*.zip; wget --no-check-certificate https://github.com/gutosie/neoboot/archive/main.zip; unzip -qn ./main.zip; sleep 2;cd / ')  
+            if not fileExists('/tmp/neoboot-main/NeoBoot'):
                         self.session.open(MessageBox, _('Unfortunately, at the moment not found an update, try again later.'), MessageBox.TYPE_INFO, 10)
-                    else:
-                        self.goUpdateNEO()
             else:
                 self.goUpdateNEO()
         else:
@@ -1406,12 +1431,21 @@ class NeoBootImageChoose(Screen):
         if yesno:
             cmd = 'mkdir /tmp/install; touch /tmp/install/plugin.txt; rm -rf /tmp/*.ipk'
             system(cmd)
-            cmd1 = 'cd /tmp; wget http://read.cba.pl/panel_extra/enigma2-plugin-extensions-imagedownloader_2.6_all.ipk'
-            system(cmd1)
-            cmd2 = 'opkg install --force-overwrite --force-reinstall --force-downgrade /tmp/enigma2-plugin-extensions-imagedownloader_2.6_all.ipk'
-            system(cmd2)
-            self.session.open(MessageBox, _('The plug-in has been successfully installed.'), MessageBox.TYPE_INFO, 5)
-            self.close()
+            if fileExists('/usr/bin/fullwget'):            
+                            os.system('cd /tmp; wget http://read.cba.pl/panel_extra/enigma2-plugin-extensions-imagedownloader_2.6_all.ipk')           
+            if not fileExists('/tmp/enigma2-plugin-extensions-imagedownloader_2.6_all.ipk'):
+                    if fileExists('/usr/bin/curl'):                    
+                            os.system('sync; cd /tmp; curl -O --ftp-ssl http://read.cba.pl/panel_extra/enigma2-plugin-extensions-imagedownloader_2.6_all.ipk')
+            if not fileExists('/tmp/enigma2-plugin-extensions-imagedownloader_2.6_all.ipk'):
+                    if fileExists('/usr/bin/wget'):            
+                            os.system('cd /tmp;rm ./*.zip; wget --no-check-certificate http://read.cba.pl/panel_extra/enigma2-plugin-extensions-imagedownloader_2.6_all.ipk')  
+            if not fileExists('/tmp/enigma2-plugin-extensions-imagedownloader_2.6_all.ipk'):
+                        self.session.open(MessageBox, _('Unfortunately, at the moment not found an update, try again later.'), MessageBox.TYPE_INFO, 10)
+            else:
+                cmd2 = 'opkg install --force-overwrite --force-reinstall --force-downgrade /tmp/enigma2-plugin-extensions-imagedownloader_2.6_all.ipk'
+                system(cmd2)
+                self.session.open(MessageBox, _('The plug-in has been successfully installed.'), MessageBox.TYPE_INFO, 5)
+                self.close()
         else:
                 mess = (_('Directory %sImagesUpload  is empty\nPlease upload the image files in zip or nfi formats to install') % getNeoLocation() )
                 self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)  
@@ -1508,7 +1542,20 @@ def main(session, **kwargs):
                 if not fileExists('/usr/lib/periodon/.kodn'):                                
                         session.open(MessageBox, _('Get a free test to the full vip version.'), type=MessageBox.TYPE_ERROR)
                 elif not fileExists('/usr/lib/periodon/.accessdate') or getAccesDate() == 'timeoff':   # prosze nie kakowac !!! - please do not crack :( 
-                        os.system('rm /usr/lib/periodon/.kodn; wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/NeoBoot/files/ndate -O /usr/lib/periodon/.accessdate')
+                    if fileExists('/usr/bin/fullwget'):            
+                            os.system('rm /usr/lib/periodon/.kodn; rm /usr/lib/periodon/.accessdate; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/NeoBoot/files/ndate -O /usr/lib/periodon/.accessdate')           
+                            session.open(MessageBox, _('Neoboot vip version has expired, please re-access.'), type=MessageBox.TYPE_ERROR)
+                    if not fileExists('/usr/lib/periodon/.accessdate'):
+                        if fileExists('/usr/bin/curl'):                    
+                            os.system('rm /usr/lib/periodon/.kodn; rm /usr/lib/periodon/.accessdate; curl -O --ftp-ssl https://raw.githubusercontent.com/gutosie/neoboot/master/NeoBoot/files/ndate -O /usr/lib/periodon/.accessdate')
+                            session.open(MessageBox, _('Neoboot vip version has expired, please re-access.'), type=MessageBox.TYPE_ERROR)
+                    if not fileExists('/usr/lib/periodon/.accessdate'):
+                        if fileExists('/usr/bin/wget'):            
+                            os.system('rm /usr/lib/periodon/.kodn; rm /usr/lib/periodon/.accessdate; wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/NeoBoot/files/ndate -O /usr/lib/periodon/.accessdate')  
+                            session.open(MessageBox, _('Neoboot vip version has expired, please re-access.'), type=MessageBox.TYPE_ERROR)
+                    if not fileExists('/usr/lib/periodon/.accessdate'):
+                        session.open(MessageBox, _('Neoboot vip version has expired, please re-access.'), type=MessageBox.TYPE_ERROR)
+                    else:
                         session.open(MessageBox, _('Neoboot vip version has expired, please re-access.'), type=MessageBox.TYPE_ERROR)
                 else:
                         pass
@@ -1576,4 +1623,4 @@ def Plugins(**kwargs):
         list.append(PluginDescriptor(name=_('NEOBOOT'), where=PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=main))
     return list
 
-####################### _(-_-)_ gutosie _(-_-)_ #######################
+####################### _q(-_-)p_ gutosie _q(-_-)p_ #######################

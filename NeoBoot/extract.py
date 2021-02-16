@@ -84,13 +84,13 @@ def NEOBootR(source, target, stopenigma, CopyFiles, CopyKernel, TvList, LanWlan,
     for command in list_one:
         os.system(command)
 
-    if stopenigma == 'True':
-        os.system('echo "All system processes have been stopped,\n please wait, after the installation is completed, E2 will restart..."')
-        os.system('touch /tmp/init4; init 4')
-
     rc = NEOBootExtract(source, target, ZipDelete, BlackHole)
 
     os.system('sync; echo 1 > /proc/sys/vm/drop_caches')
+
+    if stopenigma == 'True':
+        os.system('echo "All system processes have been stopped,\n please wait, after the installation is completed, E2 will restart..."')
+        os.system('rm /tmp/init4; touch /tmp/init4; init 4')
 
     if not os.path.exists('%s/ImageBoot/%s/usr/lib/enigma2/python/Plugins/Extensions' % (media, target)):
         os.system('mkdir -p %s/ImageBoot/%s/usr/lib/' % (media, target))
