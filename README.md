@@ -13,18 +13,26 @@ opkg install curl
 
 curl -kLs https://raw.githubusercontent.com/gutosie/neoboot/master/iNB.sh|sh
 
+#
 
 -jeśli w/w polecenie nie zadział próbujemy polecenia:
 
 -if the command doesn't work, try the command:
 
 
-rm /tmp/*.sh
-
-
-cd /tmp; wget https://raw.githubusercontent.com/gutosie/neoboot/master/iNB.sh;chmod 755 /tmp/iNB.sh; /tmp/iNb.sh; rm /tmp/iNb.sh
+cd /tmp; rm ./*.sh; wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/iNB.sh;chmod 755 ./iNB.sh;sh ./iNB.sh; rm ./iNB.sh; cd 
 
 #
+
+-jeśli w/w polecenie nie zadział próbujemy następne polecenia:
+
+-if the command doesn't work, try the command:
+
+cd /tmp; rm ./*.sh; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/iNB.sh;chmod 755 ./iNB.sh;sh ./iNB.sh; rm ./iNB.sh; cd
+
+#
+
+
 
 UWAGA!!! 
  Redystrybucja wersji programu i dokonywania modyfikacji JEST DOZWOLONE, pod warunkiem zachowania niniejszej informacji o prawach autorskich. 
