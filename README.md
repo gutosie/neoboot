@@ -22,7 +22,7 @@ curl -kLs https://raw.githubusercontent.com/gutosie/neoboot/master/iNB.sh|sh
 rm /tmp/*.sh
 
 
-cd /tmp; wget https://raw.githubusercontent.com/gutosie/neoboot/master/iNB.sh|sh;chmod 755 /tmp/iNB.sh; /tmp/iNb.sh; rm /tmp/iNb.sh
+cd /tmp; wget https://raw.githubusercontent.com/gutosie/neoboot/master/iNB.sh;chmod 755 /tmp/iNB.sh; /tmp/iNb.sh; rm /tmp/iNb.sh
 
 #
 
