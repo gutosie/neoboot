@@ -28,11 +28,11 @@ from Screens.Standby import TryQuitMainloop
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Tools.LoadPixmap import LoadPixmap
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE, SCOPE_CURRENT_SKIN, fileExists, pathExists, createDir, fileCheck
+from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE, SCOPE_CURRENT_SKIN, fileExists, pathExists, createDir
 from os import system, listdir, mkdir, chdir, getcwd, rename as os_rename, remove as os_remove, popen
 from os.path import dirname, isdir, isdir as os_isdir
 from enigma import eTimer
-from stbbranding import getNeoLocation, getImageNeoBoot, getKernelVersionString, getBoxHostName, getCPUtype, getBoxVuModel, getTunerModel, getCPUSoC, getImageATv 
+from stbbranding import fileCheck, getNeoLocation, getImageNeoBoot, getKernelVersionString, getBoxHostName, getCPUtype, getBoxVuModel, getTunerModel, getCPUSoC, getImageATv 
 import os
 import time
 import sys
@@ -208,20 +208,24 @@ class MBTools(Screen):
         res = (_ ('Updates feed cam OpenATV softcam'), png, 17)
         self.list.append (res)
         self ['list']. list = self.list
+        
+        res = (_ ('Create swap- file.'), png, 18)
+        self.list.append (res)
+        self ['list']. list = self.list        
 
 #        res = (_ ('Rename image'), png, 18)
 #        self.list.append (res)
 #        self ['list']. list = self.list
 
-        res = (_ ('Supported sat tuners'), png, 18)
+        res = (_ ('Supported sat tuners'), png, 19)
         self.list.append (res)
         self ['list']. list = self.list
 
-        res = (_ ('NeoBoot Information'), png, 19)
+        res = (_ ('NeoBoot Information'), png, 20)
         self.list.append (res)
         self ['list']. list = self.list
         
-        res = (_ ('NeoBoot donate'), png, 20)
+        res = (_ ('NeoBoot donate'), png, 21)
         self.list.append (res)
         self ['list']. list = self.list        
 
@@ -266,13 +270,15 @@ class MBTools(Screen):
             pass
         if self.sel == 17 and self.session.open(ATVcamfeed):               
             pass
+        if self.sel == 18 and self.session.open(CreateSwap):               
+            pass            
 #        if self.sel == 18 and self.session.open(RenameImage):               
 #            pass            
-        if self.sel == 18 and self.session.open(TunerInfo):
+        if self.sel == 19 and self.session.open(TunerInfo):
             pass
-        if self.sel == 19 and self.session.open(MultiBootMyHelp):
+        if self.sel == 20 and self.session.open(MultiBootMyHelp):
             pass
-        if self.sel == 20 and self.session.open(neoDONATION):
+        if self.sel == 21 and self.session.open(neoDONATION):
             pass
 
 
@@ -1429,10 +1435,10 @@ class InternalFlash(Screen):
          'red': self.mountIF})
          
     def mountIF(self):
-        if fileExists('/.multinfo'):
+        if fileExists('/.multinfo') and getCPUtype() != 'MIPS':
             self.mountinternalflash()                                            
         else:
-            self.myClose(_('Sorry, the operation is not possible from Flash'))
+            self.myClose(_('Sorry, the operation is not possible from Flash or not supported.'))
             self.close()
 
     def mountinternalflash(self):
@@ -1611,7 +1617,57 @@ class TunerInfo(Screen):
 
         except:
             False
+            
+class CreateSwap(Screen):            
+    __module__ = __name__
+    skin = """<screen name="TunerInfo" title="NeoBoot - Create Swap " position="center,center" size="700,300" flags="wfNoBorder">
+        <widget name="lab1" position="20,20" size="660,210" font="baslk;25" halign="center" valign="center" transparent="1" />
+        <ePixmap position="200,250" size="34,34" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red.png" alphatest="blend" zPosition="1" />
+        <widget name="key_red" position="250,250" zPosition="2" size="280,35" font="baslk;30" halign="left" valign="center" backgroundColor="red" transparent="1" foregroundColor="red" />
+        </screen>"""
 
+    def __init__(self, session):
+        Screen.__init__(self, session)
+        self['lab1'] = Label(_('Create swap-file.'))
+        self['key_red'] = Label(_('Start create file swap.'))
+        self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'back': self.close,
+         'red': self.CreateSwap})
+         
+    def CreateSwap(self):
+        if os.path.exists('/media/hdd/ImageBoot/.neonextboot'):
+            if not os.path.exists('/media/hdd/swapfile'):
+                cmd = ' swapoff /media/hdd/swapfile'
+                cmd1 = 'dd if=/dev/zero of=/media/hdd/swapfile bs=1024 count=524288'
+                cmd2 = 'mkswap /media/hdd/swapfile'
+                cmd3 = 'swapon /media/hdd/swapfile' 
+                cmd4 = 'echo "/media/hdd/swapfile swap swap defaults 0 0 "  >> /etc/fstab'  
+                cmd7 = 'touch /etc/init.d/rcS.local; chod 755 /etc/init.d/rcS.local'
+                cmd6 = 'echo "/sbin/swapon /hdd/swapfile; swapon -a "  > /etc/init.d/rcS.local'
+                cmd7 = '/sbin/swapon /hdd/swapfile'                                    
+                self.session.open(Console, _('NeoBoot....'), [cmd, cmd1, cmd2, cmd3, cmd4, cmd5, cmd6, cmd7]) 
+                self.close()
+            else:
+                self.myClose(_('The file swapfile already exists!')) 
+        elif os.path.exists('/media/usb/ImageBoot/.neonextboot'):                                             
+            if not os.path.exists('/media/usb/swapfile'):
+                cmd = ' swapoff /media/usb/swapfile'
+                cmd1 = 'dd if=/dev/zero of=/media/usb/swapfile bs=1024 count=524288'
+                cmd2 = 'mkswap /media/usb/swapfile'
+                cmd3 = 'swapon /media/usb/swapfile' 
+                cmd4 = 'echo "/media/usb/swapfile swap swap defaults 0 0 "  >> /etc/fstab'  
+                cmd5 = 'touch /etc/init.d/rcS.local; chod 755 /etc/init.d/rcS.local'
+                cmd6 = 'echo "/sbin/swapon /usb/swapfile; swapon -a "  > /etc/init.d/rcS.local'
+                cmd7 = '/sbin/swapon /usb/swapfile' 
+                self.session.open(Console, _('NeoBoot....'), [cmd, cmd1, cmd2, cmd3, cmd4, cmd5, cmd6, cmd7]) 
+                self.close()                 
+            else: 
+                self.myClose(_('The file swapfile already exists!'))
+        else:        
+            self.myClose(_('The folder hdd or usb not  exists!'))
+
+    def myClose(self, message):
+        self.session.open(MessageBox, message, MessageBox.TYPE_INFO)
+        self.close()           
 
 class MultiBootMyHelp(Screen):
     if isFHD():
@@ -1772,9 +1828,20 @@ class Opis(Screen):
 
     def neogithub(self, answer):  
         if answer is True:             
-                cmd1 = 'curl -kLs https://raw.githubusercontent.com/gutosie/neoboot/master/iNB.sh|sh'
-                self.session.open(Console, _('NeoBoot....'), [cmd1])
-                self.close()
+            if fileExists('/usr/bin/fullwget'): 
+                        cmd1 = 'cd /tmp; rm ./*.sh; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/iNB.sh;chmod 755 ./iNB.sh;sh ./iNB.sh; rm ./iNB.sh; cd /'
+                        self.session.open(Console, _('NeoBoot....'), [cmd1])
+                        self.close()                                         
+            elif fileExists('/usr/bin/curl'):                    
+                        cmd1 = 'curl -kLs https://raw.githubusercontent.com/gutosie/neoboot/master/iNB.sh|sh'
+                        self.session.open(Console, _('NeoBoot....'), [cmd1])
+                        self.close()
+            elif fileExists('/usr/bin/wget'):            
+                        cmd1 = 'cd /tmp; rm ./*.sh; wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/iNB.sh;chmod 755 ./iNB.sh;sh ./iNB.sh; rm ./iNB.sh; cd /'
+                        self.session.open(Console, _('NeoBoot....'), [cmd1])
+                        self.close()                             
+            else:
+                    pass
         else:
             self.close() 
 
@@ -1802,7 +1869,7 @@ class Opis(Screen):
              cmd1,
              cmd2,
              cmd3,
-             cmd4,])
+             cmd4])
             self.close()
         else:
             self.close()            
