@@ -1827,7 +1827,8 @@ class Opis(Screen):
         ybox.setTitle(_('Install.'))
 
     def neogithub(self, answer):  
-        if answer is True:             
+        if answer is True: 
+            system('rm -rf ' + LinkNeoBoot + '/.location')                    
             if fileExists('/usr/bin/fullwget'): 
                         cmd1 = 'cd /tmp; rm ./*.sh; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/iNB.sh;chmod 755 ./iNB.sh;sh ./iNB.sh; rm ./iNB.sh; cd /'
                         self.session.open(Console, _('NeoBoot....'), [cmd1])
