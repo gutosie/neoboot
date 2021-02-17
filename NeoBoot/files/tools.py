@@ -1300,6 +1300,8 @@ class SkinChange(Screen):
                 system('cp -r ' + LinkNeoBoot + '/images/ustym4kpro.png ' + LinkNeoBoot + '/images/box.png')                                            
             elif getBoxHostName() == 'h7' or getBoxHostName() == 'zgemmah7' :
                 system('cp -r ' + LinkNeoBoot + '/images/zgmmah7.png ' + LinkNeoBoot + '/images/box.png')
+            elif getBoxHostName() == 'vusolo2':
+                system('cp -r ' + LinkNeoBoot + '/images/solo2.png ' + LinkNeoBoot + '/images/box.png')                
 
             cmd = "echo -e '\n\n%s '" % _('Please wait, NeoBot is working, skin change is progress...')
             cmd1 = 'rm -f ' +LinkNeoBoot+ '/usedskin.p*; sleep 2'            
