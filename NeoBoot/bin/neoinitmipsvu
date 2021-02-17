@@ -6,6 +6,7 @@ NEOBOOT=/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot
 MODPROBE=/sbin/modprobe
 NEODEVICE=`cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`
 IMAGEKATALOG=ImageBoot
+UPLOAD=ImagesUpload
 HOSTNAME=`cat /etc/hostname`
 echo "====================================================> "
 echo " "
@@ -55,7 +56,6 @@ else
 		/sbin/depmod -Ae > /dev/null 2>&1
 	fi
 	sleep 2
-	/usr/bin/showiframe $NEOBOOT/neologo.mvi > /dev/null 2>&1
 	mnttest="nouuid"
 	if [ -e $NEOBOOT/bin/install  ]; then
         	orgimag1=`mount | sed '/sd/!d' | cut -d" " -f1`
@@ -119,9 +119,8 @@ else
         echo "Init image, base kernel: " `cat $NEODEVICE$IMAGEKATALOG/.neonextboot` >> $neoLOG
 	if [ ! -e $NEODEVICE$IMAGEKATALOG/.neonextboot ]; then
 		  ln -sfn /sbin/init.sysvinit /sbin/init
-		  /usr/bin/showiframe /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/error.mvi > /dev/null 2>&1
                   echo "Flash "  > $NEODEVICE$IMAGEKATALOG/.neonextboot
-                  echo "Used Kernel: Reinstall kernel !"  > /media/neoboot/ImagesUpload/.kernel/used_flash_kernel
+                  echo "Used Kernel: Reinstall kernel !"  > $NEODEVICE$$UPLOAD/.kernel/used_flash_kernel
                   echo " Sending all processes the TERM- KILL signal..."
                   echo -n "<<<END INIT INFO Rebooting...>>>"
                   echo " Sending all processes the TERM- KILL signal..." >> $neoLOG
@@ -134,16 +133,11 @@ else
 	if [ -f $NEODEVICE$IMAGEKATALOG/.neonextboot ]; then
 	  TARGET=`cat $NEODEVICE$IMAGEKATALOG/.neonextboot`
 	fi
-    #TARGET=Flash
-	HARDWARETYPE=`uname -m`
 	if [ $TARGET = "Flash" ]; then
 		    echo "NEOBOOT is booting image from " $TARGET
             echo "     BOOT UP IMAGE FROM FLASH     " >> $neoLOG
 		    /bin/umount /media/usb > /dev/null 2>&1
 		    /bin/umount /media/hdd > /dev/null 2>&1
-            if [ $HARDWARETYPE != "armv7l" ]; then
-		        /usr/bin/showiframe /usr/share/bootlogo.mvi > /dev/null 2>&1
-		    fi
             echo "----------------------------------"
 	        echo "     BOOT UP IMAGE FROM FLASH     "
             echo "----------------------------------";
@@ -161,14 +155,14 @@ else
                         rm -f `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/$TARGET/.control_boot_new_image > /dev/null 2>&1
 		    else
                         if [ ! -f `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/$TARGET/.control_ok ] ; then
-                                /usr/bin/showiframe /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/error.mvi > /dev/null 2>&1
                                 echo " Wrong kernel. FATAL ERROR - Back to image Flash..." >> $neoLOG
                                 echo "Wrong kernel. Press number 3"  > `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$UPLOAD/.kernel/used_flash_kernel
                                 ln -sfn /sbin/init.sysvinit /sbin/init
                                 echo "Flash "  > `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/.neonextboot
-		                        /bin/umount /media/usb > /dev/null 2>&1
-		                        /bin/umount /media/hdd > /dev/null 2>&1
+                                /bin/umount /media/usb > /dev/null 2>&1
+                                /bin/umount /media/hdd > /dev/null 2>&1
                                 echo -n "<<<END INIT INFO Rebooting...>>>"
+                                sleep 5
 		                        reboot -d -f
                         fi
 		    fi
@@ -177,13 +171,6 @@ else
         if [ -d $NEODEVICE$IMAGEKATALOG/$TARGET ]; then
 			if [ -f $NEODEVICE$IMAGEKATALOG/$TARGET/etc/init.d/udev ]; then
 				    sed -ie "s#\$4#\$3#g" $NEODEVICE$IMAGEKATALOG/$TARGET/etc/init.d/udev
-			fi
-			if [ $HARDWARETYPE != "armv7l" ]; then
-			        if [ -f $NEODEVICE$IMAGEKATALOG/$TARGET/usr/share/bootlogo.mvi ]; then
-				            /usr/bin/showiframe $NEODEVICE$IMAGEKATALOG/$TARGET/usr/share/bootlogo.mvi
-			        else
-				            /usr/bin/showiframe $NEODEVICE$IMAGEKATALOG/$TARGET/usr/share/bootlogo.mvi
-			        fi
 			fi
 			sleep 1
 			/bin/mount -o bind /dev $NEODEVICE$IMAGEKATALOG/$TARGET/dev
@@ -231,7 +218,6 @@ else
                     echo "Not found correctly unpacked image "$TARGET" z partycji " $DEVICE
                     echo "Check the correctness of unpacked catalogs in the selected one image.      "
                     echo "                      Back to image Flash...                               "
-                    /usr/bin/showiframe /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/error.mvi > /dev/null 2>&1
                     echo "Flash "  > `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/.neonextboot
                     echo "Used Kernel: Reinstall kernel !"  > `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$UPLOAD/.kernel/used_flash_kernel
 		            /bin/umount /media/usb > /dev/null 2>&1
