@@ -1197,16 +1197,20 @@ class CheckInstall(Screen):
 
     def neocheck2(self):
             os.system('rm -f ' + LinkNeoBoot + '/files/modulecheck.sh; echo "#!/bin/sh\n#DESCRIPTION=This script by gutosie\n====================================================>\nCheck result:"  > ' + LinkNeoBoot + '/files/modulecheck.sh') 
+            os.system('echo "*    neoboot location:"  >>  ' +LinkNeoBoot+ '/files/modulecheck.sh; cat "/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location"  >>  ' +LinkNeoBoot+ '/files/modulecheck.sh')
+            os.system('echo "\n*    neoboot location install:"  >>  ' +LinkNeoBoot+ '/files/modulecheck.sh; cat "/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/install"  >>  ' +LinkNeoBoot+ '/files/modulecheck.sh')
+            os.system('echo "\n*    neoboot location mount:"  >>  ' +LinkNeoBoot+ '/files/modulecheck.sh; cat "/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/neo.sh"  >>  ' +LinkNeoBoot+ '/files/modulecheck.sh')
+
             if getCPUtype() == 'ARMv7':
                 if os.system('opkg update; opkg list-installed | grep python-subprocess') != 0:
-                            os.system('echo "*    python-subprocess not installed"  >>  ' +LinkNeoBoot+ '/files/modulecheck.sh')
+                            os.system('echo "\n*    python-subprocess not installed"  >>  ' +LinkNeoBoot+ '/files/modulecheck.sh')
                 if os.system('opkg list-installed | grep python-argparse') != 0:
                             os.system('echo "*    python-argparse not installed"  >>  ' +LinkNeoBoot+ '/files/modulecheck.sh')                            
                 if os.system('opkg list-installed | grep curl') != 0:
                             os.system('echo "*    curl not installed"  >>  ' +LinkNeoBoot+ '/files/modulecheck.sh')                                                                               
             if getCPUtype() == 'MIPS':
                 if os.system('opkg list-installed | grep kernel-module-nandsim') != 0:
-                            os.system('echo "*    kernel-module-nandsim not installed"  >>  ' +LinkNeoBoot+ '/files/modulecheck.sh')                   
+                            os.system('echo "\n*    kernel-module-nandsim not installed"  >>  ' +LinkNeoBoot+ '/files/modulecheck.sh')                   
                 if os.system('opkg list-installed | grep mtd-utils-jffs2') != 0:
                             os.system('echo "*    mtd-utils-jffs2 not installed"  >>  ' +LinkNeoBoot+ '/files/modulecheck.sh')                
                 if os.system('opkg list-installed | grep lzo') != 0:
@@ -1226,7 +1230,7 @@ class CheckInstall(Screen):
                 if os.system('opkg list-installed | grep mtd-utils-ubifs') != 0:
                             os.system('echo "*    mtd-utils-ubifs not installed"  >>  ' +LinkNeoBoot+ '/files/modulecheck.sh')                                                                                                                                                                                                                                                                                                                                                                
             else:            
-                os.system('echo "*    Everything is OK !"  >>  ' +LinkNeoBoot+ '/files/modulecheck.sh')
+                os.system('echo "*    opkg packed everything is OK !"  >>  ' +LinkNeoBoot+ '/files/modulecheck.sh')
 
             cmd = ' cat ' +LinkNeoBoot+ '/files/modulecheck.sh'
             cmd1 = ''
