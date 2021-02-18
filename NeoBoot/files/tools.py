@@ -1196,19 +1196,44 @@ class CheckInstall(Screen):
             self.myClose(_('Sorry, Neoboot can be installed or upgraded only when booted from Flash'))
 
     def neocheck2(self):
-        try:
-            cmd = ' ' +LinkNeoBoot+ '/files/modulecheck.sh'
+            os.system('rm -f ' + LinkNeoBoot + '/files/modulecheck.sh; echo "#!/bin/sh\n#DESCRIPTION=This script by gutosie\n====================================================>\nCheck result:"  > ' + LinkNeoBoot + '/files/modulecheck.sh') 
+            if getCPUtype() == 'ARMv7':
+                if os.system('opkg update; opkg list-installed | grep python-subprocess') != 0:
+                            os.system('echo "*    python-subprocess not installed"  >>  ' +LinkNeoBoot+ '/files/modulecheck.sh')
+                if os.system('opkg list-installed | grep python-argparse') != 0:
+                            os.system('echo "*    python-argparse not installed"  >>  ' +LinkNeoBoot+ '/files/modulecheck.sh')                            
+                if os.system('opkg list-installed | grep curl') != 0:
+                            os.system('echo "*    curl not installed"  >>  ' +LinkNeoBoot+ '/files/modulecheck.sh')                                                                               
+            if getCPUtype() == 'MIPS':
+                if os.system('opkg list-installed | grep kernel-module-nandsim') != 0:
+                            os.system('echo "*    kernel-module-nandsim not installed"  >>  ' +LinkNeoBoot+ '/files/modulecheck.sh')                   
+                if os.system('opkg list-installed | grep mtd-utils-jffs2') != 0:
+                            os.system('echo "*    mtd-utils-jffs2 not installed"  >>  ' +LinkNeoBoot+ '/files/modulecheck.sh')                
+                if os.system('opkg list-installed | grep lzo') != 0:
+                            os.system('echo "*    lzo not installed"  >>  ' +LinkNeoBoot+ '/files/modulecheck.sh')                                            
+                if os.system('opkg list-installed | grep python-setuptools') != 0: 
+                            os.system('echo "*    python-setuptools not installed"  >>  ' +LinkNeoBoot+ '/files/modulecheck.sh')                                                                        
+                if os.system('opkg list-installed | grep util-linux-sfdisk') != 0: 
+                            os.system('echo "*    util-linux-sfdisk not installed"  >>  ' +LinkNeoBoot+ '/files/modulecheck.sh')                 
+                if os.system('opkg list-installed | grep packagegroup-base-nfs') != 0: 
+                            os.system('echo "*    packagegroup-base-nfs not installed"  >>  ' +LinkNeoBoot+ '/files/modulecheck.sh')                                           
+                if os.system('opkg list-installed | grep ofgwrite') != 0:
+                            os.system('echo "*    ofgwrite not installed"  >>  ' +LinkNeoBoot+ '/files/modulecheck.sh')                                                                                                                                                                                                                                                                                                                                                                
+                if os.system('opkg list-installed | grep bzip2') != 0:  
+                            os.system('echo "*    bzip2 not installed"  >>  ' +LinkNeoBoot+ '/files/modulecheck.sh')                                                                                                                                                                                                                                                                                                                                                              
+                if os.system('opkg list-installed | grep mtd-utils') != 0:
+                            os.system('echo "*    mtd-utils not installed"  >>  ' +LinkNeoBoot+ '/files/modulecheck.sh')                
+                if os.system('opkg list-installed | grep mtd-utils-ubifs') != 0:
+                            os.system('echo "*    mtd-utils-ubifs not installed"  >>  ' +LinkNeoBoot+ '/files/modulecheck.sh')                                                                                                                                                                                                                                                                                                                                                                
+            else:            
+                os.system('echo "*    Everything is OK !"  >>  ' +LinkNeoBoot+ '/files/modulecheck.sh')
+
+            cmd = ' cat ' +LinkNeoBoot+ '/files/modulecheck.sh'
+            cmd1 = ''
             self.session.openWithCallback(self.close, Console, _('NeoBoot....'), [cmd,
-             cmd]) 
+                     cmd1]) 
             self.close()
 
-        except:
-            False
-
-    def myClose(self, message):
-            self.session.open(MessageBox, message, MessageBox.TYPE_INFO)        
-            self.close()
-            
 
 class SkinChange(Screen):
     if isFHD():
