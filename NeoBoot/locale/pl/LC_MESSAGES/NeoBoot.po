@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NeoBoot\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-02-14 10:15+0200\n"
+"PO-Revision-Date: 2021-02-15 16:08+0200\n"
 "Last-Translator: gutosie <Krzysio Gutosie>\n"
 "Language-Team: gutosie- GaduGadu nr. 5111900 <http://all-forum.cba.pl >\n"
 "Language: pl\n"
@@ -2603,3 +2603,21 @@ msgstr "Aktywacja dostępu VIP kończy się niepowodzeniem z kodem błędu 0x10"
 
 msgid "VIP Access Activation Fails with Error code 0x20."
 msgstr "Aktywacja dostępu VIP kończy się niepowodzeniem z kodem błędu 0x20"
+
+msgid "Create swap- file."
+msgstr "Utwórz wymianę-swap."
+
+msgid "Create swap-file."
+msgstr "Utwórz plik-swap."
+
+msgid "Start create file swap."
+msgstr "Utwórz wymianę plik swap."
+
+msgid "The plug-in not installed"
+msgstr "Wtyczka nie została zainstalowana."
+
+msgid "The file swapfile already exists!"
+msgstr "Plik swapfile już istnieje!"
+
+msgid "The folder hdd or usb not  exists!"
+msgstr "Katalog hdd lub usb nie istnieje!"
