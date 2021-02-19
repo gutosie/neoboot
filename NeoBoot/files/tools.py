@@ -1673,7 +1673,7 @@ class CreateSwap(Screen):
                 cmd3 = 'swapon /media/hdd/swapfile' 
                 cmd4 = 'echo "/media/hdd/swapfile swap swap defaults 0 0 "  >> /etc/fstab'  
                 cmd5 = 'echo "/sbin/swapon /hdd/swapfile; swapon -a "  > /etc/init.d/rcS.local'
-                cmd6 = 'chmod 755 /etc/init.d/rcS.local; /sbin/swapon /hdd/swapfile'  
+                cmd6 = 'chmod 755 /etc/init.d/rcS.local; chmod 755 /media/hdd/swapfile; /sbin/swapon /hdd/swapfile'  
                 cmd7 = "echo -e '\n\n%s '" % _('Creation complete swap 512MB')                                  
                 self.session.open(Console, _('NeoBoot....'), [cmd0, 
                  cmd1,                 
@@ -1693,7 +1693,7 @@ class CreateSwap(Screen):
                 cmd3 = 'swapon /media/usb/swapfile' 
                 cmd4 = 'echo "/media/usb/swapfile swap swap defaults 0 0 "  >> /etc/fstab'  
                 cmd5 = 'echo "/sbin/swapon /usb/swapfile; swapon -a "  > /etc/init.d/rcS.local'
-                cmd6 = 'chmod 755 /etc/init.d/rcS.local; /sbin/swapon /usb/swapfile' 
+                cmd6 = 'chmod 755 /etc/init.d/rcS.local; chmod 755 /media/usb/swapfile; /sbin/swapon /usb/swapfile' 
                 cmd7 = "echo -e '\n\n%s '" % _('Creation complete swap 512MB')                
                 self.session.open(Console, _('NeoBoot....'), [cmd0, 
                  cmd1,                 
