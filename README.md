@@ -20,7 +20,7 @@ curl -kLs https://raw.githubusercontent.com/gutosie/neoboot/master/iNB.sh|sh
 -if the command doesn't work, try the command:
 
 
-cd /tmp; rm ./*.sh; wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/iNB.sh;chmod 755 ./iNB.sh;sh ./iNB.sh; rm ./iNB.sh; cd 
+cd /tmp; wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/iNB.sh;chmod 755 ./iNB.sh;sh ./iNB.sh; rm ./iNB.sh; cd 
 
 #
 
@@ -28,7 +28,7 @@ cd /tmp; rm ./*.sh; wget --no-check-certificate https://raw.githubusercontent.co
 
 -if the command doesn't work, try the command:
 
-cd /tmp; rm ./*.sh; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/iNB.sh;chmod 755 ./iNB.sh;sh ./iNB.sh; rm ./iNB.sh; cd
+cd /tmp; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/iNB.sh;chmod 755 ./iNB.sh; sh ./iNB.sh; rm ./iNB.sh; cd
 
 #
 
