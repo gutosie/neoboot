@@ -3,7 +3,7 @@
 from Plugins.Extensions.NeoBoot.__init__ import _ 
 import os
 import time
-from Tools.Directories import fileExists, pathExists, fileCheck
+from Tools.Directories import fileExists, pathExists
 from Tools.CList import CList
 from Components.SystemInfo import SystemInfo
 from Components.Console import Console
