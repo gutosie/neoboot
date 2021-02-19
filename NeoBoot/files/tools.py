@@ -1667,30 +1667,42 @@ class CreateSwap(Screen):
     def CreateSwap(self):
         if os.path.exists('/media/hdd/ImageBoot/.neonextboot'):
             if not os.path.exists('/media/hdd/swapfile'):
-                cmd = ' swapoff /media/hdd/swapfile'
+                cmd0 = "echo -e '\n\n%s '" % _('Creation swap 512MB, please wait...')            
                 cmd1 = 'dd if=/dev/zero of=/media/hdd/swapfile bs=1024 count=524288'
                 cmd2 = 'mkswap /media/hdd/swapfile'
                 cmd3 = 'swapon /media/hdd/swapfile' 
                 cmd4 = 'echo "/media/hdd/swapfile swap swap defaults 0 0 "  >> /etc/fstab'  
-                cmd7 = 'touch /etc/init.d/rcS.local; chod 755 /etc/init.d/rcS.local'
-                cmd6 = 'echo "/sbin/swapon /hdd/swapfile; swapon -a "  > /etc/init.d/rcS.local'
-                cmd7 = '/sbin/swapon /hdd/swapfile'                                    
-                self.session.open(Console, _('NeoBoot....'), [cmd, cmd1, cmd2, cmd3, cmd4, cmd5, cmd6, cmd7]) 
-                self.close()
+                cmd5 = 'echo "/sbin/swapon /hdd/swapfile; swapon -a "  > /etc/init.d/rcS.local'
+                cmd6 = 'chmod 755 /etc/init.d/rcS.local; /sbin/swapon /hdd/swapfile'  
+                cmd7 = "echo -e '\n\n%s '" % _('Creation complete swap 512MB')                                  
+                self.session.open(Console, _('NeoBoot....'), [cmd0, 
+                 cmd1,                 
+                 cmd2, 
+                 cmd3, 
+                 cmd4, 
+                 cmd5, 
+                 cmd6,                 
+                 cmd7]) 
             else:
                 self.myClose(_('The file swapfile already exists!')) 
         elif os.path.exists('/media/usb/ImageBoot/.neonextboot'):                                             
             if not os.path.exists('/media/usb/swapfile'):
-                cmd = ' swapoff /media/usb/swapfile'
+                cmd0 = "echo -e '\n\n%s '" % _('Creation swap 512MB, please wait...')            
                 cmd1 = 'dd if=/dev/zero of=/media/usb/swapfile bs=1024 count=524288'
                 cmd2 = 'mkswap /media/usb/swapfile'
                 cmd3 = 'swapon /media/usb/swapfile' 
                 cmd4 = 'echo "/media/usb/swapfile swap swap defaults 0 0 "  >> /etc/fstab'  
-                cmd5 = 'touch /etc/init.d/rcS.local; chod 755 /etc/init.d/rcS.local'
-                cmd6 = 'echo "/sbin/swapon /usb/swapfile; swapon -a "  > /etc/init.d/rcS.local'
-                cmd7 = '/sbin/swapon /usb/swapfile' 
-                self.session.open(Console, _('NeoBoot....'), [cmd, cmd1, cmd2, cmd3, cmd4, cmd5, cmd6, cmd7]) 
-                self.close()                 
+                cmd5 = 'echo "/sbin/swapon /usb/swapfile; swapon -a "  > /etc/init.d/rcS.local'
+                cmd6 = 'chmod 755 /etc/init.d/rcS.local; /sbin/swapon /usb/swapfile' 
+                cmd7 = "echo -e '\n\n%s '" % _('Creation complete swap 512MB')                
+                self.session.open(Console, _('NeoBoot....'), [cmd0, 
+                 cmd1,                 
+                 cmd2, 
+                 cmd3, 
+                 cmd4, 
+                 cmd5, 
+                 cmd6,                 
+                 cmd7])                  
             else: 
                 self.myClose(_('The file swapfile already exists!'))
         else:        
