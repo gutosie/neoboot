@@ -155,7 +155,7 @@ class StartImage(Screen):
 
 #################_____ARM____########################## 
             #VUPLUS ARM - Zero4k vu_mmcblk0p4.sh                                                        
-            elif getBoxHostName() == 'vuzero4k' or getCPUSoC() == '72604': 
+            if getBoxHostName() == 'vuzero4k' or getCPUSoC() == '72604': 
                         if not fileExists('%sImagesUpload/.kernel/flash-kernel-%s.bin' % (getNeoLocation(), getBoxHostName()) ):
                             mess = (_('Error - in the location %sImagesUpload/.kernel/ \nkernel file not found flash-kernel-%s.bin') % (getNeoLocation(), getBoxHostName())  )
                             self.session.open(MessageBox, mess, MessageBox.TYPE_INFO) 
