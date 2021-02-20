@@ -827,7 +827,7 @@ class NeoBootImageChoose(Screen):
             if fileExists('/tmp/ver.txt'):
                     os.system('mv /tmp/ver.txt /tmp/.nkod ;cd /')
             else:
-                    os.system(_('echo %s  > /tmp/.nkod') % PLUGINVERSION)
+                    os.system(_('echo %s  > /tmp/.nkod') % PLUGINVERSION)   
   
 
     def DownloadImageOnline(self):				          	
@@ -1548,7 +1548,7 @@ def main(session, **kwargs):
                 os.system('date "+%Y%m%d"  > /tmp/.finishdate')
                 if not fileExists('/usr/lib/periodon/.kodn'):                                
                         session.open(MessageBox, _('Get a free test to the full vip version.'), type=MessageBox.TYPE_ERROR)
-                elif not fileExists('/usr/lib/periodon/.accessdate') or getAccesDate() == 'timeoff':   # prosze nie kakowac !!! - please do not crack :( 
+                elif not fileExists('/usr/lib/periodon/.accessdate') or getAccesDate() == 'timeoff':   # prosze nie hakowac !!! - please do not crack :( 
                     if fileExists('/usr/bin/fullwget'):            
                             os.system('rm /usr/lib/periodon/.kodn; rm /usr/lib/periodon/.accessdate; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/NeoBoot/files/ndate -O /usr/lib/periodon/.accessdate')           
                             session.open(MessageBox, _('Neoboot vip version has expired, please re-access.'), type=MessageBox.TYPE_ERROR)
