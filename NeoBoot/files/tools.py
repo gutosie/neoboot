@@ -1237,6 +1237,10 @@ class CheckInstall(Screen):
             self.session.openWithCallback(self.close, Console, _('NeoBoot....'), [cmd,
                      cmd1]) 
             self.close()
+            
+    def myClose(self, message):
+        self.session.open(MessageBox, message, MessageBox.TYPE_INFO)
+        self.close()
 
 
 class SkinChange(Screen):
