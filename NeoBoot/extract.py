@@ -113,7 +113,8 @@ def NEOBootR(source, target, stopenigma, CopyFiles, CopyKernel, TvList, LanWlan,
      'mkdir -p ' + media_target + extensions_path + 'NeoReboot' + dev_null,
      'touch ' + media_target + extensions_path + 'NeoReboot/__init__.py' + dev_null,
      'chmod 644 ' + media_target + extensions_path + 'NeoReboot/__init__.py' + dev_null,
-     'cp -af ' + extensions_path + 'NeoBoot/files/neoreboot.py ' + media_target + extensions_path + 'NeoReboot/plugin.py' + dev_null]
+     'cp -af ' + extensions_path + 'NeoBoot/files/backflash ' + media_target + extensions_path + 'NeoReboot/backflash.sh' + dev_null,
+     'cp -af ' + extensions_path + 'NeoBoot/files/neoreboot ' + media_target + extensions_path + 'NeoReboot/plugin.py' + dev_null]
     for command in list_two:
         os.system(command)
 
