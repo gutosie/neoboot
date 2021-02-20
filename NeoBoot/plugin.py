@@ -827,7 +827,7 @@ class NeoBootImageChoose(Screen):
             if fileExists('/tmp/ver.txt'):
                     os.system('mv /tmp/ver.txt /tmp/.nkod ;cd /')
             else:
-                    pass
+                    os.system(_('echo %s  > /tmp/.nkod') % PLUGINVERSION)
   
 
     def DownloadImageOnline(self):				          	
