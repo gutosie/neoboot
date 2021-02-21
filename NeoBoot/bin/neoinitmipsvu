@@ -1,6 +1,6 @@
 #!/bin/sh
 #DESCRIPTION = This script mod. by gutosie
-#NeoBoot INIT Version: VIP MIPSEL stb vuplus
+#NeoBoot INIT Version: VIP MIPSEL STB VUPLUS without boot manager
 #Scrypt Unix Shell - init for neoboot
 NEOBOOT=/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot
 MODPROBE=/sbin/modprobe

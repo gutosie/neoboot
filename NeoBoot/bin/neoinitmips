@@ -1,33 +1,32 @@
 #!/bin/sh
 #DESCRIPTION = This script mod. by gutosie
-#NeoBoot INIT Version: NEOBOOT VIP MIPS
+#NeoBoot INIT Version: NEOBOOT VIP all stb MIPSEL with the boot manager
 #Scrypt Unix Shell - init for neoboot
 NEOBOOT=/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot
 MODPROBE=/sbin/modprobe
 NEODEVICE=`cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`
 IMAGEKATALOG=ImageBoot
 UPLOAD=ImagesUpload
-HOSTNAME=`cat /etc/hostname`
-echo "====================================================> "
-echo " "
-echo "	    -=*[ NEOBOOT - BOOT UP ]*=-     "
-echo "     NEO BOOT INIT Version: gutosie   "
-echo "	             q(-_-)p                "
-echo " "
-echo "====================================================> "
+HOSTNAME=`cat /etc/hostname` 
+neoLOG=$NEODEVICE$IMAGEKATALOG/initneo.log
+
 if [ -e /tmp/.init_reboot ]; then
         rm /tmp/.init_reboot > /dev/null 2>&1
-        break;
-else
-	if [ -e `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/.neonextboot ]  ; then
+        break;        
+elif [ -e `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/.neonextboot ]  ; then
                     CELBOOT=`cat $NEODEVICE$IMAGEKATALOG/.neonextboot`
 	    if [ $CELBOOT = "Flash" ]; then
-                    exec /sbin/init.sysvinit $1
-                    exit 0
-        else
-                break;
+	                echo "Escape from initneoboot - boot Flash"
+	                break;
         fi
-	fi
+else
+    echo " "
+	echo "====================================================> "
+    echo "	    -=*[ NEOBOOT - BOOT UP ]*=-     "
+    echo "     NEO BOOT INIT Version: gutosie   "
+    echo "	             q(-_-)p                "
+    echo "====================================================> "
+    echo " "
 	mknod /dev/sda b  8 0
 	mknod /dev/sda1 b 8 1
 	mknod /dev/sda2 b 8 2
@@ -45,6 +44,7 @@ else
 	mknod /dev/fb0 c 29 0
 	mkdir /dev/fb
 	ln -s ../fb0 /dev/fb/0
+	echo " "
 	echo "====================================================> "
 	sleep 1
 	LIBDIR=/lib/modules/`uname -r`
@@ -66,80 +66,95 @@ else
 	/etc/init.d/mdev > /dev/null 2>&1
 	sleep 1
         echo " "
-        echo "Search NEOBOOT... "
-        #sed=grep
-	mnttest="nouuid"
-	if [ -e $NEOBOOT/bin/install  ]; then
-        	orgimag1=`mount | grep '/sd/!d' | cut -d" " -f1`
-		selectinstall=`cat $NEOBOOT/bin/install`
-		for item in $orgimag1; do
-			selectmnt=`blkid | grep "/$selectinstall/!d" | cut -d":" -f1`
-			if [ $selectmnt == $item ]; then
-				echo "selectmnt=" $selectmnt
-                        	mnttest="uuid"
-				mount $selectmnt $NEODEVICE > /dev/null 2>&1
-			fi
-			if [ ! -e $NEODEVICE$IMAGEKATALOG  ]; then
-				echo "NEOBOOT hasn't been installed on: " $selectmnt
-				umount $NEODEVICE > /dev/null 2>&1
-			else
-				echo "NEOBOOT has been installed on: " $selectmnt
-				break;
-			fi
-		done
+        echo "Search NEOBOOT... "	
+	if [ ! -e `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`  ]; then
+	        mkdir `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location` > /dev/null 2>&1
+	        echo " "
+		    echo "_______________________NeoBoot created location media_______________________"
 	fi
-	if [ ! -e $NEODEVICE  ]; then
-		mkdir $NEODEVICE > /dev/null 2>&1
-	fi
-	if [ $mnttest == "nouuid" ]; then
-	        echo "NEOBOOT mount by Device"
-		DEVICES1=`find /dev/sd??`
-		for DEVICE in $DEVICES1;
-		do
-			if [ -e $NEODEVICE  ]; then
-				echo "NEOBOOT checking installation on: " $DEVICE
-				mount $DEVICE $NEODEVICE > /dev/null 2>&1
-			fi
-			if [ ! -e $NEODEVICE$IMAGEKATALOG  ]; then
-				echo "NEOBOOT hasn't been installed on:" $DEVICE
-				umount $NEODEVICE > /dev/null 2>&1
-			else
-				echo "NEOBOOT has been installed on: " $DEVICE
-				break;
-			fi
-		done
-	elif [ $mnttest == "uuid" ]; then
-		echo "NEOBOOT mount by UUID"
-	fi
-	DEVICES1=`find /dev/sd??`
-	for DEVICE in $DEVICES1;
-	do
-		if [ ! -e $NEODEVICE$IMAGEKATALOG/.neonextboot  ]; then
-     		mount $DEVICE $NEODEVICE$ > /dev/null 2>&1
-    	fi
-   		if [ ! -e $NEODEVICE$IMAGEKATALOG/.neonextboot  ]; then
-       		umount $NEODEVICE > /dev/null 2>&1
-    	fi
-	done
-        #mount /dev/sdb1 $NEODEVICE > /dev/null 2>&1  # <<< tu mozesz zmienic sdb1 i wpisac Twoje montowanie dysku dla neoboot
-        if [ ! -e $NEODEVICE$IMAGEKATALOG/.neonextboot  ]; then
+	
+    if [ -e /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/mountpoint.sh  ]; then
+                /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/neo.sh > /dev/null 2>&1
+                echo " "
+                echo "_______________________NeoBoot mount by MOUNTPOINT_______________________" 
+   	fi	             	
+    if [ -e $NEODEVICE$IMAGEKATALOG/.neonextboot  ]; then
+                break;    
+    else
+	    mnttest="nolocation"	
+	    if [ -e /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/install  ]; then
+        	    orgimag1=`mount | sed '/sd/!d' | cut -d" " -f1`
+		    selectinstall=`cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/install`
+		    for item in $orgimag1; do        				 			
+                selectmnt=`blkid | find "$selectinstall"  | cut -d" " -f1`                        
+			    if [ $selectmnt = $selectinstall ]; then
+				        echo "selectmnt="$selectmnt
+                        mnttest="location"
+				        mount $selectmnt `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location` > /dev/null 2>&1		
+                        echo "Neoboot location detected." 				
+			    fi
+
+			    if [ ! -e `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`ImageBoot  ]; then
+				        echo "NeoBoot hasn't been installed on: " $selectinstall
+				        umount `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location` > /dev/null 2>&1
+				        echo " "
+                        echo "_______________________ NeoBoot not mounted by LOCATION_______________________ " 
+			    else
+				        echo "NEOBOOT has been installed on: " $selectmnt
+				        echo " "
+					    echo "_______________________ NeoBoot mount by LOCATION_______________________ "
+				        break;
+			    fi 			
+		    done                    
+	    fi	
+
+	    if [ $mnttest == "location" ] ; then
+                break;
+	    else
+	        echo "NeoBoot mount by Device"
+		    DEVICES1=`find /dev/sd??`
+		    for DEVICE in $DEVICES1;
+		    do
+			    if [ -e `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`  ]; then
+				        echo "neoboot checking installation on: " $DEVICE
+				        mount $DEVICE `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location` > /dev/null 2>&1 
+			    fi
+			    if [ ! -e `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`ImageBoot  ]; then
+				        echo "NeoBoot hasn't been installed on: " $DEVICE
+				        umount `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location` > /dev/null 2>&1 
+			    else
+				        echo "NeoBoot has been installed on: " $DEVICE
+					    echo "_______________________ NeoBoot mount by DEVICE_______________________"
+				        break;
+			    fi 
+		    done                
+        fi
+    fi					
+	if [ ! -e $NEODEVICE$IMAGEKATALOG/.neonextboot  ]; then
 	        if [ -e /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/mountpoint.sh  ]; then
                     /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/neo.sh
-                    echo "_______________________NeoBoot mount by MOUNTPOINT_______________________"
+                    echo " "
+                    echo "_______________________NeoBoot mount by MOUNTPOINT_______________________" 
 	        fi
-        fi
-	neoLOG=$NEODEVICE$IMAGEKATALOG/initneo.log
+    fi
+	if [ ! -e $NEODEVICE$IMAGEKATALOG/.neonextboot ]; then 	
+	    if [ -e /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/mountpoint.sh  ]; then
+                /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/mountpoint.sh > /dev/null 2>&1
+                echo " "
+                echo "_______________________NeoBoot mount by MOUNTPOINT_______________________" 
+	    fi
+	fi
     if [ -f $neoLOG ]; then
             rm -f $neoLOG
 		    touch $neoLOG
-    fi
-        echo "                  >>> START NEXT LOG...            >>> "  >> $neoLOG
-        echo "..............-=*[ NEOBOOT - BOOT UP ]*=-.............."  >> $neoLOG
-        echo "    ____q(-_-)p____START NEXT Image...____q(-_-)p____  "  >> $neoLOG
-        echo "......................................................."  >> $neoLOG
-        echo "Tuner name: " `cat /etc/hostname` >> $neoLOG
-        echo "Boot image: " `cat $NEODEVICE$IMAGEKATALOG/.neonextboot` >> $neoLOG
-        echo "Init image, base kernel: " `cat $NEODEVICE$IMAGEKATALOG/.neonextboot` >> $neoLOG
+            echo "                  >>> START NEXT LOG...            >>> "  >> $neoLOG
+            echo "..............-=*[ NEOBOOT - BOOT UP ]*=-.............."  >> $neoLOG
+            echo "    ____q(-_-)p____START NEXT Image...____q(-_-)p____  "  >> $neoLOG
+            echo "......................................................."  >> $neoLOG
+            echo "Tuner name: " `cat /etc/hostname` >> $neoLOG
+            echo "Boot image: " `cat $NEODEVICE$IMAGEKATALOG/.neonextboot` >> $neoLOG
+            echo "Init image, base kernel: " `cat $NEODEVICE$IMAGEKATALOG/.neonextboot` >> $neoLOG
+    fi        
         
         echo "NEOBOOT is loading modules."
         for mod in dvb; do
@@ -167,46 +182,41 @@ else
 	if [ -f $LIBDIR/kernel/fs/autofs4/autofs4.ko ]; then
 		/sbin/insmod $LIBDIR/kernel/fs/autofs4/autofs4.ko > /dev/null 2>&1
 	fi
-        sleep 1
+        sleep 5
 	if [ -e $NEOBOOT/bin/neobm ]; then
+	        echo " "
             echo "  Neo-Boot start  boot manager  "
             echo "  Waiting to change image - 20s "
             echo " "
 	    chmod 0755 $NEOBOOT/bin/neobm
 	    /usr/bin/showiframe $NEOBOOT/neologo.mvi > /dev/null 2>&1
-	    sleep 1
 	    $NEOBOOT/bin/neobm > /dev/null 2>&1
 	fi
 	if [ -e $NEOBOOT/bin/fbclear ]; then
 	        $NEOBOOT/bin/fbclear; $NEOBOOT/bin/fbclear; $NEOBOOT/bin/fbclear; $NEOBOOT/bin/fbclear > /dev/null 2>&1
         fi
 	if [ ! -e $NEODEVICE$IMAGEKATALOG/.neonextboot ]; then
-		  ln -sfn /sbin/init.sysvinit /sbin/init
 		          /usr/bin/showiframe /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/error.mvi > /dev/null 2>&1
-                  echo "Flash "  > $NEODEVICE$IMAGEKATALOG/.neonextboot
-                  echo "Used Kernel: Reinstall kernel !"  > $NEODEVICE$$UPLOAD/.kernel/used_flash_kernel
-                  echo " Sending all processes the TERM- KILL signal..."
-                  echo -n "<<<END INIT INFO Rebooting...>>>"
-                  echo " Sending all processes the TERM- KILL signal..." >> $neoLOG
-                  echo "Error mounting, Return to image Flash..."; echo "Error mounting, Return to image Flash..." >> $neoLOG
+		          echo " "
+                  echo "Error mounting, Return to image Flash..."
+		          ln -sfn /sbin/init.sysvinit /sbin/init
+		          echo "====================================================> "
                   /bin/umount /media/usb > /dev/null 2>&1
                   /bin/umount /media/hdd > /dev/null 2>&1
-		  reboot -f
+                  sleep 10
+		          reboot -f
 	fi
 	TARGET=Flash
 	if [ -f $NEODEVICE$IMAGEKATALOG/.neonextboot ]; then
 	  TARGET=`cat $NEODEVICE$IMAGEKATALOG/.neonextboot`
 	fi
-    #TARGET=Flash
-	HARDWARETYPE=`uname -m`
 	if [ $TARGET = "Flash" ]; then
+	        echo " "
 		    echo "NEOBOOT is booting image from " $TARGET
             echo "     BOOT UP IMAGE FROM FLASH     " >> $neoLOG
 		    /bin/umount /media/usb > /dev/null 2>&1
 		    /bin/umount /media/hdd > /dev/null 2>&1
-            if [ $HARDWARETYPE != "armv7l" ]; then
-		        /usr/bin/showiframe /usr/share/bootlogo.mvi > /dev/null 2>&1
-		    fi
+            /usr/bin/showiframe /usr/share/bootlogo.mvi > /dev/null 2>&1
             echo "----------------------------------"
 	        echo "     BOOT UP IMAGE FROM FLASH     "
             echo "----------------------------------";
@@ -214,10 +224,12 @@ else
 	else
         ######### test boot new imaga>>>>
         if [ -f `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/$TARGET/.control_ok ]; then
+                    echo " "
 	                echo "No Error - Booting image normal..."
                     echo "No Error - Booting image normal... " >> $neoLOG
 		else
 		    if [ -f `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/$TARGET/.control_boot_new_image ]; then
+		                echo " "
                         echo " First start image - The first attempt to launch a new image..." >> $neoLOG
                         echo "First start image - The first attempt to launch a new image... "
 						echo "====================================================> "
@@ -225,6 +237,7 @@ else
 		    else
                         if [ ! -f `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/$TARGET/.control_ok ] ; then
                                 /usr/bin/showiframe /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/error.mvi > /dev/null 2>&1
+                                echo " "
                                 echo " Wrong kernel. FATAL ERROR - Back to image Flash..." >> $neoLOG
                                 echo "Wrong kernel. Press number 3"  > `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$UPLOAD/.kernel/used_flash_kernel
                                 ln -sfn /sbin/init.sysvinit /sbin/init
@@ -236,17 +249,16 @@ else
                         fi
 		    fi
 		fi
+		echo " "
 		echo "NeoBoot is booting" $TARGET " from " `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`
         if [ -d $NEODEVICE$IMAGEKATALOG/$TARGET ]; then
 			if [ -f $NEODEVICE$IMAGEKATALOG/$TARGET/etc/init.d/udev ]; then
 				    sed -ie "s#\$4#\$3#g" $NEODEVICE$IMAGEKATALOG/$TARGET/etc/init.d/udev
 			fi
-			if [ $HARDWARETYPE != "armv7l" ]; then
-			        if [ -f $NEODEVICE$IMAGEKATALOG/$TARGET/usr/share/bootlogo.mvi ]; then
+            if [ -f $NEODEVICE$IMAGEKATALOG/$TARGET/usr/share/bootlogo.mvi ]; then
 				            /usr/bin/showiframe $NEODEVICE$IMAGEKATALOG/$TARGET/usr/share/bootlogo.mvi
-			        else
-				            /usr/bin/showiframe $NEODEVICE$IMAGEKATALOG/$TARGET/usr/share/bootlogo.mvi
-			        fi
+            else
+			                /usr/bin/showiframe $NEOBOOT/neowait.mvi
 			fi
 			sleep 1
 			/bin/mount -o bind /dev $NEODEVICE$IMAGEKATALOG/$TARGET/dev
@@ -265,6 +277,7 @@ else
                                         echo "mount "$item $nhdd  >> $NEODEVICE$IMAGEKATALOG/$TARGET/usr/bin/enigma2_pre_start.sh
                             done
                             chmod 755 `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/$TARGET/usr/bin/enigma2_pre_start.sh
+                            echo " "
                             echo "NeoBOOT created the file enigma2_pre_start.sh "
                             echo "====================================================> "
                         if [ ! -e $NEODEVICE$IMAGEKATALOG/$TARGET/usr/bin/enigma2_pre_start.sh ]; then
@@ -282,6 +295,7 @@ else
                     echo "Boot from " `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location` >> $neoLOG
                     echo "start file - init >" $TARGET  >> $neoLOG
 					echo "====================================================> "
+					echo " "
             	    exec /usr/sbin/chroot `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/$TARGET /sbin/init.sysvinit
 			elif [ -f `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/$TARGET/sbin/init.sysvinit ]; then
                     echo " start file - init.sysvinit" >> $neoLOG
@@ -297,11 +311,11 @@ else
                     echo "Used Kernel: Reinstall kernel !"  > `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$UPLOAD/.kernel/used_flash_kernel
 		            /bin/umount /media/usb > /dev/null 2>&1
 	                /bin/umount /media/hdd > /dev/null 2>&1
-				    echo -n " FATAL ERROR - Back to image Flash...\n<<<END INIT INFO Rebooting...>>>" >> $neoLOG
-                    echo -n "<<<END INIT INFO Rebooting...>>>"
+				    echo -n " FATAL ERROR - Back to image Flash...\nEND INIT INFO Rebooting..." >> $neoLOG
+                    echo -n "END INIT INFO Rebooting..."
 				    ln -sfn /sbin/init.sysvinit /sbin/init
 				    echo "====================================================> "
-		            reboot -d -f
+		            reboot -f
 			fi
 			exit 0
 		fi
@@ -309,6 +323,7 @@ else
 fi
 # boot Flash
 if [ -f /sbin/init.sysvinit ]; then
+        ln -sfn /sbin/init.sysvinit /sbin/init
 		echo "Running /sbin/init.sysvinit - boot Flash"
 		exec /sbin/init.sysvinit $1
 fi
