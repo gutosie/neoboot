@@ -70,6 +70,7 @@ def getNeoLocation():
             locatino = f.readline().strip()
             f.close()
     return locatino
+    
 
 media = getNeoLocation()
 mediahome = media + '/ImageBoot/'
@@ -78,13 +79,13 @@ dev_null = ' > /dev/null 2>&1'
 supportedTuners='vuplus'
    
 
-def NEOBootR(source, target, stopenigma, CopyFiles, CopyKernel, TvList, LanWlan, Sterowniki, InstallSettings, ZipDelete, RepairFTP, SoftCam, MediaPortal, PiconR, Kodi, BlackHole):
+def NEOBootMainEx(source, target, stopenigma, CopyFiles, CopyKernel, TvList, LanWlan, Sterowniki, InstallSettings, ZipDelete, RepairFTP, SoftCam, MediaPortal, PiconR, Kodi, BlackHole):
     media_target = mediahome + target
     list_one = ['rm -r ' + media_target + dev_null, 'mkdir ' + media_target + dev_null, 'chmod -R 0777 ' + media_target]
     for command in list_one:
         os.system(command)
 
-    rc = NEOBootExtract(source, target, ZipDelete, BlackHole)
+    rc = NEOBootExtract(source, target, ZipDelete)
 
     os.system('sync; echo 1 > /proc/sys/vm/drop_caches')
 
@@ -140,11 +141,10 @@ def NEOBootR(source, target, stopenigma, CopyFiles, CopyKernel, TvList, LanWlan,
                 cmd = 'cp -af /lib/firmware %s/ImageBoot/%s/lib > /dev/null 2>&1' % (media, target)
                 rc = os.system(cmd)
                 os.system('echo "Copied system drivers. Not recommended copied kernel.bin for Ultimo HD."')
-                          
-            elif getBoxHostName() == 'vuultimo' or getCPUSoC() == '7335' or getCPUSoC() == '7325' or getCPUSoC() == '7405' or getCPUSoC() == '7356' or getCPUSoC() == '7424' or getCPUSoC() == '7241' or getCPUSoC() == '7362':
+            elif getCPUtype() == "MIPS" and getBoxHostName() == 'vuultimo' or getBoxHostName() == 'bm750' or getBoxHostName() == 'vuduo' or getBoxHostName() == 'vuuno' or getBoxHostName() == 'vusolo' or getBoxHostName() == 'vuduo' or getBoxHostName() == 'vusolo2' or getBoxHostName() == 'vusolose'  or getBoxHostName() == 'vuduo2' or getBoxHostName() == 'vuzero' or getBoxHostName() == 'mbultra':          
                 os.system('mv ' + getNeoLocation() + 'ImagesUpload/vuplus/' + getBoxVuModel() + '/kernel_cfe_auto.bin ' + media_target + '/boot/' + getBoxHostName() + '.vmlinux.gz' + dev_null)        
                 os.system('echo "Copied kernel.bin STB-MIPS"')                                        
-            #arm vuplus
+            #arm vuplus arms
             elif getCPUtype() == "ARMv7" and getBoxHostName() == "vuultimo4k" or getBoxHostName() == "vusolo4k" or getBoxHostName() == "vuuno4k" or getBoxHostName() == "vuuno4kse" or getBoxHostName() == "vuduo4k" or getBoxHostName() == "vuduo4kse" or getBoxHostName() == "vuzero4k":
                 os.system('mv ' + getNeoLocation() + 'ImagesUpload/vuplus/' + getBoxVuModel() + '/kernel_auto.bin ' + media_target + '/boot/zImage.' + getBoxHostName() + '' + dev_null)
                 os.system('echo "Copied kernel.bin STB-ARM"')   
@@ -350,6 +350,41 @@ def NEOBootR(source, target, stopenigma, CopyFiles, CopyKernel, TvList, LanWlan,
                         os.system('echo "Kodi path possible only from flash."')
                 else:                    
                     os.system('echo "Kodi not found."')
+
+        if BlackHole == 'True':
+            if 'BlackHole' in source and os.path.exists('%s/ImageBoot/%s/usr/lib/enigma2/python/Blackhole' % (media, target)):
+                ver = source.replace('BlackHole-', '')
+                try:
+                    text = ver.split('-')[0]
+                except:
+                    text = ''  
+                      
+                cmd = 'mkdir ' + getNeoLocation() + 'ImageBoot/%s/boot/blackhole' % target
+                rc = os.system(cmd)
+                cmd = 'cp -f ' + extensions_path + 'NeoBoot/bin/version ' + getNeoLocation() + 'ImageBoot/%s/boot/blackhole' % target
+                rc = os.system(cmd)
+                cmd = 'mv ' + getNeoLocation() + 'ImageBoot/' +target+ '/usr/lib/enigma2/python/Blackhole/BhUtils.pyo ' + getNeoLocation() + 'ImageBoot/%s/usr/lib/enigma2/python/Blackhole/BhUtils.pyo.org' % target
+                rc = os.system(cmd)
+                cmd = 'cp -af ' + extensions_path + 'NeoBoot/bin/utilsbh ' + getNeoLocation() + 'ImageBoot/%s/usr/lib/enigma2/python/Blackhole/BhUtils.py' % target
+                rc = os.system(cmd)
+                localfile = '' + getNeoLocation() + 'ImageBoot/%s/boot/blackhole/version' % target
+                temp_file = open(localfile, 'w')
+                temp_file.write(text)
+                temp_file.close()
+                cmd = 'mv ' + getNeoLocation() + 'ImageBoot/' +target+ '/usr/bin/enigma2 ' + getNeoLocation() + 'ImageBoot/%s/usr/bin/enigma2-or' % target
+                rc = os.system(cmd)
+                fail = '' + getNeoLocation() + 'ImageBoot/%s/usr/bin/enigma2-or' % target
+                f = open(fail, 'r')
+                content = f.read()
+                f.close()
+                localfile2 = '' + getNeoLocation() + 'ImageBoot/%s/usr/bin/enigma2' % target
+                temp_file2 = open(localfile2, 'w')
+                temp_file2.write(content.replace('/proc/blackhole/version', '/boot/blackhole/version'))
+                temp_file2.close()
+                cmd = 'chmod -R 0755 %s' % localfile2
+                rc = os.system(cmd)
+                cmd = 'rm -r ' + getNeoLocation() + 'ImageBoot/%s/usr/bin/enigma2-or' % target
+                rc = os.system(cmd)
 
 # for all image:
         if os.path.exists('%s/ImageBoot/%s/etc/rc.local' % (media, target)):
@@ -757,7 +792,7 @@ def RemoveUnpackDirs():
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/et10000')
 
 
-def NEOBootExtract(source, target, ZipDelete, BlackHole):
+def NEOBootExtract(source, target, ZipDelete):
     RemoveUnpackDirs()
     os.system('echo "Press green to hide Console or red to abort the installation\nInstallation started:"; date +%T;echo "Extracting the installation file..."')
 
@@ -1411,40 +1446,5 @@ def NEOBootExtract(source, target, ZipDelete, BlackHole):
         else:
             os.system('echo "NeoBoot wykrył dłąd!!! Prawdopodobnie brak pliku instalacyjnego."')
 
-
-    if BlackHole == 'True':
-        if 'BlackHole' in source and os.path.exists('%s/ImageBoot/%s/usr/lib/enigma2/python/Blackhole' % (media, target)):
-            ver = source.replace('BlackHole-', '')
-            try:
-                text = ver.split('-')[0]
-            except:
-                text = ''  
-                      
-            cmd = 'mkdir ' + getNeoLocation() + 'ImageBoot/%s/boot/blackhole' % target
-            rc = os.system(cmd)
-            cmd = 'cp -f ' + extensions_path + 'NeoBoot/bin/version ' + getNeoLocation() + 'ImageBoot/%s/boot/blackhole' % target
-            rc = os.system(cmd)
-            cmd = 'mv ' + getNeoLocation() + 'ImageBoot/%s/usr/lib/enigma2/python/Blackhole/BhUtils.pyo ' + getNeoLocation() + 'ImageBoot/%s/usr/lib/enigma2/python/Blackhole/BhUtils.pyo.org' % (target, target)
-            rc = os.system(cmd)
-            cmd = 'cp -af ' + extensions_path + 'NeoBoot/bin/utilsbh ' + getNeoLocation() + 'ImageBoot/%s/usr/lib/enigma2/python/Blackhole/BhUtils.py' % target
-            rc = os.system(cmd)
-            localfile = '' + getNeoLocation() + 'ImageBoot/%s/boot/blackhole/version' % target
-            temp_file = open(localfile, 'w')
-            temp_file.write(text)
-            temp_file.close()
-            cmd = 'mv ' + getNeoLocation() + 'ImageBoot/%s/usr/bin/enigma2 ' + getNeoLocation() + 'ImageBoot/%s/usr/bin/enigma2-or' % (target, target)
-            rc = os.system(cmd)
-            fail = '' + getNeoLocation() + 'ImageBoot/%s/usr/bin/enigma2-or' % target
-            f = open(fail, 'r')
-            content = f.read()
-            f.close()
-            localfile2 = '' + getNeoLocation() + 'ImageBoot/%s/usr/bin/enigma2' % target
-            temp_file2 = open(localfile2, 'w')
-            temp_file2.write(content.replace('/proc/blackhole/version', '/boot/blackhole/version'))
-            temp_file2.close()
-            cmd = 'chmod -R 0755 %s' % localfile2
-            rc = os.system(cmd)
-            cmd = 'rm -r ' + getNeoLocation() + 'ImageBoot/%s/usr/bin/enigma2-or' % target
-            rc = os.system(cmd)
     return 
 #END            
