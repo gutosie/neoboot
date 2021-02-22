@@ -2,61 +2,58 @@
 from Screens.Screen import Screen
 from Components.Pixmap import Pixmap
 import os
+# darog69 = ./neoskins/darog69/skin_darog69.py
 
-# skin /neoskins/matrix/matrix_skin.py - mod.gutosie
-
-### ImageChooseFULLHD  
-ImageChooseFULLHD =""" 
-<screen name="NeoBootImageChoose" position="0,0" size="1920,1080" flags="wfNoBorder" backgroundColor="#ff111111">   
-<widget source="Title" render="Label" position="97,50" size="1067,72" font="baslk;41" valign="bottom" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" noWrap="1" transparent="1" />   
-<widget name="label1" position="105,180" size="1050,45" font="genel;30" foregroundColor="#00DAA520" backgroundColor="#1A0F0F0F" halign="left" valign="center" zPosition="1" transparent="1" />     
-<widget name="config" position="105,240" size="1050,255" itemHeight="51" font="genel;30" scrollbarMode="showOnDemand" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" foregroundColorSelected="#00FFFFF" backgroundColorSelected="#1A27408B" scrollbarSliderBorderWidth="1" scrollbarWidth="8" scrollbarSliderForegroundColor="#00FFFFFF" scrollbarSliderBorderColor="#0027408B" enableWrapAround="1" transparent="1" />   
-<eLabel position="105,510" size="1050,2" backgroundColor="#0027408B" />   
-<widget name="label2" position="108,525" size="590,45" font="genel;30" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" halign="left" valign="center" zPosition="1" transparent="1" />    
-<widget name="label4" position="108,570" size="518,45" font="genel;30" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" halign="left" valign="center" zPosition="1" transparent="1" />   
-<widget name="label8" position="109,615" size="964,45" font="genel;30" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" halign="left" valign="center" zPosition="1" transparent="1" />   
-<widget name="label5" position="944,525" size="212,45" font="genel;30" foregroundColor="#0058CCFF" backgroundColor="#1A0F0F0F" halign="right" valign="center" zPosition="1" transparent="1" />    
-<widget name="label6" position="633,570" size="522,45" font="genel;30" foregroundColor="#0058CCFF" backgroundColor="#1A0F0F0F" halign="right" valign="center" zPosition="1" transparent="1" />    
-<widget name="label7" position="1089,615" size="66,45" font="genel;30" foregroundColor="#0058CCFF" backgroundColor="#1A0F0F0F" halign="center" valign="center" zPosition="1" transparent="1" />    
-<widget name="label17" position="716,525" size="213,45" font="genel;30" foregroundColor="#0058CCFF" backgroundColor="#1A0F0F0F" halign="right" valign="center" zPosition="1" transparent="1" />    
-<widget name="label19" position="130,879" size="1020,40" font="genel;30" halign="left" valign="center" zPosition="1" foregroundColor="#0058CCFF" backgroundColor="#1A0F0F0F" transparent="1" />
-<ePixmap position="1234,261" size="615,262" zPosition="5" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/metrix/skin/logo.png" transparent="1" alphatest="blend" /> 
-<ePixmap position="1260,583" size="564,262" zPosition="5" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/metrix/skin/neoAdam.png" transparent="1" alphatest="blend" />
-<eLabel position="105,675" size="1050,2" backgroundColor="#0027408B" />   
-<ePixmap position="105,705" size="45,45" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/metrix/skin/key_1_FHD.png" zPosition="1" alphatest="blend" />    
-<ePixmap position="105,756" size="45,45" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/metrix/skin/key_2_FHD.png" zPosition="1" alphatest="blend" />   
-<ePixmap position="105,807" size="45,45" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/metrix/skin/key_3_FHD.png" zPosition="1" alphatest="blend" />    
-<widget position="165,705" size="330,39" name="key_1" font="genel;30" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" halign="left" valign="center" zPosition="1" transparent="1" />   
-<widget position="165,756" size="330,39" name="key_2" font="genel;30" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" halign="left" valign="center" zPosition="1" transparent="1" />   
-<widget position="165,807" size="330,39" name="key_3" font="genel;30" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" halign="left" valign="center" zPosition="1" transparent="1" />    
-<widget name="device_icon" position="516,707" size="146,138" zPosition="1" transparent="1" alphatest="blend" />    
-<widget name="label18" position="680,715" size="510,45" font="genel;28" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" halign="left" valign="center" zPosition="1" transparent="1" />                    
-<widget name="progreso" position="683,766" size="332,15" borderWidth="0" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" zPosition="2" transparent="1" />    
-<eLabel position="684,774" size="330,2" backgroundColor="#00FFFFFF" zPosition="1" />  
-<widget name="label11" position="680,790" size="510,45" font="genel;28" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" halign="left" valign="center" zPosition="1" transparent="1" />    
-<ePixmap position="1425,900" size="122,60" zPosition="10" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/metrix/skin/bt_menu_FHD.png" transparent="1" alphatest="blend" />    
-<ePixmap position="1568,900" size="122,60" zPosition="10" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/metrix/skin/bt_ok_FHD.png" transparent="1" alphatest="blend" />    
-<ePixmap position="1710,900" size="122,60" zPosition="10" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/metrix/skin/bt_exit_FHD.png" transparent="1" alphatest="blend" />    
-<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/metrix/skin/btc_red_FHD.png" position="48,953" size="45,60" alphatest="blend" />    
-<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/metrix/skin/btc_green_FHD.png" position="401,953" size="45,60" alphatest="blend" />   
-<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/metrix/skin/btc_yellow_FHD.png" position="590,953" size="45,60" alphatest="blend" />    
-<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/metrix/skin/btc_blue_FHD.png" position="967,953" size="45,60" alphatest="blend" />   
-<widget name="key_red" position="100,957" size="327,45" noWrap="1" zPosition="1" valign="center" font="dugme;30" halign="left" backgroundColor="#1A0F0F0F" foregroundColor="#00FFFFFF" transparent="1" />    
-<widget name="key_green" position="455,957" size="166,45" noWrap="1" zPosition="1" valign="center" font="dugme;30" halign="left" backgroundColor="#1A0F0F0F" foregroundColor="#00FFFFFF" transparent="1" />   
-<widget name="key_yellow" position="647,957" size="349,45" noWrap="1" zPosition="1" valign="center" font="dugme;30" halign="left" backgroundColor="#1A0F0F0F" foregroundColor="#00FFFFFF" transparent="1" />    
-<widget name="key_blue" position="1021,959" size="174,45" noWrap="1" zPosition="1" valign="cener" font="dugme;30" halign="feft" backgroundColor="#1A0F0F0F" foregroundColor="#00FFFFFF" transparent="1" />    
-<eLabel position="39,38" zPosition="-10" size="1155,975" backgroundColor="#1A0F0F0F" name="layer1" />    
-<eLabel position="1194,90" zPosition="-10" size="668,876" backgroundColor="#1A27408B" name="layer2" />    
-<widget source="global.CurrentTime" render="Label" position="1636,119" size="210,90" font="tasat;75" noWrap="1" halign="center" valign="bottom" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" transparent="1">
-<convert type="ClockToText">Default</convert>
-</widget>    
-<widget source="global.CurrentTime" render="Label" position="1356,119" size="276,41" font="tasat;24" noWrap="1" halign="right" valign="bottom" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" transparent="1">
-<convert type="ClockToText">Format:%A</convert>
-</widget>   
-<widget source="global.CurrentTime" render="Label" position="1357,167" size="275,41" font="tasat;24" noWrap="1" halign="right" valign="bottom" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" transparent="1">
-<convert type="ClockToText">Format:%e. %b.</convert>
-</widget>
-
+### ImageChooseFULLHD  - darog69
+ImageChooseFULLHD ="""
+<screen name="NeoBootImageChoose" position="center,center" size="1920,1080" title=" " flags="wfNoBorder" backgroundColor="transparent">
+  <widget name="progreso" position="594,590" size="530,10" borderWidth="1" zPosition="3" />
+  <ePixmap position="center,0" size="1920,1080" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/darog69/skin3.png" />
+  <widget name="config" position="1290,256" size="595,380" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/darog69/selektor.png" itemHeight="43" zPosition="3" font="baslk;32" scrollbarMode="showOnDemand" foregroundColor="#99FFFF" backgroundColor="#1A0F0F0F" foregroundColorSelected="yellow" backgroundColorSelected="#1A27408B" scrollbarSliderBorderWidth="1" scrollbarWidth="8" scrollbarSliderForegroundColor="#99FFFF" scrollbarSliderBorderColor="#0027408B" enableWrapAround="1" transparent="1" />                                                                                                                                                                                                
+  <ePixmap position="54,1008" zPosition="-7" size="1809,45" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/pasek.png" />
+  <ePixmap position="71,903" zPosition="-7" size="509,54" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/pasek2.png" />
+  <ePixmap position="71,820" zPosition="-7" size="509,54" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/pasek2.png" />
+  <ePixmap position="71,736" zPosition="-7" size="509,54" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/pasek2.png" />
+  <ePixmap position="70,655" zPosition="-7" size="509,54" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/pasek2.png" />
+  <ePixmap position="64,417" zPosition="-7" size="509,54" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/pasek2.png" />
+  <ePixmap position="1865,190" size="40,64" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/updown.png" alphatest="on" />
+  <ePixmap position="1340,780" zPosition="4" size="510,185" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/box.png" />
+  <ePixmap position="1305,660" zPosition="5" size="565,107" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/logo.png" alphatest="on" />
+  <eLabel position="70,615" size="1080,2" backgroundColor="red" foregroundColor="red" name="linia" />
+  <widget name="device_icon" position="123,476" size="146,136" alphatest="on" zPosition="2" />
+  <widget name="key_red" position="80,1010" zPosition="1" size="567,40" font="Regular;30" halign="left" valign="center" backgroundColor="black" transparent="1" foregroundColor="red" />                  
+  <widget name="key_green" position="692,1010" zPosition="1" size="325,40" font="Regular;30" halign="left" valign="center" backgroundColor="black" transparent="1" foregroundColor="green" />  
+  <widget name="key_yellow" position="1030,1010" zPosition="1" size="547,40" font="Regular;30" halign="left" valign="center" backgroundColor="black" transparent="1" foregroundColor="yellow" />
+  <widget name="key_blue" position="1600,1010" zPosition="1" size="260,40" font="Regular;30" halign="left" valign="center" backgroundColor="black" transparent="1" foregroundColor="blue" />            
+  <eLabel backgroundColor="black" font="Regular; 30" foregroundColor="red" position="60,25" size="400,50" text=" NeoMultiBoot " valign="center" transparent="1" />
+  <ePixmap position="65,429" size="73,42" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/darog69/menu.png" alphatest="on" zPosition="6" />
+  <widget name="key_menu" position="165,420" size="269,45" font="Regular;30" zPosition="1" halign="left" valign="center" backgroundColor="black" transparent="1" foregroundColor="yellow" />  <eLabel backgroundColor="black" font="Regular; 30" foregroundColor="#808080" position="90,659" size="80,46" text="1 &gt;" valign="center" transparent="1" />
+  <eLabel backgroundColor="black" font="Regular; 30" foregroundColor="#808080" position="92,742" size="80,43" text="2 &gt;" valign="center" transparent="1" />
+  <eLabel backgroundColor="black" font="Regular; 30" foregroundColor="#808080" position="90,826" size="80,42" text="3 &gt;" valign="center" transparent="1" />
+  <widget name="key_1" position="178,660" zPosition="1" size="397,46" font="Regular;30" halign="left" valign="center" backgroundColor="black" transparent="1" foregroundColor="red" />
+  <widget name="key_2" position="177,742" zPosition="1" size="403,42" font="Regular;30" halign="left" valign="center" backgroundColor="black" transparent="1" foregroundColor="green" />
+  <widget name="key_3" position="176,826" zPosition="1" size="403,43" font="Regular;30" halign="left" valign="center" backgroundColor="black" transparent="1" foregroundColor="yellow" />
+  <widget name="label1" position="1288,145" size="601,99" zPosition="1" halign="center" font="Regular;28" foregroundColor="red" backgroundColor="black" transparent="1" />
+  <widget name="label2" position="69,164" zPosition="1" size="543,66" font="Regular;30" halign="left" valign="center" backgroundColor="black" transparent="1" foregroundColor="white" />
+  <widget name="label3" position="588,475" zPosition="1" size="545,97" font="Regular;28" halign="center" valign="center" backgroundColor="black" transparent="1" foregroundColor="yellow" />
+  <widget name="label4" position="65,245" zPosition="1" size="481,66" font="Regular;30" halign="left" valign="center" backgroundColor="black" transparent="1" foregroundColor="white" />
+  <widget name="label5" position="840,163" zPosition="1" size="305,66" font="Regular;30" halign="right" valign="center" backgroundColor="black" transparent="1" foregroundColor="blue" />
+  <widget name="label7" position="1074,324" zPosition="1" size="70,66" font="Regular;30" halign="center" valign="center" backgroundColor="black" transparent="1" foregroundColor="green" />
+  <widget name="label8" position="67,324" zPosition="1" size="1004,66" font="Regular;30" halign="left" valign="center" backgroundColor="black" transparent="1" foregroundColor="white" />
+  <widget name="label9" position="841,25" zPosition="1" size="292,50" font="Regular;30" halign="left" valign="center" backgroundColor="black" transparent="1" foregroundColor="red" /> 
+  <widget name="label10" position="990,420" zPosition="1" size="125,55" font="Regular;30" halign="center" valign="center" backgroundColor="black" transparent="1" foregroundColor="red" />
+  <widget name="label13" position="599,420" zPosition="1" size="374,55" font="Regular;30" halign="right" valign="center" backgroundColor="black" transparent="1" foregroundColor="green" />
+  <widget name="label15" position="322,573" zPosition="1" size="265,40" font="Regular;30" halign="center" valign="center" backgroundColor="black" transparent="1" foregroundColor="green" />
+  <widget source="session.VideoPicture" render="Pig" position="586,625" size="645,328" zPosition="3" backgroundColor="transparent" />
+  <widget name="label14" position="470,25" zPosition="1" size="350,50" font="Regular;30" halign="right" valign="center" backgroundColor="black" transparent="1" foregroundColor="green" /> 
+  <widget name="label19" position="75,909" size="498,43" font="Regular;22" halign="left" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="orange" />    
+  <widget name="label6" position="550,235" zPosition="1" size="594,84" font="Regular;30" halign="right" valign="center" backgroundColor="black" transparent="1" foregroundColor="yellow" />
+  <widget name="label17" position="619,164" size="213,66" font="Regular;30" halign="right" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00ff7f50" />    
+  <widget name="label16" position="1137,25" zPosition="1" size="142,50" font="Regular;30" halign="right" valign="center" backgroundColor="black" transparent="1" foregroundColor="green" /> 
+  <widget name="label20" position="1295,25" zPosition="1" size="625,50" font="Regular;30" halign="left" valign="center" backgroundColor="black" transparent="1" foregroundColor="red" /> 
+  
 </screen>
-
+  
 """
+
+###
