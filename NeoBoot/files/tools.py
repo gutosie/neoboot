@@ -1878,23 +1878,24 @@ class Opis(Screen):
 
     def neogithub(self, answer):  
         if answer is True: 
-            system('rm -rf ' + LinkNeoBoot + '/.location')                    
-            if fileExists('/usr/bin/fullwget'): 
-                        cmd1 = 'cd /tmp; rm ./*.sh; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/iNB.sh;chmod 755 ./iNB.sh;sh ./iNB.sh; rm ./iNB.sh; cd /'
-                        self.session.open(Console, _('NeoBoot....'), [cmd1])
-                        self.close()                                         
-            elif fileExists('/usr/bin/curl'):                    
+            if fileExists('' + LinkNeoBoot + '/.location'):        
+                        system('rm -f ' + LinkNeoBoot + '/.location')  
+            if fileExists('/usr/bin/curl'):                    
                         cmd1 = 'curl -kLs https://raw.githubusercontent.com/gutosie/neoboot/master/iNB.sh|sh'
                         self.session.open(Console, _('NeoBoot....'), [cmd1])
                         self.close()
             elif fileExists('/usr/bin/wget'):            
                         cmd1 = 'cd /tmp; rm ./*.sh; wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/iNB.sh;chmod 755 ./iNB.sh;sh ./iNB.sh; rm ./iNB.sh; cd /'
                         self.session.open(Console, _('NeoBoot....'), [cmd1])
-                        self.close()                             
+                        self.close()                                
+            elif fileExists('/usr/bin/fullwget'): 
+                        cmd1 = 'cd /tmp; rm ./*.sh; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/iNB.sh;chmod 755 ./iNB.sh;sh ./iNB.sh; rm ./iNB.sh; cd /'
+                        self.session.open(Console, _('NeoBoot....'), [cmd1])
+                        self.close()                                         
             else:
-                    pass
+                        pass
         else:
-            self.close() 
+                    self.close() 
 
     def delete(self):		
         message = _('Are you sure you want to completely remove NeoBoota of your image?\n\nIf you choose so all directories NeoBoota will be removed.\nA restore the original image settings Flash.')
