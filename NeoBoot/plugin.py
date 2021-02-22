@@ -51,7 +51,8 @@ else:
     from Plugins.Extensions.NeoBoot.files.neoconsole import Console
 
 PLUGINVERSION = '9.12'
-UPDATEVERSION = '9.12'    
+UPDATEVERSION = '9.12'
+UPDATEDATE = '"+%Y03%d"'   
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot' 
 
 try:
@@ -193,15 +194,16 @@ class NeoBootInstallation(Screen):
                     from Plugins.Extensions.NeoBoot.files.devices import SetDiskLabel
                     self.session.open(SetDiskLabel)          	
             except:
-                    self.session.open(MessageBox, _('Sorry cannot open neo menu.'), MessageBox.TYPE_INFO, 5)
-
-
+                                mess = _('Sorry cannot open menu set disk label\nAccess Fails with Error code 0x01.')
+                                self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)                
+                                
     def Instrukcja(self):
             try:
                     from Plugins.Extensions.NeoBoot.files.tools import MyHelpNeo
                     self.session.open(MyHelpNeo)
             except:
-                    self.session.open(MessageBox, _('Sorry cannot open neo menu.'), MessageBox.TYPE_INFO, 5)
+                                mess = _('Sorry cannot open menu set disk label\nAccess Fails with Error code 0x01.')
+                                self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
                     
     def datadrive(self):
         try:
@@ -460,7 +462,7 @@ class NeoBootInstallation(Screen):
                     False
                                                     
             if not fileExists('/usr/lib/periodon/.accessdate'):
-                    os.system('date "+%Y03%d"  > /usr/lib/periodon/.accessdate')
+                    os.system('date %s  > /usr/lib/periodon/.accessdate' % UPDATEDATE)
 
             out1 = open('%sImageBoot/.version' % getNeoLocation(), 'w')
             out1.write(PLUGINVERSION)
@@ -814,7 +816,7 @@ class NeoBootImageChoose(Screen):
                 if not fileExists('/.control_boot_new_image'):  
                     os.system('echo "Image uruchomione OK\nNie kasuj tego pliku. \n\nImage started OK\nDo not delete this file."  > /.control_ok')                                           
                                                 
-        #os.system('date "+%Y%m%d"  > /tmp/.finishdate')
+        #os.system('date "+%Y%m%d"  > /tmp/.finishdate')       
         if fileExists('/tmp/.nkod'):
                 pass
         else:
@@ -876,7 +878,8 @@ class NeoBootImageChoose(Screen):
                     from Plugins.Extensions.NeoBoot.files.tools import Opis
                     self.session.open(Opis)
             except:
-                    self.session.open(MessageBox, _('Sorry cannot open neo menu.'), MessageBox.TYPE_INFO, 5)
+                                mess = _('Sorry cannot open neo menu.\nAccess Fails with Error code 0x02.')
+                                self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)            
 
     def ReinstallNeoBoot(self):		
         INSTALLbox = self.session.openWithCallback(self.reinstallboot, MessageBox, _('Select Yes to reinstall the neoboot.\n     NEOBOOT.'), MessageBox.TYPE_YESNO)
@@ -937,8 +940,9 @@ class NeoBootImageChoose(Screen):
                     from Plugins.Extensions.NeoBoot.files.tools import ReinstallKernel
                     self.session.open(ReinstallKernel)
             except:
-                    self.session.open(MessageBox, _('Sorry cannot open neo menu.'), MessageBox.TYPE_INFO, 5)    
-
+                                mess = _('Sorry cannot open neo menu Reinstall Kernel.\nAccess Fails with Error code 0x03.')
+                                self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)            
+  
     def touch5(self):    
         if fileExists('/usr/lib/periodon/.kodn'):
             if getTestIn() == getTestOut():
@@ -1095,7 +1099,7 @@ class NeoBootImageChoose(Screen):
     def goUpdateNEO(self):   
                 if fileExists('' + LinkNeoBoot + '/wget-log'):
                         os.system('rm ' + LinkNeoBoot + '/wget-log')                                                                                                                                                                                                                                                                                                                                                    
-                os.system('cd /tmp/; cp -rf ./neoboot-main/NeoBoot /usr/lib/enigma2/python/Plugins/Extensions; rm -rf /tmp/neoboot*;  rm ' + LinkNeoBoot + '/ver.txt; cd ' + LinkNeoBoot + '/; chmod 0755 ./bin/neoini*;  chmod 0755 ./ex_init.py; chmod 0755 ./tmpfiles/target/*; chmod 0755 ./files/NeoBoot.sh; chmod 0755 ./files/userscript.sh; cd')                    
+                os.system('cd /tmp/; cp -rf ./neoboot-main/NeoBoot /usr/lib/enigma2/python/Plugins/Extensions; rm -rf /tmp/neoboot*;  rm ' + LinkNeoBoot + '/ver.txt; cd ' + LinkNeoBoot + '/; chmod 0755 ./bin/neoini*;  chmod 0755 ./ex_init.py; chmod 0755 ./tmpfiles/target/*; chmod 0755 ./files/NeoBoot.sh; chmod 0755 ./files/userscript.sh; cd /; date %s  > /usr/lib/periodon/.accessdate' % UPDATEDATE)                    
                 if getCPUtype() == 'MIPS':
                     os.system('cd ' + LinkNeoBoot + '/; cp -rf ./bin/neoinitmipsvu /sbin; chmod 755 /sbin/neoinitmipsvu; cp -rf ./bin/neoinitmips /sbin; chmod 755 /sbin/neoinitmips; cd')                                                                                  
                 os.system('cd ' + LinkNeoBoot + '/; rm ./bin/install; rm ./files/mountpoint.sh; rm ./files/neo.sh')
@@ -1114,15 +1118,16 @@ class NeoBootImageChoose(Screen):
                     from Plugins.Extensions.NeoBoot.files.tools import MBBackup
                     self.session.open(MBBackup)
             except:
-                    self.session.open(MessageBox, _('Sorry cannot open neo menu.'), MessageBox.TYPE_INFO, 5) 
-
+                                mess = _('Sorry cannot open neo menu Backup.\nAccess Fails with Error code 0x60.')
+                                self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)            
     def MBRestore(self):		
             try:
                     from Plugins.Extensions.NeoBoot.files.tools import MBRestore
                     self.session.open(MBRestore)
             except:
-                    self.session.open(MessageBox, _('Sorry cannot open neo menu.'), MessageBox.TYPE_INFO, 5)                                                                
-
+                                mess = _('Sorry cannot open neo menu Restore.\nAccess Fails with Error code 0x61.')
+                                self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)            
+                                                               
     def updateList(self):		
         self.list = []
         pluginpath = '' + LinkNeoBoot + ''
@@ -1267,10 +1272,11 @@ class NeoBootImageChoose(Screen):
                         from Plugins.Extensions.NeoBoot.files.tools import MBTools                    
                         self.session.open(MBTools)            	
                     except:
-                        self.session.open(MessageBox, _('Sorry cannot open neo menu. ERROR-GS'), MessageBox.TYPE_INFO, 5)                    
+                                mess = _('Sorry cannot open neo menu. Access Fails with Error code 0x50.')
+                                self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
                 else:
-                        self.session.open(MessageBox, _('Sorry cannot open neo menu. Not supported tuners. '), MessageBox.TYPE_INFO, 15)         
-
+                                mess = _('Sorry cannot open neo menu. Access Fails with Error code 0x60.')
+                                self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
             else:
                 myerror = _('Sorry, this is not neoboot vip version.\nGet NEO-VIP version, more info press blue button.')
                 self.session.open(MessageBox, myerror, MessageBox.TYPE_INFO)                
@@ -1352,22 +1358,23 @@ class NeoBootImageChoose(Screen):
                     self.ImageInstallTestOK()
             else:
                     myerror = _('Sorry, this is not neoboot vip version.\nGet NEO-VIP version, more info press blue button.')
-                    self.session.open(MessageBox, myerror, MessageBox.TYPE_INFO) 
+                    self.session.open(MessageBox, myerror, MessageBox.TYPE_INFO)
 
 
     def ImageInstallTestOK(self):
-            if int(self.availablespace) < 500:    
+            if int(self.availablespace) < 500:
                 myerror = _('Not enough free space on /media/ !!\nYou need at least 500Mb free space.\n\nExit plugin.')
                 self.session.open(MessageBox, myerror, MessageBox.TYPE_INFO)
             else:
-                if (getSupportedTuners()) == (getBoxHostName()):                             	
-                    try:      
-                        self.GOImageInstall()                              	
+                if (getSupportedTuners()) == (getBoxHostName()):
+                    try:
+                        self.GOImageInstall()
                     except:
-                        self.session.open(MessageBox, _('Sorry, cannot open neo menu install.'), MessageBox.TYPE_INFO, 5)                    
+                                mess = _('Sorry, cannot open neo menu image install. Access Fails with Error code 0x70.')
+                                self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
                 else:
-                        self.session.open(MessageBox, _('Sorry cannot open neo menu. Not supported tuners. '), MessageBox.TYPE_INFO, 15)
-
+                                mess = _('Sorry, could not open image install menu.\nNo access to VIP version.\nAccess error with error code 0x71.')
+                                self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
 
     def GOImageInstall(self):		
         if fileExists('/.multinfo'):
@@ -1424,7 +1431,8 @@ class NeoBootImageChoose(Screen):
                             from Plugins.Extensions.NeoBoot.unpack import InstallImage
                             self.session.open(InstallImage)
                     except:
-                            self.session.open(MessageBox, _('ERROR Sorry, cannot open instalation menu.'), MessageBox.TYPE_INFO, 10)
+                                mess = _('Sorry, cannot open instalation menu.\nAccess error with error code 0x72.')
+                                self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)                    
 
     def DownloaderImage(self):
             if not os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/ImageDownloader/download.py'):
@@ -1480,13 +1488,15 @@ class NeoBootImageChoose(Screen):
                                 from Plugins.Extensions.NeoBoot.run import StartImage
                                 self.session.open(StartImage)
                         except:
-                                self.session.open(MessageBox, _('Sorry cannot open neo menu - no flash'), MessageBox.TYPE_INFO, 5)
+                                mess = _('Sorry cannot open run file - Access Fails with Error code 0x30.')
+                                self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
                 else:
                         try:
                                 from Plugins.Extensions.NeoBoot.run import StartImage
                                 self.session.open(StartImage)
                         except:
-                                self.session.open(MessageBox, _('Sorry cannot open Neo Menu. Flash'), MessageBox.TYPE_INFO, 5)    
+                                mess = _('Sorry cannot open run file - Access Fails with Error code 0x40.')
+                                self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)                            
         else:
                     myerror = _('Sorry, this is not neoboot vip version.\nGet NEO-VIP version, more info press blue button.')
                     self.session.open(MessageBox, myerror, MessageBox.TYPE_INFO)
@@ -1497,7 +1507,8 @@ class NeoBootImageChoose(Screen):
                         from Plugins.Extensions.NeoBoot.run import StartImage
                         self.session.open(StartImage)          	
                 except:
-                        self.session.open(MessageBox, _('Sorry cannot open neo menu. Hymmm...'), MessageBox.TYPE_INFO, 5) 
+                                mess = _('Sorry cannot open neo menu. Hymmm...\nAccess Fails with Error code 0x73.')
+                                self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)                
         else:
             self.close()
 
