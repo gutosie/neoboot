@@ -12,16 +12,12 @@ def getAccesDate():
     dana = getTestOutTime()   #  etc   Nie! Szukana liczba jest wieksza!
     strzal = getTestInTime()  #  tmp   Nie! Szukana liczba jest mniejsza!    
     if strzal == dana:
-        timego='timeoff'
-        os.system('rm /usr/lib/periodon/.kodn; rm /usr/lib/periodon/.accessdate')        
-        # echo "Gratulacje! Zgadles"  > /tmp/time_finish; 
+        timego='access'
     elif strzal < dana:
-        timego='isaccess'
-        #os.system('echo "Nie! Szukana liczba jest wieksza!"  > /tmp/time_ok')       
+        timego='isaccess'       
     else:
         timego='timeoff'
-        os.system('rm /usr/lib/periodon/.kodn; rm /usr/lib/periodon/.accessdate') 
-        #echo "Nie! Szukana liczba jest mniejsza!"  > /tmp/time_finish; 
+        os.system('echo "19700101"  > /usr/lib/periodon/.kodn')  
     return timego
 
 
