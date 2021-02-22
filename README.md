@@ -1,5 +1,5 @@
 # neoboot
-new version available
+new version available - fix all model, arm and mipsel
 
 Installation of neoboot.  Run the following command in the terminal of a supported tuner 
  
