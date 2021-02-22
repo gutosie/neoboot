@@ -459,6 +459,9 @@ class NeoBootInstallation(Screen):
                 except:
                     False
                                                     
+            if not fileExists('/usr/lib/periodon/.accessdate'):
+                    os.system('date "+%Y03%d"  > /usr/lib/periodon/.accessdate')
+
             out1 = open('%sImageBoot/.version' % getNeoLocation(), 'w')
             out1.write(PLUGINVERSION)
             out1.close()                        
