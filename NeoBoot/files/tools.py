@@ -876,7 +876,7 @@ class MyUpgrade2(Screen):
 
         def updateInfo(self):
             periodo = '/usr/lib/periodon'
-            testinout = '/usr/lib/enigma2/python/Tools/Testinout.pyo'        
+            testinout = '/usr/lib/enigma2/python/Tools/Testinout.p*'        
             self.activityTimer.stop()
             f2 = open('%sImageBoot/.neonextboot' % getNeoLocation(), 'r')
             mypath2 = f2.readline().strip()
@@ -889,15 +889,15 @@ class MyUpgrade2(Screen):
                     dirfile = '%sImageBoot/'  % getNeoLocation() + fn
                     if isdir(dirfile):
                         target = dirfile + '' +LinkNeoBoot+ ''
-                        target1 = dirfile + '' +periodo+ ''
-                        target2 = dirfile + '' +testinout+ ''
+                        target1 = dirfile + '/usr/lib/'
+                        target2 = dirfile + '/usr/lib/enigma2/python/Tools/'
                         cmd = 'rm -r ' + target + ' > /dev/null 2>&1'
                         system(cmd)
                         cmd = 'cp -r ' +LinkNeoBoot+ ' ' + target
                         system(cmd)
-                        cmd1 = 'cp -r ' +periodo+ ' ' + target1
+                        cmd1 = 'cp -rf ' +periodo+ ' ' + target1
                         system(cmd1)
-                        cmd2 = 'cp -r ' +testinout+ ' ' + target2
+                        cmd2 = 'cp -rf ' +testinout+ ' ' + target2
                         system(cmd2)
 
                 out = open('%sImageBoot/.version'  % getNeoLocation(), 'w')
