@@ -1557,40 +1557,27 @@ def checkimage():
 
 def main(session, **kwargs):
     vip = checkimage()
-    if vip == 1:   	            
+    if vip == 1:
         if fileExists('' + LinkNeoBoot + '/.location'):
                 os.system('date "+%Y%m%d"  > /tmp/.finishdate')
-                if not fileExists('/usr/lib/periodon/.kodn'):                                
+                if not fileExists('/usr/lib/periodon/.kodn'):
                         session.open(MessageBox, _('Get a free test to the full vip version.'), type=MessageBox.TYPE_ERROR)
                 elif fileExists('/usr/lib/periodon/.kodn') and fileExists('/tmp/.nkod'):
-                        if getTestToTest() != UPDATEVERSION:                      
+                        if getTestToTest() != UPDATEVERSION:
                                 session.open(MessageBox, _('New version update neoboot is available!\nPlease upgrade your flash plugin.'), type=MessageBox.TYPE_ERROR)
-                                 
-                if not fileExists('/usr/lib/periodon/.accessdate') or getAccesDate() == 'timeoff':   # prosze nie hakowac !!! - please do not crack :( 
-                    if fileExists('/usr/bin/fullwget'):            
-                            os.system('rm /usr/lib/periodon/.kodn; rm /usr/lib/periodon/.accessdate; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/NeoBoot/files/ndate -O /usr/lib/periodon/.accessdate')           
-                            session.open(MessageBox, _('Neoboot vip version has expired, please re-access.'), type=MessageBox.TYPE_ERROR)
-                    if not fileExists('/usr/lib/periodon/.accessdate'):
-                        if fileExists('/usr/bin/curl'):                    
-                            os.system('rm /usr/lib/periodon/.kodn; rm /usr/lib/periodon/.accessdate; curl -O --ftp-ssl https://raw.githubusercontent.com/gutosie/neoboot/master/NeoBoot/files/ndate -O /usr/lib/periodon/.accessdate')
-                            session.open(MessageBox, _('Neoboot vip version has expired, please re-access.'), type=MessageBox.TYPE_ERROR)
-                    if not fileExists('/usr/lib/periodon/.accessdate'):
-                        if fileExists('/usr/bin/wget'):            
-                            os.system('rm /usr/lib/periodon/.kodn; rm /usr/lib/periodon/.accessdate; wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/NeoBoot/files/ndate -O /usr/lib/periodon/.accessdate')  
-                            session.open(MessageBox, _('Neoboot vip version has expired, please re-access.'), type=MessageBox.TYPE_ERROR)
-                    if not fileExists('/usr/lib/periodon/.accessdate'):
-                        session.open(MessageBox, _('Neoboot vip version has expired, please re-access.'), type=MessageBox.TYPE_ERROR)
-                    else:
-                        session.open(MessageBox, _('Neoboot vip version has expired, please re-access.'), type=MessageBox.TYPE_ERROR)
+                if not fileExists('/usr/lib/periodon/.accessdate'):       #timeoff
+                                session.open(MessageBox, _('VIP access error. Reinstall the plugin.'), type=MessageBox.TYPE_ERROR)                                                                 
+                if getAccesDate() == 'timeoff':       #timeoff
+                                session.open(MessageBox, _('Neoboot vip version has expired, please re-access.'), type=MessageBox.TYPE_ERROR) 
                 else:
-                        pass
+                                pass
         else:
             if not fileExists('%sImageBoot/.version' % getNeoLocation()):
                 if fileExists('' + LinkNeoBoot + '/files/mountpoint.sh'):
                     os.system('chmod 0755 ' + LinkNeoBoot + '/files/mountpoint.sh; ' + LinkNeoBoot + '/files/mountpoint.sh')
-
+                    
         #check instalation
-        from Plugins.Extensions.NeoBoot.files.stbbranding import getCheckInstal1, getCheckInstal2, getCheckInstal3 
+        from Plugins.Extensions.NeoBoot.files.stbbranding import getCheckInstal1, getCheckInstal2, getCheckInstal3
         if fileExists('/tmp/error_neo') and not fileExists('/.multinfo'):
             if fileExists('/tmp/error_neo') and not fileExists('/.multinfo'):
                 os.system('rm -f /tmp/error_neo')
@@ -1604,12 +1591,12 @@ def main(session, **kwargs):
                 os.system('echo "\nNeoboot installation errors 3:\nfile neo.sh is error - 3\n"  >> /tmp/error_neo')
                 session.open(MessageBox, _('Neoboot plugin installed with ERRORS! Not work properly! The error number is 3'), type=MessageBox.TYPE_ERROR)
 
-        version = 0           
+        version = 0
         if fileExists('%sImageBoot/.version' % getNeoLocation()):
             f = open('%sImageBoot/.version' % getNeoLocation())
             version = float(f.read())
             f.close()
-            
+
         if fileExists('%sImageBoot/.neonextboot' % getNeoLocation()):
                 f2 = open('%sImageBoot/.neonextboot' % getNeoLocation(), 'r' )
                 mypath2 = f2.readline().strip()
