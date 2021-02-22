@@ -1916,12 +1916,16 @@ class Opis(Screen):
             cmd1 = 'rm -R ' + LinkNeoBoot + '' 
             cmd2 = 'rm -R /sbin/neoinit*'                                    
             cmd3 = 'ln -sfn /sbin/init.sysvinit /sbin/init'     
-            cmd4 = 'opkg install --force-maintainer --force-reinstall --force-overwrite --force-downgrade volatile-media; sleep 10; PATH=/sbin:/bin:/usr/sbin:/usr/bin; echo -n "Rebooting... "; reboot -d -f'  
+            cmd4 = 'rm -rf /usr/lib/enigma2/python/Tools/Testinout.p*' 
+            cmd5 = 'rm -rf /usr/lib/periodon'
+            cmd6 = 'opkg install --force-maintainer --force-reinstall --force-overwrite --force-downgrade volatile-media; sleep 10; PATH=/sbin:/bin:/usr/sbin:/usr/bin; echo -n "Rebooting... "; reboot -d -f' 
             self.session.open(Console, _('NeoBot was removed !!! \nThe changes will be visible only after complete restart of the receiver.'), [cmd,
              cmd1,
              cmd2,
              cmd3,
-             cmd4])
+             cmd4,
+             cmd5,             
+             cmd6])
             self.close()
         else:
             self.close()            
