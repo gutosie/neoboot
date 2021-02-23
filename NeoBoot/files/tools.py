@@ -14,6 +14,7 @@ from Components.ProgressBar import ProgressBar
 from Components.ScrollLabel import ScrollLabel
 from Components.Pixmap import Pixmap, MultiPixmap
 from Components.config import *
+from Components.PluginComponent import plugins
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
@@ -1365,6 +1366,7 @@ class SkinChange(Screen):
     def restareE2(self):
         restartbox = self.session.openWithCallback(self.restartGUI, MessageBox, _('GUI needs a restart.\nDo you want to Restart the GUI now?'), MessageBox.TYPE_YESNO)
         restartbox.setTitle(_('Restart GUI now?'))
+
 
     def restartGUI(self, answer):
         if answer is True:

@@ -6,8 +6,59 @@ import os
 import time        
 from Tools.Directories import fileExists, SCOPE_PLUGINS
 
+LogFileObj = None
+
+def Log(param = ''):
+    global LogFileObj
+    #first close object if exists
+    if param.lower() in ['open','write','append','close']:
+        if LogFileObj is not None:
+            LogFileObj.close()
+            if LogFileObj.closed:
+                LogFileObj = None
+                try:
+                    with open('/tmp/NeoBoot.log','a') as f:
+                        f.write('LogFile closed properly\n')
+                        f.close()
+                except Exception:
+                    print("ERROR closing LogFile!!!")
+            else:
+                print("ERROR closing LogFile!!!")
+    #second create object if does not exist
+    if LogFileObj is None:
+        if param.lower() in ['open','write']:
+            LogFileObj = open(LogFile, "w")
+        elif param.lower() in ['append']:
+            LogFileObj = open(LogFile, "a")
+        elif param.lower() in ['close']:
+            pass
+    elif param.lower() in ['flush']:
+        LogFileObj.flush()
+    return LogFileObj
+    
+def clearMemory():
+    with open("/proc/sys/vm/drop_caches", "w") as f:
+        f.write("1\n")
+        f.close()
+
+def LogCrashGS(line):
+	log_file = open('%sImageBoot/neoboot.log' % getNeoLocation() , 'a')
+	log_file.write(line)
+	log_file.close()
+		
 def fileCheck(f, mode = 'r'):
-    return fileExists(f, mode) and f  
+    return fileExists(f, mode) and f 
+    
+
+#		if not IsImageName():
+#			from Components.PluginComponent import plugins
+#			plugins.reloadPlugins()
+def IsImageName():
+	if fileExists("/etc/issue"):
+		for line in open("/etc/issue"):
+			if "BlackHole" in line or "vuplus" in line:
+				return True
+	return False     
     
 def getSupportedTuners():
     supportedT=''
@@ -113,41 +164,6 @@ def getNEO_filesystems():
             neo_filesystems='1'
 
     return neo_filesystems
-
-
-def Log(param = ''):
-    global LogFileObj
-    #first close object if exists
-    if param.lower() in ['open','write','append','close']:
-        if LogFileObj is not None:
-            LogFileObj.close()
-            if LogFileObj.closed:
-                LogFileObj = None
-                try:
-                    with open('/tmp/NeoBoot.log','a') as f:
-                        f.write('LogFile closed properly\n')
-                        f.close()
-                except Exception:
-                    print("ERROR closing LogFile!!!")
-            else:
-                print("ERROR closing LogFile!!!")
-    #second create object if does not exist
-    if LogFileObj is None:
-        if param.lower() in ['open','write']:
-            LogFileObj = open(LogFile, "w")
-        elif param.lower() in ['append']:
-            LogFileObj = open(LogFile, "a")
-        elif param.lower() in ['close']:
-            pass
-    elif param.lower() in ['flush']:
-        LogFileObj.flush()
-    return LogFileObj
-    
-def clearMemory():
-    with open("/proc/sys/vm/drop_caches", "w") as f:
-        f.write("1\n")
-        f.close()
-###############################################
 
 #typ procesora arm lub mips
 def getCPUtype():
