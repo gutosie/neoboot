@@ -47,8 +47,7 @@ def LogCrashGS(line):
 	log_file.close()
 		
 def fileCheck(f, mode = 'r'):
-    return fileExists(f, mode) and f 
-    
+    return fileExists(f, mode) and f     
 
 #		if not IsImageName():
 #			from Components.PluginComponent import plugins
@@ -60,6 +59,17 @@ def IsImageName():
 				return True
 	return False     
     
+def mountp():
+	pathmp = []
+	if os.path.isfile('/proc/mounts'):
+		for line in open('/proc/mounts'):
+			if '/dev/sd' in line or '/dev/disk/by-uuid/' in line or '/dev/mmc' in line or '/dev/mtdblock' in line:
+				pathmp.append(line.split()[1].replace('\\040', ' ') + '/')
+	pathmp.append('/usr/share/enigma2/')
+	pathmp.append('/etc/enigma2/')
+	pathmp.append('/tmp/')
+	return pathmp
+
 def getSupportedTuners():
     supportedT=''
     if os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/stbinfo.cfg'):
@@ -430,15 +440,6 @@ def getTunerModel(): #< neoboot.py
         BOX_NAME = open('/proc/stb/info/model').read().strip()
     return BOX_NAME
     
-def getBoxModelVU():
-    try:
-        if os.path.isfile('/proc/stb/info/vumodel'):
-            return open('/proc/stb/info/vumodel').read().strip().upper()
-    except:
-        pass
-
-    return _('unavailable')
-
 #zwraca strukture folderu zip - vuplus/vumodel
 def getImageFolder():
     if os.path.isfile('/proc/stb/info/vumodel'):
@@ -734,9 +735,20 @@ def getVuBoxModel():
 
     return BOX_MODEL
 
+
+def getBoxModelVU():
+    try:
+        if os.path.isfile('/proc/stb/info/vumodel'):
+            return open('/proc/stb/info/vumodel').read().strip().upper()
+    except:
+        pass
+
+    return _('unavailable')
+
+
 def getMachineProcModel():
     if os.path.isfile('/proc/stb/info/vumodel'):
-        BOX_NAME = getBoxModel()
+        BOX_NAME = getBoxModelVU()
         BOX_MODEL = getVuBoxModel()
         if BOX_MODEL == 'vuplus':
             if BOX_NAME == 'duo':

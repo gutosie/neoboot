@@ -13,7 +13,7 @@ from Components.Label import Label
 from Components.ProgressBar import ProgressBar
 from Components.ScrollLabel import ScrollLabel
 from Components.Pixmap import Pixmap, MultiPixmap
-from Components.config import *
+from Components.config import *                                            
 from Components.PluginComponent import plugins
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Screens.MessageBox import MessageBox
@@ -33,7 +33,7 @@ from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE, 
 from os import system, listdir, mkdir, chdir, getcwd, rename as os_rename, remove as os_remove, popen
 from os.path import dirname, isdir, isdir as os_isdir
 from enigma import eTimer
-from stbbranding import fileCheck, getNeoLocation, getImageNeoBoot, getKernelVersionString, getBoxHostName, getCPUtype, getBoxVuModel, getTunerModel, getCPUSoC, getImageATv 
+from stbbranding import fileCheck, getNeoLocation, getImageNeoBoot, getKernelVersionString, getBoxHostName, getCPUtype, getBoxVuModel, getTunerModel, getCPUSoC, getImageATv, getBoxModelVU 
 import os
 import time
 import sys
@@ -214,10 +214,6 @@ class MBTools(Screen):
         self.list.append (res)
         self ['list']. list = self.list        
 
-#        res = (_ ('Rename image'), png, 18)
-#        self.list.append (res)
-#        self ['list']. list = self.list
-
         res = (_ ('Supported sat tuners'), png, 19)
         self.list.append (res)
         self ['list']. list = self.list
@@ -272,9 +268,7 @@ class MBTools(Screen):
         if self.sel == 17 and self.session.open(ATVcamfeed):               
             pass
         if self.sel == 18 and self.session.open(CreateSwap):               
-            pass            
-#        if self.sel == 18 and self.session.open(RenameImage):               
-#            pass            
+            pass           
         if self.sel == 19 and self.session.open(TunerInfo):
             pass
         if self.sel == 20 and self.session.open(MultiBootMyHelp):
@@ -282,6 +276,9 @@ class MBTools(Screen):
         if self.sel == 21 and self.session.open(neoDONATION):
             pass
 
+        if self.sel == 22 and self.session.open(CheckInternet):
+            pass
+            
 
 class MBBackup(Screen):
     if isFHD():
@@ -1197,7 +1194,8 @@ class CheckInstall(Screen):
             self.myClose(_('Sorry, Neoboot can be installed or upgraded only when booted from Flash'))
 
     def neocheck2(self):
-            os.system('rm -f ' + LinkNeoBoot + '/files/modulecheck; echo "\n====================================================>\nCheck result:"  > ' + LinkNeoBoot + '/files/modulecheck') 
+            os.system(_('rm -f ' + LinkNeoBoot + '/files/modulecheck; echo %s - %s  >  ' +LinkNeoBoot+ '/files/modulecheck') % (getBoxModelVU(), getCPUSoC()) )
+            os.system('echo "\n====================================================>\nCheck result:"  >> ' + LinkNeoBoot + '/files/modulecheck') 
             os.system('echo "*    neoboot location:"  >>  ' +LinkNeoBoot+ '/files/modulecheck; cat "/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location"  >>  ' +LinkNeoBoot+ '/files/modulecheck')
             os.system('echo "\n*    neoboot location install:"  >>  ' +LinkNeoBoot+ '/files/modulecheck; cat "/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/install"  >>  ' +LinkNeoBoot+ '/files/modulecheck')
             os.system('echo "\n*    neoboot location mount:"  >>  ' +LinkNeoBoot+ '/files/modulecheck; cat "/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/neo.sh"  >>  ' +LinkNeoBoot+ '/files/modulecheck')
@@ -1237,7 +1235,7 @@ class CheckInstall(Screen):
             else:            
                 os.system('echo "\n*    STB is not ARMv7 or MIPS"  >>  ' +LinkNeoBoot+ '/files/modulecheck')
 
-            cmd = ' cat ' +LinkNeoBoot+ '/files/modulecheck'
+            cmd = 'echo "\n<===================================================="  >> ' + LinkNeoBoot + '/files/modulecheck;  cat ' +LinkNeoBoot+ '/files/modulecheck'
             cmd1 = ''
             self.session.openWithCallback(self.close, Console, _('NeoBoot....'), [cmd,
                      cmd1]) 
