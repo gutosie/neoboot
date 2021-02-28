@@ -53,8 +53,8 @@ else:
     from Plugins.Extensions.NeoBoot.files.neoconsole import Console
     	
 loggscrash = time.localtime(time.time())
-PLUGINVERSION = '9.11'
-UPDATEVERSION = '9.11'
+PLUGINVERSION = '9.13'
+UPDATEVERSION = '9.13'
 UPDATEDATE = '"+%Y04%d"'   
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot' 
 
