@@ -53,8 +53,8 @@ else:
     from Plugins.Extensions.NeoBoot.files.neoconsole import Console
     	
 loggscrash = time.localtime(time.time())
-PLUGINVERSION = '9.13'
-UPDATEVERSION = '9.13'
+PLUGINVERSION = '9.11'
+UPDATEVERSION = '9.11'
 UPDATEDATE = '"+%Y04%d"'   
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot' 
 
@@ -1009,8 +1009,8 @@ class NeoBootImageChoose(Screen):
                     system('mkdir /usr/lib/periodon')
                 else:
                     if getButtonPin() == 'pinok':
-                        os.system('sleep 2; rm -f /tmp/gut*; ; date %s  > /usr/lib/periodon/.accessdate' % UPDATEDATE')
-                        if fileExists('/usr/lib/periodon/.accessdate') and fileExists('/usr/lib/periodon/.kodn'): 
+                        os.system('sleep 2; rm -f /tmp/gut*; date %s  > /usr/lib/periodon/.accessdate' % UPDATEDATE ) 
+                        if fileExists('/usr/lib/periodon/.accessdate') and fileExists('/usr/lib/periodon/.kodn'):  
                                 mess = _('Bravo!!! neoboot full version activated OK!\nPlease restart your system E2.')
                                 self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
                         elif not fileExists('/usr/lib/periodon/.accessdate'):
@@ -1111,11 +1111,11 @@ class NeoBootImageChoose(Screen):
         if yesno:
             if fileExists('/tmp/*.zip'):
                 os.system('rm /tmp/*.zip')
-            if fileExists('/usr/bin/fullwget'):            
-                            os.system('cd ' + LinkNeoBoot + ';fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; sleep 3;cd /')           
-            if not fileExists('/tmp/neoboot-main/NeoBoot'):
-                    if fileExists('/usr/bin/curl'):                    
+            if fileExists('/usr/bin/curl'):                    
                             os.system('sync; cd /tmp; curl -O --ftp-ssl https://github.com/gutosie/neoboot/archive/main.zip; unzip -qn ./main.zip; sleep 2;sd cd /')
+            if not fileExists('/tmp/neoboot-main/NeoBoot'):
+                if fileExists('/usr/bin/fullwget'):            
+                            os.system('cd ' + LinkNeoBoot + ';fullwget --no-check-certificate https://github.com/gutosie/neoboot/archive/main.zip; unzip -qn ./main.zip; sleep 2;sd cd /')           
             if not fileExists('/tmp/neoboot-main/NeoBoot'):
                     if fileExists('/usr/bin/wget'):            
                             os.system('cd /tmp;rm ./*.zip; wget --no-check-certificate https://github.com/gutosie/neoboot/archive/main.zip; unzip -qn ./main.zip; sleep 2;cd / ')  
