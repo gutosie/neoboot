@@ -16,7 +16,7 @@
 #--------------------------------------------- NEOBOOT ---------------------------------------------#
 from __future__ import absolute_import
 from . import _
-from Plugins.Extensions.NeoBoot.files.stbbranding import  LogCrashGS, getSupportedTuners, getLabelDisck, getINSTALLNeo, getNeoLocation, getLocationMultiboot, getNeoMount, getNeoMount2, getNeoMount3, getNeoMount4, getNeoMount5, getFSTAB, getFSTAB2, getKernelVersionString, getKernelImageVersion, getCPUtype, getCPUSoC,  getImageNeoBoot, getBoxVuModel, getBoxHostName, getTunerModel, getImageDistroN, getFormat, getNEO_filesystems                    
+from Plugins.Extensions.NeoBoot.files.stbbranding import  LogCrashGS, getSupportedTuners, getLabelDisck, getINSTALLNeo, getNeoLocation, getLocationMultiboot, getNeoMount, getNeoMount2, getNeoMount3, getNeoMount4, getNeoMount5, getFSTAB, getFSTAB2, getKernelVersionString, getKernelImageVersion, getCPUtype, getCPUSoC,  getImageNeoBoot, getBoxVuModel, getBoxHostName, getTunerModel, getImageDistroN, getFormat, getNEO_filesystems, getBoxModelVU                   
 from Plugins.Extensions.NeoBoot.files import Harddisk 
 from Components.About import about                                                                                                                                                    
 from enigma import getDesktop, eTimer
@@ -53,9 +53,9 @@ else:
     from Plugins.Extensions.NeoBoot.files.neoconsole import Console
     	
 loggscrash = time.localtime(time.time())
-PLUGINVERSION = '9.12'
-UPDATEVERSION = '9.12'
-UPDATEDATE = '"+%Y03%d"'   
+PLUGINVERSION = '9.13'
+UPDATEVERSION = '9.13'
+UPDATEDATE = '"+%Y04%d"'   
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot' 
 
 try:
@@ -652,8 +652,10 @@ class NeoBootInstallation(Screen):
 
     def RebootSTB(self, answer):
         if answer is True:
+            plugins.reloadPlugins()
             os.system('sync && echo 3 > /proc/sys/vm/drop_caches; reboot -d -f')
         else:
+            plugins.reloadPlugins()        
             self.close()        
 
 
@@ -827,19 +829,21 @@ class NeoBootImageChoose(Screen):
                 if not fileExists('/.control_boot_new_image'):  
                     os.system('echo "Image uruchomione OK\nNie kasuj tego pliku. \n\nImage started OK\nDo not delete this file."  > /.control_ok')                                           
                                                 
-        #os.system('date "+%Y%m%d"  > /tmp/.finishdate')       
+        #os.system('date "+%Y%m%d"  > /tmp/.finishdate') 
+        #os.system(_('echo %s - %s  > /tmp/MachineProcModel') % (getBoxModelVU(), getCPUSoC()) )        
+              
         if fileExists('/tmp/.nkod'):
                 pass
         else:
-            if not fileExists('/tmp/ver.txt'):
-                    if fileExists('/usr/bin/fullwget'):            
-                            os.system('cd /tmp; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; cd /')           
             if not fileExists('/tmp/ver.txt'):
                     if fileExists('/usr/bin/curl'):                    
                             os.system('cd /tmp; curl -O --ftp-ssl https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; cd /')
             if not fileExists('/tmp/ver.txt'):
                     if fileExists('/usr/bin/wget'):            
-                            os.system('cd /tmp; wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; cd /')                             
+                            os.system('cd /tmp; wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; cd /')         
+            if not fileExists('/tmp/ver.txt'):
+                    if fileExists('/usr/bin/fullwget'):            
+                            os.system('cd /tmp; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; cd /')                                       
             if fileExists('/tmp/ver.txt'):
                     os.system('mv /tmp/ver.txt /tmp/.nkod ;cd /')
             else:
@@ -860,7 +864,6 @@ class NeoBootImageChoose(Screen):
 				LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
                                 mess = _('Sorry cannot open Image Downloader.\nAccess Fails with Error code 0x05.')
                                 self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
-
 
 
     def InstallImageDownloader(self, yesno):		
@@ -924,8 +927,6 @@ class NeoBootImageChoose(Screen):
          
     def close_exit(self):		
         system('touch /tmp/.init_reboot')
-        plugins.reloadPlugins()
-
         if fileExists('/tmp/error_neo'): 
             try:
                 cmd = 'cat /tmp/error_neo'
@@ -936,6 +937,12 @@ class NeoBootImageChoose(Screen):
 
             except:
                 False
+
+        if checkInternet():  
+                pass
+        else:
+                self.session.open(MessageBox, _('Geen internet'), MessageBox.TYPE_INFO, 4)
+                self.close()
 
         if not fileExists('/.multinfo'):            
             out = open('%sImageBoot/.neonextboot' % getNeoLocation(), 'w' )
@@ -1571,6 +1578,7 @@ def readline(filename, iferror = ''):
         PrintException()
     return data
 
+
 def checkInternet():
     if fileExists('/usr/lib/python3.8'):                     
         pass
@@ -1587,6 +1595,7 @@ def checkInternet():
             return False
         else:
             return True
+
 
 def checkimage():
     mycheck = False
@@ -1652,7 +1661,10 @@ def main(session, **kwargs):
                                 session.open(MessageBox, _('Sorry cannot open neo menu My Upgrade.\nAccess Fails with Error code 0x06.'), type=MessageBox.TYPE_ERROR)
                     else:
                         try:
-                            session.open(NeoBootImageChoose)
+                                #if checkInternet():  
+                                        session.open(NeoBootImageChoose)
+                                #else:
+                                        #session.open(MessageBox, _('Geen internet'), type=MessageBox.TYPE_ERROR)
                         except Exception as e:
 				loggscrash = time.localtime(time.time())
 				LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
