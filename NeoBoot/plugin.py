@@ -1134,7 +1134,7 @@ class NeoBootImageChoose(Screen):
                 if getCPUtype() == 'MIPS':
                     os.system('cd ' + LinkNeoBoot + '/; cp -rf ./bin/neoinitmipsvu /sbin; chmod 755 /sbin/neoinitmipsvu; cp -rf ./bin/neoinitmips /sbin; chmod 755 /sbin/neoinitmips; cd')                                                                                  
                 os.system('cd ' + LinkNeoBoot + '/; rm ./bin/install; rm -f ./files/testinout; rm ./files/mountpoint.sh; rm ./files/neo.sh; rm -f /usr/lib/periodon/.kodn')
-                restartbox = self.session.openWithCallback(self.restartGUI, MessageBox, _('Completed update NeoBoot. You need to restart the E2 and re-enter your pin code VIP!!!\nRestart now ?'), MessageBox.TYPE_YESNO)
+                restartbox = self.session.openWithCallback(self.restartGUI, MessageBox, _('Completed update NeoBoot.\nYou need to restart the E2 and re-enter your pin code VIP!!!\nRestart now ?'), MessageBox.TYPE_YESNO)
                 restartbox.setTitle(_('Restart GUI now ?'))
 
 
