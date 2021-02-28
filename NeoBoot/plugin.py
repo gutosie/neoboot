@@ -860,14 +860,13 @@ class NeoBootImageChoose(Screen):
                     ybox.setTitle(_('Installation'))
             else:
                 try:
-                    from Plugins.Extensions.NeoBoot.files.tools import Opis
-                    self.session.open(Opis)
+                                from Plugins.Extensions.ImageDownloader.main import STBmodelsScreen
+                                self.session.open(STBmodelsScreen)
                 except Exception as e:
 				loggscrash = time.localtime(time.time())
 				LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
                                 mess = _('Sorry cannot open Image Downloader.\nAccess Fails with Error code 0x05.')
                                 self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
-
 
     def InstallImageDownloader(self, yesno):		
         if yesno:
