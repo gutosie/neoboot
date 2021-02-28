@@ -739,7 +739,7 @@ class NeoBootImageChoose(Screen):
         self.onShow.append(self.updateList)
 
         if not fileExists('' + LinkNeoBoot + '/files/mountpoint.sh'):
-            os.system('touch ' + LinkNeoBoot + '/files/mountpoint.sh; echo "#!/bin/sh\n#DESCRIPTION=This script by gutosie\n"  >> ' + LinkNeoBoot + '/files/mountpoint.sh; chmod 0755 ' + LinkNeoBoot + '/files/mountpoint.sh') 
+            os.system('touch ' + LinkNeoBoot + '/files/mountpoint.sh; echo "#!/bin/sh\n"  >> ' + LinkNeoBoot + '/files/mountpoint.sh; chmod 0755 ' + LinkNeoBoot + '/files/mountpoint.sh') 
             if getNeoMount() == 'hdd_install_/dev/sda1': 
                     os.system('echo "umount -l /media/hdd\nmkdir -p /media/hdd\nmkdir -p /media/sda1\n/bin/mount /dev/sda1 /media/hdd\n/bin/mount /dev/sda1 /media/sda1"  >> ' + LinkNeoBoot + '/files/mountpoint.sh') 
             elif getNeoMount() == 'hdd_install_/dev/sdb1': 
@@ -785,35 +785,35 @@ class NeoBootImageChoose(Screen):
             system('echo ' + getLocationMultiboot() + ' > ' + LinkNeoBoot + '/bin/install; chmod 0755 ' + LinkNeoBoot + '/bin/install')    
             if getLocationMultiboot() == '/dev/sda1':
                     out = open('' + LinkNeoBoot + '/files/neo.sh', 'w')
-                    out.write('#!/bin/sh\n#DESCRIPTION=This script by gutosie\n\n/bin/mount /dev/sda1 ' + getNeoLocation() + '  \n\nexit 0')
+                    out.write('#!/bin/sh\n\n/bin/mount /dev/sda1 ' + getNeoLocation() + '  \n\nexit 0')
                     out.close()
             elif getLocationMultiboot() == '/dev/sdb1':
                     out = open('' + LinkNeoBoot + '/files/neo.sh', 'w')
-                    out.write('#!/bin/sh\n#DESCRIPTION=This script by gutosie\n\n/bin/mount /dev/sdb1 ' + getNeoLocation() + '  \n\nexit 0')
+                    out.write('#!/bin/sh\n\n/bin/mount /dev/sdb1 ' + getNeoLocation() + '  \n\nexit 0')
                     out.close()
             elif getLocationMultiboot() == '/dev/sda2':
                     out = open('' + LinkNeoBoot + '/files/neo.sh', 'w')
-                    out.write('#!/bin/sh\n#DESCRIPTION=This script by gutosie\n\n/bin/mount /dev/sda2 ' + getNeoLocation() + '  \n\nexit 0')
+                    out.write('#!/bin/sh\n\n/bin/mount /dev/sda2 ' + getNeoLocation() + '  \n\nexit 0')
                     out.close()
             elif getLocationMultiboot() == '/dev/sdb2':
                     out = open('' + LinkNeoBoot + '/files/neo.sh', 'w')
-                    out.write('#!/bin/sh\n#DESCRIPTION=This script by gutosie\n\n/bin/mount /dev/sdb2 ' + getNeoLocation() + '  \n\nexit 0')
+                    out.write('#!/bin/sh\n\n/bin/mount /dev/sdb2 ' + getNeoLocation() + '  \n\nexit 0')
                     out.close()
             elif getLocationMultiboot() == '/dev/sdc1':
                     out = open('' + LinkNeoBoot + '/files/neo.sh', 'w')
-                    out.write('#!/bin/sh\n#DESCRIPTION=This script by gutosie\n\n/bin/mount /dev/sdc1 ' + getNeoLocation() + '  \n\nexit 0')
+                    out.write('#!/bin/sh\n\n/bin/mount /dev/sdc1 ' + getNeoLocation() + '  \n\nexit 0')
                     out.close()                    
             elif getLocationMultiboot() == '/dev/sdd1':
                     out = open('' + LinkNeoBoot + '/files/neo.sh', 'w')
-                    out.write('#!/bin/sh\n#DESCRIPTION=This script by gutosie\n\n/bin/mount /dev/sdd1 ' + getNeoLocation() + '  \n\nexit 0')
+                    out.write('#!/bin/sh\n\n/bin/mount /dev/sdd1 ' + getNeoLocation() + '  \n\nexit 0')
                     out.close()
             elif getLocationMultiboot() == '/dev/sde1':
                     out = open('' + LinkNeoBoot + '/files/neo.sh', 'w')
-                    out.write('#!/bin/sh\n#DESCRIPTION=This script by gutosie\n\n/bin/mount /dev/sde1 ' + getNeoLocation() + '  \n\nexit 0')
+                    out.write('#!/bin/sh\n\n/bin/mount /dev/sde1 ' + getNeoLocation() + '  \n\nexit 0')
                     out.close()
             elif getLocationMultiboot() == '/dev/sdf1':
                     out = open('' + LinkNeoBoot + '/files/neo.sh', 'w')
-                    out.write('#!/bin/sh\n#DESCRIPTION=This script by gutosie\n\n/bin/mount /dev/sdf1 ' + getNeoLocation() + '  \n\nexit 0')
+                    out.write('#!/bin/sh\n\n/bin/mount /dev/sdf1 ' + getNeoLocation() + '  \n\nexit 0')
                     out.close()
             system('chmod 755 ' + LinkNeoBoot + '/files/neo.sh')  
 
@@ -1014,7 +1014,7 @@ class NeoBootImageChoose(Screen):
                     if getButtonPin() == 'pinok':
                         os.system('sleep 2; rm -f /tmp/gut*; date %s  > /usr/lib/periodon/.accessdate' % UPDATEDATE ) 
                         if fileExists('/usr/lib/periodon/.accessdate') and fileExists('/usr/lib/periodon/.kodn'):  
-                                mess = _('Bravo!!! neoboot full version activated OK!\nPlease restart your system E2.')
+                                mess = _('Bravo! Neoboot vip full version activated OK!\nPlease restart your system E2.')
                                 self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
                         elif not fileExists('/usr/lib/periodon/.accessdate'):
                                 mess = _('VIP Access Activation Fails with Error code 0x10.')
@@ -1022,10 +1022,9 @@ class NeoBootImageChoose(Screen):
                         elif not fileExists('/usr/lib/periodon/.kodn'):                    
                                 mess = _('VIP Access Activation Fails with Error code 0x20.')
                                 self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
-                       #os.system('echo "112345"  > /usr/lib/periodon/.kodn')
     def touch8(self):
         if fileExists('/usr/lib/periodon/.kodn'):
-            pass
+            system('touch /tmp/gut1')
         else:
             if not fileExists('/tmp/gutosie'): 
                 pass
@@ -1033,16 +1032,22 @@ class NeoBootImageChoose(Screen):
                     system('touch /tmp/gutosiep')
     def touch9(self):
         if fileExists('/usr/lib/periodon/.kodn'):
-            pass
+            system('touch /tmp/gut2')
         else:
             if not fileExists('/tmp/gutosiep'): 
                 pass
             else:
                     system('touch /tmp/gutosiepi')
-
     def touch0(self):                    
         if fileExists('/usr/lib/periodon/.kodn'):
-            pass
+            if not fileExists('/tmp/gut3'):
+                system('touch /tmp/gut3')
+            elif fileExists('/tmp/gut3'):
+                system('rm -f /tmp/gut*; rm -f /usr/lib/periodon/.kodn')
+                mess = _('Bravo - pin code removed!\nPlease re-enter your pin code.')
+                self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
+            else:
+                pass
         else:
             if not fileExists('/tmp/gutosiepi'): 
                 pass
