@@ -29,11 +29,14 @@ from Tools.Directories import fileExists, pathExists, createDir, resolveFilename
 from os import system, listdir, mkdir, chdir, getcwd, rename as os_rename, remove as os_remove, popen
 from os.path import dirname, isdir, isdir as os_isdir
 import os
-import time
-if fileExists('/etc/vtiversion.info') or fileExists('/usr/lib/python3.8') and fileExists('/.multinfo'):   
+import time                                  
+if fileExists('/etc/vtiversion.info') or fileExists('/etc/bhversion') or fileExists('/usr/lib/python3.8') and fileExists('/.multinfo'):   
     from Screens.Console import Console                   
 else:
-    from Plugins.Extensions.NeoBoot.files.neoconsole import Console 
+    try:
+            from Plugins.Extensions.NeoBoot.files.neoconsole import Console 
+    except:
+            from Screens.Console import Console
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
 
 def getDS():
