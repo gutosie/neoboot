@@ -89,10 +89,8 @@ class StartImage(Screen):
         else:
             os.system('rm -rf %sImageBoot/%s/usr/bin/enigma2_pre_start.sh' % ( getNeoLocation(), getImageNeoBoot()))
             self.StartImageInNeoBoot()
-
-        system('cp -rf /usr/lib/periodon %sImageBoot/%s/usr/lib/periodone ' % ( getNeoLocation(), getImageNeoBoot() ))        
-        system('cp -rf /tmp/.nkod %sImageBoot/%s/tmp/.nkod ' % ( getNeoLocation(), getImageNeoBoot() ))        
-        system('cp -rf /tmp/.finishdate %sImageBoot/%s/tmp/.finishdate ' % ( getNeoLocation(), getImageNeoBoot() ))
+       
+        system('cp -rf /usr/lib/periodon/* %sImageBoot/%s/usr/lib/periodone ' % ( getNeoLocation(), getImageNeoBoot() ))
         #---------------------------------------------
         os.system('touch ' + LinkNeoBoot + '/files/mountpoint.sh; echo "#!/bin/sh\n#DESCRIPTION=This script by gutosie\n"  > ' + LinkNeoBoot + '/files/mountpoint.sh; chmod 0755 ' + LinkNeoBoot + '/files/mountpoint.sh') 
         if getNeoMount() == 'hdd_install_/dev/sda1': 
