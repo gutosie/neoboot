@@ -25,7 +25,7 @@ from Components.Pixmap import Pixmap, MultiPixmap
 from Components.config import *
 from Components.ConfigList import ConfigListScreen
 from Tools.LoadPixmap import LoadPixmap
-from Tools.Directories import fileCheck, fileExists, pathExists, createDir, resolveFilename, SCOPE_PLUGINS
+from Tools.Directories import fileExists, pathExists, createDir, resolveFilename, SCOPE_PLUGINS
 from os import system, listdir, mkdir, chdir, getcwd, rename as os_rename, remove as os_remove, popen
 from os.path import dirname, isdir, isdir as os_isdir
 import os

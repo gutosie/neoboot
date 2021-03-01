@@ -11,6 +11,7 @@ from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Screens.Standby import TryQuitMainloop
+from Screens.Console import Console
 from Components.About import about
 from Components.Sources.List import List
 from Components.Button import Button
@@ -25,15 +26,11 @@ from Components.Pixmap import Pixmap, MultiPixmap
 from Components.config import *
 from Components.ConfigList import ConfigListScreen
 from Tools.LoadPixmap import LoadPixmap
-from Tools.Directories import fileCheck, fileExists, pathExists, createDir, resolveFilename, SCOPE_PLUGINS
+from Tools.Directories import fileExists, pathExists, createDir, resolveFilename, SCOPE_PLUGINS
 from os import system, listdir, mkdir, chdir, getcwd, rename as os_rename, remove as os_remove, popen
 from os.path import dirname, isdir, isdir as os_isdir
 import os
-import time
-if fileCheck('/etc/vtiversion.info') or fileExists('/usr/lib/python3.8'):
-    from Screens.Console import Console
-elif not fileCheck('/etc/vtiversion.info'):
-    from Plugins.Extensions.NeoBoot.files.neoconsole import Console                   
+import time                  
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
 
 class StartImage(Screen):
