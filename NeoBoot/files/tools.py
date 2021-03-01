@@ -37,11 +37,14 @@ from stbbranding import fileCheck, getNeoLocation, getImageNeoBoot, getKernelVer
 import os
 import time
 import sys
-import struct, shutil
-if fileExists('/etc/vtiversion.info') or fileExists('/usr/lib/python3.8') and fileExists('/.multinfo'):   
+import struct, shutil                      
+if fileExists('/etc/vtiversion.info') or fileExists('/etc/bhversion') or fileExists('/usr/lib/python3.8') and fileExists('/.multinfo'):   
     from Screens.Console import Console                   
 else:
-    from Plugins.Extensions.NeoBoot.files.neoconsole import Console
+    try:
+            from Plugins.Extensions.NeoBoot.files.neoconsole import Console 
+    except:
+            from Screens.Console import Console
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'                                              
 neoboot = getNeoLocation()  
 media = getNeoLocation()
