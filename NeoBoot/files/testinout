@@ -11,8 +11,6 @@ def getAccesDate():
     timego=''   
     dana = getTestOutTime()   #  etc   Nie! Szukana liczba jest wieksza!
     strzal = getTestInTime()  #  tmp   Nie! Szukana liczba jest mniejsza!    
-    if not os.path.exists('/tmp/.finishdate'):
-            os.system('date "+%Y%m%d"  > /tmp/.finishdate; sleep 2') 
     if strzal == dana:
         timego='access'
     elif strzal < dana:
