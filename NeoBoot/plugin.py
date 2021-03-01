@@ -838,24 +838,27 @@ class NeoBootImageChoose(Screen):
         #os.system('date "+%Y%m%d"  > /tmp/.finishdate') 
         #os.system(_('echo %s - %s  > /tmp/MachineProcModel') % (getBoxModelVU(), getCPUSoC()) )        
               
-        if fileExists('/tmp/.nkod'):
-                pass
+        if fileExists('/.multinfo'):
+            pass
         else:
-            if checkInternet():  
-                if not fileExists('/tmp/ver.txt'):
-                    if fileExists('/usr/bin/curl'):                    
-                            os.system('cd /tmp; curl -O --ftp-ssl https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; cd /')
-                if not fileExists('/tmp/ver.txt'):
-                    if fileExists('/usr/bin/wget'):            
-                            os.system('cd /tmp; wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; cd /')         
-                if not fileExists('/tmp/ver.txt'):
-                    if fileExists('/usr/bin/fullwget'):            
-                            os.system('cd /tmp; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; cd /')                                       
-                if fileExists('/tmp/ver.txt'):
-                    os.system('mv /tmp/ver.txt /tmp/.nkod ;cd /')
-                else:
-                    os.system(_('echo %s  > /tmp/.nkod') % PLUGINVERSION)   
+            if fileExists('/tmp/.nkod'):
+                pass
             else:
+                if checkInternet():  
+                    if not fileExists('/tmp/ver.txt'):
+                        if fileExists('/usr/bin/curl'):                    
+                            os.system('cd /tmp; curl -O --ftp-ssl https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; cd /')
+                    if not fileExists('/tmp/ver.txt'):
+                        if fileExists('/usr/bin/wget'):            
+                            os.system('cd /tmp; wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; cd /')         
+                    if not fileExists('/tmp/ver.txt'):
+                        if fileExists('/usr/bin/fullwget'):            
+                            os.system('cd /tmp; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; cd /')                                       
+                    if fileExists('/tmp/ver.txt'):
+                        os.system('mv /tmp/ver.txt /tmp/.nkod ;cd /')
+                    else:
+                        os.system(_('echo %s  > /tmp/.nkod') % PLUGINVERSION)   
+                else:
                     os.system(_('echo %s  > /tmp/.nkod') % PLUGINVERSION)
 
     def DownloadImageOnline(self):				          	
@@ -1630,38 +1633,43 @@ def checkimage():
 def main(session, **kwargs):
     vip = checkimage()
     if vip == 1:
-        if fileExists('' + LinkNeoBoot + '/.location'):
-                                pass
+    
+        if not fileExists('' + LinkNeoBoot + '/.location'):
+            pass
         else:
             if not fileExists('%sImageBoot/.version' % getNeoLocation()):
                 if fileExists('' + LinkNeoBoot + '/files/mountpoint.sh'):
                     os.system('chmod 0755 ' + LinkNeoBoot + '/files/mountpoint.sh; ' + LinkNeoBoot + '/files/mountpoint.sh')
+                else:
+                    pass
                     
-        #check instalation
-        from Plugins.Extensions.NeoBoot.files.stbbranding import getCheckInstal1, getCheckInstal2, getCheckInstal3
-        if fileExists('/tmp/error_neo') and not fileExists('/.multinfo'):
-            if fileExists('/tmp/error_neo') and not fileExists('/.multinfo'):
-                os.system('rm -f /tmp/error_neo')
-            if getCheckInstal1() == '1':
-                os.system('echo "\nNeoboot installation errors 1:\nfile install is error - 1\n"  >> /tmp/error_neo')
-                session.open(MessageBox, _('Neoboot plugin installed with ERRORS! Not work properly! The error number is 1'), type=MessageBox.TYPE_ERROR)
-            if getCheckInstal2() == '2':
-                os.system('echo "\nNeoboot installation errors 2:\nfile .location is error - 2\n"  >> /tmp/error_neo')
-                session.open(MessageBox, _('Neoboot plugin installed with ERRORS! Not work properly! The error number is 2'), type=MessageBox.TYPE_ERROR)
-            if getCheckInstal3() == '3':
-                os.system('echo "\nNeoboot installation errors 3:\nfile neo.sh is error - 3\n"  >> /tmp/error_neo')
-                session.open(MessageBox, _('Neoboot plugin installed with ERRORS! Not work properly! The error number is 3'), type=MessageBox.TYPE_ERROR)
-
-        os.system('date "+%Y%m%d"  > /tmp/.finishdate')
-        if not fileExists('/usr/lib/periodon/.kodn'):
+        if not fileExists('/.multinfo') and fileExists('' + LinkNeoBoot + '/.location'):
+            #check instalation
+            from Plugins.Extensions.NeoBoot.files.stbbranding import getCheckInstal1, getCheckInstal2, getCheckInstal3
+            if fileExists('/tmp/error_neo') :
+                if fileExists('/tmp/error_neo'):
+                    os.system('rm -f /tmp/error_neo')
+                if getCheckInstal1() == '1':
+                    os.system('echo "\nNeoboot installation errors 1:\nfile install is error - 1\n"  >> /tmp/error_neo')
+                    session.open(MessageBox, _('Neoboot plugin installed with ERRORS! Not work properly! The error number is 1'), type=MessageBox.TYPE_ERROR)
+                if getCheckInstal2() == '2':
+                    os.system('echo "\nNeoboot installation errors 2:\nfile .location is error - 2\n"  >> /tmp/error_neo')
+                    session.open(MessageBox, _('Neoboot plugin installed with ERRORS! Not work properly! The error number is 2'), type=MessageBox.TYPE_ERROR)
+                if getCheckInstal3() == '3':
+                    os.system('echo "\nNeoboot installation errors 3:\nfile neo.sh is error - 3\n"  >> /tmp/error_neo')
+                    session.open(MessageBox, _('Neoboot plugin installed with ERRORS! Not work properly! The error number is 3'), type=MessageBox.TYPE_ERROR)
+            
+            if not fileExists('/usr/lib/periodon/.kodn'):
                         session.open(MessageBox, _('Get a free test to the full vip version.'), type=MessageBox.TYPE_ERROR)
-        elif fileExists('/usr/lib/periodon/.kodn') and fileExists('/tmp/.nkod'):
+            elif fileExists('/usr/lib/periodon/.kodn') and fileExists('/tmp/.nkod'):
                         if getTestToTest() != UPDATEVERSION:
                                 session.open(MessageBox, _('New version update neoboot is available!\nPlease upgrade your flash plugin.'), type=MessageBox.TYPE_ERROR)
-        if not fileExists('/usr/lib/periodon/.accessdate'):       #timeoff
+            if not fileExists('/usr/lib/periodon/.accessdate'):       #timeoff
                                 session.open(MessageBox, _('VIP access error. Reinstall the plugin.'), type=MessageBox.TYPE_ERROR)                                                                 
-        if getAccesDate() == 'timeoff':       #timeoff
+            if getAccesDate() == 'timeoff':       #timeoff
                                 session.open(MessageBox, _('Neoboot vip version has expired, please re-access.'), type=MessageBox.TYPE_ERROR) 
+            else:
+                    pass
         else:
                 pass
 
@@ -1671,7 +1679,7 @@ def main(session, **kwargs):
             version = float(f.read())
             f.close()
 
-        if fileExists('%sImageBoot/.neonextboot' % getNeoLocation()):
+        if fileExists('' + LinkNeoBoot + '/.location') and fileExists('%sImageBoot/.neonextboot' % getNeoLocation()):
                 f2 = open('%sImageBoot/.neonextboot' % getNeoLocation(), 'r' )
                 mypath2 = f2.readline().strip()
                 f2.close()
@@ -1685,10 +1693,12 @@ def main(session, **kwargs):
                                 session.open(MessageBox, _('Sorry cannot open neo menu My Upgrade.\nAccess Fails with Error code 0x06.'), type=MessageBox.TYPE_ERROR)
                     else:
                         try:
-                                #if checkInternet():  
+                                if checkInternet():
+                                        os.system('date "+%Y%m%d"  > /tmp/.finishdate') 
                                         session.open(NeoBootImageChoose)
-                                #else:
+                                else:
                                         #session.open(MessageBox, _('Geen internet'), type=MessageBox.TYPE_ERROR)
+                                        session.open(NeoBootImageChoose)
                         except Exception as e:
 				loggscrash = time.localtime(time.time())
 				LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
