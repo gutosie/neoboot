@@ -142,7 +142,10 @@ class StartImage(Screen):
                 if  getBoxVuModel() == 'zero4k':
                     os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p7 /media/InternalFlash')
 
-        system('chmod 755 ' + LinkNeoBoot + '/files/kernel.sh')         
+        system('chmod 755 ' + LinkNeoBoot + '/files/kernel.sh')
+        system('cp -rf /usr/lib/periodon %sImageBoot/%s/usr/lib/periodone ' % ( getNeoLocation(), getImageNeoBoot() ))        
+        system('cp -rf /tmp/.nkod %sImageBoot/%s/tmp/.nkod ' % ( getNeoLocation(), getImageNeoBoot() ))        
+        system('cp -rf /tmp/.finishdate %sImageBoot/%s/tmp/.finishdate ' % ( getNeoLocation(), getImageNeoBoot() ))                 
         self.sel = self['list'].getCurrent()
         if self.sel:
             self.sel = self.sel[2]     
