@@ -56,8 +56,8 @@ else:
             from Screens.Console import Console
     	
 loggscrash = time.localtime(time.time())
-PLUGINVERSION = '9.14'
-UPDATEVERSION = '9.14'
+PLUGINVERSION = '9.15'
+UPDATEVERSION = '9.15'
 UPDATEDATE = '"+%Y04%d"'   
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot' 
 
@@ -1588,7 +1588,8 @@ class NeoBootImageChoose(Screen):
     def myClose(self, message):		
         self.session.open(MessageBox, message, MessageBox.TYPE_INFO)
         self.close()
-                
+
+
 def readline(filename, iferror = ''):
     if iferror[:3] == 'or:':
       data = iferror[3:]
@@ -1602,7 +1603,6 @@ def readline(filename, iferror = ''):
     except Exception:
         PrintException()
     return data
-
 
 def checkInternet():
     if fileExists('/usr/lib/python3.8'):                     
@@ -1621,7 +1621,6 @@ def checkInternet():
         else:
             return True
 
-
 def checkimage():
     mycheck = False
     if not fileExists('/proc/stb/info') or not fileExists('' + LinkNeoBoot + '/neoskins/neo/neo_skin.py') or not fileExists('' + LinkNeoBoot + '/bin/utilsbh') or not fileExists('' + LinkNeoBoot + '/stbinfo.cfg'): 
@@ -1633,18 +1632,13 @@ def checkimage():
 def main(session, **kwargs):
     vip = checkimage()
     if vip == 1:
-    
         if not fileExists('' + LinkNeoBoot + '/.location'):
             pass
         else:
             if not fileExists('%sImageBoot/.version' % getNeoLocation()):
                 if fileExists('' + LinkNeoBoot + '/files/mountpoint.sh'):
                     os.system('chmod 0755 ' + LinkNeoBoot + '/files/mountpoint.sh; ' + LinkNeoBoot + '/files/mountpoint.sh')
-                else:
-                    pass
-                    
         if not fileExists('/.multinfo') and fileExists('' + LinkNeoBoot + '/.location'):
-            #check instalation
             from Plugins.Extensions.NeoBoot.files.stbbranding import getCheckInstal1, getCheckInstal2, getCheckInstal3
             if fileExists('/tmp/error_neo') :
                 if fileExists('/tmp/error_neo'):
@@ -1658,21 +1652,22 @@ def main(session, **kwargs):
                 if getCheckInstal3() == '3':
                     os.system('echo "\nNeoboot installation errors 3:\nfile neo.sh is error - 3\n"  >> /tmp/error_neo')
                     session.open(MessageBox, _('Neoboot plugin installed with ERRORS! Not work properly! The error number is 3'), type=MessageBox.TYPE_ERROR)
-            
+            if not fileExists('%sImageBoot/.version' % getNeoLocation()):
+                if fileExists('' + LinkNeoBoot + '/files/mountpoint.sh'):
+                    os.system('chmod 0755 ' + LinkNeoBoot + '/files/mountpoint.sh; ' + LinkNeoBoot + '/files/mountpoint.sh')
+            if checkInternet():
+                                    if not os.path.exists('/tmp/.finishdate'):
+                                        os.system('date "+%Y%m%d"  > /tmp/.finishdate')
             if not fileExists('/usr/lib/periodon/.kodn'):
                         session.open(MessageBox, _('Get a free test to the full vip version.'), type=MessageBox.TYPE_ERROR)
             elif fileExists('/usr/lib/periodon/.kodn') and fileExists('/tmp/.nkod'):
                         if getTestToTest() != UPDATEVERSION:
                                 session.open(MessageBox, _('New version update neoboot is available!\nPlease upgrade your flash plugin.'), type=MessageBox.TYPE_ERROR)
             if not fileExists('/usr/lib/periodon/.accessdate'):       #timeoff
-                                session.open(MessageBox, _('VIP access error. Reinstall the plugin.'), type=MessageBox.TYPE_ERROR)                                                                 
+                                session.open(MessageBox, _('VIP access error. Reinstall the plugin.'), type=MessageBox.TYPE_ERROR)
             if getAccesDate() == 'timeoff':       #timeoff
-                                session.open(MessageBox, _('Neoboot vip version has expired, please re-access.'), type=MessageBox.TYPE_ERROR) 
-            else:
-                    pass
-        else:
-                pass
-
+                                session.open(MessageBox, _('Neoboot vip version has expired, please re-access.'), type=MessageBox.TYPE_ERROR)
+                                
         version = 0
         if fileExists('%sImageBoot/.version' % getNeoLocation()):
             f = open('%sImageBoot/.version' % getNeoLocation())
@@ -1692,13 +1687,8 @@ def main(session, **kwargs):
 				LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
                                 session.open(MessageBox, _('Sorry cannot open neo menu My Upgrade.\nAccess Fails with Error code 0x06.'), type=MessageBox.TYPE_ERROR)
                     else:
-                        try:
-                                if checkInternet():
-                                        os.system('date "+%Y%m%d"  > /tmp/.finishdate') 
-                                        session.open(NeoBootImageChoose)
-                                else:
-                                        #session.open(MessageBox, _('Geen internet'), type=MessageBox.TYPE_ERROR)
-                                        session.open(NeoBootImageChoose)
+                        try: 
+                                session.open(NeoBootImageChoose)
                         except Exception as e:
 				loggscrash = time.localtime(time.time())
 				LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
@@ -1717,7 +1707,7 @@ def main(session, **kwargs):
                     self.session.open(MessageBox, _('Sorry cannot open neo menu. Not supported tuners. '), type=MessageBox.TYPE_ERROR)
     else:
             session.open(MessageBox, (_('Sorry, Unable to install, bad satellite receiver or you do not have the full plug-in version\n\nThe full version of the NEO VIP plugin is on address:\nkrzysztofgutosie@.gmail.com')), type=MessageBox.TYPE_ERROR)
-
+            
 def menu(menuid, **kwargs):
     if menuid == 'mainmenu':
         return [(_('NeoBOOT'),
