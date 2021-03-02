@@ -10,7 +10,6 @@ if [ -e /.control_boot_new_image ] ; then
     ln -sf "/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot" "/NeoBoot"
 fi
 
-
 if [ ! -e `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/.neonextboot ] ; then
         mkdir `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location` 
         /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/neo.sh  
@@ -30,10 +29,9 @@ if [ $? -gt 0 ]; then
 	  
       if [ $? -gt 0 ]; then
           if [ -e /usr/bin/curl ]; then
-              cd /tmp; curl -O --ftp-ssl https://raw.githubusercontent.com/gutosie/NeoBoot8/master/ver.txt; 
-              cd /
+              cd /tmp; curl -O --ftp-ssl https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; cd /
           elif [ -e /usr/bin/wget ]; then
-              wget https://raw.githubusercontent.com/gutosie/NeoBoot8/master/ver.txt -O /tmp/ver.txt
+              wget https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt -O /tmp/ver.txt
               cd /
 
           fi
