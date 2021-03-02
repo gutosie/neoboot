@@ -1682,9 +1682,12 @@ def main(session, **kwargs):
         if fileExists('' + LinkNeoBoot + '/.location') and fileExists('%sImageBoot/.neonextboot' % getNeoLocation()):
                 f2 = open('%sImageBoot/.neonextboot' % getNeoLocation(), 'r' )
                 mypath2 = f2.readline().strip()
-                f2.close()
+                f2.close()                 
                 if mypath2 != 'Flash' or mypath2 == 'Flash' and checkimage():
-                    if not fileExists('/.multinfo'):
+                
+                    if fileExists('/.multinfo'):
+                                session.open(NeoBootImageChoose)
+                    else:
                         if float(PLUGINVERSION) != version:
                             try:
                                 session.open(MyUpgrade)
@@ -1692,10 +1695,10 @@ def main(session, **kwargs):
 				loggscrash = time.localtime(time.time())
 				LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
                                 session.open(MessageBox, _('Sorry cannot open neo menu My Upgrade.\nAccess Fails with Error code 0x06.'), type=MessageBox.TYPE_ERROR)
-                    else:
-                        try: 
+                        else:
+                            try: 
                                 session.open(NeoBootImageChoose)
-                        except Exception as e:
+                            except Exception as e:
 				loggscrash = time.localtime(time.time())
 				LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
                                 session.open(MessageBox, _('Sorry cannot open neo menu Neo Boot Image Choose.\nAccess Fails with Error code 0x07.'), type=MessageBox.TYPE_ERROR)
