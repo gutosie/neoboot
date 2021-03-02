@@ -1,0 +1,2675 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST audi06_19 <info@dreamosat-forum.com>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: NeoBoot\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2021-03-02 23:39+0300\n"
+"Last-Translator: Docea37 <www.dreamosat-forum.com>\n"
+"Language-Team: audi06_19 <info@dreamosat-forum.com>\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 2.4.1\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+msgid ""
+"\n"
+"Completely uninstall NeoBota: \n"
+"If you think NeoBot not you need it, you can uninstall it.\n"
+"To uninstall now press the red button on the remote control.\n"
+"\n"
+msgstr ""
+"\n"
+"NeoBot'un tamamen kaldırılması: \n"
+"NeoBoot'a ihtiyacınız olmadığını düşünüyorsanız, onu kaldırabilirsiniz.\n"
+"Eklenti, alıcınızın dahili flash belleğinden tamamen kaldırılacaktır.\n"
+"Varsayılan yazılım ayarları geri yüklenecektir. Kaldırmak için basın uzaktan kumandadaki kırmızı düğme.\n"
+"\n"
+
+msgid "Start the chosen system now ?"
+msgstr "Seçili yazılım çalıştırılsın mı?"
+
+msgid ""
+" is already installed.\n"
+" Please try another name."
+msgstr ""
+" Zaten yüklü. \n"
+"Lütfen başka bir ad deneyin."
+
+msgid ""
+"   \n"
+"   Available: "
+msgstr ""
+"   \n"
+"   Kullanılabilir disk belleği: "
+
+msgid "Boot Image"
+msgstr "Image başlatın"
+
+msgid "Cancel"
+msgstr "İptal"
+
+msgid "Install"
+msgstr "Yükle"
+
+msgid "Delete Confirmation"
+msgstr "Onay Silme"
+
+msgid "Devices Panel"
+msgstr "Aygıt paneli"
+
+msgid ""
+"Do You really want to install NeoBoot in:\n"
+" "
+msgstr ""
+"NeoBoot'un kurulumu tam otomatik olacak ve birkaç saniye sürecektir.\n"
+"NeoBoot'u seçilen ortama kurmak istiyor musunuz: \n"
+" "
+
+msgid "Help"
+msgstr "Yardım"
+
+msgid "Please choose an image to boot"
+msgstr "Çalıştırılacak image seçin"
+
+msgid "WARNING !: The update brings with it the risk of errors.\n"
+msgstr "UYARI !: Güncellemede hata riski vardır.\n"
+
+msgid "Before upgrading it is recommended that you make a backup NeoBoot.\n"
+msgstr "Yükseltmeden önce NeoBoot'unuzu yedeklemeniz önerilir.\n"
+
+msgid "Do you want to run the update now ?\n"
+msgstr "Güncellemeyi şimdi çalıştırmak istiyor musunuz?\n"
+
+msgid "Canceled update."
+msgstr "Güncelleme iptal edildi."
+
+msgid ""
+"NeoBoot has detected update.\n"
+"Do you want to update NeoBoota now ?"
+msgstr ""
+"NeoBoot bir güncelleme algıladı.\n"
+"NeoBoot'u şimdi güncellemek istiyor musunuz?"
+
+msgid "Image Name"
+msgstr "Yazılımı adlandırın (mavi uzaktan kumanda düğmeleri etkin)"
+
+msgid "Image will be booted on the next STB boot!"
+msgstr "Görüntü, alıcının bir sonraki açılışında önyüklenecek!"
+
+msgid "Info"
+msgstr "Bilgi"
+
+msgid "Install & run multiple images."
+msgstr "Birden çok yazılımı kurun ve çalıştırın."
+
+msgid "Install Confirmation"
+msgstr "Kurulum onayı"
+
+msgid "Install Image"
+msgstr "Yazılımı yükleme"
+
+msgid "Installation aborted !"
+msgstr "Kurulum iptal edildi!"
+
+msgid "NeoBoot - Image Installation"
+msgstr "NeoBoot - Yazılım Kurulumu"
+
+msgid "NeoBoot - Installation"
+msgstr "NeoBoot-Kurulum"
+
+msgid "NeoBoot - Menu"
+msgstr "NeoBoot-Menüsü"
+
+msgid "Deleting in progress...\n"
+msgstr "Silme işlemi devam ediyor...\n"
+
+msgid "NeoBoot has been installed succesfully !"
+msgstr "Tebrikler NeoBoot doğru bir şekilde kuruldu. Şimdi eklentiyi yeniden başlatabilirsiniz!"
+
+msgid "NeoBoot is running from:"
+msgstr "Neoboot konumu:"
+
+msgid "NeoBoot is running image:"
+msgstr "Çalışan yazılım:"
+
+msgid ""
+"NeoBoot successfully updated. You can restart the plugin now.\n"
+"Have fun !!!"
+msgstr ""
+"NeoBoot başarıyla güncellendi. Eklentiyi şimdi yeniden başlatabilirsiniz.\n"
+"İyi eğlenceler !!!"
+
+msgid ""
+"NeoBoot successfully updated list tv.\n"
+"Have fun !!"
+msgstr ""
+"NeoBoot tv listesini başarıyla güncelledi.\n"
+"İyi eğlenceler !!"
+
+msgid "NeoBot started installing new image.\n"
+msgstr "NeoBot yeni yazılım yüklemeye başladı.\n"
+
+msgid "NeoBoot: Deleting Image"
+msgstr "NeoBoot: Yazılım Kaldırma"
+
+msgid "NeoBoot: Install new image"
+msgstr "NeoBoot: Yeni yazılım yükleniyor"
+
+msgid "Number of images installed:"
+msgstr "Yüklü yazılım sayısı:"
+
+msgid "Please: DO NOT reboot your STB and turn off the power.\n"
+msgstr "Lütfen: STB'yi yeniden BAŞLATMAYIN ve gücü kapatmayın.\n"
+
+msgid "Remove Image "
+msgstr "Yazılım Kaldırma "
+
+msgid "Download Image"
+msgstr "Yazılımı indirme"
+
+msgid "Removing canceled!"
+msgstr "Kaldırma iptal edildi!"
+
+msgid "Delete password"
+msgstr "Parola kaldırma. Yazılımdan root parolası kaldırılsın mı"
+
+msgid "Update NeoBot"
+msgstr "NeoBoot Güncellemesi"
+
+msgid "Make copy"
+msgstr "Kopya oluştur"
+
+msgid "Restoring backup"
+msgstr "Bir yedeği geri yükleme"
+
+msgid "The update has been canceled."
+msgstr "Güncelleme iptal edildi."
+
+msgid "Install the new images from the Internet"
+msgstr "İnternetten yeni yazılım yükleyin"
+
+msgid "Sorry it seems that there are not Linux formatted devices mounted on your STB. To install NeoBoot you need a Linux formatted part1 device."
+msgstr "Maalesef alıcıya takılı aygıtlar düzgün biçimlendirilmemiş gibi görünüyor. NeoBoot'u kurmak için aygıtı linux biçiminde biçimlendirmeniz gerekiyor."
+
+msgid "Sorry the name of the new Image is too long."
+msgstr "Üzgünüz, yeni yazılımın adı çok uzun. Lütfen yeni adı daha kısa bir ad verin."
+
+msgid "Sorry this name is reserved. Choose another name for the new Image."
+msgstr "Ne yazık ki, bu ad zaten kullanılıyor. Lütfen yeni yazılım için farklı bir ad seçin."
+
+msgid "Sorry you cannot delete Flash image"
+msgstr "Maalesef alıcının dahili belleğine yüklü yazılım kaldırılamıyor, flash"
+
+msgid "Sorry you cannot delete the image currently booted from."
+msgstr "Üzgünüz, şu anda çalışan yazılım kaldırılamadı. Lütfen farklı bir yazılım seçin."
+
+msgid "Sorry, Neoboot can be installed or upgraded only when booted from Flash"
+msgstr "Üzgünüz, NeoBoot dahili flash belleğinden çalışırken yalnızca yazılımı yükleyebilir veya yükseltilebilir"
+
+msgid "Sorry, an Image with the name "
+msgstr "Üzgünüm, isimli yazılım "
+
+msgid ""
+"Sorry, there is not any connected devices in your STB.\n"
+"Please connect HDD or USB to install NeoBoot!"
+msgstr "Üzgünüz, alıcınızda bağlı cihaz yok. NeoBoot'u kurmak için lütfen usb veya hdd bağlayın!"
+
+msgid ""
+"Sorry, Unable to install, bad satellite receiver or you do not have the full plug-in version\n"
+"\n"
+"The full version of the NEO VIP plugin is on address:\n"
+"krzysztofgutosie@.gmail.com"
+msgstr ""
+"Üzgünüm, yüklenemiyor, bozuk uydu alıcısı veya tam eklenti sürümüne sahip değilsiniz\n"
+"\n"
+"NEO VIP eklentisinin tam sürümünü krzysztofgutosie@.gmail.com adresinden edinebilirsiniz\n"
+"Bize yazın"
+
+msgid "Source Image file"
+msgstr "Yazılım seçin"
+
+msgid "NeoBoot has not been installed !  :("
+msgstr "NeoBoot yüklenmemiş! :("
+
+msgid "Would you like to download the image from the network now ?"
+msgstr "Yazılım şimdi ağdan indirilsin mi?"
+
+msgid ""
+"The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\n"
+"Make sure you select a valid partition type."
+msgstr "Bu cihaz %s ext2, ext3, ext4 veya nfs olarak biçimlendirilmemiş veya yazılabilir değil. Kurulum için doğru bölüm türünü seçtiğinizden emin olun."
+
+msgid ""
+"The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\n"
+"Make sure you select a valid partition type.\n"
+"It may be helpful to restart the stb device completely."
+msgstr "Seçilen aygıtın seçilen dizini %s ext2, ext3, ext4 veya nfs olarak biçimlendirilmemiş. Doğru bölüm türünü seçtiğinizden emin olun."
+
+msgid ""
+" The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\n"
+" Make sure you select a valid partition type.\n"
+" It may be helpful to restart the stb device completely."
+msgstr ""
+" Seçili aygıt %s için seçilen dizin ext2, ext3, ext4 veya nfs olarak biçimlendirilmemiş.\n"
+"Doğru bölüm türünü seçtiğinizden emin olun.\n"
+"Stb aygıtının tamamen yeniden başlatılması yardımcı olabilir."
+
+msgid "Do you want install NeoBoot ?"
+msgstr "Kuruluma devam edilsin mi?"
+
+msgid "Please, wait..."
+msgstr "Lütfen bekleyin ..."
+
+msgid "Keyboard"
+msgstr "Klavye"
+
+msgid "Copy the channel list ?"
+msgstr "Kanal listesi dahili flash bellekten kopyalansın mı?"
+
+msgid "Copy CamdMenager ?"
+msgstr "Kamera Yöneticisi kopyalansın mı?"
+
+msgid "Copy the drivers ? (Recommended only other image.)"
+msgstr "Sürücüler kopyalansın mı? (yalnızca sizin modeliniz dışındaki yazılımlar için önerilir)"
+
+msgid "Copy mounting disks ? (Recommended)"
+msgstr "Disk Bağlantısı Kopyalansın mı? (Önerilir)"
+
+msgid "Remove zip file after installation ?"
+msgstr "Yüklemeden sonra zip dosyası kaldırılsın mı?"
+
+msgid "Used: "
+msgstr "Kullanılan disk belleği: "
+
+msgid "Capacity : "
+msgstr "Kullanılan disk belleği: "
+
+msgid "Select skin."
+msgstr "Bir dış görünüm seçin."
+
+msgid "Block or unlock skins."
+msgstr "Dış görünümleri engelleyin veya engelini kaldırın."
+
+msgid "Block or unblock the neoboot skin display in the system skin."
+msgstr "Sistem dış görünümünde kilitleyin veya kilidi açın, neoboot kaplamasını görüntüleyin."
+
+msgid ""
+"Select Yes to lock or No to unlock.\n"
+"  %s     ?"
+msgstr ""
+"Kilitlemek için Evet'i veya kilidi açmak için Hayır'ı seçin.\n"
+"  %s     ?"
+
+msgid "Free Space : "
+msgstr "Boş disk alanı: "
+
+msgid " Full"
+msgstr " Dolu"
+
+msgid "Copy the network settings DNS ? (Not recommended for VTi)"
+msgstr "DNS ağ ayarları kopyalansın mı? (VTi için önerilmez)"
+
+msgid "Start the new image after installation ?"
+msgstr "Kurulumdan sonra yeni yazılım başlatılsın mı?"
+
+msgid "Stop E2 processes during installation?"
+msgstr "Kurulum sırasında sistem işlemleri dondurulsun mu?"
+
+msgid "Overwrite the files of the module and firmware ?"
+msgstr "Modül ve aygıt yazılımı dosyalarının üzerine yazılsın mı?"
+
+msgid "Welcome to NeoBoot %s Plugin installation."
+msgstr "NeoBoot %s eklenti kurulumuna hoş geldiniz."
+
+msgid "You are not running OpenSPA Image. You must mount devices Your self."
+msgstr "OpenPLi kullanmıyorsunuz. Cihazı manuel olarak bağlamanız gerekiyor."
+
+msgid "You have to provide a name for the new Image."
+msgstr "/media/neoboot/ImagesUpload dizini boş! Firmware dosyalarını zipa veya nfi biçiminde yükleyin veya yeni görüntü için bir ad girin."
+
+msgid ""
+"You have to select one Image to install.\n"
+"Please, upload your zip file in the folder: /media/neoboot/ImagesUpload and select the image to install."
+msgstr ""
+"Yüklemek için bir yazılım seçmeniz gerekiyor.\n"
+"Lütfen zip dosyasını şu klasöre yükleyin: /media/neoboot/ImagesUpload ve kurulacak yazılımı seçin."
+
+msgid "You really want to install NeoBoot in:"
+msgstr "NeoBoot'u gerçekten yüklemek istiyorsunuz:"
+
+msgid "no image to remove"
+msgstr "kaldırma yazılımı yok"
+
+msgid "remove"
+msgstr "sil"
+
+msgid "unknown"
+msgstr "bilinmeyen"
+
+msgid "/proc/mounts"
+msgstr "/proc/mount"
+
+msgid " Failed to open /proc/mounts"
+msgstr " /proc/mount açılamadı"
+
+msgid " /proc/filesystems"
+msgstr " /proc/filesystems"
+
+msgid " Failed to read /proc/filesystems:"
+msgstr " /proc/filesystems okunamıyor:"
+
+msgid "device"
+msgstr "cihaz"
+
+msgid "/part"
+msgstr "/bölüm"
+
+msgid "part"
+msgstr "bölüm"
+
+msgid "disc"
+msgstr "disk"
+
+msgid "/sys/block/"
+msgstr "/sys/block/"
+
+msgid "/dev"
+msgstr "/dev"
+
+msgid "Unable to determine structure of /dev"
+msgstr "Cihazdaki yapı belirlenemiyor"
+
+msgid "new Harddisk"
+msgstr "yeni sabit disk"
+
+msgid "External (CF)"
+msgstr "Harici (CF)"
+
+msgid "Internal"
+msgstr "Dahili"
+
+msgid "External"
+msgstr "Harici"
+
+msgid "size"
+msgstr "size"
+
+msgid "/model"
+msgstr "/model"
+
+msgid "/vendor"
+msgstr "/kullanılmış"
+
+msgid " Failed to get model:"
+msgstr " Model alınamadı:"
+
+msgid "umount "
+msgstr "bağdan "
+
+msgid "[Harddisk]"
+msgstr "[Harddisk]"
+
+msgid " mounting:"
+msgstr " bağlama:"
+
+msgid "Initializing storage device..."
+msgstr "Yığın Depolama Aygıtı Başlatılıyor ..."
+
+msgid "Removing partition table"
+msgstr "Bir bölüm tablosunu silme"
+
+msgid "Rereading partition table"
+msgstr "Bölüm tablosunu yeniden okuma"
+
+msgid "Waiting for partition"
+msgstr "Bölümde bekleniyor"
+
+msgid "Creating partition"
+msgstr "Bölüm oluştur"
+
+msgid "Creating filesystem"
+msgstr "Dosya sistemini oluştur"
+
+msgid "/proc/version"
+msgstr "/proc/version"
+
+msgid "Failed to detect Linux version:"
+msgstr "Linux sürümü algılanamadı:"
+
+msgid "largefile"
+msgstr "büyük dosya"
+
+msgid "Waiting for mount"
+msgstr "Bağlama bekleniyor"
+
+msgid "Checking filesystem..."
+msgstr "Kurulumu Onaylıyor musunuz..."
+
+msgid "You system does not support ext4"
+msgstr "Sisteminiz ext4'ü desteklemiyor"
+
+msgid "Converting ext3 to ext4..."
+msgstr "Dönüştür ext3'ü ext4'e..."
+
+msgid "Partition(mountpoint=%s,description=%s,device=%s)"
+msgstr "Bölüm (bağlama noktası=%s,açıklama=%s,aygıt=%s)"
+
+msgid "Device %s is not mounted"
+msgstr "%s aygıtı takılı değil"
+
+msgid "update packages"
+msgstr "paket güncellemesi"
+
+msgid "update"
+msgstr "güncelleme"
+
+msgid "Internal flash"
+msgstr "Dahili flaş"
+
+msgid " enumerating block devices..."
+msgstr " aygıt bloklarını numaralandırıyor..."
+
+msgid " enumerating network mounts..."
+msgstr " ağ bağlantısı numaralandırılıyor ..."
+
+msgid "new Network Mount"
+msgstr "yeni ağ bağlantısı"
+
+msgid "new Network Mount being used as HDD replacement -> /media/hdd/"
+msgstr "sabit sürücü olarak kullanılan yeni ağ bağlantısı -> /media/hdd/"
+
+msgid "couldn't determine blockdev physdev for device"
+msgstr "aygıt için physdev bloklarını bulamadı"
+
+msgid "External Storage %s"
+msgstr "Harici sürücü %s"
+
+msgid "couldn't read model: "
+msgstr "modeli okuyamıyor: "
+
+msgid "Partition %d"
+msgstr "Bölüm %d"
+
+msgid " Failed to set %s speed to %s"
+msgstr " %s hızı %s olarak ayarlanamadı"
+
+msgid "Unmount"
+msgstr "Unmount"
+
+msgid "Mount"
+msgstr "Montaj"
+
+msgid "/dev/nomount.%s"
+msgstr "/device/bağlanmadan. %s"
+
+msgid "ERROR: Failed to create /dev/nomount file:"
+msgstr "HATA: Cihazda dosya yaratılamadı, montaj yok:"
+
+msgid "ERROR: Failed to remove /dev/nomount file:"
+msgstr "HATA: Dosya silinemiyor, bağlama yok:"
+
+msgid "Writing inode tables:"
+msgstr "Düğüm tabloları yazılıyor:"
+
+msgid "Creating journal"
+msgstr "Günlük Oluşturma"
+
+msgid "inode"
+msgstr "düğüm"
+
+msgid "journal"
+msgstr "günlük"
+
+msgid " No mountpoints found?"
+msgstr " Bağlama noktası bulunamadı mı?"
+
+msgid "Failed to remove path '%s':"
+msgstr "'%s' yolu kaldırılamadı:"
+
+msgid "unavailable"
+msgstr "mevcut değil"
+
+msgid "system type"
+msgstr "sistem türü"
+
+msgid "Processor"
+msgstr "İşlemci"
+
+msgid "processor"
+msgstr "işlemci"
+
+msgid "undefined"
+msgstr "tanımsız"
+
+msgid "Extract contents of UBI image."
+msgstr "UBI görüntüsünün içeriğini çıkarın."
+
+msgid ""
+"\n"
+"[NeoBoot] Zip file unzipped.\n"
+"Installation in progress, please wait ..."
+msgstr ""
+"\n"
+"[NeoBoot] Zip dosyası çıkarıldı.\n"
+"Yükleme devam ediyor, lütfen bekleyin ..."
+
+msgid ""
+"Wait almost over ...\n"
+"Loading the image to: %s"
+msgstr ""
+"Bekleyin, neredeyse bitti ...\n"
+"Yazılım şuraya yükleniyor: %s"
+
+msgid "Maintain file permissions, requires running as root. (default: False)"
+msgstr "Dosya izinlerini koruyun, kök olarak çalıştırılması gerekir. (varsayılan: Yanlış)"
+
+msgid "Suppress warnings and non-fatal errors. (default: False)"
+msgstr "Uyarıları ve önemli hataları atlayın. (varsayılan: Yanlış)"
+
+msgid "Specify PEB size"
+msgstr "PEB Boyutunu Belirtin"
+
+msgid "Specify output directory path."
+msgstr "Çıktı dizininin yolunu belirtin."
+
+msgid "filepath"
+msgstr "dosya yolu"
+
+msgid "File to extract contents of."
+msgstr "İçeriği çıkarmak için dosya."
+
+msgid "File path doesn't exist."
+msgstr "Dosyanın yolu mevcut değil."
+
+msgid "Volume output directory is not empty. %s"
+msgstr "Hacim çıktı dizini boş değil. %s"
+
+msgid "Writing to: %s"
+msgstr "Yazılıyor: %s"
+
+msgid "errors"
+msgstr "hatalar"
+
+msgid "Error Count Header"
+msgstr "Üstbilgi hatası sayısı"
+
+msgid "Volume Table Record: %s"
+msgstr "Kapasite tablosu yazma: %s"
+
+msgid "name"
+msgstr "ad"
+
+msgid "Volume: %s"
+msgstr "Kapasite: %s"
+
+msgid "No blocks found."
+msgstr "Blok bulunamadı."
+
+msgid "Delete"
+msgstr "Sil"
+
+msgid "Read Only"
+msgstr "Salt okunur"
+
+msgid "Preserve"
+msgstr "Kaydet"
+
+msgid "Reject"
+msgstr "Sil"
+
+msgid "%sUBI File"
+msgstr "%sUBI Dosyası"
+
+msgid "\t%sMin I/O: %s"
+msgstr "\t%sMin I/O: %s"
+
+msgid "\t%sLEB Size: %s"
+msgstr "\t%sLEB boyutu: %s"
+
+msgid "\t%sPEB Size: %s"
+msgstr "\t%sPEB boyutu: %s"
+
+msgid "\t%sTotal Block Count: %s"
+msgstr "\t%sToplam blok: %s"
+
+msgid "\t%sData Block Count: %s"
+msgstr "\t%sBlok sayımı verisi: %s"
+
+msgid "\t%sLayout Block Count: %s"
+msgstr "\t%s%sBlok numarası düzeni"
+
+msgid "\t%sInternal Volume Block Count: %s"
+msgstr "\t%sBirimin dahili blok sayısı: %s"
+
+msgid "\t%sUnknown Block Count: %s"
+msgstr "\t%sBilinmeyen blok sayısı: %s"
+
+msgid "\t%sFirst UBI PEB Number: %s"
+msgstr "\t%sİlk UBI PEB numarası: %s"
+
+msgid "\t%sImage Sequence Num: %s"
+msgstr "\t%sSıra numarası resmi: %s"
+
+msgid "\t%sVolume Name:%s"
+msgstr "\t%sBirim adı: %s"
+
+msgid "\t%sPEB Range: %s - %s"
+msgstr "\t%sPEB aralığı: %s - %s"
+
+msgid "\t%sName: %s"
+msgstr "\t%sAdı: %s"
+
+msgid "\t%sBlock Count: %s"
+msgstr "\t%sBlok sayısı: %s"
+
+msgid "\t%sVolume Record"
+msgstr "\t%sYükleme ciltleri"
+
+msgid "\t%sFile Offset: %s"
+msgstr "\t%sDosya konumu: %s"
+
+msgid "\t%sBlock Size: %s"
+msgstr "\t%sBlok boyutu: %s"
+
+msgid "\t%sInternal Volume: %s"
+msgstr "\t%sDahili birim: %s"
+
+msgid "\t%sIs Volume Table: %s"
+msgstr "\t%sIs Hacim tablosu: %s"
+
+msgid "\t%sIs Valid: %s"
+msgstr "\t%sgeçerli: %s"
+
+msgid "\t%sErase Count Header"
+msgstr "\t%sSayaç başlığı kaldırılıyor"
+
+msgid "\t%sVID Header Header"
+msgstr "\t%sVID Başlığı"
+
+msgid "autoresize"
+msgstr "otomatik düzenleme"
+
+msgid "Image: %s"
+msgstr "Resim: %s"
+
+msgid "Start offset larger than file size!"
+msgstr "Dosya boyutundan daha büyük kaydırmaya başlayın!"
+
+msgid "UBIFS Common Header"
+msgstr "Ortak UBIFS Başlığı"
+
+msgid "UBIFS Super Block Node"
+msgstr "Süper UBIFS Düğüm Bloğu"
+
+msgid "UBIFS Master Block Node"
+msgstr "UBIFS ana blok düğümü"
+
+msgid "UBIFS Directory Entry Node"
+msgstr "UBIFS Dizin Giriş Düğümü"
+
+msgid "offset"
+msgstr "ofset"
+
+msgid "UBIFS Data Node"
+msgstr "UBIFS veri düğümü"
+
+msgid "UBIFS Index Node"
+msgstr "UBIFS Dizin Düğümü"
+
+msgid "Backup"
+msgstr "Yedekleme"
+
+msgid "list"
+msgstr "liste"
+
+msgid "Backup Confirmation"
+msgstr "Yedekleme onayı"
+
+msgid "NeoBoot: Backup Image"
+msgstr "NeoBoot: Yazılım Yedeklemesi"
+
+msgid "Backup Image"
+msgstr "Yazılım Yedeklemesi"
+
+msgid "Reinstall kernel"
+msgstr "Çekirdeği yeniden yükleyin"
+
+msgid "Used Kernel:Flash"
+msgstr "Kullanılan çekirdek: Flash"
+
+msgid "Kernel Version: "
+msgstr "Çekirdek sürümü: "
+
+msgid "Flash"
+msgstr "Flash"
+
+msgid "Sorry you cannot overwrite the image currently booted from. Please, boot from Flash to restore this backup."
+msgstr "Üzgünüz, şu anda çalışan yazılım değiştirilemez. Yedeklemeyi geri yüklemek için lütfen flash'ı çalıştırın."
+
+msgid "Restore Confirmation"
+msgstr "Geri Yükleme Onayı"
+
+msgid "Wait please, NeoBoot is working: ....Restore in progress...."
+msgstr "Lütfen bekleyin, NeoBoot çalışıyor: .... Geri yükleniyor ...."
+
+msgid "NeoBoot: Restore COMPLETE !"
+msgstr "NeoBoot: Geri Yükle TAMAMLANDI!"
+
+msgid "NeoBoot: Restore Image"
+msgstr "NeoBoot: Yazılım Geri Yükleme"
+
+msgid ""
+"\n"
+"\n"
+"NeoBoot restoring media mounts...."
+msgstr ""
+"\n"
+"\n"
+"NeoBoot geri yükleme bağlantısı ...."
+
+msgid ""
+"\n"
+"\n"
+"NeoBoot remove complete...."
+msgstr ""
+"\n"
+"\n"
+"NeoBoot kaldırma tamamlandı..."
+
+msgid "NeoBoot is removing..."
+msgstr "NeoBoot kaldırılıyor ..."
+
+msgid "NeoBoot: Deleting All Images"
+msgstr "NeoBoot: Tüm Yazılımları Kaldırma"
+
+msgid "NeoBoot: Download Image...."
+msgstr "Yazılım indiriliyor ...."
+
+msgid "NeoBoot new Image download"
+msgstr "Yeni yazılım indiriliyor"
+
+msgid ""
+"GUI needs a restart.\n"
+"Do you want to Restart the GUI now?"
+msgstr ""
+"Dinleyicinin yeniden başlatılması gerekiyor.\n"
+"GUI'yi yeniden başlatmak istiyor musunuz?"
+
+msgid "Restart GUI now?"
+msgstr "GUI yeniden başlatılsın mı?"
+
+msgid "Backup NeoBoot"
+msgstr "NeoBoot Yedekleme"
+
+msgid "NeoBoot is based on a egamiboot < mod by gutosie and madu >\n"
+msgstr "NeoBoot egamiboot <mod gutosie ve madu> 'ya dayalıdır\n"
+
+msgid "nfidump by gutemine - Thanks\n"
+msgstr "gutemine tarafından nfidump - Teşekkürler\n"
+
+msgid "Sorry, NeoBot installs new images only from the Flash"
+msgstr "Üzgünüm, neoboot yalnızca flash bellekten yeni yazılım yüklüyor"
+
+msgid ""
+"NeoBot has detected that it is not running image from the memory of the decoder.\n"
+"Start selected image now ?"
+msgstr ""
+"NeoBot, yazılımı alıcının belleğinden çalıştıramadığını tespit etti.\n"
+"Seçilen yazılım çalıştırılsın mı?"
+
+msgid "Download additional images from the network"
+msgstr "Ağdan ek yazılım indirin"
+
+msgid "The installation process may take a few minutes.\n"
+msgstr "Yükleme işlemi birkaç dakika sürebilir.\n"
+
+msgid "Please, wait...\n"
+msgstr "Lütfen bekleyin...\n"
+
+msgid "Stop action"
+msgstr "Çalışmayı iptal et"
+
+msgid "Deleting languages"
+msgstr "Dilleri kaldırma"
+
+msgid "Select to delete."
+msgstr "Kaldırmak için seçin."
+
+msgid "File:  %s  remove ?"
+msgstr "Dosyalar:  %s  kaldırıldı mı?"
+
+msgid "Copy the system settings ? (Not recommended)"
+msgstr "Sistem Ayarları Kopyalansın mı? (Önerilmez)"
+
+msgid "Multi image"
+msgstr "Çoklu yazılım kurulumu"
+
+msgid "NeoBoot installation image"
+msgstr "NeoBoot yazılım kurulumu"
+
+msgid "STB name:"
+msgstr "Dinleyici adı:"
+
+msgid "Reboot stb now  ?"
+msgstr "Stb tamamen yeniden başlatılsın mı?"
+
+msgid ""
+"An error was encountered, you have neoboot installed on usb and hdd.\n"
+"Uninstall one directories from one drive."
+msgstr "Hata ile karşılaşıldı, USB ve HDD'ye neoboot yüklediniz. Lütfen bir sürücüden bir dizini kaldırın ve yeniden yükleyin."
+
+msgid ""
+"Catalog %sImagesUpload directory is empty\n"
+"Please upload the image files in zip or nfi formats to install"
+msgstr ""
+"[NeoBoot] %sImagesUpload dizini sıkıştırılmış yazılım içermiyor!\n"
+"Lütfen yazılım dosyalarını zip veya nfi formatında yükleyin ve kurulumu yeniden deneyin"
+
+msgid ""
+"Directory %sImagesUpload  is empty\n"
+"Please upload the image files in zip or nfi formats to install"
+msgstr ""
+"%sImagesUpload dizini sıkıştırılmış  yazılım içermiyor!\n"
+"Lütfen zip yazılım dosyalarını yükleyin ve kurulumu yeniden deneyin"
+
+msgid "The operation has been canceled or meoboot is not running in stb VuPlus"
+msgstr "İşlem iptal edildi veya NeoBoot VuPlus'ta çalışmıyor"
+
+msgid ""
+"NeoBoot successfully updated IPTVPlayer.\n"
+"Have fun !!"
+msgstr "NeoBoot, IPTVPlayer'ı başarıyla güncelledi. İyi eğlenceler !!!"
+
+msgid "Instruction"
+msgstr "Talimat"
+
+msgid "Device Manager"
+msgstr "Aygıt Yöneticisi"
+
+msgid "Info disc"
+msgstr "Diskler"
+
+msgid ""
+"NeoBot checks the connected media.\n"
+"WAIT ...\n"
+"\n"
+"DISCS:"
+msgstr ""
+"NeoBoot bağlı veri ortamını kontrol ediyor.\n"
+"BEKLEYİN ...\n"
+"\n"
+"SÜRÜCÜLER:"
+
+msgid "    NeoBot - Available media:"
+msgstr "    NeoBoot-Kullanılabilir veri ortamı:"
+
+msgid "After selecting OK start Mounting Manager, option Mount - green\n"
+msgstr ""
+"Bağlama yöneticisini başlatmak için Evet'i onaylayın ve \n"
+"Bağlama Ayarları \"(yeşil)\" seçeneğini seçin.\n"
+
+msgid "Do you want to run the manager to mount the drives correctly ?\n"
+msgstr "Diskleri doğru şekilde takmak için aygıt yöneticisi başlatılsın mı ?\n"
+
+msgid "Device Manager encountered an error, disk drives not installed correctly !!!"
+msgstr "Aygıt yöneticisi bir hatayla karşılaştı, diskler doğru kurulmamış !!!"
+
+msgid ""
+"\n"
+" ... q(-_-)p ...\n"
+"NeoBot to function properly need additional packages.\n"
+"Select Yes and wait ...\n"
+"Proces installation may take a few moments ...\n"
+"Install ?"
+msgstr ""
+"\n"
+"... q(-_-)p ... \n"
+"NeoBoot'un düzgün çalışması için ek paketlere ihtiyacı var. \n"
+"Evet'i seçin ve bekleyin .... \n"
+"Yükleme işlemi birkaç dakika sürebilir ... \n"
+"Yüklensin mi?"
+
+msgid "Installing packages ..."
+msgstr "Paketler yükleniyor ..."
+
+msgid "Installation operation canceled. This is not a vuplus box !!!"
+msgstr "Kurulum işlemi iptal edildi. Bu bir vuplus alıcısı değil !!!"
+
+msgid "Canceled ... NeoBoot will not work properly !!! NeoBoot works only on VuPlus box, Ultimo4k, Solo4k, Uno4k !!!"
+msgstr "İptal edildi ... NeoBoot düzgün çalışmıyor !!! NeoBoot sadece VuPlus alıcılarında çalışacak !!!"
+
+msgid "The download neoboot update."
+msgstr "NeoBoot güncellemesini indirin."
+
+msgid "Installation"
+msgstr "Kurulum"
+
+msgid "Version update: "
+msgstr "Sürümü güncelle: "
+
+msgid "NeoBoot version: "
+msgstr "Neoboot sürümü: "
+
+msgid "It is recommended to give a label to the disk."
+msgstr "Diski etiketlemeniz önerilir."
+
+msgid ""
+"Here is the list of mounted devices in Your STB\n"
+"Please choose a device where You would like to install NeoBoot"
+msgstr "Alıcınızdaki bağlı cihazların listesi. Lütfen NeoBoot'u kurmak istediğiniz cihazı seçin"
+
+msgid "Tools Neoboot"
+msgstr "NeoBoot Araçları"
+
+msgid "No file location NeoBot, do re-install the plugin."
+msgstr "NeoBoot dosya konumu eksik, lütfen eklentiyi yeniden yükleyin."
+
+msgid ""
+"  Enigma2\n"
+"\n"
+"During the entire installation process does not restart the receiver !!!\n"
+"\n"
+msgstr ""
+"  Enigma2\n"
+"\n"
+"Tüm kurulum işlemi boyunca alıcıyı yeniden başlatmayın !!!\n"
+"\n"
+
+msgid "NeoBoot Ver. updates     "
+msgstr "NeoBoot güncellemesi ver     "
+
+msgid "NeoBoot Ver. updates    "
+msgstr "NeoBoot güncellemesi ver     "
+
+msgid "Ver. updates    "
+msgstr "Ver. güncelle     "
+
+msgid ""
+"2. NeoBot is fully automated\n"
+"\n"
+msgstr ""
+"2. NeoBoot tam otomatiktir\n"
+"\n"
+
+msgid ""
+"For proper operation NeoBota type device is required USB stick or HDD, formatted on your system files Linux ext3 or ext4..\n"
+"\n"
+msgstr ""
+"NeoBot, usb veya hdd belleğin düzgün çalışması için, Linux ext3 veya ext4 dosya sisteminde biçimlendirilmiş gereklidir ...\n"
+"\n"
+
+msgid ""
+"1. If you do not have a media formatted with the ext3 or ext4 is open to the Device Manager <Initialize>, select the drive and format it.\n"
+"\n"
+msgstr ""
+"1. ext3 veya ext4 formatlı medyanız yoksa, aygıt yöneticisini açın, Başlat'ı seçin, diski seçin ve formatlayın.\n"
+"\n"
+
+msgid ""
+"2. Go to the device manager and install correctly hdd and usb ...\n"
+"\n"
+msgstr ""
+"2. Aygıt yöneticisine gidin ve hdd ve usb'yi doğru şekilde kurun ...\n"
+"\n"
+
+msgid ""
+"3. Install NeoBota on the selected device.\n"
+"\n"
+msgstr ""
+"3. NeoBot'u seçili aygıta kurun.\n"
+"\n"
+
+msgid ""
+"4. Install the needed packages...\n"
+"\n"
+msgstr ""
+"4. Gerekli Paketleri Kurun ...\n"
+"\n"
+
+msgid ""
+"5. For proper installation NenoBota receiver must be connected to the Internet.\n"
+"\n"
+msgstr ""
+"5. NenoBot'un doğru kurulumu için alıcının İnternet'e bağlı olması gerekir.\n"
+"\n"
+
+msgid ""
+"6. In the event of a problem with the installation cancel and  inform the author of the plug of a problem.\n"
+"\n"
+msgstr ""
+"6. Kurulumla ilgili sorun olması durumunda, sorunu iptal edin ve eklenti geliştiricisine bildirin.\n"
+"\n"
+
+msgid "NeoBoot Ver. "
+msgstr "NeoBoot ver. "
+
+msgid "Have fun !!!"
+msgstr "İyi eğlenceler !!!"
+
+msgid "Remove NeoBoot of STB"
+msgstr "NeoBoot'u STB'den Kaldırma"
+
+msgid ""
+"1. Requirements: For proper operation of the device NeoBota are required USB stick or HDD.\n"
+"\n"
+msgstr ""
+"1. NeoBoot'un düzgün çalışması için usb veya hdd belleği gereklidir.\n"
+"\n"
+
+msgid ""
+"3. To install a new image in MultiBocie should be sent by FTP software file compressed in ZIP or NIF to the folder: \n"
+"/media/neoboot/ImagesUpload and remote control plugin NeoBoot use the green button <Installation>\n"
+"\n"
+msgstr ""
+"3. Yeni yazılımı neoboot'a yüklemek için, ftp protokolü aracılığıyla, zip veya nfi'de sıkıştırılmış yazılım dosyasını şu klasöre gönderin: \n"
+"/media/neoboot/ImagesUpload ve neoboot'taki uzaktan kumandadan yeşil düğmeyi kullanın - Kurulum\n"
+"\n"
+
+msgid ""
+"4. For proper installation and operation of additional image multiboot, use only the image intended for your receiver. !!!\n"
+"\n"
+msgstr ""
+"4. neoboot'ta ek yazılımların düzgün kurulumu ve çalıştırılması için, yalnızca alıcınız için tasarlanmış yazılımı kullanın. !!!\n"
+"\n"
+
+msgid ""
+"5. By installing the multiboot images of a different type than for your model STB DOING THIS AT YOUR OWN RISK !!!\n"
+"\n"
+msgstr ""
+"5. Neoboot'a, alıcı modelinizden farklı bir yazılım türü yükleyerek, KENDİ RİSKİNİZDE YAPARSINIZ !!!\n"
+"\n"
+
+msgid ""
+"6. The installed to multiboot images, it is not indicated update to a newer version.\n"
+"\n"
+msgstr ""
+"6. neoboot üzerinde kurulu olan yazılımın daha yeni bir sürüme yükseltilmesi önerilmez.\n"
+"\n"
+
+msgid ""
+"The authors plug NeoBot not liable for damage a receiver, NeoBoota incorrect use or installation of unauthorized additions or images.!!!\n"
+"\n"
+msgstr ""
+"NeoBoot yazarları, alıcı hasarından, NeoBoot'un uygunsuz kullanımından veya yetkisiz eklentilerin veya yazılımların yüklenmesinden sorumlu değildir. !!!\n"
+"\n"
+
+msgid ""
+"Are you sure you want to completely remove NeoBoota of your image?\n"
+"\n"
+"If you choose so all directories NeoBoota will be removed.\n"
+"A restore the original image settings Flash."
+msgstr ""
+"NeoBoot'u alıcınızdan tamamen kaldırmak istediğinizden emin misiniz?\n"
+"\n"
+"Evet'i seçerseniz tüm neoboot dizinleri kaldırılacaktır.\n"
+"Dahili flash bellekteki orijinal yazılım ayarları geri yüklenecektir."
+
+msgid "Delete the selected image - "
+msgstr "Seçili Yazılımı Kaldır - "
+
+msgid "Start the device manager"
+msgstr "Aygıt yöneticisi başlatılsın mı"
+
+msgid ""
+"\n"
+"Delete ?"
+msgstr ""
+"\n"
+"Lütfen onaylayın veya silin. Silinsin mi?"
+
+msgid ""
+"NeoBot was removed !!! \n"
+"The changes will be visible only after complete restart of the receiver."
+msgstr ""
+"NeoBoot kaldırıldı !!!\n"
+"Değişiklikler alıcı yeniden başlatılıncaya kadar görülmeyecek."
+
+msgid "Removed successfully."
+msgstr "Başarıyla silindi."
+
+msgid "Recovering setting....\n"
+msgstr "Ayarlar geri yükleniyor ....\n"
+
+msgid "Update neoboot in all images ?"
+msgstr "Neoboot tüm yazılımlarda güncellensin mi?"
+
+msgid ""
+"NeoBoot: Upgrading in progress\n"
+"Please wait..."
+msgstr ""
+"NeoBoot: Güncelleniyor.\n"
+"Lütfen bekleyin ..."
+
+msgid ""
+"[NeoBoot] For proper operation of the image blackhole in neobot, you need to install additional packages. \n"
+"\n"
+" Install now ?"
+msgstr ""
+"BlackHole'un Neoboot'ta düzgün çalışmasını sağlamak için ek paketler yüklemeniz gerekiyor.\n"
+"\n"
+"Şimdi yüklensin mi?"
+
+msgid "Cancelled ... [meoboot] detected no file vmlinuz.gz. You can not run image BlackHole \\nImage BlackHole without the module will not be work properly !!!"
+msgstr "İptal edildi ... [NeoBoot], vmlinux.gz'yi algılamadı. BlackHole Image BlackHole modül olmadan başlatılamıyor, düzgün çalışmayacak !!!"
+
+msgid ""
+"Neoboot detected that you want to run the image blackhole. \\Warning!!!  - BlackHole not run without the boot manager !!!\n"
+"If you are running an image blackhole not converted to another during the restart from the boot manager !!!\n"
+"Start the selected image now ?"
+msgstr "NeoBoot, BlackHole yazılımını çalıştırmak istediğinizi tespit etti. Uyarı !!! - BlackHole, önyükleme yöneticisi olmadan çalıştırılmalı !!! yazılım?"
+
+msgid "Neoboot detected that is not installed on the model VuPlus, you can not run an image BlackHole !!!"
+msgstr "NeoBoot, vuplus modelinde kurulu olmadığını tespit etti, BlackHole'u başlatamadı !!!"
+
+msgid ""
+" NeoBoot has detected that it is running image blackhole.\n"
+" To change the image should return to Flash !!! \n"
+" \n"
+" Start selected image now ?"
+msgstr ""
+" NeoBoot, BlackHole'un çalıştığını algıladı.\n"
+"Yazılımı değiştirmek için lütfen dahili flaşa geri dönün !!! \n"
+" \n"
+"Seçili yazılımı çalıştır ?"
+
+msgid "Download image..."
+msgstr "Yazılım indiriliyor ..."
+
+msgid "Not Detected kernel-module-nandsim, install ?"
+msgstr "Nandsim çekirdek modülü algılanmadı, kurulsun mu?"
+
+msgid ""
+"The installation has encountered an error !!!.\n"
+"This may be no connection to the server or the link has expired.\n"
+"When installing a new image use options ubi_reader..."
+msgstr ""
+"Kurulum sırasında bir hata oluştu !!!. \n"
+"Bunun nedeni sunucuyla olan bağlantının kesilmesi veya bağlantının sona ermesi olabilir. \n"
+"Yeni yazılım yüklerken ubi_reader ... seçeneğini kullanın."
+
+msgid "Cancelled ... Image BlackHole without the module will not work properly !!!"
+msgstr "İptal edildi ... Modülsüz BlackHole görüntüsü düzgün çalışmayacak !!!"
+
+msgid "Package installation is complete. You can test image BlackHole ..."
+msgstr "Paket kurulumu tamamlandı. BlackHole'u test edebilirsiniz ..."
+
+msgid "Cancelled ... neoboot without the module will not work properly !!!"
+msgstr "İptal edildi ... Modül olmadan Neoboot düzgün çalışmayacaktır !!!"
+
+msgid "Package installation is complete. You can test new image."
+msgstr "Paket kurulumu tamamlandı. Yeni yazılımı test edebilirsiniz."
+
+msgid "Cancelled"
+msgstr "İptal edildi"
+
+msgid "Canceled start off the image ..."
+msgstr "Yazılımın başlatılması iptal edildi ..."
+
+msgid "Exit"
+msgstr "Çıkış"
+
+msgid "Start the device manager ?"
+msgstr "Aygıt yöneticisi başlatılsın mı?"
+
+msgid "Select OK to run the image."
+msgstr "Yazılımın başlamasını onayla - Tamam."
+
+msgid "Use options without the boot manager."
+msgstr "Seçeneği önyükleme yöneticisi olmadan kullanın."
+
+msgid "Use options with the boot manager."
+msgstr "Önyükleme yöneticisiyle seçenekleri kullanın (önerilir)"
+
+msgid "Use the next start."
+msgstr "Sonraki çalıştırmayı kullan."
+
+msgid "Use nandsim"
+msgstr "Nandsim kullan (önerilir)"
+
+msgid "Use  ubi_reader"
+msgstr "Kullan  ubi_reader"
+
+msgid "Unpack the image tar.bz2 4K"
+msgstr "Çıkart tar.bz2 4K'yı"
+
+msgid "Unpack the image - no change."
+msgstr "Yazılımı paketinden çıkarın - değişiklik yok."
+
+msgid "Choose option to extract image"
+msgstr "Yazılımı çıkarma seçeneğini seçin"
+
+msgid "Installing multiple images"
+msgstr "Birden çok yazılım yükleniyor"
+
+msgid ""
+"[NeoBoot]\n"
+"We detected that you want to install more than 14 images, be sure to use options without the boot manager.\n"
+"\n"
+msgstr ""
+"[NeoBoot] \n"
+"14'ten fazla yazılım yüklemek istiyorsanız, NeoBoot'ta imajı çalıştırırken önyükleme yöneticisi yok seçeneğini kullandığınızdan emin olun.\n"
+"\n"
+
+msgid "Do you want to install ?"
+msgstr "Yüklemek istiyor musunuz?"
+
+msgid "Sorry there is not enought available space on your device. You need at least 800 Mb free to install a new image."
+msgstr "Üzgünüz, cihazınızda yeterli boş alan yok. Yeni yazılımı yüklemek için en az 800 Mb boş alana ihtiyacınız var."
+
+msgid "Downloading available only from the image Flash."
+msgstr "Yalnızca flash'tan indirilebilir."
+
+msgid "Information available only when running Flash."
+msgstr "Bilgiler yalnızca dahili flash bellekten alınabilir."
+
+msgid "Sorry, NeoBoot can installed or upgraded only when booted from Flash."
+msgstr "Üzgünüm, NeoBoot sadece flaştan çalıştırıldığında kurulabilir veya yükseltilebilir."
+
+msgid "Delete the selected image  :"
+msgstr "Seçili Yazılımı Kaldır:"
+
+msgid "More options"
+msgstr "Daha Fazla Seçenek"
+
+msgid "NeoBot - First use the Device Manager and mount the drives correctly !!!"
+msgstr "NeoBoot - Önce aygıt yöneticisini kullanın ve diskleri doğru şekilde takın !!!"
+
+msgid ""
+"\n"
+"[NeoBoot] The installation image is ready.\n"
+"Return to test the installed image.\n"
+"Press EXIT!"
+msgstr ""
+"\n"
+"[NeoBoot] Yazılım kurulumu hazır.\n"
+"Kurulu yazılımı test etmek için geri dönün.\n"
+"Tıklayın!"
+
+msgid "[NeoBoot]From the installation, you can not run an image BlackHole."
+msgstr "BlackHole kurulumdan başlatılamadı."
+
+msgid "Updated unnecessary, you have the latest version. Please try again later."
+msgstr "Güncellemeye gerek yok, en son sürüme sahipsiniz. Lütfen daha sonra tekrar deneyin."
+
+msgid "MOUNTING. Restart image.'"
+msgstr "MONTAJ. Yazılımı yeniden başlatın."
+
+msgid ""
+"\n"
+"Completed assembly of disks.\n"
+"To save the setting, switch the STB in deep standby !!!\n"
+"Restart ?"
+msgstr ""
+"\n"
+"Disk montajı tamamlandı.\n"
+"Ayarı kaydetmek için, STB'yi derin beklemeye alın !!!\n"
+"Yeniden başlatılsın mı?"
+
+msgid "Please, wait...."
+msgstr "Lütfen bekleyin ...."
+
+msgid "Continues mounting equipment..."
+msgstr "Cihazları bağlamaya devam et ..."
+
+msgid "Installing a proven and successful !!!!"
+msgstr "Kurulum kanıtlanmış ve başarılı !!!"
+
+msgid "The selected image starts after you hard reboot tuner."
+msgstr "Seçilen yazılım, alıcı tamamen yeniden başlatıldıktan sonra başlayacaktır."
+
+msgid "Welcome to the world of Python"
+msgstr "Python dünyasına hoş geldiniz"
+
+msgid "Wait please while scanning for devices..."
+msgstr "Aygıtları tararken lütfen bekleyin ..."
+
+msgid "Unfortunately, at the moment not found an update, try again later."
+msgstr "Üzgünüz, şu anda güncelleme bulunamadı, lütfen daha sonra tekrar deneyin."
+
+msgid "Initialize"
+msgstr "Biçimlendirme"
+
+msgid "Initialize ext3"
+msgstr "Başlat ext3"
+
+msgid "Initialize ext4"
+msgstr "Başlat ext4"
+
+msgid "Mount Manager."
+msgstr "Bağlantı yöneticisi."
+
+msgid "SetupMounts"
+msgstr "Bağlantı Ayarları"
+
+msgid "Save"
+msgstr "Kaydet"
+
+msgid "Memory disc:"
+msgstr "Disk belleği:"
+
+msgid ""
+"Completed update NeoBoot.\n"
+"You need to restart the E2 and re-enter your pin code VIP!!!\n"
+"Restart now ?"
+msgstr ""
+"NeoBoot güncellemesi tamamlandı.\n"
+"E2'yi yeniden başlatın ve VIP pin kodunu tekrar girin !!! \n"
+"Şimdi yeniden başlatılsın mı?"
+
+msgid ""
+"Bravo - pin code removed!\n"
+"Please re-enter your pin code."
+msgstr ""
+"Bravo - pin kodu kaldırıldı!\n"
+"Lütfen pin kodunu tekrar girin."
+
+msgid "Copy the boxbranding  ?"
+msgstr "Kutu markalaması kopyalansın mı?"
+
+msgid ""
+"Completed assembly of disks.\n"
+"Return to installation ?"
+msgstr ""
+"Diskleri takmayı bitirdiniz.\n"
+"Kuruluma geri dönülsün mü?"
+
+msgid "Return to installation..."
+msgstr "Neoboot yüklemesine geri dön ..."
+
+msgid "Repair FTP ? (Recommended only other image if it does not work.)"
+msgstr "FTP bağlantısı düzeltilsin mi ? (önerilmez)"
+
+msgid "Copy the extensions plugins  ?"
+msgstr "Uzantı eklentileri kopyalansın mı?"
+
+msgid "Copy the system plugins ?"
+msgstr "Sistem eklentileri kopyalansın mı?"
+
+msgid "Deep standby"
+msgstr "Derin Bekleme"
+
+msgid "Start with change kernel - Recommended"
+msgstr "Çekirdeği değiştirerek başlayın-Önerilen"
+
+msgid "Copy Settings to the new Image"
+msgstr "Ayarları flash'tan yeni bellenime kopyalayın mı? (Önerilmez)"
+
+msgid "Boot new Image directly ?"
+msgstr "Yüklenmekte olan yazılım başlatılsın mı?"
+
+msgid "Delete Image zip after Install ?"
+msgstr "Yüklemeden sonra kurulu yazılımın zip dosyası silinsin mi?"
+
+msgid "Remove password ftp for the new Image ?"
+msgstr "Yeni yazılımda kök parolası kaldırılsın mı?"
+
+msgid "OK Start image..."
+msgstr "!!! NEOBOOT BAŞLANGIÇ GÖRÜNTÜSÜ !!!."
+
+msgid "Copy network settings LAN-WLAN ?"
+msgstr "LAN-WLAN ağ ayarları kopyalansın mı?"
+
+msgid "There is no NeoBootUpdate.tar.gz to install.\n"
+msgstr "NeoBootUpdate'te yüklenecek dosya yok!\n"
+
+msgid "The update file is available at http://all-forum.cba.pl\n"
+msgstr "Güncelleme dosyası http://all-forum.cba.pl adresinde mevcuttur\n"
+
+msgid "Please name NeoBootUpdate.tar.gz for the downloaded file and upload to / tmp and try again.\n"
+msgstr "İndirilen dosya için lütfen NeoBootUpdate.tar.gz girin, / tmp dosyasına yükleyin ve tekrar deneyin ...\n"
+
+msgid "Copy the kernel of the installed system (recommended ?"
+msgstr "Yüklenmekte olan sistemin çekirdeği kopyalansın mı? (önerilen)"
+
+msgid "Copy files from Flash to the installed image ?"
+msgstr "Dosyalar flaştan yüklenen yazılıma kopyalansın mı?"
+
+msgid "Copy settings SoftCam ?"
+msgstr "SoftCam ayarları kopyalansın mı?"
+
+msgid "Path BlackHole ? (Not recommended for VuPlus)"
+msgstr "BlackHole önyüklemesini düzeltin mi? (vuplus ayarlayıcıları için önerilmez)"
+
+msgid ""
+"NeoBoot has detected that the disks have been labeled.\n"
+"Zalecany calkowity rstart tunera"
+msgstr ""
+"NeoBoot disklerin işaretlendiğini algıladı.\n"
+"Dinleyicinin tamamen yeniden başlatılması önerilir"
+
+msgid ""
+"NeoBoot detected a kernel mismatch in flash, \n"
+"Install a kernel for flash image? ?"
+msgstr ""
+"NeoBoot, flaşta bir çekirdek uyuşmazlığı algıladı, \n"
+"flash çekirdeği yeniden yüklensin mi?"
+
+msgid ""
+"Select Yes to reinstall the neoboot.\n"
+"     NEOBOOT."
+msgstr ""
+"Neoboot'u yeniden yüklemek için Evet'i seçin.\n"
+"     NEOBOOT."
+
+msgid "Resignation."
+msgstr "Devre dışı bırakılıyor."
+
+msgid ""
+"Installing new neoboot software, only recommended from Flash!!!\n"
+"---Continue ?---"
+msgstr "Yeni neoboot yazılımının yüklenmesi, yalnızca dahili flash bellekten önerilir!!!\"  \"--- Devam edilsin mi? ---"
+
+msgid ""
+"Installation from Flash!!!\n"
+"---Continue ?---"
+msgstr ""
+"Yazılım dahili flash bellekten yükleniyor.\n"
+"--- Devam edilsin mi? ---"
+
+msgid ""
+"The tuner is not supported by NeoBoot.\n"
+"Contact the author.\n"
+"No proper STB for installation !!!!"
+msgstr ""
+"Alıcı NeoBoot tarafından desteklenmiyor.\n"
+"Lütfen yazara başvurun.\n"
+"Kurulum için uygun bir STB yok !!!!"
+
+msgid ""
+"It is recommended to install new software only from a flash system.\n"
+"---NEOBOOT EXIT---"
+msgstr ""
+"Yeni bellenimin yalnızca flaştan yüklenmesi önerilir.\n"
+"--- NEOBOOT EXIT ---"
+
+msgid ""
+" - Select the software to be installed with the cursor (left or right).\n"
+"\n"
+msgstr ""
+" - İmleçle (sol veya sağ) yüklenecek yazılımı seçin.\n"
+"\n"
+
+msgid ""
+" - to change, press blue on the remote control.\n"
+"\n"
+msgstr ""
+" - Bir yazılımı yeniden adlandırmak için uzaktan kumanda üzerindeki mavi düğmeye basın.\n"
+"\n"
+
+msgid ""
+" - the option copies the channel list from the flash to the installed image in the neobot.\n"
+"\n"
+msgstr ""
+" - bu seçenek, kanal listesini flash bellekten neobot'ta kurulu yazılıma kopyalar.\n"
+"\n"
+
+msgid ""
+" - the option moves files with the settings for lan and wlan.\n"
+"\n"
+msgstr ""
+" - bu seçenek lan ve wlan için ayar dosyalarını taşır.\n"
+"\n"
+
+msgid ""
+" - the option copies the software settings from the flashlight to the system being installed in the neobot.\n"
+"\n"
+msgstr ""
+" - Bu seçenek, yazılım ayarlarını flaştan neoboot üzerinde yüklü sisteme kopyalar.\n"
+"\n"
+
+msgid " - after installation,the option deletes the zip image file from the ImagesUpload directory.\n"
+msgstr " - kurulumdan sonra bu seçenek, yazılımın zip dosyasını ImagesUpload dizininden kaldırır.\n"
+
+msgid ""
+" - the option in some cases repairs the File Transfer Protocol connection in the installed image.\n"
+"\n"
+msgstr ""
+" - bazı durumlarda bu seçenek, yüklenen yazılımdaki bir FTP (Dosya Aktarım Protokolü) bağlantısını düzeltir. Emin değilseniz Hayır seçeneğini seçmeniz önerilir.\n"
+"Yeni yüklenen yazılımda Ftp bağlantısını kullanabiliriz. WinSCP programı (Windows için) ve dosya protokolü seçeneğinde iletişim için SCP'yi seçin.\n"
+"\n"
+
+msgid ""
+" -  the option copies oscam configi and cccam, openpli default.\n"
+"\n"
+msgstr ""
+" -  bu seçenek config oscam ve cccam'i kopyalar, openpli - varsayılan.\n"
+"\n"
+
+msgid ""
+" -  option for image blackhole,helps to run BH in neoboot.\n"
+"\n"
+msgstr ""
+" -  görüntü kara deliği seçeneği, BH'nin Neobot'ta çalıştırılmasına yardımcı olur.\n"
+"\n"
+"\n"
+
+msgid "Can't unmount partition, make sure it is not being used for swap or record/timeshift paths"
+msgstr "Bölümün bağlantısı kesilemedi, kayıt/zaman kayması yolları için kullanılmadığından emin olun"
+
+msgid "This Device is already mounted as HDD."
+msgstr "Bu aygıt zaten bir sabit sürücü olarak bağlanmış."
+
+msgid "Choose where to mount your devices to:"
+msgstr "Cihazlarınızı nereye monte etmek istediğinizi seçin:"
+
+msgid "Wait please while scanning your %s %s devices...n\\ Looking for a disk..."
+msgstr "Lütfen %s %s aygıtlarınızı tararken bekleyin ...n\\ Bir disk arıyorum ..."
+
+msgid "Install "
+msgstr "Kurulum "
+
+msgid "Hard disk"
+msgstr "Sabit Disk"
+
+msgid "Card"
+msgstr "Kart"
+
+msgid "Compact flash"
+msgstr "Kompakt Flaş"
+
+msgid "MMC card"
+msgstr "MMC kartı"
+
+msgid "Network mount"
+msgstr "Ağ bağlantısı"
+
+msgid "Network mount %s"
+msgstr "%s ağı bağlanıyor"
+
+msgid "Ram disk"
+msgstr "Ram Disk"
+
+msgid "USB stick"
+msgstr "USB Bellek"
+
+msgid "USB1 stick"
+msgstr "USB1 Bellek"
+
+msgid "USB2 stick"
+msgstr "USB2 Bellek"
+
+msgid "[Harddisk] enumerating block devices..."
+msgstr "[Sabit Disk] cihaz engelleme sayısı ..."
+
+msgid "drive state is:  standby"
+msgstr "sürücü durumu: beklemede"
+
+msgid "drive state is:  idle"
+msgstr "sürücü durumu: boş mod"
+
+msgid "drive state is:  active/idle"
+msgstr "sürücü durumu: etkin/boş mod"
+
+msgid " (Partition %d)"
+msgstr " (Bölüm %d)"
+
+msgid "[Harddisk] Failed to set %s speed to %s"
+msgstr "[Sabit Disk] %s için %s hızı ayarlanamadı"
+
+msgid "[Harddisk] Failed to open /proc/mounts"
+msgstr "[Sabit Disk] Bağlama oluşturulamadı"
+
+msgid "UnmountTask: No mountpoints found?"
+msgstr "Görevi ayır: Bağlama noktası bulunamadı mı?"
+
+msgid "[Harddisk] Failed to read /proc/filesystems:"
+msgstr "[Sabit Disk] Dosya sistemi okunamıyor:"
+
+msgid "[Harddisk] Unable to determine structure of /dev"
+msgstr "[Sabit Disk] /dev yapısı belirtilemiyor"
+
+msgid "[Harddisk] new device"
+msgstr "[Sabit Disk] yeni cihaz"
+
+msgid "[Harddisk] no hdX or sdX or mmcX"
+msgstr "[Sabit Disk] hdX veya sdX veya mmcX değil"
+
+msgid "[Harddisk] Failed to get model:"
+msgstr "[Sabit Disk] Model alınamadı:"
+
+msgid "[Harddisk] mounting:"
+msgstr "[Sabit Disk] takma:"
+
+msgid "open"
+msgstr "açık"
+
+msgid "write"
+msgstr "kaydedildi"
+
+msgid "append"
+msgstr "ekle"
+
+msgid "close"
+msgstr "kapat"
+
+msgid "LogFile closed properly\n"
+msgstr "Günlük dosyası doğru şekilde kapatıldı\n"
+
+msgid "ERROR closing LogFile!!!"
+msgstr "Günlük dosyası kapatılırken hata oluştu !!!"
+
+msgid "UNKNOWN"
+msgstr "BİLİNMİYOR"
+
+msgid "Waiting"
+msgstr "Bekliyor"
+
+msgid "In progress"
+msgstr "Devam Ediyor"
+
+msgid "Finished"
+msgstr "Bitti"
+
+msgid "Failed"
+msgstr "Başarısız"
+
+msgid "still waiting for %d resident task(s) %s to finish"
+msgstr "%d görevin tamamlanması %s bekleniyor"
+
+msgid "task going resident:"
+msgstr "gerçekleştirilecek görev:"
+
+msgid "task keeps staying resident:"
+msgstr "iş kalır:"
+
+msgid ">>> Error:"
+msgstr ">>> Hata:"
+
+msgid "resident task finished:"
+msgstr "iş tamamlandı:"
+
+msgid "execute:"
+msgstr "çalıştır:"
+
+msgid "[Task] preconditions failed"
+msgstr "[İş] ön koşulu başarısız oldu"
+
+msgid "[Task] exception:"
+msgstr "[İş] istisnası:"
+
+msgid "Timeout elapsed, sorry"
+msgstr "Zaman aşımına uğradı üzgünüm"
+
+msgid ""
+"Error: %s\n"
+"Retry?"
+msgstr ""
+"Hata: %s\n"
+"Yeniden dene?"
+
+msgid "Error"
+msgstr "Hata"
+
+msgid "Delete file"
+msgstr "Dosyayı sil"
+
+msgid "completed with"
+msgstr "ile tamamlandı"
+
+msgid "in"
+msgstr "içinde"
+
+msgid "retrying job"
+msgstr "yeniden test"
+
+msgid "not retrying job."
+msgstr "testi tekrar denemeyin."
+
+msgid "An unknown error occurred!"
+msgstr "Bilinmeyen bir hata oluştu!"
+
+msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
+msgstr "Yeterli disk alanı yok. Lütfen biraz alan boşaltın ve tekrar deneyin. (%d MB gerekli, %d MB kullanılabilir)"
+
+msgid "A required tool (%s) was not found."
+msgstr "Gerekli araç (%s) bulunamadı."
+
+msgid "Cancelled upon user request"
+msgstr "Kullanıcı isteği üzerine iptal edildi"
+
+msgid "Error code"
+msgstr "Hata Kodu"
+
+msgid "Wait please, NeoBoot is working: ....Restore in progress....'"
+msgstr "Lütfen bekleyin, NeoBoot ÇALIŞIYOR: .... Geri yükleniyor ..."
+
+msgid "Superboot: Restore COMPLETE !"
+msgstr "Neoboot: Geri Yükleme TAMAMLANDI!"
+
+msgid "NeoBoot is reinstall..."
+msgstr "NeoBoot yeniden yükleniyor ..."
+
+msgid "Sorry, NeoBoot can installed or upgraded only when booted from Flash STB"
+msgstr "Üzgünüz, NeoBoot yalnızca dahili STB flash belleği başlatıldıktan sonra yüklenebilir veya güncellenebilir"
+
+msgid ""
+"NeoBoot successfully updated. You can restart the plugin now.\n"
+"\n"
+"Have fun !!"
+msgstr ""
+"NeoBoot başarıyla güncellendi. Eklentiyi şimdi yeniden başlatabilirsiniz.\n"
+"\n"
+"İyi eğlenceler !!!"
+
+msgid "Sorry, IPTVPlayer not found."
+msgstr "Üzgünüz, IPTVPlayer bulunamadı."
+
+msgid "NeoBoot: Start image..."
+msgstr "Yazılımı başlatın ..."
+
+msgid ""
+"NEOBOOT - Restart image flash....\n"
+"Please wait, in a moment the decoder will be restarted...\n"
+msgstr ""
+"NEOBOOT - Yazılımı flaştan yeniden başlatıyorum .... \n"
+"Lütfen bekleyin, alıcı bir süre sonra yeniden başlatılacak ...\n"
+
+msgid ""
+"...............NEOBOOT - REBOOT...............\n"
+"Please wait, in a moment the decoder will be restarted..."
+msgstr ""
+"............... NEOBOOT-RESTART ................\n"
+"Lütfen bekleyin, alıcı biraz sonra yeniden başlayacak..."
+
+msgid "DIR Fail: %s"
+msgstr "DIR Hatası: %s"
+
+msgid "FILE Fail: %s"
+msgstr "DOSYA HATASI: %s"
+
+msgid "SYMLINK Fail: %s : %s"
+msgstr "SYMLINK Hatası: %s: %s"
+
+msgid "Failed File Permissions: %s"
+msgstr "Dosya izinleri hatası: %s"
+
+msgid "unknown action \"%s"
+msgstr "bilinmeyen işlem \" %s"
+
+msgid "%r is not callable"
+msgstr "% r çağrılamaz"
+
+msgid "conflicting option string(s): %s"
+msgstr "çakışan seçenek dizesi: %s"
+
+msgid "mutually exclusive arguments must be optional"
+msgstr "birbirini dışlayan bağımsız değişkenler isteğe bağlı olmalıdır"
+
+msgid "cannot have multiple subparser arguments"
+msgstr "çok sayıda alt bağımsız değişken olamaz"
+
+msgid "unrecognized arguments: %s"
+msgstr "tanınmayan bağımsız değişkenler: %s"
+
+msgid "not allowed with argument %s"
+msgstr "%s bağımsız değişkeniyle izin verilmez"
+
+msgid "too few arguments"
+msgstr "çok az bağımsız değişken"
+
+msgid "argument %s is required"
+msgstr "%s bağımsız değişkeni gerekli"
+
+msgid "one of the arguments %s is required"
+msgstr "%s bağımsız değişkenlerinden biri gerekli"
+
+msgid "expected one argument"
+msgstr "bir bağımsız değişken bekleniyor"
+
+msgid "expected at most one argument"
+msgstr "en fazla bir bağımsız değişken bekleniyor"
+
+msgid "expected at least one argument"
+msgstr "en az bir bağımsız değişken bekleniyordu"
+
+msgid "expected %s argument(s)"
+msgstr "beklenen %s bağımsız değişkenleri"
+
+msgid "ambiguous option: %s could match %s"
+msgstr "belirsiz seçenek: %s, %s ile eşleşebilir"
+
+msgid "unexpected option string: %s"
+msgstr "beklenmeyen seçenek dizesi: %s"
+
+msgid "invalid %s value: %r"
+msgstr "geçersiz %s değeri:% r"
+
+msgid "invalid choice: %r (choose from %s)"
+msgstr "geçersiz seçim:% r ( %s arasından seçim yapın)"
+
+msgid "The format_version method is deprecated -- the \"version\" argument to ArgumentParser is no longer supported."
+msgstr "Biçim sürümü yöntemi kullanımdan kaldırıldı - \" sürüm \"ArgumentParser bağımsız değişkeni artık desteklenmiyor."
+
+msgid "The print_version method is deprecated -- the \"version\" argument to ArgumentParser is no longer supported."
+msgstr "Baskı revizyonu yöntemi kullanımdan kaldırıldı - \" version \"ArgumentParser argümanı artık desteklenmiyor."
+
+msgid "%s: error: %s\n"
+msgstr "%s: hata: %s\n"
+
+msgid ""
+"\n"
+"NeoBoot zainstalowano w lokalizacji: "
+msgstr ""
+"\n"
+"NeoBoot şu konuma yüklendi: "
+
+msgid ""
+"Warning!!! after successfully running the selected software in neoboot\n"
+"you must run NEOBOOT to confirm the correct operation of the image.\n"
+"Press OK or exit on the remote control to continue..."
+msgstr ""
+"Uyarı !!! Neoboot'ta seçilen yazılımın başarılı bir şekilde başlatılmasından sonra,\n"
+"doğru görüntü işlemini onaylamak için NEOBOOT çalıştırılmalıdır.\n"
+"Devam edilsin mi..."
+
+msgid ""
+"\n"
+"\n"
+"\n"
+"Error - in the location %sImagesUpload/.kernel/  \n"
+"no file found kernel flash-kernel-%s.bin"
+msgstr ""
+"\n"
+"\n"
+"\n"
+"Hata - %sImagesUpload/.kernel'de yok \n"
+"flash-kernel-%s.bin bulunamadı"
+
+msgid "Please wait, in a moment the decoder will be restarted..."
+msgstr "Lütfen bekleyin, kod çözücü biraz sonra yeniden başlatılacak ..."
+
+msgid "Multiboot does not support this STB !!!"
+msgstr "Multiboot bu STB'yi desteklemiyor !!!"
+
+msgid "Copy config SoftCam ?"
+msgstr "Softcam yapılandırma dosyaları kopyalansın mı? (önerilir)"
+
+msgid ""
+"-Select the software to be installed with the cursor (left or right).\n"
+"\n"
+msgstr ""
+"-Yazılımı yüklemek için uzaktan kumanda imlecini seçin (sol veya sağ).\n"
+"\n"
+
+msgid ""
+"-Rename image - to change, press blue on the remote control.\n"
+"\n"
+msgstr ""
+"-Görüntüyü yeniden adlandır - değiştirmek için uzaktan kumandadaki maviye basın.\n"
+"\n"
+
+msgid ""
+" - this checking this option on it nothing will be copied from the image flash to the installed image in neoboot.\n"
+"\n"
+msgstr ""
+" - bu seçenek işaretlenirse, Hayır olarak, görüntü flash'tan neoboot'ta yüklü görüntüye hiçbir şey kopyalanmaz.\n"
+"\n"
+
+msgid ""
+"- after selecting this option, the kernel of the installed image will be copied to neoboot, only recommended for STB vuplus\n"
+"\n"
+msgstr ""
+"- bu seçeneğin seçilmesi, yüklenen görüntünün çekirdek dosyasını neoboot'a kopyalar, yalnızca vuplus STB için önerilir\n"
+"\n"
+
+msgid ""
+" - Option to copy channel list from flash to image installed in neoboot.\n"
+"\n"
+msgstr ""
+" - Bu seçenek, kanal listesini flash'tan neoboot'a yüklenen yazılıma aktarır.\n"
+"\n"
+
+msgid ""
+"- the option moves files with the settings for lan and wlan.\n"
+"\n"
+msgstr ""
+"- bu seçenek dosyaları, lan ve wlan ağları için dahil edilen ayarlarla taşır.\n"
+"\n"
+
+msgid ""
+" - the option transfers mounts to the image installed in neoboot from the flashlight, recommended only if you are installing an image from a different model than you have.\n"
+"\n"
+msgstr ""
+" - bu seçenek, flaş yuvasını neoboot'ta kurulu görüntüye aktarır, yalnızca görüntüyü bizim sahip olduğumuzdan farklı bir modelden kurarsanız önerilir.\n"
+"\n"
+
+msgid ""
+"- the option copies the software settings from the flashlight to the system being installed in the neobot.\n"
+"\n"
+msgstr ""
+"- bu seçenek, yazılım ayarlarını flaştan neoboot'ta kurulu sisteme kopyalar.\n"
+"\n"
+
+msgid ""
+"- after installation, the option deletes the zip image file from the ImagesUpload directory.\n"
+"\n"
+msgstr ""
+"- kurulumdan sonra, bu seçenek resim zip dosyasını ImagesUpload dizininden siler.\n"
+"\n"
+
+msgid ""
+" - option for image blackhole, helps to run BH in neoboot\n"
+"\n"
+msgstr ""
+" - görüntü kara deliği seçeneği, neoboot'ta BH'yi başlatmaya yardımcı olur\n"
+"\n"
+
+msgid "Copy MediaPortal ?"
+msgstr "MediaPortal flash'tan kopyalansın mı?"
+
+msgid "Make a copy of the image from NeoBoot"
+msgstr "Yazılımın bir kopyasını oluşturun"
+
+msgid "Restore a copy of the image to NeoBoot"
+msgstr "Yazılımın bir kopyasını geri yükleyin"
+
+msgid "Device manager"
+msgstr "Aygıt yöneticisi"
+
+msgid "Delete image ZIP from the ImagesUpload directory"
+msgstr "ImagesUpload dizininin içeriğini temizleyin"
+
+msgid "Uninstall NeoBoot"
+msgstr "NeoBoot'u Sil"
+
+msgid "Reinstall NeoBoot"
+msgstr "Neoboot'u yeniden yükle"
+
+msgid "Update NeoBoot on all images."
+msgstr "NeoBoot'u tüm resimlerde güncelleyin."
+
+msgid "NeoBoot Backup"
+msgstr "NeoBoot yedeklemesi yapın"
+
+msgid "Update TV list on installed image."
+msgstr "Tv listesini flaştan tüm resimlere kopyalayın."
+
+msgid "Update IPTVPlayer on installed image."
+msgstr "IPTVPlayer'ı flaştan tüm resimlere kopyalayın."
+
+msgid "Removing the root password."
+msgstr "Resimdeki kök parolayı kaldırın."
+
+msgid "Check the correctness of neoboot installation"
+msgstr "Lütfen NeoBoot'un doğru kurulduğunu doğrulayın"
+
+msgid "NeoBoot Information"
+msgstr "NeoBoot eklentisi hakkında"
+
+msgid "Skin change"
+msgstr "Lütfen Neoboot kaplamasını değiştirin"
+
+msgid "Supported sat tuners"
+msgstr "Desteklenen kanal arayıcılar"
+
+msgid "Choose the skin you want to make."
+msgstr "Bir dış görünüm seçin."
+
+msgid "Skin Change confirmation"
+msgstr "Dış görünüm değişikliğini onayla"
+
+msgid "Please wait, NeoBot is working, skin change is progress..."
+msgstr "Lütfen bekleyin, NeoBot çalışıyor, görünüm değişikliği devam ediyor ..."
+
+msgid "NeoBoot: Complete Skin Change!"
+msgstr "NeoBoot: Görünüm değişti!"
+
+msgid "NeoBoot Skin Change"
+msgstr "NeoBoot görünüm değişikliği"
+
+msgid "Skin Change: %s now ?"
+msgstr "Dış görünümü değiştir: %s şimdi mi?"
+
+msgid " now ?"
+msgstr " şimdi mi?"
+
+msgid ""
+"After successful launch of the selected software\n"
+"you must run the neoboot plugin\n"
+"if the software does not start or neoboot is not confirmed\n"
+"the system will return to the internal flash memory\n"
+"\n"
+"Press OK or exit on the remote control to continue..."
+msgstr ""
+"Uyarı - seçilen yazılımı başarıyla başlattıktan sonra,\n"
+"neoboot eklentisini çalıştırmanız gerekir, yazılım başlatılamazsa\n"
+"veya neoboot onaylanmazsa, sistem dahili flash belleğe geri dönecektir.\n"
+"Devam edilsin mi..."
+
+msgid ""
+"Error - in the location %sImagesUpload/.kernel/ \n"
+"kernel file not found flash-kernel-%s.bin"
+msgstr ""
+"Hata - %sImagesUpload/.kernel/ \n"
+"kernel dosyasında flash-kernel-%s.bin bulunamadı"
+
+msgid "It looks like it that multiboot does not support this STB."
+msgstr "Görünüşe göre çoklu önyükleme bu STB modelini desteklemiyor."
+
+msgid "There is no space to make a copy of the image. You need 150 Mb of free space for copying the image."
+msgstr "Görüntü kopyası yapmak için yer yok. Yazılım kopyası için 150 Mb boş alan gerekiyor."
+
+msgid ""
+"Not enough free space on /media/ !!\n"
+"You need at least 300Mb free space.\n"
+"\n"
+"Exit plugin."
+msgstr ""
+"/media/'da yeterli boş alan yok !!\n"
+"En az 300MB boş disk alanına ihtiyacınız var.\n"
+"\n"
+"Eklentiden çıkın ve biraz alan boşaltın."
+
+msgid ""
+"Unfortunately you cannot backup from flash with this plugin. \n"
+"Install backupsuite to a copy of the image from flash memory."
+msgstr ""
+"Üzgünüz, bu eklenti ile flash'tan yedekleme yapılamıyor. \n"
+"Yazılımı flash bellekten yedeklemek için backupsuite yükleyin."
+
+msgid "Please wait, NeoBoot is working, the backup may take a few moments, the process is in progress ..."
+msgstr "Lütfen sabırla bekleyin, NeoBoot çalışıyor, yedekleme birkaç dakika sürebilir, işlem çalışıyor ..."
+
+msgid "Choose copy you want to restore or delete."
+msgstr "Lütfen geri yüklemek veya silmek istediğiniz yedeği seçin."
+
+msgid "Software selected: %s remove ?"
+msgstr "Yazılım dosyası seçildi: %s, şimdi silinsin mi?"
+
+msgid "Confirmation of Deletion..."
+msgstr "Onayı Sil ..."
+
+msgid "NeoBoot - deleting backup files ....."
+msgstr "NeoBoot - yedekleme dosyaları siliniyor ....."
+
+msgid "NeoBoot: Backup files deleted!"
+msgstr "NeoBoot: Yedekleme dosyaları kaldırıldı!"
+
+msgid ""
+"\n"
+"\n"
+"Restoring settings..."
+msgstr ""
+"\n"
+"\n"
+"Ayarları geri yükleniyor ....."
+
+msgid ""
+"\n"
+"NeoBoot removal of the boot manager ...."
+msgstr ""
+"\n"
+"NeoBoot Önyükleme Yöneticisini Kaldırıyor ...."
+
+msgid ""
+"\n"
+"\n"
+"Uninstalling neoboot..."
+msgstr ""
+"\n"
+"\n"
+"neoboot kaldırılıyor ..."
+
+msgid ""
+"\n"
+"\n"
+"Restore mount."
+msgstr ""
+"\n"
+"\n"
+"Dağı Kurtar ..."
+
+msgid ""
+"\n"
+"\n"
+"NeoBoot uninstalled, you can do reinstallation."
+msgstr ""
+"\n"
+"\n"
+"NeoBoot kaldırıldı, yeniden yükleyebilirsiniz."
+
+msgid "[NeoBoot]Please wait, updating in progress ..."
+msgstr "Lütfen bekleyin, güncelleme devam ediyor ..."
+
+msgid "Wait, deleting ....."
+msgstr "Bekle, sil ....."
+
+msgid "Deleting downloaded image zip files ...."
+msgstr "İndirilen resim zip dosyaları kaldırılıyor ..."
+
+msgid "The backup will be saved to /media/neoboot. Performing ..."
+msgstr "Yedekleme /media/neoboot'a kaydedilecek. Yürütülüyor ...."
+
+msgid ""
+"Re-installing the kernel. \n"
+"\n"
+"Install?"
+msgstr "Sistem çekirdeğini yeniden yükleyin. Yüklensin mi?"
+
+msgid ""
+"EGAMIBoot author allowed neoboot development and editing - Thanks\n"
+"\n"
+msgstr ""
+"EgAMIBoot yazarı, Neoboot'un oluşturulmasına ve düzenlenmesine izin verdi - Teşekkürler!\n"
+"\n"
+
+msgid ""
+"Translation by gutosie and other people!\n"
+"\n"
+msgstr ""
+"Çeviri: audi06_19 ve diğer arkadaşlar!\n"
+"\n"
+
+msgid "Buy a satellite tuner in the store: http://www.expert-tvsat.com/\n"
+msgstr "Bir tuner satın almak ister misiniz? Mağazayı tavsiye ederim: http://www.expert-tvsat.com/\n"
+
+msgid ""
+"NeoBoot has been installed succesfully!\n"
+"NeoBoot has detected that the disks do not have a label.\n"
+"For correct neo boot operation, please give the disks the name LABEL\n"
+"Recommended total restart of the tuner.\n"
+msgstr ""
+"NEOBOOT başarıyla kuruldu! \n"
+"NeoBoot, sürücülerin işaretlendiğini tespit etti. \n"
+"Ayarlayıcının tamamen yeniden başlatılması önerilir\n"
+
+msgid ""
+"Installed succesfully NEOBOOT!\n"
+"NeoBoot has detected that the disks have been marked.\n"
+"Recommended total restart of the tuner\n"
+msgstr ""
+"NEOBOOT başarıyla kuruldu! \n"
+"NeoBoot disklerin etiketlendiğini algıladı.\n"
+"___ ÖNERİLEN STB TUNER'I TAMAMEN YENİDEN BAŞLAT !!! .___\n"
+
+msgid ""
+"Plugin ImageDownloader not installed!\n"
+"Install plugin to download new image? \and---Continue ?---"
+msgstr "ImageDownloader yüklü değil! Yeni yazılımı indirmek için eklenti yükleyin? --- Devam edilsin mi? ---"
+
+msgid "First start of software"
+msgstr "Yazılımın ilk çalıştırılması"
+
+msgid "The plug-in has been successfully installed."
+msgstr "Eklenti başarıyla kuruldu."
+
+msgid ""
+"The plugin not installed.\n"
+"Access Fails with Error code 0x04."
+msgstr "Eklenti yüklenmemiş. Hata kodu 0x04."
+
+msgid "Reinstall neoboot?"
+msgstr "Neobot yeniden kurulsun mu?"
+
+msgid ""
+"The %sImagesUpload directory is EMPTY!!!\n"
+"Install the plugin to download new image online ?\n"
+" --- Continue? ---"
+msgstr ""
+"%sImagesUpload dizini boş !!!\n"
+"Web'den yeni resim almak için eklenti yükleyin ?\n"
+" --- Devam edilsin mi? ---"
+
+msgid "Geen internet"
+msgstr "İnternet yok"
+
+msgid ""
+"NeoBot - First use yellow button and Set Disk Label!\n"
+"Without labeling disc neoboot may not work properly"
+msgstr ""
+"NeoBot - Önce sarı düğmeyi kullanın ve ona bir disk etiketi koyun!\n"
+"- disk etiketlemesi olmadan neoboot düzgün çalışmayabilir"
+
+msgid ""
+"Disk UUID not found\n"
+" - Universally unique identifier (UUID) is not required.\n"
+"You can proceed with further installation or give an ID to your disk.\n"
+"To continue the installation neoboo, press OK or No to abort."
+msgstr ""
+"Disk UUID bulunamadı Evrensel Benzersiz Tanımlayıcı (UUID) gerekli değildir.\n"
+"uuid vermeden veya disk kimliği vermeden kuruluma devam edebilirsiniz.\n"
+"Neoboot kurulumuna devam etmek için Tamam'a basın veya Kurulumu iptal etmeyin ™."
+
+msgid "NeoBot - choose what you want to do, install or not !!!"
+msgstr "NeoBot - ne yapmak istediğinizi seçin, kuruluma devam edin veya iptal edin? !!!"
+
+msgid "Proceed with further installation without providing a unique identifier for the disks ?"
+msgstr "Diskler için benzersiz bir tanımlayıcı belirtmeden kuruluma devam edilsin mi?"
+
+msgid "NeoBoot has not been installed ! :"
+msgstr "NeoBoot yüklenmemiş !:"
+
+msgid "Delete label"
+msgstr "Etiketi Kaldır"
+
+msgid "Add label"
+msgstr "Etiket ekle"
+
+msgid "Set label"
+msgstr "Etiketi ayarla"
+
+msgid "!!!Do not set the label for /dev/mmcblk0p !!!"
+msgstr "!!!/dev/mmcblk0p için etiket ayarlamayın !!!"
+
+msgid "Select partition to set label:"
+msgstr "Lütfen etiketi ayarlamak için bir bölüm seçin:"
+
+msgid "Choice label to set:"
+msgstr "Ayarlanacak seçim etiketi:"
+
+msgid "Current partition label:"
+msgstr "Geçerli bölüm etiketi:"
+
+msgid "Selected label is set"
+msgstr "Seçilen etiket ayarlandı"
+
+msgid "Set label on %s?"
+msgstr "%s için bir etiket ayarlansın mı?"
+
+msgid "Add new partition label:"
+msgstr "Yeni bir bölüm oluştur:"
+
+msgid "Delete label from %s?"
+msgstr "%s etiketinden kaldırılsın mı?"
+
+msgid "Label is delete"
+msgstr "Etiket kaldırıldı"
+
+msgid "Change"
+msgstr "Değiştir"
+
+msgid "Backup the image from NeoBoot"
+msgstr "Yazılımı neoboot'tan yedekleyin"
+
+msgid ""
+" - Option to copy drivers to the image installed in neoboot from the flashlight, recommended only if you are installing an image from a different model than you have.\n"
+"\n"
+msgstr ""
+" - bu seçenek, sürücüleri flash'tan neoboot'ta yüklü yazılıma aktarır, yalnızca görüntüyü sahip olduğunuzdan farklı bir modelden yüklerseniz önerilir. Örneğin, bir vuplus alıcınız varsa ve yazılım yüklerseniz, örneğin farklı bir marka, \"Evet \" seçeneğini seçin.\n"
+"\n"
+
+msgid "Choose the image you want to make a copy of"
+msgstr "Yedeklemek istediğiniz yazılımı seçin"
+
+msgid "You have the following images installed"
+msgstr "Yüklü görüntünün listesi"
+
+msgid "You still have free: "
+msgstr "Boş alan kaldı: "
+
+msgid "NeoBoot: COMPLETE Backup!"
+msgstr "NeoBoot: Yedekleme TAMAMLANDI!"
+
+msgid "NeoBoot: Image Backup"
+msgstr "NeoBoot: Görüntü Yedekleme"
+
+msgid "Backup confirmation"
+msgstr "Yedekleme onayı"
+
+msgid "Make copies of the image: %s now ?"
+msgstr "Yazılımın bir kopyasını alın: %s şimdi mi?"
+
+msgid ""
+"The required space on the device is 300 MB.\n"
+"Do you want to take this image: %s \n"
+"now ?"
+msgstr ""
+"Geri yüklemeden önce, lütfen cihazınızda boş alan olup olmadığını kontrol edin. 300MB\n"
+"Yedekleme dosyası seçildi: %s\n"
+"şimdi geri yüklensin mi?"
+
+msgid "Neoboot: Restore COMPLETE !"
+msgstr "Neoboot: TAMAMLANDI!"
+
+msgid "Launch Device Manager?"
+msgstr "Aygıt yöneticisi başlatılsın mı?"
+
+msgid "Remove the plug"
+msgstr "NeoBoot kaldırılsın mı"
+
+msgid "Uninstall"
+msgstr "Kaldır"
+
+msgid "If you choose Yes, the Multibot image settings will be restored and only uninstalled. You can reinstall it"
+msgstr "Evet'i seçerseniz, neoboot ayarları varsayılan değerlerine sıfırlanacaktır. Yeniden yükleyebilirsiniz"
+
+msgid "Restore copy NeoBoot"
+msgstr "NeoBoot kopyası geri yüklensin mi"
+
+msgid "Wait, deleting ..."
+msgstr "Bekle, sil ..."
+
+msgid "Install neobot from flash memory to all images"
+msgstr "Neobot eklentisi dahili flash bellekten veri taşıyıcıdaki tüm yazılıma kopyalansın mı"
+
+msgid ""
+"NeoBoot successfully updated. You can restart the plugin now.\n"
+"Have fun !!"
+msgstr "NeoBoot başarıyla güncellendi. Eklentiyi şimdi yeniden başlatabilirsiniz. İyi eğlenceler !!!"
+
+msgid "Do you really want to clear"
+msgstr "Gerçekten temizlemek istiyor musunuz"
+
+msgid "Update available only from the image Flash."
+msgstr "Güncelleme yalnızca dahili Flash bellekten kullanılabilir."
+
+msgid "List of supported stb."
+msgstr "NeoBoot: desteklenen STB modellerinin listesi."
+
+msgid "Run"
+msgstr "Çalıştır"
+
+msgid "Your image flash cannot be mounted."
+msgstr "Yazılımınız monte edilemiyor."
+
+msgid "Sorry you can delete only from the image Flash."
+msgstr "Üzgünüz, bunu yalnızca Flash'ın içinden kaldırabilirsiniz."
+
+msgid ""
+"\n"
+"Restoring settings...\n"
+msgstr ""
+"\n"
+"Ayarlar geri yükleniyor ...\n"
+
+msgid "Removing boot manager from NeoBoot....\n"
+msgstr "Önyükleme Yöneticisi Kaldırılıyor ...\n"
+
+msgid "NeoBoot restoring media mounts...\n"
+msgstr "Disk bağlantıları geri yükleniyor ...\n"
+
+msgid "Cancel execution?"
+msgstr "Yürütme iptal edilsin mi?"
+
+msgid "Path to save not exist: '/tmp/'"
+msgstr "Yazılacak yol mevcut değil: '/tmp/'"
+
+msgid "File write error: '%s'"
+msgstr "Dosya yazılırken hata oluştu: '%s'"
+
+msgid ""
+"Save the commands and the output to a file?\n"
+"('%s')"
+msgstr ""
+"Konsol komutları kaydedilip çıktı bir dosyaya kaydedilsin mi?\n"
+"('%s')"
+
+msgid "Hide Console"
+msgstr "Konsolu gizle"
+
+msgid "Upload image files in zip formats to the ImagesUpload location."
+msgstr "[NeoBoot] Yazılımı kurmak için, zip formatında yazılım dosyalarını ImagesUpload konumuna yükleyin. Eklenti kurulumuna izin verilmez."
+
+msgid ""
+"3. To install the new software in multiboot, you must send the software file compressed in zip format via ftp to the ImagesUpload directory, or download from the network.\n"
+"\n"
+msgstr ""
+"3. Çoklu önyüklemede yeni yazılım yüklemek için, zip sıkıştırılmış yazılım dosyasını ImagesUpload dizinine yükleyin veya web'den indirin.\n"
+"\n"
+
+msgid "Reinstall neoboot"
+msgstr "Neoboot yeniden kurulsun mu"
+
+msgid "Your image flash is mounted in the media location"
+msgstr "Flash görüntünüz medya konumuna eklendi"
+
+msgid "Copy the tv list with flash on all image"
+msgstr "TV listesini dahili flash bellekten neoboot'taki tüm yüklü yazılıma kopyalayın"
+
+msgid "Sorry, the operation is not possible from Flash"
+msgstr "Üzgünüz, bu işlem dahili flaşla mümkün değildir"
+
+msgid "Mount Internal Flash"
+msgstr "Montaj flaşı"
+
+msgid "Install software internal flash memory in media"
+msgstr "Ortama dahili flaş bellek takın"
+
+msgid "To use the new skin please restart enigma2"
+msgstr "Yeni dış görünümü kullanmak için lütfen enigma2 sistemini yeniden başlatın"
+
+msgid "Sorry, There is no neobot backup to restore"
+msgstr "Üzgünüz, geri yüklenecek neobot yedeklemesi yok"
+
+msgid "Install the tv list with flash on all images"
+msgstr "Tv listesi flaştan tüm yazılıma kopyalansın mı"
+
+msgid "Copy the IPTV Player plugin from flash to all images"
+msgstr "IPTV Player eklentisi flaştan tüm resimlere kopyalansın mı"
+
+msgid ""
+"Are you sure you want to delete the image from the ImagesUpload directory\n"
+"If you choose the red button on the remote control then you will delete all zip images from the ImagesUpload directory"
+msgstr ""
+"Tüm zip dosyalarını ImagesUpload dizininden kaldırmak istediğinizden emin misiniz?\n"
+"Uzaktan kumandadaki kırmızı düğmeyi seçerseniz, tüm sıkıştırılmış yazılımları ImagesUpload dizininden kaldıracaksınız"
+
+msgid "Make complete copy NeoBoot"
+msgstr "NeoBoot'un tam bir kopyası alınsın mı"
+
+msgid "Select Install to continue"
+msgstr "Devam etmek için Kur'u seçin"
+
+msgid ""
+"Successful fun :)\n"
+"\n"
+msgstr ""
+"İyi eğlenceler! q (-_-) p :) gutosie\n"
+"\n"
+
+msgid "This option is available only from openpli or derivatives."
+msgstr "Bu seçenek yalnızca openpli veya türevlerinde mevcuttur."
+
+msgid ""
+"Do you really want to initialize the device?\n"
+"All data on the disk will be lost!"
+msgstr "Cihazı gerçekten başlatmak istiyor musunuz? Diskteki tüm veriler kaybolacak!"
+
+msgid "Instal neoobot from github"
+msgstr "Neoobot'u github'dan yükleyin"
+
+msgid "Are you sure you want to reinstall neoboot from github ?"
+msgstr "Neoboot'u github'dan yeniden yüklemek istediğinizden emin misiniz?"
+
+msgid "NeoBoot donate"
+msgstr "Bağış yapın"
+
+msgid "Donate to the project\n"
+msgstr "Neoboot projesine gönüllü bağış yapın\n"
+
+msgid "- Access to the latest version\n"
+msgstr "- En son sürüme erişim\n"
+
+msgid "- Full version\n"
+msgstr "- Eklentinin tam sürümü.\n"
+
+msgid "- Online support\n"
+msgstr "- Çevrimiçi Destek\n"
+
+msgid "- More information email\n"
+msgstr "- E-posta adresinde daha fazla bilgi\n"
+
+msgid "We thank you for any help\n"
+msgstr "Tüm yardımlar için teşekkürler\n"
+
+msgid "If you want to support the neoboot project, you can do so by contacting us by e-mail:\n"
+msgstr "Neoboot projesini desteklemek istiyorsanız, e-posta ile bizimle iletişime geçerek bunu yapabilirsiniz:\n"
+
+msgid "Copy picon flash to image install ?"
+msgstr "Picon'lar flash bellekten kopyalansın mı?"
+
+msgid "Transfer kodi settings ?"
+msgstr "Kodi ayarları taşınsın mı?"
+
+msgid "Updates feed cam OpenATV softcam"
+msgstr "Openatv softcam kaynak güncellemeleri"
+
+msgid "Update FeedExtra on the installed image."
+msgstr "Yüklü yazılımda FeedExtra'yı güncelleyin."
+
+msgid ""
+"Sorry, you can install up to 2 images, this is not neoboot vip version.\n"
+"Get unlimited image installations in VIP version"
+msgstr ""
+"Üzgünüz, en fazla 2 görüntü yükleyebilirsiniz, bu neoboot vip sürümü değildir.\n"
+"Sınırsız sayıda görüntü yüklemek için NeoBoot VIP sürümünü edinin"
+
+msgid ""
+"Sorry, this is not neoboot vip version.\n"
+"Get NEO-VIP version, more info press blue button or try to update."
+msgstr "Üzgünüz, tüm seçenekler neoboot vip'te mevcut. NEO-VIP'yi edinin, uzaktan kumandadaki mavi düğmeye basarak daha fazla bilgi edinin veya güncellemeyi deneyin."
+
+msgid "Sorry cannot open neo menu. Access Fails with Error code 0x50."
+msgstr "Üzgünüz, menü açılamadı. Seçilen seçenek 0x50 hata koduyla başarısız oluyor."
+
+msgid ""
+"Sorry cannot open neo menu.\n"
+"Access Fails with Error code 0x02."
+msgstr ""
+"Üzgünüz, açıklama menüsü açılamıyor.\n"
+"Seçilen seçenek 0x02 hata koduyla başarısız oluyor."
+
+msgid ""
+"Sorry cannot open neo menu Backup.\n"
+"Access Fails with Error code 0x60."
+msgstr ""
+"Üzgünüm, Yedekleme menüsü açılamadı.\n"
+"Seçilen seçenek 0x60 hata koduyla başarısız oluyor."
+
+msgid ""
+"Sorry cannot open neo menu Restore.\n"
+"Access Fails with Error code 0x61."
+msgstr ""
+"Maalesef Geri Yükleme menüsü açılamadı.\n"
+"Seçilen seçenek 0x61 hata koduyla başarısız oluyor."
+
+msgid ""
+"Sorry, cannot open instalation menu.\n"
+"Access error with error code 0x72."
+msgstr "Üzgünüz, kurulum menüsü açılamadı. 0x72 hata koduyla erişim hatası."
+
+msgid "Sorry, cannot open neo menu install image."
+msgstr "Üzgünüz, kurulum menüsünü açamadım."
+
+msgid ""
+"Sorry cannot open neo menu Reinstall Kernel.\n"
+"Access Fails with Error code 0x03."
+msgstr "Maalesef Çekirdeği Yeniden Yükle menüsünü açamadım. Erişim 0x03 hata koduyla başarısız oldu."
+
+msgid "Sorry, cannot open neo menu image install. Access Fails with Error code 0x70."
+msgstr "Üzgünüz, resim yükleme menüsü açılamadı. 0x70 hata koduyla erişim hatası."
+
+msgid ""
+"Sorry, could not open image install menu.\n"
+"No access to VIP version.\n"
+"Access error with error code 0x71."
+msgstr ""
+"Üzgünüz, resim yükleme menüsü açılamadı.\n"
+"VIP sürümüne erişim reddedildi.\n"
+"0x71 hata koduyla erişim hatası."
+
+msgid "Sorry cannot open neo menu - no flash"
+msgstr "Neoboot seçilen görevi gerçekleştiremiyor - flaş yok"
+
+msgid ""
+"Sorry cannot open menu set disk label\n"
+"Access Fails with Error code 0x01."
+msgstr "Neoboot disk etiketi ayar seçeneğini uygulayamadı. Hata kodu 0x01."
+
+msgid "Sorry cannot open run.py file - Access Fails with Error code 0x30."
+msgstr "Üzgünüz, run.py başlangıç ​​dosyası açılamıyor. Seçili seçenek 0x30 hata koduyla başarısız oluyor."
+
+msgid "Sorry cannot open run file - Access Fails with Error code 0x40."
+msgstr "Üzgünüz, run.py başlangıç ​​dosyası açılamıyor. Seçili seçenek 0x40 hata koduyla başarısız oluyor."
+
+msgid ""
+"Sorry cannot open neo menu. Hymmm...\n"
+"Access Fails with Error code 0x73."
+msgstr "Üzgünüz, bu seçenek çalıştırılamadı. Hymmm ... Seçili seçenek 0x73 hata koduyla başarısız oluyor."
+
+msgid ""
+"Sorry cannot open neo menu.\n"
+"Access Fails with Error code 0x60."
+msgstr "Komut çalıştırılamadı, üzgünüm. Seçilen seçenek 0x60 hata koduyla başarısız oluyor."
+
+msgid "Neoboot vip version has expired, please re-access."
+msgstr "VIP sürümünün süresi doldu, lütfen yeniden erişin."
+
+msgid "Get a free test to the full vip version."
+msgstr "Tam vip sürümü için ücretsiz bir test edinin."
+
+msgid ""
+"New version update neoboot is available!\n"
+"Please upgrade your flash plugin."
+msgstr ""
+"Neoboot sürümü için yeni güncelleme mevcut!\n"
+"Lütfen güncellemeyi gerçekleştirin."
+
+msgid ""
+"Bravo! Neoboot vip full version activated OK!\n"
+"Please restart your system E2."
+msgstr "Bravo !!! Neoboot vip tam sürüm etkinleştirildi Tamam! Lütfen E2 sisteminizi yeniden başlatın."
+
+msgid "Get the full version of the multiboot plugin.\n"
+msgstr "Çoklu önyükleme eklentisinin tam sürümünü edinin.\n"
+
+msgid "Send an e-mail request for the neoboot vip version.\n"
+msgstr "Neoboot vip sürümü için bir e-posta isteği gönderin.\n"
+
+msgid "VIP Access Activation Fails with Error code 0x10."
+msgstr "VIP erişim aktivasyonu 0x10 hata koduyla başarısız oluyor."
+
+msgid "VIP Access Activation Fails with Error code 0x20."
+msgstr "VIP Erişim Etkinleştirme 0x20 hata koduyla başarısız oluyor."
+
+msgid "Create swap- file."
+msgstr "-swap oluştur."
+
+msgid "Create swap-file."
+msgstr "Takas dosyası oluştur."
+
+msgid "Start create file swap."
+msgstr "Takas dosyası değişimi oluşturun."
+
+msgid "The plug-in not installed"
+msgstr "Eklenti yüklenmemiş"
+
+msgid "The file swapfile already exists!"
+msgstr "Takas dosyası zaten var!"
+
+msgid "The folder hdd or usb not  exists!"
+msgstr "Yok  hdd veya usb dizini!"
+
+msgid "VIP access error. Reinstall the plugin."
+msgstr "VIP sürümüne erişilirken hata oluştu. Lütfen eklentiyi yeniden yükleyin."
+
+msgid ""
+"Sorry cannot open Image Downloader.\n"
+"Access Fails with Error code 0x05."
+msgstr "Image Downloader eklentisine erişim hatası. Hata kodu 0x05."
+
+msgid ""
+"Sorry cannot open neo menu My Upgrade.\n"
+"Access Fails with Error code 0x06."
+msgstr ""
+"Neoboot güncelleme menüsüne erişilirken hata oluştu.\n"
+"Hata kodu 0x06."
+
+msgid ""
+"Sorry cannot open neo menu Neo Boot Image Choose.\n"
+"Access Fails with Error code 0x07."
+msgstr "Eklenti ana menüsüne erişim hatası. Hata kodu 0x07."
+
+msgid ""
+"Sorry cannot open neo menu NeoBoot Installation.\n"
+"Access Fails with Error code 0x08."
+msgstr ""
+"Neoboot yükleme menüsüne erişilirken hata oluştu.\n"
+"Hata kodu 0x08."
