@@ -823,11 +823,13 @@ class NeoBootImageChoose(Screen):
         if fileExists('/tmp/.init_reboot'):
             system('rm /tmp/.init_reboot')
 
+        if fileExists('/.multinfo'):
             if not fileExists('/.control_ok'):
                 if fileExists('/.control_boot_new_image'):  
                     os.system('rm -f /.control_boot_new_image; echo "Image uruchomione OK\nNie kasuj tego pliku. \n\nImage started OK\nDo not delete this file."  > /.control_ok ')          
                 if not fileExists('/.control_boot_new_image'):  
-                    os.system('echo "Image uruchomione OK\nNie kasuj tego pliku. \n\nImage started OK\nDo not delete this file."  > /.control_ok')                                           
+                    os.system('echo "Image uruchomione OK\nNie kasuj tego pliku. \n\nImage started OK\nDo not delete this file."  > /.control_ok') 
+
 
     def DownloadImageOnline(self):				          	
             if not os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/ImageDownloader/download.py'):
