@@ -823,12 +823,6 @@ class NeoBootImageChoose(Screen):
         if fileExists('/tmp/.init_reboot'):
             system('rm /tmp/.init_reboot')
 
-        if fileExists('/.multinfo'):
-            if checkInternet():  
-                pass
-            else:
-                os.system('/etc/init.d/networking stop; sync; /etc/init.d/networking start;')
-
             if not fileExists('/.control_ok'):
                 if fileExists('/.control_boot_new_image'):  
                     os.system('rm -f /.control_boot_new_image; echo "Image uruchomione OK\nNie kasuj tego pliku. \n\nImage started OK\nDo not delete this file."  > /.control_ok ')          
@@ -925,10 +919,11 @@ class NeoBootImageChoose(Screen):
             except:
                 False
 
-        if checkInternet():  
+        if not fileExists('/tmp/.finishdate') or not fileExists('/tmp/.nkod') :
+            if checkInternet():  
                 pass
-        else:
-                self.session.open(MessageBox, _('Geen internet'), MessageBox.TYPE_INFO, 4)
+            else:
+                self.session.open(MessageBox, _('Geen internet'), MessageBox.TYPE_INFO, 5)
                 self.close()
 
         if not fileExists('/.multinfo'):            
