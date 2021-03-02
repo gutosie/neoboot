@@ -919,7 +919,7 @@ class NeoBootImageChoose(Screen):
             except:
                 False
 
-        if not fileExists('/tmp/.finishdate') or not fileExists('/tmp/.nkod') :
+        if not fileExists('/tmp/.finishdate') or not fileExists('/tmp/.nkod') or fileExists('/.multinfo') :
             if checkInternet():  
                 pass
             else:
