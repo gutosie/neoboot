@@ -56,8 +56,8 @@ else:
             from Screens.Console import Console
     	
 loggscrash = time.localtime(time.time())
-PLUGINVERSION = '9.15'
-UPDATEVERSION = '9.15'
+PLUGINVERSION = '9.13'
+UPDATEVERSION = '9.13'
 UPDATEDATE = '"+%Y04%d"'   
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot' 
 
@@ -834,32 +834,6 @@ class NeoBootImageChoose(Screen):
                     os.system('rm -f /.control_boot_new_image; echo "Image uruchomione OK\nNie kasuj tego pliku. \n\nImage started OK\nDo not delete this file."  > /.control_ok ')          
                 if not fileExists('/.control_boot_new_image'):  
                     os.system('echo "Image uruchomione OK\nNie kasuj tego pliku. \n\nImage started OK\nDo not delete this file."  > /.control_ok')                                           
-                                                
-        #os.system('date "+%Y%m%d"  > /tmp/.finishdate') 
-        #os.system(_('echo %s - %s  > /tmp/MachineProcModel') % (getBoxModelVU(), getCPUSoC()) )        
-              
-        if fileExists('/.multinfo'):
-            pass
-        else:
-            if fileExists('/tmp/.nkod'):
-                pass
-            else:
-                if checkInternet():  
-                    if not fileExists('/tmp/ver.txt'):
-                        if fileExists('/usr/bin/curl'):                    
-                            os.system('cd /tmp; curl -O --ftp-ssl https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; cd /')
-                    if not fileExists('/tmp/ver.txt'):
-                        if fileExists('/usr/bin/wget'):            
-                            os.system('cd /tmp; wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; cd /')         
-                    if not fileExists('/tmp/ver.txt'):
-                        if fileExists('/usr/bin/fullwget'):            
-                            os.system('cd /tmp; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; cd /')                                       
-                    if fileExists('/tmp/ver.txt'):
-                        os.system('mv /tmp/ver.txt /tmp/.nkod ;cd /')
-                    else:
-                        os.system(_('echo %s  > /tmp/.nkod') % PLUGINVERSION)   
-                else:
-                    os.system(_('echo %s  > /tmp/.nkod') % PLUGINVERSION)
 
     def DownloadImageOnline(self):				          	
             if not os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/ImageDownloader/download.py'):
@@ -1255,7 +1229,6 @@ class NeoBootImageChoose(Screen):
         except:
             pass
 
-
         self.availablespace = usfree[0:-3]
         
         strview = _('Used: ') + usperc + _('   \n   Available: ') + usfree[0:-3] + ' MB'
@@ -1322,28 +1295,38 @@ class NeoBootImageChoose(Screen):
         self['label10'].setText(strview)
 
     def mytools(self):                     
-        if getTestIn() == getTestOut():
-            if getAccessN() == '1234':
-                if (getSupportedTuners()) == (getBoxHostName()):                             	
-                    try:      
-                        from Plugins.Extensions.NeoBoot.files.tools import MBTools                    
-                        self.session.open(MBTools)            	
+        if not fileExists('/.multinfo'):
+            if getTestIn() == getTestOut():
+                if getAccessN() == '1234':
+                    if (getSupportedTuners()) == (getBoxHostName()):                             	
+                        try:      
+                            from Plugins.Extensions.NeoBoot.files.tools import MBTools                    
+                            self.session.open(MBTools)            	
                     #except:
-                    except Exception as e:
+                        except Exception as e:
 				loggscrash = time.localtime(time.time())
 				LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
                                 mess = _('Sorry cannot open neo menu. Access Fails with Error code 0x50.')
                                 self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
-                else:
+                    else:
                                 mess = _('Sorry cannot open neo menu. Access Fails with Error code 0x60.')
                                 self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
-            else:
-                myerror = _('Sorry, this is not neoboot vip version.\nGet NEO-VIP version, more info press blue button.')
-                self.session.open(MessageBox, myerror, MessageBox.TYPE_INFO)                
+                else:
+                    myerror = _('Sorry, this is not neoboot vip version.\nGet NEO-VIP version, more info press blue button.')
+                    self.session.open(MessageBox, myerror, MessageBox.TYPE_INFO)                
 
-        else:
+            else:
                 myerror = _('Sorry, this is not neoboot vip version.\nGet NEO-VIP version, more info press blue button or try to update.')
                 self.session.open(MessageBox, myerror, MessageBox.TYPE_INFO)
+        else:
+                        try:
+                            from Plugins.Extensions.NeoBoot.files.tools import MBTools
+                            self.session.open(MBTools)
+                        except Exception as e:
+				loggscrash = time.localtime(time.time())
+				LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
+                                mess = _('Sorry cannot open neo menu. Access Fails with Error code 0x50.')
+                                self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)        
 
     def removeIMG(self):		
         self.mysel = self['config'].getCurrent()
@@ -1398,7 +1381,8 @@ class NeoBootImageChoose(Screen):
 
 
     def ImageInstall(self):        
-        if getAccessN() != '1234':   #%s' % UPDATEVERSION
+        if not fileExists('/.multinfo'):
+            if getAccessN() != '1234':   #%s' % UPDATEVERSION
                 count = 0
                 for fn in listdir('' + getNeoLocation() + '/ImageBoot'):
                     dirfile = '' + getNeoLocation() + '/ImageBoot/' + fn
@@ -1413,13 +1397,14 @@ class NeoBootImageChoose(Screen):
                     self.session.open(MessageBox, myerror, MessageBox.TYPE_INFO)
                 else:
                         self.ImageInstallTestOK()
-        else:
-            if getTestIn() == getTestOut():
-                    self.ImageInstallTestOK()
             else:
+                if getTestIn() == getTestOut():
+                    self.ImageInstallTestOK()
+                else:
                     myerror = _('Sorry, this is not neoboot vip version.\nGet NEO-VIP version, more info press blue button or try to update.')
                     self.session.open(MessageBox, myerror, MessageBox.TYPE_INFO)
-
+        else:
+                        self.ImageInstallTestOK()        
 
     def ImageInstallTestOK(self):
             if int(self.availablespace) < 500:
@@ -1534,32 +1519,41 @@ class NeoBootImageChoose(Screen):
                 self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)  
         else:
             session.open(MessageBox, _('Geen internet'), type=MessageBox.TYPE_ERROR)
-            
-    def bootIMG(self):		
-        if getAccessN() == '1234':        
-            self.mysel = self['config'].getCurrent()
-            if 'Flash' in self.mysel:
-                self.mysel = 'Flash'
-            if self.mysel:
-                out = open('' + getNeoLocation() + 'ImageBoot/.neonextboot', 'w' )
-                out.write(self.mysel)
-                out.close()
 
-                if getImageNeoBoot() != "Flash":
-                    if not fileExists('%sImageBoot/%s/.control_ok' % ( getNeoLocation(),  getImageNeoBoot())):
-                        message = _('After successful launch of the selected software\nyou must run the neoboot plugin\nif the software does not start or neoboot is not confirmed\nthe system will return to the internal flash memory\n\nPress OK or exit on the remote control to continue...' )
-                        ybox = self.session.openWithCallback(self.StartReboot, MessageBox, message, MessageBox.TYPE_YESNO)
-                        ybox.setTitle(_('First start of software'))
-                    else:
-                        try:
+    def bootIMG(self):
+        if not fileExists('/.multinfo'):
+            if getAccessN() == '1234':
+                self.bootIMG2()
+            else:
+                    myerror = _('Sorry, this is not neoboot vip version.\nGet NEO-VIP version, more info press blue button.')
+                    self.session.open(MessageBox, myerror, MessageBox.TYPE_INFO)
+        else:
+            self.bootIMG2()       
+        
+    def bootIMG2(self):  		       
+                self.mysel = self['config'].getCurrent()
+                if 'Flash' in self.mysel:
+                    self.mysel = 'Flash'
+                if self.mysel:
+                    out = open('' + getNeoLocation() + 'ImageBoot/.neonextboot', 'w' )
+                    out.write(self.mysel)
+                    out.close()
+ 
+                    if getImageNeoBoot() != "Flash":
+                        if not fileExists('%sImageBoot/%s/.control_ok' % ( getNeoLocation(),  getImageNeoBoot())):
+                            message = _('After successful launch of the selected software\nyou must run the neoboot plugin\nif the software does not start or neoboot is not confirmed\nthe system will return to the internal flash memory\n\nPress OK or exit on the remote control to continue...' )
+                            ybox = self.session.openWithCallback(self.StartReboot, MessageBox, message, MessageBox.TYPE_YESNO)
+                            ybox.setTitle(_('First start of software'))
+                        else:
+                            try:
                                 from Plugins.Extensions.NeoBoot.run import StartImage
                                 self.session.open(StartImage)
-                        except Exception as e:
+                            except Exception as e:
 				loggscrash = time.localtime(time.time())
 				LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
                                 mess = _('Sorry cannot open run.py file - Access Fails with Error code 0x30.')
                                 self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
-                else:
+                    else:
                         try:
                                 from Plugins.Extensions.NeoBoot.run import StartImage
                                 self.session.open(StartImage)
@@ -1568,9 +1562,7 @@ class NeoBootImageChoose(Screen):
 				LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
                                 mess = _('Sorry cannot open run file - Access Fails with Error code 0x40.')
                                 self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)                            
-        else:
-                    myerror = _('Sorry, this is not neoboot vip version.\nGet NEO-VIP version, more info press blue button.')
-                    self.session.open(MessageBox, myerror, MessageBox.TYPE_INFO)
+        
 
     def StartReboot(self, yesno):		
         if yesno:
@@ -1639,6 +1631,25 @@ def main(session, **kwargs):
                 if fileExists('' + LinkNeoBoot + '/files/mountpoint.sh'):
                     os.system('chmod 0755 ' + LinkNeoBoot + '/files/mountpoint.sh; ' + LinkNeoBoot + '/files/mountpoint.sh')
         if not fileExists('/.multinfo') and fileExists('' + LinkNeoBoot + '/.location'):
+            if checkInternet():
+                if not os.path.exists('/tmp/.finishdate'):
+                                        os.system('date "+%Y%m%d"  > /tmp/.finishdate')
+                if fileExists('/tmp/.nkod'):
+                                        pass
+                else: 
+                                        if not fileExists('/tmp/ver.txt'):
+                                                if fileExists('/usr/bin/curl'):                    
+                                                        os.system('cd /tmp; curl -O --ftp-ssl https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; cd /')
+                                        if not fileExists('/tmp/ver.txt'):
+                                                if fileExists('/usr/bin/wget'):            
+                                                        os.system('cd /tmp; wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; cd /')         
+                                        if not fileExists('/tmp/ver.txt'):
+                                                if fileExists('/usr/bin/fullwget'):            
+                                                        os.system('cd /tmp; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; cd /')                                       
+                                        if fileExists('/tmp/ver.txt'):
+                                                        os.system('mv /tmp/ver.txt /tmp/.nkod ;cd /')
+                                        else:
+                                                        os.system(_('echo %s  > /tmp/.nkod') % PLUGINVERSION)
             from Plugins.Extensions.NeoBoot.files.stbbranding import getCheckInstal1, getCheckInstal2, getCheckInstal3
             if fileExists('/tmp/error_neo') :
                 if fileExists('/tmp/error_neo'):
@@ -1652,12 +1663,6 @@ def main(session, **kwargs):
                 if getCheckInstal3() == '3':
                     os.system('echo "\nNeoboot installation errors 3:\nfile neo.sh is error - 3\n"  >> /tmp/error_neo')
                     session.open(MessageBox, _('Neoboot plugin installed with ERRORS! Not work properly! The error number is 3'), type=MessageBox.TYPE_ERROR)
-            if not fileExists('%sImageBoot/.version' % getNeoLocation()):
-                if fileExists('' + LinkNeoBoot + '/files/mountpoint.sh'):
-                    os.system('chmod 0755 ' + LinkNeoBoot + '/files/mountpoint.sh; ' + LinkNeoBoot + '/files/mountpoint.sh')
-            if checkInternet():
-                                    if not os.path.exists('/tmp/.finishdate'):
-                                        os.system('date "+%Y%m%d"  > /tmp/.finishdate')
             if not fileExists('/usr/lib/periodon/.kodn'):
                         session.open(MessageBox, _('Get a free test to the full vip version.'), type=MessageBox.TYPE_ERROR)
             elif fileExists('/usr/lib/periodon/.kodn') and fileExists('/tmp/.nkod'):
@@ -1679,10 +1684,11 @@ def main(session, **kwargs):
                 mypath2 = f2.readline().strip()
                 f2.close()
                 if mypath2 != 'Flash' or mypath2 == 'Flash' and checkimage():
-                    if float(PLUGINVERSION) != version:
-                        try:
+                    if not fileExists('/.multinfo'):
+                        if float(PLUGINVERSION) != version:
+                            try:
                                 session.open(MyUpgrade)
-                        except Exception as e:
+                            except Exception as e:
 				loggscrash = time.localtime(time.time())
 				LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
                                 session.open(MessageBox, _('Sorry cannot open neo menu My Upgrade.\nAccess Fails with Error code 0x06.'), type=MessageBox.TYPE_ERROR)
