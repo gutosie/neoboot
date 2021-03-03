@@ -1,6 +1,8 @@
 # neoboot
 new version available - fix all model, arm and mipsel
+
 recommended vuplus image for flash openpli
+
 recommended other stb image for flash egami or openpli
 
 Installation of neoboot.  Run the following command in the terminal of a supported tuner 
