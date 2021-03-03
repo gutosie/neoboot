@@ -56,8 +56,8 @@ else:
             from Screens.Console import Console
     	
 loggscrash = time.localtime(time.time())
-PLUGINVERSION = '9.15'
-UPDATEVERSION = '9.15'
+PLUGINVERSION = '9.16'
+UPDATEVERSION = '9.16'
 UPDATEDATE = '"+%Y04%d"'   
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot' 
 
@@ -974,7 +974,7 @@ class NeoBootImageChoose(Screen):
                 pass
             else:
                     system('touch /tmp/gutos')
-    def touch6(self):
+    def touch7(self):
         if fileExists('/usr/lib/periodon/.kodn'):
             pass
         else:
@@ -982,7 +982,7 @@ class NeoBootImageChoose(Screen):
                 pass
             else:
                     system('touch /tmp/gutosi')
-    def touch7(self):
+    def touch6(self):
         if fileExists('/usr/lib/periodon/.kodn'):
             pass
         else:
@@ -1003,7 +1003,7 @@ class NeoBootImageChoose(Screen):
                         elif not fileExists('/usr/lib/periodon/.kodn'):                    
                                 mess = _('VIP Access Activation Fails with Error code 0x20.')
                                 self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
-    def touch8(self):
+    def touch9(self):
         if fileExists('/usr/lib/periodon/.kodn'):
             system('touch /tmp/gut1')
         else:
@@ -1011,7 +1011,7 @@ class NeoBootImageChoose(Screen):
                 pass
             else:
                     system('touch /tmp/gutosiep')
-    def touch9(self):
+    def touch8(self):
         if fileExists('/usr/lib/periodon/.kodn'):
             system('touch /tmp/gut2')
         else:
