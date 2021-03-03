@@ -1,5 +1,7 @@
 # neoboot
 new version available - fix all model, arm and mipsel
+recommended vuplus image for flash openpli
+recommended other stb image for flash egami or openpli
 
 Installation of neoboot.  Run the following command in the terminal of a supported tuner 
  
@@ -44,6 +46,17 @@ Instalację i modyfikacje przeprowadzasz na wlasne ryzyko!!! Przed instalacją l
 Dziękuję wszystkim kolegom wpierającym projekt neoboot.
 
 pozdrawiam gutosie
+
+CAUTION!!!
+  Redistribution of the program version and making modifications is ALLOWED as long as this copyright notice is preserved.
+
+The author accepts NO responsibility for any consequences of using this program or the use of the information contained herein.
+
+You carry out installation and modification at your own risk !!! Before installing or updating Neoboot, carefully read all the information contained here and in the plugin. !!
+
+Thanks to all colleagues who support the neoboot project.
+
+greetings gutosie
 
     ----------------Free donate----------------   
                     ¯\_(ツ)_/¯ 
