@@ -633,7 +633,7 @@ def NEOBootMainEx(source, target, stopenigma, CopyFiles, CopyKernel, TvList, Lan
 #    rc = os.system(cmd)
     cmd = 'cp -rf /usr/lib/periodon ' + getNeoLocation() + 'ImageBoot/%s/usr/lib/periodon' % target
     rc = os.system(cmd)
-    cmd = 'cp -rf /usr/lib/enigma2/python/Tools/Testinout.pyo ' + getNeoLocation() + 'ImageBoot/%s/usr/lib/enigma2/python/Tools/Testinout.pyo' % target
+    cmd = 'cp -rf /usr/lib/enigma2/python/Tools/Testinout.py ' + getNeoLocation() + 'ImageBoot/%s/usr/lib/enigma2/python/Tools/Testinout.py' % target
     rc = os.system(cmd)
     os.system('mkdir -p ' + media_target + '/media/hdd' + dev_null)
     os.system('mkdir -p ' + media_target + '/media/usb' + dev_null)    
