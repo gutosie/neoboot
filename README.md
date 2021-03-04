@@ -5,6 +5,8 @@ recommended vuplus image for flash openpli
 
 recommended other stb image for flash egami or openpli
 
+only install with the command contained here, do not install from other sources of the ipk file type !
+
 Installation of neoboot.  Run the following command in the terminal of a supported tuner 
  
 Instalacja neoboot. Uruchom poniższą komendę w terminalu wspieranego tunera
