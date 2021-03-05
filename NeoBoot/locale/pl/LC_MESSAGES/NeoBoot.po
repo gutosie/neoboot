@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NeoBoot\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-02-28 18:58+0200\n"
+"PO-Revision-Date: 2021-03-05 07:40+0200\n"
 "Last-Translator: gutosie <Krzysio Gutosie>\n"
 "Language-Team: gutosie- GaduGadu nr. 5111900 <http://all-forum.cba.pl >\n"
 "Language: pl\n"
@@ -2005,6 +2005,9 @@ msgstr "Usuń NeoBoota."
 msgid "Reinstall NeoBoot"
 msgstr "Przeinstaluj neoboota"
 
+msgid "Restore neoboot backup"
+msgstr "Przywróć kopię zapasową neobota."
+
 msgid "Update NeoBoot on all images."
 msgstr "Aktualizuj NeoBoota na wszystkich image. "
 
@@ -2554,6 +2557,9 @@ msgstr "Przenieś ustawienia Kodi ?"
 
 msgid "Updates feed cam OpenATV softcam"
 msgstr "Aktualizacje źródła openatv softcam."
+
+msgid "Add softcam download from feed."
+msgstr "Dodaj pobieranie softcam online z feed."
 
 msgid "Update FeedExtra on the installed image."
 msgstr "Zaktualizuj FeedExtra na zainstalowanych oprogramowanich."
