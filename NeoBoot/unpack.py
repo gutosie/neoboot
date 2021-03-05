@@ -257,7 +257,7 @@ class InstallImage(Screen, ConfigListScreen):
                  str(self.PiconR.value), 
                  str(self.Kodi.value),                                                  
                  str(self.BlackHole.value))  
-                print '[NEO-BOOT]: ', cmd
+                print ("[MULTI-BOOT]: "), cmd
                 from Plugins.Extensions.NeoBoot.plugin import PLUGINVERSION
                 self.session.open(Console, _('NeoBoot v.%s - Install new image') % PLUGINVERSION, [message, cmd])
 

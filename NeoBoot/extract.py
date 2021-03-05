@@ -3,7 +3,7 @@
 
 import sys, os, struct, shutil
 
-# ver. gutosie
+# ver. gutosie   
 #--------------------------------------------- 2021 ---------------------------------------------#
 def NEOBootMainEx(source, target, stopenigma, CopyFiles, CopyKernel, TvList, LanWlan, Sterowniki, InstallSettings, ZipDelete, RepairFTP, SoftCam, MediaPortal, PiconR, Kodi, BlackHole):        
     NEOBootR(source, target, stopenigma, CopyFiles, CopyKernel, TvList, LanWlan, Sterowniki, InstallSettings, ZipDelete, RepairFTP, SoftCam, MediaPortal, PiconR, Kodi, BlackHole)
@@ -695,7 +695,10 @@ def RemoveUnpackDirs():
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/hd61')  
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/hd51'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/hd51')
-                                                
+
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/bre2ze4k'):
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/bre2ze4k')                                                
+
 
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/multibox'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/multibox')
@@ -1202,8 +1205,8 @@ def NEOBootExtract(source, target, ZipDelete):
         if os.path.exists('' + getNeoLocation() + 'ImagesUpload/h9/rootfs.ubi'):
             os.chdir('h9')
             os.system('mv -f rootfs.ubi rootfs.bin')                    
-            os.system('echo "Instalacja - ubi_reader w toku..."')            
-            print '[NeoBoot] Extracting UBIFS image and moving extracted image to our target'
+            os.system('echo "Instalacja - ubi_reader w toku..."')                     
+            print ("[NeoBoot] Extracting UBIFS image and moving extracted image to our target")
             cmd = 'chmod 777 ' + extensions_path + 'NeoBoot/ubi_reader/ubi_extract_files.py'
             rc = os.system(cmd)
             cmd = 'python ' + extensions_path + 'NeoBoot/ubi_reader/ubi_extract_files.py rootfs.bin -o ' + getNeoLocation() + 'ubi'
@@ -1220,7 +1223,7 @@ def NEOBootExtract(source, target, ZipDelete):
             os.chdir('et10000')
             os.system('mv -f rootfs.bin rootfs.bin')                    
             os.system('echo "Instalacja - ubi_reader w toku..."')            
-            print '[NeoBoot] Extracting UBIFS image and moving extracted image to our target'
+            print ("[NeoBoot] Extracting UBIFS image and moving extracted image to our target")
             cmd = 'chmod 777 ' + extensions_path + 'NeoBoot/ubi_reader/ubi_extract_files.py'
             rc = os.system(cmd)
             cmd = 'python ' + extensions_path + 'NeoBoot/ubi_reader/ubi_extract_files.py rootfs.bin -o ' + getNeoLocation() + 'ubi'
@@ -1406,6 +1409,10 @@ def NEOBootExtract(source, target, ZipDelete):
             os.system('echo "Please wait. System installation multibox..."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/multibox; tar -jxf ' + getNeoLocation() + 'ImagesUpload/multibox/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd) 
+        elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/bre2ze4k'):
+            os.system('echo "Please wait. System installation bre2ze4k..."')
+            cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/bre2ze4k; tar -jxf ' + getNeoLocation() + 'ImagesUpload/bre2ze4k/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
+            rc = os.system(cmd)
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/' + source + '.tar.xz'):
             os.system('echo "Please wait. System installation spakowanego w plik tar.xz w toku..."')
             os.system('cp -af ' + getNeoLocation() + 'ImagesUpload/' + source + '.tar.xz  ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.xz')
@@ -1430,7 +1437,7 @@ def NEOBootExtract(source, target, ZipDelete):
             os.chdir('ImagesUpload')
             os.system('mv -f rootfs.bin rootfs.bin')                    
             os.system('echo "Instalacja - ubi_reader w toku..."')            
-            print '[NeoBoot] Extracting UBIFS image and moving extracted image to our target'
+            print ("[NeoBoot] Extracting UBIFS image and moving extracted image to our target")
             cmd = 'chmod 777 ' + extensions_path + 'NeoBoot/ubi_reader/ubi_extract_files.py'
             rc = os.system(cmd)
             cmd = 'python ' + extensions_path + 'NeoBoot/ubi_reader/ubi_extract_files.py rootfs.bin -o ' + getNeoLocation() + 'ubi'
