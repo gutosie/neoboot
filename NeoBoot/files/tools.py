@@ -1,3 +1,4 @@
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 # system modules
 
@@ -33,7 +34,7 @@ from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE, 
 from os import system, listdir, mkdir, chdir, getcwd, rename as os_rename, remove as os_remove, popen
 from os.path import dirname, isdir, isdir as os_isdir
 from enigma import eTimer
-from stbbranding import fileCheck, getNeoLocation, getImageNeoBoot, getKernelVersionString, getBoxHostName, getCPUtype, getBoxVuModel, getTunerModel, getCPUSoC, getImageATv, getBoxModelVU 
+from Plugins.Extensions.NeoBoot.files.stbbranding import fileCheck, getNeoLocation, getImageNeoBoot, getKernelVersionString, getBoxHostName, getCPUtype, getBoxVuModel, getTunerModel, getCPUSoC, getImageATv, getBoxModelVU 
 import os
 import time
 import sys
@@ -161,11 +162,11 @@ class MBTools(Screen):
         self.list.append (res)
         self ['list']. list = self.list
 
-        res = (_ ('Uninstall NeoBoot'), png, 5)
+        res = (_ ('Restore neoboot backup'), png, 5)    
         self.list.append (res)
         self ['list']. list = self.list
 
-        res = (_ ('Reinstall NeoBoot'), png, 6)
+        res = (_ ('Uninstall NeoBoot'), png, 6)
         self.list.append (res)
         self ['list']. list = self.list
         
@@ -244,9 +245,9 @@ class MBTools(Screen):
             pass
         if self.sel == 4 and self.session.open(BackupMultiboot):
             pass
-        if self.sel == 5 and self.session.open(UnistallMultiboot):
+        if self.sel == 5 and self.session.open(ReinstllNeoBoot): 
             pass
-        if self.sel == 6 and self.session.open(ReinstllNeoBoot):
+        if self.sel == 6 and self.session.open(UnistallMultiboot):
             pass
         if self.sel == 7 and self.session.open(UpdateNeoBoot):
             pass
@@ -877,7 +878,7 @@ class MyUpgrade2(Screen):
 
         def updateInfo(self):
             periodo = '/usr/lib/periodon'
-            testinout = '/usr/lib/enigma2/python/Tools/Testinout.p*'        
+            testinout = '/usr/lib/enigma2/python/Tools/Testinout.p*'                    
             self.activityTimer.stop()
             f2 = open('%sImageBoot/.neonextboot' % getNeoLocation(), 'r')
             mypath2 = f2.readline().strip()
@@ -891,7 +892,7 @@ class MyUpgrade2(Screen):
                     if isdir(dirfile):
                         target = dirfile + '' +LinkNeoBoot+ ''
                         target1 = dirfile + '/usr/lib/'
-                        target2 = dirfile + '/usr/lib/enigma2/python/Tools/'
+                        target2 = dirfile + '/usr/lib/enigma2/python/Tools/'                       
                         cmd = 'rm -r ' + target + ' > /dev/null 2>&1'
                         system(cmd)
                         cmd = 'cp -r ' +LinkNeoBoot+ ' ' + target
@@ -899,7 +900,7 @@ class MyUpgrade2(Screen):
                         cmd1 = 'cp -rf ' +periodo+ ' ' + target1
                         system(cmd1)
                         cmd2 = 'cp -rf ' +testinout+ ' ' + target2
-                        system(cmd2)
+                        system(cmd2)                       
 
                 out = open('%sImageBoot/.version'  % getNeoLocation(), 'w')
                 out.write(PLUGINVERSION)
@@ -1201,8 +1202,7 @@ class CheckInstall(Screen):
             os.system('echo "\n====================================================>\nCheck result:"  >> ' + LinkNeoBoot + '/files/modulecheck') 
             os.system('echo "*    neoboot location:"  >>  ' +LinkNeoBoot+ '/files/modulecheck; cat "/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location"  >>  ' +LinkNeoBoot+ '/files/modulecheck')
             os.system('echo "\n*    neoboot location install:"  >>  ' +LinkNeoBoot+ '/files/modulecheck; cat "/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/install"  >>  ' +LinkNeoBoot+ '/files/modulecheck')
-            os.system('echo "\n*    neoboot location mount:"  >>  ' +LinkNeoBoot+ '/files/modulecheck; cat "/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/neo.sh"  >>  ' +LinkNeoBoot+ '/files/modulecheck')
-
+            os.system('echo "\n*    neoboot location mount:"  >>  ' +LinkNeoBoot+ '/files/modulecheck; cat "/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/neo.sh"  >>  ' +LinkNeoBoot+ '/files/modulecheck') 
             if getCPUtype() == 'ARMv7' and getCPUtype() != 'MIPS':
                 if os.system('opkg update; opkg list-installed | grep python-subprocess') != 0:
                             os.system('echo "\n*    python-subprocess not installed"  >>  ' +LinkNeoBoot+ '/files/modulecheck')
@@ -1614,7 +1614,7 @@ class ATVcamfeed(Screen):
 
     def __init__(self, session):
         Screen.__init__(self, session)
-        self['lab1'] = Label(_('Add Cam dowloand from feed.'))
+        self['lab1'] = Label(_('Add softcam download from feed.'))
         self['key_red'] = Label(_('Start'))
         self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'back': self.close,
          'red': self.addcamatv})
