@@ -11,6 +11,7 @@ fi
 URL='https://github.com/gutosie/neoboot/archive/main.zip'
 curl -kLs $URL  -o /tmp/neoboot.zip
 cd /tmp/
+#pobieranie
 if [ ! -e /tmp/neoboot.zip ]; then 
    wget --no-check-certificate $URL  
    mv -f /tmp/main.zip /tmp/neoboot.zip  
@@ -23,8 +24,11 @@ unzip -qn ./neoboot.zip
 rm -f /tmp/neoboot.zip
 [ -e /tmp/main.zip ] && rm -rf /tmp/main.zip
 #kopiowanie
-[ $PL ] && echo "Instalowanie..." || echo "Instaling..."
 Cel="/usr/lib/enigma2/python/Plugins/Extensions"
+if [ -e $Cel/NeoBoot/.location ]; then 
+   rm -rf $Cel/NeoBoot/.location   
+fi
+[ $PL ] && echo "Instalowanie..." || echo "Instaling..."
 [ -e $Cel/NeoBoot ] && rm -rf $Cel/NeoBoot/* || mkdir -p $Cel/NeoBoot
 mv -f /tmp/neoboot-main/NeoBoot/files/testinout /usr/lib/enigma2/python/Tools/Testinout.py
 mkdir -p /usr/lib/periodon
