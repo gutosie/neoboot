@@ -50,7 +50,7 @@ if [ -e /.multinfo ]; then
                                     flash_eraseall /dev/mtd1  
                                     echo "Instalacja kernel do /dev/mtd1..." 
                                     sleep 2
-		                                nandwrite -p /dev/mtd1 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXNAME.vmlinux.gz
+		                                /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/nandwrite -p /dev/mtd1 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXNAME.vmlinux.gz
                                 fi
                             fi
                             update-alternatives --remove vmlinux vmlinux-`uname -r` || true                                          
@@ -64,7 +64,7 @@ if [ -e /.multinfo ]; then
                                     flash_eraseall /dev/mtd2  
                                     echo "Instalacja kernel do /dev/mtd2..." 
                                     sleep 2
-		                                nandwrite -p /dev/mtd2 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXNAME.vmlinux.gz
+		                                /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/nandwrite -p /dev/mtd2 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXNAME.vmlinux.gz
                                 fi
                             fi
                             update-alternatives --remove vmlinux vmlinux-`uname -r` || true                                          

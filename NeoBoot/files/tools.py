@@ -1867,7 +1867,8 @@ class Opis(Screen):
         message += _('- More information email\n')
         message += _('We thank you for any help\n')
         message += _('If you want to support the neoboot project, you can do so by contacting us by e-mail:\n')
-        message += _(' krzysztofgutosie@gmail.com\n')
+        message += _(' krzysztofgutosie@gmail.com\n\n')
+        message += _(' PayPal adress:  krzysztofgutosie@gmail.com\n')        
         message += _('---------------- ¯\_(ツ)_/¯ ----------------\n\n')
         message += _('\nCompletely uninstall NeoBota: \nIf you think NeoBot not you need it, you can uninstall it.\nTo uninstall now press the red button on the remote control.\n\n')
         message += _('Have fun !!!')        
@@ -1875,7 +1876,7 @@ class Opis(Screen):
         self['lab1'].setText(message)
 
     def neoinstallgithub(self):		
-        message = _('Are you sure you want to reinstall neoboot from github ?')
+        message = _('Are you sure you want to reinstall neoboot from github.')
         ybox = self.session.openWithCallback(self.neogithub, MessageBox, message, MessageBox.TYPE_YESNO)
         ybox.setTitle(_('Install.'))
 
@@ -2013,7 +2014,8 @@ class neoDONATION(Screen):
         message += _('- More information email\n')
         message += _('We thank you for any help\n')
         message += _('If you want to support the neoboot project, you can do so by contacting us by e-mail:\n')         
-        message += _(' krzysztofgutosie@gmail.com\n\n')        
+        message += _(' krzysztofgutosie@gmail.com\n\n') 
+        message += _(' PayPal adress:  krzysztofgutosie@gmail.com\n')        
         message += _('----------------Free donate----------------\n')   
         message += _('¯\_(ツ)_/¯ Have fun !!!')
         self['lab1'].show()
