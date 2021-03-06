@@ -56,8 +56,8 @@ else:
             from Screens.Console import Console
     	
 loggscrash = time.localtime(time.time())
-PLUGINVERSION = '9.17'
-UPDATEVERSION = '9.17'
+PLUGINVERSION = '9.18'
+UPDATEVERSION = '9.18'
 UPDATEDATE = '"+%Y04%d"'   
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot' 
 
@@ -607,7 +607,7 @@ class NeoBootInstallation(Screen):
 
                         #Other stb MIPS 
                         else:                                                                                                                                                                                                                               
-                            os.system('cd ' + LinkNeoBoot + '/; mv ./bin/fontforneoboot.ttf /usr/share/fonts; mv ./bin/libpngneo /usr/lib; cp -f ./bin/neoinitmips /sbin/neoinitmips; cp -f ./bin/neoinitmipsvu /sbin/neoinitmipsvu; chmod 0755 /sbin/neoinit*; chmod 0755 ./bin/neobm; chmod 0755 /usr/lib/libpngneo; cd; chmod 0755 /sbin/neoinitmips; ln -sf /media/neoboot/ImageBoot/.neonextboot /etc/neoimage; mv ' + LinkNeoBoot + '/tmpfiles/runpy/mips_run.py ' + LinkNeoBoot + '/run.py; cd')
+                            os.system('cd ' + LinkNeoBoot + '/; chmod 755 ./bin/nandwrite; mv ./bin/fontforneoboot.ttf /usr/share/fonts; mv ./bin/libpngneo /usr/lib; cp -f ./bin/neoinitmips /sbin/neoinitmips; cp -f ./bin/neoinitmipsvu /sbin/neoinitmipsvu; chmod 0755 /sbin/neoinit*; chmod 0755 ./bin/neobm; chmod 0755 /usr/lib/libpngneo; cd; chmod 0755 /sbin/neoinitmips; ln -sf /media/neoboot/ImageBoot/.neonextboot /etc/neoimage; mv ' + LinkNeoBoot + '/tmpfiles/runpy/mips_run.py ' + LinkNeoBoot + '/run.py; cd')
                             
                         os.system('cp -Rf ' + LinkNeoBoot + '/bin/neoinitmips /sbin/neoinitmips; cp -Rf ' + LinkNeoBoot + '/bin/neoinitmipsvu /sbin/neoinitmipsvu; chmod 755 /sbin/neoinit*') 
                         os.system('chmod 755 ' + LinkNeoBoot + '/bin/nfidump; chmod 0755 ' + LinkNeoBoot + '/bin/nanddump_mips; rm -r ' + LinkNeoBoot + '/bin/neoinitar*; cd /')
@@ -629,7 +629,7 @@ class NeoBootInstallation(Screen):
                 os.system('rm -r ' + LinkNeoBoot + '/ubi_reader ') 
                 
             if getCPUtype() == 'ARMv7':                                                                                                                                     
-                        os.system('cd ' + LinkNeoBoot + '/; mv ./bin/fbcleararm ./bin/fbclear; chmod 755 ./bin/fbclear; rm -f ./bin/fbclearmips; mv ./ubi_reader_arm ./ubi_reader; rm -r ./ubi_reader_mips; rm ./bin/neoinitmips; rm ./bin/neoinitmipsvu; rm -r ./bin/nanddump_mips; rm ./bin/nfidump; rm ./bin/neobm; rm ./bin/fontforneoboot.ttf; rm ./bin/libpngneo; cd')   
+                        os.system('cd ' + LinkNeoBoot + '/; mv ./bin/fbcleararm ./bin/fbclear; chmod 755 ./bin/fbclear; rm -f ./bin/nandwrite; rm -f ./bin/fbclearmips; mv ./ubi_reader_arm ./ubi_reader; rm -r ./ubi_reader_mips; rm ./bin/neoinitmips; rm ./bin/neoinitmipsvu; rm -r ./bin/nanddump_mips; rm ./bin/nfidump; rm ./bin/neobm; rm ./bin/fontforneoboot.ttf; rm ./bin/libpngneo; cd')   
             elif getCPUtype() == 'MIPS':       
                         os.system('cd ' + LinkNeoBoot + '/; mv ./bin/fbclearmips ./bin/fbclear; chmod 755 ./bin/fbclear; rm -f ./bin/fbcleararm; mv ./ubi_reader_mips ./ubi_reader; rm -r ./ubi_reader_arm; rm -f /bin/neoinitarm; rm -f /bin/neoinitarmvu; rm -r ./bin/nanddump_arm; rm -f /bin/neoinitarmvuDuo4k')
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
