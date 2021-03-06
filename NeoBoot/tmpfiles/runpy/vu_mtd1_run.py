@@ -145,9 +145,7 @@ class StartImage(Screen):
         if self.sel == 0:          
             if fileExists('/media/InternalFlash/etc/init.d/neobootmount.sh'):
                 os.system('rm -f /media/InternalFlash/etc/init.d/neobootmount.sh;')
-
-#################_____mips___########################## 
-                                                                                         
+                
             #VUPLUS MIPS vu_dev_mtd1.sh   
             if getBoxHostName() == 'vuultimo' or getBoxHostName() == 'bm750' or getBoxHostName() == 'vuduo' or getBoxHostName() == 'vuuno' or getBoxHostName() == 'vusolo' or getBoxHostName() == 'vuduo':                              
                         if not fileExists('%sImagesUpload/.kernel/%s.vmlinux.gz' % (getNeoLocation(), getBoxHostName()) ):
@@ -175,7 +173,7 @@ class StartImage(Screen):
                                 elif fileExists('/.multinfo'):    
                                     if not fileExists('%sImageBoot/%s/boot/%s.vmlinux.gz' % ( getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
                                         cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT_REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')                                    
-                                        cmd1 = 'flash_eraseall /dev/mtd1; sleep 2; nandwrite -p /dev/mtd1 %sImagesUpload/.kernel/%s.vmlinux.gz; /etc/init.d/reboot' % getNeoLocation(), getBoxHostName()
+                                        cmd1 = 'flash_eraseall /dev/mtd1; sleep 2; ' +LinkNeoBoot+ '/bin/nandwrite -p /dev/mtd1 %sImagesUpload/.kernel/%s.vmlinux.gz; /etc/init.d/reboot' % getNeoLocation(), getBoxHostName()
 
                                     elif fileExists('%sImageBoot/%s/boot/%s.vmlinux.gz' % ( getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
                                         cmd = "echo -e '\n\n%s '" % _('...............REBOOT now...............\nPlease wait, in a moment the decoder will be restarted...')                                    
