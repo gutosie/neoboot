@@ -236,7 +236,7 @@ class ManagerDevice(Screen):
         if not fileExists('/etc/fstab.org'):
             os.system('cp -f /etc/fstab /etc/fstab.org')
         elif fileExists('/etc/fstab.org'):
-            os.system('cp /etc/fstab.org /etc/fstab')
+            os.system('rm -f /etc/fstab; cp /etc/fstab.org /etc/fstab; rm /etc/fstab.org')
         self.session.openWithCallback(self.updateList, DevicesConf)
 
     def Unmount(self):
