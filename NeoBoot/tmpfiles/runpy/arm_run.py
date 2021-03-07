@@ -89,8 +89,7 @@ class StartImage(Screen):
         else:
             os.system('rm -rf %sImageBoot/%s/usr/bin/enigma2_pre_start.sh' % ( getNeoLocation(), getImageNeoBoot()))
             self.StartImageInNeoBoot()
-       
-        system('cp -rf /usr/lib/periodon/* %sImageBoot/%s/usr/lib/periodone ' % ( getNeoLocation(), getImageNeoBoot() ))
+
         #---------------------------------------------
         os.system('touch ' + LinkNeoBoot + '/files/mountpoint.sh; echo "#!/bin/sh\n#DESCRIPTION=This script by gutosie\n"  > ' + LinkNeoBoot + '/files/mountpoint.sh; chmod 0755 ' + LinkNeoBoot + '/files/mountpoint.sh') 
         if getNeoMount() == 'hdd_install_/dev/sda1': 
@@ -172,9 +171,9 @@ class StartImage(Screen):
             elif fileExists('/media/InternalFlash/linuxrootfs1/etc/init.d/neobootmount.sh'):
                 os.system('rm -f /media/InternalFlash/linuxrootfs1/etc/init.d/neobootmount.sh;')
             else:
-                pass
+                pass                                                                 
             #_____Other ARM procesor____ - here you can add your tuner stb   
-            if getBoxHostName() == "h7" or getBoxHostName() == "zgemmah7" or getBoxHostName() == "zgemmah9s" or getBoxHostName() == "h9combo" or getBoxHostName() == "h10" or getBoxHostName() == "hd51" or getBoxHostName() == "ax51" or getBoxHostName() == "ax60" or getBoxHostName() == "ax61" or getBoxHostName() == "sf4008" or getBoxHostName() == "sf8008" or getBoxHostName() == "ustym4kpro" or getBoxHostName() == "tmtwin4k" or getBoxHostName() == "anadol4k" or getBoxHostName() == "protek4k" or getBoxHostName() == "maxytecmulti" or getBoxHostName() == "viper4k" or getBoxHostName() == "dm900" or getBoxHostName() == "dm920" or getBoxHostName() == "et1x000" or getBoxHostName() == "gbquad4k" or getBoxHostName() == "axashisc4k" or getBoxHostName() == "axmultitwin" or getBoxHostName() == "axmulticombo" or getBoxHostName() == "osmio4k" or getBoxHostName() == "osmio4kplus" :              
+            if getBoxHostName() == "h7" or getBoxHostName() == "zgemmah7" or getBoxHostName() == "zgemmah92s" or getBoxHostName() == "zgemmah9s" or getBoxHostName() == "h9combo" or getBoxHostName() == "h10" or getBoxHostName() == "hd51" or getBoxHostName() == "ax51" or getBoxHostName() == "ax60" or getBoxHostName() == "ax61" or getBoxHostName() == "sf4008" or getBoxHostName() == "sf8008" or getBoxHostName() == "ustym4kpro" or getBoxHostName() == "tmtwin4k" or getBoxHostName() == "anadol4k" or getBoxHostName() == "protek4k" or getBoxHostName() == "maxytecmulti" or getBoxHostName() == "viper4k" or getBoxHostName() == "dm900" or getBoxHostName() == "dm920" or getBoxHostName() == "et1x000" or getBoxHostName() == "gbquad4k" or getBoxHostName() == "axashisc4k" or getBoxHostName() == "axmultitwin" or getBoxHostName() == "axmulticombo" or getBoxHostName() == "osmio4k" or getBoxHostName() == "osmio4kplus" :              
                         if getImageNeoBoot() == 'Flash':
                             if fileExists('/.multinfo'):
                                 if fileExists('/media/InternalFlash/linuxrootfs1/sbin/init'):
