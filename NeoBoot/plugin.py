@@ -629,7 +629,7 @@ class NeoBootInstallation(Screen):
                 os.system('rm -r ' + LinkNeoBoot + '/ubi_reader ') 
                 
             if getCPUtype() == 'ARMv7':                                                                                                                                     
-                        os.system('cd ' + LinkNeoBoot + '/; mv ./bin/fbcleararm ./bin/fbclear; chmod 755 ./bin/fbclear; rm -f ./bin/nandwrite; rm -f ./bin/fbclearmips; mv ./ubi_reader_arm ./ubi_reader; rm -r ./ubi_reader_mips; rm ./bin/neoinitmips; rm ./bin/neoinitmipsvu; rm -r ./bin/nanddump_mips; rm ./bin/nfidump; rm ./bin/neobm; rm ./bin/fontforneoboot.ttf; rm ./bin/libpngneo; cd')   
+                        os.system('cd ' + LinkNeoBoot + '/; mv ./bin/fbcleararm ./bin/fbclear; chmod 755 ./bin/fbclear; rm -f ./bin/nandwrite; rm -f ./bin/fbclearmips; mv ./ubi_reader_arm ./ubi_reader; rm -r ./ubi_reader_mips; rm ./bin/neoinitmips; rm ./bin/neoinitmipsvu; rm -r ./bin/nanddump_mips; rm ./bin/nfidump; rm ./bin/neobm; rm ./bin/fontforneoboot.ttf; rm ./bin/libpngneo; rm ./bin/neobm_mips; cd')   
             elif getCPUtype() == 'MIPS':       
                         os.system('cd ' + LinkNeoBoot + '/; mv ./bin/fbclearmips ./bin/fbclear; chmod 755 ./bin/fbclear; rm -f ./bin/fbcleararm; mv ./ubi_reader_mips ./ubi_reader; rm -r ./ubi_reader_arm; rm -f /bin/neoinitarm; rm -f /bin/neoinitarmvu; rm -r ./bin/nanddump_arm; rm -f /bin/neoinitarmvuDuo4k')
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
@@ -1417,7 +1417,7 @@ class NeoBootImageChoose(Screen):
                         mess = _('Sorry, cannot open neo menu image install. Access Fails with Error code 0x70.')
                         self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
                 else:
-                    mess = _('Sorry, could not open image install menu.\nNo access to VIP version.\nAccess error with error code 0x71.')
+                    mess = _('Your receiver is not on the list of supported tuners.\nAccess error with error code 0x71.')
                     self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
 
     def GOImageInstall(self):		
