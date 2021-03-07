@@ -69,6 +69,7 @@ echo ">>>>>>>>>>>>>>>>>>>>>> // START \\ >>>>>>>>>>>>>>>>>>> :" >> $neoLOG
 if [ ! -e  $NEODEVICE$IMAGEKATALOG/.neonextboot ]; then
             #if [ -f /proc/stb/info/vumodel ];  then
                       ln -sfn /sbin/init.sysvinit /sbin/init
+		      mount /dev/sda1 /media/hdd
             #fi
             #echo "Flash " > $NEODEVICE$IMAGEKATALOG/.neonextboot
             echo ""
