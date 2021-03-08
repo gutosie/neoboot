@@ -56,8 +56,8 @@ else:
             from Screens.Console import Console
     	
 loggscrash = time.localtime(time.time())
-PLUGINVERSION = '9.19'
-UPDATEVERSION = '9.19'
+PLUGINVERSION = '9.18'
+UPDATEVERSION = '9.18'
 UPDATEDATE = '"+%Y04%d"'   
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot' 
 
@@ -1713,7 +1713,7 @@ def main(session, **kwargs):
                         LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
                         session.open(MessageBox, _('Sorry cannot open neo menu NeoBoot Installation.\nAccess Fails with Error code 0x08.'), type=MessageBox.TYPE_ERROR)
             else:
-                    self.session.open(MessageBox, _('Sorry cannot open neo menu. Not supported tuners. '), type=MessageBox.TYPE_ERROR)
+                    session.open(MessageBox, _('Sorry cannot open neo menu. Not supported tuners. '), type=MessageBox.TYPE_ERROR)
     else:
             session.open(MessageBox, (_('Sorry, Unable to install, bad satellite receiver or you do not have the full plug-in version\n\nThe full version of the NEO VIP plugin is on address:\nkrzysztofgutosie@.gmail.com')), type=MessageBox.TYPE_ERROR)
             
