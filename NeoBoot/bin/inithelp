@@ -96,16 +96,16 @@ else
             echo -e "\n____Remove file control_boot_new_image____\nFirst start image - The first attempt to launch a new image... "
             sleep 2
     else
-            /usr/bin/showiframe /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/error.mvi > /dev/null 2>&1
-            echo -e "\n\nerror\n\nERROR, Please reinstalling the kernel for flash image now... \n\nError - NeoBoot he can not run it image Restart STB - Back to Flash..."
-            echo "\nWrong kernel"  > $NEODEVICE$IMAGEKATALOG/.kernel/used_flash_kernel
-            echo "Flash "  > $NEODEVICE$IMAGEKATALOG/.neonextboot
-            echo "  Neo-Boot start  boot manager. Waiting to change image - 20s "
-            chmod 0755 $NEOBOOT/bin/neobm
+	        /usr/bin/showiframe /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/error.mvi > /dev/null 2>&1
+			echo -e "\n\nerror\n\nERROR, Please reinstalling the kernel for flash image now... \n\nError - NeoBoot he can not run it image Restart STB - Back to Flash..."
+			echo "\nWrong kernel"  > $NEODEVICE$IMAGEKATALOG/.kernel/used_flash_kernel
+			echo "Flash "  > $NEODEVICE$IMAGEKATALOG/.neonextboot
+			echo "  Neo-Boot start  boot manager. Waiting to change image - 20s "
+			chmod 0755 $NEOBOOT/bin/neobm
 			sleep 10
-            /usr/bin/showiframe $NEOBOOT/neologo.mvi > /dev/null 2>&1
-            $NEOBOOT/bin/neobm > /dev/null 2>&1
-            ln -sfn /sbin/init.sysvinit /sbin/init
+			/usr/bin/showiframe $NEOBOOT/neologo.mvi > /dev/null 2>&1
+			$NEOBOOT/bin/neobm > /dev/null 2>&1
+			ln -sfn /sbin/init.sysvinit /sbin/init
     fi
     if [ -f $NEODEVICE$IMAGEKATALOG/.neonextboot ]; then
         if [ ! -f $NEODEVICE$IMAGEKATALOG/$TARGET/usr/bin/enigma2_pre_start.sh ] ; then
