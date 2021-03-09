@@ -751,10 +751,19 @@ def RemoveUnpackDirs():
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/h7')  
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/h9'):
         rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/bootargs.bin ' + getNeoLocation() + 'ImagesUpload/h9; mv ' + getNeoLocation() + 'ImagesUpload/fastboot.bin ' + getNeoLocation() + 'ImagesUpload/h9')                                                                                                
-        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/h9')                      
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/h9')                    
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/h9se'):
+        rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/bootargs.bin ' + getNeoLocation() + 'ImagesUpload/h9se; mv ' + getNeoLocation() + 'ImagesUpload/fastboot.bin ' + getNeoLocation() + 'ImagesUpload/h9se')                                                                                                
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/h9se')                  
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/i55plus'):
+        rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/bootargs.bin ' + getNeoLocation() + 'ImagesUpload/i55plus; mv ' + getNeoLocation() + 'ImagesUpload/fastboot.bin ' + getNeoLocation() + 'ImagesUpload/i55plus')                                                                                                
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/i55plus')                     
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/h9combo'):
         rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/force_h9combo_READ.ME ' + getNeoLocation() + 'ImagesUpload/h9combo; mv ' + getNeoLocation() + 'ImagesUpload/unforce_h9combo.txt ' + getNeoLocation() + 'ImagesUpload/h9combo')                                                                                                
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/h9combo')  
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/h9combose'):
+        rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/force_h9combose_READ.ME ' + getNeoLocation() + 'ImagesUpload/h9combo; mv ' + getNeoLocation() + 'ImagesUpload/unforce_h9combose.txt ' + getNeoLocation() + 'ImagesUpload/h9combose')                                                                                                
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/h9combose')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/h10'):
         rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/force_h10_READ.ME ' + getNeoLocation() + 'ImagesUpload/h10; mv ' + getNeoLocation() + 'ImagesUpload/unforce_h10.txt ' + getNeoLocation() + 'ImagesUpload/h10')                                                                                                
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/h10')  
@@ -1345,10 +1354,22 @@ def NEOBootExtract(source, target, ZipDelete):
             os.system('echo "Please wait. System installation Zgemma H9S ."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/zgemma/h9/rootfs.tar.bz2; tar -jxf ' + getNeoLocation() + 'ImagesUpload/zgemma/h9/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd)                                                                          
+        elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/zgemma/h9se/rootfs.tar.bz2'):
+            os.system('echo "Please wait. System installation Zgemma H9SE ."')
+            cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/zgemma/h9se/rootfs.tar.bz2; tar -jxf ' + getNeoLocation() + 'ImagesUpload/zgemma/h9se/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
+            rc = os.system(cmd) 
+        elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/zgemma/i55plus/rootfs.tar.bz2'):
+            os.system('echo "Please wait. System installation Zgemma i55plus ."')
+            cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/zgemma/i55plus/rootfs.tar.bz2; tar -jxf ' + getNeoLocation() + 'ImagesUpload/zgemma/i55plus/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
+            rc = os.system(cmd)
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/h9combo/rootfs.tar.bz2'):
             os.system('echo "Please wait. System installation Zgemma h9combo ."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/h9combo/rootfs.tar.bz2; tar -jxf ' + getNeoLocation() + 'ImagesUpload/h9combo/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd) 
+        elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/h9combose/rootfs.tar.bz2'):
+            os.system('echo "Please wait. System installation Zgemma h9combose ."')
+            cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/h9combose/rootfs.tar.bz2; tar -jxf ' + getNeoLocation() + 'ImagesUpload/h9combose/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
+            rc = os.system(cmd)
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/h10/rootfs.tar.bz2'):
             os.system('echo "Please wait. System installation Zgemma h10 ."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/h10/rootfs.tar.bz2; tar -jxf ' + getNeoLocation() + 'ImagesUpload/h10/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
