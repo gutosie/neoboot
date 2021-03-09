@@ -1,12 +1,31 @@
 #!/bin/sh
-NEODEVICE=`cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`
-IMAGEKATALOG=ImageBoot
-BOXNAME=`cat /etc/hostname`
+echo -e "\n_________________________ Start inithelp __________________________"
 if [ -f /proc/stb/info/vumodel ];  then  
         VUMODEL=$( cat /proc/stb/info/vumodel )
-fi 
-echo -e "\n_________________________ Start inithelp __________________________"
-if [ ! -f  $NEODEVICE$IMAGEKATALOG/.neonextboot ]; then
+fi
+NEOBOOT=/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/
+NEODEVICE=`cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`
+IMAGEKATALOG=ImageBoot
+BOXNAME=`cat /etc/hostname` 
+TARGET=Flash
+if [ -f $NEODEVICE$IMAGEKATALOG/.neonextboot ]; then
+        TARGET=`cat $NEODEVICE$IMAGEKATALOG/.neonextboot`
+fi
+if [ $TARGET = "Flash" ]; then
+        /bin/umount /media/usb > /dev/null 2>&1
+        echo "BOOTNEO is booting image from " $TARGET        
+        /bin/umount /media/hdd > /dev/null 2>&1
+        /usr/bin/showiframe $NEOBOOT/neowait.mvi > /dev/null 2>&1
+                    ln -sfn /sbin/init.sysvinit /sbin/init
+                    echo -e "\n----------------------------------"
+                    echo -e "     BOOT UP IMAGE FROM FLASH     "
+                    echo -e "----------------------------------"
+                    sleep 5
+                    PATH=/sbin:/bin:/usr/sbin:/usr/bin
+                    break;
+
+else
+    if [ ! -f  $NEODEVICE$IMAGEKATALOG/.neonextboot ]; then
 	    mnttest="nolocation"
 	    if [ -f /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/install  ]; then
         	        orgimag1=`mount | sed '/sd/!d' | cut -d" " -f1`
@@ -58,39 +77,16 @@ if [ ! -f  $NEODEVICE$IMAGEKATALOG/.neonextboot ]; then
 	elif [ $mnttest == "location" ]; then
 		    echo -e "\n_______________________ NeoBoot mount by LOCATION _______________________  "
 	fi
-fi
-if [ ! -f  $NEODEVICE$IMAGEKATALOG/.neonextboot ]; then
-            #if [ -f /proc/stb/info/vumodel ];  then
-                      #ln -sfn /sbin/init.sysvinit /sbin/init
-                      mount /dev/sda1 /media/hdd
-            #fi
-            #echo "Flash " > $NEODEVICE$IMAGEKATALOG/.neonextboot
+    fi
+    if [ ! -f  $NEODEVICE$IMAGEKATALOG/.neonextboot ]; then
+            ln -sfn /sbin/init.sysvinit /sbin/init
+            mount /dev/sda1 /media/hdd
+            echo "Flash " > $NEODEVICE$IMAGEKATALOG/.neonextboot
             echo ""
-            echo -e "\nNEOBOOT - does not detect the location file neonextboot -  Error - Back to Flash..."
+            echo -e "\nNEOBOOT - does not detect the location file neonextboot. Back to Flash..."
             sleep 5
-fi
-TARGET=Flash
-if [ -f $NEODEVICE$IMAGEKATALOG/.neonextboot ]; then
-        TARGET=`cat $NEODEVICE$IMAGEKATALOG/.neonextboot`
-fi
-if [ $TARGET = "Flash" ]; then
-        echo "BOOTNEO is booting image from " $TARGET
-        /bin/umount /media/usb > /dev/null 2>&1
-        /bin/umount /media/hdd > /dev/null 2>&1
-        /usr/bin/showiframe /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neowait.mvi > /dev/null 2>&1
-        #if [ -f /proc/stb/info/vumodel ];  then
-                    ln -sfn /sbin/init.sysvinit /sbin/init
-                    echo -e "\n----------------------------------"
-                    echo -e "     BOOT UP IMAGE FROM FLASH     "
-                    echo -e "----------------------------------"
-                    sleep 5
-                    PATH=/sbin:/bin:/usr/sbin:/usr/bin
-                    #reboot -d -f
-                    break;
-    #fi
-else
-    ######### test boot new imaga>>>>  
-    echo -e "\n ________ test boot new imaga ________>>>> "
+    fi  
+    echo -e "\n ________ test boot new imaga ________ "
     sleep 2
     if [ -f $NEODEVICE$IMAGEKATALOG/$TARGET/.control_ok ]; then
             [ $PL ] && echo "Nie ma bledu, normalny start image..." || echo "No Error - Booting image normal..."
@@ -104,14 +100,11 @@ else
             echo -e "\n\nerror\n\nERROR, Please reinstalling the kernel for flash image now... \n\nError - NeoBoot he can not run it image Restart STB - Back to Flash..."
             echo "\nWrong kernel"  > $NEODEVICE$UPLOAD/.kernel/used_flash_kernel
             echo "Flash "  > $NEODEVICE$IMAGEKATALOG/.neonextboot
-            #if [ -f /proc/stb/info/vumodel ];  then
-                    #ln -sfn /sbin/init.sysvinit /sbin/init
-                    echo "DONE "
-                    echo -n "END INIT INFO Rebooting..."
-                    sleep 15
-                    PATH=/sbin:/bin:/usr/sbin:/usr/bin
-                    #reboot -f
-            #fi
+            echo "  Neo-Boot start  boot manager. Waiting to change image - 20s "
+            chmod 0755 $NEOBOOT/bin/neobm
+            /usr/bin/showiframe $NEOBOOT/neologo.mvi > /dev/null 2>&1
+            $NEOBOOT/bin/neobm > /dev/null 2>&1
+            ln -sfn /sbin/init.sysvinit /sbin/init
     fi
     if [ -f $NEODEVICE$IMAGEKATALOG/.neonextboot ]; then
         if [ ! -f $NEODEVICE$IMAGEKATALOG/$TARGET/usr/bin/enigma2_pre_start.sh ] ; then
