@@ -595,7 +595,7 @@ class NeoBootInstallation(Screen):
                                 os.system('cd ' + getNeoLocation() + 'ImagesUpload/.kernel/; /usr/sbin/nanddump /dev/mtd1  > vmlinux.gz; mv ./vmlinux.gz ./' + getBoxHostName() + '.vmlinux.gz' )
                             elif not fileExists ('/usr/sbin/nanddump'):
                                 os.system('cd ' + getNeoLocation() + 'ImagesUpload/.kernel/; ' + LinkNeoBoot + '/bin/nanddump_mips /dev/mtd1  > vmlinux.gz; mv ./vmlinux.gz ./' + getBoxHostName() + '.vmlinux.gz' )
-                            os.system('cd ' + LinkNeoBoot + '/; rm ./bin/neobm; rm ./bin/fontforneoboot.ttf; rm ./bin/libpngneo; mv ' + LinkNeoBoot + '/tmpfiles/target/vu_dev_mtd1.sh ' + LinkNeoBoot + '/files/kernel.sh;mv ' + LinkNeoBoot + '/tmpfiles/runpy/vu_mtd1_run.py ' + LinkNeoBoot + '/run.py; cd')                         
+                            os.system('cd ' + LinkNeoBoot + '/; rm ./bin/fontforneoboot.ttf; rm ./bin/libpngneo; mv ' + LinkNeoBoot + '/tmpfiles/target/vu_dev_mtd1.sh ' + LinkNeoBoot + '/files/kernel.sh;mv ' + LinkNeoBoot + '/tmpfiles/runpy/vu_mtd1_run.py ' + LinkNeoBoot + '/run.py; cd')                         
 
                         #vuplus stb mtd2  
                         elif getBoxHostName() == 'vusolo2' or getBoxHostName() == 'vuduo2' or getBoxHostName() == 'vusolose' or getBoxHostName() == 'vuzero':
@@ -603,11 +603,11 @@ class NeoBootInstallation(Screen):
                                 os.system('cd ' + getNeoLocation() + 'ImagesUpload/.kernel/; /usr/sbin/nanddump /dev/mtd2  > vmlinux.gz; mv ./vmlinux.gz ./' + getBoxHostName() + '.vmlinux.gz' )
                             elif not fileExists ('/usr/sbin/nanddump'):
                                 os.system('cd ' + getNeoLocation() + 'ImagesUpload/.kernel/; ' + LinkNeoBoot + '/bin/nanddump_mips /dev/mtd2  > vmlinux.gz; mv ./vmlinux.gz ./' + getBoxHostName() + '.vmlinux.gz' )
-                            os.system('cd ' + LinkNeoBoot + '/; rm ./bin/neobm; rm ./bin/fontforneoboot.ttf; rm ./bin/libpngneo; mv ' + LinkNeoBoot + '/tmpfiles/target/vu_dev_mtd2.sh ' + LinkNeoBoot + '/files/kernel.sh;mv ' + LinkNeoBoot + '/tmpfiles/runpy/vu_mtd2_run.py ' + LinkNeoBoot + '/run.py; cd')                         
+                            os.system('cd ' + LinkNeoBoot + '/; rm ./bin/fontforneoboot.ttf; rm ./bin/libpngneo; mv ' + LinkNeoBoot + '/tmpfiles/target/vu_dev_mtd2.sh ' + LinkNeoBoot + '/files/kernel.sh;mv ' + LinkNeoBoot + '/tmpfiles/runpy/vu_mtd2_run.py ' + LinkNeoBoot + '/run.py; cd')                         
 
                         #Other stb MIPS 
-                        else:                                                                                                                                                                                                                               
-                            os.system('cd ' + LinkNeoBoot + '/; chmod 755 ./bin/nandwrite; mv ./bin/fontforneoboot.ttf /usr/share/fonts; mv ./bin/libpngneo /usr/lib; cp -f ./bin/neoinitmips /sbin/neoinitmips; cp -f ./bin/neoinitmipsvu /sbin/neoinitmipsvu; chmod 0755 /sbin/neoinit*; chmod 0755 ./bin/neobm; chmod 0755 /usr/lib/libpngneo; cd; chmod 0755 /sbin/neoinitmips; ln -sf /media/neoboot/ImageBoot/.neonextboot /etc/neoimage; mv ' + LinkNeoBoot + '/tmpfiles/runpy/mips_run.py ' + LinkNeoBoot + '/run.py; cd')
+                        else:                                                                                                                                                                                                                                                              
+                            os.system('cd ' + LinkNeoBoot + '/; chmod 755 ./bin/nandwrite; mv ./bin/fontforneoboot.ttf /usr/share/fonts; mv ./bin/libpngneo /usr/lib; cp -f ./bin/neoinitmips /sbin/neoinitmips; cp -f ./bin/neoinitmipsvu /sbin/neoinitmipsvu; chmod 0755 /sbin/neoinit*; rm -f ./bin/neobm; mv ./bin/neobmmips ./bin/neobm; chmod 0755 ./bin/neobm; chmod 0755 /usr/lib/libpngneo; cd; chmod 0755 /sbin/neoinitmips; ln -sf /media/neoboot/ImageBoot/.neonextboot /etc/neoimage; mv ' + LinkNeoBoot + '/tmpfiles/runpy/mips_run.py ' + LinkNeoBoot + '/run.py; cd')
                             
                         os.system('cp -Rf ' + LinkNeoBoot + '/bin/neoinitmips /sbin/neoinitmips; cp -Rf ' + LinkNeoBoot + '/bin/neoinitmipsvu /sbin/neoinitmipsvu; chmod 755 /sbin/neoinit*') 
                         os.system('chmod 755 ' + LinkNeoBoot + '/bin/nfidump; chmod 0755 ' + LinkNeoBoot + '/bin/nanddump_mips; rm -r ' + LinkNeoBoot + '/bin/neoinitar*; cd /')
@@ -615,8 +615,6 @@ class NeoBootInstallation(Screen):
                             ('cd ' + LinkNeoBoot + '/;mv ./bin/fontforneoboot.ttf /usr/share/fonts; cd /')
                         if fileExists('' + LinkNeoBoot + '/bin/libpngneo'):
                             ('cd ' + LinkNeoBoot + '/;mv ./bin/libpngneo /usr/lib; chmod 0755 /usr/lib/libpngneo; cd /')                   
-                        if fileExists('' + LinkNeoBoot + '/bin/neobm'):
-                            ('cd ' + LinkNeoBoot + '/;chmod 0755 ./bin/neobm; cd /')
                         if fileExists('' + LinkNeoBoot + '/bin/neobm'):
                             ('cd ' + LinkNeoBoot + '/;chmod 0755 ./bin/neobm; cd /')
             else:
@@ -629,9 +627,9 @@ class NeoBootInstallation(Screen):
                 os.system('rm -r ' + LinkNeoBoot + '/ubi_reader ') 
                 
             if getCPUtype() == 'ARMv7':                                                                                                                                     
-                        os.system('cd ' + LinkNeoBoot + '/; mv ./bin/fbcleararm ./bin/fbclear; chmod 755 ./bin/fbclear; rm -f ./bin/nandwrite; rm -f ./bin/fbclearmips; mv ./ubi_reader_arm ./ubi_reader; rm -r ./ubi_reader_mips; rm ./bin/neoinitmips; rm ./bin/neoinitmipsvu; rm -r ./bin/nanddump_mips; rm ./bin/nfidump; rm ./bin/neobm; rm ./bin/fontforneoboot.ttf; rm ./bin/libpngneo; rm ./bin/neobm_mips; cd')   
+                        os.system('cd ' + LinkNeoBoot + '/; mv ./bin/fbcleararm ./bin/fbclear; chmod 755 ./bin/fbclear; rm -f ./bin/nandwrite; rm -f ./bin/fbclearmips; mv ./ubi_reader_arm ./ubi_reader; rm -r ./ubi_reader_mips; rm ./bin/neoinitmips; rm ./bin/neoinitmipsvu; rm -r ./bin/nanddump_mips; rm ./bin/nfidump; rm ./bin/neobmmips; rm ./bin/neobm; mv ./bin/neobmarm ./bin/neobm; rm ./bin/fontforneoboot.ttf; rm ./bin/libpngneo; cd')   
             elif getCPUtype() == 'MIPS':       
-                        os.system('cd ' + LinkNeoBoot + '/; mv ./bin/fbclearmips ./bin/fbclear; chmod 755 ./bin/fbclear; rm -f ./bin/fbcleararm; mv ./ubi_reader_mips ./ubi_reader; rm -r ./ubi_reader_arm; rm -f /bin/neoinitarm; rm -f /bin/neoinitarmvu; rm -r ./bin/nanddump_arm; rm -f /bin/neoinitarmvuDuo4k')
+                        os.system('cd ' + LinkNeoBoot + '/; mv ./bin/fbclearmips ./bin/fbclear; chmod 755 ./bin/fbclear; rm -f ./bin/fbcleararm; mv ./ubi_reader_mips ./ubi_reader; rm -r ./ubi_reader_arm; rm -f /bin/neoinitarm; rm -f /bin/neoinitarmvu; rm -r ./bin/nanddump_arm; rm -f /bin/neoinitarmvuDuo4k; ; rm -f ./bin/neobmarm')
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
             os.system(' ln -sfn ' + getNeoLocation() + 'ImageBoot/.neonextboot /etc/neoimage; chmod 644 ' + getNeoLocation() + 'ImagesUpload/.kernel/*; ln -sfn ' + getNeoLocation() + 'ImageBoot /etc/imageboot; rm -r ' + LinkNeoBoot + '/tmpfiles; chmod 0755 ' + LinkNeoBoot + '/files/kernel.sh')
                                                                                                                                                                                                                                                                                                       
