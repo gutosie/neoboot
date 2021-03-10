@@ -1690,7 +1690,8 @@ def main(session, **kwargs):
                             try:
                                     session.open(NeoBootImageChoose)
                             except:
-                                    session.open(MessageBox, _('Open NeoReboot Force Reboot in MENU'), type=MessageBox.TYPE_ERROR 
+                                    from Plugins.Extensions.NeoReboot.plugin import ForceReboot
+                                    session.open(ForceReboot) 
                     else:
                         if float(PLUGINVERSION) != version:
                             try:
