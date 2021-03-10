@@ -144,14 +144,14 @@ class StartImage(Screen):
                     os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p4 /media/InternalFlash')
 
         system('chmod 755 ' + LinkNeoBoot + '/files/kernel.sh')
-        system('cp -rf /usr/lib/periodon/* %sImageBoot/%s/usr/lib/periodone ' % ( getNeoLocation(), getImageNeoBoot() ))        
         self.sel = self['list'].getCurrent()
         if self.sel:
             self.sel = self.sel[2]
         if self.sel == 0:
             if fileExists('/media/InternalFlash/etc/init.d/neobootmount.sh'):
                 os.system('rm -f /media/InternalFlash/etc/init.d/neobootmount.sh;')
-
+            if not fileExists('/bin/busybox.nosuid'):
+                os.system('ln -sf "busybox" "/bin/busybox.nosuid" ')
             #VUPLUS ARM  ultimo4k, solo4k, uno4k, uno4kse - mmcblk0p1.sh
             if getCPUtype() == "ARMv7" and getBoxHostName() == "vuultimo4k" or getBoxHostName() == "vusolo4k" or getBoxHostName() == "vuuno4k" or getBoxHostName() == "vuuno4kse" :
                         if not fileExists('%sImagesUpload/.kernel/flash-kernel-%s.bin' % (getNeoLocation(), getBoxHostName()) ):
