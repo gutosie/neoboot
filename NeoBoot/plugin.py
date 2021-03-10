@@ -56,8 +56,8 @@ else:
             from Screens.Console import Console
     	
 loggscrash = time.localtime(time.time())
-PLUGINVERSION = '9.20'
-UPDATEVERSION = '9.20'
+PLUGINVERSION = '9.21'
+UPDATEVERSION = '9.21'
 UPDATEDATE = '"+%Y04%d"'   
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot' 
 
@@ -867,7 +867,8 @@ class NeoBootImageChoose(Screen):
                     self.session.open(MessageBox, _('The plugin not installed.\nAccess Fails with Error code 0x04.'), MessageBox.TYPE_INFO, 10)
                     self.close()            
             else:
-                session.open(MessageBox, _('Geen internet'), type=MessageBox.TYPE_ERROR)
+                mess = _('Geen internet')
+                self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
         else:
                 mess = _('Upload image files in zip formats to the ImagesUpload location.' )
                 self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)  
@@ -1060,7 +1061,8 @@ class NeoBootImageChoose(Screen):
                     ybox = self.session.openWithCallback(self.chackupdate2, MessageBox, message, MessageBox.TYPE_YESNO)
                     ybox.setTitle(_('The download neoboot update.'))
         else:
-                session.open(MessageBox, _('Geen internet'), type=MessageBox.TYPE_ERROR)
+                mess = _('Geen internet')
+                self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
 
     def chackupdate2(self, yesno):		
         if yesno:
@@ -1517,7 +1519,8 @@ class NeoBootImageChoose(Screen):
                 mess = (_('Directory %sImagesUpload  is empty\nPlease upload the image files in zip or nfi formats to install') % getNeoLocation() )
                 self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)  
         else:
-            session.open(MessageBox, _('Geen internet'), type=MessageBox.TYPE_ERROR)
+                mess = _('Geen internet')
+                self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
 
     def bootIMG(self):
         if not fileExists('/.multinfo'):
@@ -1687,8 +1690,7 @@ def main(session, **kwargs):
                             try:
                                     session.open(NeoBootImageChoose)
                             except:
-                                    from Plugins.Extensions.NeoReboot.plugin import ForceReboot
-                                    session.open(ForceReboot) 
+                                    session.open(MessageBox, _('Open NeoReboot Force Reboot in MENU'), type=MessageBox.TYPE_ERROR 
                     else:
                         if float(PLUGINVERSION) != version:
                             try:
