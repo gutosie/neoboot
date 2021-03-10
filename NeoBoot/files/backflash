@@ -21,6 +21,10 @@ if [ -f /tmp/zImage ];  then
     rm -f /tmp/zImage    
 fi
 
+if [ ! -f /bin/busybox.nosuid ];  then
+        ln -sf "busybox" "/bin/busybox.nosuid"   
+fi
+
 KERNEL=`uname -r` 
 IMAGE=ImageBoot
 IMAGENEXTBOOT=/ImageBoot/.neonextboot
