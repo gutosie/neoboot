@@ -56,8 +56,8 @@ else:
             from Screens.Console import Console
     	
 loggscrash = time.localtime(time.time())
-PLUGINVERSION = '9.19'
-UPDATEVERSION = '9.19'
+PLUGINVERSION = '9.20'
+UPDATEVERSION = '9.20'
 UPDATEDATE = '"+%Y04%d"'   
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot' 
 
@@ -552,8 +552,8 @@ class NeoBootInstallation(Screen):
                 if os.system('opkg list-installed | grep mtd-utils-ubifs') != 0:                                                                                                                                                                                                                                                                                                                                                
                             os.system('opkg install mtd-utils-ubifs')
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-            #_____Other ARM procesor____ - here you can add your tuner stb                                    
-            if getCPUtype() == "ARMv7" and getBoxHostName() == "zgemmai55plus " or getBoxHostName() == "zgemmah92s" or getBoxHostName() == "h9" or getBoxHostName() == "h7" or getBoxHostName() == "zgemmah7" or getBoxHostName() == "zgemmah9s" or getBoxHostName() == "h9combo" or getBoxHostName() == "h10" or getBoxHostName() == "hd51" or getBoxHostName() == "ax51" or getBoxHostName() == "ax60" or getBoxHostName() == "ax61" or getBoxHostName() == "sf4008" or getBoxHostName() == "sf8008" or getBoxHostName() == "ustym4kpro" or getBoxHostName() == "tmtwin4k" or getBoxHostName() == "anadol4k" or getBoxHostName() == "protek4k" or getBoxHostName() == "maxytecmulti" or getBoxHostName() == "viper4k" or getBoxHostName() == "dm900" or getBoxHostName() == "dm920" or getBoxHostName() == "et1x000" or getBoxHostName() == "gbquad4k" or getBoxHostName() == "axashisc4k" or getBoxHostName() == "axmultitwin" or getBoxHostName() == "axmulticombo" or getBoxHostName() == "osmio4k" or getBoxHostName() == "osmio4kplus" :              
+            #_____Other ARM procesor____ - here you can add your tuner stb                                                                                                                                                                   
+            if getCPUtype() == "ARMv7" and getBoxHostName() == "axashistwin" or getBoxHostName() == "i55plus " or getBoxHostName() == "zgemmai55plus " or getBoxHostName() == "h92s" or getBoxHostName() == "zgemmah92s" or getBoxHostName() == "h7" or getBoxHostName() == "zgemmah7" or getBoxHostName() == "h9" or getBoxHostName() == "zgemmah9" or getBoxHostName() == "h9s" or getBoxHostName() == "zgemmah9s" or getBoxHostName() == "h9se" or getBoxHostName() == "zgemmah9se" or getBoxHostName() == "h9twin" or getBoxHostName() == "zgemmah9twin" or getBoxHostName() == "h9combo" or getBoxHostName() == "h9combose" or getBoxHostName() == "h10" or getBoxHostName() == "zgemmahh10" or getBoxHostName() == "hd51" or getBoxHostName() == "ax51" or getBoxHostName() == "ax60" or getBoxHostName() == "ax61" or getBoxHostName() == "sf4008" or getBoxHostName() == "sf8008" or getBoxHostName() == "ustym4kpro" or getBoxHostName() == "tmtwin4k" or getBoxHostName() == "anadol4k" or getBoxHostName() == "protek4k" or getBoxHostName() == "maxytecmulti" or getBoxHostName() == "viper4k" or getBoxHostName() == "dm900" or getBoxHostName() == "dm920" or getBoxHostName() == "et1x000" or getBoxHostName() == "gbquad4k" or getBoxHostName() == "axashisc4k" or getBoxHostName() == "axmultitwin" or getBoxHostName() == "axmulticombo" or getBoxHostName() == "osmio4k" or getBoxHostName() == "osmio4kplus" :              
                         os.system('cp -f ' + LinkNeoBoot + '/bin/neoinitarm /sbin/neoinitarm; chmod 0755 /sbin/neoinitarm; ln -sfn /sbin/neoinitarm /sbin/init; mv ' + LinkNeoBoot + '/tmpfiles/runpy/arm_run.py ' + LinkNeoBoot + '/run.py; cd')                                                                          
             #VUPLUS ARM
             elif getCPUtype() == "ARMv7" and getBoxHostName() !=  "ustym4kpro":
@@ -595,7 +595,7 @@ class NeoBootInstallation(Screen):
                                 os.system('cd ' + getNeoLocation() + 'ImagesUpload/.kernel/; /usr/sbin/nanddump /dev/mtd1  > vmlinux.gz; mv ./vmlinux.gz ./' + getBoxHostName() + '.vmlinux.gz' )
                             elif not fileExists ('/usr/sbin/nanddump'):
                                 os.system('cd ' + getNeoLocation() + 'ImagesUpload/.kernel/; ' + LinkNeoBoot + '/bin/nanddump_mips /dev/mtd1  > vmlinux.gz; mv ./vmlinux.gz ./' + getBoxHostName() + '.vmlinux.gz' )
-                            os.system('cd ' + LinkNeoBoot + '/; rm ./bin/neobm; rm ./bin/fontforneoboot.ttf; rm ./bin/libpngneo; mv ' + LinkNeoBoot + '/tmpfiles/target/vu_dev_mtd1.sh ' + LinkNeoBoot + '/files/kernel.sh;mv ' + LinkNeoBoot + '/tmpfiles/runpy/vu_mtd1_run.py ' + LinkNeoBoot + '/run.py; cd')                         
+                            os.system('cd ' + LinkNeoBoot + '/; rm ./bin/fontforneoboot.ttf; rm ./bin/libpngneo; mv ' + LinkNeoBoot + '/tmpfiles/target/vu_dev_mtd1.sh ' + LinkNeoBoot + '/files/kernel.sh;mv ' + LinkNeoBoot + '/tmpfiles/runpy/vu_mtd1_run.py ' + LinkNeoBoot + '/run.py; cd')                         
 
                         #vuplus stb mtd2  
                         elif getBoxHostName() == 'vusolo2' or getBoxHostName() == 'vuduo2' or getBoxHostName() == 'vusolose' or getBoxHostName() == 'vuzero':
@@ -603,11 +603,11 @@ class NeoBootInstallation(Screen):
                                 os.system('cd ' + getNeoLocation() + 'ImagesUpload/.kernel/; /usr/sbin/nanddump /dev/mtd2  > vmlinux.gz; mv ./vmlinux.gz ./' + getBoxHostName() + '.vmlinux.gz' )
                             elif not fileExists ('/usr/sbin/nanddump'):
                                 os.system('cd ' + getNeoLocation() + 'ImagesUpload/.kernel/; ' + LinkNeoBoot + '/bin/nanddump_mips /dev/mtd2  > vmlinux.gz; mv ./vmlinux.gz ./' + getBoxHostName() + '.vmlinux.gz' )
-                            os.system('cd ' + LinkNeoBoot + '/; rm ./bin/neobm; rm ./bin/fontforneoboot.ttf; rm ./bin/libpngneo; mv ' + LinkNeoBoot + '/tmpfiles/target/vu_dev_mtd2.sh ' + LinkNeoBoot + '/files/kernel.sh;mv ' + LinkNeoBoot + '/tmpfiles/runpy/vu_mtd2_run.py ' + LinkNeoBoot + '/run.py; cd')                         
+                            os.system('cd ' + LinkNeoBoot + '/; rm ./bin/fontforneoboot.ttf; rm ./bin/libpngneo; mv ' + LinkNeoBoot + '/tmpfiles/target/vu_dev_mtd2.sh ' + LinkNeoBoot + '/files/kernel.sh;mv ' + LinkNeoBoot + '/tmpfiles/runpy/vu_mtd2_run.py ' + LinkNeoBoot + '/run.py; cd')                         
 
                         #Other stb MIPS 
-                        else:                                                                                                                                                                                                                               
-                            os.system('cd ' + LinkNeoBoot + '/; chmod 755 ./bin/nandwrite; mv ./bin/fontforneoboot.ttf /usr/share/fonts; mv ./bin/libpngneo /usr/lib; cp -f ./bin/neoinitmips /sbin/neoinitmips; cp -f ./bin/neoinitmipsvu /sbin/neoinitmipsvu; chmod 0755 /sbin/neoinit*; chmod 0755 ./bin/neobm; chmod 0755 /usr/lib/libpngneo; cd; chmod 0755 /sbin/neoinitmips; ln -sf /media/neoboot/ImageBoot/.neonextboot /etc/neoimage; mv ' + LinkNeoBoot + '/tmpfiles/runpy/mips_run.py ' + LinkNeoBoot + '/run.py; cd')
+                        else:                                                                                                                                                                                                                                                              
+                            os.system('cd ' + LinkNeoBoot + '/; chmod 755 ./bin/nandwrite; mv ./bin/fontforneoboot.ttf /usr/share/fonts; mv ./bin/libpngneo /usr/lib; cp -f ./bin/neoinitmips /sbin/neoinitmips; cp -f ./bin/neoinitmipsvu /sbin/neoinitmipsvu; chmod 0755 /sbin/neoinit*; rm -f ./bin/neobm; mv ./bin/neobmmips ./bin/neobm; chmod 0755 ./bin/neobm; chmod 0755 /usr/lib/libpngneo; cd; chmod 0755 /sbin/neoinitmips; ln -sf /media/neoboot/ImageBoot/.neonextboot /etc/neoimage; mv ' + LinkNeoBoot + '/tmpfiles/runpy/mips_run.py ' + LinkNeoBoot + '/run.py; cd')
                             
                         os.system('cp -Rf ' + LinkNeoBoot + '/bin/neoinitmips /sbin/neoinitmips; cp -Rf ' + LinkNeoBoot + '/bin/neoinitmipsvu /sbin/neoinitmipsvu; chmod 755 /sbin/neoinit*') 
                         os.system('chmod 755 ' + LinkNeoBoot + '/bin/nfidump; chmod 0755 ' + LinkNeoBoot + '/bin/nanddump_mips; rm -r ' + LinkNeoBoot + '/bin/neoinitar*; cd /')
@@ -615,8 +615,6 @@ class NeoBootInstallation(Screen):
                             ('cd ' + LinkNeoBoot + '/;mv ./bin/fontforneoboot.ttf /usr/share/fonts; cd /')
                         if fileExists('' + LinkNeoBoot + '/bin/libpngneo'):
                             ('cd ' + LinkNeoBoot + '/;mv ./bin/libpngneo /usr/lib; chmod 0755 /usr/lib/libpngneo; cd /')                   
-                        if fileExists('' + LinkNeoBoot + '/bin/neobm'):
-                            ('cd ' + LinkNeoBoot + '/;chmod 0755 ./bin/neobm; cd /')
                         if fileExists('' + LinkNeoBoot + '/bin/neobm'):
                             ('cd ' + LinkNeoBoot + '/;chmod 0755 ./bin/neobm; cd /')
             else:
@@ -629,9 +627,9 @@ class NeoBootInstallation(Screen):
                 os.system('rm -r ' + LinkNeoBoot + '/ubi_reader ') 
                 
             if getCPUtype() == 'ARMv7':                                                                                                                                     
-                        os.system('cd ' + LinkNeoBoot + '/; mv ./bin/fbcleararm ./bin/fbclear; chmod 755 ./bin/fbclear; rm -f ./bin/nandwrite; rm -f ./bin/fbclearmips; mv ./ubi_reader_arm ./ubi_reader; rm -r ./ubi_reader_mips; rm ./bin/neoinitmips; rm ./bin/neoinitmipsvu; rm -r ./bin/nanddump_mips; rm ./bin/nfidump; rm ./bin/neobm; rm ./bin/fontforneoboot.ttf; rm ./bin/libpngneo; rm ./bin/neobm_mips; cd')   
+                        os.system('cd ' + LinkNeoBoot + '/; mv ./bin/fbcleararm ./bin/fbclear; chmod 755 ./bin/fbclear; rm -f ./bin/nandwrite; rm -f ./bin/fbclearmips; mv ./ubi_reader_arm ./ubi_reader; rm -r ./ubi_reader_mips; rm ./bin/neoinitmips; rm ./bin/neoinitmipsvu; rm -r ./bin/nanddump_mips; rm ./bin/nfidump; rm ./bin/neobmmips; rm ./bin/neobm; mv ./bin/neobmarm ./bin/neobm; rm ./bin/fontforneoboot.ttf; rm ./bin/libpngneo; cd')   
             elif getCPUtype() == 'MIPS':       
-                        os.system('cd ' + LinkNeoBoot + '/; mv ./bin/fbclearmips ./bin/fbclear; chmod 755 ./bin/fbclear; rm -f ./bin/fbcleararm; mv ./ubi_reader_mips ./ubi_reader; rm -r ./ubi_reader_arm; rm -f /bin/neoinitarm; rm -f /bin/neoinitarmvu; rm -r ./bin/nanddump_arm; rm -f /bin/neoinitarmvuDuo4k')
+                        os.system('cd ' + LinkNeoBoot + '/; mv ./bin/fbclearmips ./bin/fbclear; chmod 755 ./bin/fbclear; rm -f ./bin/fbcleararm; mv ./ubi_reader_mips ./ubi_reader; rm -r ./ubi_reader_arm; rm -f /bin/neoinitarm; rm -f /bin/neoinitarmvu; rm -r ./bin/nanddump_arm; rm -f /bin/neoinitarmvuDuo4k; ; rm -f ./bin/neobmarm')
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
             os.system(' ln -sfn ' + getNeoLocation() + 'ImageBoot/.neonextboot /etc/neoimage; chmod 644 ' + getNeoLocation() + 'ImagesUpload/.kernel/*; ln -sfn ' + getNeoLocation() + 'ImageBoot /etc/imageboot; rm -r ' + LinkNeoBoot + '/tmpfiles; chmod 0755 ' + LinkNeoBoot + '/files/kernel.sh')
                                                                                                                                                                                                                                                                                                       
@@ -869,8 +867,7 @@ class NeoBootImageChoose(Screen):
                     self.session.open(MessageBox, _('The plugin not installed.\nAccess Fails with Error code 0x04.'), MessageBox.TYPE_INFO, 10)
                     self.close()            
             else:
-                mess = _('Geen internet')
-                self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
+                session.open(MessageBox, _('Geen internet'), type=MessageBox.TYPE_ERROR)
         else:
                 mess = _('Upload image files in zip formats to the ImagesUpload location.' )
                 self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)  
@@ -1063,8 +1060,7 @@ class NeoBootImageChoose(Screen):
                     ybox = self.session.openWithCallback(self.chackupdate2, MessageBox, message, MessageBox.TYPE_YESNO)
                     ybox.setTitle(_('The download neoboot update.'))
         else:
-                mess = _('Geen internet')
-                self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
+                session.open(MessageBox, _('Geen internet'), type=MessageBox.TYPE_ERROR)
 
     def chackupdate2(self, yesno):		
         if yesno:
@@ -1104,17 +1100,21 @@ class NeoBootImageChoose(Screen):
     def aktualizacjamboot(self, yesno):		
         if yesno:
             if fileExists('/tmp/*.zip'):
-                os.system('rm /tmp/*.zip')
-            if fileExists('/usr/bin/curl'):                    
-                            os.system('sync; cd /tmp; curl -O --ftp-ssl https://github.com/gutosie/neoboot/archive/main.zip; unzip -qn ./main.zip; sleep 2;sd cd /')
+                    os.system('rm /tmp/*.zip')
+            if fileExists('/usr/bin/curl'):
+                    os.system('sync; cd /tmp; curl -O --ftp-ssl https://github.com/gutosie/neoboot/archive/main.zip; unzip -qn ./main.zip; sleep 2;sd cd /')
             if not fileExists('/tmp/neoboot-main/NeoBoot'):
-                if fileExists('/usr/bin/fullwget'):            
+                    if fileExists('/tmp/main.zip'):
+                            os.system('rm -r /tmp/main.zip')
+                    if fileExists('/usr/bin/fullwget'):            
                             os.system('cd ' + LinkNeoBoot + ';fullwget --no-check-certificate https://github.com/gutosie/neoboot/archive/main.zip; unzip -qn ./main.zip; sleep 2;sd cd /')           
             if not fileExists('/tmp/neoboot-main/NeoBoot'):
+                    if fileExists('/tmp/main.zip'):
+                            os.system('rm -r /tmp/main.zip')
                     if fileExists('/usr/bin/wget'):            
                             os.system('cd /tmp;rm ./*.zip; wget --no-check-certificate https://github.com/gutosie/neoboot/archive/main.zip; unzip -qn ./main.zip; sleep 2;cd / ')  
             if not fileExists('/tmp/neoboot-main/NeoBoot'):
-                        self.session.open(MessageBox, _('Unfortunately, at the moment not found an update, try again later.'), MessageBox.TYPE_INFO, 10)
+                    self.session.open(MessageBox, _('Unfortunately, at the moment not found an update, try again later.'), MessageBox.TYPE_INFO, 10)
             else:
                 self.goUpdateNEO()
         else:
@@ -1517,8 +1517,7 @@ class NeoBootImageChoose(Screen):
                 mess = (_('Directory %sImagesUpload  is empty\nPlease upload the image files in zip or nfi formats to install') % getNeoLocation() )
                 self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)  
         else:
-                mess = _('Geen internet')
-                self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
+            session.open(MessageBox, _('Geen internet'), type=MessageBox.TYPE_ERROR)
 
     def bootIMG(self):
         if not fileExists('/.multinfo'):
@@ -1716,7 +1715,7 @@ def main(session, **kwargs):
                         LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
                         session.open(MessageBox, _('Sorry cannot open neo menu NeoBoot Installation.\nAccess Fails with Error code 0x08.'), type=MessageBox.TYPE_ERROR)
             else:
-                    self.session.open(MessageBox, _('Sorry cannot open neo menu. Not supported tuners. '), type=MessageBox.TYPE_ERROR)
+                    session.open(MessageBox, _('Sorry cannot open neo menu. Not supported tuners. '), type=MessageBox.TYPE_ERROR)
     else:
             session.open(MessageBox, (_('Sorry, Unable to install, bad satellite receiver or you do not have the full plug-in version\n\nThe full version of the NEO VIP plugin is on address:\nkrzysztofgutosie@.gmail.com')), type=MessageBox.TYPE_ERROR)
             

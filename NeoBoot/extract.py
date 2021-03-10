@@ -1228,6 +1228,24 @@ def NEOBootExtract(source, target, ZipDelete):
             cmd = 'rm -rf ' + getNeoLocation() + 'ubi'
             rc = os.system(cmd)
             
+        elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/axas'):
+            os.chdir('axas')
+            if os.path.exists('' + getNeoLocation() + 'ImagesUpload/axas/axashistwin'):
+                os.chdir('axashistwin')                    
+                os.system('echo "Instalacja - ubi_reader w toku..."')                     
+                print ("[NeoBoot] Extracting UBIFS image and moving extracted image to our target")
+                cmd = 'chmod 777 ' + extensions_path + 'NeoBoot/ubi_reader/ubi_extract_files.py'
+                rc = os.system(cmd)
+                cmd = 'python ' + extensions_path + 'NeoBoot/ubi_reader/ubi_extract_files.py rootfs.bin -o ' + getNeoLocation() + 'ubi'
+                rc = os.system(cmd)
+                os.chdir('/home/root')
+                cmd = 'cp -af -p ' + getNeoLocation() + 'ubi/rootfs/* ' + getNeoLocation() + 'ImageBoot/' + target
+                rc = os.system(cmd)
+                cmd = 'chmod -R +x ' + getNeoLocation() + 'ImageBoot/' + target
+                rc = os.system(cmd)
+                cmd = 'rm -rf ' + getNeoLocation() + 'ubi'
+                rc = os.system(cmd)
+
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/et10000/rootfs.bin'):
             os.chdir('et10000')
             os.system('mv -f rootfs.bin rootfs.bin')                    
