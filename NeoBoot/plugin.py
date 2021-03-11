@@ -524,32 +524,33 @@ class NeoBootInstallation(Screen):
                     writefile.write(imagever)
                     writefile.close()
 
-            if os.system('opkg update; opkg list-installed | grep python-subprocess') != 0:
+            if not os.path.isfile('' + LinkNeoBoot + '/bin/install') :
+                if os.system('opkg update; opkg list-installed | grep python-subprocess') != 0:
                             os.system('opkg install python-subprocess')
-            if os.system('opkg list-installed | grep python-argparse') != 0:
+                if os.system('opkg list-installed | grep python-argparse') != 0:
                             os.system('opkg install python-argparse')
-            if os.system('opkg list-installed | grep curl') != 0:
+                if os.system('opkg list-installed | grep curl') != 0:
                             os.system('opkg install curl')                                                                    
-            if getCPUtype() == 'MIPS':
-                if os.system('opkg list-installed | grep kernel-module-nandsim') != 0:
+                if getCPUtype() == 'MIPS':
+                    if os.system('opkg list-installed | grep kernel-module-nandsim') != 0:
                             os.system('opkg install kernel-module-nandsim')  
-                if os.system('opkg list-installed | grep mtd-utils-jffs2') != 0:
+                    if os.system('opkg list-installed | grep mtd-utils-jffs2') != 0:
                             os.system('opkg install mtd-utils-jffs2')
-                if os.system('opkg list-installed | grep lzo') != 0:                            
+                    if os.system('opkg list-installed | grep lzo') != 0:                            
                             os.system('opkg install lzo') 
-                if os.system('opkg list-installed | grep python-setuptools') != 0:                            
+                    if os.system('opkg list-installed | grep python-setuptools') != 0:                            
                             os.system('opkg install python-setuptools')                             
-                if os.system('opkg list-installed | grep util-linux-sfdisk') != 0: 
+                    if os.system('opkg list-installed | grep util-linux-sfdisk') != 0: 
                             os.system('opkg install util-linux-sfdisk') 
-                if os.system('opkg list-installed | grep packagegroup-base-nfs') != 0:                            
+                    if os.system('opkg list-installed | grep packagegroup-base-nfs') != 0:                            
                             os.system('opkg install packagegroup-base-nfs')                       
-                if os.system('opkg list-installed | grep ofgwrite') != 0:                                                                                                                                                                                                                                                                                                                                                
+                    if os.system('opkg list-installed | grep ofgwrite') != 0:                                                                                                                                                                                                                                                                                                                                                
                             os.system('opkg install ofgwrite')
-                if os.system('opkg list-installed | grep bzip2') != 0:                                                                                                                                                                                                                                                                                                                                                
+                    if os.system('opkg list-installed | grep bzip2') != 0:                                                                                                                                                                                                                                                                                                                                                
                             os.system('opkg install bzip2')
-                if os.system('opkg list-installed | grep mtd-utils') != 0:
+                    if os.system('opkg list-installed | grep mtd-utils') != 0:
                             os.system('opkg install mtd-utils')
-                if os.system('opkg list-installed | grep mtd-utils-ubifs') != 0:                                                                                                                                                                                                                                                                                                                                                
+                    if os.system('opkg list-installed | grep mtd-utils-ubifs') != 0:                                                                                                                                                                                                                                                                                                                                                
                             os.system('opkg install mtd-utils-ubifs')
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
             #_____Other ARM procesor____ - here you can add your tuner stb                                                                                                                                                                   
