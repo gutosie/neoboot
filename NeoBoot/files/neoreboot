@@ -18,7 +18,6 @@ from Plugins.Plugin import PluginDescriptor
 from Screens.Standby import TryQuitMainloop
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
-from Screens.Console import Console
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE, SCOPE_CURRENT_SKIN, fileExists, pathExists, createDir
 from os import system, listdir, mkdir, chdir, getcwd, rename as os_rename, remove as os_remove, popen
@@ -29,7 +28,111 @@ import os
 import time
 import sys
 import struct, shutil
+if fileExists('/etc/vtiversion.info') or fileExists('/usr/lib/python3.8') and fileExists('/.multinfo'):   
+    from Screens.Console import Console                   
+else:
+    from Plugins.Extensions.NeoBoot.files.neoconsole import Console
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'                                              
+
+
+class NBIChoose2(Screen):
+    skin = """ \n\t<screen position="center,center" size="768,621" title="Neoboot - Restart helper">\n\t\t
+     <widget name="lab1" position="20,10" size="725,45" font="Regular;24" halign="center" valign="center" transparent="1" />\n\t\t
+     <widget name="lab2" position="20,60" size="725,45" font="Regular;22" halign="center" valign="center" transparent="1" />\n\t\t
+     <widget source="list" render="Listbox" position="21,107" zPosition="1" size="726,460" scrollbarMode="showOnDemand" transparent="1">\n\t\t\t
+     <convert type="StringList" />\n\t\t</widget>\n\t\t
+     <widget name="key_red" position="17,580" zPosition="2" size="226,40" font="Regular;20" halign="center" valign="center" backgroundColor="green" transparent="1" foregroundColor="red" />\n\t\t
+     <widget name="key_green" position="245,580" zPosition="2" size="287,40" font="Regular;20" halign="center" valign="center" backgroundColor="green" transparent="1" foregroundColor="green" />\n\t\t
+     <widget name="key_blue" position="535,580" zPosition="2" size="230,40" font="Regular;20" halign="center" valign="center" backgroundColor="blue" transparent="1" foregroundColor="blue" />\n\t
+     </screen>"""
+
+    def __init__(self, session):
+        Screen.__init__(self, session)
+        self['device_icon'] = Pixmap()        
+        self['lab1'] = Label('')
+        self['lab2'] = Label('')
+        self['key_red'] = Label(_('Force reboot'))
+        self['key_green'] = Label(_('Boot Image'))
+        self['key_blue'] = Label(_('Help'))
+        self['list'] = List([])
+        self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'back': self.close,
+         'ok': self.bootImage,
+         'red': self.forceBoot,
+         'green': self.bootImage,
+         'blue': self.mytools})
+        self.availablespace = 0
+        self.curimage = ''
+        self.onShow.append(self.updateInfo)
+        
+    def updateInfo(self):
+        pluginpath = '' + LinkNeoBoot + ''
+        f = open(pluginpath + '/.location', 'r')
+        mypath = f.readline().strip()
+        f.close()
+        
+        curimage = 'Flash'
+        if fileExists('/.multinfo'):
+            f = open('/.multinfo', 'r')
+            curimage = f.readline().strip()
+            f.close()
+        strview = _('Current Running Image: ') + curimage
+        self.curimage = curimage
+        self['lab1'].setText(strview)
+        
+        linesdevice = open('' + LinkNeoBoot + '/.location', 'r').readlines()
+        deviceneo = linesdevice[0][0:-1]
+        device = deviceneo
+        devicelist = ['cf',
+         'hdd',
+         'card',
+         'usb',                            
+         'usb2']
+        for d in listdir('' + getNeoLocation() +''):
+            if d == 'ImageBoot':
+                continue
+            test = '' + getNeoLocation() +'' + d + '/.neonextboot'
+            if fileExists(test):
+                device = d
+                
+        strview = _('NeoBoot Installed on: ') + device
+        self['lab2'].setText(strview)
+        
+        imageslist = ['Flash']
+        for fn in listdir('' + getNeoLocation() + '/ImageBoot'):
+            dirfile = '' + getNeoLocation() + '/ImageBoot/' + fn
+            if os_isdir(dirfile):
+                imageslist.append(fn)
+                
+        self['list'].list = imageslist
+        
+    def mytools(self):
+            from Plugins.Extensions.NeoBoot.files.tools import MBTools
+            self.session.open(MBTools)
+            
+    def bootImage(self):
+        newimage = self['list'].getCurrent()
+        if newimage:
+            self.rebootimage = newimage.strip()
+            message = _('Are you sure you want to Boot Image:\n ') + newimage + '?'
+            ybox = self.session.openWithCallback(self.restStb, MessageBox, message, MessageBox.TYPE_YESNO)
+            ybox.setTitle(_('Reboot Confirmation'))
+            
+    def restStb(self, answer):
+        if answer is True:
+            newimage = self['list'].getCurrent()
+            if newimage:
+                out = open('' + getNeoLocation() +'/ImageBoot/.neonextboot', 'w')
+                out.write(self.rebootimage)
+                out.close()
+                try:
+                    from Plugins.Extensions.NeoBoot.run import StartImage
+                    self.session.open(StartImage)
+                except:
+                    self.session.open(TryQuitMainloop, 2)
+                    self.close()
+
+    def forceBoot(self):                                            
+        self.session.open(ForceReboot)
 
 class ForceReboot(Screen):
     __module__ = __name__
@@ -68,7 +171,7 @@ class ForceReboot(Screen):
 
 def main(session, **kwargs):
         try:
-            session.open(ForceReboot)
+            session.open(NBIChoose2)
         except:
             False
 
@@ -85,6 +188,5 @@ def Plugins(path, **kwargs):
     global plugin_path
     plugin_path = path
     list = [PluginDescriptor(name=_('NeoReboot'), description=_('Force reboot to flash.'), where=PluginDescriptor.WHERE_MENU, fnc=startSetup)]
-    return list     
+    return list   
     
-            
