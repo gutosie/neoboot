@@ -629,7 +629,7 @@ class NeoBootInstallation(Screen):
             if getCPUtype() == 'ARMv7':                                                                                                                                     
                         os.system('cd ' + LinkNeoBoot + '/; mv ./bin/fbcleararm ./bin/fbclear; chmod 755 ./bin/fbclear; rm -f ./bin/nandwrite; rm -f ./bin/fbclearmips; mv ./ubi_reader_arm ./ubi_reader; rm -r ./ubi_reader_mips; rm ./bin/neoinitmips; rm ./bin/neoinitmipsvu; rm -r ./bin/nanddump_mips; rm ./bin/nfidump; rm ./bin/neobmmips; rm ./bin/neobm; mv ./bin/neobmarm ./bin/neobm; rm ./bin/fontforneoboot.ttf; rm ./bin/libpngneo; cd')   
             elif getCPUtype() == 'MIPS':       
-                        os.system('cd ' + LinkNeoBoot + '/; mv ./bin/fbclearmips ./bin/fbclear; chmod 755 ./bin/fbclear; rm -f ./bin/fbcleararm; mv ./ubi_reader_mips ./ubi_reader; rm -r ./ubi_reader_arm; rm -f /bin/neoinitarm; rm -f /bin/neoinitarmvu; rm -r ./bin/nanddump_arm; rm -f /bin/neoinitarmvuDuo4k; rm -f ./bin/neobmarm')
+                        os.system('cd ' + LinkNeoBoot + '/; mv ./bin/fbclearmips ./bin/fbclear; chmod 755 ./bin/fbclear; rm -f ./bin/fbcleararm; mv ./ubi_reader_mips ./ubi_reader; rm -r ./ubi_reader_arm; rm -f /bin/neoinitarm; rm -f /bin/neoinitarmvu; rm -r ./bin/nanddump_arm; rm -f /bin/neoinitarmvuDuo4k; ; rm -f ./bin/neobmarm')
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
             os.system(' ln -sfn ' + getNeoLocation() + 'ImageBoot/.neonextboot /etc/neoimage; chmod 644 ' + getNeoLocation() + 'ImagesUpload/.kernel/*; ln -sfn ' + getNeoLocation() + 'ImageBoot /etc/imageboot; rm -r ' + LinkNeoBoot + '/tmpfiles; chmod 0755 ' + LinkNeoBoot + '/files/kernel.sh')
                                                                                                                                                                                                                                                                                                       
@@ -1687,36 +1687,17 @@ def main(session, **kwargs):
                 if mypath2 != 'Flash' or mypath2 == 'Flash' and checkimage():
                 
                     if fileExists('/.multinfo'):
-                            try:
-                                    session.open(NeoBootImageChoose)
-                            except:
-                                    from Plugins.Extensions.NeoReboot.plugin import ForceReboot
-                                    session.open(ForceReboot) 
-                    else:
+                                    session.open(NeoBootImageChoose)                                
+                    else:                                   
                         if float(PLUGINVERSION) != version:
-                            try:
                                 session.open(MyUpgrade)
-                            except Exception as e:
-                                loggscrash = time.localtime(time.time())
-                                LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
-                                session.open(MessageBox, _('Sorry cannot open neo menu My Upgrade.\nAccess Fails with Error code 0x06.'), type=MessageBox.TYPE_ERROR)
                         else:
-                            try: 
                                 session.open(NeoBootImageChoose)
-                            except Exception as e:
-                                loggscrash = time.localtime(time.time())
-                                LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
-                                session.open(MessageBox, _('Sorry cannot open neo menu Neo Boot Image Choose.\nAccess Fails with Error code 0x07.'), type=MessageBox.TYPE_ERROR)
                 else:
                     session.open(MessageBox, _('Sorry, Unable to install, bad satellite receiver or you do not have the full plug-in version\n The full version of the NEO VIP plugin is on address:\nkrzysztofgutosie@.gmail.com'), type=MessageBox.TYPE_ERROR)
         else:
             if (getSupportedTuners()) == (getBoxHostName()):
-                    try:
                             session.open(NeoBootInstallation)
-                    except Exception as e:
-                        loggscrash = time.localtime(time.time())
-                        LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
-                        session.open(MessageBox, _('Sorry cannot open neo menu NeoBoot Installation.\nAccess Fails with Error code 0x08.'), type=MessageBox.TYPE_ERROR)
             else:
                     session.open(MessageBox, _('Sorry cannot open neo menu. Not supported tuners. '), type=MessageBox.TYPE_ERROR)
     else:
