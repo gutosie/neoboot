@@ -629,12 +629,12 @@ def NEOBootMainEx(source, target, stopenigma, CopyFiles, CopyKernel, TvList, Lan
                     rc = os.system(cmd)
     
 
-#    cmd = 'cp -f ' + extensions_path + 'NeoBoot/bin/hdd ' + getNeoLocation() + 'ImageBoot/%s/etc/init.d/hddusb' % target
+#    cmd = 'cp -af ' + extensions_path + 'NeoBoot/bin/hdd ' + getNeoLocation() + 'ImageBoot/%s/etc/init.d/hddusb' % target
 #    rc = os.system(cmd)
     if os.path.exists('%s/ImageBoot/%s/usr/lib' % (media, target)):
-        cmd = 'cp -rf /usr/lib/periodon ' + getNeoLocation() + 'ImageBoot/%s/usr/lib/' % target
+        cmd = 'cp -af /usr/lib/periodon ' + getNeoLocation() + 'ImageBoot/%s/usr/lib/' % target
         rc = os.system(cmd)
-        cmd = 'cp -rf /usr/lib/enigma2/python/Tools/Testinout.py ' + getNeoLocation() + 'ImageBoot/%s/usr/lib/enigma2/python/Tools/' % target
+        cmd = 'cp -af /usr/lib/enigma2/python/Tools/Testinout.py ' + getNeoLocation() + 'ImageBoot/%s/usr/lib/enigma2/python/Tools/' % target
         rc = os.system(cmd)
     os.system('mkdir -p ' + media_target + '/media/hdd' + dev_null)
     os.system('mkdir -p ' + media_target + '/media/usb' + dev_null)    
