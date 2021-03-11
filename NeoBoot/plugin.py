@@ -37,7 +37,7 @@ from Components.ProgressBar import ProgressBar
 from Components.ScrollLabel import ScrollLabel
 from Components.Pixmap import Pixmap, MultiPixmap
 from Components.config import *
-from Components.PluginComponent import plugins
+#from Components.PluginComponent import plugins
 from Components.ConfigList import ConfigListScreen
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import fileExists, pathExists, createDir, resolveFilename, SCOPE_PLUGINS
@@ -657,10 +657,10 @@ class NeoBootInstallation(Screen):
 
     def RebootSTB(self, answer):
         if answer is True:
-            plugins.reloadPlugins()
+            #plugins.reloadPlugins()
             os.system('sync && echo 3 > /proc/sys/vm/drop_caches; reboot -d -f')
         else:
-            plugins.reloadPlugins()        
+            #plugins.reloadPlugins()        
             self.close()        
 
 
