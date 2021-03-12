@@ -524,7 +524,7 @@ class NeoBootInstallation(Screen):
                     writefile.write(imagever)
                     writefile.close()
 
-            if not os.path.isfile('' + LinkNeoBoot + '/bin/install') :
+            if not os.path.isfile('/etc/name') :
                 if os.system('opkg update; opkg list-installed | grep python-subprocess') != 0:
                             os.system('opkg install python-subprocess')
                 if os.system('opkg list-installed | grep python-argparse') != 0:
@@ -625,7 +625,9 @@ class NeoBootInstallation(Screen):
                             os.system('mv -f /home/root/vmlinux.gz %sImagesUpload/.kernel/%s.vmlinux.gz' % (getNeoLocation(), getBoxHostName()) )  
                                              
             if fileExists('' + LinkNeoBoot + '/ubi_reader'): 
-                os.system('rm -r ' + LinkNeoBoot + '/ubi_reader ') 
+                os.system('rm -r ' + LinkNeoBoot + '/ubi_reader ')
+            if not fileExists('/etc/name'):
+		os.system('touch /etc/name')
                 
             if getCPUtype() == 'ARMv7':                                                                                                                                     
                         os.system('cd ' + LinkNeoBoot + '/; mv ./bin/fbcleararm ./bin/fbclear; chmod 755 ./bin/fbclear; rm -f ./bin/nandwrite; rm -f ./bin/fbclearmips; mv ./ubi_reader_arm ./ubi_reader; rm -r ./ubi_reader_mips; rm ./bin/neoinitmips; rm ./bin/neoinitmipsvu; rm -r ./bin/nanddump_mips; rm ./bin/nfidump; rm ./bin/neobmmips; rm ./bin/neobm; mv ./bin/neobmarm ./bin/neobm; rm ./bin/fontforneoboot.ttf; rm ./bin/libpngneo; cd')   
@@ -735,9 +737,7 @@ class NeoBootImageChoose(Screen):
          '9': self.touch9,        #hidden option                                                                                              
          '0': self.touch0,        #hidden option 
          'back': self.close_exit})
-        self.availablespace = 0         
-        if not fileExists('/etc/name'):
-            os.system('touch /etc/name')
+        self.availablespace = 0
         self.onShow.append(self.updateList)
 
         if not fileExists('' + LinkNeoBoot + '/files/mountpoint.sh'):
