@@ -24,34 +24,32 @@ if [ -f /tmp/zImage ];  then
     rm -f /tmp/zImage    
 fi
 
-KERNEL=`uname -r` 
+KERNEL=`uname -r`
 IMAGE=ImageBoot
 IMAGENEXTBOOT=/ImageBoot/.neonextboot
-NEOBOOTMOUNT=$( cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location) 
+NEOBOOTMOUNT=$( cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location)
 BOXNAME=$( cat /etc/hostname)
 UPLOAD=ImagesUpload
 NandWrite=/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot//bin/nandwrite
-#nandwrite -p /dev/mtd2 /media/hdd/ImagesUpload/.kernel/vusolo.vmlinux.gz
 
 if [ -f $NEOBOOTMOUNT$IMAGENEXTBOOT ]; then
   TARGET=`cat $NEOBOOTMOUNT$IMAGENEXTBOOT`
 else
-  TARGET=Flash              
+  TARGET=Flash
 fi
-                   
+
 if  [ $BOXNAME = "vusolo2" ] || [ $BOXNAME = "vuduo2" ] || [ $BOXNAME = "vusolose" ] || [ $BOXNAME = "vuzero" ]; then     #[ $BOXNAME = "mbultra" ]
     if [ -f /proc/stb/info/vumodel ] || [ ! -e /proc/stb/info/boxtype ] ; then
-        if [ $TARGET = "Flash" ]; then                    
-                if [ -e /.multinfo ]; then                                                
+        if [ $TARGET = "Flash" ]; then
+                if [ -e /.multinfo ]; then
                             if [ -f /proc/stb/info/vumodel ] || [ ! -e /proc/stb/info/boxtype ]; then
                                 if [ -e $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXNAME.vmlinux.gz ] ; then
                                     [ $PL ] && echo "Kasowanie kernel z /dev/mtd2..." || echo "Erase kernel from  /dev/mtd2"
-                                    
                                     sleep 2                                
                                     flash_eraseall /dev/mtd2 > /dev/null 2>&1
                                     [ $PL ] && echo "Wgrywanie kernel do /dev/mtd2..." || echo "Writing kernel to  /dev/mtd2"  
                                     sleep 2
-		                                $NandWrite -p /dev/mtd2 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXNAME.vmlinux.gz > /dev/null 2>&1
+                                    $NandWrite -p /dev/mtd2 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXNAME.vmlinux.gz > /dev/null 2>&1
                                 fi
                             fi
                             update-alternatives --remove vmlinux vmlinux-`uname -r` || true                                          
