@@ -15,7 +15,6 @@ from Components.ProgressBar import ProgressBar
 from Components.ScrollLabel import ScrollLabel
 from Components.Pixmap import Pixmap, MultiPixmap
 from Components.config import *                                            
-from Components.PluginComponent import plugins
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
