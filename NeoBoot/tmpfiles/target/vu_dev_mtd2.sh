@@ -51,7 +51,7 @@ if  [ $BOXNAME = "vusolo2" ] || [ $BOXNAME = "vuduo2" ] || [ $BOXNAME = "vusolos
                                     flash_eraseall /dev/mtd2 > /dev/null 2>&1
                                     [ $PL ] && echo "Wgrywanie kernel do /dev/mtd2..." || echo "Writing kernel to  /dev/mtd2"  
                                     sleep 2
-		                                $NandWrite -p /dev/mtd2 /media/hdd/.kernel/vusolo.vmlinux.gz > /dev/null 2>&1
+		                                $NandWrite -p /dev/mtd2 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXNAME.vmlinux.gz > /dev/null 2>&1
                                 fi
                             fi
                             update-alternatives --remove vmlinux vmlinux-`uname -r` || true                                          
