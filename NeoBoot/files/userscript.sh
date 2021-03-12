@@ -27,6 +27,7 @@ else
 		else
 		        echo "_____github server available_____"
 		fi
+fi
 if [ -f /%1 ] ; then
     rm -f /%1
 fi
