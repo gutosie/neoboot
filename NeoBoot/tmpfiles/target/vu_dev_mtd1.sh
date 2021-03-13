@@ -30,7 +30,7 @@ IMAGENEXTBOOT=/ImageBoot/.neonextboot
 NEOBOOTMOUNT=$( cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location) 
 BOXNAME=$( cat /etc/hostname)
 UPLOAD=ImagesUpload
-NandWrite=/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot//bin/nandwrite
+NandWrite=/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/nandwrite
 
 if [ -f $NEOBOOTMOUNT$IMAGENEXTBOOT ]; then
   TARGET=`cat $NEOBOOTMOUNT$IMAGENEXTBOOT`
@@ -48,9 +48,9 @@ if [ $VUMODEL = "bm750" ] || [ $BOXNAME = "vuduo" ] || [ $BOXNAME = "vusolo" ] |
                                     
                                     sleep 2                                
                                     flash_eraseall /dev/mtd1 > /dev/null 2>&1
-                                    [ $PL ] && echo "Wgrywanie kernel do /dev/mtd1..." || echo "Writing kernel to from  /dev/mtd1"  
+                                    [ $PL ] && echo "Wgrywanie kernel do /dev/mtd1..." || echo "Writing kernel to  /dev/mtd1"  
                                     sleep 2
-		                                $NandWrite -p /dev/mtd1 /media/hdd/.kernel/vusolo.vmlinux.gz > /dev/null 2>&1
+		                                $NandWrite -p /dev/mtd1 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXNAME.vmlinux.gz > /dev/null 2>&1
                                 fi
                             fi
                             update-alternatives --remove vmlinux vmlinux-`uname -r` || true                                          
@@ -64,7 +64,7 @@ if [ $VUMODEL = "bm750" ] || [ $BOXNAME = "vuduo" ] || [ $BOXNAME = "vusolo" ] |
                                         [ $PL ] && echo "Kasowanie kernel z /dev/mtd1..." || echo "Erase kernel from  /dev/mtd1"                                   
                                         sleep 2
                                         flash_eraseall /dev/mtd1 > /dev/null 2>&1
-                                        [ $PL ] && echo "Wgrywanie kernel do /dev/mtd1..." || echo "Writing kernel to from  /dev/mtd1"                                           
+                                        [ $PL ] && echo "Wgrywanie kernel do /dev/mtd1..." || echo "Writing kernel to  /dev/mtd1"                                           
                                         sleep 2
                                         $NandWrite -p /dev/mtd1 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXNAME.vmlinux.gz > /dev/null 2>&1
                                     fi
@@ -83,12 +83,12 @@ if [ $VUMODEL = "bm750" ] || [ $BOXNAME = "vuduo" ] || [ $BOXNAME = "vusolo" ] |
                         if [ -e /.multinfo ] ; then
                                 INFOBOOT=$( cat /.multinfo )
                                 if [ $TARGET = $INFOBOOT ] ; then
-                                    echo "NEOBOOT is booting image from " $TARGET                                    
+                                    echo "NEOBOOT is booting image " $TARGET                                    
                                 else                                    
                                     [ $PL ] && echo "Kasowanie kernel z /dev/mtd1..." || echo "Erase kernel from  /dev/mtd1"                                   
                                     sleep 2
                                     flash_eraseall /dev/mtd1 > /dev/null 2>&1
-                                    [ $PL ] && echo "Wgrywanie kernel do /dev/mtd1..." || echo "Writing kernel to from  /dev/mtd1"                                                                      
+                                    [ $PL ] && echo "Wgrywanie kernel do /dev/mtd1..." || echo "Writing kernel to  /dev/mtd1"                                                                      
                                     sleep 2
                                     $NandWrite -p /dev/mtd1 $NEOBOOTMOUNT$IMAGE/$TARGET/boot/$BOXNAME.vmlinux.gz > /dev/null 2>&1  
                                     update-alternatives --remove vmlinux vmlinux-`uname -r` || true
@@ -99,7 +99,7 @@ if [ $VUMODEL = "bm750" ] || [ $BOXNAME = "vuduo" ] || [ $BOXNAME = "vusolo" ] |
                                     [ $PL ] && echo "Kasowanie kernel z /dev/mtd1..." || echo "Erase kernel from  /dev/mtd1"                                   
                                     sleep 2
                                     flash_eraseall /dev/mtd1 > /dev/null 2>&1 
-                                    [ $PL ] && echo "Wgrywanie kernel do /dev/mtd1..." || echo "Writing kernel to from  /dev/mtd1"
+                                    [ $PL ] && echo "Wgrywanie kernel do /dev/mtd1..." || echo "Writing kernel to  /dev/mtd1"
                                     sleep 2
                                     $NandWrite -p /dev/mtd1 $NEOBOOTMOUNT$IMAGE/$TARGET/boot/$BOXNAME.vmlinux.gz > /dev/null 2>&1                                                                                                     
                                     update-alternatives --remove vmlinux vmlinux-`uname -r` || true
