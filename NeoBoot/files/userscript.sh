@@ -17,15 +17,18 @@ else
         echo "_(Checking internet connection)..."
         ping -c 1 github.com 1>/dev/null 2>%1
         if [ $? -gt 0 ]; then
-		        echo -n "_github server unavailable\nNetwork restart..."
+		        echo -n "github server unavailable"
+		        echo -n "The network has no connection. It is not OK"
+		        echo -n "Network restart..."
 				/etc/init.d/networking stop;
 				echo "_____stopping network connection_____"
-				sleep 1
+				sleep 2
 				echo "_____start network connection_____"
 				/etc/init.d/networking start;
 				sleep 5
 		else
-		        echo "_____github server available_____"
+		        echo "github server available"
+		        echo "The network has a connection. It is OK"		        
 		fi
 fi
 if [ -f /%1 ] ; then
