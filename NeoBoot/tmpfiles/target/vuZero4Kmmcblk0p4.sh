@@ -28,7 +28,6 @@ NEOBOOTMOUNT=$( cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location
 BOXNAME=$( cat /etc/hostname)
 UPLOAD=ImagesUpload
 MOUNTneoDisk=$( cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/install)
-MOUNTblkid=$( cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/reading_blkid)
 MOUNTMEDIA=$( ls /media)
 
 if [ -f $NEOBOOTMOUNT$IMAGENEXTBOOT ]; then
@@ -114,9 +113,6 @@ if [ $VUMODEL = "zero4k" ]   ; then
                         sleep 1
                         echo "Neoboot location: "
                         echo ""$MOUNTneoDisk" "
-                        sleep 1
-                        echo "Info media: "
-                        echo ""$MOUNTblkid" "
                         sleep 1
                         echo "Media list: "
                         echo ""$MOUNTMEDIA" "

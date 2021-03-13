@@ -24,10 +24,10 @@ if [ -f /tmp/zImage ];  then
     rm -f /tmp/zImage    
 fi
 
-KERNEL=`uname -r`
+KERNEL=`uname -r` 
 IMAGE=ImageBoot
 IMAGENEXTBOOT=/ImageBoot/.neonextboot
-NEOBOOTMOUNT=$( cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location)
+NEOBOOTMOUNT=$( cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location) 
 BOXNAME=$( cat /etc/hostname)
 UPLOAD=ImagesUpload
 NandWrite=/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot//bin/nandwrite
@@ -35,21 +35,22 @@ NandWrite=/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot//bin/nandwrite
 if [ -f $NEOBOOTMOUNT$IMAGENEXTBOOT ]; then
   TARGET=`cat $NEOBOOTMOUNT$IMAGENEXTBOOT`
 else
-  TARGET=Flash
+  TARGET=Flash              
 fi
-
+                   
 if  [ $BOXNAME = "vusolo2" ] || [ $BOXNAME = "vuduo2" ] || [ $BOXNAME = "vusolose" ] || [ $BOXNAME = "vuzero" ]; then     #[ $BOXNAME = "mbultra" ]
     if [ -f /proc/stb/info/vumodel ] || [ ! -e /proc/stb/info/boxtype ] ; then
-        if [ $TARGET = "Flash" ]; then
-                if [ -e /.multinfo ]; then
+        if [ $TARGET = "Flash" ]; then                    
+                if [ -e /.multinfo ]; then                                                
                             if [ -f /proc/stb/info/vumodel ] || [ ! -e /proc/stb/info/boxtype ]; then
                                 if [ -e $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXNAME.vmlinux.gz ] ; then
                                     [ $PL ] && echo "Kasowanie kernel z /dev/mtd2..." || echo "Erase kernel from  /dev/mtd2"
+                                    
                                     sleep 2                                
                                     flash_eraseall /dev/mtd2 > /dev/null 2>&1
-                                    [ $PL ] && echo "Wgrywanie kernel do /dev/mtd2..." || echo "Writing kernel to  /dev/mtd2"  
+                                    [ $PL ] && echo "Wgrywanie kernel do /dev/mtd2..." || echo "Writing kernel to from  /dev/mtd2"  
                                     sleep 2
-                                    $NandWrite -p /dev/mtd2 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXNAME.vmlinux.gz > /dev/null 2>&1
+		                                $NandWrite -p /dev/mtd2 /media/hdd/.kernel/vusolo.vmlinux.gz > /dev/null 2>&1
                                 fi
                             fi
                             update-alternatives --remove vmlinux vmlinux-`uname -r` || true                                          
@@ -63,7 +64,7 @@ if  [ $BOXNAME = "vusolo2" ] || [ $BOXNAME = "vuduo2" ] || [ $BOXNAME = "vusolos
                                         [ $PL ] && echo "Kasowanie kernel z /dev/mtd2..." || echo "Erase kernel from  /dev/mtd2"                                   
                                         sleep 2
                                         flash_eraseall /dev/mtd2 > /dev/null 2>&1
-                                        [ $PL ] && echo "Wgrywanie kernel do /dev/mtd2..." || echo "Writing kernel to  /dev/mtd2"                                           
+                                        [ $PL ] && echo "Wgrywanie kernel do /dev/mtd2..." || echo "Writing kernel to from  /dev/mtd2"                                           
                                         sleep 2
                                         $NandWrite -p /dev/mtd2 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXNAME.vmlinux.gz > /dev/null 2>&1
                                     fi
@@ -82,12 +83,12 @@ if  [ $BOXNAME = "vusolo2" ] || [ $BOXNAME = "vuduo2" ] || [ $BOXNAME = "vusolos
                         if [ -e /.multinfo ] ; then
                                 INFOBOOT=$( cat /.multinfo )
                                 if [ $TARGET = $INFOBOOT ] ; then
-                                    echo "NEOBOOT is booting image " $TARGET                                    
+                                    echo "NEOBOOT is booting image from " $TARGET                                    
                                 else                                    
                                     [ $PL ] && echo "Kasowanie kernel z /dev/mtd2..." || echo "Erase kernel from  /dev/mtd2"                                   
                                     sleep 2
                                     flash_eraseall /dev/mtd2 > /dev/null 2>&1
-                                    [ $PL ] && echo "Wgrywanie kernel do /dev/mtd2..." || echo "Writing kernel to  /dev/mtd2"                                                                      
+                                    [ $PL ] && echo "Wgrywanie kernel do /dev/mtd2..." || echo "Writing kernel to from  /dev/mtd2"                                                                      
                                     sleep 2
                                     $NandWrite -p /dev/mtd2 $NEOBOOTMOUNT$IMAGE/$TARGET/boot/$BOXNAME.vmlinux.gz > /dev/null 2>&1  
                                     update-alternatives --remove vmlinux vmlinux-`uname -r` || true
@@ -98,7 +99,7 @@ if  [ $BOXNAME = "vusolo2" ] || [ $BOXNAME = "vuduo2" ] || [ $BOXNAME = "vusolos
                                     [ $PL ] && echo "Kasowanie kernel z /dev/mtd2..." || echo "Erase kernel from  /dev/mtd2"                                   
                                     sleep 2
                                     flash_eraseall /dev/mtd2 > /dev/null 2>&1 
-                                    [ $PL ] && echo "Wgrywanie kernel do /dev/mtd2..." || echo "Writing kernel to  /dev/mtd2"
+                                    [ $PL ] && echo "Wgrywanie kernel do /dev/mtd2..." || echo "Writing kernel to from  /dev/mtd2"
                                     sleep 2
                                     $NandWrite -p /dev/mtd2 $NEOBOOTMOUNT$IMAGE/$TARGET/boot/$BOXNAME.vmlinux.gz > /dev/null 2>&1                                                                                                     
                                     update-alternatives --remove vmlinux vmlinux-`uname -r` || true
@@ -113,7 +114,6 @@ if  [ $BOXNAME = "vusolo2" ] || [ $BOXNAME = "vuduo2" ] || [ $BOXNAME = "vusolos
         fi                               
     else
         break;
-    fi
 else
                     ln -sfn /sbin/init.sysvinit /sbin/init
                     echo "CHIPSET: " $CHIPSET " BOXNAME: "$BOXNAME" MODEL: "$VUMODEL" "

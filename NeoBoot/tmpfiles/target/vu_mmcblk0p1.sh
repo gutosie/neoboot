@@ -28,9 +28,8 @@ NEOBOOTMOUNT=$( cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location
 BOXNAME=$( cat /etc/hostname)
 UPLOAD=ImagesUpload
 MOUNTneoDisk=$( cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/install)
-MOUNTblkid=$( cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/reading_blkid)
 MOUNTMEDIA=$( ls /media)
-DYSKMODELVENDOR=$( cat /sys/block/sda/device/model | sed "s/ *$//"; cat /sys/block/sd*/device/vendor | sed "s/ *$//" )    
+DYSKMODELVENDOR=$( cat /sys/block/sd*/device/model | sed "s/ *$//"; cat /sys/block/sd*/device/vendor | sed "s/ *$//" )    
 
 if [ -f $NEOBOOTMOUNT$IMAGENEXTBOOT ]; then
   TARGET=`cat $NEOBOOTMOUNT$IMAGENEXTBOOT`
@@ -115,9 +114,6 @@ if [ $BOXNAME = "vuultimo4k" ] || [ $BOXNAME = "vusolo4k" ] || [ $BOXNAME = "vuu
                         sleep 1
                         echo "Neoboot location: "
                         echo ""$MOUNTneoDisk" "
-                        sleep 1
-                        echo "Info media: "
-                        echo ""$MOUNTblkid" "
                         sleep 1
                         echo "Media list: "
                         echo ""$MOUNTMEDIA" "
