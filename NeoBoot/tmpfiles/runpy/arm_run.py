@@ -2,7 +2,7 @@
 
 #from __init__ import _
 from Plugins.Extensions.NeoBoot.__init__ import _
-from Plugins.Extensions.NeoBoot.files.stbbranding import getCPUtype, getCPUSoC,  getImageNeoBoot, getBoxHostName, getTunerModel, getNeoLocation, getNeoMount, getNeoMount2,getNeoMount3, getNeoMount4, getNeoMount5
+from Plugins.Extensions.NeoBoot.files.stbbranding import getCPUtype, getCPUSoC,  getImageNeoBoot, getBoxHostName, getTunerModel, getNeoLocation, getNeoMount, getNeoMount2,getNeoMount3, getNeoMount4, getNeoMount5, getMountPointNeo2
 from enigma import getDesktop
 from enigma import eTimer
 from Screens.Screen import Screen
@@ -91,46 +91,8 @@ class StartImage(Screen):
             self.StartImageInNeoBoot()
 
         #---------------------------------------------
-        os.system('touch ' + LinkNeoBoot + '/files/mountpoint.sh; echo "#!/bin/sh\n#DESCRIPTION=This script by gutosie\n"  > ' + LinkNeoBoot + '/files/mountpoint.sh; chmod 0755 ' + LinkNeoBoot + '/files/mountpoint.sh') 
-        if getNeoMount() == 'hdd_install_/dev/sda1': 
-                    os.system('echo "umount -l /media/hdd\nmkdir -p /media/hdd\n/bin/mount /dev/sda1 /media/hdd"  >> ' + LinkNeoBoot + '/files/mountpoint.sh') 
-        elif getNeoMount() == 'hdd_install_/dev/sdb1': 
-                    os.system('echo "umount -l /media/hdd\nmkdir -p /media/hdd\n/bin/mount /dev/sdb1 /media/hdd"  >> ' + LinkNeoBoot + '/files/mountpoint.sh') 
-        elif getNeoMount() == 'hdd_install_/dev/sda2': 
-                    os.system('echo "umount -l /media/hdd\nmkdir -p /media/hdd\n/bin/mount /dev/sda2 /media/hdd"  >> ' + LinkNeoBoot + '/files/mountpoint.sh') 
-        elif getNeoMount() == 'hdd_install_/dev/sdb2': 
-                    os.system('echo "umount -l /media/hdd\nmkdir -p /media/hdd\n/bin/mount /dev/sda2 /media/hdd"  >> ' + LinkNeoBoot + '/files/mountpoint.sh') 
+        getMountPointNeo2()
         #---------------------------------------------
-        if getNeoMount2() == 'usb_install_/dev/sdb1': 
-                    os.system('echo "umount -l /media/usb\nmkdir -p /media/usb\n/bin/mount /dev/sdb1 /media/usb"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')      
-        elif getNeoMount2() == 'usb_install_/dev/sda1': 
-                    os.system('echo "umount -l /media/usb\nmkdir -p /media/usb\n/bin/mount /dev/sda1 /media/usb"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')  
-        elif getNeoMount2() == 'usb_install_/dev/sdb2': 
-                    os.system('echo "umount -l /media/usb\nmkdir -p /media/usb\n/bin/mount /dev/sdb2 /media/usb"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')  
-        elif getNeoMount2() == 'usb_install_/dev/sdc1': 
-                    os.system('echo "umount -l /media/usb\nmkdir -p /media/usb\n/bin/mount /dev/sdc1 /media/usb"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')  
-        elif getNeoMount2() == 'usb_install_/dev/sdd1': 
-                    os.system('echo "umount -l /media/usb\nmkdir -p /media/usb\n/bin/mount /dev/sdd1 /media/usb"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')  
-        elif getNeoMount2() == 'usb_install_/dev/sde1': 
-                    os.system('echo "umount -l /media/usb\nmkdir -p /media/usb\n/bin/mount /dev/sde1 /media/usb"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')  
-        elif getNeoMount2() == 'usb_install_/dev/sdf1': 
-                    os.system('echo "umount -l /media/usb\nmkdir -p /media/usb\n/bin/mount /dev/sdf1 /media/usb"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')  
-        #---------------------------------------------                                  
-        elif getNeoMount3() == 'cf_install_/dev/sda1': 
-                    os.system('echo "umount -l /media/cf\nmkdir -p /media/cf\n/bin/mount /dev/sda1 /media/cf"  >> ' + LinkNeoBoot + '/files/mountpoint.sh') 
-        elif getNeoMount3() == 'cf_install_/dev/sdb1': 
-                    os.system('echo "umount -l /media/cf\nmkdir -p /media/cf\n/bin/mount /dev/sdb1 /media/cf"  >> ' + LinkNeoBoot + '/files/mountpoint.sh') 
-        #---------------------------------------------
-        elif getNeoMount4() == 'card_install_/dev/sda1': 
-                    os.system('echo "umount -l /media/card\nmkdir -p /media/card\n/bin/mount /dev/sda1 /media/card"  >> ' + LinkNeoBoot + '/files/mountpoint.sh') 
-        elif getNeoMount4() == 'card_install_/dev/sdb1': 
-                    os.system('echo "umount -l /media/card\nmkdir -p /media/card\n/bin/mount /dev/sdb1 /media/card"  >> ' + LinkNeoBoot + '/files/mountpoint.sh') 
-        #---------------------------------------------
-        elif getNeoMount5() == 'mmc_install_/dev/sda1': 
-                    os.system('echo "umount -l /media/mmc\nmkdir -p /media/mmc\n/bin/mount /dev/sda1 /media/mmc"  >> ' + LinkNeoBoot + '/files/mountpoint.sh') 
-        elif getNeoMount5() == 'mmc_install_/dev/sdb1': 
-                    os.system('echo "umount -l /media/mmc\nmkdir -p /media/mmc\n/bin/mount /dev/sdb1 /media/mmc"  >> ' + LinkNeoBoot + '/files/mountpoint.sh') 
-        os.system('echo "\n\nexit 0"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
 
     def StartImageInNeoBoot(self):
         if getImageNeoBoot() != 'Flash':
@@ -175,7 +137,7 @@ class StartImage(Screen):
             else:
                 pass                                                                 
             #_____Other ARM procesor____ - here you can add your tuner stb    
-            if getBoxHostName() == "axashistwin" or getBoxHostName() == "i55plus " or getBoxHostName() == "zgemmai55plus " or getBoxHostName() == "h92s" or getBoxHostName() == "zgemmah92s" or getBoxHostName() == "h7" or getBoxHostName() == "zgemmah7" or getBoxHostName() == "h9" or getBoxHostName() == "zgemmah9" or getBoxHostName() == "h9s" or getBoxHostName() == "zgemmah9s" or getBoxHostName() == "h9se" or getBoxHostName() == "zgemmah9se" or getBoxHostName() == "h9twin" or getBoxHostName() == "zgemmah9twin" or getBoxHostName() == "h9combo" or getBoxHostName() == "h9combose" or getBoxHostName() == "h10" or getBoxHostName() == "zgemmahh10" or getBoxHostName() == "hd51" or getBoxHostName() == "ax51" or getBoxHostName() == "ax60" or getBoxHostName() == "ax61" or getBoxHostName() == "sf4008" or getBoxHostName() == "sf8008" or getBoxHostName() == "ustym4kpro" or getBoxHostName() == "tmtwin4k" or getBoxHostName() == "anadol4k" or getBoxHostName() == "protek4k" or getBoxHostName() == "maxytecmulti" or getBoxHostName() == "viper4k" or getBoxHostName() == "dm900" or getBoxHostName() == "dm920" or getBoxHostName() == "et1x000" or getBoxHostName() == "gbquad4k" or getBoxHostName() == "axashisc4k" or getBoxHostName() == "axmultitwin" or getBoxHostName() == "axmulticombo" or getBoxHostName() == "osmio4k" or getBoxHostName() == "osmio4kplus" :              
+            if getBoxHostName() == "axashistwin" or getBoxHostName() == "bre2ze4k" or getBoxHostName() == "i55plus " or getBoxHostName() == "zgemmai55plus " or getBoxHostName() == "h92s" or getBoxHostName() == "zgemmah92s" or getBoxHostName() == "h7" or getBoxHostName() == "zgemmah7" or getBoxHostName() == "h9" or getBoxHostName() == "zgemmah9" or getBoxHostName() == "h9s" or getBoxHostName() == "zgemmah9s" or getBoxHostName() == "h9se" or getBoxHostName() == "zgemmah9se" or getBoxHostName() == "h9twin" or getBoxHostName() == "zgemmah9twin" or getBoxHostName() == "h9combo" or getBoxHostName() == "h9combose" or getBoxHostName() == "h10" or getBoxHostName() == "zgemmahh10" or getBoxHostName() == "hd51" or getBoxHostName() == "ax51" or getBoxHostName() == "ax60" or getBoxHostName() == "ax61" or getBoxHostName() == "sf4008" or getBoxHostName() == "sf8008" or getBoxHostName() == "ustym4kpro" or getBoxHostName() == "tmtwin4k" or getBoxHostName() == "anadol4k" or getBoxHostName() == "protek4k" or getBoxHostName() == "maxytecmulti" or getBoxHostName() == "viper4k" or getBoxHostName() == "dm900" or getBoxHostName() == "dm920" or getBoxHostName() == "et1x000" or getBoxHostName() == "gbquad4k" or getBoxHostName() == "axashisc4k" or getBoxHostName() == "axmultitwin" or getBoxHostName() == "axmulticombo" or getBoxHostName() == "osmio4k" or getBoxHostName() == "osmio4kplus" :              
                         if getImageNeoBoot() == 'Flash':
                             if fileExists('/.multinfo'):
                                 if fileExists('/media/InternalFlash/linuxrootfs1/sbin/init'):

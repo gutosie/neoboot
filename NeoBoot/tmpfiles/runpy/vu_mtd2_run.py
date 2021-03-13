@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
  
 from Plugins.Extensions.NeoBoot.__init__ import _                                                                                                                                                   
-from Plugins.Extensions.NeoBoot.files.stbbranding import getNeoLocation, getCPUtype, getCPUSoC,  getImageNeoBoot, getBoxVuModel, getBoxHostName, getNeoMount, getNeoMount2,getNeoMount3, getNeoMount4, getNeoMount5
+from Plugins.Extensions.NeoBoot.files.stbbranding import getNeoLocation, getCPUtype, getCPUSoC,  getImageNeoBoot, getBoxVuModel, getBoxHostName, getNeoMount, getNeoMount2,getNeoMount3, getNeoMount4, getNeoMount5, getMountPointNeo2
 from enigma import getDesktop
 from enigma import eTimer
 from Screens.Screen import Screen                                                                                                                                               
@@ -90,46 +90,8 @@ class StartImage(Screen):
             os.system('rm -rf %sImageBoot/%s/usr/bin/enigma2_pre_start.sh' % ( getNeoLocation(), getImageNeoBoot())) 
             self.StartImageInNeoBoot()
         #---------------------------------------------
-        os.system('touch ' + LinkNeoBoot + '/files/mountpoint.sh; echo "#!/bin/sh\n#DESCRIPTION=This script by gutosie\n"  > ' + LinkNeoBoot + '/files/mountpoint.sh; chmod 0755 ' + LinkNeoBoot + '/files/mountpoint.sh') 
-        if getNeoMount() == 'hdd_install_/dev/sda1': 
-                    os.system('echo "umount -l /media/hdd\nmkdir -p /media/hdd\n/bin/mount /dev/sda1 /media/hdd"  >> ' + LinkNeoBoot + '/files/mountpoint.sh') 
-        elif getNeoMount() == 'hdd_install_/dev/sdb1': 
-                    os.system('echo "umount -l /media/hdd\nmkdir -p /media/hdd\n/bin/mount /dev/sdb1 /media/hdd"  >> ' + LinkNeoBoot + '/files/mountpoint.sh') 
-        elif getNeoMount() == 'hdd_install_/dev/sda2': 
-                    os.system('echo "umount -l /media/hdd\nmkdir -p /media/hdd\n/bin/mount /dev/sda2 /media/hdd"  >> ' + LinkNeoBoot + '/files/mountpoint.sh') 
-        elif getNeoMount() == 'hdd_install_/dev/sdb2': 
-                    os.system('echo "umount -l /media/hdd\nmkdir -p /media/hdd\n/bin/mount /dev/sda2 /media/hdd"  >> ' + LinkNeoBoot + '/files/mountpoint.sh') 
+        getMountPointNeo2()
         #---------------------------------------------
-        if getNeoMount2() == 'usb_install_/dev/sdb1': 
-                    os.system('echo "umount -l /media/usb\nmkdir -p /media/usb\n/bin/mount /dev/sdb1 /media/usb"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')      
-        elif getNeoMount2() == 'usb_install_/dev/sda1': 
-                    os.system('echo "umount -l /media/usb\nmkdir -p /media/usb\n/bin/mount /dev/sda1 /media/usb"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')  
-        elif getNeoMount2() == 'usb_install_/dev/sdb2': 
-                    os.system('echo "umount -l /media/usb\nmkdir -p /media/usb\n/bin/mount /dev/sdb2 /media/usb"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')  
-        elif getNeoMount2() == 'usb_install_/dev/sdc1': 
-                    os.system('echo "umount -l /media/usb\nmkdir -p /media/usb\n/bin/mount /dev/sdc1 /media/usb"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')  
-        elif getNeoMount2() == 'usb_install_/dev/sdd1': 
-                    os.system('echo "umount -l /media/usb\nmkdir -p /media/usb\n/bin/mount /dev/sdd1 /media/usb"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')  
-        elif getNeoMount2() == 'usb_install_/dev/sde1': 
-                    os.system('echo "umount -l /media/usb\nmkdir -p /media/usb\n/bin/mount /dev/sde1 /media/usb"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')  
-        elif getNeoMount2() == 'usb_install_/dev/sdf1': 
-                    os.system('echo "umount -l /media/usb\nmkdir -p /media/usb\n/bin/mount /dev/sdf1 /media/usb"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')  
-        #---------------------------------------------                                  
-        elif getNeoMount3() == 'cf_install_/dev/sda1': 
-                    os.system('echo "umount -l /media/cf\nmkdir -p /media/cf\n/bin/mount /dev/sda1 /media/cf"  >> ' + LinkNeoBoot + '/files/mountpoint.sh') 
-        elif getNeoMount3() == 'cf_install_/dev/sdb1': 
-                    os.system('echo "umount -l /media/cf\nmkdir -p /media/cf\n/bin/mount /dev/sdb1 /media/cf"  >> ' + LinkNeoBoot + '/files/mountpoint.sh') 
-        #---------------------------------------------
-        elif getNeoMount4() == 'card_install_/dev/sda1': 
-                    os.system('echo "umount -l /media/card\nmkdir -p /media/card\n/bin/mount /dev/sda1 /media/card"  >> ' + LinkNeoBoot + '/files/mountpoint.sh') 
-        elif getNeoMount4() == 'card_install_/dev/sdb1': 
-                    os.system('echo "umount -l /media/card\nmkdir -p /media/card\n/bin/mount /dev/sdb1 /media/card"  >> ' + LinkNeoBoot + '/files/mountpoint.sh') 
-        #---------------------------------------------
-        elif getNeoMount5() == 'mmc_install_/dev/sda1': 
-                    os.system('echo "umount -l /media/mmc\nmkdir -p /media/mmc\n/bin/mount /dev/sda1 /media/mmc"  >> ' + LinkNeoBoot + '/files/mountpoint.sh') 
-        elif getNeoMount5() == 'mmc_install_/dev/sdb1': 
-                    os.system('echo "umount -l /media/mmc\nmkdir -p /media/mmc\n/bin/mount /dev/sdb1 /media/mmc"  >> ' + LinkNeoBoot + '/files/mountpoint.sh') 
-        os.system('echo "\n\nexit 0"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
 
     def StartImageInNeoBoot(self):                              
         if getImageNeoBoot() != 'Flash':
@@ -176,7 +138,7 @@ class StartImage(Screen):
                                 elif fileExists('/.multinfo'):    
                                     if not fileExists('%sImageBoot/%s/boot/%s.vmlinux.gz' % ( getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
                                         cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT_REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')                                    
-                                        cmd1 = 'flash_eraseall /dev/mtd2; sleep 2; ' + LinkNeoBoot + '/bin/nandwrite -p /dev/mtd2 %sImagesUpload/.kernel/%s.vmlinux.gz; /etc/init.d/reboot' % ( getNeoLocation(), getBoxHostName())
+                                        cmd1 = 'flash_eraseall /dev/mtd1; sleep 2; ' + LinkNeoBoot + '/bin/nandwrite -p /dev/mtd1 %sImagesUpload/.kernel/%s.vmlinux.gz; /etc/init.d/reboot' % ( getNeoLocation(), getBoxHostName())
 
                                     elif fileExists('%sImageBoot/%s/boot/%s.vmlinux.gz' % ( getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
                                         cmd = "echo -e '\n\n%s '" % _('...............REBOOT now...............\nPlease wait, in a moment the decoder will be restarted...')                                    
