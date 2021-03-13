@@ -114,6 +114,7 @@ if  [ $BOXNAME = "vusolo2" ] || [ $BOXNAME = "vuduo2" ] || [ $BOXNAME = "vusolos
         fi                               
     else
         break;
+    fi
 else
                     ln -sfn /sbin/init.sysvinit /sbin/init
                     echo "CHIPSET: " $CHIPSET " BOXNAME: "$BOXNAME" MODEL: "$VUMODEL" "
