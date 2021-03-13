@@ -182,7 +182,7 @@ else
 		/bin/umount /media/usb > /dev/null 2>&1
 		/bin/umount /media/hdd > /dev/null 2>&1
 		/usr/bin/showiframe /usr/share/bootlogo.mvi > /dev/null 2>&1
-		sync; ln -sfn /sbin/init.sysvinit /sbin/init; /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/mountpoint.sh
+		ln -sfn /sbin/init.sysvinit /sbin/init
                 echo "----------------------------------"
 	        echo "     BOOT UP IMAGE FROM FLASH     "
                 echo "----------------------------------"		
