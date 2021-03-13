@@ -629,7 +629,7 @@ def NEOBootMainEx(source, target, stopenigma, CopyFiles, CopyKernel, TvList, Lan
                     rc = os.system(cmd)
     
 
-#    cmd = 'cp -af ' + extensions_path + 'NeoBoot/bin/hdd ' + getNeoLocation() + 'ImageBoot/%s/etc/init.d/hddusb' % target
+#    cmd = 'cp -f ' + extensions_path + 'NeoBoot/bin/hdd ' + getNeoLocation() + 'ImageBoot/%s/etc/init.d/hddusb' % target
 #    rc = os.system(cmd)
     if os.path.exists('%s/ImageBoot/%s/usr/lib' % (media, target)):
         cmd = 'cp -af /usr/lib/periodon ' + getNeoLocation() + 'ImageBoot/%s/usr/lib/' % target
@@ -672,8 +672,7 @@ def NEOBootMainEx(source, target, stopenigma, CopyFiles, CopyKernel, TvList, Lan
 def RemoveUnpackDirs():
     os.chdir(media + '/ImagesUpload')
     if os.path.exists('' + getNeoLocation() + 'ImagesUpload/unpackedzip'):       
-        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/unpackedzip')
-            
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/unpackedzip')            
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/*.bin'):       
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/*.bin') 
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/*.txt'):       
@@ -687,20 +686,15 @@ def RemoveUnpackDirs():
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/osmio4kplus'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/osmio4kplus')                               
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/dm900'):
-        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/dm900')
-        
-                              
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/dm900')                              
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/hd60'):          
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/hd60')                                          
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/hd61'):          
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/hd61')  
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/hd51'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/hd51')
-
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/bre2ze4k'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/bre2ze4k')                                                
-
-
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/multibox'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/multibox')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/unforce_multibox.txt'):
@@ -1450,7 +1444,7 @@ def NEOBootExtract(source, target, ZipDelete):
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/multibox; tar -jxf ' + getNeoLocation() + 'ImagesUpload/multibox/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd) 
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/bre2ze4k'):
-            os.system('echo "Please wait. System installation bre2ze4k..."')
+            os.system('echo "Please wait. System installation WWIO BRE2ZE 4K."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/bre2ze4k; tar -jxf ' + getNeoLocation() + 'ImagesUpload/bre2ze4k/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd)
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/' + source + '.tar.xz'):

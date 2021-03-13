@@ -16,7 +16,7 @@
 #--------------------------------------------- NEOBOOT ---------------------------------------------#
 from __future__ import absolute_import
 from . import _
-from Plugins.Extensions.NeoBoot.files.stbbranding import  LogCrashGS, getSupportedTuners, getLabelDisck, getINSTALLNeo, getNeoLocation, getLocationMultiboot, getNeoMount, getNeoMount2, getNeoMount3, getNeoMount4, getNeoMount5, getFSTAB, getFSTAB2, getKernelVersionString, getKernelImageVersion, getCPUtype, getCPUSoC,  getImageNeoBoot, getBoxVuModel, getBoxHostName, getTunerModel, getImageDistroN, getFormat, getNEO_filesystems, getBoxModelVU                   
+from Plugins.Extensions.NeoBoot.files.stbbranding import  LogCrashGS, getSupportedTuners, getLabelDisck, getINSTALLNeo, getNeoLocation, getLocationMultiboot, getNeoMount, getNeoMount2, getNeoMount3, getNeoMount4, getNeoMount5, getFSTAB, getFSTAB2, getKernelVersionString, getKernelImageVersion, getCPUtype, getCPUSoC,  getImageNeoBoot, getBoxVuModel, getBoxHostName, getTunerModel, getImageDistroN, getFormat, getNEO_filesystems, getBoxModelVU, getMountPointAll, getMountPointNeo                   
 from Plugins.Extensions.NeoBoot.files import Harddisk 
 from Components.About import about                                                                                                                                                    
 from enigma import getDesktop, eTimer
@@ -34,10 +34,9 @@ from Components.MenuList import MenuList
 from Components.Input import Input
 from Components.Label import Label
 from Components.ProgressBar import ProgressBar
-from Components.ScrollLabel import ScrollLabel
+from Components.ScrollLabel import ScrollLabel                             
 from Components.Pixmap import Pixmap, MultiPixmap
 from Components.config import *
-#from Components.PluginComponent import plugins
 from Components.ConfigList import ConfigListScreen
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import fileExists, pathExists, createDir, resolveFilename, SCOPE_PLUGINS
@@ -56,8 +55,8 @@ else:
             from Screens.Console import Console
     	
 loggscrash = time.localtime(time.time())
-PLUGINVERSION = '9.22'
-UPDATEVERSION = '9.22'
+PLUGINVERSION = '9.23'
+UPDATEVERSION = '9.23'
 UPDATEDATE = '"+%Y04%d"'   
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot' 
 
@@ -551,10 +550,10 @@ class NeoBootInstallation(Screen):
                     if os.system('opkg list-installed | grep mtd-utils') != 0:
                             os.system('opkg install mtd-utils')
                     if os.system('opkg list-installed | grep mtd-utils-ubifs') != 0:                                                                                                                                                                                                                                                                                                                                                
-                            os.system('opkg install mtd-utils-ubifs')
+                            os.system('opkg install mtd-utils-ubifs')               
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
             #_____Other ARM procesor____ - here you can add your tuner stb                                                                                                                                                                   
-            if getCPUtype() == "ARMv7" and getBoxHostName() == "axashistwin" or getBoxHostName() == "i55plus " or getBoxHostName() == "zgemmai55plus " or getBoxHostName() == "h92s" or getBoxHostName() == "zgemmah92s" or getBoxHostName() == "h7" or getBoxHostName() == "zgemmah7" or getBoxHostName() == "h9" or getBoxHostName() == "zgemmah9" or getBoxHostName() == "h9s" or getBoxHostName() == "zgemmah9s" or getBoxHostName() == "h9se" or getBoxHostName() == "zgemmah9se" or getBoxHostName() == "h9twin" or getBoxHostName() == "zgemmah9twin" or getBoxHostName() == "h9combo" or getBoxHostName() == "h9combose" or getBoxHostName() == "h10" or getBoxHostName() == "zgemmahh10" or getBoxHostName() == "hd51" or getBoxHostName() == "ax51" or getBoxHostName() == "ax60" or getBoxHostName() == "ax61" or getBoxHostName() == "sf4008" or getBoxHostName() == "sf8008" or getBoxHostName() == "ustym4kpro" or getBoxHostName() == "tmtwin4k" or getBoxHostName() == "anadol4k" or getBoxHostName() == "protek4k" or getBoxHostName() == "maxytecmulti" or getBoxHostName() == "viper4k" or getBoxHostName() == "dm900" or getBoxHostName() == "dm920" or getBoxHostName() == "et1x000" or getBoxHostName() == "gbquad4k" or getBoxHostName() == "axashisc4k" or getBoxHostName() == "axmultitwin" or getBoxHostName() == "axmulticombo" or getBoxHostName() == "osmio4k" or getBoxHostName() == "osmio4kplus" :              
+            if getCPUtype() == "ARMv7" and getBoxHostName() == "axashistwin" or getBoxHostName() == "bre2ze4k" or getBoxHostName() == "i55plus " or getBoxHostName() == "zgemmai55plus " or getBoxHostName() == "h92s" or getBoxHostName() == "zgemmah92s" or getBoxHostName() == "h7" or getBoxHostName() == "zgemmah7" or getBoxHostName() == "h9" or getBoxHostName() == "zgemmah9" or getBoxHostName() == "h9s" or getBoxHostName() == "zgemmah9s" or getBoxHostName() == "h9se" or getBoxHostName() == "zgemmah9se" or getBoxHostName() == "h9twin" or getBoxHostName() == "zgemmah9twin" or getBoxHostName() == "h9combo" or getBoxHostName() == "h9combose" or getBoxHostName() == "h10" or getBoxHostName() == "zgemmahh10" or getBoxHostName() == "hd51" or getBoxHostName() == "ax51" or getBoxHostName() == "ax60" or getBoxHostName() == "ax61" or getBoxHostName() == "sf4008" or getBoxHostName() == "sf8008" or getBoxHostName() == "ustym4kpro" or getBoxHostName() == "tmtwin4k" or getBoxHostName() == "anadol4k" or getBoxHostName() == "protek4k" or getBoxHostName() == "maxytecmulti" or getBoxHostName() == "viper4k" or getBoxHostName() == "dm900" or getBoxHostName() == "dm920" or getBoxHostName() == "et1x000" or getBoxHostName() == "gbquad4k" or getBoxHostName() == "axashisc4k" or getBoxHostName() == "axmultitwin" or getBoxHostName() == "axmulticombo" or getBoxHostName() == "osmio4k" or getBoxHostName() == "osmio4kplus" :              
                         os.system('cp -f ' + LinkNeoBoot + '/bin/neoinitarm /sbin/neoinitarm; chmod 0755 /sbin/neoinitarm; ln -sfn /sbin/neoinitarm /sbin/init; mv ' + LinkNeoBoot + '/tmpfiles/runpy/arm_run.py ' + LinkNeoBoot + '/run.py; cd')                                                                          
             #VUPLUS ARM
             elif getCPUtype() == "ARMv7" and getBoxHostName() !=  "ustym4kpro":
@@ -627,7 +626,7 @@ class NeoBootInstallation(Screen):
             if fileExists('' + LinkNeoBoot + '/ubi_reader'): 
                 os.system('rm -r ' + LinkNeoBoot + '/ubi_reader ')
             if not fileExists('/etc/name'):
-		os.system('touch /etc/name')
+                os.system('touch /etc/name')                 
                 
             if getCPUtype() == 'ARMv7':                                                                                                                                     
                         os.system('cd ' + LinkNeoBoot + '/; mv ./bin/fbcleararm ./bin/fbclear; chmod 755 ./bin/fbclear; rm -f ./bin/nandwrite; rm -f ./bin/fbclearmips; mv ./ubi_reader_arm ./ubi_reader; rm -r ./ubi_reader_mips; rm ./bin/neoinitmips; rm ./bin/neoinitmipsvu; rm -r ./bin/nanddump_mips; rm ./bin/nfidump; rm ./bin/neobmmips; rm ./bin/neobm; mv ./bin/neobmarm ./bin/neobm; rm ./bin/fontforneoboot.ttf; rm ./bin/libpngneo; cd')   
@@ -659,10 +658,8 @@ class NeoBootInstallation(Screen):
 
     def RebootSTB(self, answer):
         if answer is True:
-            #plugins.reloadPlugins()
             os.system('sync && echo 3 > /proc/sys/vm/drop_caches; reboot -d -f')
-        else:
-            #plugins.reloadPlugins()        
+        else:        
             self.close()        
 
 
@@ -737,88 +734,15 @@ class NeoBootImageChoose(Screen):
          '9': self.touch9,        #hidden option                                                                                              
          '0': self.touch0,        #hidden option 
          'back': self.close_exit})
-        self.availablespace = 0
+        self.availablespace = 0         
         self.onShow.append(self.updateList)
 
         if not fileExists('' + LinkNeoBoot + '/files/mountpoint.sh'):
-            os.system('touch ' + LinkNeoBoot + '/files/mountpoint.sh; echo "#!/bin/sh\n"  >> ' + LinkNeoBoot + '/files/mountpoint.sh; chmod 0755 ' + LinkNeoBoot + '/files/mountpoint.sh') 
-            if getNeoMount() == 'hdd_install_/dev/sda1': 
-                    os.system('echo "umount -l /media/hdd\nmkdir -p /media/hdd\nmkdir -p /media/sda1\n/bin/mount /dev/sda1 /media/hdd\n/bin/mount /dev/sda1 /media/sda1"  >> ' + LinkNeoBoot + '/files/mountpoint.sh') 
-            elif getNeoMount() == 'hdd_install_/dev/sdb1': 
-                    os.system('echo "umount -l /media/hdd\nmkdir -p /media/hdd\nmkdir -p /media/sdb1\n/bin/mount /dev/sdb1 /media/hdd\n/bin/mount /dev/sdb1 /media/sdb1"  >> ' + LinkNeoBoot + '/files/mountpoint.sh') 
-            elif getNeoMount() == 'hdd_install_/dev/sda2': 
-                    os.system('echo "umount -l /media/hdd\nmkdir -p /media/hdd\nmkdir -p /media/sda2\n/bin/mount /dev/sda2 /media/hdd\n/bin/mount /dev/sda2 /media/sda2"  >> ' + LinkNeoBoot + '/files/mountpoint.sh') 
-            elif getNeoMount() == 'hdd_install_/dev/sdb2': 
-                    os.system('echo "umount -l /media/hdd\nmkdir -p /media/hdd\nmkdir -p /media/sdb2\n/bin/mount /dev/sdb2 /media/hdd\n/bin/mount /dev/sdb2 /media/sdb2"  >> ' + LinkNeoBoot + '/files/mountpoint.sh') 
-            #---------------------------------------------
-            if getNeoMount2() == 'usb_install_/dev/sdb1': 
-                    os.system('echo "\numount -l /media/usb\nmkdir -p /media/usb\nmkdir -p /media/sdb1\n/bin/mount /dev/sdb1 /media/usb\n/bin/mount /dev/sdb1 /media/sdb1"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')      
-            elif getNeoMount2() == 'usb_install_/dev/sda1': 
-                    os.system('echo "umount -l /media/usb\nmkdir -p /media/usb\nmkdir -p /media/sda1\n/bin/mount /dev/sda1 /media/sda1\n/bin/mount /dev/sda1 /media/usb"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')  
-            elif getNeoMount2() == 'usb_install_/dev/sdb2': 
-                    os.system('echo "umount -l /media/usb\nmkdir -p /media/usb\nmkdir -p /media/sdb2\n/bin/mount /dev/sdb2 /media/sdb2\n/bin/mount /dev/sdb2 /media/usb"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')  
-            elif getNeoMount2() == 'usb_install_/dev/sdc1': 
-                    os.system('echo "umount -l /media/usb\nmkdir -p /media/usb\nmkdir -p /media/sdc1\n/bin/mount /dev/sdc1 /media/sdb2\n/bin/mount /dev/sdc1 /media/usb"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')  
-            elif getNeoMount2() == 'usb_install_/dev/sdd1': 
-                    os.system('echo "umount -l /media/usb\nmkdir -p /media/usb\nmkdir -p /media/sdd1\n/bin/mount /dev/sdd1 /media/sdd1\n/bin/mount /dev/sdd1 /media/usb"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')  
-            elif getNeoMount2() == 'usb_install_/dev/sde1': 
-                    os.system('echo "umount -l /media/usb\nmkdir -p /media/usb\nmkdir -p /media/sde1\n/bin/mount /dev/sde1 /media/sde1\n/bin/mount /dev/sde1 /media/usb"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')  
-            elif getNeoMount2() == 'usb_install_/dev/sdf1': 
-                    os.system('echo "umount -l /media/usb\nmkdir -p /media/usb\nmkdir -p /media/sdf1\n/bin/mount /dev/sdf1 /media/sdf1\n/bin/mount /dev/sdf1 /media/usb"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')  
-            #---------------------------------------------                                  
-            elif getNeoMount3() == 'cf_install_/dev/sda1': 
-                    os.system('echo "umount -l /media/cf\nmkdir -p /media/cf\nmkdir -p /media/sdb1\n/bin/mount /dev/sda1 /media/cf\n/bin/mount /dev/sda1 /media/sda1"  >> ' + LinkNeoBoot + '/files/mountpoint.sh') 
-            elif getNeoMount3() == 'cf_install_/dev/sdb1': 
-                    os.system('echo "umount -l /media/cf\nmkdir -p /media/cf\nmkdir -p /media/sdb1\n/bin/mount /dev/sdb1 /media/cf\n/bin/mount /dev/sdb1 /media/sdb1"  >> ' + LinkNeoBoot + '/files/mountpoint.sh') 
-            #---------------------------------------------
-            elif getNeoMount4() == 'card_install_/dev/sda1': 
-                    os.system('echo "umount -l /media/card\nmkdir -p /media/card\nmkdir -p /media/sda1\n/bin/mount /dev/sda1 /media/card\n/bin/mount /dev/sda1 /media/sda1"  >> ' + LinkNeoBoot + '/files/mountpoint.sh') 
-            elif getNeoMount4() == 'card_install_/dev/sdb1': 
-                    os.system('echo "umount -l /media/card\nmkdir -p /media/card\nmkdir -p /media/sdb1\n/bin/mount /dev/sdb1 /media/card\n/bin/mount /dev/sdb1 /media/sdb1"  >> ' + LinkNeoBoot + '/files/mountpoint.sh') 
-            #---------------------------------------------
-            elif getNeoMount5() == 'mmc_install_/dev/sda1': 
-                    os.system('echo "umount -l /media/mmc\nmkdir -p /media/mmc\nmkdir -p /media/sda1\n/bin/mount /dev/sda1 /media/mmc\n/bin/mount /dev/sda1 /media/sda1"  >> ' + LinkNeoBoot + '/files/mountpoint.sh') 
-            elif getNeoMount5() == 'mmc_install_/dev/sdb1': 
-                    os.system('echo "umount -l /media/mmc\nmkdir -p /media/mmc\nmkdir -p /media/sdb1\n/bin/mount /dev/sdb1 /media/mmc\n/bin/mount /dev/sdb1 /media/sdb1"  >> ' + LinkNeoBoot + '/files/mountpoint.sh') 
-            os.system('echo "\n\nexit 0"  >> ' + LinkNeoBoot + '/files/mountpoint.sh') 
-
+                getMountPointAll()
+ 
         if not fileExists('' + LinkNeoBoot + '/files/neo.sh'):
-            system('' + LinkNeoBoot + '/files/mountpoint.sh') 
-            system('echo ' + getLocationMultiboot() + ' > ' + LinkNeoBoot + '/bin/install; chmod 0755 ' + LinkNeoBoot + '/bin/install')    
-            if getLocationMultiboot() == '/dev/sda1':
-                    out = open('' + LinkNeoBoot + '/files/neo.sh', 'w')
-                    out.write('#!/bin/sh\n\n/bin/mount /dev/sda1 ' + getNeoLocation() + '  \n\nexit 0')
-                    out.close()
-            elif getLocationMultiboot() == '/dev/sdb1':
-                    out = open('' + LinkNeoBoot + '/files/neo.sh', 'w')
-                    out.write('#!/bin/sh\n\n/bin/mount /dev/sdb1 ' + getNeoLocation() + '  \n\nexit 0')
-                    out.close()
-            elif getLocationMultiboot() == '/dev/sda2':
-                    out = open('' + LinkNeoBoot + '/files/neo.sh', 'w')
-                    out.write('#!/bin/sh\n\n/bin/mount /dev/sda2 ' + getNeoLocation() + '  \n\nexit 0')
-                    out.close()
-            elif getLocationMultiboot() == '/dev/sdb2':
-                    out = open('' + LinkNeoBoot + '/files/neo.sh', 'w')
-                    out.write('#!/bin/sh\n\n/bin/mount /dev/sdb2 ' + getNeoLocation() + '  \n\nexit 0')
-                    out.close()
-            elif getLocationMultiboot() == '/dev/sdc1':
-                    out = open('' + LinkNeoBoot + '/files/neo.sh', 'w')
-                    out.write('#!/bin/sh\n\n/bin/mount /dev/sdc1 ' + getNeoLocation() + '  \n\nexit 0')
-                    out.close()                    
-            elif getLocationMultiboot() == '/dev/sdd1':
-                    out = open('' + LinkNeoBoot + '/files/neo.sh', 'w')
-                    out.write('#!/bin/sh\n\n/bin/mount /dev/sdd1 ' + getNeoLocation() + '  \n\nexit 0')
-                    out.close()
-            elif getLocationMultiboot() == '/dev/sde1':
-                    out = open('' + LinkNeoBoot + '/files/neo.sh', 'w')
-                    out.write('#!/bin/sh\n\n/bin/mount /dev/sde1 ' + getNeoLocation() + '  \n\nexit 0')
-                    out.close()
-            elif getLocationMultiboot() == '/dev/sdf1':
-                    out = open('' + LinkNeoBoot + '/files/neo.sh', 'w')
-                    out.write('#!/bin/sh\n\n/bin/mount /dev/sdf1 ' + getNeoLocation() + '  \n\nexit 0')
-                    out.close()
-            system('chmod 755 ' + LinkNeoBoot + '/files/neo.sh')  
-
+                getMountPointNeo()
+ 
         if fileExists('/tmp/.init_reboot'):
             system('rm /tmp/.init_reboot')
 

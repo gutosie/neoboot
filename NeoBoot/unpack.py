@@ -125,10 +125,16 @@ class InstallImage(Screen, ConfigListScreen):
         self.target = ConfigText(fixed_size=False)
         self.stopenigma = ConfigYesNo(default=False)     
         self.CopyFiles = ConfigYesNo(default=True)
-        self.CopyKernel = ConfigYesNo(default=True)       
+        if fileExists('/proc/stb/info/vumodel') and not fileExists('/proc/stb/info/boxtype'):                
+            self.CopyKernel = ConfigYesNo(default=True)
+        else: 
+            self.CopyKernel = ConfigYesNo(default=False)              
         self.TvList = ConfigYesNo(default=False) 
-        self.LanWlan = ConfigYesNo(default=False)        
-        self.Sterowniki = ConfigYesNo(default=False)                                                
+        self.LanWlan = ConfigYesNo(default=False)
+        if fileExists('/proc/stb/info/vumodel') and not fileExists('/proc/stb/info/boxtype'):
+            self.Sterowniki = ConfigYesNo(default=False) 
+        else:
+            self.Sterowniki = ConfigYesNo(default=True)                                                                
         self.InstallSettings = ConfigYesNo(default=False)        
         self.ZipDelete = ConfigYesNo(default=False)                 
         self.RepairFTP = ConfigYesNo(default=False)
