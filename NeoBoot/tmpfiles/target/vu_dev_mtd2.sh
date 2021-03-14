@@ -30,7 +30,7 @@ IMAGENEXTBOOT=/ImageBoot/.neonextboot
 NEOBOOTMOUNT=$( cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location) 
 BOXNAME=$( cat /etc/hostname)
 UPLOAD=ImagesUpload
-NandWrite=/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/nandwrite
+NandWrite=/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot//bin/nandwrite
 
 if [ -f $NEOBOOTMOUNT$IMAGENEXTBOOT ]; then
   TARGET=`cat $NEOBOOTMOUNT$IMAGENEXTBOOT`
@@ -38,8 +38,8 @@ else
   TARGET=Flash              
 fi
                    
-if [ $VUMODEL = "bm750" ] || [ $BOXNAME = "vuduo" ] || [ $BOXNAME = "vusolo" ] || [ $BOXNAME = "vuuno" ] || [ $BOXNAME = "vuultimo" ]; then
-    if [ -f /proc/stb/info/vumodel ] || [ ! -e /proc/stb/info/boxtype ] ; then
+if  [ $BOXNAME = "vusolo2" ] || [ $BOXNAME = "vuduo2" ] || [ $BOXNAME = "vusolose" ] || [ $BOXNAME = "vuzero" ]; then     #[ $BOXNAME = "mbultra" ]
+    if [ -f /proc/stb/info/vumodel ] ; then
         if [ $TARGET = "Flash" ]; then                    
                 if [ -e /.multinfo ]; then                                                
                             if [ -f /proc/stb/info/vumodel ] || [ ! -e /proc/stb/info/boxtype ]; then
@@ -48,9 +48,9 @@ if [ $VUMODEL = "bm750" ] || [ $BOXNAME = "vuduo" ] || [ $BOXNAME = "vusolo" ] |
                                     
                                     sleep 2                                
                                     flash_eraseall /dev/mtd2 > /dev/null 2>&1
-                                    [ $PL ] && echo "Wgrywanie kernel do /dev/mtd2..." || echo "Writing kernel to  /dev/mtd2"  
+                                    [ $PL ] && echo "Wgrywanie kernel do /dev/mtd2..." || echo "Writing kernel to from  /dev/mtd2"  
                                     sleep 2
-		                                $NandWrite -p /dev/mtd2 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXNAME.vmlinux.gz > /dev/null 2>&1
+		                                $NandWrite -p /dev/mtd2 /media/hdd/.kernel/vusolo.vmlinux.gz > /dev/null 2>&1
                                 fi
                             fi
                             update-alternatives --remove vmlinux vmlinux-`uname -r` || true                                          
@@ -64,7 +64,7 @@ if [ $VUMODEL = "bm750" ] || [ $BOXNAME = "vuduo" ] || [ $BOXNAME = "vusolo" ] |
                                         [ $PL ] && echo "Kasowanie kernel z /dev/mtd2..." || echo "Erase kernel from  /dev/mtd2"                                   
                                         sleep 2
                                         flash_eraseall /dev/mtd2 > /dev/null 2>&1
-                                        [ $PL ] && echo "Wgrywanie kernel do /dev/mtd2..." || echo "Writing kernel to  /dev/mtd2"                                           
+                                        [ $PL ] && echo "Wgrywanie kernel do /dev/mtd2..." || echo "Writing kernel to from  /dev/mtd2"                                           
                                         sleep 2
                                         $NandWrite -p /dev/mtd2 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXNAME.vmlinux.gz > /dev/null 2>&1
                                     fi
@@ -79,16 +79,16 @@ if [ $VUMODEL = "bm750" ] || [ $BOXNAME = "vuduo" ] || [ $BOXNAME = "vusolo" ] |
                 sleep 10
                 PATH=/sbin:/bin:/usr/sbin:/usr/bin 
                 reboot -d -f 
-        else                  	    
+        else              	    
                         if [ -e /.multinfo ] ; then
                                 INFOBOOT=$( cat /.multinfo )
                                 if [ $TARGET = $INFOBOOT ] ; then
-                                    echo "NEOBOOT is booting image " $TARGET                                    
+                                    echo "NEOBOOT is booting image from " $TARGET                                    
                                 else                                    
                                     [ $PL ] && echo "Kasowanie kernel z /dev/mtd2..." || echo "Erase kernel from  /dev/mtd2"                                   
                                     sleep 2
                                     flash_eraseall /dev/mtd2 > /dev/null 2>&1
-                                    [ $PL ] && echo "Wgrywanie kernel do /dev/mtd2..." || echo "Writing kernel to  /dev/mtd2"                                                                      
+                                    [ $PL ] && echo "Wgrywanie kernel do /dev/mtd2..." || echo "Writing kernel to from  /dev/mtd2"                                                                      
                                     sleep 2
                                     $NandWrite -p /dev/mtd2 $NEOBOOTMOUNT$IMAGE/$TARGET/boot/$BOXNAME.vmlinux.gz > /dev/null 2>&1  
                                     update-alternatives --remove vmlinux vmlinux-`uname -r` || true
@@ -99,7 +99,7 @@ if [ $VUMODEL = "bm750" ] || [ $BOXNAME = "vuduo" ] || [ $BOXNAME = "vusolo" ] |
                                     [ $PL ] && echo "Kasowanie kernel z /dev/mtd2..." || echo "Erase kernel from  /dev/mtd2"                                   
                                     sleep 2
                                     flash_eraseall /dev/mtd2 > /dev/null 2>&1 
-                                    [ $PL ] && echo "Wgrywanie kernel do /dev/mtd2..." || echo "Writing kernel to  /dev/mtd2"
+                                    [ $PL ] && echo "Wgrywanie kernel do /dev/mtd2..." || echo "Writing kernel to from  /dev/mtd2"
                                     sleep 2
                                     $NandWrite -p /dev/mtd2 $NEOBOOTMOUNT$IMAGE/$TARGET/boot/$BOXNAME.vmlinux.gz > /dev/null 2>&1                                                                                                     
                                     update-alternatives --remove vmlinux vmlinux-`uname -r` || true
@@ -110,16 +110,17 @@ if [ $VUMODEL = "bm750" ] || [ $BOXNAME = "vuduo" ] || [ $BOXNAME = "vusolo" ] |
                         sync && echo 3 > /proc/sys/vm/drop_caches
                         sleep 5
                         PATH=/sbin:/bin:/usr/sbin:/usr/bin 
-                        reboot -d -f
-        fi
+                        reboot -d -f 
+        fi                               
     else
         break;
-    fi
+    fi        
 else
                     ln -sfn /sbin/init.sysvinit /sbin/init
                     echo "CHIPSET: " $CHIPSET " BOXNAME: "$BOXNAME" MODEL: "$VUMODEL" "
                     echo "$TARGET "  > $NEOBOOTMOUNT/ImageBoot/.neonextboot
                     [ $PL ] && echo "Ten model stb nie jest wpierany" || echo "This stb model is not supported." 
+                    [ $PL ] && echo "Wspierane modele: vusolo2, vuduo2, vusolose, vuzero" || echo "Supported model: vusolo2, vuduo2, vusolose, vuzero "                    
                     exit 0
 fi
 exit 0
