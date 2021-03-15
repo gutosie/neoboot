@@ -111,8 +111,6 @@ if [ $VUMODEL = "bm750" ] || [ $BOXHOSTNAME = "vuduo" ] || [ $BOXHOSTNAME = "vus
                         PATH=/sbin:/bin:/usr/sbin:/usr/bin 
                         reboot -d -f
         fi
-    else
-        break;
     fi        
 else
                     ln -sfn /sbin/init.sysvinit /sbin/init
