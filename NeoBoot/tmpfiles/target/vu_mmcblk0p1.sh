@@ -25,9 +25,10 @@ HARDWARETYPE=`uname -m`
 IMAGE=ImageBoot
 IMAGENEXTBOOT=/ImageBoot/.neonextboot
 NEOBOOTMOUNT=$( cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location)
-BOXNAME=$( cat /etc/hostname)
+BOXHOSTNAME=$( cat /etc/hostname)
 UPLOAD=ImagesUpload
 MOUNTneoDisk=$( cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/install)
+MOUNTblkid=$( cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/reading_blkid)
 MOUNTMEDIA=$( ls /media)
 DYSKMODELVENDOR=$( cat /sys/block/sd*/device/model | sed "s/ *$//"; cat /sys/block/sd*/device/vendor | sed "s/ *$//" )    
 
@@ -39,7 +40,7 @@ fi
 
 echo "NEOBOOT is booting image from " $TARGET
 
-if [ $BOXNAME = "vuultimo4k" ] || [ $BOXNAME = "vusolo4k" ] || [ $BOXNAME = "vuuno4kse" ] || [ $BOXNAME = "vuuno4k" ]; then                    
+if [ $BOXHOSTNAME = "vuultimo4k" ] || [ $BOXHOSTNAME = "vusolo4k" ] || [ $BOXHOSTNAME = "vuuno4kse" ] || [ $BOXHOSTNAME = "vuuno4k" ]; then                    
     if [ $TARGET = "Flash" ]; then                                                              
                 INFOBOOT=$( cat /.multinfo )
                 if [ $TARGET = $INFOBOOT ] ; then
@@ -47,19 +48,19 @@ if [ $BOXNAME = "vuultimo4k" ] || [ $BOXNAME = "vusolo4k" ] || [ $BOXNAME = "vuu
                 elif [ -e /.multinfo ]; then
                                 [ $PL ] && echo "Instalacja pliku kernel bin /dev/mmcblk0p1......" || echo "Instaling kernel bin file /dev/mmcblk0p1... "                                                                                                              
                                 cd /media/InternalFlash; ln -sfn /sbin/init.sysvinit /media/InternalFlash/sbin/init
-                                if [ -e $NEOBOOTMOUNT$UPLOAD/.kernel/flash-kernel-$BOXNAME.bin ] ; then                                                                                                                                                                                                                       
+                                if [ -e $NEOBOOTMOUNT$UPLOAD/.kernel/flash-kernel-$BOXHOSTNAME.bin ] ; then                                                                                                                                                                                                                       
                                     if [ -d /proc/stb ] ; then
-                      	    	            dd if=$NEOBOOTMOUNT$UPLOAD/.kernel/flash-kernel-$BOXNAME.bin of=/dev/mmcblk0p1
+                      	    	            dd if=$NEOBOOTMOUNT$UPLOAD/.kernel/flash-kernel-$BOXHOSTNAME.bin of=/dev/mmcblk0p1
                                     fi
                                     echo "Boot - Flash. "                                                                                                                                                                                        
                                     echo "Start image Flash in progress _RESTART_..." 
                                 fi                                                                                                                              
                 elif [ ! -e /.multinfo ]; then 
                                     [ $PL ] && echo "Instalacja pliku kernel bin /dev/mmcblk0p1......" || echo "Instaling kernel bin file /dev/mmcblk0p1... "                                   
-                                    if [ -e $NEOBOOTMOUNT$UPLOAD/.kernel/flash-kernel-$BOXNAME.bin ] ; then
+                                    if [ -e $NEOBOOTMOUNT$UPLOAD/.kernel/flash-kernel-$BOXHOSTNAME.bin ] ; then
                                         [ $PL ] && echo "Instalacja pliku kernel bin..." || echo "Instaling kernel bin file "                                                                                                                  
                                         if [ -d /proc/stb ] ; then
-                                                    dd if=$NEOBOOTMOUNT$UPLOAD/.kernel/flash-kernel-$BOXNAME.bin conv=noerror conv=sync of=/dev/mmcblk0p1
+                                                    dd if=$NEOBOOTMOUNT$UPLOAD/.kernel/flash-kernel-$BOXHOSTNAME.bin conv=noerror conv=sync of=/dev/mmcblk0p1
                                         fi                                                                                                                                              
                                         echo "Start-restart Flash image..."                                                                                 
                                         echo "Reboot image Flash in progress =RESTART=...; " 
@@ -69,7 +70,7 @@ if [ $BOXNAME = "vuultimo4k" ] || [ $BOXNAME = "vusolo4k" ] || [ $BOXNAME = "vuu
                 [ $PL ] && echo " Zainstalowano kernel image  " $TARGET  " "  || echo " Installed kernel image - "$TARGET" "
                 cat /dev/mmcblk0p1 | grep "kernel"                             
                 echo "Used Kernel: " $TARGET > $NEOBOOTMOUNT$UPLOAD/.kernel/used_flash_kernel
-                echo "CHIPSET: " $CHIPSET " BOXNAME: "$BOXNAME" MODEL: "$VUMODEL" "
+                echo "CHIPSET: " $CHIPSET " BOXNAME: "$BOXHOSTNAME" MODEL: "$VUMODEL" "
                 echo "...............shutdown now..............."; sleep 5
                 echo -n "Rebooting... "
                 sync && echo 3 > /proc/sys/vm/drop_caches
@@ -84,7 +85,7 @@ if [ $BOXNAME = "vuultimo4k" ] || [ $BOXNAME = "vusolo4k" ] || [ $BOXNAME = "vuu
                                 else
                                     [ $PL ] && echo "Przenoszenie pliku kernel do /tmp..." || echo "Moving the kernel file to..."                                     
                                     sleep 2
-                                    cp -fR $NEOBOOTMOUNT$IMAGE/$TARGET/boot/zImage.$BOXNAME /tmp/zImage
+                                    cp -fR $NEOBOOTMOUNT$IMAGE/$TARGET/boot/zImage.$BOXHOSTNAME /tmp/zImage
                                     echo "Installation kernel /dev/mmcblk0p1..."
                                     sleep 2                                   
                                     if [ -d /proc/stb ] ; then
@@ -97,7 +98,7 @@ if [ $BOXNAME = "vuultimo4k" ] || [ $BOXNAME = "vusolo4k" ] || [ $BOXNAME = "vuu
                         else
                                     [ $PL ] && echo "Przenoszenie pliku kernel do /tmp..." || echo "Moving the kernel file to..."                                
                                     sleep 2
-                                    cp -fR $NEOBOOTMOUNT$IMAGE/$TARGET/boot/zImage.$BOXNAME /tmp/zImage
+                                    cp -fR $NEOBOOTMOUNT$IMAGE/$TARGET/boot/zImage.$BOXHOSTNAME /tmp/zImage
                                     echo "Installation kernel bin /dev/mmcblk0p1..."
                                     sleep 2 
                                     if [ -d /proc/stb ] ; then
@@ -110,10 +111,13 @@ if [ $BOXNAME = "vuultimo4k" ] || [ $BOXNAME = "vusolo4k" ] || [ $BOXNAME = "vuu
                         cat /dev/mmcblk0p1 | grep "kernel"
                         update-alternatives --remove vmlinux vmlinux-`uname -r` || true                        
                         echo "Used Kernel: " $TARGET  > $NEOBOOTMOUNT$UPLOAD/.kernel/used_flash_kernel 
-                        echo "CHIPSET:"$CHIPSET $HARDWARETYPE" BOXNAME:"$BOXNAME" MODEL:"$VUMODEL" "
+                        echo "CHIPSET:"$CHIPSET $HARDWARETYPE" BOX NAME:"$BOXHOSTNAME" MODEL:"$VUMODEL" "
                         sleep 1
                         echo "Neoboot location: "
                         echo ""$MOUNTneoDisk" "
+                        sleep 1
+                        echo "Info media: "
+                        echo ""$MOUNTblkid" "
                         sleep 1
                         echo "Media list: "
                         echo ""$MOUNTMEDIA" "
@@ -131,7 +135,7 @@ if [ $BOXNAME = "vuultimo4k" ] || [ $BOXNAME = "vusolo4k" ] || [ $BOXNAME = "vuu
     fi                               
 else
                     ln -sfn /sbin/init.sysvinit /sbin/init
-                    echo "CHIPSET: " $CHIPSET " BOXNAME: "$BOXNAME" MODEL: "$VUMODEL" "
+                    echo "CHIPSET: " $CHIPSET " BOX NAME: "$BOXHOSTNAME" MODEL: "$VUMODEL" "
                     echo "$TARGET "  > $NEOBOOTMOUNT/ImageBoot/.neonextboot
                     echo "Error - Not supported model STB !!! "
                     exit 0
