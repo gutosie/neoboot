@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 
 from Plugins.Extensions.NeoBoot.__init__ import _                                                                                                                                                    
-from Plugins.Extensions.NeoBoot.files.stbbranding import getNeoLocation, getCPUtype, getCPUSoC,  getImageNeoBoot, getBoxVuModel, getBoxHostName, getNeoMount, getNeoMount2,getNeoMount3, getNeoMount4, getNeoMount5, getMountPointNeo2
+from Plugins.Extensions.NeoBoot.files.stbbranding import getSupportedTuners, getNeoLocation, getCPUtype, getCPUSoC,  getImageNeoBoot, getBoxVuModel, getBoxHostName, getNeoMount, getNeoMount2,getNeoMount3, getNeoMount4, getNeoMount5, getMountPointNeo2
 from enigma import getDesktop
 from enigma import eTimer
 from Screens.Screen import Screen                                                                                                                                               
 from Screens.Console import Console
-from Screens.MessageBox import MessageBox
+from Screens.MessageBox import MessageBox                          
 from Screens.ChoiceBox import ChoiceBox
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Screens.Standby import TryQuitMainloop
@@ -107,8 +107,7 @@ class StartImage(Screen):
         if self.sel == 0:          
             if fileExists('/media/InternalFlash/etc/init.d/neobootmount.sh'):
                 os.system('rm -f /media/InternalFlash/etc/init.d/neobootmount.sh;')
-                
-            if getCPUtype() == 'MIPS' and getBoxHostName() == "vusolo" or getBoxHostName() == "mbmini" or getBoxHostName() == "mbultra" or getBoxHostName() == "osmini" or getBoxHostName() == "formuler4turbo" or getBoxHostName() == "h3" or getBoxHostName() == "formuler3" :                                
+            if (getSupportedTuners()):    
                         if getImageNeoBoot() == 'Flash':  
                                 cmd = "echo -e '\n\n%s '" % _('NEOBOOT - Restart image flash....\nPlease wait, in a moment the decoder will be restarted...\n')
                                 cmd1='sleep 8; ln -sfn /sbin/init.sysvinit /sbin/init; reboot -f '
