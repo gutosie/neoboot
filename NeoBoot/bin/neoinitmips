@@ -1,6 +1,6 @@
 #!/bin/sh
 #DESCRIPTION = This script mod. by gutosie
-#NeoBoot INIT Version: NEOBOOT VIP all stb MIPSEL with the boot manager
+#NeoBoot INIT Version: NEOBOOT VIP all stb MIPSEL with boot manager
 #Scrypt Unix Shell - init for neoboot
 NEOBOOT=/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot
 MODPROBE=/sbin/modprobe
@@ -203,8 +203,8 @@ else
 		          echo "====================================================> "
                   /bin/umount /media/usb > /dev/null 2>&1
                   /bin/umount /media/hdd > /dev/null 2>&1
-                  sleep 10
-		          reboot -f
+                  sleep 2
+		          break;
 	fi
 	TARGET=Flash
 	if [ -f $NEODEVICE$IMAGEKATALOG/.neonextboot ]; then
@@ -245,7 +245,7 @@ else
 		                        /bin/umount /media/usb > /dev/null 2>&1
 		                        /bin/umount /media/hdd > /dev/null 2>&1
                                 echo -n "<<<END INIT INFO Rebooting...>>>"
-		                        reboot -d -f
+		                        break;
                         fi
 		    fi
 		fi

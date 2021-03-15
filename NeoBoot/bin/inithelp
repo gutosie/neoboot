@@ -103,11 +103,11 @@ else
     fi
     if [ $BOXHOSTNAME = "vuduo4k" ] || [ $BOXHOSTNAME = "vuduo4kse" ] || [ $BOXHOSTNAME = "vuzero4k" ] || [ $BOXHOSTNAME = "bm750" ] || [ $BOXHOSTNAME = "vuduo" ] || [ $BOXHOSTNAME = "vusolo" ] || [ $BOXHOSTNAME = "vuuno" ] || [ $BOXHOSTNAME = "vuultimo" ] || [ $BOXHOSTNAME = "vuultimo4k" ] || [ $BOXHOSTNAME = "vusolo4k" ] || [ $BOXHOSTNAME = "vuuno4kse" ] || [ $BOXHOSTNAME = "vuuno4k" ] || [ $BOXHOSTNAME = "vusolo2" ] || [ $BOXHOSTNAME = "vuduo2" ] || [ $BOXHOSTNAME = "vusolose" ] || [ $BOXHOSTNAME = "vuzero" ] ; then
             break;
-	else			
-			echo "  Neo-Boot start  boot manager. Waiting to change image - 20s "
-            /usr/bin/showiframe $NEOBOOT/neologo.mvi > /dev/null 2>&1
-			chmod 0755 $NEOBOOT/bin/neobm
-			$NEOBOOT/bin/neobm > /dev/null 2>&1
+	else
+                echo "  Neo-Boot start  boot manager. Waiting to change image - 20s "
+                /usr/bin/showiframe $NEOBOOT/neologo.mvi > /dev/null 2>&1
+                chmod 0755 $NEOBOOT/bin/neobm
+                $NEOBOOT/bin/neobm > /dev/null 2>&1
     fi
     if [ -f $NEODEVICE$IMAGEKATALOG/.neonextboot ]; then
         if [ ! -f $NEODEVICE$IMAGEKATALOG/$TARGET/usr/bin/enigma2_pre_start.sh ] ; then

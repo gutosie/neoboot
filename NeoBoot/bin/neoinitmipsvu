@@ -2,15 +2,6 @@
 #script mod by gutosie
 #neo init arm 
 
-echo "====================================================> "
-echo " "
-echo "	    -=*[ NEOBOOT - BOOT UP ]*=-     "                      	                      
-echo "     NEO BOOT INIT Version: gutosie   "
-echo "	             q(-_-)p                "   
-echo " "
-echo "====================================================> "
-
-
 NEODEVICE=`cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`        
 IMAGEKATALOG=ImageBoot
 
@@ -20,6 +11,14 @@ if [ -e /tmp/.init_reboot ]; then
 	  break;
 
 else
+    echo "====================================================> "
+    echo " "
+    echo "	    -=*[ NEOBOOT - BOOT UP ]*=-     "
+    echo "     NEO BOOT INIT Version: gutosie   "
+    echo "	             q(-_-)p                "
+    echo " "
+    echo "====================================================> "
+
 	if [ -e `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`IMAGEKATALOG/.neonextboot ]  ; then 	    
             CELBOOT=`cat $NEODEVICE$IMAGEKATALOG/.neonextboot`
 	    if [ $CELBOOT = "Flash" ]; then 
@@ -30,7 +29,6 @@ else
                 break;
             fi
 	fi      
-
     
 	LIBDIR=/lib/modules/`uname -r`
 	if [ ! -d $LIBDIR ]; then
@@ -50,9 +48,6 @@ else
 	sleep 1
 	echo "/sbin/mdev" > /proc/sys/kernel/hotplug
 	/etc/init.d/mdev > /dev/null 2>&1
-
-
-############..>>>>>>>>
 	
 	sleep 5
 	mnttest="nouuid"
@@ -155,10 +150,7 @@ else
 
 	if [ -e /tmp/init_reboot ]; then
 		  break;
-	fi
-
-        
-###>>>>>>>>>>>>>>>>>        	
+	fi      	
 	
         UPLOAD=ImagesUpload
         mount /dev/sda1 /media/hdd
@@ -167,9 +159,9 @@ else
                 sleep 2
                 ln -sfn /sbin/init.sysvinit /sbin/init
                 echo "Flash "  > $NEODEVICE$IMAGEKATALOG/.neonextboot 
-                echo "Reinstall kernel -Press number 3"  > $NEODEVICE$UPLOAD/.kernel/used_flash_kernel
+                echo "Reinstall kernel"  > $NEODEVICE$UPLOAD/.kernel/used_flash_kernel
                 echo " Sending all processes the TERM- KILL signal..."
-                reboot -f
+                break;
 	fi
 
 
