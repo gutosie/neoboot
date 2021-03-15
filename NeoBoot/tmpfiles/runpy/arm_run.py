@@ -2,7 +2,7 @@
 
 #from __init__ import _
 from Plugins.Extensions.NeoBoot.__init__ import _
-from Plugins.Extensions.NeoBoot.files.stbbranding import getCPUtype, getCPUSoC,  getImageNeoBoot, getBoxHostName, getTunerModel, getNeoLocation, getNeoMount, getNeoMount2,getNeoMount3, getNeoMount4, getNeoMount5, getMountPointNeo2
+from Plugins.Extensions.NeoBoot.files.stbbranding import getSupportedTuners, getCPUtype, getCPUSoC,  getImageNeoBoot, getBoxHostName, getTunerModel, getNeoLocation, getNeoMount, getNeoMount2,getNeoMount3, getNeoMount4, getNeoMount5, getMountPointNeo2
 from enigma import getDesktop
 from enigma import eTimer
 from Screens.Screen import Screen
@@ -101,21 +101,19 @@ class StartImage(Screen):
             else:
                 system('touch %sImageBoot/%s/.control_boot_new_image ' % ( getNeoLocation(), getImageNeoBoot() ))
         if fileExists('/.multinfo') and getCPUtype() == 'ARMv7':
-                if getBoxHostName == 'sf4008':  
+                if getBoxHostName() == 'sf4008':  
                         os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p4 /media/InternalFlash')
-                if getBoxHostName == 'et1x000': 
+                if getBoxHostName() == 'et1x000': 
                         os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p4 /media/InternalFlash')
-                if getBoxHostName() == 'hd51':
-                        os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p3 /media/InternalFlash')
-                if getBoxHostName == 'ax51':
+                if getBoxHostName() == "hd51" or getBoxHostName() == "ax51" or getBoxHostName() == "bre2ze4k" :
                         os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p3 /media/InternalFlash')
                 if getBoxHostName() == 'h7':
                         os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p3 /media/InternalFlash')
                 if getBoxHostName() == 'zgemmah9s':
                         os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p7 /media/InternalFlash')
-                if getBoxHostName == 'sf8008':
+                if getBoxHostName() == 'sf8008':
                     os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p13 /media/InternalFlash')
-                if getBoxHostName == 'ax60':
+                if getBoxHostName() == 'ax60':
                     os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p21 /media/InternalFlash')
                 if getBoxHostName() == 'ustym4kpro' or getTunerModel() ==  'ustym4kpro':
                     os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p13 /media/InternalFlash')
@@ -134,18 +132,18 @@ class StartImage(Screen):
                 os.system('rm -f /media/InternalFlash/etc/init.d/neobootmount.sh;')
             elif fileExists('/media/InternalFlash/linuxrootfs1/etc/init.d/neobootmount.sh'):
                 os.system('rm -f /media/InternalFlash/linuxrootfs1/etc/init.d/neobootmount.sh;')
-            else:
+            else:                                                                                                 
                 pass                                                                 
-            #_____Other ARM procesor____ - here you can add your tuner stb    
-             if getBoxHostName() == "axashistwin" or getBoxHostName() == "bre2ze4k" or getBoxHostName() == "zgemmah9combo" or getBoxHostName() == "i55plus " or getBoxHostName() == "zgemmai55plus " or getBoxHostName() == "h92s" or getBoxHostName() == "zgemmah92s" or getBoxHostName() == "h7" or getBoxHostName() == "zgemmah7" or getBoxHostName() == "h9" or getBoxHostName() == "zgemmah9" or getBoxHostName() == "h9s" or getBoxHostName() == "zgemmah9s" or getBoxHostName() == "h9se" or getBoxHostName() == "zgemmah9se" or getBoxHostName() == "h9twin" or getBoxHostName() == "zgemmah9twin" or getBoxHostName() == "h9combo" or getBoxHostName() == "h9combose" or getBoxHostName() == "h10" or getBoxHostName() == "zgemmahh10" or getBoxHostName() == "hd51" or getBoxHostName() == "ax51" or getBoxHostName() == "ax60" or getBoxHostName() == "ax61" or getBoxHostName() == "sf4008" or getBoxHostName() == "sf8008" or getBoxHostName() == "ustym4kpro" or getBoxHostName() == "tmtwin4k" or getBoxHostName() == "anadol4k" or getBoxHostName() == "protek4k" or getBoxHostName() == "maxytecmulti" or getBoxHostName() == "viper4k" or getBoxHostName() == "dm900" or getBoxHostName() == "dm920" or getBoxHostName() == "et1x000" or getBoxHostName() == "gbquad4k" or getBoxHostName() == "axashisc4k" or getBoxHostName() == "axmultitwin" or getBoxHostName() == "axmulticombo" or getBoxHostName() == "osmio4k" or getBoxHostName() == "osmio4kplus" :              
+            #_____Other ARM procesor____ - here you can add your tuner stb 
+            if (getSupportedTuners()):         
                         if getImageNeoBoot() == 'Flash':
                             if fileExists('/.multinfo'):
-                                if fileExists('/media/InternalFlash/linuxrootfs1/sbin/init'):
-                                        os.system('cd /media/InternalFlash/linuxrootfs1; ln -sfn /sbin/init.sysvinit /media/InternalFlash/linuxrootfs1/sbin/init; reboot -f ')                                                                    
+                                if fileExists('/media/InternalFlash/linuxrootfs1/sbin'):
+                                        os.system('cd /media/InternalFlash/linuxrootfs1; ln -sfn /sbin/init.sysvinit /media/InternalFlash/linuxrootfs1/sbin/init;sleep 5; reboot -f ')                                                                    
                                 elif fileExists('/media/InternalFlash/sbin/init'):
-                                    os.system('cd /media/InternalFlash; ln -sfn /sbin/init.sysvinit /media/InternalFlash/sbin/init; reboot -f ')
+                                    os.system('cd /media/InternalFlash; ln -sfn /sbin/init.sysvinit /media/InternalFlash/sbin/init; sleep 5; reboot -f ')
                                 else:
-                                    os.system('reboot -f ')
+                                    os.system('sleep 5; reboot -f ')                              
                             elif not fileExists('/.multinfo'):
                                 cmd = "echo -e '\n\n%s '" % _('NEOBOOT - Restart image flash....\nPlease wait, in a moment the decoder will be restarted...\n')
                                 cmd1='sleep 8; ln -sfn /sbin/init.sysvinit /sbin/init; reboot -f '
