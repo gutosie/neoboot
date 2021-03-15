@@ -2,15 +2,6 @@
 #script mod by gutosie
 #neo init arm 
 
-echo "====================================================> "
-echo " "
-echo "	    -=*[ NEOBOOT - BOOT UP ]*=-     "                      	                      
-echo "     NEO BOOT INIT Version: gutosie   "
-echo "	             q(-_-)p                "   
-echo " "
-echo "====================================================> "
-
-
 NEODEVICE=`cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`        
 IMAGEKATALOG=ImageBoot
 HOSTNAME=`cat /etc/hostname`
@@ -19,8 +10,8 @@ if [ -e /tmp/.init_reboot ]; then
         rm /tmp/.init_reboot > /dev/null 2>&1
         break;
 
-else
-	if [ -e `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/.neonextboot ]  ; then 	    
+else        
+	if [ -e `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/.neonextboot ]  ; then        	    
                     CELBOOT=`cat $NEODEVICE$IMAGEKATALOG/.neonextboot`
 	    if [ $CELBOOT = "Flash" ]; then 
                     exec /sbin/init.sysvinit $1	  
@@ -28,7 +19,15 @@ else
         else
                 break;
         fi
-	fi      
+	fi
+	
+        echo "====================================================> "
+        echo " "
+        echo "	    -=*[ NEOBOOT - BOOT UP ]*=-     "
+        echo "     NEO BOOT INIT Version: gutosie   "
+        echo "	             q(-_-)p                "
+        echo " "
+        echo "====================================================> "              
 
 	LIBDIR=/lib/modules/`uname -r`
 	if [ ! -d $LIBDIR ]; then
@@ -144,8 +143,9 @@ else
 		        /bin/umount /media/usb > /dev/null 2>&1
 		        /bin/umount /media/hdd > /dev/null 2>&1
 		        echo -n "<<<END INIT INFO Rebooting...>>>"
-                        break;				
-		        #reboot -d -f
+                echo " Sending all processes the TERM- KILL signal..." >> $neoLOG	
+                echo "Error mounting, Return to image Flash..."; echo "Error mounting, Return to image Flash..." >> $neoLOG				
+		        break;
 	fi
 
 	TARGET=Flash
@@ -242,8 +242,7 @@ else
 		                        /bin/umount /media/usb > /dev/null 2>&1
 		                        /bin/umount /media/hdd > /dev/null 2>&1                            
                                 echo -n "<<<END INIT INFO Rebooting...>>>"
-                                break;
-		                        #reboot -d -f              
+		                        break;              
                         fi
 		    fi
 		fi 
