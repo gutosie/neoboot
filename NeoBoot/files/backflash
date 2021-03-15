@@ -30,6 +30,7 @@ IMAGE=ImageBoot
 IMAGENEXTBOOT=/ImageBoot/.neonextboot
 NEOBOOTMOUNT=$( cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location) 
 BOXNAME=$( cat /etc/hostname) 
+NandWrite=/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot//bin/nandwrite
 # $NEOBOOTMOUNT$IMAGE 
 # $NEOBOOTMOUNT
 UPLOAD=ImagesUpload
@@ -54,7 +55,7 @@ if [ -e /.multinfo ]; then
                                     flash_eraseall /dev/mtd1  
                                     echo "Instalacja kernel do /dev/mtd1..." 
                                     sleep 2
-		                                nandwrite -p /dev/mtd1 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXNAME.vmlinux.gz
+		                                $NandWrite -p /dev/mtd1 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXNAME.vmlinux.gz
                                 fi
                             fi
                             update-alternatives --remove vmlinux vmlinux-`uname -r` || true                                          
@@ -68,7 +69,7 @@ if [ -e /.multinfo ]; then
                                     flash_eraseall /dev/mtd2  
                                     echo "Instalacja kernel do /dev/mtd2..." 
                                     sleep 2
-		                                nandwrite -p /dev/mtd2 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXNAME.vmlinux.gz
+		                                $NandWrite -p /dev/mtd2 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXNAME.vmlinux.gz
                                 fi
                             fi
                             update-alternatives --remove vmlinux vmlinux-`uname -r` || true                                          
@@ -144,12 +145,6 @@ if [ -e /.multinfo ]; then
                                 echo "NEOBOOT is booting image from " $TARGET
                                 echo "Used Kernel: " $TARGET > $NEOBOOTMOUNT$UPLOAD/.kernel/used_flash_kernel
                 fi
-    else
-                        ln -sfn /sbin/init.sysvinit /sbin/init
-                        echo "CHIPSET: " $CHIPSET " BOXNAME: "$BOXNAME" MODEL: "$VUMODEL" "
-                        echo "Flash "  > $NEOBOOTMOUNT/ImageBoot/.neonextboot
-                        echo "Error - Nie wpierany model STB !!! "
-                        exit 0
     fi                        
                         echo "Used Kernel: " $TARGET  > $NEOBOOTMOUNT$UPLOAD/.kernel/used_flash_kernel 
                         echo "CHIPSET:"$CHIPSET $HARDWARETYPE" BOXNAME:"$BOXNAME" MODEL:"$VUMODEL" "
