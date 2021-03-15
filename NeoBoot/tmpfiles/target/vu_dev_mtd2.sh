@@ -112,9 +112,8 @@ if  [ $BOXHOSTNAME = "vusolo2" ] || [ $BOXHOSTNAME = "vuduo2" ] || [ $BOXHOSTNAM
                         sleep 5
                         PATH=/sbin:/bin:/usr/sbin:/usr/bin 
                         reboot -d -f 
-        fi                               
-    else
-        break;
+        fi
+    fi
 else
                     ln -sfn /sbin/init.sysvinit /sbin/init
                     echo "CHIPSET: " $CHIPSET " BOX NAME: "$BOXHOSTNAME" MODEL: "$VUMODEL" "
