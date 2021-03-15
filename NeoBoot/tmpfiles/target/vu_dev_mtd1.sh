@@ -49,7 +49,7 @@ if [ $VUMODEL = "bm750" ] || [ $BOXNAME = "vuduo" ] || [ $BOXNAME = "vusolo" ] |
                                     flash_eraseall /dev/mtd1 > /dev/null 2>&1
                                     [ $PL ] && echo "Wgrywanie kernel do /dev/mtd1..." || echo "Writing kernel to from  /dev/mtd1"  
                                     sleep 2
-                                    $NandWrite -p /dev/mtd1 /media/hdd/.kernel/vusolo.vmlinux.gz > /dev/null 2>&1
+                                    $NandWrite -p /dev/mtd1 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXNAME.vmlinux.gz > /dev/null 2>&1
                                 fi
                             fi
                             update-alternatives --remove vmlinux vmlinux-`uname -r` || true                                          
