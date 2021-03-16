@@ -420,7 +420,7 @@ class NeoBootInstallation(Screen):
         if fileExists('/proc/mounts'):
             with open('/proc/mounts', 'r') as f:
                 for line in f.readlines():
-                    if line.startswith('/dev/sd') and line.find('/media/hdd') or line.find('/media/usb')  == -1 and (line.find('ext4') != -1 or line.find('ext3') != -1 or line.find('ext2') != -1):
+                    if line.find(' ext') and line.find('/media/hdd') or line.find('/media/usb')  == -1 and (line.find('ext4') != -1 or line.find('ext3') != -1 or line.find('ext2') != -1):
                         check = True
                         break
                     
@@ -554,7 +554,7 @@ class NeoBootInstallation(Screen):
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
             #_____Other ARM procesor____ - here you can add your tuner stb                                                                                                                                                                   
             if getCPUtype() == "ARMv7" and getBoxHostName() == "axashistwin" or getBoxHostName() == "bre2ze4k" or getBoxHostName() == "i55plus " or getBoxHostName() == "zgemmai55plus " or getBoxHostName() == "h92s" or getBoxHostName() == "zgemmah92s" or getBoxHostName() == "h7" or getBoxHostName() == "zgemmah7" or getBoxHostName() == "h9" or getBoxHostName() == "zgemmah9" or getBoxHostName() == "h9s" or getBoxHostName() == "zgemmah9s" or getBoxHostName() == "h9se" or getBoxHostName() == "zgemmah9se" or getBoxHostName() == "h9twin" or getBoxHostName() == "zgemmah9twin" or getBoxHostName() == "zgemmah9combo" or getBoxHostName() == "zgemmah9combose" or getBoxHostName() == "h9combo" or getBoxHostName() == "h9combose" or getBoxHostName() == "h10" or getBoxHostName() == "zgemmah10" or getBoxHostName() == "hd51" or getBoxHostName() == "ax51" or getBoxHostName() == "ax60" or getBoxHostName() == "ax61" or getBoxHostName() == "sf4008" or getBoxHostName() == "sf8008" or getBoxHostName() == "ustym4kpro" or getBoxHostName() == "tmtwin4k" or getBoxHostName() == "anadol4k" or getBoxHostName() == "protek4k" or getBoxHostName() == "maxytecmulti" or getBoxHostName() == "viper4k" or getBoxHostName() == "dm900" or getBoxHostName() == "dm920" or getBoxHostName() == "et1x000" or getBoxHostName() == "gbquad4k" or getBoxHostName() == "axashisc4k" or getBoxHostName() == "axmultitwin" or getBoxHostName() == "axmulticombo" or getBoxHostName() == "osmio4k" or getBoxHostName() == "osmio4kplus" :              
-                        os.system('cp -f ' + LinkNeoBoot + '/bin/neoinitarm /sbin/neoinitarm; chmod 0755 /sbin/neoinitarm; ln -sfn /sbin/neoinitarm /sbin/init; mv ' + LinkNeoBoot + '/tmpfiles/runpy/arm_run.py ' + LinkNeoBoot + '/run.py; cd')                                                                          
+                        os.system('cp -f ' + LinkNeoBoot + '/bin/neoinitarm /sbin/neoinitarm; chmod 0755 /sbin/neoinitarm; ln -sfn /sbin/neoinitarm /sbin/init; mv ' + LinkNeoBoot + '/tmpfiles/runpy/arm_run.py ' + LinkNeoBoot + '/run.py; rm -f ' + LinkNeoBoot + '/bin/neoinitarmvuDuo4k; cd')                                                                          
             #VUPLUS ARM
             elif getCPUtype() == "ARMv7" and getBoxHostName() !=  "ustym4kpro":
                 if getBoxHostName() == "vuduo4k":
@@ -643,16 +643,19 @@ class NeoBootInstallation(Screen):
             else:                                                      	
                 self.myclose2(_('NeoBoot has not been installed ! :(' ))
 
-            closereboot = self.rebootSTBE2()    
-            self.session.open(Console, _('NeoBoot Install....'), [cmd])             
-            self.close(closereboot)                
+            if os.path.isfile('/etc/name'):
+                self.myclose2(_('The plug-in has been successfully installed.' ))
+            else:             
+                closereboot = self.rebootSTBE2()    
+                self.session.open(Console, _('NeoBoot Install....'), [cmd])             
+                self.close(closereboot)                
 
 
     def myclose2(self, message):
         self.session.open(MessageBox, message, MessageBox.TYPE_INFO)
         
     
-    def rebootSTBE2(self):
+    def rebootSTBE2(self):       
             restartbox = self.session.openWithCallback(self.RebootSTB, MessageBox, _('Reboot stb now  ?'), MessageBox.TYPE_YESNO)
             restartbox.setTitle(_('Reboot'))
 
