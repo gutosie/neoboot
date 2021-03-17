@@ -1,5 +1,6 @@
 #!/bin/sh
 
+echo "====================================================> "
 echo "_________________________ Start inithelp __________________________"
 if [ -f /proc/stb/info/vumodel ];  then  
         VUMODEL=$( cat /proc/stb/info/vumodel )
@@ -14,7 +15,6 @@ if [ -f $NEODEVICE$IMAGEKATALOG/.neonextboot ]; then
 fi
 if [ $TARGET = "Flash" ]; then
         /bin/umount /media/usb > /dev/null 2>&1
-        echo "====================================================> "
         echo "BOOTNEO is booting image from " $TARGET        
         /bin/umount /media/hdd > /dev/null 2>&1
                     ln -sfn /sbin/init.sysvinit /sbin/init
@@ -109,6 +109,7 @@ else
             echo "====================================================> "
 			sleep 10
 			ln -sfn /sbin/init.sysvinit /sbin/init
+			mount -a
 			break;      
     fi
     if [ $BOXHOSTNAME = "vuduo4k" ] || [ $BOXHOSTNAME = "vuduo4kse" ] || [ $BOXHOSTNAME = "vuzero4k" ] || [ $BOXHOSTNAME = "bm750" ] || [ $BOXHOSTNAME = "vuduo" ] || [ $BOXHOSTNAME = "vusolo" ] || [ $BOXHOSTNAME = "vuuno" ] || [ $BOXHOSTNAME = "vuultimo" ] || [ $BOXHOSTNAME = "vuultimo4k" ] || [ $BOXHOSTNAME = "vusolo4k" ] || [ $BOXHOSTNAME = "vuuno4kse" ] || [ $BOXHOSTNAME = "vuuno4k" ] || [ $BOXHOSTNAME = "vusolo2" ] || [ $BOXHOSTNAME = "vuduo2" ] || [ $BOXHOSTNAME = "vusolose" ] || [ $BOXHOSTNAME = "vuzero" ] ; then
