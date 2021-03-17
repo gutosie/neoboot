@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "\n_________________________ Start inithelp __________________________"
+echo "_________________________ Start inithelp __________________________"
 if [ -f /proc/stb/info/vumodel ];  then  
         VUMODEL=$( cat /proc/stb/info/vumodel )
 fi
@@ -14,12 +14,14 @@ if [ -f $NEODEVICE$IMAGEKATALOG/.neonextboot ]; then
 fi
 if [ $TARGET = "Flash" ]; then
         /bin/umount /media/usb > /dev/null 2>&1
+        echo "====================================================> "
         echo "BOOTNEO is booting image from " $TARGET        
         /bin/umount /media/hdd > /dev/null 2>&1
                     ln -sfn /sbin/init.sysvinit /sbin/init
-                    echo "\n----------------------------------"
+                    echo "----------------------------------"
                     echo "     BOOT UP IMAGE FROM FLASH     "
                     echo "----------------------------------"
+                    echo "====================================================> "
                     sleep 1
                     PATH=/sbin:/bin:/usr/sbin:/usr/bin
                     break;
@@ -69,34 +71,42 @@ else
 	if [ ! -f $NEODEVICE$IMAGEKATALOG/.neonextboot  ]; then
 	        if [ -f /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/mountpoint.sh  ]; then
                         /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/neo.sh
-                        echo "\n_________________________ NeoBoot mount by MOUNTPOINT _________________________ "
+                        echo "_________________________ NeoBoot mount by MOUNTPOINT _________________________ "
 	        fi
 	elif [ $mnttest == "label" ]; then
-		    echo "\n_________________________ NeoBoot mount by DEVICE_________________________ "
+		    echo "_________________________ NeoBoot mount by DEVICE_________________________ "
 	elif [ $mnttest == "location" ]; then
-		    echo "\n_______________________ NeoBoot mount by LOCATION _______________________  "
+		    echo "_______________________ NeoBoot mount by LOCATION _______________________  "
 	fi
     fi
     if [ ! -f  $NEODEVICE$IMAGEKATALOG/.neonextboot ]; then
             ln -sfn /sbin/init.sysvinit /sbin/init
             echo "Flash " > $NEODEVICE$IMAGEKATALOG/.neonextboot
-            echo ""
-            echo "\nNEOBOOT - does not detect the location file neonextboot. Back to Flash..."
+            echo "====================================================> "
+            echo "NEOBOOT - does not detect the location file neonextboot. Back to flash..."
             sleep 1
-    fi  
-    echo "\n ________ test boot new imaga ________ "
+    fi
+    echo "====================================================> "  
+    echo " ________ test boot new imaga ________ "
     if [ -f $NEODEVICE$IMAGEKATALOG/$TARGET/.control_ok ]; then
             [ $PL ] && echo "Nie ma bledu, normalny start image..." || echo "No Error - Booting image normal..."
+            echo "====================================================> "
             sleep 1
     elif [ -f $NEODEVICE$IMAGEKATALOG/$TARGET/.control_boot_new_image ];then
             rm -r $NEODEVICE$IMAGEKATALOG/$TARGET/.control_boot_new_image
-            echo "\n____Remove file control_boot_new_image____\nFirst start image - The first attempt to launch a new image... "
+            echo "====================================================> "
+            echo "Remove file control_boot_new_image"
+            echo "First start image - The first attempt to launch a new image... "
+            echo "====================================================> "
             sleep 1
     else
 	        /usr/bin/showiframe /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/error.mvi > /dev/null 2>&1
-			echo "\n\nerror\n\nERROR, Please reinstalling the kernel for flash image now... \n\nError - NeoBoot he can not run it image Restart STB - Back to Flash..."
-			echo "\nWrong kernel"  > $NEODEVICE$IMAGEKATALOG/.kernel/used_flash_kernel
+            echo "====================================================> "
+			echo "ERROR Please reinstalling the kernel for flash image now."
+            echo "NeoBoot not run it image Restart STB - Back to Flash..."
+			echo "Wrong kernel"  > $NEODEVICE$IMAGEKATALOG/.kernel/used_flash_kernel
 			echo "Flash "  > $NEODEVICE$IMAGEKATALOG/.neonextboot
+            echo "====================================================> "
 			sleep 10
 			ln -sfn /sbin/init.sysvinit /sbin/init
 			break;      
@@ -104,6 +114,7 @@ else
     if [ $BOXHOSTNAME = "vuduo4k" ] || [ $BOXHOSTNAME = "vuduo4kse" ] || [ $BOXHOSTNAME = "vuzero4k" ] || [ $BOXHOSTNAME = "bm750" ] || [ $BOXHOSTNAME = "vuduo" ] || [ $BOXHOSTNAME = "vusolo" ] || [ $BOXHOSTNAME = "vuuno" ] || [ $BOXHOSTNAME = "vuultimo" ] || [ $BOXHOSTNAME = "vuultimo4k" ] || [ $BOXHOSTNAME = "vusolo4k" ] || [ $BOXHOSTNAME = "vuuno4kse" ] || [ $BOXHOSTNAME = "vuuno4k" ] || [ $BOXHOSTNAME = "vusolo2" ] || [ $BOXHOSTNAME = "vuduo2" ] || [ $BOXHOSTNAME = "vusolose" ] || [ $BOXHOSTNAME = "vuzero" ] ; then
             break;
 	else
+	            echo "====================================================> "
                 echo "  Neo-Boot start  boot manager. Waiting to change image - 20s "
                 /usr/bin/showiframe $NEOBOOT/neologo.mvi > /dev/null 2>&1
                 chmod 0755 $NEOBOOT/bin/neobm
@@ -112,11 +123,13 @@ else
     if [ -f $NEODEVICE$IMAGEKATALOG/.neonextboot ]; then
         if [ ! -f $NEODEVICE$IMAGEKATALOG/$TARGET/usr/bin/enigma2_pre_start.sh ] ; then
             rm -f $NEODEVICE$IMAGEKATALOG/$TARGET/usr/bin/enigma2_pre_start.sh
-            echo "\nDELETE enigma2_pre_start.sh"
+            echo "====================================================> "
+            echo "DELETE enigma2_pre_start.sh"
             cp -af /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/mountpoint.sh $NEODEVICE$IMAGEKATALOG/$TARGET/usr/bin/enigma2_pre_start.sh
             cp -af /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/neo.sh $NEODEVICE$IMAGEKATALOG/$TARGET/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/neo.sh
             chmod 0755 $NEODEVICE$IMAGEKATALOG/$TARGET/usr/bin/enigma2_pre_start.sh
-            echo "\nNeoBOOT created the file mount enigma2_pre_start.sh "
+            echo "NeoBOOT created the file mount enigma2_pre_start.sh "
+            echo "====================================================> "
         fi
     fi
 fi
