@@ -1557,8 +1557,8 @@ def main(session, **kwargs):
             pass
         else:
             if not fileExists('%sImageBoot/.version' % getNeoLocation()):
-                if fileExists('' + LinkNeoBoot + '/files/mountpoint.sh'):
-                    os.system('chmod 0755 ' + LinkNeoBoot + '/files/mountpoint.sh; ' + LinkNeoBoot + '/files/mountpoint.sh')
+                if fileExists('' + LinkNeoBoot + '/files/neo.sh'):
+                    os.system('chmod 0755 ' + LinkNeoBoot + '/files/neo.sh; ' + LinkNeoBoot + '/files/neo.sh')
         if not fileExists('/.multinfo') and fileExists('' + LinkNeoBoot + '/.location'):
             if checkInternet():
                 if not os.path.exists('/tmp/.finishdate'):
