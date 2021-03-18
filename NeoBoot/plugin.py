@@ -624,9 +624,7 @@ class NeoBootInstallation(Screen):
                             os.system('mv -f /home/root/vmlinux.gz %sImagesUpload/.kernel/%s.vmlinux.gz' % (getNeoLocation(), getBoxHostName()) )  
                                              
             if fileExists('' + LinkNeoBoot + '/ubi_reader'): 
-                os.system('rm -r ' + LinkNeoBoot + '/ubi_reader ')
-            if not fileExists('/etc/name'):
-                os.system('touch /etc/name')                 
+                os.system('rm -r ' + LinkNeoBoot + '/ubi_reader ')                
                 
             if getCPUtype() == 'ARMv7':                                                                                                                                     
                         os.system('cd ' + LinkNeoBoot + '/; mv ./bin/fbcleararm ./bin/fbclear; chmod 755 ./bin/fbclear; rm -f ./bin/nandwrite; rm -f ./bin/fbclearmips; mv ./ubi_reader_arm ./ubi_reader; rm -r ./ubi_reader_mips; rm ./bin/neoinitmips; rm ./bin/neoinitmipsvu; rm -r ./bin/nanddump_mips; rm ./bin/nfidump; rm ./bin/neobmmips; rm ./bin/neobm; mv ./bin/neobmarm ./bin/neobm; rm ./bin/fontforneoboot.ttf; rm ./bin/libpngneo; cd')   
@@ -644,11 +642,13 @@ class NeoBootInstallation(Screen):
                 self.myclose2(_('NeoBoot has not been installed ! :(' ))
 
             if os.path.isfile('/etc/name'):
-                self.myclose2(_('The plug-in has been successfully installed.' ))
-            else:             
+                self.myclose2(_('The plug-in has been successfully installed.' ))             
+            else:
+                if not fileExists('/etc/name'):
+                    os.system('touch /etc/name')                 
                 closereboot = self.rebootSTBE2()    
                 self.session.open(Console, _('NeoBoot Install....'), [cmd])             
-                self.close(closereboot)                
+                self.close(closereboot)               
 
 
     def myclose2(self, message):
