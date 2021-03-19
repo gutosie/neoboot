@@ -697,6 +697,8 @@ def RemoveUnpackDirs():
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/bre2ze4k')                                                
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/multibox'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/multibox')
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/multiboxse'):
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/multiboxse') 
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/unforce_multibox.txt'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/unforce_multibox.txt')         
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/axas'):
@@ -737,7 +739,7 @@ def RemoveUnpackDirs():
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/protek4k')                
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/dm920 '):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/dm920 ')                              
-    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/multibox'):          
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/multibox') or os.path.exists('' + getNeoLocation() + 'ImagesUpload/multiboxse') :          
         rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/multibox ' + getNeoLocation() + 'ImagesUpload/multibox; rm -r ' + getNeoLocation() + 'ImagesUpload/multibox')                                          
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/octagon/sf8008'):          
         rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/usb_update.bin ' + getNeoLocation() + 'ImagesUpload/octagon; rm -r ' + getNeoLocation() + 'ImagesUpload/octagon')                                          
@@ -1331,6 +1333,10 @@ def NEOBootExtract(source, target, ZipDelete):
             os.system('echo "Please wait. System installation AX multi twin or combo"')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/multibox/rootfs.tar.bz2; tar -jxf ' + getNeoLocation() + 'ImagesUpload/multibox/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd)                        
+        elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/multiboxse'):
+            os.system('echo "Please wait. System installation maxytec"')
+            cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/multiboxse/rootfs.tar.bz2; tar -jxf ' + getNeoLocation() + 'ImagesUpload/multiboxse/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
+            rc = os.system(cmd) 
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/axas/axasc4k'):
             os.system('echo "Please wait. System installation Axas his c4k"')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/axas/axasc4k/rootfs.tar.bz2; tar -jxf ' + getNeoLocation() + 'ImagesUpload/axas/axasc4k/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
@@ -1438,10 +1444,6 @@ def NEOBootExtract(source, target, ZipDelete):
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/protek4k'):
             os.system('echo "Please wait. System installation protek4k..."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/protek4k; tar -jxf ' + getNeoLocation() + 'ImagesUpload/protek4k/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
-            rc = os.system(cmd) 
-        elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/multibox'):
-            os.system('echo "Please wait. System installation multibox..."')
-            cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/multibox; tar -jxf ' + getNeoLocation() + 'ImagesUpload/multibox/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd) 
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/bre2ze4k'):
             os.system('echo "Please wait. System installation WWIO BRE2ZE 4K."')
