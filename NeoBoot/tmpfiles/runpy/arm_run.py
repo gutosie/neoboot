@@ -101,26 +101,7 @@ class StartImage(Screen):
             else:
                 system('touch %sImageBoot/%s/.control_boot_new_image ' % ( getNeoLocation(), getImageNeoBoot() ))
         if fileExists('/.multinfo') and getCPUtype() == 'ARMv7':
-                if getBoxHostName() == 'sf4008':  
-                        os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p4 /media/InternalFlash')
-                if getBoxHostName() == 'et1x000': 
-                        os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p4 /media/InternalFlash')
-                if getBoxHostName() == "hd51" or getBoxHostName() == "ax51" or getBoxHostName() == "bre2ze4k" :                
-                        os.system(' ' +LinkNeoBoot+ '/files/findsk.sh; mkdir -p /media/InternalFlash; mount /media/root /media/InternalFlash')
-                if getBoxHostName() == 'h7':
-                        os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p3 /media/InternalFlash')
-                if getBoxHostName() == 'zgemmah9s':
-                        os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p7 /media/InternalFlash')
-                if getBoxHostName() == 'sf8008':
-                    os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p13 /media/InternalFlash')
-                if getBoxHostName() == 'ax60':
-                    os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p21 /media/InternalFlash')
-                if getBoxHostName() == 'ustym4kpro' or getTunerModel() ==  'ustym4kpro':
-                    os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p13 /media/InternalFlash')
-                if getTunerModel() == 'dm900':
-                        os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p2 /media/InternalFlash')
-                if getBoxHostName() == 'gbquad4k':
-                    os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p5 /media/InternalFlash')
+                os.system(' ' +LinkNeoBoot+ '/files/findsk.sh; mkdir -p /media/InternalFlash; mount /media/root /media/InternalFlash')  
 
         self.sel = self['list'].getCurrent()
         if self.sel:
