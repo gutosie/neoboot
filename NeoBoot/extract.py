@@ -738,7 +738,9 @@ def RemoveUnpackDirs():
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/protek4k'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/protek4k')                
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/dm920 '):
-        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/dm920 ')                              
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/dm920 ')  
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/dreamtwo '):
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/dreamtwo ')       
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/multibox') or os.path.exists('' + getNeoLocation() + 'ImagesUpload/multiboxse') :          
         rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/multibox ' + getNeoLocation() + 'ImagesUpload/multibox; rm -r ' + getNeoLocation() + 'ImagesUpload/multibox')                                          
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/octagon/sf8008'):          
@@ -1313,6 +1315,10 @@ def NEOBootExtract(source, target, ZipDelete):
             os.system('echo "Please wait. System installation Dreambox DM920."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/dm920; tar -jxf ' + getNeoLocation() + 'ImagesUpload/dm920/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd) 
+        elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/dreamtwo'):
+            os.system('echo "Please wait. System installation Dreambox dreamtwo."')
+            cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/dreamtwo; tar -jxf ' + getNeoLocation() + 'ImagesUpload/dreamtwo/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
+            rc = os.system(cmd)
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/hd51/rootfs.tar.bz2'):
             os.system('echo "Please wait. System installation AX 4K Box HD51 "')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/hd51/rootfs.tar.bz2; tar -jxf ' + getNeoLocation() + 'ImagesUpload/hd51/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
