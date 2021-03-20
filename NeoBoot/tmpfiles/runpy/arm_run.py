@@ -101,7 +101,7 @@ class StartImage(Screen):
             else:
                 system('touch %sImageBoot/%s/.control_boot_new_image ' % ( getNeoLocation(), getImageNeoBoot() ))
         if fileExists('/.multinfo') and getCPUtype() == 'ARMv7':
-                os.system(' ' +LinkNeoBoot+ '/files/findsk.sh; mkdir -p /media/InternalFlash; mount /media/root /media/InternalFlash')  
+                os.system(' ' +LinkNeoBoot+ '/files/findsk.sh; mkdir -p /media/InternalFlash; mount /tmp/root /media/InternalFlash')  
 
         self.sel = self['list'].getCurrent()
         if self.sel:
