@@ -4,7 +4,7 @@ do
      key=${line%%=*}
      value=${line#*=}
      if [ "$key" == "root" ]; then
-          ln -sf "$value" /media/root
+          ln -sf "$value" /tmp/root
      fi
      if [ "$key" == "kernel" ]; then
           ln -sf "$value" /dev/kernel
