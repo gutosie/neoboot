@@ -623,7 +623,7 @@ class NeoBootInstallation(Screen):
             if fileExists('/home/root/vmlinux.gz'):
                             os.system('mv -f /home/root/vmlinux.gz %sImagesUpload/.kernel/%s.vmlinux.gz' % (getNeoLocation(), getBoxHostName()) )  
                                              
-            if fileExists('' + LinkNeoBoot + '/ubi_reader_mips') or fileExists('' + LinkNeoBoot + '/ubi_reader_arm'): 
+            if fileExists('' + LinkNeoBoot + '/ubi_reader_mips') or fileExists('' + LinkNeoBoot + '/ubi_reader_arm') and fileExists('' + LinkNeoBoot + '/ubi_reader'): 
                 os.system('rm -r ' + LinkNeoBoot + '/ubi_reader ')                
                 
             if getCPUtype() == 'ARMv7':                                                                                                                                     
