@@ -121,7 +121,7 @@ class StartImage(Screen):
                             if fileExists('/.multinfo'):
                                 if fileExists('/media/InternalFlash/linuxrootfs1/sbin/neoinitarm'):
                                         cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT - REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
-                                        cmd1 = 'cd /media/InternalFlash/linuxrootfs1; ln -sfn /sbin/init.sysvinit /media/InternalFlash/linuxrootfs*/sbin/init; sleep 5; reboot -d -f '  
+                                        cmd1 = 'cd /media/InternalFlash/linuxrootfs1; ln -sfn /sbin/init.sysvinit /media/InternalFlash/linuxrootfs1/sbin/init; sleep 5; reboot -d -f '  
                                         self.session.open(Console, _('NeoBoot-Reboot ....'), [cmd, cmd1])
                                 elif fileExists('/media/InternalFlash/linuxrootfs2/sbin/neoinitarm'):
                                         cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT - REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
