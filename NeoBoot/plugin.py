@@ -55,8 +55,8 @@ else:
             from Screens.Console import Console
     	
 loggscrash = time.localtime(time.time())
-PLUGINVERSION = '9.24'
-UPDATEVERSION = '9.24'
+PLUGINVERSION = '9.25'
+UPDATEVERSION = '9.25'
 UPDATEDATE = '"+%Y04%d"'   
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot' 
 
@@ -550,45 +550,40 @@ class NeoBootInstallation(Screen):
                     if os.system('opkg list-installed | grep mtd-utils') != 0:
                             os.system('opkg install mtd-utils')
                     if os.system('opkg list-installed | grep mtd-utils-ubifs') != 0:                                                                                                                                                                                                                                                                                                                                                
-                            os.system('opkg install mtd-utils-ubifs')               
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
-            #_____Other ARM procesor____ - here you can add your tuner stb                                                                                                                                                                   
-            if getCPUtype() == "ARMv7" and getBoxHostName() == "axashistwin" or getBoxHostName() == "bre2ze4k" or getBoxHostName() == "i55plus " or getBoxHostName() == "zgemmai55plus " or getBoxHostName() == "h92s" or getBoxHostName() == "zgemmah92s" or getBoxHostName() == "h7" or getBoxHostName() == "zgemmah7" or getBoxHostName() == "h9" or getBoxHostName() == "zgemmah9" or getBoxHostName() == "h9s" or getBoxHostName() == "zgemmah9s" or getBoxHostName() == "h9se" or getBoxHostName() == "zgemmah9se" or getBoxHostName() == "h9twin" or getBoxHostName() == "zgemmah9twin" or getBoxHostName() == "zgemmah9combo" or getBoxHostName() == "zgemmah9combose" or getBoxHostName() == "h9combo" or getBoxHostName() == "h9combose" or getBoxHostName() == "h10" or getBoxHostName() == "zgemmah10" or getBoxHostName() == "hd51" or getBoxHostName() == "ax51" or getBoxHostName() == "ax60" or getBoxHostName() == "ax61" or getBoxHostName() == "sf4008" or getBoxHostName() == "sf8008" or getBoxHostName() == "ustym4kpro" or getBoxHostName() == "tmtwin4k" or getBoxHostName() == "anadol4k" or getBoxHostName() == "protek4k" or getBoxHostName() == "maxytecmulti" or getBoxHostName() == "multibox" or getBoxHostName() == "multiboxse" or getBoxHostName() == "viper4k" or getBoxHostName() == "dm900" or getBoxHostName() == "dm920" or getBoxHostName() == "dreamtwo" or getBoxHostName() == "et1x000" or getBoxHostName() == "gbquad4k" or getBoxHostName() == "axashisc4k" or getBoxHostName() == "axmultitwin" or getBoxHostName() == "axmulticombo" or getBoxHostName() == "osmio4k" or getBoxHostName() == "osmio4kplus" :              
-                        os.system('cp -f ' + LinkNeoBoot + '/bin/neoinitarm /sbin/neoinitarm; chmod 0755 /sbin/neoinitarm; ln -sfn /sbin/neoinitarm /sbin/init; mv ' + LinkNeoBoot + '/tmpfiles/runpy/arm_run.py ' + LinkNeoBoot + '/run.py; rm -f ' + LinkNeoBoot + '/bin/neoinitarmvuDuo4k; cd')                                                                          
-            #VUPLUS ARM
-            elif getCPUtype() == "ARMv7" and getBoxHostName() !=  "ustym4kpro":
-                if getBoxHostName() == "vuduo4k":
+                            os.system('opkg install mtd-utils-ubifs')                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+            # STB ARM
+            if getCPUtype() == "ARMv7" :
+                if getBoxHostName() == "vuduo4k" and getBoxHostName() != "ustym4kpro":
                         os.system('cd ' + LinkNeoBoot + '/' )
                         os.system('cp -Rf ' + LinkNeoBoot + '/bin/neoinitarm /sbin/neoinitarm; cp -Rf ' + LinkNeoBoot + '/bin/neoinitarmvuDuo4k /sbin/neoinitarmvu; mv ' + LinkNeoBoot + '/tmpfiles/runpy/duo4k_run.py ' + LinkNeoBoot + '/run.py; cd')  
                         os.system('chmod 755 /sbin/neoinitarm; chmod 755 /sbin/neoinitarmvu')                  
                         os.system('dd if=/dev/mmcblk0p6 of=%sImagesUpload/.kernel/flash-kernel-%s.bin' % (getNeoLocation(), getBoxHostName()) )
                         os.system('mv ' + LinkNeoBoot + '/tmpfiles/target/vuDuo4Kmmcblk0p6.sh ' + LinkNeoBoot + '/files/kernel.sh; cd')                         
 
-                elif getBoxHostName() == "vuduo4kse"  and getBoxHostName() !=  "vuultimo4k":
+                elif getBoxHostName() == "vuduo4kse" and getBoxHostName() != "vuultimo4k" and getBoxHostName() != "ustym4kpro":
                         os.system('cd ' + LinkNeoBoot + '/' )
                         os.system('cp -Rf ' + LinkNeoBoot + '/bin/neoinitarm /sbin/neoinitarm; cp -Rf ' + LinkNeoBoot + '/bin/neoinitarmvuDuo4k /sbin/neoinitarmvu; mv ' + LinkNeoBoot + '/tmpfiles/runpy/duo4kse_run.py ' + LinkNeoBoot + '/run.py; cd')  
                         os.system('chmod 755 /sbin/neoinitarm; chmod 755 /sbin/neoinitarmvu')                  
                         os.system('dd if=/dev/mmcblk0p6 of=%sImagesUpload/.kernel/flash-kernel-%s.bin' % (getNeoLocation(), getBoxHostName()) )
                         os.system('mv ' + LinkNeoBoot + '/tmpfiles/target/vuDuo4Ksemmcblk0p6.sh ' + LinkNeoBoot + '/files/kernel.sh; cd') 
 
-                elif getBoxHostName() == "vuzero4k":     
+                elif getBoxHostName() == "vuzero4k" and getBoxHostName() != "ustym4kpro":     
                         os.system('cd ' + LinkNeoBoot + '/' )
                         os.system('cp -Rf ' + LinkNeoBoot + '/bin/neoinitarm /sbin/neoinitarm; cp -Rf ' + LinkNeoBoot + '/bin/neoinitarmvu /sbin/neoinitarmvu; cd')  
                         os.system('chmod 755 /sbin/neoinitarm; chmod 755 /sbin/neoinitarmvu')
                         os.system('dd if=/dev/mmcblk0p4 of=%sImagesUpload/.kernel/flash-kernel-%s.bin' % (getNeoLocation(), getBoxHostName()) )      
                         os.system('mv ' + LinkNeoBoot + '/tmpfiles/target/vuZero4Kmmcblk0p4.sh ' + LinkNeoBoot + '/files/kernel.sh; mv ' + LinkNeoBoot + '/tmpfiles/runpy/zero4k_run.py ' + LinkNeoBoot + '/run.py; rm -f ' + LinkNeoBoot + '/bin/neoinitarmvuDuo4k; cd')                         
                                                                                                                                                                                                                                                                                                                                                                                          
-                elif getBoxHostName() == "vuultimo4k" or getBoxHostName() == "vusolo4k" or getBoxHostName() == "vuuno4k" or getBoxHostName() == "vuuno4kse" :
+                elif getBoxHostName() == "vuultimo4k" or getBoxHostName() == "vusolo4k" or getBoxHostName() == "vuuno4k" or getBoxHostName() == "vuuno4kse" and getBoxHostName() != "ustym4kpro":
                         os.system('cd ' + LinkNeoBoot + '/' )
                         os.system('cp -Rf ' + LinkNeoBoot + '/bin/neoinitarm /sbin/neoinitarm; cp -Rf ' + LinkNeoBoot + '/bin/neoinitarmvu /sbin/neoinitarmvu; cd')  
                         os.system('chmod 755 /sbin/neoinitarm; chmod 755 /sbin/neoinitarmvu')                  
                         os.system('dd if=/dev/mmcblk0p1 of=%sImagesUpload/.kernel/flash-kernel-%s.bin' % (getNeoLocation(), getBoxHostName()) )
                         os.system('mv ' + LinkNeoBoot + '/tmpfiles/target/vu_mmcblk0p1.sh ' + LinkNeoBoot + '/files/kernel.sh; mv ' + LinkNeoBoot + '/tmpfiles/runpy/vu4k_run.py ' + LinkNeoBoot + '/run.py; rm -f; rm -f ' + LinkNeoBoot + '/bin/neoinitarmvuDuo4k; cd')                         
                 else:
-                    self.messagebox = self.session.open(MessageBox, _('The tuner is not supported by NeoBoot.\nContact the author.\nNo proper STB for installation !!!!'), type=MessageBox.TYPE_ERROR)                                                                        
-            # MIPS                                                                                                                                                                                                                 
+                        os.system('cp -f ' + LinkNeoBoot + '/bin/neoinitarm /sbin/neoinitarm; chmod 0755 /sbin/neoinitarm; ln -sfn /sbin/neoinitarm /sbin/init; mv ' + LinkNeoBoot + '/tmpfiles/runpy/arm_run.py ' + LinkNeoBoot + '/run.py; rm -f ' + LinkNeoBoot + '/bin/neoinitarmvuDuo4k; cd')
+            # STB MIPS                                                                                                                                                                                                                 
             elif getCPUtype() == 'MIPS':
-                if getBoxHostName() == "vuduo" or getBoxHostName() == "vusolo" or getBoxHostName() == "vuuno" or getBoxHostName() == "vuultimo" or getBoxHostName() == "vusolo2" or getBoxHostName() == "vuduo2" or getBoxHostName() == "vusolose" or getBoxHostName() == "vuzero" or getBoxHostName() == "mbmini" or getBoxHostName() == "mbultra" or getBoxHostName() == "osmini" or getBoxHostName() == "formuler4turbo" or getBoxHostName() == "h3" or getBoxHostName() == "formuler3" :                                                                                                                                                                                                
                         #vuplus stb mtd1
                         if getBoxHostName() == 'bm750' or getBoxHostName() == 'vuduo' or getBoxHostName() == 'vusolo' or getBoxHostName() == 'vuuno' or getBoxHostName() == 'vuultimo':
                             if fileExists ('/usr/sbin/nanddump'):
