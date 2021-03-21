@@ -1532,8 +1532,6 @@ def checkInternet():
             return False
         except urllib2.URLError:
             return False
-        except socket.timeout:
-            return False
         else:
             return True
 
