@@ -41,7 +41,7 @@ cd /tmp; fullwget --no-check-certificate https://raw.githubusercontent.com/gutos
 
 List supported tuners is in stbinfo.cfg file. 
 
-If your stb is not in list, so contact author neoboot and provide hostname your stb.
+If your stb is not in list, so contact author neoboot and give me the name of device hostname your stb.
 
 
 UWAGA!!! 
