@@ -161,6 +161,7 @@ else
 ###>>>>>>>>>>>>>>>>>        	
 	
         UPLOAD=ImagesUpload
+        mount /dev/sda1 /media/hdd
 	if [ ! -e $NEODEVICE$IMAGEKATALOG ]; then
                 echo "Error mounting, Return to image Flash..."
                 sleep 2
@@ -182,7 +183,7 @@ else
 		/bin/umount /media/usb > /dev/null 2>&1
 		/bin/umount /media/hdd > /dev/null 2>&1
 		/usr/bin/showiframe /usr/share/bootlogo.mvi > /dev/null 2>&1
-		sync; ln -sfn /sbin/init.sysvinit /sbin/init#; /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/mountpoint.sh
+		sync; ln -sfn /sbin/init.sysvinit /sbin/init; /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/mountpoint.sh
                 echo "----------------------------------"
 	        echo "     BOOT UP IMAGE FROM FLASH     "
                 echo "----------------------------------"		
