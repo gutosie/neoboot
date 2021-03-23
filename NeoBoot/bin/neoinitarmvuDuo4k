@@ -161,7 +161,9 @@ else
 ###>>>>>>>>>>>>>>>>>        	
 	
         UPLOAD=ImagesUpload
-        mount /dev/sda1 /media/hdd
+	if [ $NEODEVICE = "/media/hdd/" ]; then
+	        mount /dev/sda1 /media/hdd
+	fi
 	if [ ! -e $NEODEVICE$IMAGEKATALOG ]; then
                 echo "Error mounting, Return to image Flash..."
                 sleep 2
