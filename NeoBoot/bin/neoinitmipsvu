@@ -167,7 +167,7 @@ else
 
 	TARGET=Flash
 	if [ $NEODEVICE = "/media/hdd/" ]; then
-	        mount /dev/sda1 /media/hdd
+	        /bin/mount /dev/sda1 /media/hdd > /dev/null 2>&1
 	fi
 	if [ -f `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/.neonextboot ]; then
 	  TARGET=`cat $NEODEVICE$IMAGEKATALOG/.neonextboot`
