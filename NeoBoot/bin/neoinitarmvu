@@ -149,6 +149,9 @@ else
 	fi
 
 	TARGET=Flash
+	if [ $NEODEVICE = "/media/hdd/" ]; then
+	        mount /dev/sda1 /media/hdd
+	fi
 	if [ -f `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/.neonextboot ]; then
 	        TARGET=`cat $NEODEVICE$IMAGEKATALOG/.neonextboot`
 	fi                                                                                               
@@ -202,7 +205,6 @@ else
         /usr/lib/enigma2/python/Plugins/Extensions/NFR4XBoot/bin/fbclear > /dev/null 2>&1
 	fi
 
-        #TARGET=Flash
 	HARDWARETYPE=`uname -m`    	         
 	if [ $TARGET = "Flash" ]; then
 		    echo "NEOBOOT is booting image from " $TARGET
