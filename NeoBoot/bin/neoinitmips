@@ -207,6 +207,9 @@ else
 		          break;
 	fi
 	TARGET=Flash
+	if [ $NEODEVICE = "/media/hdd/" ]; then
+	        mount /dev/sda1 /media/hdd
+	fi
 	if [ -f $NEODEVICE$IMAGEKATALOG/.neonextboot ]; then
 	  TARGET=`cat $NEODEVICE$IMAGEKATALOG/.neonextboot`
 	fi
