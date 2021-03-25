@@ -663,8 +663,12 @@ class NeoBootInstallation(Screen):
 
 class NeoBootImageChoose(Screen):
     if isFHD(): 
-        from Plugins.Extensions.NeoBoot.usedskin import ImageChooseFULLHD
-        skin=ImageChooseFULLHD
+        try:
+            from Plugins.Extensions.NeoBoot.usedskin import ImageChooseFULLHD
+            skin=ImageChooseFULLHD                  
+        except:
+            from Plugins.Extensions.NeoBoot.neoskins.default import ImageChooseFULLHD
+            skin=ImageChooseFULLHD
     elif isUHD():
         from Plugins.Extensions.NeoBoot.neoskins.default import ImageChooseULTRAHD
         skin=ImageChooseULTRAHD 
