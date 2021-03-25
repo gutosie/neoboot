@@ -669,8 +669,12 @@ class NeoBootImageChoose(Screen):
         from Plugins.Extensions.NeoBoot.neoskins.default import ImageChooseULTRAHD
         skin=ImageChooseULTRAHD 
     else:
-        from Plugins.Extensions.NeoBoot.neoskins.default import ImageChooseHD
-        skin=ImageChooseHD   
+        try:
+            from Plugins.Extensions.NeoBoot.usedskin import ImageChooseHD
+            skin=ImageChooseHD        
+        except:
+            from Plugins.Extensions.NeoBoot.neoskins.default import ImageChooseHD
+            skin=ImageChooseHD  
 
     def __init__(self, session):				
         Screen.__init__(self, session)
