@@ -1317,35 +1317,46 @@ class SkinChange(Screen):
 
     def doSkinChange(self, answer):
         if answer is True:
-            if getBoxHostName() == 'vuultimo4k':
-                system('cp -r ' + LinkNeoBoot + '/images/ultimo4k.png ' + LinkNeoBoot + '/images/box.png')
-            elif getBoxHostName() == 'vusolo4k':
-                system('cp -r ' + LinkNeoBoot + '/images/solo4k.png ' + LinkNeoBoot + '/images/box.png')
-            elif getBoxHostName() == 'vuduo4k':
-                system('cp -r ' + LinkNeoBoot + '/images/duo4k.png ' + LinkNeoBoot + '/images/box.png')
-            elif getBoxHostName() == 'vuduo4kse':
-                system('cp -r ' + LinkNeoBoot + '/images/duo4k.png ' + LinkNeoBoot + '/images/box.png')                               
-            elif getBoxHostName() == 'vuuno4k':
-                system('cp -r ' + LinkNeoBoot + '/images/uno4k.png ' + LinkNeoBoot + '/images/box.png')
-            elif getBoxHostName() == 'vuuno4kse':
-                system('cp -r ' + LinkNeoBoot + '/images/uno4kse.png ' + LinkNeoBoot + '/images/box.png')
-            elif getBoxHostName() == 'vuzero4kse':
-                system('cp -r ' + LinkNeoBoot + '/images/zero4kse.png ' + LinkNeoBoot + '/images/box.png')
-            elif getBoxHostName() == 'sf4008':
-                system('cp -r ' + LinkNeoBoot + '/images/sf4008.png ' + LinkNeoBoot + '/images/box.png')                                
-            elif getBoxHostName() == 'ustym4kpro':
-                system('cp -r ' + LinkNeoBoot + '/images/ustym4kpro.png ' + LinkNeoBoot + '/images/box.png')                                            
-            elif getBoxHostName() == 'h7' or getBoxHostName() == 'zgemmah7' :
-                system('cp -r ' + LinkNeoBoot + '/images/zgmmah7.png ' + LinkNeoBoot + '/images/box.png')
-            elif getBoxHostName() == 'vusolo2':
-                system('cp -r ' + LinkNeoBoot + '/images/solo2.png ' + LinkNeoBoot + '/images/box.png')                
-
-            cmd = "echo -e '\n\n%s '" % _('Please wait, NeoBot is working, skin change is progress...')
-            cmd1 = 'rm -f ' +LinkNeoBoot+ '/usedskin.p*; sleep 2'            
-            cmd2 = 'sleep 2; cp -r ' + self.skindir + '/' + self.selectedskin + '/*.py ' +LinkNeoBoot+ '/usedskin.py'
-            cmd3 = "echo -e '\n\n%s '" % _('NeoBoot: Complete Skin Change!')   
-            cmd4 = "echo -e '\n\n%s '" % _('To use the new skin please restart enigma2')  
-            self.session.open(Console, _('NeoBoot Skin Change'), [cmd, cmd1, cmd2, cmd3, cmd4])
+            if isFHD():        
+                if getBoxHostName() == 'vuultimo4k':
+                    system('cp -r ' + LinkNeoBoot + '/images/ultimo4k.png ' + LinkNeoBoot + '/images/box.png')
+                elif getBoxHostName() == 'vusolo4k':
+                    system('cp -r ' + LinkNeoBoot + '/images/solo4k.png ' + LinkNeoBoot + '/images/box.png')
+                elif getBoxHostName() == 'vuduo4k':
+                    system('cp -r ' + LinkNeoBoot + '/images/duo4k.png ' + LinkNeoBoot + '/images/box.png')
+                elif getBoxHostName() == 'vuduo4kse':
+                    system('cp -r ' + LinkNeoBoot + '/images/duo4k.png ' + LinkNeoBoot + '/images/box.png')                               
+                elif getBoxHostName() == 'vuuno4k':
+                    system('cp -r ' + LinkNeoBoot + '/images/uno4k.png ' + LinkNeoBoot + '/images/box.png')
+                elif getBoxHostName() == 'vuuno4kse':
+                    system('cp -r ' + LinkNeoBoot + '/images/uno4kse.png ' + LinkNeoBoot + '/images/box.png')
+                elif getBoxHostName() == 'vuzero4kse':
+                    system('cp -r ' + LinkNeoBoot + '/images/zero4kse.png ' + LinkNeoBoot + '/images/box.png')
+                elif getBoxHostName() == 'sf4008':
+                    system('cp -r ' + LinkNeoBoot + '/images/sf4008.png ' + LinkNeoBoot + '/images/box.png')                                
+                elif getBoxHostName() == 'ustym4kpro':
+                    system('cp -r ' + LinkNeoBoot + '/images/ustym4kpro.png ' + LinkNeoBoot + '/images/box.png')                                            
+                elif getBoxHostName() == 'h7' or getBoxHostName() == 'zgemmah7' :
+                    system('cp -r ' + LinkNeoBoot + '/images/zgmmah7.png ' + LinkNeoBoot + '/images/box.png')
+                elif getBoxHostName() == 'vusolo2':
+                    system('cp -r ' + LinkNeoBoot + '/images/solo2.png ' + LinkNeoBoot + '/images/box.png')
+                                    
+                cmd = "echo -e '\n\n%s '" % _('Please wait, NeoBot is working, skin change is progress...')
+                cmd1 = 'rm -f ' +LinkNeoBoot+ '/usedskin.p*; sleep 2'            
+                cmd2 = 'sleep 2; cp -r ' + self.skindir + '/' + self.selectedskin + '/*.py ' +LinkNeoBoot+ '/usedskin.py'
+                cmd3 = "echo -e '\n\n%s '" % _('NeoBoot: Complete Skin Change!')   
+                cmd4 = "echo -e '\n\n%s '" % _('To use the new skin please restart enigma2')  
+                self.session.open(Console, _('NeoBoot Skin Change'), [cmd, cmd1, cmd2, cmd3, cmd4])
+            elif isHD():
+                cmd = "echo -e '\n\n%s '" % _('Please wait, NeoBot is working, skin change is progress...')
+                cmd1 = 'rm -f ' +LinkNeoBoot+ '/usedskin.p*; sleep 2'            
+                cmd2 = 'sleep 2; cp -r ' + self.skindir + '/' + self.selectedskin + '/*.py ' +LinkNeoBoot+ '/usedskin.py'
+                cmd3 = "echo -e '\n\n%s '" % _('NeoBoot: Complete Skin Change!')
+                cmd4 = "echo -e '\n\n%s '" % _('Skin change available only for full hd skin.')  
+                cmd5 = "echo -e '\n\n%s '" % _('Please come back to default skin.')                           
+                cmd6 = "echo -e '\n\n%s '" % _('To use the new skin please restart enigma2')  
+                self.session.open(Console, _('NeoBoot Skin Change'), [cmd, cmd1, cmd2, cmd3, cmd4, cmd5, cmd6])
+                
         else:
             self.close()
 
