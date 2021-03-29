@@ -99,6 +99,10 @@ class InstallImage(Screen, ConfigListScreen):
                 fn = fn.replace('.zip', '')
                 sourcelist.append((fn, fn))
                 continue
+            if fn.find('.rar') != -1:
+                fn = fn.replace('.rar', '')
+                sourcelist.append((fn, fn))
+                continue             
             if fn.find('.tar.xz') != -1:
                 fn = fn.replace('.tar.xz', '')
                 sourcelist.append((fn, fn))                             
