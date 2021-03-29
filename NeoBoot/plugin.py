@@ -1600,7 +1600,7 @@ def main(session, **kwargs):
                         if getTestToTest() != UPDATEVERSION:
                                 session.open(MessageBox, _('New version update neoboot is available!\nPlease upgrade your flash plugin.'), type=MessageBox.TYPE_ERROR)
                 else:
-                    pass
+                                session.open(MessageBox, _('Geen internet'), type=MessageBox.TYPE_ERROR)
             if not fileExists('/usr/lib/periodon/.accessdate'):       #timeoff
                                 session.open(MessageBox, _('VIP access error. Reinstall the plugin.'), type=MessageBox.TYPE_ERROR)
             if getAccesDate() == 'timeoff':       #timeoff
