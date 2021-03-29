@@ -110,7 +110,7 @@ else
 			sleep 10
 			ln -sfn /sbin/init.sysvinit /sbin/init
 			mount -a
-			break;      
+			reboot -d -f      
     fi
     if [ $BOXHOSTNAME = "vuduo4k" ] || [ $BOXHOSTNAME = "vuduo4kse" ] || [ $BOXHOSTNAME = "vuzero4k" ] || [ $BOXHOSTNAME = "bm750" ] || [ $BOXHOSTNAME = "vuduo" ] || [ $BOXHOSTNAME = "vusolo" ] || [ $BOXHOSTNAME = "vuuno" ] || [ $BOXHOSTNAME = "vuultimo" ] || [ $BOXHOSTNAME = "vuultimo4k" ] || [ $BOXHOSTNAME = "vusolo4k" ] || [ $BOXHOSTNAME = "vuuno4kse" ] || [ $BOXHOSTNAME = "vuuno4k" ] || [ $BOXHOSTNAME = "vusolo2" ] || [ $BOXHOSTNAME = "vuduo2" ] || [ $BOXHOSTNAME = "vusolose" ] || [ $BOXHOSTNAME = "vuzero" ] ; then
             break;
