@@ -815,6 +815,7 @@ def NEOBootExtract(source, target, ZipDelete):
     sourcefile = media + '/ImagesUpload/%s.zip' % source
     sourcefile2 = media + '/ImagesUpload/%s.nfi' % source
     sourcefile3 = media + '/ImagesUpload/%s.rar' % source
+    sourcefile4 = media + '/ImagesUpload/%s.gz' % source
     
     #Instalacja *.nfi
     if os.path.exists(sourcefile2) is True:
@@ -1487,6 +1488,15 @@ def NEOBootExtract(source, target, ZipDelete):
             os.system('cp -af ' + getNeoLocation() + 'ImagesUpload/' + source + '.mb  ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.gz')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/*.tar.gz; tar -xzvf ' + getNeoLocation() + 'ImagesUpload/*.tar.gz -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd)
+        elif '.gz' in sourcefile4 :                                                                                  
+            os.system('cp -af ' + getNeoLocation() + 'ImagesUpload/*.tar.gz  ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.gz')
+            cmd = '/bin/tar -xzvf ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.gz -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
+            rc = os.system(cmd)           
+            if '.gz' in sourcefile4 :                                                                                  
+                cmd = 'rm -rf ' + getNeoLocation() + 'ImagesUpload/*.gz '  ' > /dev/null 2>&1'
+                rc = os.system(cmd) 
+                cmd = 'rm -f ' + getNeoLocation() + 'ImagesUpload/*.jpg '  ' > /dev/null 2>&1'
+                rc = os.system(cmd)          
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/rootfs.bin'):
             os.chdir('ImagesUpload')
             os.system('mv -f rootfs.bin rootfs.bin')                    
