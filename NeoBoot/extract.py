@@ -837,7 +837,7 @@ def NEOBootExtract(source, target, ZipDelete):
     if os.path.exists(sourcefile3) is True:
         if sourcefile3.endswith('.rar'):
             os.system('echo "Installing iamge  x.rar..."')
-            cmd = 'unrar e ' + sourcefile3+ ' ' + getNeoLocation() + 'ImagesUpload/' 
+            cmd = 'unrar e ' + sourcefile3+ ' ' + getNeoLocation() + 'ImagesUpload/ > /dev/null 2>&1' 
             rc = os.system(cmd)
             if ZipDelete == 'True':
                 rc = os.system('rm -rf ' + sourcefile3)
