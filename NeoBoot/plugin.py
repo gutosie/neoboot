@@ -1596,8 +1596,11 @@ def main(session, **kwargs):
             if not fileExists('/usr/lib/periodon/.kodn'):
                         session.open(MessageBox, _('Get a free test to the full vip version.'), type=MessageBox.TYPE_ERROR)
             elif fileExists('/usr/lib/periodon/.kodn') and fileExists('/tmp/.nkod'):
+                if checkInternet():            
                         if getTestToTest() != UPDATEVERSION:
                                 session.open(MessageBox, _('New version update neoboot is available!\nPlease upgrade your flash plugin.'), type=MessageBox.TYPE_ERROR)
+                else:
+                    pass
             if not fileExists('/usr/lib/periodon/.accessdate'):       #timeoff
                                 session.open(MessageBox, _('VIP access error. Reinstall the plugin.'), type=MessageBox.TYPE_ERROR)
             if getAccesDate() == 'timeoff':       #timeoff
