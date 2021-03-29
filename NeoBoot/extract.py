@@ -814,6 +814,7 @@ def NEOBootExtract(source, target, ZipDelete):
 
     sourcefile = media + '/ImagesUpload/%s.zip' % source
     sourcefile2 = media + '/ImagesUpload/%s.nfi' % source
+    sourcefile3 = media + '/ImagesUpload/%s.rar' % source
     
     #Instalacja *.nfi
     if os.path.exists(sourcefile2) is True:
@@ -831,6 +832,17 @@ def NEOBootExtract(source, target, ZipDelete):
                 rc = os.system('rm -rf ' + sourcefile2)
             else:
                 os.system('echo "NeoBoot keep the file:  %s  for reinstallation."' % sourcefile2)
+    #Instalacja *.rar
+    if os.path.exists(sourcefile3) is True:
+        if sourcefile3.endswith('.rar'):
+            os.system('echo "Installing iamge  x.rar..."')
+            cmd = 'unrar e ' + sourcefile3+ ' ' + getNeoLocation() + 'ImagesUpload/' 
+            rc = os.system(cmd)
+            if ZipDelete == 'True':
+                rc = os.system('rm -rf ' + sourcefile3)
+            else:
+                os.system('echo "NeoBoot keep the file:  %s  for reinstallation."' % sourcefile3)
+                
     #Instalacja *.zip
     elif os.path.exists(sourcefile) is True:
         os.system('unzip ' + sourcefile)
