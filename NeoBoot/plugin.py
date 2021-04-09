@@ -1579,7 +1579,7 @@ def main(session, **kwargs):
                                         if fileExists('/tmp/ver.txt'):
                                                         os.system('mv /tmp/ver.txt /tmp/.nkod ;cd /')
                                         else:
-                                                        os.system(_('echo %s  > /tmp/.nkod') % PLUGINVERSION)
+                                                        os.system(_('echo %s  > /tmp/.nkod') % UPDATEVERSION)
             from Plugins.Extensions.NeoBoot.files.stbbranding import getCheckInstal1, getCheckInstal2, getCheckInstal3
             if fileExists('/tmp/error_neo') :
                 if fileExists('/tmp/error_neo'):
