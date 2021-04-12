@@ -1103,8 +1103,12 @@ def NEOBootExtract(source, target, ZipDelete):
                         os.chdir('solo')
                         os.system('mv -f root_cfe_auto.jffs2 rootfs.bin')
                     if os.path.exists('' + getNeoLocation() + 'ImagesUpload/vuplus/solose'):
-                        os.chdir('solose')
-                        os.system('mv -f root_cfe_auto.jffs2 rootfs.bin')
+                        if os.path.exists('' + getNeoLocation() + 'ImagesUpload/vuplus/solose/root_cfe_auto.bin'):
+                            os.chdir('solose')
+                            os.system('mv -f root_cfe_auto.bin rootfs.bin')
+                        elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/vuplus/solose/root_cfe_auto.jffs2'):
+                            os.chdir('solose')
+                            os.system('mv -f root_cfe_auto.jffs2 rootfs.bin')                          
                     if os.path.exists('' + getNeoLocation() + 'ImagesUpload/vuplus/ultimo'):
                         os.chdir('ultimo')
                         os.system('mv -f root_cfe_auto.jffs2 rootfs.bin')
