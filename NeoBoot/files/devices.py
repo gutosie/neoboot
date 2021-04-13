@@ -282,11 +282,11 @@ class ManagerDevice(Screen):
         self.device_uuid = 'UUID=' + result.split('UUID=')[1].split(' ')[0].replace('"', '')
         if not path.exists(self.mountp):
             mkdir(self.mountp, 493)
-        file('/etc/fstab.tmp', 'w').writelines([ l for l in file('/etc/fstab').readlines() if '/media/hdd' not in l ])
+        file('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if '/media/hdd' not in l])
         rename('/etc/fstab.tmp', '/etc/fstab')
-        file('/etc/fstab.tmp', 'w').writelines([ l for l in file('/etc/fstab').readlines() if self.device not in l ])
+        file('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if self.device not in l])
         rename('/etc/fstab.tmp', '/etc/fstab')
-        file('/etc/fstab.tmp', 'w').writelines([ l for l in file('/etc/fstab').readlines() if self.device_uuid not in l ])
+        file('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if self.device_uuid not in l])
         rename('/etc/fstab.tmp', '/etc/fstab')
         out = open('/etc/fstab', 'a')
         line = self.device_uuid + '\t/media/hdd\tauto\tdefaults\t0 0\n'
@@ -463,7 +463,7 @@ class DevicesConf(Screen, ConfigListScreen):
             self.close()
 
     def add_fstab(self, result=None, retval=None, extra_args=None):
-        print ("[MountManager] RESULT:"), result
+        print("[MountManager] RESULT:"), result
         if result:
             self.device = extra_args[0]
             self.mountp = extra_args[1]
@@ -477,9 +477,9 @@ class DevicesConf(Screen, ConfigListScreen):
                 self.device_type = 'ntfs'
             if not path.exists(self.mountp):
                 mkdir(self.mountp, 493)
-            file('/etc/fstab.tmp', 'w').writelines([ l for l in file('/etc/fstab').readlines() if self.device not in l ])
+            file('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if self.device not in l])
             rename('/etc/fstab.tmp', '/etc/fstab')
-            file('/etc/fstab.tmp', 'w').writelines([ l for l in file('/etc/fstab').readlines() if self.device_uuid not in l ])
+            file('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if self.device_uuid not in l])
             rename('/etc/fstab.tmp', '/etc/fstab')
             out = open('/etc/fstab', 'a')
             line = self.device_uuid + '\t' + self.mountp + '\t' + self.device_type + '\tdefaults\t0 0\n'

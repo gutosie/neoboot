@@ -19,7 +19,7 @@ def by_image_seq(blocks, image_seq):
 
 def by_range(blocks, block_range):
     peb_range = range(block_range[0], block_range[1])
-    return [ i for i in blocks if i in peb_range ]
+    return [i for i in blocks if i in peb_range]
 
 
 def by_leb(blocks):

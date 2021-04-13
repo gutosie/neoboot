@@ -142,93 +142,93 @@ class MBTools(Screen):
             mypixmap = '' +LinkNeoBoot+ '/images/ok.png'
         png = LoadPixmap(mypixmap)
 
-        res = (_ ('Make a copy of the image from NeoBoot'), png, 0)
-        self.list.append (res)
-        self ['list']. list = self.list
+        res = (_('Make a copy of the image from NeoBoot'), png, 0)
+        self.list.append(res)
+        self['list']. list = self.list
 
-        res = (_ ('Restore a copy of the image to NeoBoot'), png, 1)
-        self.list.append (res)
-        self ['list']. list = self.list
+        res = (_('Restore a copy of the image to NeoBoot'), png, 1)
+        self.list.append(res)
+        self['list']. list = self.list
         
-        res = (_ ('Device manager'), png, 2)
-        self.list.append (res)
-        self ['list']. list = self.list
+        res = (_('Device manager'), png, 2)
+        self.list.append(res)
+        self['list']. list = self.list
         
-        res = (_ ('Delete image ZIP from the ImagesUpload directory'), png, 3)
-        self.list.append (res)
-        self ['list']. list = self.list
+        res = (_('Delete image ZIP from the ImagesUpload directory'), png, 3)
+        self.list.append(res)
+        self['list']. list = self.list
         
-        res = (_ ('NeoBoot Backup'), png, 4)
-        self.list.append (res)
-        self ['list']. list = self.list
+        res = (_('NeoBoot Backup'), png, 4)
+        self.list.append(res)
+        self['list']. list = self.list
 
-        res = (_ ('Restore neoboot backup'), png, 5)    
-        self.list.append (res)
-        self ['list']. list = self.list
+        res = (_('Restore neoboot backup'), png, 5)    
+        self.list.append(res)
+        self['list']. list = self.list
 
-        res = (_ ('Uninstall NeoBoot'), png, 6)
-        self.list.append (res)
-        self ['list']. list = self.list
+        res = (_('Uninstall NeoBoot'), png, 6)
+        self.list.append(res)
+        self['list']. list = self.list
         
-        res = (_ ('Update NeoBoot on all images.'), png, 7)
-        self.list.append (res)
-        self ['list']. list = self.list
+        res = (_('Update NeoBoot on all images.'), png, 7)
+        self.list.append(res)
+        self['list']. list = self.list
                 
-        res = (_ ('Update TV list on installed image.'), png, 8)
-        self.list.append (res)
-        self ['list']. list = self.list
+        res = (_('Update TV list on installed image.'), png, 8)
+        self.list.append(res)
+        self['list']. list = self.list
 
-        res = (_ ('Update IPTVPlayer on installed image.'), png, 9)
-        self.list.append (res)
-        self ['list']. list = self.list
+        res = (_('Update IPTVPlayer on installed image.'), png, 9)
+        self.list.append(res)
+        self['list']. list = self.list
         
-        res = (_ ('Update FeedExtra on the installed image.'), png, 10)
-        self.list.append (res)
-        self ['list']. list = self.list
+        res = (_('Update FeedExtra on the installed image.'), png, 10)
+        self.list.append(res)
+        self['list']. list = self.list
 
-        res = (_ ('Removing the root password.'), png, 11)
-        self.list.append (res)
-        self ['list']. list = self.list
+        res = (_('Removing the root password.'), png, 11)
+        self.list.append(res)
+        self['list']. list = self.list
 
-        res = (_ ('Check the correctness of neoboot installation'), png, 12)
-        self.list.append (res)
-        self ['list']. list = self.list
+        res = (_('Check the correctness of neoboot installation'), png, 12)
+        self.list.append(res)
+        self['list']. list = self.list
         
-        res = (_ ('Skin change'), png, 13)
-        self.list.append (res)
-        self ['list']. list = self.list
+        res = (_('Skin change'), png, 13)
+        self.list.append(res)
+        self['list']. list = self.list
 
-        res = (_ ('Block or unlock skins.'), png, 14)
-        self.list.append (res)
-        self ['list']. list = self.list
+        res = (_('Block or unlock skins.'), png, 14)
+        self.list.append(res)
+        self['list']. list = self.list
 
-        res = (_ ('Mount Internal Flash'), png, 15)
-        self.list.append (res)
-        self ['list']. list = self.list
+        res = (_('Mount Internal Flash'), png, 15)
+        self.list.append(res)
+        self['list']. list = self.list
 
-        res = (_ ('Deleting languages'), png, 16)
-        self.list.append (res)
-        self ['list']. list = self.list
+        res = (_('Deleting languages'), png, 16)
+        self.list.append(res)
+        self['list']. list = self.list
 
-        res = (_ ('Updates feed cam OpenATV softcam'), png, 17)
-        self.list.append (res)
-        self ['list']. list = self.list
+        res = (_('Updates feed cam OpenATV softcam'), png, 17)
+        self.list.append(res)
+        self['list']. list = self.list
         
-        res = (_ ('Create swap- file.'), png, 18)
-        self.list.append (res)
-        self ['list']. list = self.list        
+        res = (_('Create swap- file.'), png, 18)
+        self.list.append(res)
+        self['list']. list = self.list        
 
-        res = (_ ('Supported sat tuners'), png, 19)
-        self.list.append (res)
-        self ['list']. list = self.list
+        res = (_('Supported sat tuners'), png, 19)
+        self.list.append(res)
+        self['list']. list = self.list
 
-        res = (_ ('NeoBoot Information'), png, 20)
-        self.list.append (res)
-        self ['list']. list = self.list
+        res = (_('NeoBoot Information'), png, 20)
+        self.list.append(res)
+        self['list']. list = self.list
         
-        res = (_ ('NeoBoot donate'), png, 21)
-        self.list.append (res)
-        self ['list']. list = self.list        
+        res = (_('NeoBoot donate'), png, 21)
+        self.list.append(res)
+        self['list']. list = self.list        
 
 
     def KeyOk(self):
@@ -512,7 +512,7 @@ class MBRestore(Screen):
         image = self['list'].getCurrent()
         if image:
             self.delimage = image.strip()
-            message = (_('Software selected: %s remove ?') % image )                                 
+            message = (_('Software selected: %s remove ?') % image)                                 
             ybox = self.session.openWithCallback(self.dodeleteback, MessageBox, message, MessageBox.TYPE_YESNO)
             ybox.setTitle(_('Confirmation of Deletion...'))
 
@@ -725,7 +725,7 @@ class UnistallMultiboot(Screen):
             self.close()
 
     def checkNeo(self):
-            if not fileCheck(''+LinkNeoBoot+ '/.location') and not fileCheck(' ' + getNeoLocation() + 'ImageBoot/.neonextboot') :                                                   
+            if not fileCheck(''+LinkNeoBoot+ '/.location') and not fileCheck(' ' + getNeoLocation() + 'ImageBoot/.neonextboot'):                                                   
                 self.restareE2() 
             else:
                 self.close()
@@ -794,7 +794,7 @@ class ReinstllNeoBoot2(Screen):
         image = self['list'].getCurrent()
         if image:
             self.delimage = image.strip()
-            message = (_('Software selected: %s remove ?') % image )                                    
+            message = (_('Software selected: %s remove ?') % image)                                    
             ybox = self.session.openWithCallback(self.dodeleteback, MessageBox, message, MessageBox.TYPE_YESNO)
             ybox.setTitle(_('Confirmation of Deletion...'))
 
@@ -887,7 +887,7 @@ class MyUpgrade2(Screen):
                 self.myClose(_('Sorry, NeoBoot can installed or upgraded only when booted from Flash STB'))
                 self.close()
             else: 
-                for fn in listdir('%sImageBoot'  % getNeoLocation() ):
+                for fn in listdir('%sImageBoot'  % getNeoLocation()):
                     dirfile = '%sImageBoot/'  % getNeoLocation() + fn
                     if isdir(dirfile):
                         target = dirfile + '' +LinkNeoBoot+ ''
@@ -1198,7 +1198,7 @@ class CheckInstall(Screen):
             self.myClose(_('Sorry, Neoboot can be installed or upgraded only when booted from Flash'))
 
     def neocheck2(self):
-            os.system(_('rm -f ' + LinkNeoBoot + '/files/modulecheck; echo %s - %s  >  ' +LinkNeoBoot+ '/files/modulecheck') % (getBoxModelVU(), getCPUSoC()) )
+            os.system(_('rm -f ' + LinkNeoBoot + '/files/modulecheck; echo %s - %s  >  ' +LinkNeoBoot+ '/files/modulecheck') % (getBoxModelVU(), getCPUSoC()))
             os.system('echo "\n====================================================>\nCheck result:"  >> ' + LinkNeoBoot + '/files/modulecheck') 
             os.system('echo "*    neoboot location:"  >>  ' +LinkNeoBoot+ '/files/modulecheck; cat "/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location"  >>  ' +LinkNeoBoot+ '/files/modulecheck')
             os.system('echo "\n*    neoboot location install:"  >>  ' +LinkNeoBoot+ '/files/modulecheck; cat "/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/install"  >>  ' +LinkNeoBoot+ '/files/modulecheck')
@@ -1337,7 +1337,7 @@ class SkinChange(Screen):
                     system('cp -r ' + LinkNeoBoot + '/images/sf4008.png ' + LinkNeoBoot + '/images/box.png')                                
                 elif getBoxHostName() == 'ustym4kpro':
                     system('cp -r ' + LinkNeoBoot + '/images/ustym4kpro.png ' + LinkNeoBoot + '/images/box.png')                                            
-                elif getBoxHostName() == 'h7' or getBoxHostName() == 'zgemmah7' :
+                elif getBoxHostName() == 'h7' or getBoxHostName() == 'zgemmah7':
                     system('cp -r ' + LinkNeoBoot + '/images/zgmmah7.png ' + LinkNeoBoot + '/images/box.png')
                 elif getBoxHostName() == 'vusolo2':
                     system('cp -r ' + LinkNeoBoot + '/images/solo2.png ' + LinkNeoBoot + '/images/box.png')
@@ -1431,7 +1431,7 @@ class BlocUnblockImageSkin(Screen):
         image = self['list'].getCurrent()
         if image:
             self.delimage = image.strip()
-            message = (_('Select Yes to lock or No to unlock.\n  %s     ?') % image )                                    
+            message = (_('Select Yes to lock or No to unlock.\n  %s     ?') % image)                                    
             ybox = self.session.openWithCallback(self.Block_Unlock_Skin, MessageBox, message, MessageBox.TYPE_YESNO)
             ybox.setTitle(_('Confirmation...'))
 
@@ -1508,7 +1508,7 @@ class InternalFlash(Screen):
                         os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p4 /media/InternalFlash')  
 
                 if os.path.exists('/proc/stb/info/boxtype'):
-                    if getCPUSoC() == 'bcm7251s' or getBoxHostName() == 'h7' or getBoxHostName() == 'zgemmah7' :   
+                    if getCPUSoC() == 'bcm7251s' or getBoxHostName() == 'h7' or getBoxHostName() == 'zgemmah7':   
                          os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p3 /media/InternalFlash')
 
                 if os.path.exists('/proc/stb/info/boxtype'):
@@ -1601,7 +1601,7 @@ class DeletingLanguages(Screen):
         image = self['list'].getCurrent()
         if image:
             self.delimage = image.strip()
-            message = (_('File:  %s  remove ?') % image )                                    
+            message = (_('File:  %s  remove ?') % image)                                    
             ybox = self.session.openWithCallback(self.dodeleteback, MessageBox, message, MessageBox.TYPE_YESNO)
             ybox.setTitle(_('Confirmation of Deletion...'))
 
@@ -1924,7 +1924,7 @@ class Opis(Screen):
             if fileExists('/etc/init.d/volatile-media.sh.org'):
                 system(' mv /etc/init.d/volatile-media.sh.org /etc/init.d/volatile-media.sh; rm -r /etc/init.d/volatile-media.sh.org; chmod 755 /etc/init.d/volatile-media.sh ')                                                                 
             if os.path.isfile('%sImageBoot/.neonextboot' % getNeoLocation()): 
-                os.system('rm -f /etc/neoimage; rm -f /etc/imageboot; rm -f %sImageBoot/.neonextboot; rm -f %sImageBoot/.version; rm -f %sImageBoot/.Flash; ' % (getNeoLocation(), getNeoLocation(), getNeoLocation()) )
+                os.system('rm -f /etc/neoimage; rm -f /etc/imageboot; rm -f %sImageBoot/.neonextboot; rm -f %sImageBoot/.version; rm -f %sImageBoot/.Flash; ' % (getNeoLocation(), getNeoLocation(), getNeoLocation()))
             if os.path.isfile('%sImagesUpload/.kernel ' % getNeoLocation()): 
                 os.system('rm -r %sImagesUpload/.kernel' % getNeoLocation())
             cmd = "echo -e '\n\n%s '" % _('Recovering setting....\n')
@@ -1964,7 +1964,7 @@ class ReinstallKernel(Screen):
     def InfoCheck(self):
         if fileExists('/.multinfo'):
             if getCPUtype() == 'MIPS':
-                if not fileExists( '/boot/' + getBoxHostName() + '.vmlinux.gz'):
+                if not fileExists('/boot/' + getBoxHostName() + '.vmlinux.gz'):
                     mess = _('Update available only from the image Flash.')
                     self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
                 else:

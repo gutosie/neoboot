@@ -48,7 +48,7 @@ def getBoxVuModel():
             f.close() 
     return vumodel
 
-def getCPUtype() :
+def getCPUtype():
     cpu='UNKNOWN'
     if os.path.exists('/proc/cpuinfo'):
         with open('/proc/cpuinfo', 'r') as f:
@@ -429,7 +429,7 @@ def NEOBootMainEx(source, target, stopenigma, CopyFiles, CopyKernel, TvList, Lan
                 cmd = 'chmod 0755 %s/ImageBoot/%s/etc/init.d/rc.local' % (media, target)
                 rc = os.system(cmd)
 
-        if not os.path.exists('%s/ImageBoot/%s/etc/init.d/rc.local' % (media, target)) and not os.path.exists('%s/ImageBoot/%s/etc/rc.local' % (media, target)) :  
+        if not os.path.exists('%s/ImageBoot/%s/etc/init.d/rc.local' % (media, target)) and not os.path.exists('%s/ImageBoot/%s/etc/rc.local' % (media, target)):  
             if os.path.exists('%s/ImageBoot/%s/etc/init.d' % (media, target)):                  
 #                cmd = 'ln -s %sImageBoot/%s/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/userscript.sh %sImageBoot/%s/etc/rcS.d/S99neo.local' % (media,
 #                 target,                 
@@ -656,7 +656,7 @@ def NEOBootMainEx(source, target, stopenigma, CopyFiles, CopyKernel, TvList, Lan
     if '.tar.xz' not in source and not os.path.exists('' + getNeoLocation() + '/ImageBoot/%s/etc/issue' %  target):
             os.system('echo ""; echo "No system installed! The reason for the installation error may be badly packed image files or it is not a system for your model."')
             os.system('echo "The installed system may not start. Check the correctness of the installed image directory!!!"')
-            os.system('rm -r ' + getNeoLocation() + '/ImageBoot/%s' % target )
+            os.system('rm -r ' + getNeoLocation() + '/ImageBoot/%s' % target)
 
     if os.path.exists('' + getNeoLocation() + 'ubi'):
         os.system('rm -r ' + getNeoLocation() + 'ubi')          
@@ -744,7 +744,7 @@ def RemoveUnpackDirs():
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/dm920 ')  
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/dreamtwo '):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/dreamtwo ')       
-    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/multibox') or os.path.exists('' + getNeoLocation() + 'ImagesUpload/multiboxse') :          
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/multibox') or os.path.exists('' + getNeoLocation() + 'ImagesUpload/multiboxse'):          
         rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/multibox ' + getNeoLocation() + 'ImagesUpload/multibox; rm -r ' + getNeoLocation() + 'ImagesUpload/multibox')                                          
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/octagon/sf8008'):          
         rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/usb_update.bin ' + getNeoLocation() + 'ImagesUpload/octagon; rm -r ' + getNeoLocation() + 'ImagesUpload/octagon')                                          
@@ -798,11 +798,11 @@ def RemoveUnpackDirs():
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/gigablue')                
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/rootfs.tar.gz'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.gz')
-    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/rootfs.tar.xz') :
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/rootfs.tar.xz'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.xz')        
-    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/rootfs.tar.bz2') :
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/rootfs.tar.bz2'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.bz2')
-    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/et10000') :
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/et10000'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/et10000')
 
 
@@ -1010,7 +1010,7 @@ def NEOBootExtract(source, target, ZipDelete):
 
             #Instalacja image nandsim                                     
             os.system('echo "Instalacja - nandsim w toku..."') 
-            rc = os.system('insmod /lib/modules/' + getKernelVersion() + '/kernel/drivers/mtd/nand/nandsim.ko cache_file=' + getNeoLocation() + 'image_cache first_id_byte=0x20 second_id_byte=0xaa third_id_byte=0x00 fourth_id_byte=0x15;sleep 5' )#% getKernelVersion())
+            rc = os.system('insmod /lib/modules/' + getKernelVersion() + '/kernel/drivers/mtd/nand/nandsim.ko cache_file=' + getNeoLocation() + 'image_cache first_id_byte=0x20 second_id_byte=0xaa third_id_byte=0x00 fourth_id_byte=0x15;sleep 5')#% getKernelVersion())
             cmd = 'dd if=%s of=/dev/mtdblock%s bs=2048' % (rootfname, mtd)
             rc = os.system(cmd)
             cmd = 'ubiattach /dev/ubi_ctrl -m %s -O 2048' % mtd
@@ -1234,7 +1234,7 @@ def NEOBootExtract(source, target, ZipDelete):
             os.chdir('h9')
             os.system('mv -f rootfs.ubi rootfs.bin')                    
             os.system('echo "Instalacja - ubi_reader w toku..."')                     
-            print ("[NeoBoot] Extracting UBIFS image and moving extracted image to our target")
+            print("[NeoBoot] Extracting UBIFS image and moving extracted image to our target")
             cmd = 'chmod 777 ' + extensions_path + 'NeoBoot/ubi_reader/ubi_extract_files.py'
             rc = os.system(cmd)
             cmd = 'python ' + extensions_path + 'NeoBoot/ubi_reader/ubi_extract_files.py rootfs.bin -o ' + getNeoLocation() + 'ubi'
@@ -1252,7 +1252,7 @@ def NEOBootExtract(source, target, ZipDelete):
             if os.path.exists('' + getNeoLocation() + 'ImagesUpload/axas/axashistwin'):
                 os.chdir('axashistwin')                    
                 os.system('echo "Instalacja - ubi_reader w toku..."')                     
-                print ("[NeoBoot] Extracting UBIFS image and moving extracted image to our target")
+                print("[NeoBoot] Extracting UBIFS image and moving extracted image to our target")
                 cmd = 'chmod 777 ' + extensions_path + 'NeoBoot/ubi_reader/ubi_extract_files.py'
                 rc = os.system(cmd)
                 cmd = 'python ' + extensions_path + 'NeoBoot/ubi_reader/ubi_extract_files.py rootfs.bin -o ' + getNeoLocation() + 'ubi'
@@ -1269,7 +1269,7 @@ def NEOBootExtract(source, target, ZipDelete):
             os.chdir('et10000')
             os.system('mv -f rootfs.bin rootfs.bin')                    
             os.system('echo "Instalacja - ubi_reader w toku..."')            
-            print ("[NeoBoot] Extracting UBIFS image and moving extracted image to our target")
+            print("[NeoBoot] Extracting UBIFS image and moving extracted image to our target")
             cmd = 'chmod 777 ' + extensions_path + 'NeoBoot/ubi_reader/ubi_extract_files.py'
             rc = os.system(cmd)
             cmd = 'python ' + extensions_path + 'NeoBoot/ubi_reader/ubi_extract_files.py rootfs.bin -o ' + getNeoLocation() + 'ubi'
@@ -1495,11 +1495,11 @@ def NEOBootExtract(source, target, ZipDelete):
             os.system('cp -af ' + getNeoLocation() + 'ImagesUpload/' + source + '.mb  ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.gz')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/*.tar.gz; tar -xzvf ' + getNeoLocation() + 'ImagesUpload/*.tar.gz -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd)
-        elif '.gz' in sourcefile4 :                                                                                  
+        elif '.gz' in sourcefile4:                                                                                  
             os.system('cp -af ' + getNeoLocation() + 'ImagesUpload/*.tar.gz  ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.gz')
             cmd = '/bin/tar -xzvf ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.gz -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd)           
-            if '.gz' in sourcefile4 :                                                                                  
+            if '.gz' in sourcefile4:                                                                                  
                 cmd = 'rm -rf ' + getNeoLocation() + 'ImagesUpload/*.gz '  ' > /dev/null 2>&1'
                 rc = os.system(cmd) 
                 cmd = 'rm -f ' + getNeoLocation() + 'ImagesUpload/*.jpg '  ' > /dev/null 2>&1'
@@ -1508,7 +1508,7 @@ def NEOBootExtract(source, target, ZipDelete):
             os.chdir('ImagesUpload')
             os.system('mv -f rootfs.bin rootfs.bin')                    
             os.system('echo "Instalacja - ubi_reader w toku..."')            
-            print ("[NeoBoot] Extracting UBIFS image and moving extracted image to our target")
+            print("[NeoBoot] Extracting UBIFS image and moving extracted image to our target")
             cmd = 'chmod 777 ' + extensions_path + 'NeoBoot/ubi_reader/ubi_extract_files.py'
             rc = os.system(cmd)
             cmd = 'python ' + extensions_path + 'NeoBoot/ubi_reader/ubi_extract_files.py rootfs.bin -o ' + getNeoLocation() + 'ubi'

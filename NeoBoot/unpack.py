@@ -94,7 +94,7 @@ class InstallImage(Screen, ConfigListScreen):
         Screen.__init__(self, session)
         fn = 'NewImage'
         sourcelist = []                        
-        for fn in os.listdir('%sImagesUpload' % getNeoLocation() ):
+        for fn in os.listdir('%sImagesUpload' % getNeoLocation()):
             if fn.find('.zip') != -1:
                 fn = fn.replace('.zip', '')
                 sourcelist.append((fn, fn))
@@ -179,8 +179,8 @@ class InstallImage(Screen, ConfigListScreen):
         self.list.append(getConfigListEntry(_('Source Image file'), self.source))
         self.list.append(getConfigListEntry(_('Image Name'), self.target)) 
         self.list.append(getConfigListEntry(_('Stop E2 processes during installation?'), self.stopenigma))      
-        self.list.append(getConfigListEntry(_('Copy files from Flash to the installed image ?'), self.CopyFiles ))         
-        self.list.append(getConfigListEntry(_('Copy the kernel of the installed system (recommended ?'), self.CopyKernel ))         
+        self.list.append(getConfigListEntry(_('Copy files from Flash to the installed image ?'), self.CopyFiles))         
+        self.list.append(getConfigListEntry(_('Copy the kernel of the installed system (recommended ?'), self.CopyKernel))         
         self.list.append(getConfigListEntry(_('Copy the channel list ?'), self.TvList))   
         self.list.append(getConfigListEntry(_('Copy network settings LAN-WLAN ?'), self.LanWlan))               
         self.list.append(getConfigListEntry(_('Copy the drivers ? (Recommended only other image.)'), self.Sterowniki))                                                                
@@ -267,7 +267,7 @@ class InstallImage(Screen, ConfigListScreen):
                  str(self.PiconR.value), 
                  str(self.Kodi.value),                                                  
                  str(self.BlackHole.value))  
-                print ("[MULTI-BOOT]: "), cmd
+                print("[MULTI-BOOT]: "), cmd
                 from Plugins.Extensions.NeoBoot.plugin import PLUGINVERSION
                 self.session.open(Console, _('NeoBoot v.%s - Install new image') % PLUGINVERSION, [message, cmd])
 

@@ -84,10 +84,10 @@ class StartImage(Screen):
 
     def KeyOk(self): 
         if getImageNeoBoot() != 'Flash': 
-                os.system('rm -rf %sImageBoot/%s/usr/bin/enigma2_pre_start.sh' % ( getNeoLocation(), getImageNeoBoot())) 
+                os.system('rm -rf %sImageBoot/%s/usr/bin/enigma2_pre_start.sh' % (getNeoLocation(), getImageNeoBoot())) 
                 self.StartImageInNeoBoot()
         else:
-            os.system('rm -rf %sImageBoot/%s/usr/bin/enigma2_pre_start.sh' % ( getNeoLocation(), getImageNeoBoot())) 
+            os.system('rm -rf %sImageBoot/%s/usr/bin/enigma2_pre_start.sh' % (getNeoLocation(), getImageNeoBoot())) 
             self.StartImageInNeoBoot()
         #---------------------------------------------
         getMountPointNeo2()
@@ -95,10 +95,10 @@ class StartImage(Screen):
 
     def StartImageInNeoBoot(self):                              
         if getImageNeoBoot() != 'Flash':
-            if fileExists('%sImageBoot/%s/.control_ok' % ( getNeoLocation(),  getImageNeoBoot())): 
+            if fileExists('%sImageBoot/%s/.control_ok' % (getNeoLocation(),  getImageNeoBoot())): 
                 system('touch /tmp/.control_ok ') 
             else:
-                system('touch %sImageBoot/%s/.control_boot_new_image ' % ( getNeoLocation(), getImageNeoBoot() ))
+                system('touch %sImageBoot/%s/.control_boot_new_image ' % (getNeoLocation(), getImageNeoBoot()))
 
         #system('chmod 755 /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/kernel.sh')                                                  
         self.sel = self['list'].getCurrent()

@@ -69,7 +69,7 @@ try:
     addFont(font_sagoe, 'tasat', 100, True)
     addFont(font_sagoe, 'dugme', 90, True)
 except:
-    print ("ERROR INSERTING FONT")
+    print("ERROR INSERTING FONT")
        
 def neoTranslator():
     neolang = ''
@@ -192,7 +192,7 @@ class NeoBootInstallation(Screen):
                 
     if fileExists('/etc/fstab'):
         neoformat = getFormat() 
-        writefile = open('/tmp/.neo_format' , 'w')
+        writefile = open('/tmp/.neo_format', 'w')
         writefile.write(neoformat)
         writefile.close()
 
@@ -224,7 +224,7 @@ class NeoBootInstallation(Screen):
             os.system(" 'mount | sed '/sd/!d' | cut -d" " -f1,2,3,4,5' ")
             cmd = '/sbin/blkid '
             system(cmd)
-            print ("[MULTI-BOOT]: "), cmd
+            print("[MULTI-BOOT]: "), cmd
             self.session.open(Console, _('    NeoBot - Available media:'), [message, cmd])
         except Exception as e:
             loggscrash = time.localtime(time.time())
@@ -325,7 +325,7 @@ class NeoBootInstallation(Screen):
                     self.session.open(MessageBox, _('The directory %s is not a ext2, ext3, ext4 or nfs partition.\nMake sure you select a valid partition type to install.') % dir, type=MessageBox.TYPE_ERROR)
                     return False
 
-            elif getFormat() == 'ext4' or getFormat() == 'ext3' or getFormat() == 'ext2' or getFormat() == 'nfs' :
+            elif getFormat() == 'ext4' or getFormat() == 'ext3' or getFormat() == 'ext2' or getFormat() == 'nfs':
                 return True
 
             else:
@@ -413,7 +413,7 @@ class NeoBootInstallation(Screen):
         if yesno:
             self.first_installation()        
         else:
-            self.myclose2(_('NeoBoot has not been installed !  :(' ))
+            self.myclose2(_('NeoBoot has not been installed !  :('))
 
     def first_installation(self):
         check = False
@@ -436,11 +436,11 @@ class NeoBootInstallation(Screen):
                 self.close()
 
     def install2(self, yesno):		
-        print ("yesno:"), yesno
+        print("yesno:"), yesno
         if yesno:                 
             self.first_installationNeoBoot()
         else:
-            self.myclose2(_('NeoBoot has not been installed ! :(' ))
+            self.myclose2(_('NeoBoot has not been installed ! :('))
 
     def first_installationNeoBoot(self):                	    
             self.mysel = self['config'].getCurrent()
@@ -457,13 +457,13 @@ class NeoBootInstallation(Screen):
             out.close()     
 	
             if os.path.isfile('%sImageBoot/.neonextboot' % getNeoLocation()): 
-                        os.system('rm -f /etc/neoimage; rm -f /etc/imageboot; rm -f %sImageBoot/.neonextboot; rm -f %sImageBoot/.version; rm -f %sImageBoot/.Flash; rm -f %sImageBoot/.imagedistro; rm -f %sImageBoot/.initneo.log; rm -f %sImageBoot/.updateversion' % ( getNeoLocation(), getNeoLocation(), getNeoLocation(), getNeoLocation(), getNeoLocation(), getNeoLocation()) ) 
+                        os.system('rm -f /etc/neoimage; rm -f /etc/imageboot; rm -f %sImageBoot/.neonextboot; rm -f %sImageBoot/.version; rm -f %sImageBoot/.Flash; rm -f %sImageBoot/.imagedistro; rm -f %sImageBoot/.initneo.log; rm -f %sImageBoot/.updateversion' % (getNeoLocation(), getNeoLocation(), getNeoLocation(), getNeoLocation(), getNeoLocation(), getNeoLocation())) 
 
             if os.path.isfile('%sImageBoot/.neonextboot' % getNeoLocation()): 
-                    os.system('rm -f /etc/neoimage; rm -f /etc/imageboot; rm -f %sImageBoot/.neonextboot; rm -f %sImageBoot/.version; rm -f %sImageBoot/.Flash; ' % (getNeoLocation(), getNeoLocation(), getNeoLocation()) )
+                    os.system('rm -f /etc/neoimage; rm -f /etc/imageboot; rm -f %sImageBoot/.neonextboot; rm -f %sImageBoot/.version; rm -f %sImageBoot/.Flash; ' % (getNeoLocation(), getNeoLocation(), getNeoLocation()))
 
-            if os.path.isfile('%sImagesUpload/.kernel/zImage*.ipk or %sImagesUpload/.kernel/zImage*.bin' % ( getNeoLocation(), getNeoLocation()) ): 
-                        os.system('rm -f %sImagesUpload/.kernel/zImage*.ipk; rm -f %sImagesUpload/.kernel/zImage*.bin' % ( getNeoLocation(),getNeoLocation()) )                    
+            if os.path.isfile('%sImagesUpload/.kernel/zImage*.ipk or %sImagesUpload/.kernel/zImage*.bin' % (getNeoLocation(), getNeoLocation())): 
+                        os.system('rm -f %sImagesUpload/.kernel/zImage*.ipk; rm -f %sImagesUpload/.kernel/zImage*.bin' % (getNeoLocation(),getNeoLocation()))                    
 
             if fileExists('/etc/issue.net'):
                 try:
@@ -523,7 +523,7 @@ class NeoBootInstallation(Screen):
                     writefile.write(imagever)
                     writefile.close()
 
-            if not os.path.isfile('/etc/name') :
+            if not os.path.isfile('/etc/name'):
                 if os.system('opkg update; opkg list-installed | grep python-subprocess') != 0:
                             os.system('opkg install python-subprocess')
                 if os.system('opkg list-installed | grep python-argparse') != 0:
@@ -552,33 +552,33 @@ class NeoBootInstallation(Screen):
                     if os.system('opkg list-installed | grep mtd-utils-ubifs') != 0:                                                                                                                                                                                                                                                                                                                                                
                             os.system('opkg install mtd-utils-ubifs')                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
             # STB ARM
-            if getCPUtype() == "ARMv7" :
+            if getCPUtype() == "ARMv7":
                 if getBoxHostName() == "vuduo4k" and getBoxHostName() != "ustym4kpro":
-                        os.system('cd ' + LinkNeoBoot + '/' )
+                        os.system('cd ' + LinkNeoBoot + '/')
                         os.system('cp -Rf ' + LinkNeoBoot + '/bin/neoinitarm /sbin/neoinitarm; cp -Rf ' + LinkNeoBoot + '/bin/neoinitarmvuDuo4k /sbin/neoinitarmvu; mv ' + LinkNeoBoot + '/tmpfiles/runpy/duo4k_run.py ' + LinkNeoBoot + '/run.py; cd')  
                         os.system('chmod 755 /sbin/neoinitarm; chmod 755 /sbin/neoinitarmvu')                  
-                        os.system('dd if=/dev/mmcblk0p6 of=%sImagesUpload/.kernel/flash-kernel-%s.bin' % (getNeoLocation(), getBoxHostName()) )
+                        os.system('dd if=/dev/mmcblk0p6 of=%sImagesUpload/.kernel/flash-kernel-%s.bin' % (getNeoLocation(), getBoxHostName()))
                         os.system('mv ' + LinkNeoBoot + '/tmpfiles/target/vuDuo4Kmmcblk0p6.sh ' + LinkNeoBoot + '/files/kernel.sh; cd')                         
 
                 elif getBoxHostName() == "vuduo4kse" and getBoxHostName() != "vuultimo4k" and getBoxHostName() != "ustym4kpro":
-                        os.system('cd ' + LinkNeoBoot + '/' )
+                        os.system('cd ' + LinkNeoBoot + '/')
                         os.system('cp -Rf ' + LinkNeoBoot + '/bin/neoinitarm /sbin/neoinitarm; cp -Rf ' + LinkNeoBoot + '/bin/neoinitarmvuDuo4k /sbin/neoinitarmvu; mv ' + LinkNeoBoot + '/tmpfiles/runpy/duo4kse_run.py ' + LinkNeoBoot + '/run.py; cd')  
                         os.system('chmod 755 /sbin/neoinitarm; chmod 755 /sbin/neoinitarmvu')                  
-                        os.system('dd if=/dev/mmcblk0p6 of=%sImagesUpload/.kernel/flash-kernel-%s.bin' % (getNeoLocation(), getBoxHostName()) )
+                        os.system('dd if=/dev/mmcblk0p6 of=%sImagesUpload/.kernel/flash-kernel-%s.bin' % (getNeoLocation(), getBoxHostName()))
                         os.system('mv ' + LinkNeoBoot + '/tmpfiles/target/vuDuo4Ksemmcblk0p6.sh ' + LinkNeoBoot + '/files/kernel.sh; cd') 
 
                 elif getBoxHostName() == "vuzero4k" and getBoxHostName() != "ustym4kpro":     
-                        os.system('cd ' + LinkNeoBoot + '/' )
+                        os.system('cd ' + LinkNeoBoot + '/')
                         os.system('cp -Rf ' + LinkNeoBoot + '/bin/neoinitarm /sbin/neoinitarm; cp -Rf ' + LinkNeoBoot + '/bin/neoinitarmvu /sbin/neoinitarmvu; cd')  
                         os.system('chmod 755 /sbin/neoinitarm; chmod 755 /sbin/neoinitarmvu')
-                        os.system('dd if=/dev/mmcblk0p4 of=%sImagesUpload/.kernel/flash-kernel-%s.bin' % (getNeoLocation(), getBoxHostName()) )      
+                        os.system('dd if=/dev/mmcblk0p4 of=%sImagesUpload/.kernel/flash-kernel-%s.bin' % (getNeoLocation(), getBoxHostName()))      
                         os.system('mv ' + LinkNeoBoot + '/tmpfiles/target/vuZero4Kmmcblk0p4.sh ' + LinkNeoBoot + '/files/kernel.sh; mv ' + LinkNeoBoot + '/tmpfiles/runpy/zero4k_run.py ' + LinkNeoBoot + '/run.py; rm -f ' + LinkNeoBoot + '/bin/neoinitarmvuDuo4k; cd')                         
                                                                                                                                                                                                                                                                                                                                                                                          
                 elif getBoxHostName() == "vuultimo4k" or getBoxHostName() == "vusolo4k" or getBoxHostName() == "vuuno4k" or getBoxHostName() == "vuuno4kse" and getBoxHostName() != "ustym4kpro":
-                        os.system('cd ' + LinkNeoBoot + '/' )
+                        os.system('cd ' + LinkNeoBoot + '/')
                         os.system('cp -Rf ' + LinkNeoBoot + '/bin/neoinitarm /sbin/neoinitarm; cp -Rf ' + LinkNeoBoot + '/bin/neoinitarmvu /sbin/neoinitarmvu; cd')  
                         os.system('chmod 755 /sbin/neoinitarm; chmod 755 /sbin/neoinitarmvu')                  
-                        os.system('dd if=/dev/mmcblk0p1 of=%sImagesUpload/.kernel/flash-kernel-%s.bin' % (getNeoLocation(), getBoxHostName()) )
+                        os.system('dd if=/dev/mmcblk0p1 of=%sImagesUpload/.kernel/flash-kernel-%s.bin' % (getNeoLocation(), getBoxHostName()))
                         os.system('mv ' + LinkNeoBoot + '/tmpfiles/target/vu_mmcblk0p1.sh ' + LinkNeoBoot + '/files/kernel.sh; mv ' + LinkNeoBoot + '/tmpfiles/runpy/vu4k_run.py ' + LinkNeoBoot + '/run.py; rm -f; rm -f ' + LinkNeoBoot + '/bin/neoinitarmvuDuo4k; cd')                         
                 else:
                         os.system('cp -f ' + LinkNeoBoot + '/bin/neoinitarm /sbin/neoinitarm; chmod 0755 /sbin/neoinitarm; ln -sfn /sbin/neoinitarm /sbin/init; mv ' + LinkNeoBoot + '/tmpfiles/runpy/arm_run.py ' + LinkNeoBoot + '/run.py; rm -f ' + LinkNeoBoot + '/bin/neoinitarmvuDuo4k; cd')
@@ -586,18 +586,18 @@ class NeoBootInstallation(Screen):
             elif getCPUtype() == 'MIPS':
                         #vuplus stb mtd1
                         if getBoxHostName() == 'bm750' or getBoxHostName() == 'vuduo' or getBoxHostName() == 'vusolo' or getBoxHostName() == 'vuuno' or getBoxHostName() == 'vuultimo':
-                            if fileExists ('/usr/sbin/nanddump'):
-                                os.system('cd ' + getNeoLocation() + 'ImagesUpload/.kernel/; /usr/sbin/nanddump /dev/mtd1  > vmlinux.gz; mv ./vmlinux.gz ./' + getBoxHostName() + '.vmlinux.gz' )
-                            elif not fileExists ('/usr/sbin/nanddump'):
-                                os.system('cd ' + getNeoLocation() + 'ImagesUpload/.kernel/; ' + LinkNeoBoot + '/bin/nanddump_mips /dev/mtd1  > vmlinux.gz; mv ./vmlinux.gz ./' + getBoxHostName() + '.vmlinux.gz' )
+                            if fileExists('/usr/sbin/nanddump'):
+                                os.system('cd ' + getNeoLocation() + 'ImagesUpload/.kernel/; /usr/sbin/nanddump /dev/mtd1  > vmlinux.gz; mv ./vmlinux.gz ./' + getBoxHostName() + '.vmlinux.gz')
+                            elif not fileExists('/usr/sbin/nanddump'):
+                                os.system('cd ' + getNeoLocation() + 'ImagesUpload/.kernel/; ' + LinkNeoBoot + '/bin/nanddump_mips /dev/mtd1  > vmlinux.gz; mv ./vmlinux.gz ./' + getBoxHostName() + '.vmlinux.gz')
                             os.system('cd ' + LinkNeoBoot + '/; rm ./bin/fontforneoboot.ttf; rm ./bin/libpngneo; mv ' + LinkNeoBoot + '/tmpfiles/target/vu_dev_mtd1.sh ' + LinkNeoBoot + '/files/kernel.sh;mv ' + LinkNeoBoot + '/tmpfiles/runpy/vu_mtd1_run.py ' + LinkNeoBoot + '/run.py; cd')                         
 
                         #vuplus stb mtd2  
                         elif getBoxHostName() == 'vusolo2' or getBoxHostName() == 'vuduo2' or getBoxHostName() == 'vusolose' or getBoxHostName() == 'vuzero':
-                            if fileExists ('/usr/sbin/nanddump'):
-                                os.system('cd ' + getNeoLocation() + 'ImagesUpload/.kernel/; /usr/sbin/nanddump /dev/mtd2  > vmlinux.gz; mv ./vmlinux.gz ./' + getBoxHostName() + '.vmlinux.gz' )
-                            elif not fileExists ('/usr/sbin/nanddump'):
-                                os.system('cd ' + getNeoLocation() + 'ImagesUpload/.kernel/; ' + LinkNeoBoot + '/bin/nanddump_mips /dev/mtd2  > vmlinux.gz; mv ./vmlinux.gz ./' + getBoxHostName() + '.vmlinux.gz' )
+                            if fileExists('/usr/sbin/nanddump'):
+                                os.system('cd ' + getNeoLocation() + 'ImagesUpload/.kernel/; /usr/sbin/nanddump /dev/mtd2  > vmlinux.gz; mv ./vmlinux.gz ./' + getBoxHostName() + '.vmlinux.gz')
+                            elif not fileExists('/usr/sbin/nanddump'):
+                                os.system('cd ' + getNeoLocation() + 'ImagesUpload/.kernel/; ' + LinkNeoBoot + '/bin/nanddump_mips /dev/mtd2  > vmlinux.gz; mv ./vmlinux.gz ./' + getBoxHostName() + '.vmlinux.gz')
                             os.system('cd ' + LinkNeoBoot + '/; rm ./bin/fontforneoboot.ttf; rm ./bin/libpngneo; mv ' + LinkNeoBoot + '/tmpfiles/target/vu_dev_mtd2.sh ' + LinkNeoBoot + '/files/kernel.sh; mv ' + LinkNeoBoot + '/tmpfiles/runpy/vu_mtd2_run.py ' + LinkNeoBoot + '/run.py; cd')                         
 
                         #Other stb MIPS 
@@ -616,7 +616,7 @@ class NeoBootInstallation(Screen):
                 self.messagebox = self.session.open(MessageBox, _('The tuner is not supported by NeoBoot.\nContact the author.\nNo proper STB for installation !!!!'), type=MessageBox.TYPE_ERROR)
                 
             if fileExists('/home/root/vmlinux.gz'):
-                            os.system('mv -f /home/root/vmlinux.gz %sImagesUpload/.kernel/%s.vmlinux.gz' % (getNeoLocation(), getBoxHostName()) )  
+                            os.system('mv -f /home/root/vmlinux.gz %sImagesUpload/.kernel/%s.vmlinux.gz' % (getNeoLocation(), getBoxHostName()))  
                                              
             if fileExists('' + LinkNeoBoot + '/ubi_reader_mips') or fileExists('' + LinkNeoBoot + '/ubi_reader_arm') and fileExists('' + LinkNeoBoot + '/ubi_reader'): 
                 os.system('rm -r ' + LinkNeoBoot + '/ubi_reader ')                
@@ -634,10 +634,10 @@ class NeoBootInstallation(Screen):
                 elif getLabelDisck() == 'LABEL=':	
                     cmd = "echo -e '\n%s '" % _('Installed succesfully NEOBOOT!\nNeoBoot has detected that the disks have been marked.\nRecommended total restart of the tuner\n')                     
             else:                                                      	
-                self.myclose2(_('NeoBoot has not been installed ! :(' ))
+                self.myclose2(_('NeoBoot has not been installed ! :('))
 
             if os.path.isfile('/etc/name'):
-                self.myclose2(_('The plug-in has been successfully installed.' ))             
+                self.myclose2(_('The plug-in has been successfully installed.'))             
             else:
                 if not fileExists('/etc/name'):
                     os.system('touch /etc/name')                 
@@ -762,7 +762,7 @@ class NeoBootImageChoose(Screen):
 
     def DownloadImageOnline(self):				          	
             if not os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/ImageDownloader/download.py'):
-                    message = _('Plugin ImageDownloader not installed!\nInstall plugin to download new image? \and---Continue ?---' )
+                    message = _('Plugin ImageDownloader not installed!\nInstall plugin to download new image? \and---Continue ?---')
                     ybox = self.session.openWithCallback(self.InstallImageDownloader, MessageBox, message, MessageBox.TYPE_YESNO)
                     ybox.setTitle(_('Installation'))
             else:
@@ -801,7 +801,7 @@ class NeoBootImageChoose(Screen):
                 mess = _('Geen internet')
                 self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
         else:
-                mess = _('Upload image files in zip formats to the ImagesUpload location.' )
+                mess = _('Upload image files in zip formats to the ImagesUpload location.')
                 self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)  
 
     def chackkernel(self):		
@@ -851,7 +851,7 @@ class NeoBootImageChoose(Screen):
             except:
                 False
 
-        if not fileExists('/tmp/.finishdate') or not fileExists('/tmp/.nkod') or fileExists('/.multinfo') :
+        if not fileExists('/tmp/.finishdate') or not fileExists('/tmp/.nkod') or fileExists('/.multinfo'):
             if checkInternet():  
                 pass
             else:
@@ -859,21 +859,21 @@ class NeoBootImageChoose(Screen):
                 self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
                 
         if not fileExists('/.multinfo'):            
-            out = open('%sImageBoot/.neonextboot' % getNeoLocation(), 'w' )
+            out = open('%sImageBoot/.neonextboot' % getNeoLocation(), 'w')
             out.write('Flash')
             out.close()
             self.close()
                         
         elif fileExists('/.multinfo'):            
-            with open('/.multinfo', 'r'  ) as f:
+            with open('/.multinfo', 'r') as f:
                 imagefile = f.readline().strip()
                 f.close()
-                out = open('%sImageBoot/.neonextboot'% getNeoLocation(), 'w' )
+                out = open('%sImageBoot/.neonextboot'% getNeoLocation(), 'w')
                 out.write(imagefile)
                 out.close()
         else:
             system('touch /tmp/.init_reboot')
-            out = open('%sImageBoot/.neonextboot' % getNeoLocation() , 'w')
+            out = open('%sImageBoot/.neonextboot' % getNeoLocation(), 'w')
             out.write('Flash')
             out.close()
         self.close()
@@ -923,7 +923,7 @@ class NeoBootImageChoose(Screen):
                     system('mkdir /usr/lib/periodon')
                 else:
                     if getButtonPin() == 'pinok':
-                        os.system('sleep 2; rm -f /tmp/gut*; date %s  > /usr/lib/periodon/.accessdate' % UPDATEDATE ) 
+                        os.system('sleep 2; rm -f /tmp/gut*; date %s  > /usr/lib/periodon/.accessdate' % UPDATEDATE) 
                         if fileExists('/usr/lib/periodon/.accessdate') and fileExists('/usr/lib/periodon/.kodn'):  
                                 mess = _('Bravo! Neoboot vip full version activated OK!\nPlease restart your system E2.')
                                 self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
@@ -981,7 +981,7 @@ class NeoBootImageChoose(Screen):
                     mess = _('Downloading available only from the image Flash.')
                     self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
             else:
-                    out = open('%sImageBoot/.neonextboot' % getNeoLocation() , 'w')
+                    out = open('%sImageBoot/.neonextboot' % getNeoLocation(), 'w')
                     out.write('Flash')
                     out.close()
                     message = _('\n\n\n')
@@ -1200,7 +1200,7 @@ class NeoBootImageChoose(Screen):
             f2.close()
             self['label6'].setText(mypath3)
         else:
-            f2 = open('%sImageBoot/.neonextboot' % getNeoLocation() , 'r' )
+            f2 = open('%sImageBoot/.neonextboot' % getNeoLocation(), 'r')
             mypath3 = f2.readline().strip()
             f2.close()
             self['label6'].setText(mypath3)
@@ -1221,7 +1221,7 @@ class NeoBootImageChoose(Screen):
         self['label20'].setText(strview)
 
         self['label17'].setText(readline('/etc/hostname'))         
-        self['label19'].setText(readline('%sImagesUpload/.kernel/used_flash_kernel' % getNeoLocation() ))
+        self['label19'].setText(readline('%sImagesUpload/.kernel/used_flash_kernel' % getNeoLocation()))
 
         strview = UPDATEVERSION
         self['label10'].setText(strview)
@@ -1277,14 +1277,14 @@ class NeoBootImageChoose(Screen):
                     self.session.open(MessageBox, _('Sorry you cannot delete the image currently booted from.'), MessageBox.TYPE_INFO, 5)
                 else:
 
-                    out = open('%sImageBoot/.neonextboot' % getNeoLocation(), 'w' )
+                    out = open('%sImageBoot/.neonextboot' % getNeoLocation(), 'w')
                     out.write('Flash')
                     out.close()
                     message = _('Delete the selected image - ') + self.mysel + _('\nDelete ?')
                     ybox = self.session.openWithCallback(self.RemoveIMAGE, MessageBox, message, MessageBox.TYPE_YESNO)
                     ybox.setTitle(_('Delete Confirmation'))
             except:
-                print ("no image to remove")
+                print("no image to remove")
 
         else:
             self.mysel
@@ -1300,7 +1300,7 @@ class NeoBootImageChoose(Screen):
             self['config'].setList(self.list)
             self.updateList()
         except:
-            print (" ")
+            print(" ")
 
     def RemoveIMAGE(self, yesno):		
         if yesno:
@@ -1381,7 +1381,7 @@ class NeoBootImageChoose(Screen):
 
         images = False
         myimages=listdir('%sImagesUpload' % getNeoLocation())
-        print (myimages)
+        print(myimages)
         for fil in myimages:
             if fil.endswith(".zip"):
                 images=True
@@ -1417,13 +1417,13 @@ class NeoBootImageChoose(Screen):
                         
     def DownloaderImage(self):
             if not os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/ImageDownloader/download.py'):
-                    message = (_('The %sImagesUpload directory is EMPTY!!!\nInstall the plugin to download new image online ?\n --- Continue? ---') % getNeoLocation() ) 
+                    message = (_('The %sImagesUpload directory is EMPTY!!!\nInstall the plugin to download new image online ?\n --- Continue? ---') % getNeoLocation()) 
                     ybox = self.session.openWithCallback(self.ImageDownloader, MessageBox, message, MessageBox.TYPE_YESNO)
                     ybox.setTitle(_('Installation'))
             elif fileExists('/usr/lib/python3.8') and fileExists('/.multinfo'):
                 self.session.open(MessageBox, _('Sorry, cannot open neo menu install image.'), type=MessageBox.TYPE_ERROR) 
             else:
-                message = (_('Catalog %sImagesUpload directory is empty\nPlease upload the image files in zip or nfi formats to install') % getNeoLocation() )
+                message = (_('Catalog %sImagesUpload directory is empty\nPlease upload the image files in zip or nfi formats to install') % getNeoLocation())
                 self.session.open(MessageBox, message, MessageBox.TYPE_INFO)
     
     def ImageDownloader(self, yesno):		
@@ -1447,7 +1447,7 @@ class NeoBootImageChoose(Screen):
                     self.session.open(MessageBox, _('The plug-in has been successfully installed.'), MessageBox.TYPE_INFO, 5)
                     self.close()
             else:
-                mess = (_('Directory %sImagesUpload  is empty\nPlease upload the image files in zip or nfi formats to install') % getNeoLocation() )
+                mess = (_('Directory %sImagesUpload  is empty\nPlease upload the image files in zip or nfi formats to install') % getNeoLocation())
                 self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)  
         else:
                 mess = _('Geen internet')
@@ -1468,13 +1468,13 @@ class NeoBootImageChoose(Screen):
                 if 'Flash' in self.mysel:
                     self.mysel = 'Flash'
                 if self.mysel:
-                    out = open('' + getNeoLocation() + 'ImageBoot/.neonextboot', 'w' )
+                    out = open('' + getNeoLocation() + 'ImageBoot/.neonextboot', 'w')
                     out.write(self.mysel)
                     out.close()
  
                     if getImageNeoBoot() != "Flash":
-                        if not fileExists('%sImageBoot/%s/.control_ok' % ( getNeoLocation(),  getImageNeoBoot())):
-                            message = _('After successful launch of the selected software\nyou must run the neoboot plugin\nif the software does not start or neoboot is not confirmed\nthe system will return to the internal flash memory\n\nPress OK or exit on the remote control to continue...' )
+                        if not fileExists('%sImageBoot/%s/.control_ok' % (getNeoLocation(),  getImageNeoBoot())):
+                            message = _('After successful launch of the selected software\nyou must run the neoboot plugin\nif the software does not start or neoboot is not confirmed\nthe system will return to the internal flash memory\n\nPress OK or exit on the remote control to continue...')
                             ybox = self.session.openWithCallback(self.StartReboot, MessageBox, message, MessageBox.TYPE_YESNO)
                             ybox.setTitle(_('First start of software'))
                         else:
@@ -1582,7 +1582,7 @@ def main(session, **kwargs):
                                         else:
                                                         os.system(_('echo %s  > /tmp/.nkod') % UPDATEVERSION)
             from Plugins.Extensions.NeoBoot.files.stbbranding import getCheckInstal1, getCheckInstal2, getCheckInstal3
-            if fileExists('/tmp/error_neo') :
+            if fileExists('/tmp/error_neo'):
                 if fileExists('/tmp/error_neo'):
                     os.system('rm -f /tmp/error_neo')
                 if getCheckInstal1() == '1':
@@ -1614,7 +1614,7 @@ def main(session, **kwargs):
             f.close()
 
         if fileExists('' + LinkNeoBoot + '/.location') and fileExists('%sImageBoot/.neonextboot' % getNeoLocation()):
-                f2 = open('%sImageBoot/.neonextboot' % getNeoLocation(), 'r' )
+                f2 = open('%sImageBoot/.neonextboot' % getNeoLocation(), 'r')
                 mypath2 = f2.readline().strip()
                 f2.close()                 
                 if mypath2 != 'Flash' or mypath2 == 'Flash' and checkimage():

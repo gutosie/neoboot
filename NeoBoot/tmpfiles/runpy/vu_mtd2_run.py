@@ -84,10 +84,10 @@ class StartImage(Screen):
 
     def KeyOk(self): 
         if getImageNeoBoot() != 'Flash': 
-                os.system('rm -rf %sImageBoot/%s/usr/bin/enigma2_pre_start.sh' % ( getNeoLocation(), getImageNeoBoot())) 
+                os.system('rm -rf %sImageBoot/%s/usr/bin/enigma2_pre_start.sh' % (getNeoLocation(), getImageNeoBoot())) 
                 self.StartImageInNeoBoot()
         else:
-            os.system('rm -rf %sImageBoot/%s/usr/bin/enigma2_pre_start.sh' % ( getNeoLocation(), getImageNeoBoot())) 
+            os.system('rm -rf %sImageBoot/%s/usr/bin/enigma2_pre_start.sh' % (getNeoLocation(), getImageNeoBoot())) 
             self.StartImageInNeoBoot()
         #---------------------------------------------
         getMountPointNeo2()
@@ -95,10 +95,10 @@ class StartImage(Screen):
 
     def StartImageInNeoBoot(self):                              
         if getImageNeoBoot() != 'Flash':
-            if fileExists('%sImageBoot/%s/.control_ok' % ( getNeoLocation(),  getImageNeoBoot())): 
+            if fileExists('%sImageBoot/%s/.control_ok' % (getNeoLocation(),  getImageNeoBoot())): 
                 system('touch /tmp/.control_ok ') 
             else:
-                system('touch %sImageBoot/%s/.control_boot_new_image ' % ( getNeoLocation(), getImageNeoBoot() ))
+                system('touch %sImageBoot/%s/.control_boot_new_image ' % (getNeoLocation(), getImageNeoBoot()))
 
         system('chmod 755 /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/kernel.sh')                                                  
         self.sel = self['list'].getCurrent()
@@ -113,8 +113,8 @@ class StartImage(Screen):
                                                                                          
             #VUPLUS MIPS vu_dev_mtd2.sh  
             if getBoxHostName() == 'vusolo2' or getBoxHostName() == 'vusolose'  or getBoxHostName() == 'vuduo2' or getBoxHostName() == 'vuzero':                              
-                        if not fileExists('%sImagesUpload/.kernel/%s.vmlinux.gz' % (getNeoLocation(), getBoxHostName()) ):
-                            self.myclose2(_('Error - in the location %sImagesUpload/.kernel/ \nkernel file not found flash kernel vmlinux.gz ' % getNeoLocation() ))                                                                               
+                        if not fileExists('%sImagesUpload/.kernel/%s.vmlinux.gz' % (getNeoLocation(), getBoxHostName())):
+                            self.myclose2(_('Error - in the location %sImagesUpload/.kernel/ \nkernel file not found flash kernel vmlinux.gz ' % getNeoLocation()))                                                                               
                         else:                        
                             if getImageNeoBoot() == 'Flash':                    
                                 if fileExists('/.multinfo'): 
@@ -131,16 +131,16 @@ class StartImage(Screen):
                                         cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT-REBOOT...............\nPlease wait, in a moment the decoder will be restarted...') 
                                         cmd1 = 'ln -sfn /sbin/neoinitmipsvu /sbin/init; /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/kernel.sh'  
 
-                                    elif not fileExists('%sImageBoot/%s/boot/%s.vmlinux.gz' % ( getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
+                                    elif not fileExists('%sImageBoot/%s/boot/%s.vmlinux.gz' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
                                         cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT > REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')                                    
                                         cmd1 = 'ln -sfn /sbin/neoinitmipsvu /sbin/init; /etc/init.d/reboot'                                                                                 
 
                                 elif fileExists('/.multinfo'):    
-                                    if not fileExists('%sImageBoot/%s/boot/%s.vmlinux.gz' % ( getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
+                                    if not fileExists('%sImageBoot/%s/boot/%s.vmlinux.gz' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
                                         cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT_REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')                                    
-                                        cmd1 = 'flash_eraseall /dev/mtd2; sleep 2; ' + LinkNeoBoot + '/bin/nandwrite -p /dev/mtd2 %sImagesUpload/.kernel/%s.vmlinux.gz; /etc/init.d/reboot' % ( getNeoLocation(), getBoxHostName())
+                                        cmd1 = 'flash_eraseall /dev/mtd2; sleep 2; ' + LinkNeoBoot + '/bin/nandwrite -p /dev/mtd2 %sImagesUpload/.kernel/%s.vmlinux.gz; /etc/init.d/reboot' % (getNeoLocation(), getBoxHostName())
 
-                                    elif fileExists('%sImageBoot/%s/boot/%s.vmlinux.gz' % ( getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
+                                    elif fileExists('%sImageBoot/%s/boot/%s.vmlinux.gz' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
                                         cmd = "echo -e '\n\n%s '" % _('...............REBOOT now...............\nPlease wait, in a moment the decoder will be restarted...')                                    
                                         cmd1 = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/kernel.sh'
 

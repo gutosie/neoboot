@@ -43,7 +43,7 @@ def clearMemory():
         f.close()
 
 def LogCrashGS(line):
-	log_file = open('%sImageBoot/neoboot.log' % getNeoLocation() , 'a')
+	log_file = open('%sImageBoot/neoboot.log' % getNeoLocation(), 'a')
 	log_file.write(line)
 	log_file.close()
 		
@@ -84,7 +84,7 @@ def getSupportedTuners():
 def getFreespace(dev):
     statdev = os.statvfs(dev)
     space = statdev.f_bavail * statdev.f_frsize / 1024
-    print ("[NeoBoot] Free space on %s = %i kilobytes") % (dev, space)
+    print("[NeoBoot] Free space on %s = %i kilobytes") % (dev, space)
     return space        
 
 #check install
@@ -393,8 +393,8 @@ def getCPUSoCModel():
 #zwraca wybrane image w neoboot do uruchomienia   
 def getImageNeoBoot():   
     imagefile='UNKNOWN'
-    if os.path.exists('%sImageBoot/.neonextboot' % getNeoLocation() ):
-        with open('%sImageBoot/.neonextboot' % getNeoLocation() , 'r') as f:
+    if os.path.exists('%sImageBoot/.neonextboot' % getNeoLocation()):
+        with open('%sImageBoot/.neonextboot' % getNeoLocation(), 'r') as f:
             imagefile = f.readline().strip()
             f.close() 
     return imagefile
@@ -467,8 +467,8 @@ def runCMDS(cmdsList):
 def getImageDistroN(): 
     image='Internal storage'             
 
-    if fileExists('/.multinfo') and fileExists ('%sImageBoot/.imagedistro' % getNeoLocation() ): 
-                    with open('%sImageBoot/.imagedistro' % getNeoLocation() , 'r') as f:
+    if fileExists('/.multinfo') and fileExists('%sImageBoot/.imagedistro' % getNeoLocation()): 
+                    with open('%sImageBoot/.imagedistro' % getNeoLocation(), 'r') as f:
                         image = f.readline().strip()
                         f.close()
                         
@@ -498,7 +498,7 @@ def getImageDistroN():
                     from boxbranding import getImageDistro
                     image = getImageDistro()
 
-    elif fileExists('/media/InternalFlash/etc/issue.net') and fileExists('/.multinfo') and not fileExists('%sImageBoot/.imagedistro' % getNeoLocation() ):
+    elif fileExists('/media/InternalFlash/etc/issue.net') and fileExists('/.multinfo') and not fileExists('%sImageBoot/.imagedistro' % getNeoLocation()):
                     obraz = open('/media/InternalFlash/etc/issue.net', 'r').readlines()
                     imagetype = obraz[0][:-3]
                     image = imagetype
