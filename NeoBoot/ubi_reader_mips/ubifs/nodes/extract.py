@@ -2,6 +2,7 @@
 from ubifs import nodes
 from ubifs.defines import *
 
+
 def common_hdr(ubifs, lnum, offset=0):
     ubifs.file.seek(ubifs.leb_size * lnum + offset)
     return nodes.common_hdr(ubifs.file.read(UBIFS_COMMON_HDR_SZ))

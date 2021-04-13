@@ -3,6 +3,7 @@ import struct
 from ubi.defines import *
 from ubi.headers import errors
 
+
 class ec_hdr(object):
 
     def __init__(self, buf):

@@ -65,7 +65,6 @@ class ManagerDevice(Screen):
         <widget name="lab1" zPosition="2" position="29,111" size="699,40" font="Regular;22" halign="center" transparent="1" />
         </screen>"""
 
-
     def __init__(self, session):
         Screen.__init__(self, session)
         Screen.setTitle(self, _('Mount Manager'))
@@ -498,9 +497,6 @@ class DevicesConf(Screen, ConfigListScreen):
 #                out2.write(line2)
 #                out2.close()
                                                                               
-
-           
-
 
 #SetDiskLabel - dziekuje autorowi
 class SetDiskLabel(Screen):

@@ -9,6 +9,7 @@ LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
 
 LogFileObj = None
 
+
 def Log(param=''):
     global LogFileObj
     #first close object if exists
@@ -37,22 +38,27 @@ def Log(param=''):
         LogFileObj.flush()
     return LogFileObj
     
+
 def clearMemory():
     with open("/proc/sys/vm/drop_caches", "w") as f:
         f.write("1\n")
         f.close()
+
 
 def LogCrashGS(line):
 	log_file = open('%sImageBoot/neoboot.log' % getNeoLocation(), 'a')
 	log_file.write(line)
 	log_file.close()
 		
+
 def fileCheck(f, mode='r'):
     return fileExists(f, mode) and f     
 
 #		if not IsImageName():
 #			from Components.PluginComponent import plugins
 #			plugins.reloadPlugins()
+
+
 def IsImageName():
 	if fileExists("/etc/issue"):
 		for line in open("/etc/issue"):
@@ -60,6 +66,7 @@ def IsImageName():
 				return True
 	return False     
     
+
 def mountp():
 	pathmp = []
 	if os.path.isfile('/proc/mounts'):
@@ -71,6 +78,7 @@ def mountp():
 	pathmp.append('/tmp/')
 	return pathmp
 
+
 def getSupportedTuners():
     supportedT = ''
     if os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/stbinfo.cfg'):
@@ -81,6 +89,7 @@ def getSupportedTuners():
             supportedT = '%s' % getBoxHostName()
     return supportedT
     
+
 def getFreespace(dev):
     statdev = os.statvfs(dev)
     space = statdev.f_bavail * statdev.f_frsize / 1024
@@ -88,6 +97,8 @@ def getFreespace(dev):
     return space        
 
 #check install
+
+
 def getCheckInstal1():
     neocheckinstal = 'UNKNOWN'    
     if os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/install'):
@@ -98,6 +109,7 @@ def getCheckInstal1():
             neocheckinstal = '1'
     return neocheckinstal
     
+
 def getCheckInstal2():
     neocheckinstal = 'UNKNOWN' 
     if os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location'):
@@ -108,6 +120,7 @@ def getCheckInstal2():
             neocheckinstal = '2'
     return neocheckinstal
                 
+
 def getCheckInstal3():
     neocheckinstal = 'UNKNOWN' 
     if os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/neo.sh'):
@@ -120,6 +133,8 @@ def getCheckInstal3():
     return neocheckinstal
 
 #check imageATV
+
+
 def getImageATv():
     atvimage = 'UNKNOWN'
     if os.path.exists('/etc/issue.net'):
@@ -131,6 +146,8 @@ def getImageATv():
     return atvimage
 
 #check install
+
+
 def getNeoLocation():
     locatino = 'UNKNOWN'
     if os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location'):
@@ -177,6 +194,8 @@ def getNEO_filesystems():
     return neo_filesystems
 
 #typ procesora arm lub mips
+
+
 def getCPUtype():
     cpu = 'UNKNOWN'
     if os.path.exists('/proc/cpuinfo'):
@@ -190,6 +209,8 @@ def getCPUtype():
     return cpu    
 
 #check install
+
+
 def getFSTAB():
     install = 'UNKNOWN'
     if os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/reading_blkid'):
@@ -202,6 +223,7 @@ def getFSTAB():
             install = 'NOUUID'
     return install 
     
+
 def getFSTAB2():
     install = 'UNKNOWN'
     if os.path.exists('/etc/fstab'):
@@ -213,6 +235,7 @@ def getFSTAB2():
         elif not lines.find('UUID') != -1:
             install = 'NOUUID'
     return install    
+
 
 def getINSTALLNeo():
     neoinstall = 'UNKNOWN'
@@ -261,6 +284,7 @@ def getLocationMultiboot():
 
     return LocationMultiboot
 
+
 def getLabelDisck():
     label = 'UNKNOWN'
     if os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/reading_blkid'):
@@ -272,6 +296,8 @@ def getLabelDisck():
     return label   
 
 #checking device  neo      
+
+
 def getNeoMount():
     neo = 'UNKNOWN'
     if os.path.exists('/proc/mounts'):
@@ -296,6 +322,7 @@ def getNeoMount():
             neo = 'hdd_install_/dev/sdf1'
 
     return neo 
+
 
 def getNeoMount2():
     neo = 'UNKNOWN'
@@ -334,6 +361,7 @@ def getNeoMount2():
 
     return neo
 
+
 def getNeoMount3():
     neo = 'UNKNOWN'
     if os.path.exists('/proc/mounts'):
@@ -345,6 +373,7 @@ def getNeoMount3():
         elif lines.find('/dev/sdb1 /media/cf') != -1:
             neo = 'cf_install_/dev/sdb1'
     return neo
+
 
 def getNeoMount4():
     neo = 'UNKNOWN'
@@ -358,6 +387,7 @@ def getNeoMount4():
             neo = 'card_install_/dev/sdb1'
     return neo
     
+
 def getNeoMount5():
     neo = 'UNKNOWN'
     if os.path.exists('/proc/mounts'):
@@ -382,6 +412,7 @@ def getCPUSoC():
                 chipset = '7405'
     return chipset
     
+
 def getCPUSoCModel():
     devicetree = 'UNKNOWN'
     if os.path.exists('/proc/device-tree/model'):
@@ -391,6 +422,8 @@ def getCPUSoCModel():
     return devicetree   
 
 #zwraca wybrane image w neoboot do uruchomienia   
+
+
 def getImageNeoBoot():   
     imagefile = 'UNKNOWN'
     if os.path.exists('%sImageBoot/.neonextboot' % getNeoLocation()):
@@ -400,6 +433,8 @@ def getImageNeoBoot():
     return imagefile
 
 #zwraca model vuplus   
+
+
 def getBoxVuModel():
     vumodel = 'UNKNOWN'
     if fileExists("/proc/stb/info/vumodel") and not fileExists("/proc/stb/info/boxtype"):
@@ -412,6 +447,7 @@ def getBoxVuModel():
             f.close()
     return vumodel
 
+
 def getVuModel():
     if fileExists("/proc/stb/info/vumodel") and not fileExists("/proc/stb/info/boxtype"):
         brand = "Vu+"
@@ -422,6 +458,8 @@ def getVuModel():
     return model    
 
 #zwraca nazwe stb z pliku hostname    
+
+
 def getBoxHostName():
     if os.path.exists('/etc/hostname'):
         with open('/etc/hostname', 'r') as f:
@@ -430,6 +468,8 @@ def getBoxHostName():
     return myboxname    
 
 #zwraca vuplus/vumodel 
+
+
 def getTunerModel(): #< neoboot.py
     BOX_NAME = ''
     if os.path.isfile('/proc/stb/info/vumodel') and not os.path.isfile("/proc/stb/info/boxtype"):
@@ -442,6 +482,8 @@ def getTunerModel(): #< neoboot.py
     return BOX_NAME
     
 #zwraca strukture folderu zip - vuplus/vumodel
+
+
 def getImageFolder():
     if os.path.isfile('/proc/stb/info/vumodel'):
         BOX_NAME = getBoxModelVU()
@@ -449,6 +491,8 @@ def getImageFolder():
     return ImageFolder
 
 #zwraca nazwe kernela z /lib/modules
+
+
 def getKernelVersion():
     try:
         return open('/proc/version', 'r').read().split(' ', 4)[2].split('-', 2)[0]
@@ -456,6 +500,8 @@ def getKernelVersion():
         return _('unknown')
 
 # czysci pamiec
+
+
 def runCMDS(cmdsList):
     clearMemory()
     if isinstance(cmdsList, (list, tuple)):
@@ -492,7 +538,6 @@ def getImageDistroN():
 
     elif fileExists('/.multinfo') and fileExists('/etc/vtiversion.info'):
                     image = 'Flash ' + ' ' + getBoxHostName()
-
 
     elif fileExists('/usr/lib/enigma2/python/boxbranding.so') and not fileExists('/.multinfo'): 
                     from boxbranding import getImageDistro
@@ -534,6 +579,7 @@ def getKernelImageVersion():
         kernelimage = getKernelVersionString
 
     return kernelimage
+
 
 def getTypBoxa():
     if not fileExists('/etc/typboxa'):
@@ -610,6 +656,7 @@ def getTypBoxa():
 
     return typboxa
 
+
 def getImageVersionString():
     try:
         if os.path.isfile('/var/lib/opkg/status'):
@@ -624,6 +671,7 @@ def getImageVersionString():
 
     return _('unavailable')
 
+
 def getModelString():
     try:
         file = open('/proc/stb/info/boxtype', 'r')
@@ -632,6 +680,7 @@ def getModelString():
         return model
     except IOError:
         return 'unknown'
+
 
 def getChipSetString():
     try:
@@ -642,6 +691,7 @@ def getChipSetString():
     except IOError:
         return 'unavailable'
         
+
 def getCPUString():
     try:
         file = open('/proc/cpuinfo', 'r')
@@ -659,6 +709,7 @@ def getCPUString():
         return system
     except IOError:
         return 'unavailable'
+
 
 def getCpuCoresString():
     try:
@@ -679,6 +730,7 @@ def getCpuCoresString():
     except IOError:
         return 'unavailable'
         
+
 def getEnigmaVersionString():
     import enigma
     enigma_version = enigma.getEnigmaVersionString()
@@ -686,6 +738,7 @@ def getEnigmaVersionString():
         enigma_version = enigma_version[:-12]
     return enigma_version
     
+
 def getKernelVersionString():
     try:
         f = open('/proc/version', 'r')
@@ -694,6 +747,7 @@ def getKernelVersionString():
         return kernelversion
     except:
         return _('unknown')
+
 
 def getHardwareTypeString():
     try:
@@ -708,6 +762,7 @@ def getHardwareTypeString():
 
     return _('unavailable')
 
+
 def getImageTypeString():
     try:
         return open('/etc/issue').readlines()[-2].capitalize().strip()[:-6]
@@ -716,11 +771,13 @@ def getImageTypeString():
 
     return _('undefined')
 
+
 def getMachineBuild():
     try:
         return open('/proc/version', 'r').read().split(' ', 4)[2].split('-', 2)[0]
     except:
         return 'unknown'
+
 
 def getVuBoxModel():
     if fileExists('/proc/stb/info/vumodel'):
@@ -822,6 +879,7 @@ def getMountPointAll():
                     os.system('echo "umount -l /media/mmc\nmkdir -p /media/mmc\nmkdir -p /media/sdb1\n/bin/mount /dev/sdb1 /media/mmc\n/bin/mount /dev/sdb1 /media/sdb1"  >> ' + LinkNeoBoot + '/files/mountpoint.sh') 
             os.system('echo "\n\nexit 0"  >> ' + LinkNeoBoot + '/files/mountpoint.sh') 
 
+
 def getMountPointNeo():
             os.system('' + LinkNeoBoot + '/files/mountpoint.sh') 
             os.system('echo ' + getLocationMultiboot() + ' > ' + LinkNeoBoot + '/bin/install; chmod 0755 ' + LinkNeoBoot + '/bin/install')    
@@ -858,6 +916,7 @@ def getMountPointNeo():
                     out.write('#!/bin/sh\n\n/bin/mount /dev/sdf1 ' + getNeoLocation() + '  \n\nexit 0')
                     out.close()
             os.system('chmod 755 ' + LinkNeoBoot + '/files/neo.sh')
+
 
 def getMountPointNeo2():
         #---------------------------------------------

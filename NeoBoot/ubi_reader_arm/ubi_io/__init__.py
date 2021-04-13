@@ -1,6 +1,7 @@
 #!/usr/bin/python
 from ubi.block import sort
 
+
 class ubi_file(object):
 
     def __init__(self, path, block_size, start_offset=0, end_offset=None):

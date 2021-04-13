@@ -71,6 +71,7 @@ try:
 except:
     print("ERROR INSERTING FONT")
        
+
 def neoTranslator():
     neolang = ''
     usedlang = open('/etc/enigma2/settings', 'r')
@@ -82,21 +83,26 @@ def neoTranslator():
         neolang = 'isnotlangPL'
     return neolang
 
+
 def getDS():
     s = getDesktop(0).size()
     return (s.width(), s.height())
+
 
 def isFHD():
     desktopSize = getDS()
     return desktopSize[0] == 1920
 
+
 def isHD():
     desktopSize = getDS()
     return desktopSize[0] >= 1280 and desktopSize[0] < 1920
 
+
 def isUHD():
     desktopSize = getDS()
     return desktopSize[0] >= 1920 and desktopSize[0] < 3840
+
 
 class MyUpgrade(Screen):
     if isFHD():
@@ -645,11 +651,9 @@ class NeoBootInstallation(Screen):
                 self.session.open(Console, _('NeoBoot Install....'), [cmd])             
                 self.close(closereboot)               
 
-
     def myclose2(self, message):
         self.session.open(MessageBox, message, MessageBox.TYPE_INFO)
         
-    
     def rebootSTBE2(self):       
             restartbox = self.session.openWithCallback(self.RebootSTB, MessageBox, _('Reboot stb now  ?'), MessageBox.TYPE_YESNO)
             restartbox.setTitle(_('Reboot'))
@@ -759,7 +763,6 @@ class NeoBootImageChoose(Screen):
                 if not fileExists('/.control_boot_new_image'):  
                     os.system('echo "Image uruchomione OK\nNie kasuj tego pliku. \n\nImage started OK\nDo not delete this file."  > /.control_ok') 
 
-
     def DownloadImageOnline(self):				          	
             if not os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/ImageDownloader/download.py'):
                     message = _('Plugin ImageDownloader not installed!\nInstall plugin to download new image? \and---Continue ?---')
@@ -808,6 +811,7 @@ class NeoBootImageChoose(Screen):
                             message = _('NeoBoot detected a kernel mismatch in flash, \nInstall a kernel for flash image??')
                             ybox = self.session.openWithCallback(self.updatekernel, MessageBox, message, MessageBox.TYPE_YESNO)
                             ybox.setTitle(_('Updating ... '))
+
     def pomoc(self):		
             try:
                     from Plugins.Extensions.NeoBoot.files.tools import Opis
@@ -896,6 +900,7 @@ class NeoBootImageChoose(Screen):
                     system('touch /tmp/guto')
         else:
                     system('touch /tmp/guto')
+
     def touch4(self):
         if fileExists('/usr/lib/periodon/.kodn'):
             pass
@@ -904,6 +909,7 @@ class NeoBootImageChoose(Screen):
                 pass
             else:
                     system('touch /tmp/gutos')
+
     def touch7(self):
         if fileExists('/usr/lib/periodon/.kodn'):
             pass
@@ -912,6 +918,7 @@ class NeoBootImageChoose(Screen):
                 pass
             else:
                     system('touch /tmp/gutosi')
+
     def touch6(self):
         if fileExists('/usr/lib/periodon/.kodn'):
             pass
@@ -933,6 +940,7 @@ class NeoBootImageChoose(Screen):
                         elif not fileExists('/usr/lib/periodon/.kodn'):                    
                                 mess = _('VIP Access Activation Fails with Error code 0x20.')
                                 self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
+
     def touch9(self):
         if fileExists('/usr/lib/periodon/.kodn'):
             system('touch /tmp/gut1')
@@ -941,6 +949,7 @@ class NeoBootImageChoose(Screen):
                 pass
             else:
                     system('touch /tmp/gutosiep')
+
     def touch8(self):
         if fileExists('/usr/lib/periodon/.kodn'):
             system('touch /tmp/gut2')
@@ -949,6 +958,7 @@ class NeoBootImageChoose(Screen):
                 pass
             else:
                     system('touch /tmp/gutosiepi')
+
     def touch0(self):                    
         if fileExists('/usr/lib/periodon/.kodn'):
             if not fileExists('/tmp/gut3'):
@@ -971,6 +981,7 @@ class NeoBootImageChoose(Screen):
 #            self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
 
     #Zablokowanie aktualizacji przez zmiane nazwy  neoboot_update na neoboot_update2 i likwidacja 3 lini hastagu wyzej  
+
     def neoboot_update(self):
         if checkInternet():  
         #if getTestInTime() == getTestOutTime() or getTestIn() != getTestOut():    
@@ -1064,7 +1075,6 @@ class NeoBootImageChoose(Screen):
                 restartbox = self.session.openWithCallback(self.restartGUI, MessageBox, _('Completed update NeoBoot.\nYou need to restart the E2 and re-enter your pin code VIP!!!\nRestart now ?'), MessageBox.TYPE_YESNO)
                 restartbox.setTitle(_('Restart GUI now ?'))
 
-
     def restartGUI(self, answer):		
         if answer is True: 
             os.system('rm -f ' + LinkNeoBoot + '/.location; rm -r ' + LinkNeoBoot + '/ubi_reader')     
@@ -1081,6 +1091,7 @@ class NeoBootImageChoose(Screen):
                     LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
                     mess = _('Sorry cannot open neo menu Backup.\nAccess Fails with Error code 0x60.')
                     self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)            
+
     def MBRestore(self):		
             try:
                     from Plugins.Extensions.NeoBoot.files.tools import MBRestore
@@ -1311,7 +1322,6 @@ class NeoBootImageChoose(Screen):
         else:
             self.session.open(MessageBox, _('Removing canceled!'), MessageBox.TYPE_INFO)
 
-
     def ImageInstall(self):        
         if not fileExists('/.multinfo'):
             if getAccessN() != '1234':   #%s' % UPDATEVERSION
@@ -1528,6 +1538,7 @@ def readline(filename, iferror=''):
         PrintException()
     return data
 
+
 def checkInternet():
     if fileExists('/usr/lib/python3.8'):                     
         return True
@@ -1544,6 +1555,7 @@ def checkInternet():
         else:
             return True
 
+
 def checkimage():
     mycheck = False
     if not fileExists('/proc/stb/info') or not fileExists('' + LinkNeoBoot + '/neoskins/neo/neo_skin.py') or not fileExists('' + LinkNeoBoot + '/bin/utilsbh') or not fileExists('' + LinkNeoBoot + '/stbinfo.cfg'): 
@@ -1551,6 +1563,7 @@ def checkimage():
     else:
         mycheck = True
     return mycheck
+
 
 def main(session, **kwargs):
     vip = checkimage()
@@ -1636,6 +1649,7 @@ def main(session, **kwargs):
     else:
             session.open(MessageBox, (_('Sorry, Unable to install, bad satellite receiver or you do not have the full plug-in version\n\nThe full version of the NEO VIP plugin is on address:\nkrzysztofgutosie@.gmail.com')), type=MessageBox.TYPE_ERROR)
             
+
 def menu(menuid, **kwargs):
     if menuid == 'mainmenu':
         return [(_('NeoBOOT'),
@@ -1644,7 +1658,9 @@ def menu(menuid, **kwargs):
           1)]
     return []
 
+
 from Plugins.Plugin import PluginDescriptor
+
 
 def Plugins(**kwargs):
     if isFHD():

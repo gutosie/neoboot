@@ -6,6 +6,7 @@ from ubifs import nodes
 from ubifs.nodes import extract
 from ubifs.log import log
 
+
 class ubifs:
 
     def __init__(self, ubifs_file):

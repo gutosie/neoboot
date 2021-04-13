@@ -7,6 +7,7 @@ from ubi import display
 from ubi.image import description as image
 from ubi.block import layout
 
+
 class ubi:
 
     def __init__(self, ubi_file):

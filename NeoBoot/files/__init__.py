@@ -8,6 +8,7 @@ import gettext
 PluginLanguageDomain = 'NeoBoot'
 PluginLanguagePath = 'Extensions/NeoBoot/locale'
 
+
 def localeInit():
     lang = language.getLanguage()[:2]
     os.environ['LANGUAGE'] = lang

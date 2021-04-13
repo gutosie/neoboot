@@ -4,7 +4,6 @@ from Components.Pixmap import Pixmap
 import os
 
 
-
 ###____ Skin HD - ImageChoose ___mod. gutosie ___
 ImageChooseHD = """
 <screen name="NeoBootImageChoose" position="center,center" size="1280, 720" backgroundColor="transpBlack"> 

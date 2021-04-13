@@ -4,6 +4,7 @@ from ubi import display
 from ubi.defines import *
 from ubi.headers import *
 
+
 class description(object):
 
     def __init__(self, block_buf):

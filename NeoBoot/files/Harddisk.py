@@ -23,11 +23,13 @@ from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Screens.MessageBox import MessageBox
 
+
 def readFile(filename):
     file = open(filename)
     data = file.read().strip()
     file.close()
     return data
+
 
 def getProcMounts():
     try:
@@ -68,6 +70,7 @@ def findMountPoint(path):
 
 DEVTYPE_UDEV = 0
 DEVTYPE_DEVFS = 1
+
 
 class Harddisk():
 
@@ -1029,6 +1032,7 @@ class HarddiskFsckSelection(HarddiskSelection):
 
 
 harddiskmanager = HarddiskManager()
+
 
 def isSleepStateDevice(device):
     ret = os.popen('hdparm -C %s' % device).read()

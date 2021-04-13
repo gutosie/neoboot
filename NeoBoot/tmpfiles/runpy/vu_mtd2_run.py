@@ -62,6 +62,7 @@ class StartImage(Screen):
         \n\t\t        </screen>"""
 
     __module__ = __name__
+
     def __init__(self, session):
         Screen.__init__(self, session)
         self.list = []

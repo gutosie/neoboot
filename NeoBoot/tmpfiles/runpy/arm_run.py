@@ -32,6 +32,7 @@ import os
 import time
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
 
+
 class StartImage(Screen):
     screenwidth = getDesktop(0).size().width()
     if screenwidth and screenwidth == 1920:
@@ -62,6 +63,7 @@ class StartImage(Screen):
         \n\t\t        </screen>"""
 
     __module__ = __name__
+
     def __init__(self, session):
         Screen.__init__(self, session)
         self.list = []

@@ -39,21 +39,26 @@ else:
             from Screens.Console import Console
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
 
+
 def getDS():
     s = getDesktop(0).size()
     return (s.width(), s.height())
+
 
 def isFHD():
     desktopSize = getDS()
     return desktopSize[0] == 1920
 
+
 def isHD():
     desktopSize = getDS()
     return desktopSize[0] >= 1280 and desktopSize[0] < 1920
 
+
 def isUHD():
     desktopSize = getDS()
     return desktopSize[0] >= 1920 and desktopSize[0] < 3840
+
 
 class InstallImage(Screen, ConfigListScreen):
     if isFHD():           

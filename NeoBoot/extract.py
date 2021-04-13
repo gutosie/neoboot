@@ -8,9 +8,12 @@ import shutil
 
 # ver. gutosie   
 #--------------------------------------------- 2021 ---------------------------------------------#
+
+
 def NEOBootMainEx(source, target, stopenigma, CopyFiles, CopyKernel, TvList, LanWlan, Sterowniki, InstallSettings, ZipDelete, RepairFTP, SoftCam, MediaPortal, PiconR, Kodi, BlackHole):        
     NEOBootR(source, target, stopenigma, CopyFiles, CopyKernel, TvList, LanWlan, Sterowniki, InstallSettings, ZipDelete, RepairFTP, SoftCam, MediaPortal, PiconR, Kodi, BlackHole)
     
+
 def LanguageUsed():
     language = ''
     lang = open('/etc/enigma2/settings', 'r')
@@ -22,12 +25,14 @@ def LanguageUsed():
         language = 'No'
     return language
 
+
 def getBoxHostName():
     if os.path.exists('/etc/hostname'):
         with open('/etc/hostname', 'r') as f:
             myboxname = f.readline().strip()
             f.close()   
     return myboxname 
+
 
 def getCPUSoC():
     chipset = 'UNKNOWN'
@@ -40,6 +45,7 @@ def getCPUSoC():
                                             
     return chipset
       
+
 def getBoxVuModel():
     vumodel = 'UNKNOWN'
     if os.path.exists("/proc/stb/info/vumodel") and not os.path.exists("/proc/stb/info/boxtype"):
@@ -47,6 +53,7 @@ def getBoxVuModel():
             vumodel = f.readline().strip()
             f.close() 
     return vumodel
+
 
 def getCPUtype():
     cpu = 'UNKNOWN'
@@ -60,11 +67,13 @@ def getCPUtype():
             cpu = 'MIPS'
     return cpu
 
+
 def getKernelVersion():
     try:
         return open('/proc/version', 'r').read().split(' ', 4)[2].split('-', 2)[0]
     except:
         return _('unknown')
+
 
 def getNeoLocation():
     locatino = 'UNKNOWN'
@@ -672,6 +681,7 @@ def NEOBootMainEx(source, target, stopenigma, CopyFiles, CopyKernel, TvList, Lan
     os.system('echo "End of installation:"; date +%T')
     os.system('echo "If you want to save the installation process from the console press green."')    
 
+
 def RemoveUnpackDirs():
     os.chdir(media + '/ImagesUpload')
     if os.path.exists('' + getNeoLocation() + 'ImagesUpload/unpackedzip'):       
@@ -1006,7 +1016,6 @@ def NEOBootExtract(source, target, ZipDelete):
             if os.path.exists('' + getNeoLocation() + 'ImagesUpload/osmini'):
                 os.chdir('osmini')
                 brand = 'osmini'
-
 
             #Instalacja image nandsim                                     
             os.system('echo "Instalacja - nandsim w toku..."') 

@@ -63,6 +63,7 @@ class StartImage(Screen):
         \n\t\t        </screen>"""
 
     __module__ = __name__
+
     def __init__(self, session):
         Screen.__init__(self, session)
         self.list = []
@@ -104,7 +105,6 @@ class StartImage(Screen):
         if fileExists('/.multinfo') and getCPUtype() == 'ARMv7':           
                 if getBoxVuModel() == 'duo4kse':               
                     os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p9 /media/InternalFlash')
-
 
         system('chmod 755 ' + LinkNeoBoot + '/files/kernel.sh')            
         self.sel = self['list'].getCurrent()

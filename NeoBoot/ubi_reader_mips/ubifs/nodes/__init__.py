@@ -3,6 +3,7 @@ import struct
 from ubifs.defines import *
 from ubifs.misc import parse_key
 
+
 class common_hdr(object):
 
     def __init__(self, buf):

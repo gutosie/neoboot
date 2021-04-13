@@ -51,17 +51,21 @@ neoboot = getNeoLocation()
 media = getNeoLocation()
 mediahome = media + '/ImageBoot/'  
        
+
 def getDS():
     s = getDesktop(0).size()
     return (s.width(), s.height())
+
 
 def isFHD():
     desktopSize = getDS()
     return desktopSize[0] == 1920
 
+
 def isHD():
     desktopSize = getDS()
     return desktopSize[0] >= 1280 and desktopSize[0] < 1920
+
 
 def isUHD():
     desktopSize = getDS()
@@ -74,6 +78,7 @@ def getKernelVersion():
     except:
         return _('unknown')            
 
+
 def getCPUtype():
     cpu = 'UNKNOWN'
     if os.path.exists('/proc/cpuinfo'):
@@ -85,6 +90,7 @@ def getCPUtype():
         elif lines.find('mips') != -1:
             cpu = 'MIPS'
     return cpu
+
 
 if os.path.exists('/etc/hostname'):
     with open('/etc/hostname', 'r') as f:
@@ -100,6 +106,7 @@ if os.path.exists('/proc/stb/info/boxtype'):
     with open('/proc/stb/info/boxtype', 'r') as f:
         boxtype = f.readline().strip()
         f.close() 
+
 
 class BoundFunction:
     __module__ = __name__
@@ -229,7 +236,6 @@ class MBTools(Screen):
         res = (_('NeoBoot donate'), png, 21)
         self.list.append(res)
         self['list']. list = self.list        
-
 
     def KeyOk(self):
         self.sel = self['list'].getCurrent()
@@ -420,10 +426,10 @@ class MBBackup(Screen):
         else:
             self.close()
 
-
     def myClose(self, message):
             self.session.open(MessageBox, message, MessageBox.TYPE_INFO)        
             self.close()
+
 
 class MBRestore(Screen):
     __module__ = __name__                                       
@@ -574,6 +580,7 @@ class MBRestore(Screen):
             self.session.open(MessageBox, message, MessageBox.TYPE_INFO)        
             self.close()
             
+
 class MenagerDevices(Screen):
     __module__ = __name__
     skin = """<screen name="MenagerDevices" title="Device manager" position="center,center" size="700,300" flags="wfNoBorder">
@@ -858,6 +865,7 @@ class UpdateNeoBoot(Screen):
             self.session.open(MessageBox, message, MessageBox.TYPE_INFO)        
             self.close()
 
+
 class MyUpgrade2(Screen):
         if isFHD():
             skin = """<screen name="MyUpgrade2" position="30,30" size="900,150" flags="wfNoBorder" title="NeoBoot">
@@ -1025,6 +1033,7 @@ class IPTVPlayer(Screen):
             self.session.open(MessageBox, message, MessageBox.TYPE_INFO)        
             self.close()
 
+
 class IPTVPlayer2(Screen):
     __module__ = __name__
 
@@ -1100,6 +1109,7 @@ class FeedExtra(Screen):
     def myClose(self, message):
             self.session.open(MessageBox, message, MessageBox.TYPE_INFO)        
             self.close()
+
 
 class FeedExtra2(Screen):
     __module__ = __name__
@@ -1248,6 +1258,7 @@ class CheckInstall(Screen):
         self.session.open(MessageBox, message, MessageBox.TYPE_INFO)
         self.close()
 
+
 class SkinChange(Screen):
     if isFHD():
         skin = """ <screen name="SkinChange" position="center,center" size="850,746" title="NeoBoot Skin Change">
@@ -1291,7 +1302,6 @@ class SkinChange(Screen):
                 pass
 
         self['list'].list = skinlist
-
 
     def SkinGO(self):
         skin = self['list'].getCurrent()
@@ -1379,7 +1389,6 @@ class SkinChange(Screen):
         restartbox = self.session.openWithCallback(self.restartGUI, MessageBox, _('GUI needs a restart.\nDo you want to Restart the GUI now?'), MessageBox.TYPE_YESNO)
         restartbox.setTitle(_('Restart GUI now?'))
 
-
     def restartGUI(self, answer):
         if answer is True:
             self.session.open(TryQuitMainloop, 3)
@@ -1454,7 +1463,6 @@ class BlocUnblockImageSkin(Screen):
                 temp_file2 = open(localfile2, 'w')
                 temp_file2.write(content.replace('neoBootImageChoose', 'NeoBootImageChoose'))
                 temp_file2.close()                                              
-
 
     def restareE2(self):
         restartbox = self.session.openWithCallback(self.restartGUI, MessageBox, _('GUI needs a restart.\nDo you want to Restart the GUI now?'), MessageBox.TYPE_YESNO)
@@ -1563,7 +1571,6 @@ class InternalFlash(Screen):
         self.close()
 
 
-
 class DeletingLanguages(Screen):
     __module__ = __name__
     skin = """ <screen name="DeletingLanguages" title="Deleting Languages" position="center,center" size="850,647">            
@@ -1670,6 +1677,7 @@ class TunerInfo(Screen):
         except:
             False
             
+
 class CreateSwap(Screen):            
     __module__ = __name__
     skin = """<screen name="TunerInfo" title="NeoBoot - Create Swap " position="center,center" size="700,300" flags="wfNoBorder">
@@ -1732,6 +1740,7 @@ class CreateSwap(Screen):
     def myClose(self, message):
         self.session.open(MessageBox, message, MessageBox.TYPE_INFO)
         self.close()           
+
 
 class MultiBootMyHelp(Screen):
     if isFHD():
@@ -1839,6 +1848,7 @@ class Opis(Screen):
         <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/scroll.png" position="754,100" size="26,455" zPosition="5" alphatest="blend" backgroundColor="black" transparent="1" />
         </screen>"""
     __module__ = __name__
+
     def __init__(self, session):		
         Screen.__init__(self, session)
         self['key_red'] = Label(_('Remove NeoBoot of STB'))
@@ -1854,7 +1864,6 @@ class Opis(Screen):
          'right': self['lab1'].pageDown})
         self['lab1'].hide()
         self.updatetext()
-
 
     def updatetext(self):		
         message = _('\\  NeoBoot Ver. ' + PLUGINVERSION + ' - NeoBoot Ver. updates ' + UPDATEVERSION + '//\n\n')
@@ -1944,6 +1953,7 @@ class Opis(Screen):
             self.close()
         else:
             self.close()            
+
 
 class ReinstallKernel(Screen):
     __module__ = __name__
@@ -2035,6 +2045,7 @@ class neoDONATION(Screen):
 
 def myboot(session, **kwargs):
     session.open(MBTools)
+
 
 def Plugins(path, **kwargs):
     global pluginpath
