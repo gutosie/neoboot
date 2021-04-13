@@ -75,15 +75,15 @@ def getKernelVersion():
         return _('unknown')            
 
 def getCPUtype():
-    cpu='UNKNOWN'
+    cpu = 'UNKNOWN'
     if os.path.exists('/proc/cpuinfo'):
         with open('/proc/cpuinfo', 'r') as f:
             lines = f.read()
             f.close()
         if lines.find('ARMv7') != -1:
-            cpu='ARMv7'
+            cpu = 'ARMv7'
         elif lines.find('mips') != -1:
-            cpu='MIPS'
+            cpu = 'MIPS'
     return cpu
 
 if os.path.exists('/etc/hostname'):
@@ -137,9 +137,9 @@ class MBTools(Screen):
 
     def updateList(self):                       
         self.list = []
-        mypath = '' +LinkNeoBoot+ ''
+        mypath = '' + LinkNeoBoot + ''
         if not fileExists(mypath + 'icons'):
-            mypixmap = '' +LinkNeoBoot+ '/images/ok.png'
+            mypixmap = '' + LinkNeoBoot + '/images/ok.png'
         png = LoadPixmap(mypixmap)
 
         res = (_('Make a copy of the image from NeoBoot'), png, 0)
@@ -452,7 +452,7 @@ class MBRestore(Screen):
         self.onShow.append(self.updateInfo)
 
     def updateInfo(self):
-        linesdevice = open('' +LinkNeoBoot+ '/.location', 'r').readlines()
+        linesdevice = open('' + LinkNeoBoot + '/.location', 'r').readlines()
         deviceneo = linesdevice[0][0:-1]
         device = deviceneo
         usfree = '0'
@@ -652,7 +652,7 @@ class BackupMultiboot(Screen):
          'red': self.gobackupneobootplugin})
 
     def gobackupneobootplugin(self):
-            cmd = 'sh ' +LinkNeoBoot+ '/files/neobackup.sh -i'
+            cmd = 'sh ' + LinkNeoBoot + '/files/neobackup.sh -i'
             self.session.open(Console, _('The backup will be saved to /media/neoboot. Performing ...'), [cmd])
             self.close()
 
@@ -697,8 +697,8 @@ class UnistallMultiboot(Screen):
             cmd3 = 'ln -sfn /sbin/init.sysvinit /sbin/init'
             cmd4 = 'chmod 777 /sbin/init; sleep 2'
             cmd4a = "echo -e 'NeoBoot restoring media mounts...\n'"
-            cmd6 = 'rm -f ' + getNeoLocation() + 'ImageBoot/initneo.log ' + getNeoLocation() + 'ImageBoot/.imagedistro ' + getNeoLocation() + 'ImageBoot/.neonextboot '+ getNeoLocation() + 'ImageBoot/.updateversion '+ getNeoLocation() + 'ImageBoot/.Flash ' + getNeoLocation() + 'ImageBoot/.version ' + getNeoLocation() + 'ImageBoot/NeoInit.log ; sleep 2'
-            cmd7 = 'rm -f '+LinkNeoBoot+ '/.location '+LinkNeoBoot+ '/bin/install '+LinkNeoBoot+ '/bin/reading_blkid '+LinkNeoBoot+ '/files/mountpoint.sh '+LinkNeoBoot+ '/files/neo.sh '+LinkNeoBoot+ '/files/neom  '+LinkNeoBoot+ '/.neo_info '
+            cmd6 = 'rm -f ' + getNeoLocation() + 'ImageBoot/initneo.log ' + getNeoLocation() + 'ImageBoot/.imagedistro ' + getNeoLocation() + 'ImageBoot/.neonextboot ' + getNeoLocation() + 'ImageBoot/.updateversion ' + getNeoLocation() + 'ImageBoot/.Flash ' + getNeoLocation() + 'ImageBoot/.version ' + getNeoLocation() + 'ImageBoot/NeoInit.log ; sleep 2'
+            cmd7 = 'rm -f ' + LinkNeoBoot + '/.location ' + LinkNeoBoot + '/bin/install ' + LinkNeoBoot + '/bin/reading_blkid ' + LinkNeoBoot + '/files/mountpoint.sh ' + LinkNeoBoot + '/files/neo.sh ' + LinkNeoBoot + '/files/neom  ' + LinkNeoBoot + '/.neo_info '
             cmd7a = "echo -e '\n\nUninstalling neoboot...\n'"
             cmd8 = "echo -e '\n\nRestore mount.'"
             cmd9 = "echo -e '\n\nNeoBoot uninstalled, you can do reinstallation.'"
@@ -725,7 +725,7 @@ class UnistallMultiboot(Screen):
             self.close()
 
     def checkNeo(self):
-            if not fileCheck(''+LinkNeoBoot+ '/.location') and not fileCheck(' ' + getNeoLocation() + 'ImageBoot/.neonextboot'):                                                   
+            if not fileCheck('' + LinkNeoBoot + '/.location') and not fileCheck(' ' + getNeoLocation() + 'ImageBoot/.neonextboot'):                                                   
                 self.restareE2() 
             else:
                 self.close()
@@ -887,22 +887,22 @@ class MyUpgrade2(Screen):
                 self.myClose(_('Sorry, NeoBoot can installed or upgraded only when booted from Flash STB'))
                 self.close()
             else: 
-                for fn in listdir('%sImageBoot'  % getNeoLocation()):
-                    dirfile = '%sImageBoot/'  % getNeoLocation() + fn
+                for fn in listdir('%sImageBoot' % getNeoLocation()):
+                    dirfile = '%sImageBoot/' % getNeoLocation() + fn
                     if isdir(dirfile):
-                        target = dirfile + '' +LinkNeoBoot+ ''
+                        target = dirfile + '' + LinkNeoBoot + ''
                         target1 = dirfile + '/usr/lib/'
                         target2 = dirfile + '/usr/lib/enigma2/python/Tools/'                       
                         cmd = 'rm -r ' + target + ' > /dev/null 2>&1'
                         system(cmd)
-                        cmd = 'cp -r ' +LinkNeoBoot+ ' ' + target
+                        cmd = 'cp -r ' + LinkNeoBoot + ' ' + target
                         system(cmd)
-                        cmd1 = 'cp -rf ' +periodo+ ' ' + target1
+                        cmd1 = 'cp -rf ' + periodo + ' ' + target1
                         system(cmd1)
-                        cmd2 = 'cp -rf ' +testinout+ ' ' + target2
+                        cmd2 = 'cp -rf ' + testinout + ' ' + target2
                         system(cmd2)                       
 
-                out = open('%sImageBoot/.version'  % getNeoLocation(), 'w')
+                out = open('%sImageBoot/.version' % getNeoLocation(), 'w')
                 out.write(PLUGINVERSION)
                 out.close()
                 self.myClose(_('NeoBoot successfully updated. You can restart the plugin now.\nHave fun !!'))
@@ -1198,47 +1198,47 @@ class CheckInstall(Screen):
             self.myClose(_('Sorry, Neoboot can be installed or upgraded only when booted from Flash'))
 
     def neocheck2(self):
-            os.system(_('rm -f ' + LinkNeoBoot + '/files/modulecheck; echo %s - %s  >  ' +LinkNeoBoot+ '/files/modulecheck') % (getBoxModelVU(), getCPUSoC()))
+            os.system(_('rm -f ' + LinkNeoBoot + '/files/modulecheck; echo %s - %s  >  ' + LinkNeoBoot + '/files/modulecheck') % (getBoxModelVU(), getCPUSoC()))
             os.system('echo "\n====================================================>\nCheck result:"  >> ' + LinkNeoBoot + '/files/modulecheck') 
-            os.system('echo "*    neoboot location:"  >>  ' +LinkNeoBoot+ '/files/modulecheck; cat "/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location"  >>  ' +LinkNeoBoot+ '/files/modulecheck')
-            os.system('echo "\n*    neoboot location install:"  >>  ' +LinkNeoBoot+ '/files/modulecheck; cat "/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/install"  >>  ' +LinkNeoBoot+ '/files/modulecheck')
-            os.system('echo "\n*    neoboot location mount:"  >>  ' +LinkNeoBoot+ '/files/modulecheck; cat "/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/neo.sh"  >>  ' +LinkNeoBoot+ '/files/modulecheck') 
+            os.system('echo "*    neoboot location:"  >>  ' + LinkNeoBoot + '/files/modulecheck; cat "/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location"  >>  ' + LinkNeoBoot + '/files/modulecheck')
+            os.system('echo "\n*    neoboot location install:"  >>  ' + LinkNeoBoot + '/files/modulecheck; cat "/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/install"  >>  ' + LinkNeoBoot + '/files/modulecheck')
+            os.system('echo "\n*    neoboot location mount:"  >>  ' + LinkNeoBoot + '/files/modulecheck; cat "/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/neo.sh"  >>  ' + LinkNeoBoot + '/files/modulecheck') 
             if getCPUtype() == 'ARMv7' and getCPUtype() != 'MIPS':
                 if os.system('opkg update; opkg list-installed | grep python-subprocess') != 0:
-                            os.system('echo "\n*    python-subprocess not installed"  >>  ' +LinkNeoBoot+ '/files/modulecheck')
+                            os.system('echo "\n*    python-subprocess not installed"  >>  ' + LinkNeoBoot + '/files/modulecheck')
                 if os.system('opkg list-installed | grep python-argparse') != 0:
-                            os.system('echo "*    python-argparse not installed"  >>  ' +LinkNeoBoot+ '/files/modulecheck')                            
+                            os.system('echo "*    python-argparse not installed"  >>  ' + LinkNeoBoot + '/files/modulecheck')                            
                 if os.system('opkg list-installed | grep curl') != 0:
-                            os.system('echo "*    curl not installed"  >>  ' +LinkNeoBoot+ '/files/modulecheck')                                                                               
+                            os.system('echo "*    curl not installed"  >>  ' + LinkNeoBoot + '/files/modulecheck')                                                                               
                 else:            
-                    os.system('echo "\n*    opkg packed everything is OK !"  >>  ' +LinkNeoBoot+ '/files/modulecheck')
+                    os.system('echo "\n*    opkg packed everything is OK !"  >>  ' + LinkNeoBoot + '/files/modulecheck')
             elif getCPUtype() != 'ARMv7' and getCPUtype() == 'MIPS':
                 if os.system('opkg list-installed | grep kernel-module-nandsim') != 0:
-                            os.system('echo "\n*    kernel-module-nandsim not installed"  >>  ' +LinkNeoBoot+ '/files/modulecheck')                   
+                            os.system('echo "\n*    kernel-module-nandsim not installed"  >>  ' + LinkNeoBoot + '/files/modulecheck')                   
                 if os.system('opkg list-installed | grep mtd-utils-jffs2') != 0:
-                            os.system('echo "*    mtd-utils-jffs2 not installed"  >>  ' +LinkNeoBoot+ '/files/modulecheck')                
+                            os.system('echo "*    mtd-utils-jffs2 not installed"  >>  ' + LinkNeoBoot + '/files/modulecheck')                
                 if os.system('opkg list-installed | grep lzo') != 0:
-                            os.system('echo "*    lzo not installed"  >>  ' +LinkNeoBoot+ '/files/modulecheck')                                            
+                            os.system('echo "*    lzo not installed"  >>  ' + LinkNeoBoot + '/files/modulecheck')                                            
                 if os.system('opkg list-installed | grep python-setuptools') != 0: 
-                            os.system('echo "*    python-setuptools not installed"  >>  ' +LinkNeoBoot+ '/files/modulecheck')                                                                        
+                            os.system('echo "*    python-setuptools not installed"  >>  ' + LinkNeoBoot + '/files/modulecheck')                                                                        
                 if os.system('opkg list-installed | grep util-linux-sfdisk') != 0: 
-                            os.system('echo "*    util-linux-sfdisk not installed"  >>  ' +LinkNeoBoot+ '/files/modulecheck')                 
+                            os.system('echo "*    util-linux-sfdisk not installed"  >>  ' + LinkNeoBoot + '/files/modulecheck')                 
                 if os.system('opkg list-installed | grep packagegroup-base-nfs') != 0: 
-                            os.system('echo "*    packagegroup-base-nfs not installed"  >>  ' +LinkNeoBoot+ '/files/modulecheck')                                           
+                            os.system('echo "*    packagegroup-base-nfs not installed"  >>  ' + LinkNeoBoot + '/files/modulecheck')                                           
                 if os.system('opkg list-installed | grep ofgwrite') != 0:
-                            os.system('echo "*    ofgwrite not installed"  >>  ' +LinkNeoBoot+ '/files/modulecheck')                                                                                                                                                                                                                                                                                                                                                                
+                            os.system('echo "*    ofgwrite not installed"  >>  ' + LinkNeoBoot + '/files/modulecheck')                                                                                                                                                                                                                                                                                                                                                                
                 if os.system('opkg list-installed | grep bzip2') != 0:  
-                            os.system('echo "*    bzip2 not installed"  >>  ' +LinkNeoBoot+ '/files/modulecheck')                                                                                                                                                                                                                                                                                                                                                              
+                            os.system('echo "*    bzip2 not installed"  >>  ' + LinkNeoBoot + '/files/modulecheck')                                                                                                                                                                                                                                                                                                                                                              
                 if os.system('opkg list-installed | grep mtd-utils') != 0:
-                            os.system('echo "*    mtd-utils not installed"  >>  ' +LinkNeoBoot+ '/files/modulecheck')                
+                            os.system('echo "*    mtd-utils not installed"  >>  ' + LinkNeoBoot + '/files/modulecheck')                
                 if os.system('opkg list-installed | grep mtd-utils-ubifs') != 0:
-                            os.system('echo "*    mtd-utils-ubifs not installed"  >>  ' +LinkNeoBoot+ '/files/modulecheck')                                                                                                                                                                                                                                                                                                                                                                
+                            os.system('echo "*    mtd-utils-ubifs not installed"  >>  ' + LinkNeoBoot + '/files/modulecheck')                                                                                                                                                                                                                                                                                                                                                                
                 else:            
-                    os.system('echo "\n*    opkg packed everything is OK !"  >>  ' +LinkNeoBoot+ '/files/modulecheck')
+                    os.system('echo "\n*    opkg packed everything is OK !"  >>  ' + LinkNeoBoot + '/files/modulecheck')
             else:            
-                os.system('echo "\n*    STB is not ARMv7 or MIPS"  >>  ' +LinkNeoBoot+ '/files/modulecheck')
+                os.system('echo "\n*    STB is not ARMv7 or MIPS"  >>  ' + LinkNeoBoot + '/files/modulecheck')
 
-            cmd = 'echo "\n<===================================================="  >> ' + LinkNeoBoot + '/files/modulecheck;  cat ' +LinkNeoBoot+ '/files/modulecheck'
+            cmd = 'echo "\n<===================================================="  >> ' + LinkNeoBoot + '/files/modulecheck;  cat ' + LinkNeoBoot + '/files/modulecheck'
             cmd1 = ''
             self.session.openWithCallback(self.close, Console, _('NeoBoot....'), [cmd,
                      cmd1]) 
@@ -1279,14 +1279,14 @@ class SkinChange(Screen):
         self.onShow.append(self.updateInfo)
 
     def updateInfo(self):
-        self.skindir = '' +LinkNeoBoot+ '/neoskins/'
+        self.skindir = '' + LinkNeoBoot + '/neoskins/'
  
         if pathExists(self.skindir) == 0 and createDir(self.skindir):
             pass
 
         skinlist = ['default']
-        for fn in listdir('' +LinkNeoBoot+ '/neoskins'):
-            dirfile = '' +LinkNeoBoot+ '/neoskins/' + fn
+        for fn in listdir('' + LinkNeoBoot + '/neoskins'):
+            dirfile = '' + LinkNeoBoot + '/neoskins/' + fn
             if os_isdir(dirfile) and skinlist.append(fn):
                 pass
 
@@ -1312,8 +1312,8 @@ class SkinChange(Screen):
             cmd = "echo -e '\n\n%s '" % _('Please wait, NeoBot is working, skin change is progress...')
             cmd1 = "echo -e '\n\n%s '" % _('NeoBoot: Complete Skin Change!')
 #            cmd2 = 'cp -r ' +LinkNeoBoot+ '/neoskins/default.py ' +LinkNeoBoot+ '/skin.py'            
-            cmd2 = 'rm -f ' +LinkNeoBoot+ '/usedskin.p*; sleep 2'
-            cmd3 = 'ln -sf "neoskins/default.py" "' +LinkNeoBoot+ '/usedskin.py"'
+            cmd2 = 'rm -f ' + LinkNeoBoot + '/usedskin.p*; sleep 2'
+            cmd3 = 'ln -sf "neoskins/default.py" "' + LinkNeoBoot + '/usedskin.py"'
             self.session.open(Console, _('NeoBoot Skin Change'), [cmd, cmd1, cmd2, cmd3])
 
     def doSkinChange(self, answer):
@@ -1343,15 +1343,15 @@ class SkinChange(Screen):
                     system('cp -r ' + LinkNeoBoot + '/images/solo2.png ' + LinkNeoBoot + '/images/box.png')
                                     
                 cmd = "echo -e '\n\n%s '" % _('Please wait, NeoBot is working, skin change is progress...')
-                cmd1 = 'rm -f ' +LinkNeoBoot+ '/usedskin.p*; sleep 2'            
-                cmd2 = 'sleep 2; cp -r ' + self.skindir + '/' + self.selectedskin + '/*.py ' +LinkNeoBoot+ '/usedskin.py'
+                cmd1 = 'rm -f ' + LinkNeoBoot + '/usedskin.p*; sleep 2'            
+                cmd2 = 'sleep 2; cp -r ' + self.skindir + '/' + self.selectedskin + '/*.py ' + LinkNeoBoot + '/usedskin.py'
                 cmd3 = "echo -e '\n\n%s '" % _('NeoBoot: Complete Skin Change!')   
                 cmd4 = "echo -e '\n\n%s '" % _('To use the new skin please restart enigma2')  
                 self.session.open(Console, _('NeoBoot Skin Change'), [cmd, cmd1, cmd2, cmd3, cmd4])
             elif isHD():
                 cmd = "echo -e '\n\n%s '" % _('Please wait, NeoBot is working, skin change is progress...')
-                cmd1 = 'rm -f ' +LinkNeoBoot+ '/usedskin.p*; sleep 2'            
-                cmd2 = 'sleep 2; cp -r ' + self.skindir + '/' + self.selectedskin + '/*.py ' +LinkNeoBoot+ '/usedskin.py'
+                cmd1 = 'rm -f ' + LinkNeoBoot + '/usedskin.p*; sleep 2'            
+                cmd2 = 'sleep 2; cp -r ' + self.skindir + '/' + self.selectedskin + '/*.py ' + LinkNeoBoot + '/usedskin.py'
                 cmd3 = "echo -e '\n\n%s '" % _('NeoBoot: Complete Skin Change!')
                 cmd4 = "echo -e '\n\n%s '" % _('Skin change available only for full hd skin.')  
                 cmd5 = "echo -e '\n\n%s '" % _('Please come back to default skin.')                           
@@ -1525,23 +1525,23 @@ class InternalFlash(Screen):
                 if getBoxHostName == 'ax60':   
                     os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p21 /media/InternalFlash')
 
-                if getBoxHostName() == 'ustym4kpro' or getTunerModel() ==  'ustym4kpro':   
+                if getBoxHostName() == 'ustym4kpro' or getTunerModel() == 'ustym4kpro':   
                     os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p13 /media/InternalFlash')
 
                 if os.path.exists('/proc/stb/info/model'):
                     if getTunerModel() == 'dm900' or getCPUSoC() == 'BCM97252SSFF':   
                         os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p2 /media/InternalFlash')
                     
-                if  getBoxVuModel() == 'uno4kse' or getBoxVuModel() == 'uno4k'  or  getBoxVuModel() == 'ultimo4k' or  getBoxVuModel() == 'solo4k':
+                if getBoxVuModel() == 'uno4kse' or getBoxVuModel() == 'uno4k' or getBoxVuModel() == 'ultimo4k' or getBoxVuModel() == 'solo4k':
                     os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p4 /media/InternalFlash')
 
-                if  getBoxVuModel() == 'zero4k':
+                if getBoxVuModel() == 'zero4k':
                     os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p7 /media/InternalFlash')
 
-                if  getBoxVuModel() == 'duo4k':               
+                if getBoxVuModel() == 'duo4k':               
                     os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p9 /media/InternalFlash')
 
-                if  getBoxVuModel() == 'duo4kse':               
+                if getBoxVuModel() == 'duo4kse':               
                     os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p9 /media/InternalFlash')                    
 
                 if getCPUSoC() == 'bcm7252s' or getBoxHostName() == 'gbquad4k':
@@ -1661,7 +1661,7 @@ class TunerInfo(Screen):
          
     def iNFO(self):
         try:
-            cmd = ' cat ' +LinkNeoBoot+ '/stbinfo.cfg'
+            cmd = ' cat ' + LinkNeoBoot + '/stbinfo.cfg'
             cmd1 = ''
             self.session.openWithCallback(self.close, Console, _('NeoBoot....'), [cmd,
                      cmd1]) 

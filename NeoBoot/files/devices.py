@@ -506,7 +506,7 @@ class DevicesConf(Screen, ConfigListScreen):
 class SetDiskLabel(Screen):
     screenwidth = getDesktop(0).size().width()
     if screenwidth and screenwidth == 1920:    
-        skin ="""<screen name="SetDiskLabel" position="400,188" size="1100,601" title="Set Disk Label v1.1">
+        skin = """<screen name="SetDiskLabel" position="400,188" size="1100,601" title="Set Disk Label v1.1">
       <widget name="infoTXT" position="22,62" zPosition="1" size="591,86" font="baslk;28" halign="left" valign="center" backgroundColor="transpBlack" transparent="1" />
 
       <widget name="devlist" position="685,60" size="310,132" font="Regular;20" valign="center" />

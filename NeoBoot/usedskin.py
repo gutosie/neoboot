@@ -31,7 +31,7 @@ import os
 #  <widget name="config" position="1177,256" size="703,717" itemHeight="43" font="genel;30" scrollbarMode="showOnDemand" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" foregroundColorSelected="#00FFFFF" backgroundColorSelected="#1A27408B" scrollbarSliderBorderWidth="1" scrollbarWidth="8" scrollbarSliderForegroundColor="#00FFFFFF" scrollbarSliderBorderColor="#0027408B" enableWrapAround="1" transparent="1" />   
 
 ###____ Skin Ultra HD - ImageChooseFULLHD   ___ mod. gutosie___
-ImageChooseFULLHD =""" 
+ImageChooseFULLHD = """ 
 <screen name="ImageChooseFULLHD" position="center,center" size="1920,1080" title=" " flags="wfNoBorder" backgroundColor="transparent">
   <eLabel backgroundColor="black" font="dugme; 30" foregroundColor="#99FFFF" position="70,50" size="298,55" valign="center" text="NEOBoot Multi-image" transparent="1" />
   <widget name="config" position="1177,250" size="668,715" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/selektor.png" itemHeight="45" font="dugme;30" scrollbarMode="showOnDemand" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" foregroundColorSelected="#00FFFFF" backgroundColorSelected="#1A27408B" scrollbarSliderBorderWidth="1" scrollbarWidth="8" scrollbarSliderForegroundColor="#99FFFF" scrollbarSliderBorderColor="#0027408B" enableWrapAround="1" transparent="1" />   
@@ -89,7 +89,7 @@ ImageChooseFULLHD ="""
 
 
 ###____ Skin Ultra HD - ImageChooseULTRAHD ___ mod. gutosie___
-ImageChooseULTRAHD ="""
+ImageChooseULTRAHD = """
 <screen name="NeoBootImageChoose" position="0,0" size="3840,2160" flags="wfNoBorder" backgroundColor="#ff111111">    
   <widget source="Title" render="Label" position="174,108" size="1575,150" font="baslk;102" valign="bottom" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" noWrap="1" transparent="1" />    
   <widget name="label1" position="210,360" size="2100,90" font="genel;60" foregroundColor="#00DAA520" backgroundColor="#1A0F0F0F" halign="left" valign="center" zPosition="1" transparent="1" />     
@@ -138,7 +138,7 @@ ImageChooseULTRAHD ="""
 
 
 ###____ Skin HD - ImageChoose ___mod. gutosie ___
-ImageChooseHD ="""
+ImageChooseHD = """
 <screen name="NeoBootImageChoose" position="center,center" size="1280, 720" backgroundColor="transpBlack"> 
   <ePixmap position="0,0" zPosition="-1" size="1274,720" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/1frame_base-fs8.png" /> 
   <widget source="session.VideoPicture" render="Pig" position=" 836,89" size="370,208" zPosition="3" backgroundColor="#ff000000" />        
@@ -185,7 +185,7 @@ ImageChooseHD ="""
 
 
 ###____ Skin FULLHD - MyUpgradeFULLHD ___mod. gutosie ___
-MyUpgradeFULLHD ="""
+MyUpgradeFULLHD = """
 <screen name="MyUpgradeFULLHD" position="center,center" size="1380,570" title="Tools Neoboot">
                   <ePixmap position="594,255" zPosition="-2" size="623,313" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/matrix.png" />
                   <widget source="list" render="Listbox" position="33,101" size="1328,124" scrollbarMode="showOnDemand">
@@ -204,7 +204,7 @@ MyUpgradeFULLHD ="""
 
 
 ###____ Skin UltraHD - MyUpgradeUltraHD ___mod. gutosie ___
-MyUpgradeUltraHD ="""
+MyUpgradeUltraHD = """
 <screen name="MyUpgradeUltraHD" position="center,center" size="2100,1020" flags="wfNoBorder" backgroundColor="#ff111111">   
         <widget name="label1" position="180,210" size="1740,78" font="genel;60" halign="center" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" zPosition="1" transparent="1" />   
         <widget source="list" render="Listbox" position="210,390" size="1680,252" itemHeight="132" font="genel;66" scrollbarMode="showOnDemand" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" foregroundColorSelected="#00FFFFF" backgroundColorSelected="#1A27408B" scrollbarSliderBorderWidth="1" scrollbarWidth="8" scrollbarSliderForegroundColor="#00FFFFFF" scrollbarSliderBorderColor="#0027408B" enableWrapAround="1" transparent="1">   
@@ -221,7 +221,7 @@ MyUpgradeUltraHD ="""
         
 
 ###____ Skin MyUpgradeHD - MyUpgradeHD ___mod. gutosie ___
-MyUpgradeHD ="""
+MyUpgradeHD = """
 <screen name="MyUpgradeHD" position="center,center" size="1127,569" title="Tools NeoBoot">
                   <ePixmap position="492,223" zPosition="-2" size="589,298" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/matrix.png" />
                   <widget source="list" render="Listbox" position="18,122" size="1085,82" scrollbarMode="showOnDemand">
@@ -240,7 +240,7 @@ MyUpgradeHD ="""
                 
                 
 ###____ Skin NeoBootInstallationFULLHD - NeoBootInstallationFULLHD ___mod. gutosie ___
-NeoBootInstallationFULLHD ="""
+NeoBootInstallationFULLHD = """
 <screen name="NeoBootInstallationFULLHD" position="410,138" size="1200,850" title="NeoBoot">
         <widget name="label3" position="10,632" size="1178,114" zPosition="1" halign="center" font="dugme;28" backgroundColor="black" transparent="1" foregroundColor="#ffffff" />
         <ePixmap position="643,282" zPosition="-2" size="531,331" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/matrix.png" />
@@ -262,7 +262,7 @@ NeoBootInstallationFULLHD ="""
         </screen>"""
 
 ###____ Skin NeoBootInstallationUltraHD - NeoBootInstallationUltraHD ___mod. gutosie ___
-NeoBootInstallationUltraHD ="""
+NeoBootInstallationUltraHD = """
 <screen name="NeoBootInstallationUltraHD" position="0,0" size="3840,2160" flags="wfNoBorder" backgroundColor="#ff111111">    
         <widget source="Title" render="Label" position="174,108" size="1575,150" font="baslk;102" valign="bottom" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" noWrap="1" transparent="1" />    
         <widget name="label1" position="210,360" size="2100,90" font="genel;72" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" zPosition="1" transparent="1" />    
@@ -294,7 +294,7 @@ NeoBootInstallationUltraHD ="""
 
 
 ###____ Skin NeoBootInstallationHD - NeoBootInstallationHD ___mod. gutosie ___
-NeoBootInstallationHD ="""
+NeoBootInstallationHD = """
 <screen position="center, center" size="835, 500" title="NeoBoot">
   <ePixmap position="0,0" zPosition="-1" size="835,500" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/frame835x500.png"  />
   <widget name="label1" position="10,15" size="840,30" zPosition="1" halign="center" font="Regular;25" foregroundColor="red" backgroundColor="black" transparent="1" />

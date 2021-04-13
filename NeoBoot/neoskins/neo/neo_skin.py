@@ -26,7 +26,7 @@ import os
 #  <widget name="label19" position="73,422" size="596,25" font="tasat;22" halign="left" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="orange" />
 
 ### ImageChooseFULLHD  
-ImageChooseFULLHD =""" 
+ImageChooseFULLHD = """ 
 <screen name="NeoBootImageChoose" position="center,center" size="1920,1080" title=" " flags="wfNoBorder" backgroundColor="transparent"> 
   <eLabel backgroundColor="black" font="tasat;30" foregroundColor="red" position="75,50" size="309,45" valign="center" text="NEOBoot Multi-image" transparent="1" />
   <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/skin.png" position="center,center" zPosition="-7" size="1920,1080"  /> 

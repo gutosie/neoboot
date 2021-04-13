@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
  
 from Plugins.Extensions.NeoBoot.__init__ import _                                                                                                                                                   
-from Plugins.Extensions.NeoBoot.files.stbbranding import getNeoLocation, getCPUtype, getCPUSoC,  getImageNeoBoot, getBoxVuModel, getBoxHostName, getNeoMount, getNeoMount2,getNeoMount3, getNeoMount4, getNeoMount5, getMountPointNeo2
+from Plugins.Extensions.NeoBoot.files.stbbranding import getNeoLocation, getCPUtype, getCPUSoC, getImageNeoBoot, getBoxVuModel, getBoxHostName, getNeoMount, getNeoMount2,getNeoMount3, getNeoMount4, getNeoMount5, getMountPointNeo2
 from enigma import getDesktop
 from enigma import eTimer
 from Screens.Screen import Screen                                                                                                                                               
@@ -95,7 +95,7 @@ class StartImage(Screen):
 
     def StartImageInNeoBoot(self):                              
         if getImageNeoBoot() != 'Flash':
-            if fileExists('%sImageBoot/%s/.control_ok' % (getNeoLocation(),  getImageNeoBoot())): 
+            if fileExists('%sImageBoot/%s/.control_ok' % (getNeoLocation(), getImageNeoBoot())): 
                 system('touch /tmp/.control_ok ') 
             else:
                 system('touch %sImageBoot/%s/.control_boot_new_image ' % (getNeoLocation(), getImageNeoBoot()))

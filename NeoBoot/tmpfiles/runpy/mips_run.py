@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from Plugins.Extensions.NeoBoot.__init__ import _                                                                                                                                                    
-from Plugins.Extensions.NeoBoot.files.stbbranding import getSupportedTuners, getNeoLocation, getCPUtype, getCPUSoC,  getImageNeoBoot, getBoxVuModel, getBoxHostName, getNeoMount, getNeoMount2,getNeoMount3, getNeoMount4, getNeoMount5, getMountPointNeo2
+from Plugins.Extensions.NeoBoot.files.stbbranding import getSupportedTuners, getNeoLocation, getCPUtype, getCPUSoC, getImageNeoBoot, getBoxVuModel, getBoxHostName, getNeoMount, getNeoMount2,getNeoMount3, getNeoMount4, getNeoMount5, getMountPointNeo2
 from enigma import getDesktop
 from enigma import eTimer
 from Screens.Screen import Screen                                                                                                                                               
@@ -95,7 +95,7 @@ class StartImage(Screen):
 
     def StartImageInNeoBoot(self):                              
         if getImageNeoBoot() != 'Flash':
-            if fileExists('%sImageBoot/%s/.control_ok' % (getNeoLocation(),  getImageNeoBoot())): 
+            if fileExists('%sImageBoot/%s/.control_ok' % (getNeoLocation(), getImageNeoBoot())): 
                 system('touch /tmp/.control_ok ') 
             else:
                 system('touch %sImageBoot/%s/.control_boot_new_image ' % (getNeoLocation(), getImageNeoBoot()))
@@ -110,20 +110,20 @@ class StartImage(Screen):
             if (getSupportedTuners()):    
                         if getImageNeoBoot() == 'Flash':  
                                 cmd = "echo -e '\n\n%s '" % _('NEOBOOT - Restart image flash....\nPlease wait, in a moment the decoder will be restarted...\n')
-                                cmd1='sleep 8; ln -sfn /sbin/init.sysvinit /sbin/init; reboot -f '
+                                cmd1 = 'sleep 8; ln -sfn /sbin/init.sysvinit /sbin/init; reboot -f '
                                 self.session.open(Console, _('NeoBoot ....'), [cmd, cmd1])
                         elif getImageNeoBoot() != 'Flash':
                             if fileExists('/.multinfo'):
                                 cmd = "echo -e '\n\n%s '" % _('NEOBOOT - Restart image flash....\nPlease wait, in a moment the decoder will be restarted...\n')
-                                cmd1='sleep 5; reboot -f '
+                                cmd1 = 'sleep 5; reboot -f '
                                 self.session.open(Console, _('NeoBoot ....'), [cmd, cmd1])
                             elif not fileExists('/.multinfo'):
                                 cmd = "echo -e '\n\n%s '" % _('NEOBOOT - Restart image flash....\nPlease wait, in a moment the decoder will be restarted...\n')
-                                cmd1='sleep 8; ln -sfn /sbin/neoinitmips /sbin/init; reboot -f '
+                                cmd1 = 'sleep 8; ln -sfn /sbin/neoinitmips /sbin/init; reboot -f '
                                 self.session.open(Console, _('NeoBoot ....'), [cmd, cmd1])
                             else:
                                 cmd = "echo -e '\n\n%s '" % _('NEOBOOT - Restart image flash....\nPlease wait, in a moment the decoder will be restarted...\n')
-                                cmd1='sleep 8; ln -sfn /sbin/init.sysvinit /sbin/init; reboot -f '
+                                cmd1 = 'sleep 8; ln -sfn /sbin/init.sysvinit /sbin/init; reboot -f '
                                 self.session.open(Console, _('NeoBoot-ERROR!!! ....'), [cmd, cmd1])
                         else:
                             os.system('echo "Flash "  >> ' + getNeoLocation() + 'ImageBoot/.neonextboot')

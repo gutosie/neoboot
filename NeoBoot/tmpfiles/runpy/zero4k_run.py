@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
  
 from Plugins.Extensions.NeoBoot.__init__ import _                                                                                                                                                    
-from Plugins.Extensions.NeoBoot.files.stbbranding import getNeoLocation, getCPUtype, getCPUSoC,  getImageNeoBoot, getBoxVuModel, getBoxHostName, getNeoMount, getNeoMount2,getNeoMount3, getNeoMount4, getNeoMount5, getMountPointNeo2
+from Plugins.Extensions.NeoBoot.files.stbbranding import getNeoLocation, getCPUtype, getCPUSoC, getImageNeoBoot, getBoxVuModel, getBoxHostName, getNeoMount, getNeoMount2,getNeoMount3, getNeoMount4, getNeoMount5, getMountPointNeo2
 from enigma import getDesktop
 from enigma import eTimer
 from Screens.Screen import Screen                                                                                                                                               
@@ -95,13 +95,13 @@ class StartImage(Screen):
 
     def StartImageInNeoBoot(self):                              
         if getImageNeoBoot() != 'Flash':
-            if fileExists('%sImageBoot/%s/.control_ok' % (getNeoLocation(),  getImageNeoBoot())): 
+            if fileExists('%sImageBoot/%s/.control_ok' % (getNeoLocation(), getImageNeoBoot())): 
                 system('touch /tmp/.control_ok ') 
             else:
                 system('touch %sImageBoot/%s/.control_boot_new_image ' % (getNeoLocation(), getImageNeoBoot()))
 
         if fileExists('/.multinfo') and getCPUtype() == 'ARMv7':           
-                if  getBoxVuModel() == 'zero4k':
+                if getBoxVuModel() == 'zero4k':
                     os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p7 /media/InternalFlash')
 
         system('chmod 755 ' + LinkNeoBoot + '/files/kernel.sh')         
@@ -129,7 +129,7 @@ class StartImage(Screen):
                                     cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT - REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')                                  
                                     cmd1 = 'sleep 5; ln -sf "init.sysvinit" "/sbin/init"; reboot -dfhi'                                                   
 
-                            elif  getImageNeoBoot() != 'Flash':                                                 
+                            elif getImageNeoBoot() != 'Flash':                                                 
                                 if not fileExists('/.multinfo'):  
                                     if not fileExists('%sImageBoot/%s/boot/zImage.%s' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName())):  
                                         cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT - REBOOT...............\nPlease wait, in a moment the decoder will be restarted...') 

@@ -16,7 +16,7 @@
 #--------------------------------------------- NEOBOOT ---------------------------------------------#
 from __future__ import absolute_import
 from . import _
-from Plugins.Extensions.NeoBoot.files.stbbranding import  LogCrashGS, getSupportedTuners, getLabelDisck, getINSTALLNeo, getNeoLocation, getLocationMultiboot, getNeoMount, getNeoMount2, getNeoMount3, getNeoMount4, getNeoMount5, getFSTAB, getFSTAB2, getKernelVersionString, getKernelImageVersion, getCPUtype, getCPUSoC,  getImageNeoBoot, getBoxVuModel, getBoxHostName, getTunerModel, getImageDistroN, getFormat, getNEO_filesystems, getBoxModelVU, getMountPointAll, getMountPointNeo                   
+from Plugins.Extensions.NeoBoot.files.stbbranding import LogCrashGS, getSupportedTuners, getLabelDisck, getINSTALLNeo, getNeoLocation, getLocationMultiboot, getNeoMount, getNeoMount2, getNeoMount3, getNeoMount4, getNeoMount5, getFSTAB, getFSTAB2, getKernelVersionString, getKernelImageVersion, getCPUtype, getCPUSoC, getImageNeoBoot, getBoxVuModel, getBoxHostName, getTunerModel, getImageDistroN, getFormat, getNEO_filesystems, getBoxModelVU, getMountPointAll, getMountPointNeo                   
 from Plugins.Extensions.NeoBoot.files import Harddisk 
 from Components.About import about                                                                                                                                                    
 from enigma import getDesktop, eTimer
@@ -101,13 +101,13 @@ def isUHD():
 class MyUpgrade(Screen):
     if isFHD():
         from Plugins.Extensions.NeoBoot.neoskins.default import MyUpgradeFULLHD
-        skin=MyUpgradeFULLHD 
+        skin = MyUpgradeFULLHD 
     elif isUHD():
         from Plugins.Extensions.NeoBoot.neoskins.default import MyUpgradeUltraHD
-        skin=MyUpgradeUltraHD
+        skin = MyUpgradeUltraHD
     else:
         from Plugins.Extensions.NeoBoot.neoskins.default import MyUpgradeHD
-        skin=MyUpgradeHD 
+        skin = MyUpgradeHD 
 
     __module__ = __name__
 
@@ -162,13 +162,13 @@ class MyUpgrade(Screen):
 class NeoBootInstallation(Screen):
     if isFHD():
         from Plugins.Extensions.NeoBoot.neoskins.default import NeoBootInstallationFULLHD
-        skin=NeoBootInstallationFULLHD 
+        skin = NeoBootInstallationFULLHD 
     elif isUHD():
         from Plugins.Extensions.NeoBoot.neoskins.default import NeoBootInstallationUltraHD
-        skin=NeoBootInstallationUltraHD
+        skin = NeoBootInstallationUltraHD
     else:
         from Plugins.Extensions.NeoBoot.neoskins.default import NeoBootInstallationHD
-        skin=NeoBootInstallationHD 
+        skin = NeoBootInstallationHD 
 
     def __init__(self, session):
         Screen.__init__(self, session)
@@ -420,7 +420,7 @@ class NeoBootInstallation(Screen):
         if fileExists('/proc/mounts'):
             with open('/proc/mounts', 'r') as f:
                 for line in f.readlines():
-                    if line.find(' ext') and line.find('/media/hdd') or line.find('/media/usb')  == -1 and (line.find('ext4') != -1 or line.find('ext3') != -1 or line.find('ext2') != -1):
+                    if line.find(' ext') and line.find('/media/hdd') or line.find('/media/usb') == -1 and (line.find('ext4') != -1 or line.find('ext3') != -1 or line.find('ext2') != -1):
                         check = True
                         break
                     
@@ -665,20 +665,20 @@ class NeoBootImageChoose(Screen):
     if isFHD(): 
         try:
             from Plugins.Extensions.NeoBoot.usedskin import ImageChooseFULLHD
-            skin=ImageChooseFULLHD                  
+            skin = ImageChooseFULLHD                  
         except:
             from Plugins.Extensions.NeoBoot.neoskins.default import ImageChooseFULLHD
-            skin=ImageChooseFULLHD
+            skin = ImageChooseFULLHD
     elif isUHD():
         from Plugins.Extensions.NeoBoot.neoskins.default import ImageChooseULTRAHD
-        skin=ImageChooseULTRAHD 
+        skin = ImageChooseULTRAHD 
     else:
         try:
             from Plugins.Extensions.NeoBoot.usedskin import ImageChooseHD
-            skin=ImageChooseHD        
+            skin = ImageChooseHD        
         except:
             from Plugins.Extensions.NeoBoot.neoskins.default import ImageChooseHD
-            skin=ImageChooseHD  
+            skin = ImageChooseHD  
 
     def __init__(self, session):				
         Screen.__init__(self, session)
@@ -868,7 +868,7 @@ class NeoBootImageChoose(Screen):
             with open('/.multinfo', 'r') as f:
                 imagefile = f.readline().strip()
                 f.close()
-                out = open('%sImageBoot/.neonextboot'% getNeoLocation(), 'w')
+                out = open('%sImageBoot/.neonextboot' % getNeoLocation(), 'w')
                 out.write(imagefile)
                 out.close()
         else:
@@ -1169,7 +1169,7 @@ class NeoBootImageChoose(Screen):
         strview2 = _('Free Space : ') + usfree[0:-3] + ' MB'
         self['label11'].setText(strview2)
 
-        strview1 = _('Capacity : ') + usperc +  _(' Full')                  
+        strview1 = _('Capacity : ') + usperc + _(' Full')                  
         self['label18'].setText(strview1)
 
         try:
@@ -1380,26 +1380,26 @@ class NeoBootImageChoose(Screen):
             system('mkdir %sImagesUpload' % getNeoLocation())
 
         images = False
-        myimages=listdir('%sImagesUpload' % getNeoLocation())
+        myimages = listdir('%sImagesUpload' % getNeoLocation())
         print(myimages)
         for fil in myimages:
             if fil.endswith(".zip"):
-                images=True
+                images = True
                 break
             if os.path.exists('%sImagesUpload/*zip' % getNeoLocation()):
-                images=True
+                images = True
                 break
             if os.path.exists('%sImagesUpload/*.tar.bz2' % getNeoLocation()):
-                images=True
+                images = True
                 break
             if fil.endswith(".tar.xz"):
-                images=True
+                images = True
                 break
             if fil.endswith(".nfi"):
-                images=True
+                images = True
                 break
             else:
-                images=False
+                images = False
         if images is True:
             self.ImageTrue()
         else:
@@ -1473,7 +1473,7 @@ class NeoBootImageChoose(Screen):
                     out.close()
  
                     if getImageNeoBoot() != "Flash":
-                        if not fileExists('%sImageBoot/%s/.control_ok' % (getNeoLocation(),  getImageNeoBoot())):
+                        if not fileExists('%sImageBoot/%s/.control_ok' % (getNeoLocation(), getImageNeoBoot())):
                             message = _('After successful launch of the selected software\nyou must run the neoboot plugin\nif the software does not start or neoboot is not confirmed\nthe system will return to the internal flash memory\n\nPress OK or exit on the remote control to continue...')
                             ybox = self.session.openWithCallback(self.StartReboot, MessageBox, message, MessageBox.TYPE_YESNO)
                             ybox.setTitle(_('First start of software'))

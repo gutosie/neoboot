@@ -2,7 +2,7 @@
                               
 #from __init__ import _  
 from Plugins.Extensions.NeoBoot.__init__ import _                                                                                                                                                  
-from Plugins.Extensions.NeoBoot.files.stbbranding import getNeoLocation, getKernelVersionString, getKernelImageVersion, getCPUtype, getCPUSoC,  getImageNeoBoot, getBoxVuModel, getBoxHostName, getTunerModel
+from Plugins.Extensions.NeoBoot.files.stbbranding import getNeoLocation, getKernelVersionString, getKernelImageVersion, getCPUtype, getCPUSoC, getImageNeoBoot, getBoxVuModel, getBoxHostName, getTunerModel
 from enigma import getDesktop
 from enigma import eTimer
 from Screens.Screen import Screen                                                                                                                                               

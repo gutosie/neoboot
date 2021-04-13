@@ -30,7 +30,7 @@ def getBoxHostName():
     return myboxname 
 
 def getCPUSoC():
-    chipset='UNKNOWN'
+    chipset = 'UNKNOWN'
     if os.path.exists('/proc/stb/info/chipset'):
         with open('/proc/stb/info/chipset', 'r') as f:
             chipset = f.readline().strip()
@@ -41,7 +41,7 @@ def getCPUSoC():
     return chipset
       
 def getBoxVuModel():
-    vumodel='UNKNOWN'
+    vumodel = 'UNKNOWN'
     if os.path.exists("/proc/stb/info/vumodel") and not os.path.exists("/proc/stb/info/boxtype"):
         with open('/proc/stb/info/vumodel', 'r') as f:
             vumodel = f.readline().strip()
@@ -49,15 +49,15 @@ def getBoxVuModel():
     return vumodel
 
 def getCPUtype():
-    cpu='UNKNOWN'
+    cpu = 'UNKNOWN'
     if os.path.exists('/proc/cpuinfo'):
         with open('/proc/cpuinfo', 'r') as f:
             lines = f.read()
             f.close()
         if lines.find('ARMv7') != -1:
-            cpu='ARMv7'
+            cpu = 'ARMv7'
         elif lines.find('mips') != -1:
-            cpu='MIPS'
+            cpu = 'MIPS'
     return cpu
 
 def getKernelVersion():
@@ -67,7 +67,7 @@ def getKernelVersion():
         return _('unknown')
 
 def getNeoLocation():
-    locatino='UNKNOWN'
+    locatino = 'UNKNOWN'
     if os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location'):
         with open('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location', 'r') as f:
             locatino = f.readline().strip()
@@ -79,7 +79,7 @@ media = getNeoLocation()
 mediahome = media + '/ImageBoot/'
 extensions_path = '/usr/lib/enigma2/python/Plugins/Extensions/'
 dev_null = ' > /dev/null 2>&1'
-supportedTuners='vuplus'
+supportedTuners = 'vuplus'
    
 
 def NEOBootMainEx(source, target, stopenigma, CopyFiles, CopyKernel, TvList, LanWlan, Sterowniki, InstallSettings, ZipDelete, RepairFTP, SoftCam, MediaPortal, PiconR, Kodi, BlackHole):
@@ -144,7 +144,7 @@ def NEOBootMainEx(source, target, stopenigma, CopyFiles, CopyKernel, TvList, Lan
                 cmd = 'cp -af /lib/firmware %s/ImageBoot/%s/lib > /dev/null 2>&1' % (media, target)
                 rc = os.system(cmd)
                 os.system('echo "Copied system drivers. Not recommended copied kernel.bin for Ultimo HD."')
-            elif getCPUtype() == "MIPS" and getBoxHostName() == 'vuultimo' or getBoxHostName() == 'bm750' or getBoxHostName() == 'vuduo' or getBoxHostName() == 'vuuno' or getBoxHostName() == 'vusolo' or getBoxHostName() == 'vuduo' or getBoxHostName() == 'vusolo2' or getBoxHostName() == 'vusolose'  or getBoxHostName() == 'vuduo2' or getBoxHostName() == 'vuzero' or getBoxHostName() == 'mbultra':          
+            elif getCPUtype() == "MIPS" and getBoxHostName() == 'vuultimo' or getBoxHostName() == 'bm750' or getBoxHostName() == 'vuduo' or getBoxHostName() == 'vuuno' or getBoxHostName() == 'vusolo' or getBoxHostName() == 'vuduo' or getBoxHostName() == 'vusolo2' or getBoxHostName() == 'vusolose' or getBoxHostName() == 'vuduo2' or getBoxHostName() == 'vuzero' or getBoxHostName() == 'mbultra':          
                 os.system('mv ' + getNeoLocation() + 'ImagesUpload/vuplus/' + getBoxVuModel() + '/kernel_cfe_auto.bin ' + media_target + '/boot/' + getBoxHostName() + '.vmlinux.gz' + dev_null)        
                 os.system('echo "Copied kernel.bin STB-MIPS"')                                        
             #arm vuplus arms
@@ -366,7 +366,7 @@ def NEOBootMainEx(source, target, stopenigma, CopyFiles, CopyKernel, TvList, Lan
                 rc = os.system(cmd)
                 cmd = 'cp -f ' + extensions_path + 'NeoBoot/bin/version ' + getNeoLocation() + 'ImageBoot/%s/boot/blackhole' % target
                 rc = os.system(cmd)
-                cmd = 'mv ' + getNeoLocation() + 'ImageBoot/' +target+ '/usr/lib/enigma2/python/Blackhole/BhUtils.pyo ' + getNeoLocation() + 'ImageBoot/%s/usr/lib/enigma2/python/Blackhole/BhUtils.pyo.org' % target
+                cmd = 'mv ' + getNeoLocation() + 'ImageBoot/' + target + '/usr/lib/enigma2/python/Blackhole/BhUtils.pyo ' + getNeoLocation() + 'ImageBoot/%s/usr/lib/enigma2/python/Blackhole/BhUtils.pyo.org' % target
                 rc = os.system(cmd)
                 cmd = 'cp -af ' + extensions_path + 'NeoBoot/bin/utilsbh ' + getNeoLocation() + 'ImageBoot/%s/usr/lib/enigma2/python/Blackhole/BhUtils.py' % target
                 rc = os.system(cmd)
@@ -374,7 +374,7 @@ def NEOBootMainEx(source, target, stopenigma, CopyFiles, CopyKernel, TvList, Lan
                 temp_file = open(localfile, 'w')
                 temp_file.write(text)
                 temp_file.close()
-                cmd = 'mv ' + getNeoLocation() + 'ImageBoot/' +target+ '/usr/bin/enigma2 ' + getNeoLocation() + 'ImageBoot/%s/usr/bin/enigma2-or' % target
+                cmd = 'mv ' + getNeoLocation() + 'ImageBoot/' + target + '/usr/bin/enigma2 ' + getNeoLocation() + 'ImageBoot/%s/usr/bin/enigma2-or' % target
                 rc = os.system(cmd)
                 fail = '' + getNeoLocation() + 'ImageBoot/%s/usr/bin/enigma2-or' % target
                 f = open(fail, 'r')
@@ -653,7 +653,7 @@ def NEOBootMainEx(source, target, stopenigma, CopyFiles, CopyKernel, TvList, Lan
     out = open(mediahome + '.neonextboot', 'w')
     out.write('Flash')
     out.close()                                                                             
-    if '.tar.xz' not in source and not os.path.exists('' + getNeoLocation() + '/ImageBoot/%s/etc/issue' %  target):
+    if '.tar.xz' not in source and not os.path.exists('' + getNeoLocation() + '/ImageBoot/%s/etc/issue' % target):
             os.system('echo ""; echo "No system installed! The reason for the installation error may be badly packed image files or it is not a system for your model."')
             os.system('echo "The installed system may not start. Check the correctness of the installed image directory!!!"')
             os.system('rm -r ' + getNeoLocation() + '/ImageBoot/%s' % target)
@@ -840,7 +840,7 @@ def NEOBootExtract(source, target, ZipDelete):
     if os.path.exists(sourcefile3) is True:
         if sourcefile3.endswith('.rar'):
             os.system('echo "Installing iamge  x.rar..."')
-            cmd = 'unrar e ' + sourcefile3+ ' ' + getNeoLocation() + 'ImagesUpload/ > /dev/null 2>&1' 
+            cmd = 'unrar e ' + sourcefile3 + ' ' + getNeoLocation() + 'ImagesUpload/ > /dev/null 2>&1' 
             rc = os.system(cmd)
             if ZipDelete == 'True':
                 rc = os.system('rm -rf ' + sourcefile3)

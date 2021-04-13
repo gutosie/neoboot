@@ -6,7 +6,7 @@ import os
 
 
 ###____ Skin HD - ImageChoose ___mod. gutosie ___
-ImageChooseHD ="""
+ImageChooseHD = """
 <screen name="NeoBootImageChoose" position="center,center" size="1280, 720" backgroundColor="transpBlack"> 
   <ePixmap position="0,0" zPosition="-1" size="1274,720" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/1frame_base-fs8.png" /> 
   <widget source="session.VideoPicture" render="Pig" position=" 836,89" size="370,208" zPosition="3" backgroundColor="#ff000000" />        
