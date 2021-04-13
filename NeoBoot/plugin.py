@@ -1532,7 +1532,8 @@ def checkInternet():
     if fileExists('/usr/lib/python3.8'):                     
         return True
     else:
-        import urllib2, urllib
+        import urllib2
+        import urllib
         try:
             response = urllib2.urlopen("http://google.com", None, 5)
             response.close()

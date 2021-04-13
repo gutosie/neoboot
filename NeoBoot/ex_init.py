@@ -1,6 +1,7 @@
 #!/usr/bin/python 
                                                                                                                                                        
-import sys, extract
+import sys
+import extract
 if len(sys.argv) < 16:
     pass
 else:

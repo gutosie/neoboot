@@ -29,7 +29,8 @@ import fileinput
 import re
 import os
 from Screens.VirtualKeyBoard import VirtualKeyBoard
-import gettext, os
+import gettext
+import os
 from Plugins.Extensions.NeoBoot.files.stbbranding import getTunerModel 
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
 

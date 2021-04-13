@@ -37,7 +37,8 @@ from Plugins.Extensions.NeoBoot.files.stbbranding import fileCheck, getNeoLocati
 import os
 import time
 import sys
-import struct, shutil                      
+import struct
+import shutil                      
 if fileExists('/etc/vtiversion.info') or fileExists('/etc/bhversion') or fileExists('/usr/lib/python3.8') and fileExists('/.multinfo'):   
     from Screens.Console import Console                   
 else:

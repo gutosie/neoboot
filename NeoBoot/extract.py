@@ -1,7 +1,10 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import sys, os, struct, shutil
+import sys
+import os
+import struct
+import shutil
 
 # ver. gutosie   
 #--------------------------------------------- 2021 ---------------------------------------------#
