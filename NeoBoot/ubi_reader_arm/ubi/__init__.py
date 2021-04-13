@@ -93,7 +93,7 @@ class ubi:
 
     blocks = property(_get_blocks)
 
-    def display(self, tab = ''):
+    def display(self, tab=''):
         display.ubi(self, tab)
 
 

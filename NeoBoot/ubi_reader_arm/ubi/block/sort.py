@@ -36,7 +36,7 @@ def by_leb(blocks):
     return sorted(blocks.iterkeys(), key=lambda x: blocks[x].leb_num)
 
 
-def by_vol_id(blocks, slist = None):
+def by_vol_id(blocks, slist=None):
     vol_blocks = {}
     for i in blocks:
         if slist and i not in slist:
@@ -50,7 +50,7 @@ def by_vol_id(blocks, slist = None):
     return vol_blocks
 
 
-def clean_bad(blocks, slist = None):
+def clean_bad(blocks, slist=None):
     clean_blocks = []
     for i in range(0, len(blocks)):
         if slist and i not in slist:
@@ -61,7 +61,7 @@ def clean_bad(blocks, slist = None):
     return clean_blocks
 
 
-def by_type(blocks, slist = None):
+def by_type(blocks, slist=None):
     layout = []
     data = []
     int_vol = []

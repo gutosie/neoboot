@@ -28,7 +28,7 @@ class description(object):
     def __repr__(self):
         return 'Block: PEB# %s: LEB# %s' % (self.peb_num, self.leb_num)
 
-    def display(self, tab = ''):
+    def display(self, tab=''):
         display.block(self, tab)
 
 

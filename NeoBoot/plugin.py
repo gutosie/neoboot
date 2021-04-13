@@ -1514,7 +1514,7 @@ class NeoBootImageChoose(Screen):
         self.close()
 
 
-def readline(filename, iferror = ''):
+def readline(filename, iferror=''):
     if iferror[:3] == 'or:':
       data = iferror[3:]
     else:

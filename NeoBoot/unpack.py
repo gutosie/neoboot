@@ -214,7 +214,7 @@ class InstallImage(Screen, ConfigListScreen):
                 self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title=self['config'].getCurrent()[0], text=self['config'].getCurrent()[1].value)
         return
 
-    def VirtualKeyBoardCallback(self, callback = None):
+    def VirtualKeyBoardCallback(self, callback=None):
         if callback is not None and len(callback):
             self['config'].getCurrent()[1].setValue(callback)
             self['config'].invalidate(self['config'].getCurrent())

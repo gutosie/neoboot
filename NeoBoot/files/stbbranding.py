@@ -9,7 +9,7 @@ LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
 
 LogFileObj = None
 
-def Log(param = ''):
+def Log(param=''):
     global LogFileObj
     #first close object if exists
     if param.lower() in ['open','write','append','close']:
@@ -47,7 +47,7 @@ def LogCrashGS(line):
 	log_file.write(line)
 	log_file.close()
 		
-def fileCheck(f, mode = 'r'):
+def fileCheck(f, mode='r'):
     return fileExists(f, mode) and f     
 
 #		if not IsImageName():

@@ -130,7 +130,7 @@ class ManagerDevice(Screen):
         for cb in self.onChangedEntry:
             cb(name, desc)
 
-    def updateList(self, result = None, retval = None, extra_args = None):
+    def updateList(self, result=None, retval=None, extra_args=None):
         scanning = _('Wait please while scanning for devices...')
         self['lab1'].setText(scanning)
         self.activityTimer.start(10)
@@ -276,7 +276,7 @@ class ManagerDevice(Screen):
             else:
                 self.session.open(MessageBox, _('This Device is already mounted as HDD.'), MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 
-    def add_fstab(self, result = None, retval = None, extra_args = None):
+    def add_fstab(self, result=None, retval=None, extra_args=None):
         self.device = extra_args[0]
         self.mountp = extra_args[1]
         self.device_uuid = 'UUID=' + result.split('UUID=')[1].split(' ')[0].replace('"', '')
@@ -462,7 +462,7 @@ class DevicesConf(Screen, ConfigListScreen):
             self.messagebox = self.session.open(MessageBox, _('Return to installation...'), MessageBox.TYPE_INFO)
             self.close()
 
-    def add_fstab(self, result = None, retval = None, extra_args = None):
+    def add_fstab(self, result=None, retval=None, extra_args=None):
         print ("[MountManager] RESULT:"), result
         if result:
             self.device = extra_args[0]

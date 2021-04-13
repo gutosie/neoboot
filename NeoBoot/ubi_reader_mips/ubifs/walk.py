@@ -2,7 +2,7 @@
 from ubifs import extract
 from ubifs.defines import *
 
-def index(ubifs, lnum, offset, inodes = {}):
+def index(ubifs, lnum, offset, inodes={}):
     chdr = extract.common_hdr(ubifs, lnum, offset)
     if chdr.node_type == UBIFS_IDX_NODE:
         idxn = extract.idx_node(ubifs, lnum, offset + UBIFS_COMMON_HDR_SZ)

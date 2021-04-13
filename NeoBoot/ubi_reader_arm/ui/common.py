@@ -6,7 +6,7 @@ from ubifs.defines import PRINT_UBIFS_KEY_HASH, PRINT_UBIFS_COMPR
 from ubi.defines import PRINT_VOL_TYPE_LIST, UBI_VTBL_AUTORESIZE_FLG
 output_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'output')
 
-def extract_files(ubifs, out_path, perms = False):
+def extract_files(ubifs, out_path, perms=False):
     try:
         inodes = {}
         walk.index(ubifs, ubifs.master_node.root_lnum, ubifs.master_node.root_offs, inodes)

@@ -34,5 +34,5 @@ class description(object):
 
     volumes = property(_get_volumes)
 
-    def display(self, tab = ''):
+    def display(self, tab=''):
         display.image(self, tab)

@@ -71,7 +71,7 @@ DEVTYPE_DEVFS = 1
 
 class Harddisk():
 
-    def __init__(self, device, removable = False):
+    def __init__(self, device, removable=False):
         self.device = device
         if os.access('/dev/.udev', 0):
             self.type = DEVTYPE_UDEV
@@ -526,7 +526,7 @@ class Harddisk():
 
 class Partition():
 
-    def __init__(self, mountpoint, device = None, description = '', force_mounted = False):
+    def __init__(self, mountpoint, device=None, description='', force_mounted=False):
         self.mountpoint = mountpoint
         self.description = description
         self.force_mounted = mountpoint and force_mounted
@@ -564,7 +564,7 @@ class Partition():
             return self.description
         return self.description + '\t' + self.mountpoint
 
-    def mounted(self, mounts = None):
+    def mounted(self, mounts=None):
         if self.force_mounted:
             return True
         else:
@@ -577,7 +577,7 @@ class Partition():
 
             return False
 
-    def filesystem(self, mounts = None):
+    def filesystem(self, mounts=None):
         if self.mountpoint:
             if mounts is None:
                 mounts = getProcMounts()
@@ -711,7 +711,7 @@ class HarddiskManager():
 
         return None
 
-    def addHotplugPartition(self, device, physdev = None):
+    def addHotplugPartition(self, device, physdev=None):
         if not physdev:
             dev, part = self.splitDeviceName(device)
             try:
@@ -739,7 +739,7 @@ class HarddiskManager():
          partitions,
          medium_found)
 
-    def addHotplugAudiocd(self, device, physdev = None):
+    def addHotplugAudiocd(self, device, physdev=None):
         if not physdev:
             dev, part = self.splitDeviceName(device)
             try:
@@ -796,7 +796,7 @@ class HarddiskManager():
     def getCD(self):
         return self.cd
 
-    def getMountedPartitions(self, onlyhotplug = False, mounts = None):
+    def getMountedPartitions(self, onlyhotplug=False, mounts=None):
         if mounts is None:
             mounts = getProcMounts()
         parts = [ x for x in self.partitions if (x.is_hotplug or not onlyhotplug) and x.mounted(mounts) ]
@@ -844,7 +844,7 @@ class HarddiskManager():
                 self.partitions.remove(x)
                 self.on_partition_list_change('remove', x)
 
-    def setDVDSpeed(self, device, speed = 0):
+    def setDVDSpeed(self, device, speed=0):
         ioctl_flag = int(21282)
         if not device.startswith('/'):
             device = '/dev/' + device
@@ -1042,7 +1042,7 @@ def isSleepStateDevice(device):
         return None
 
 
-def internalHDDNotSleeping(external = False):
+def internalHDDNotSleeping(external=False):
     state = False
     if harddiskmanager.HDDCount():
         for hdd in harddiskmanager.HDDList():

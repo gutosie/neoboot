@@ -76,7 +76,7 @@ class Job(object):
             self.state_changed()
         return
 
-    def taskCallback(self, task, res, stay_resident = False):
+    def taskCallback(self, task, res, stay_resident=False):
         cb_idx = self.tasks.index(task)
         if stay_resident:
             if cb_idx not in self.resident_tasks:
@@ -151,7 +151,7 @@ class Task(object):
     def setCmdline(self, cmdline):
         self.cmdline = cmdline
 
-    def checkPreconditions(self, immediate = False):
+    def checkPreconditions(self, immediate=False):
         not_met = []
         if immediate:
             preconditions = self.immediate_preconditions
@@ -232,7 +232,7 @@ class Task(object):
             self.container.kill()
         self.finish(aborted=True)
 
-    def finish(self, aborted = False):
+    def finish(self, aborted=False):
         self.afterRun()
         not_met = []
         if aborted:
@@ -313,7 +313,7 @@ class PythonTask(Task):
 
 class ConditionTask(Task):
 
-    def __init__(self, job, name, timeoutCount = None):
+    def __init__(self, job, name, timeoutCount=None):
         Task.__init__(self, job, name)
         self.timeoutCount = timeoutCount
 
@@ -360,7 +360,7 @@ class JobManager:
         self.active_job = None
         return
 
-    def AddJob(self, job, onSuccess = None, onFail = None):
+    def AddJob(self, job, onSuccess=None, onFail=None):
         job.onSuccess = onSuccess
         if onFail is None:
             job.onFail = self.notifyFailed
@@ -468,7 +468,7 @@ class ToolExistsPrecondition(Condition):
         self.realpath = task.cmd
         path = os.environ.get('PATH', '').split(os.pathsep)
         path.append(task.cwd + '/')
-        absolutes = filter(lambda file: os.access(file, os.X_OK), map(lambda directory, file = task.cmd: os.path.join(directory, file), path))
+        absolutes = filter(lambda file: os.access(file, os.X_OK), map(lambda directory, file=task.cmd: os.path.join(directory, file), path))
         if absolutes:
             self.realpath = absolutes[0]
             return True

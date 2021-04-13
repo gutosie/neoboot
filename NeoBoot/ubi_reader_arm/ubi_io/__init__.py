@@ -3,7 +3,7 @@ from ubi.block import sort
 
 class ubi_file(object):
 
-    def __init__(self, path, block_size, start_offset = 0, end_offset = None):
+    def __init__(self, path, block_size, start_offset=0, end_offset=None):
         self._fhandle = open(path, 'rb')
         self._start_offset = start_offset
         if end_offset:

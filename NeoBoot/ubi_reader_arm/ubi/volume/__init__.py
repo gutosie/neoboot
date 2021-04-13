@@ -41,7 +41,7 @@ class description(object):
     def get_blocks(self, blocks):
         return get_blocks_in_list(blocks, self._block_list)
 
-    def display(self, tab = ''):
+    def display(self, tab=''):
         display.volume(self, tab)
 
     def reader(self, ubi):
