@@ -6,10 +6,10 @@ import os
 # mercus = /neoskins/mercus/mercus_skin.py
 
 ### ImageChooseFULLHD  - mercus
-ImageChooseFULLHD = """ 
+ImageChooseFULLHD = """
 <screen name="ImageChooseFULLHD" position="center,center" size="1920,1080" title=" " flags="wfNoBorder" backgroundColor="transparent">
   <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/test1.png" alphatest="blend" position="15,center" size="1920,1080" zPosition="-2" />
-  <widget name="config" position="1200,200" size="660,365" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/selektor.png" itemHeight="43" font="baslk;30" scrollbarMode="showOnDemand" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" foregroundColorSelected="#00FFFFF" backgroundColorSelected="#1A27408B" scrollbarSliderBorderWidth="1" scrollbarWidth="8" scrollbarSliderForegroundColor="#99FFFF" scrollbarSliderBorderColor="#0027408B" enableWrapAround="1" transparent="1" />   
+  <widget name="config" position="1200,200" size="660,365" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/selektor.png" itemHeight="43" font="baslk;30" scrollbarMode="showOnDemand" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" foregroundColorSelected="#00FFFFF" backgroundColorSelected="#1A27408B" scrollbarSliderBorderWidth="1" scrollbarWidth="8" scrollbarSliderForegroundColor="#99FFFF" scrollbarSliderBorderColor="#0027408B" enableWrapAround="1" transparent="1" />
   <widget name="progreso" position="91,543" size="530,12" borderWidth="1" zPosition="3" />
   <widget name="device_icon" position="681,483" size="147,136" alphatest="on" zPosition="2" />
   <widget name="key_red" position="140,992" zPosition="1" size="552,38" font="Regular; 30" halign="left" valign="center" backgroundColor="black" transparent="1" />
@@ -46,7 +46,7 @@ ImageChooseFULLHD = """
   </widget>
   <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/key_1.png" alphatest="blend" position="90,770" size="52,38" zPosition="3" />
   <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/key_2.png" alphatest="blend" position="90,820" size="52,38" zPosition="3" />
-  <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/key_3.png" alphatest="blend" position="90,870" size="52,38" zPosition="3" />    
+  <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/key_3.png" alphatest="blend" position="90,870" size="52,38" zPosition="3" />
   <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/key_menu.png" alphatest="blend" position="90,920" size="52,38" zPosition="3" />
   <widget source="session.VideoPicture" render="Pig" position="1200,582" size="660,370" backgroundColor="transparent" zPosition="1" />
   <widget name="key_menu" position="135,915" zPosition="1" size="249,46" font="Regular;30" halign="center" valign="center" backgroundColor="black" transparent="1" foregroundColor="#99FFFF" />

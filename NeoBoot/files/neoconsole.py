@@ -1,6 +1,6 @@
-# -*- coding: utf-8 -*- 
- 
-from Plugins.Extensions.NeoBoot.__init__ import _ 
+# -*- coding: utf-8 -*-
+
+from Plugins.Extensions.NeoBoot.__init__ import _
 #from __future__ import print_function
 from enigma import eConsoleAppContainer
 from Screens.Screen import Screen
@@ -25,13 +25,13 @@ class Console(Screen):
         self.closeOnSuccess = closeOnSuccess
         self.errorOcurred = False
         self['key_red'] = Label(_('Stop action'))
-        self['key_green'] = Label(_('Hide Console'))                                                
+        self['key_green'] = Label(_('Hide Console'))
         self['text'] = ScrollLabel('')
         self['summary_description'] = StaticText('')
         self['actions'] = ActionMap(['WizardActions', 'DirectionActions', 'ColorActions'], {'ok': self.cancel,
          'back': self.cancel,
          'up': self.key_up,
-         'down': self.key_down,        
+         'down': self.key_down,
          'green': self.key_green,
          'red': self.key_red}, -1)
         self.cmdlist = cmdlist
@@ -77,7 +77,7 @@ class Console(Screen):
             self.toggleScreenHide(True)
             if self.cancel_msg:
                 self.cancel_msg.close()
-            from Tools.Directories import fileExists    
+            from Tools.Directories import fileExists
             if not fileExists('/etc/vtiversion.info'):
                 lastpage = self['text'].isAtLastPage()
             self['text'].appendText('\n' + _('Execution finished!!'))

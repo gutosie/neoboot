@@ -51,11 +51,9 @@ ImageChooseFULLHD = """
   <widget name="label14" position="595,25" zPosition="1" size="350,56" font="Regular;35" halign="center" valign="center" backgroundColor="black" transparent="1" foregroundColor="green" />
   <widget name="label15" position="322,584" zPosition="1" size="265,42" font="Regular;35" halign="center" valign="center" backgroundColor="black" transparent="1" foregroundColor="green" />
   <widget name="label19" position="150,910" zPosition="1" size="750,45" font="Regular;35" halign="left" valign="center" backgroundColor="black" transparent="1" foregroundColor="unff00" />
-  
+
 </screen>
-  
+
 """
 
 ###
- 
- 

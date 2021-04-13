@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 
 #from __init__ import _
-from Plugins.Extensions.NeoBoot.__init__ import _ 
+from Plugins.Extensions.NeoBoot.__init__ import _
 #from __future__ import print_function
 from Plugins.Extensions.NeoBoot.files.stbbranding import getNeoLocation, getCPUtype, getCPUSoC, getImageNeoBoot, getBoxVuModel, getBoxHostName, getNeoMount, getNeoMount2, getNeoMount3, getNeoMount4, getNeoMount5, getMountPointNeo2
 from enigma import getDesktop
 from enigma import eTimer
-from Screens.Screen import Screen                                                                                                                                               
+from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.VirtualKeyBoard import VirtualKeyBoard
@@ -30,7 +30,7 @@ from Tools.Directories import fileExists, pathExists, createDir, resolveFilename
 from os import system, listdir, mkdir, chdir, getcwd, rename as os_rename, remove as os_remove, popen
 from os.path import dirname, isdir, isdir as os_isdir
 import os
-import time                  
+import time
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
 
 

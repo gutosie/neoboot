@@ -1,21 +1,21 @@
 # -*- coding: utf-8 -*-
 
-from Plugins.Extensions.NeoBoot.__init__ import _ 
+from Plugins.Extensions.NeoBoot.__init__ import _
 import os
 import time
 from Tools.Directories import fileExists, pathExists
 from Tools.CList import CList
 from Components.SystemInfo import SystemInfo
 from Components.Console import Console
-from Plugins.Extensions.NeoBoot.files import Task    
+from Plugins.Extensions.NeoBoot.files import Task
 if fileExists('/usr/lib/python3.8'):
-    from Components import Task                       
+    from Components import Task
 else:
-    import Task        
+    import Task
 try:
     from Task import LoggingTask
-except: 
-    from Components.Task import LoggingTask  
+except:
+    from Components.Task import LoggingTask
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.MenuList import MenuList
@@ -125,7 +125,7 @@ class Harddisk():
                     break
 
             self.card = self.device[:2] == 'hd' and 'host0' not in self.dev_path
-        print("[Harddisk] new device"), self.device, '->', self.dev_path, '->', self.disk_path        
+        print("[Harddisk] new device"), self.device, '->', self.dev_path, '->', self.disk_path
         if not removable and not self.card:
             self.startIdle()
         return
@@ -274,7 +274,7 @@ class Harddisk():
             return res >> 8
 
     def createPartition(self):
-        cmd = 'printf "8,\n;0,0\n;0,0\n;0,0\ny\n" | sfdisk -f -uS ' + self.disk_path        
+        cmd = 'printf "8,\n;0,0\n;0,0\n;0,0\ny\n" | sfdisk -f -uS ' + self.disk_path
         res = os.system(cmd)
         return res >> 8
 
@@ -297,7 +297,7 @@ class Harddisk():
             parts = line.strip().split(' ')
             fspath = os.path.realpath(parts[0])
             if fspath == dev:
-                print("[Harddisk] mounting:"), fspath 
+                print("[Harddisk] mounting:"), fspath
                 cmd = 'mount -t auto ' + fspath
                 res = os.system(cmd)
                 return res >> 8
@@ -542,7 +542,7 @@ class Partition():
     def stat(self):
         if self.mountpoint:
             return os.statvfs(self.mountpoint)
-        raise (OSError, "Device %s is not mounted") % self.device               
+        raise (OSError, "Device %s is not mounted") % self.device
 
     def free(self):
         try:
@@ -624,7 +624,7 @@ class HarddiskManager():
          ('/media/ram', _('Ram disk')),
          ('/media/usb', _('USB stick')),
          ('/media/usb1', _('USB1 stick')),
-         ('/media/usb2', _('USB2 stick')),                  
+         ('/media/usb2', _('USB2 stick')),
          ('/', _('Internal flash')))
         known = set([os.path.normpath(a.mountpoint) for a in self.partitions if a.mountpoint])
         for m, d in p:
@@ -984,7 +984,7 @@ class HarddiskSetup(Screen):
             return
         try:
             from Task import job_manager
-        except:            
+        except:
             from Components.Task import job_manager
         try:
             job = self.action()

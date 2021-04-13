@@ -5,7 +5,7 @@ import sys
 #import argparse_neo
 try:
     import argparse
-except: 
+except:
     import argparse_neo
 from ubi import ubi, get_peb_size
 from ubifs import ubifs
@@ -18,7 +18,7 @@ if __name__ == '__main__':
 #    parser = argparse_neo.ArgumentParser(usage=usage, description=description)
     try:
         parser = argparse.ArgumentParser(usage=usage, description=description)
-    except: 
+    except:
         parser = argparse_neo.ArgumentParser(usage=usage, description=description)
     parser.add_argument('-l', '--log-file', dest='logpath', help='Log output to file output/LOGPATH. (default: ubifs_output.log)')
     parser.add_argument('-k', '--keep-permissions', action='store_true', dest='permissions', help='Maintain file permissions, requires running as root. (default: False)')

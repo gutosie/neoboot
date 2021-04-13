@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
- 
-from Plugins.Extensions.NeoBoot.__init__ import _ 
+
+from Plugins.Extensions.NeoBoot.__init__ import _
 from enigma import getDesktop
 from Plugins.Plugin import PluginDescriptor
 from Screens.ChoiceBox import ChoiceBox
@@ -31,10 +31,10 @@ import os
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 import gettext
 import os
-from Plugins.Extensions.NeoBoot.files.stbbranding import getTunerModel 
+from Plugins.Extensions.NeoBoot.files.stbbranding import getTunerModel
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
 
-    
+
 class ManagerDevice(Screen):
     screenwidth = getDesktop(0).size().width()
     if screenwidth and screenwidth == 1920:
@@ -43,7 +43,7 @@ class ManagerDevice(Screen):
             <widget name="key_red" position="14,17" zPosition="1" size="271,49" font="dugme;30" halign="center" valign="center" backgroundColor="red" transparent="1"   foregroundColor="red" />
             <widget name="key_green" position="289,17" zPosition="1" size="369,49" font="dugme;30" halign="center" valign="center" backgroundColor="green" transparent="1"   foregroundColor="green" />
             <widget name="key_yellow" position="661,17" zPosition="1" size="302,49" font="dugme;30" halign="center" valign="center" backgroundColor="yellow" transparent="1"   foregroundColor="yellow" />
-            <widget name="key_blue" position="967,17" zPosition="1" size="257,49" font="dugme;30" halign="center" valign="center" backgroundColor="blue" transparent="1"   foregroundColor="blue" />                                                                                                                              
+            <widget name="key_blue" position="967,17" zPosition="1" size="257,49" font="dugme;30" halign="center" valign="center" backgroundColor="blue" transparent="1"   foregroundColor="blue" />
             <eLabel position="18,70" size="1204,2" backgroundColor="blue" foregroundColor="blue" name="linia" />
             <eLabel position="18,670" size="1204,2" backgroundColor="blue" foregroundColor="blue" name="linia" />
             <eLabel backgroundColor="black" font="dugme; 30" foregroundColor="orange" position="536,674" size="197,56" text="Exit - Back" transparent="1" />
@@ -54,10 +54,10 @@ class ManagerDevice(Screen):
             </screen>"""
     else:
         skin = """<screen name="ManagerDevice" position="center,center" size="752,460">
-        <eLabel backgroundColor="black" font="Regular; 30" foregroundColor="orange" position="315,405" size="169,51" text="Exit - Back" transparent="1" />        
+        <eLabel backgroundColor="black" font="Regular; 30" foregroundColor="orange" position="315,405" size="169,51" text="Exit - Back" transparent="1" />
         <widget name="key_red" position="21,0" zPosition="1" size="151,47" font="Regular;20" halign="center" valign="center" backgroundColor="red" transparent="1" foregroundColor="red" />
         <widget name="key_green" position="216,0" zPosition="1" size="140,47" font="Regular;20" halign="center" valign="center" backgroundColor="green" transparent="1" foregroundColor="green" />
-        <widget name="key_yellow" position="400,0" zPosition="1" size="140,47" font="Regular;20" halign="center" valign="center" backgroundColor="yellow" transparent="1" foregroundColor="yellow" />       
+        <widget name="key_yellow" position="400,0" zPosition="1" size="140,47" font="Regular;20" halign="center" valign="center" backgroundColor="yellow" transparent="1" foregroundColor="yellow" />
         <widget name="key_blue" position="587,0" zPosition="1" size="149,46" font="Regular;20" halign="center" valign="center" backgroundColor="blue" transparent="1" foregroundColor="blue" />
         <widget source="list" render="Listbox" position="18,63" size="721,341" scrollbarMode="showOnDemand">
         <convert type="TemplatedMultiContent">\n\t\t\t\t{"template": [\n\t\t\t\t MultiContentEntryText(pos = (90, 0), size = (600, 30), font=0, text = 0),\n\t\t\t\t MultiContentEntryText(pos = (110, 30), size = (600, 50), font=1, flags = RT_VALIGN_TOP, text = 1),\n\t\t\t\t MultiContentEntryPixmapAlphaBlend(pos = (0, 0), size = (80, 80)),\n\t\t\t\t],\n\t\t\t\t"fonts": [gFont("Regular", 24),gFont("Regular", 20)],\n\t\t\t\t"itemHeight": 85\n\t\t\t\t}\n\t\t\t</convert>
@@ -90,7 +90,7 @@ class ManagerDevice(Screen):
 
     def Format_ext3(self):
         try:
-            if fileExists('/etc/vtiversion.info') or fileExists('/etc/bhversion'):                    
+            if fileExists('/etc/vtiversion.info') or fileExists('/etc/bhversion'):
                 self.session.open(MessageBox, _("This option is available only from openpli or derivatives."), MessageBox.TYPE_INFO, timeout=10)
             else:
                 from Harddisk import HarddiskSelection
@@ -103,7 +103,7 @@ class ManagerDevice(Screen):
         self.session.openWithCallback(self.updateList, HarddiskSelection)
 
     def ExitBack(self):
-        self.close()    
+        self.close()
 
     def setWindowTitle(self):
         self.setTitle(_('Mount Manager'))
@@ -160,7 +160,7 @@ class ManagerDevice(Screen):
         device2 = re.sub('[0-9]', '', device)
         devicetype = path.realpath('/sys/block/' + device2 + '/device')
         d2 = device
-        name = _('HARD DISK: ')        
+        name = _('HARD DISK: ')
         mypixmap = '' + LinkNeoBoot + '/images/dev_hdd.png'
         model = file('/sys/block/' + device2 + '/device/model').read()
         model = str(model).replace('\n', '')
@@ -170,13 +170,13 @@ class ManagerDevice(Screen):
             mypixmap = '' + LinkNeoBoot + '/images/dev_usb.png'
         if devicetype.find('usb1') != -1:
             name = _('USB1: ')
-            mypixmap = '' + LinkNeoBoot + '/images/dev_usb.png'   
+            mypixmap = '' + LinkNeoBoot + '/images/dev_usb.png'
         if devicetype.find('usb2') != -1:
             name = _('USB2: ')
-            mypixmap = '' + LinkNeoBoot + '/images/dev_usb.png'                      
+            mypixmap = '' + LinkNeoBoot + '/images/dev_usb.png'
         if devicetype.find('card') != -1:
             name = _('CARD: ')
-            mypixmap = '' + LinkNeoBoot + '/images/dev_sd.png' 
+            mypixmap = '' + LinkNeoBoot + '/images/dev_sd.png'
 
         name = name + model
         self.Console = Console()
@@ -304,8 +304,8 @@ class ManagerDevice(Screen):
 class DevicesConf(Screen, ConfigListScreen):
     screenwidth = getDesktop(0).size().width()
     if screenwidth and screenwidth == 1920:
-        skin = """<screen name="DevicesConfFullHD" position="400,150" size="976,728" title="Choose where to mount your devices to:">        
-        <eLabel backgroundColor="black" font="baslk; 25" foregroundColor="red" position="150,900" size="800,30" text=" Exit - Back " transparent="1" /> 
+        skin = """<screen name="DevicesConfFullHD" position="400,150" size="976,728" title="Choose where to mount your devices to:">
+        <eLabel backgroundColor="black" font="baslk; 25" foregroundColor="red" position="150,900" size="800,30" text=" Exit - Back " transparent="1" />
         <widget name="key_red" position="110,13" zPosition="1" size="335,67" font="baslk;30" halign="center" valign="center" backgroundColor="red" transparent="1" foregroundColor="red" />
         <widget name="key_green" position="549,15" zPosition="1" size="362,65" font="baslk;30" halign="center" valign="center" backgroundColor="green" transparent="1" foregroundColor="green" />
         <widget name="config" position="33,179" size="891,385" font="Regular;21" scrollbarMode="showOnDemand" />
@@ -330,7 +330,7 @@ class DevicesConf(Screen, ConfigListScreen):
          'red': self.close,
          'back': self.close})
         self.updateList()
-        
+
     def updateList(self):
         self.list = []
         list2 = []
@@ -382,11 +382,11 @@ class DevicesConf(Screen, ConfigListScreen):
             mypixmap = '' + LinkNeoBoot + '/images/dev_usb.png'
         if devicetype.find('usb2') != -1:
             name = _('USB2: ')
-            mypixmap = '' + LinkNeoBoot + '/images/dev_usb.png'            
+            mypixmap = '' + LinkNeoBoot + '/images/dev_usb.png'
         if devicetype.find('card') != -1:
             name = _('CARD: ')
             mypixmap = '' + LinkNeoBoot + '/images/dev_sd.png'
-            
+
         name = name + model
         f = open('/proc/mounts', 'r')
         for line in f.readlines():
@@ -423,7 +423,7 @@ class DevicesConf(Screen, ConfigListScreen):
          ('/media/cf', '/media/cf'),
          ('/media/card', '/media/card')]))
         if dtype == 'Linux':
-            dtype = 'ext2', 'ext3', 'ext4' 
+            dtype = 'ext2', 'ext3', 'ext4'
         else:
             dtype = 'auto'
         item.value = d1.strip()
@@ -432,7 +432,7 @@ class DevicesConf(Screen, ConfigListScreen):
         if des != '' and self.list.append(res):
             pass
 
-    def saveMypoints(self):       
+    def saveMypoints(self):
         self.Console = Console()
         mycheck = False
         for x in self['config'].list:
@@ -496,17 +496,17 @@ class DevicesConf(Screen, ConfigListScreen):
 #                line2 = '"' + self.device_uuid2 + '"' + ':' + self.mountp + '\n'
 #                out2.write(line2)
 #                out2.close()
-                                                                              
+
 
 #SetDiskLabel - dziekuje autorowi
 class SetDiskLabel(Screen):
     screenwidth = getDesktop(0).size().width()
-    if screenwidth and screenwidth == 1920:    
+    if screenwidth and screenwidth == 1920:
         skin = """<screen name="SetDiskLabel" position="400,188" size="1100,601" title="Set Disk Label v1.1">
       <widget name="infoTXT" position="22,62" zPosition="1" size="591,86" font="baslk;28" halign="left" valign="center" backgroundColor="transpBlack" transparent="1" />
 
       <widget name="devlist" position="685,60" size="310,132" font="Regular;20" valign="center" />
-      
+
       <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/k_left.png" position="628,86" size="40,40" alphatest="on" />
       <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/k_right.png" position="1015,85" size="40,40" alphatest="on" />
       <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/k_up.png" position="630,381" size="40,42" alphatest="on" />
@@ -521,7 +521,7 @@ class SetDiskLabel(Screen):
       <ePixmap pixmap="skin_default/buttons/key_green.png" position="259,535" size="40,40" alphatest="on" />
       <ePixmap pixmap="skin_default/buttons/key_yellow.png" position="567,535" size="40,40" alphatest="on" />
       <ePixmap pixmap="skin_default/buttons/key_blue.png" position="814,532" size="40,40" alphatest="on" />
-      
+
       <widget name="key_red" position="60,526" zPosition="1" size="196,40" font="baslk;25" halign="left" valign="left" backgroundColor="transpBlack" transparent="1" />
       <widget name="key_green" position="304,526" zPosition="1" size="255,40" font="baslk;25" halign="left" valign="left" backgroundColor="transpBlack" transparent="1" />
       <widget name="key_yellow" position="613,526" zPosition="1" size="196,40" font="baslk;25" halign="left" valign="left" backgroundColor="transpBlack" transparent="1" />

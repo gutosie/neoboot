@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # system modules
 
-from Plugins.Extensions.NeoBoot.__init__ import _  
+from Plugins.Extensions.NeoBoot.__init__ import _
 import codecs
 from enigma import getDesktop
 from Components.About import about
@@ -14,7 +14,7 @@ from Components.Label import Label
 from Components.ProgressBar import ProgressBar
 from Components.ScrollLabel import ScrollLabel
 from Components.Pixmap import Pixmap, MultiPixmap
-from Components.config import *                                            
+from Components.config import *
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
@@ -33,24 +33,24 @@ from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE, 
 from os import system, listdir, mkdir, chdir, getcwd, rename as os_rename, remove as os_remove, popen
 from os.path import dirname, isdir, isdir as os_isdir
 from enigma import eTimer
-from Plugins.Extensions.NeoBoot.files.stbbranding import fileCheck, getNeoLocation, getImageNeoBoot, getKernelVersionString, getBoxHostName, getCPUtype, getBoxVuModel, getTunerModel, getCPUSoC, getImageATv, getBoxModelVU 
+from Plugins.Extensions.NeoBoot.files.stbbranding import fileCheck, getNeoLocation, getImageNeoBoot, getKernelVersionString, getBoxHostName, getCPUtype, getBoxVuModel, getTunerModel, getCPUSoC, getImageATv, getBoxModelVU
 import os
 import time
 import sys
 import struct
-import shutil                      
-if fileExists('/etc/vtiversion.info') or fileExists('/etc/bhversion') or fileExists('/usr/lib/python3.8') and fileExists('/.multinfo'):   
-    from Screens.Console import Console                   
+import shutil
+if fileExists('/etc/vtiversion.info') or fileExists('/etc/bhversion') or fileExists('/usr/lib/python3.8') and fileExists('/.multinfo'):
+    from Screens.Console import Console
 else:
     try:
-            from Plugins.Extensions.NeoBoot.files.neoconsole import Console 
+            from Plugins.Extensions.NeoBoot.files.neoconsole import Console
     except:
             from Screens.Console import Console
-LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'                                              
-neoboot = getNeoLocation()  
+LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
+neoboot = getNeoLocation()
 media = getNeoLocation()
-mediahome = media + '/ImageBoot/'  
-       
+mediahome = media + '/ImageBoot/'
+
 
 def getDS():
     s = getDesktop(0).size()
@@ -69,14 +69,14 @@ def isHD():
 
 def isUHD():
     desktopSize = getDS()
-    return desktopSize[0] >= 1920 and desktopSize[0] < 3840  
- 
+    return desktopSize[0] >= 1920 and desktopSize[0] < 3840
+
 
 def getKernelVersion():
     try:
         return open('/proc/version', 'r').read().split(' ', 4)[2].split('-', 2)[0]
     except:
-        return _('unknown')            
+        return _('unknown')
 
 
 def getCPUtype():
@@ -95,17 +95,17 @@ def getCPUtype():
 if os.path.exists('/etc/hostname'):
     with open('/etc/hostname', 'r') as f:
         myboxname = f.readline().strip()
-        f.close()            
-           
+        f.close()
+
 if os.path.exists('/proc/stb/info/vumodel'):
     with open('/proc/stb/info/vumodel', 'r') as f:
         vumodel = f.readline().strip()
-        f.close() 
+        f.close()
 
 if os.path.exists('/proc/stb/info/boxtype'):
     with open('/proc/stb/info/boxtype', 'r') as f:
         boxtype = f.readline().strip()
-        f.close() 
+        f.close()
 
 
 class BoundFunction:
@@ -116,19 +116,19 @@ class BoundFunction:
         self.args = args
 
     def __call__(self):
-        self.fnc(*self.args)             
+        self.fnc(*self.args)
 
 
 class MBTools(Screen):
     if isFHD():
-        skin = """<screen name="MBTools" position="70,93" size="910,938" title="NeoBoot tools">  
+        skin = """<screen name="MBTools" position="70,93" size="910,938" title="NeoBoot tools">
           <eLabel position="20,68" size="890,2" backgroundColor="blue" foregroundColor="blue" name="linia" />
           <eLabel position="20,935" size="890,2" backgroundColor="blue" foregroundColor="blue" name="linia" />
-          <ePixmap position="25,-1" size="45,65" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/updown.png" alphatest="on" />        
+          <ePixmap position="25,-1" size="45,65" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/updown.png" alphatest="on" />
           <eLabel backgroundColor="background" font="baslk; 30" foregroundColor="yellow" position="293,2" size="275,57" text="Menu list NEOBoot" />
           <widget source="list" render="Listbox" position="20,75" size="885,847" scrollbarMode="showOnDemand">
           <convert type="TemplatedMultiContent">\n                \t\t{"template": [\n                    \t\t\tMultiContentEntryText(pos = (50, 1), size = (920, 56), flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER, text = 0),\n                    \t\t\tMultiContentEntryPixmapAlphaTest(pos = (6, 4), size = (66, 66), png = 1),\n                    \t\t\t],\n                    \t\t\t"fonts": [gFont("Regular", 35)],\n                    \t\t\t"itemHeight": 60\n                \t\t}\n            \t\t</convert>
-          </widget>      
+          </widget>
           </screen>"""
     else:
         skin = '\n <screen position="center,center" size="590,330" title="NeoBoot tools">\n\t\t<widget source="list" render="Listbox" position="10,16" size="570,300" scrollbarMode="showOnDemand" >\n\t\t\t<convert type="TemplatedMultiContent">\n                \t\t{"template": [\n                    \t\t\tMultiContentEntryText(pos = (50, 1), size = (520, 36), flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER, text = 0),\n                    \t\t\tMultiContentEntryPixmapAlphaTest(pos = (4, 2), size = (36, 36), png = 1),\n                    \t\t\t],\n                    \t\t\t"fonts": [gFont("Regular", 22)],\n                    \t\t\t"itemHeight": 36\n                \t\t}\n            \t\t</convert>\n\t\t</widget>\n        </screen>'
@@ -142,7 +142,7 @@ class MBTools(Screen):
         self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.KeyOk,
          'back': self.close})
 
-    def updateList(self):                       
+    def updateList(self):
         self.list = []
         mypath = '' + LinkNeoBoot + ''
         if not fileExists(mypath + 'icons'):
@@ -156,31 +156,31 @@ class MBTools(Screen):
         res = (_('Restore a copy of the image to NeoBoot'), png, 1)
         self.list.append(res)
         self['list']. list = self.list
-        
+
         res = (_('Device manager'), png, 2)
         self.list.append(res)
         self['list']. list = self.list
-        
+
         res = (_('Delete image ZIP from the ImagesUpload directory'), png, 3)
         self.list.append(res)
         self['list']. list = self.list
-        
+
         res = (_('NeoBoot Backup'), png, 4)
         self.list.append(res)
         self['list']. list = self.list
 
-        res = (_('Restore neoboot backup'), png, 5)    
+        res = (_('Restore neoboot backup'), png, 5)
         self.list.append(res)
         self['list']. list = self.list
 
         res = (_('Uninstall NeoBoot'), png, 6)
         self.list.append(res)
         self['list']. list = self.list
-        
+
         res = (_('Update NeoBoot on all images.'), png, 7)
         self.list.append(res)
         self['list']. list = self.list
-                
+
         res = (_('Update TV list on installed image.'), png, 8)
         self.list.append(res)
         self['list']. list = self.list
@@ -188,7 +188,7 @@ class MBTools(Screen):
         res = (_('Update IPTVPlayer on installed image.'), png, 9)
         self.list.append(res)
         self['list']. list = self.list
-        
+
         res = (_('Update FeedExtra on the installed image.'), png, 10)
         self.list.append(res)
         self['list']. list = self.list
@@ -200,7 +200,7 @@ class MBTools(Screen):
         res = (_('Check the correctness of neoboot installation'), png, 12)
         self.list.append(res)
         self['list']. list = self.list
-        
+
         res = (_('Skin change'), png, 13)
         self.list.append(res)
         self['list']. list = self.list
@@ -220,10 +220,10 @@ class MBTools(Screen):
         res = (_('Updates feed cam OpenATV softcam'), png, 17)
         self.list.append(res)
         self['list']. list = self.list
-        
+
         res = (_('Create swap- file.'), png, 18)
         self.list.append(res)
-        self['list']. list = self.list        
+        self['list']. list = self.list
 
         res = (_('Supported sat tuners'), png, 19)
         self.list.append(res)
@@ -232,10 +232,10 @@ class MBTools(Screen):
         res = (_('NeoBoot Information'), png, 20)
         self.list.append(res)
         self['list']. list = self.list
-        
+
         res = (_('NeoBoot donate'), png, 21)
         self.list.append(res)
-        self['list']. list = self.list        
+        self['list']. list = self.list
 
     def KeyOk(self):
         self.sel = self['list'].getCurrent()
@@ -251,7 +251,7 @@ class MBTools(Screen):
             pass
         if self.sel == 4 and self.session.open(BackupMultiboot):
             pass
-        if self.sel == 5 and self.session.open(ReinstllNeoBoot): 
+        if self.sel == 5 and self.session.open(ReinstllNeoBoot):
             pass
         if self.sel == 6 and self.session.open(UnistallMultiboot):
             pass
@@ -263,22 +263,22 @@ class MBTools(Screen):
             pass
         if self.sel == 10 and self.session.open(FeedExtra):
             pass
-        if self.sel == 11 and self.session.open(SetPasswd): 
+        if self.sel == 11 and self.session.open(SetPasswd):
             pass
-        if self.sel == 12 and self.session.open(CheckInstall): 
-            pass                        
+        if self.sel == 12 and self.session.open(CheckInstall):
+            pass
         if self.sel == 13 and self.session.open(SkinChange):
             pass
         if self.sel == 14 and self.session.open(BlocUnblockImageSkin):
-            pass                                    
-        if self.sel == 15 and self.session.open(InternalFlash):               
             pass
-        if self.sel == 16 and self.session.open(DeletingLanguages):               
+        if self.sel == 15 and self.session.open(InternalFlash):
             pass
-        if self.sel == 17 and self.session.open(ATVcamfeed):               
+        if self.sel == 16 and self.session.open(DeletingLanguages):
             pass
-        if self.sel == 18 and self.session.open(CreateSwap):               
-            pass           
+        if self.sel == 17 and self.session.open(ATVcamfeed):
+            pass
+        if self.sel == 18 and self.session.open(CreateSwap):
+            pass
         if self.sel == 19 and self.session.open(TunerInfo):
             pass
         if self.sel == 20 and self.session.open(MultiBootMyHelp):
@@ -288,30 +288,30 @@ class MBTools(Screen):
 
         if self.sel == 22 and self.session.open(CheckInternet):
             pass
-            
+
 
 class MBBackup(Screen):
     if isFHD():
-        skin = """ <screen name="MBBackupFHD" title="Backup image from NeoBoot" position="center,center" size="850,750">            
-          <widget name="lab1" position="17,5" size="819, 62" font="baslk;35" halign="center" valign="center" transparent="1" foregroundColor="#99FFFF" />            
+        skin = """ <screen name="MBBackupFHD" title="Backup image from NeoBoot" position="center,center" size="850,750">
+          <widget name="lab1" position="17,5" size="819, 62" font="baslk;35" halign="center" valign="center" transparent="1" foregroundColor="#99FFFF" />
           <widget name="lab2" position="17,75" size="819,68" font="baslk;35" halign="center" valign="center" transparent="1" foregroundColor="#99FFFF" />
-          <widget name="lab3" position="17,150" size="819,85" font="baslk;35" halign="center" valign="center" transparent="1" foregroundColor="#99FFFF" />           
-          <widget source="list" render="Listbox" itemHeight="40" font="Regular;21" position="23,268" zPosition="1" size="829,405" scrollbarWidth="8" scrollbarMode="showOnDemand" transparent="1">           
-          <convert type="StringList" font="Regular;35" />          
-          </widget>           
-          <ePixmap position="270,705" size="34, 34" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red.png" alphatest="blend" zPosition="1" />          
-          <widget name="key_red" position="325,705" zPosition="2" size="520,35" font="baslk;30" halign="left" valign="center" backgroundColor="#f23d21" transparent="1" foregroundColor="#f23d21" />            
+          <widget name="lab3" position="17,150" size="819,85" font="baslk;35" halign="center" valign="center" transparent="1" foregroundColor="#99FFFF" />
+          <widget source="list" render="Listbox" itemHeight="40" font="Regular;21" position="23,268" zPosition="1" size="829,405" scrollbarWidth="8" scrollbarMode="showOnDemand" transparent="1">
+          <convert type="StringList" font="Regular;35" />
+          </widget>
+          <ePixmap position="270,705" size="34, 34" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red.png" alphatest="blend" zPosition="1" />
+          <widget name="key_red" position="325,705" zPosition="2" size="520,35" font="baslk;30" halign="left" valign="center" backgroundColor="#f23d21" transparent="1" foregroundColor="#f23d21" />
         </screen>"""
     else:
-        skin = """ <screen name="MBBackupHD" position="center,center" size="700,550" title="Backup the image from NeoBoot">            
-        <widget name="lab1" position="20,20" size="660,30" font="Regular;24" halign="center" valign="center" transparent="1" />             
-        <widget name="lab2" position="20,50" size="660,30" font="Regular;24" halign="center" valign="center" transparent="1" />             
-        <widget name="lab3" position="20,100" size="660,30" font="Regular;22" halign="center" valign="center" transparent="1" />            
-         <widget source="list" render="Listbox" position="40,141" zPosition="1" size="620,349" scrollbarMode="showOnDemand" transparent="1">\           
+        skin = """ <screen name="MBBackupHD" position="center,center" size="700,550" title="Backup the image from NeoBoot">
+        <widget name="lab1" position="20,20" size="660,30" font="Regular;24" halign="center" valign="center" transparent="1" />
+        <widget name="lab2" position="20,50" size="660,30" font="Regular;24" halign="center" valign="center" transparent="1" />
+        <widget name="lab3" position="20,100" size="660,30" font="Regular;22" halign="center" valign="center" transparent="1" />
+         <widget source="list" render="Listbox" position="40,141" zPosition="1" size="620,349" scrollbarMode="showOnDemand" transparent="1">\
           <convert type="StringList" />
-          </widget>\n<ePixmap position="272,498" size="140,40" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/redcor.png" alphatest="on" zPosition="1" />           
-          <widget name="key_red" position="270,500" zPosition="2" size="390,40" font="Regular;20" halign="left" valign="center" backgroundColor="red" transparent="1" />            
-          </screen>"""   
+          </widget>\n<ePixmap position="272,498" size="140,40" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/redcor.png" alphatest="on" zPosition="1" />
+          <widget name="key_red" position="270,500" zPosition="2" size="390,40" font="Regular;20" halign="left" valign="center" backgroundColor="red" transparent="1" />
+          </screen>"""
 
     def __init__(self, session):
         Screen.__init__(self, session)
@@ -326,8 +326,8 @@ class MBBackup(Screen):
         if pathExists('/media/usb/ImageBoot'):
             neoboot = 'usb'
         elif pathExists('/media/hdd/ImageBoot'):
-            neoboot = 'hdd' 
-        self.backupdir = '/media/' + neoboot + '/CopyImageNEO' 
+            neoboot = 'hdd'
+        self.backupdir = '/media/' + neoboot + '/CopyImageNEO'
         self.availablespace = '0'
         self.onShow.append(self.updateInfo)
 
@@ -335,8 +335,8 @@ class MBBackup(Screen):
         if pathExists('/media/usb/ImageBoot'):
             neoboot = 'usb'
         elif pathExists('/media/hdd/ImageBoot'):
-            neoboot = 'hdd' 
-        device = '/media/' + neoboot + '' 
+            neoboot = 'hdd'
+        device = '/media/' + neoboot + ''
         usfree = '0'
         devicelist = ['cf',
          'hdd',
@@ -353,7 +353,7 @@ class MBBackup(Screen):
         for line in f.readlines():
             if line.find('/hdd') != -1:
                 self.backupdir = '/media/' + neoboot + '/CopyImageNEO'
-                device = '/media/' + neoboot + '' 
+                device = '/media/' + neoboot + ''
 
         f.close()
         if pathExists(self.backupdir) == 0 and createDir(self.backupdir):
@@ -388,7 +388,7 @@ class MBBackup(Screen):
 
     def backupImage(self):
         if not fileExists('/.multinfo'):
-            self.backupImage2()                                            
+            self.backupImage2()
         else:
             self.myClose(_('Sorry, Neoboot can be installed or upgraded only when booted from Flash'))
 
@@ -402,7 +402,7 @@ class MBBackup(Screen):
             if int(self.availablespace) < 150:
                 myerror = _('There is no space to make a copy of the image. You need 150 Mb of free space for copying the image.')
             if myerror == '':
-                message = (_('Make copies of the image: %s now ?') % image)            
+                message = (_('Make copies of the image: %s now ?') % image)
                 ybox = self.session.openWithCallback(self.dobackupImage, MessageBox, message, MessageBox.TYPE_YESNO)
                 ybox.setTitle(_('Backup confirmation'))
             else:
@@ -413,7 +413,7 @@ class MBBackup(Screen):
             if pathExists('/media/usb/ImageBoot'):
                 neoboot = 'usb'
             elif pathExists('/media/hdd/ImageBoot'):
-                neoboot = 'hdd' 
+                neoboot = 'hdd'
             cmd = "echo -e '\n\n%s '" % _('Please wait, NeoBoot is working, the backup may take a few moments, the process is in progress ...')
             cmd1 = '/bin/tar -cf ' + self.backupdir + '/' + self.backimage + '.tar /media/' + neoboot + '/ImageBoot/' + self.backimage + '  > /dev/null 2>&1'
             cmd2 = 'mv -f ' + self.backupdir + '/' + self.backimage + '.tar ' + self.backupdir + '/' + self.backimage + '.mb'
@@ -427,33 +427,33 @@ class MBBackup(Screen):
             self.close()
 
     def myClose(self, message):
-            self.session.open(MessageBox, message, MessageBox.TYPE_INFO)        
+            self.session.open(MessageBox, message, MessageBox.TYPE_INFO)
             self.close()
 
 
 class MBRestore(Screen):
-    __module__ = __name__                                       
-    skin = """ <screen name="ReinstllNeoBoot2" title="Reinstll NeoBoot" position="center,center" size="850,626">            
-          <widget name="lab1" position="20,15" size="820,50" font="baslk;30" halign="center" valign="center" transparent="1" foregroundColor="#00ffa500" />                      
-          <widget source="list" render="Listbox" itemHeight="40" font="Regular;21" position="25,80" zPosition="1" size="815,464" scrollbarMode="showOnDemand" transparent="1">           
-          <convert type="StringList" font="Regular;35" />           
-          </widget>           
-          <ePixmap position="40,570" size="34,34" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red.png" alphatest="blend" zPosition="1" />                
-          <ePixmap position="525,570" size="34,34" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/green.png" alphatest="blend" zPosition="1" />          
-          <widget name="key_red" position="83,570" zPosition="2" size="250,35" font="baslk;30" halign="left" valign="center" backgroundColor="red" transparent="1" />                
-          <widget name="key_green" position="579,570" zPosition="2" size="250,35" font="baslk;30" halign="left" valign="center" backgroundColor="green" transparent="1" />         
+    __module__ = __name__
+    skin = """ <screen name="ReinstllNeoBoot2" title="Reinstll NeoBoot" position="center,center" size="850,626">
+          <widget name="lab1" position="20,15" size="820,50" font="baslk;30" halign="center" valign="center" transparent="1" foregroundColor="#00ffa500" />
+          <widget source="list" render="Listbox" itemHeight="40" font="Regular;21" position="25,80" zPosition="1" size="815,464" scrollbarMode="showOnDemand" transparent="1">
+          <convert type="StringList" font="Regular;35" />
+          </widget>
+          <ePixmap position="40,570" size="34,34" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red.png" alphatest="blend" zPosition="1" />
+          <ePixmap position="525,570" size="34,34" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/green.png" alphatest="blend" zPosition="1" />
+          <widget name="key_red" position="83,570" zPosition="2" size="250,35" font="baslk;30" halign="left" valign="center" backgroundColor="red" transparent="1" />
+          <widget name="key_green" position="579,570" zPosition="2" size="250,35" font="baslk;30" halign="left" valign="center" backgroundColor="green" transparent="1" />
           </screen>"""
 
-    def __init__(self, session):               
+    def __init__(self, session):
         Screen.__init__(self, session)
         self['lab1'] = Label(_('Choose copy you want to restore or delete.'))
         self['key_red'] = Label(_('Delete file'))
         self['key_green'] = Label(_('Restore'))
-        self['list'] = List([])      
+        self['list'] = List([])
         self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'back': self.close,
          'ok': self.restoreImage,
          'red': self.deleteback,
-         'green': self.restoreImage})         
+         'green': self.restoreImage})
         self.backupdir = '' + getNeoLocation() + 'CopyImageNEO'
         self.onShow.append(self.updateInfo)
 
@@ -483,7 +483,7 @@ class MBRestore(Screen):
                 self.backupdir = '' + getNeoLocation() + 'CopyImageNEO'
             elif line.find('/usb') != -1:
                 self.backupdir = '' + getNeoLocation() + 'CopyImageNEO'
-        f.close()  
+        f.close()
         if pathExists(self.backupdir) == 0 and createDir(self.backupdir):
             pass
         if fileExists('/tmp/ninfo.tmp'):
@@ -501,7 +501,7 @@ class MBRestore(Screen):
 
             f.close()
             os_remove('/tmp/ninfo.tmp')
-            
+
         imageslist = []
         for fn in listdir(self.backupdir):
             imageslist.append(fn)
@@ -510,7 +510,7 @@ class MBRestore(Screen):
 
     def deleteback(self):
         if not fileExists('/.multinfo'):
-            self.deleteback2()                                            
+            self.deleteback2()
         else:
             self.myClose(_('Sorry, Neoboot can be installed or upgraded only when booted from Flash'))
 
@@ -518,7 +518,7 @@ class MBRestore(Screen):
         image = self['list'].getCurrent()
         if image:
             self.delimage = image.strip()
-            message = (_('Software selected: %s remove ?') % image)                                 
+            message = (_('Software selected: %s remove ?') % image)
             ybox = self.session.openWithCallback(self.dodeleteback, MessageBox, message, MessageBox.TYPE_YESNO)
             ybox.setTitle(_('Confirmation of Deletion...'))
 
@@ -533,7 +533,7 @@ class MBRestore(Screen):
 
     def restoreImage(self):
         if not fileExists('/.multinfo'):
-            self.restoreImage2()                                            
+            self.restoreImage2()
         else:
             self.myClose(_('Sorry, Neoboot can be installed or upgraded only when booted from Flash'))
 
@@ -551,7 +551,7 @@ class MBRestore(Screen):
             if curimage == imagename:
                 myerror = _('Sorry you cannot overwrite the image currently booted from. Please, boot from Flash to restore this backup.')
             if myerror == '':
-                message = (_('The required space on the device is 300 MB.\nDo you want to take this image: %s \nnow ?') % image) 
+                message = (_('The required space on the device is 300 MB.\nDo you want to take this image: %s \nnow ?') % image)
                 ybox = self.session.openWithCallback(self.dorestoreImage, MessageBox, message, MessageBox.TYPE_YESNO)
                 ybox.setTitle(_('Restore Confirmation'))
             else:
@@ -574,12 +574,12 @@ class MBRestore(Screen):
              cmd5])
             self.close()
         else:
-            self.close()                
+            self.close()
 
     def myClose(self, message):
-            self.session.open(MessageBox, message, MessageBox.TYPE_INFO)        
+            self.session.open(MessageBox, message, MessageBox.TYPE_INFO)
             self.close()
-            
+
 
 class MenagerDevices(Screen):
     __module__ = __name__
@@ -590,9 +590,9 @@ class MenagerDevices(Screen):
         </screen>"""
 
     def __init__(self, session):
-        Screen.__init__(self, session)                    
-        self['lab1'] = Label(_('Start the device manager')) 
-        self['key_red'] = Label(_('Run'))       
+        Screen.__init__(self, session)
+        self['lab1'] = Label(_('Start the device manager'))
+        self['key_red'] = Label(_('Run'))
         self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'back': self.close,
          'red': self.MD})
 
@@ -600,7 +600,7 @@ class MenagerDevices(Screen):
         try:
                 from Plugins.Extensions.NeoBoot.files.devices import ManagerDevice
                 self.session.open(ManagerDevice)
-                
+
         except:
             False
 
@@ -628,7 +628,7 @@ class MBDeleUpload(Screen):
     def pedeleup(self, answer):
         if answer is True:
             cmd = "echo -e '\n\n%s '" % _('Wait, deleting .....')
-            cmd1 = 'rm -r ' + getNeoLocation() + 'ImagesUpload/*.zip' 
+            cmd1 = 'rm -r ' + getNeoLocation() + 'ImagesUpload/*.zip'
             self.session.open(Console, _('Deleting downloaded image zip files ....'), [cmd, cmd1])
             self.close()
         else:
@@ -637,7 +637,7 @@ class MBDeleUpload(Screen):
 
 class BackupMultiboot(Screen):
     __module__ = __name__
-    skin = """ <screen name="BackupMultiboot" position="center,center" size="700,300" flags="wfNoBorder">    
+    skin = """ <screen name="BackupMultiboot" position="center,center" size="700,300" flags="wfNoBorder">
       <widget source="list" render="Listbox" position="18,31" size="629,300" scrollbarMode="showOnDemand">
       <convert type="TemplatedMultiContent">\n\t\t{"template": [\n\t\t\tMultiContentEntryText(pos = (50, 1), size = (620, 46), flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER, text = 0),\n\t\t\tMultiContentEntryPixmapAlphaTest(pos = (6, 4), size = (46, 46), png = 1),\n\t\t\t],\n\t\t\t"fonts": [gFont("dugme", 30)],\n\t\t\t"itemHeight": 46\n\t\t}\n\t\t</convert>
       </widget>
@@ -681,12 +681,12 @@ class UnistallMultiboot(Screen):
 
     def usun(self):
         if not fileExists('/.multinfo'):
-            self.usun2()                                            
+            self.usun2()
         else:
             self.myClose(_('Sorry, Neoboot can be installed or upgraded only when booted from Flash'))
 
     def myClose(self, message):
-            self.session.open(MessageBox, message, MessageBox.TYPE_INFO)        
+            self.session.open(MessageBox, message, MessageBox.TYPE_INFO)
             self.close()
 
     def usun2(self):
@@ -709,7 +709,7 @@ class UnistallMultiboot(Screen):
             cmd7a = "echo -e '\n\nUninstalling neoboot...\n'"
             cmd8 = "echo -e '\n\nRestore mount.'"
             cmd9 = "echo -e '\n\nNeoBoot uninstalled, you can do reinstallation.'"
-            cmd10 = "echo -e '\n\nNEOBoot  Exit or Back - RESTART GUI NOW !!!'"            
+            cmd10 = "echo -e '\n\nNEOBoot  Exit or Back - RESTART GUI NOW !!!'"
             self.session.open(Console, _('NeoBoot is reinstall...'), [cmd0,
              cmd,
              cmd1,
@@ -723,17 +723,17 @@ class UnistallMultiboot(Screen):
              cmd7a,
              cmd8,
              cmd9,
-             cmd10])            
+             cmd10])
         else:
             self.close()
 
     def myClose(self, message):
-            self.session.open(MessageBox, message, MessageBox.TYPE_INFO)        
+            self.session.open(MessageBox, message, MessageBox.TYPE_INFO)
             self.close()
 
     def checkNeo(self):
-            if not fileCheck('' + LinkNeoBoot + '/.location') and not fileCheck(' ' + getNeoLocation() + 'ImageBoot/.neonextboot'):                                                   
-                self.restareE2() 
+            if not fileCheck('' + LinkNeoBoot + '/.location') and not fileCheck(' ' + getNeoLocation() + 'ImageBoot/.neonextboot'):
+                self.restareE2()
             else:
                 self.close()
 
@@ -755,29 +755,29 @@ class ReinstllNeoBoot(Screen):
         self['key_red'] = Label(_('Backup'))
         self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'back': self.close,
          'red': self.reinstallMB})
-                                                                                 
+
     def reinstallMB(self):
-            self.session.open(ReinstllNeoBoot2) 
-            
+            self.session.open(ReinstllNeoBoot2)
+
 
 class ReinstllNeoBoot2(Screen):
     __module__ = __name__
-    skin = """ <screen name="ReinstllNeoBoot2" title="Reinstll NeoBoot" position="center,center" size="850,654">            
-          <widget name="lab1" position="20,15" size="820,50" font="baslk;30" halign="center" valign="center" transparent="1" foregroundColor="#00ffa500" />                      
-          <widget source="list" render="Listbox" itemHeight="40" font="Regular;21" position="25,94" zPosition="1" size="815,494" scrollbarMode="showOnDemand" transparent="1">           
-          <convert type="StringList" font="Regular;35" />           
-          </widget>           
-          <ePixmap position="40,600" size="34,34" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red.png" alphatest="blend" zPosition="1" />                
-          <ePixmap position="527,600" size="34,34" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/green.png" alphatest="blend" zPosition="1" />          
-          <widget name="key_red" position="85,600" zPosition="2" size="250,35" font="baslk;30" halign="left" valign="center" backgroundColor="red" transparent="1" />                
-          <widget name="key_green" position="575,600" zPosition="2" size="250,35" font="baslk;30" halign="left" valign="center" backgroundColor="green" transparent="1" />         
+    skin = """ <screen name="ReinstllNeoBoot2" title="Reinstll NeoBoot" position="center,center" size="850,654">
+          <widget name="lab1" position="20,15" size="820,50" font="baslk;30" halign="center" valign="center" transparent="1" foregroundColor="#00ffa500" />
+          <widget source="list" render="Listbox" itemHeight="40" font="Regular;21" position="25,94" zPosition="1" size="815,494" scrollbarMode="showOnDemand" transparent="1">
+          <convert type="StringList" font="Regular;35" />
+          </widget>
+          <ePixmap position="40,600" size="34,34" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red.png" alphatest="blend" zPosition="1" />
+          <ePixmap position="527,600" size="34,34" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/green.png" alphatest="blend" zPosition="1" />
+          <widget name="key_red" position="85,600" zPosition="2" size="250,35" font="baslk;30" halign="left" valign="center" backgroundColor="red" transparent="1" />
+          <widget name="key_green" position="575,600" zPosition="2" size="250,35" font="baslk;30" halign="left" valign="center" backgroundColor="green" transparent="1" />
           </screen>"""
 
     def __init__(self, session):
         Screen.__init__(self, session)
         self['lab1'] = Label(_('Choose copy you want to restore or delete.'))
         self['key_red'] = Label(_('Delete file'))
-        self['key_green'] = Label(_('Restore'))               
+        self['key_green'] = Label(_('Restore'))
         self['list'] = List([])
         self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'back': self.close,
          'ok': self.restoreImage,
@@ -790,7 +790,7 @@ class ReinstllNeoBoot2(Screen):
         self.backupdir = '' + getNeoLocation() + 'CopyNEOBoot'
         if pathExists(self.backupdir) == 0 and createDir(self.backupdir):
             pass
-            
+
         imageslist = []
         for fn in listdir(self.backupdir):
             imageslist.append(fn)
@@ -801,7 +801,7 @@ class ReinstllNeoBoot2(Screen):
         image = self['list'].getCurrent()
         if image:
             self.delimage = image.strip()
-            message = (_('Software selected: %s remove ?') % image)                                    
+            message = (_('Software selected: %s remove ?') % image)
             ybox = self.session.openWithCallback(self.dodeleteback, MessageBox, message, MessageBox.TYPE_YESNO)
             ybox.setTitle(_('Confirmation of Deletion...'))
 
@@ -818,14 +818,14 @@ class ReinstllNeoBoot2(Screen):
         image = self['list'].getCurrent()
         myerror = ''
         if myerror == '':
-                message = (_('The required space on the device is 300 MB.\nDo you want to take this image: %s \nnow ?') % image) 
+                message = (_('The required space on the device is 300 MB.\nDo you want to take this image: %s \nnow ?') % image)
                 ybox = self.session.openWithCallback(self.dorestoreImage, MessageBox, message, MessageBox.TYPE_YESNO)
                 ybox.setTitle(_('Restore Confirmation'))
         else:
                 self.session.open(MessageBox, myerror, MessageBox.TYPE_INFO)
 
     def dorestoreImage(self, answer):
-        image = self['list'].getCurrent()            
+        image = self['list'].getCurrent()
         if answer is True:
             self.backimage = image.strip()
             imagename = self.backimage[0:-3]
@@ -857,12 +857,12 @@ class UpdateNeoBoot(Screen):
 
     def mbupload(self):
         if not fileExists('/.multinfo'):
-            self.session.open(MyUpgrade2)                                             
+            self.session.open(MyUpgrade2)
         else:
             self.myClose(_('Sorry, Neoboot can be installed or upgraded only when booted from Flash'))
 
     def myClose(self, message):
-            self.session.open(MessageBox, message, MessageBox.TYPE_INFO)        
+            self.session.open(MessageBox, message, MessageBox.TYPE_INFO)
             self.close()
 
 
@@ -886,7 +886,7 @@ class MyUpgrade2(Screen):
 
         def updateInfo(self):
             periodo = '/usr/lib/periodon'
-            testinout = '/usr/lib/enigma2/python/Tools/Testinout.p*'                    
+            testinout = '/usr/lib/enigma2/python/Tools/Testinout.p*'
             self.activityTimer.stop()
             f2 = open('%sImageBoot/.neonextboot' % getNeoLocation(), 'r')
             mypath2 = f2.readline().strip()
@@ -894,13 +894,13 @@ class MyUpgrade2(Screen):
             if mypath2 != 'Flash':
                 self.myClose(_('Sorry, NeoBoot can installed or upgraded only when booted from Flash STB'))
                 self.close()
-            else: 
+            else:
                 for fn in listdir('%sImageBoot' % getNeoLocation()):
                     dirfile = '%sImageBoot/' % getNeoLocation() + fn
                     if isdir(dirfile):
                         target = dirfile + '' + LinkNeoBoot + ''
                         target1 = dirfile + '/usr/lib/'
-                        target2 = dirfile + '/usr/lib/enigma2/python/Tools/'                       
+                        target2 = dirfile + '/usr/lib/enigma2/python/Tools/'
                         cmd = 'rm -r ' + target + ' > /dev/null 2>&1'
                         system(cmd)
                         cmd = 'cp -r ' + LinkNeoBoot + ' ' + target
@@ -908,7 +908,7 @@ class MyUpgrade2(Screen):
                         cmd1 = 'cp -rf ' + periodo + ' ' + target1
                         system(cmd1)
                         cmd2 = 'cp -rf ' + testinout + ' ' + target2
-                        system(cmd2)                       
+                        system(cmd2)
 
                 out = open('%sImageBoot/.version' % getNeoLocation(), 'w')
                 out.write(PLUGINVERSION)
@@ -916,9 +916,9 @@ class MyUpgrade2(Screen):
                 self.myClose(_('NeoBoot successfully updated. You can restart the plugin now.\nHave fun !!'))
 
         def myClose(self, message):
-            self.session.open(MessageBox, message, MessageBox.TYPE_INFO)        
-            self.close() 
-        
+            self.session.open(MessageBox, message, MessageBox.TYPE_INFO)
+            self.close()
+
 
 class ListTv(Screen):
     __module__ = __name__
@@ -937,7 +937,7 @@ class ListTv(Screen):
 
     def listupload(self):
         if not fileExists('/.multinfo'):
-            self.listupload2()                                            
+            self.listupload2()
         else:
             self.myClose(_('Sorry, Neoboot can be installed or upgraded only when booted from Flash'))
 
@@ -945,7 +945,7 @@ class ListTv(Screen):
         self.session.open(ListTv2)
 
     def myClose(self, message):
-            self.session.open(MessageBox, message, MessageBox.TYPE_INFO)        
+            self.session.open(MessageBox, message, MessageBox.TYPE_INFO)
             self.close()
 
 
@@ -955,7 +955,7 @@ class ListTv2(Screen):
     if isFHD():
         skin = """<screen name="ListTv2" position="30,30" size="900,150" flags="wfNoBorder" title="NeoBoot">
           <widget name="lab1" position="23,17" size="850,109" font="baslk;35" halign="center" valign="center" transparent="1" />
-          </screen>"""          
+          </screen>"""
     else:
         skin = '<screen position="center,center" size="400,200" title="NeoBoot ListTv">\n\t\t<widget name="lab1" position="10,10" size="380,180" font="baslk;24" halign="center" valign="center" transparent="1"/>\n\t</screen>'
 
@@ -1022,7 +1022,7 @@ class IPTVPlayer(Screen):
 
     def IPTVPlayerUpload(self):
         if not fileExists('/.multinfo'):
-            self.IPTVPlayerUpload2()                                            
+            self.IPTVPlayerUpload2()
         else:
             self.myClose(_('Sorry, Neoboot can be installed or upgraded only when booted from Flash'))
 
@@ -1030,7 +1030,7 @@ class IPTVPlayer(Screen):
         self.session.open(IPTVPlayer2)
 
     def myClose(self, message):
-            self.session.open(MessageBox, message, MessageBox.TYPE_INFO)        
+            self.session.open(MessageBox, message, MessageBox.TYPE_INFO)
             self.close()
 
 
@@ -1099,7 +1099,7 @@ class FeedExtra(Screen):
 
     def FeedExtraUpload(self):
         if not fileExists('/.multinfo'):
-            self.FeedExtraUpload2()                                            
+            self.FeedExtraUpload2()
         else:
             self.myClose(_('Sorry, Neoboot can be installed or upgraded only when booted from Flash'))
 
@@ -1107,7 +1107,7 @@ class FeedExtra(Screen):
         self.session.open(FeedExtra2)
 
     def myClose(self, message):
-            self.session.open(MessageBox, message, MessageBox.TYPE_INFO)        
+            self.session.open(MessageBox, message, MessageBox.TYPE_INFO)
             self.close()
 
 
@@ -1200,58 +1200,58 @@ class CheckInstall(Screen):
         self['key_red'] = Label(_('Start'))
         self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'back': self.close,
          'red': self.neocheck})
-         
+
     def neocheck(self):
         if not fileExists('/.multinfo'):
-            self.neocheck2()                                            
+            self.neocheck2()
         else:
             self.myClose(_('Sorry, Neoboot can be installed or upgraded only when booted from Flash'))
 
     def neocheck2(self):
             os.system(_('rm -f ' + LinkNeoBoot + '/files/modulecheck; echo %s - %s  >  ' + LinkNeoBoot + '/files/modulecheck') % (getBoxModelVU(), getCPUSoC()))
-            os.system('echo "\n====================================================>\nCheck result:"  >> ' + LinkNeoBoot + '/files/modulecheck') 
+            os.system('echo "\n====================================================>\nCheck result:"  >> ' + LinkNeoBoot + '/files/modulecheck')
             os.system('echo "*    neoboot location:"  >>  ' + LinkNeoBoot + '/files/modulecheck; cat "/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location"  >>  ' + LinkNeoBoot + '/files/modulecheck')
             os.system('echo "\n*    neoboot location install:"  >>  ' + LinkNeoBoot + '/files/modulecheck; cat "/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/install"  >>  ' + LinkNeoBoot + '/files/modulecheck')
-            os.system('echo "\n*    neoboot location mount:"  >>  ' + LinkNeoBoot + '/files/modulecheck; cat "/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/neo.sh"  >>  ' + LinkNeoBoot + '/files/modulecheck') 
+            os.system('echo "\n*    neoboot location mount:"  >>  ' + LinkNeoBoot + '/files/modulecheck; cat "/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/neo.sh"  >>  ' + LinkNeoBoot + '/files/modulecheck')
             if getCPUtype() == 'ARMv7' and getCPUtype() != 'MIPS':
                 if os.system('opkg update; opkg list-installed | grep python-subprocess') != 0:
                             os.system('echo "\n*    python-subprocess not installed"  >>  ' + LinkNeoBoot + '/files/modulecheck')
                 if os.system('opkg list-installed | grep python-argparse') != 0:
-                            os.system('echo "*    python-argparse not installed"  >>  ' + LinkNeoBoot + '/files/modulecheck')                            
+                            os.system('echo "*    python-argparse not installed"  >>  ' + LinkNeoBoot + '/files/modulecheck')
                 if os.system('opkg list-installed | grep curl') != 0:
-                            os.system('echo "*    curl not installed"  >>  ' + LinkNeoBoot + '/files/modulecheck')                                                                               
-                else:            
+                            os.system('echo "*    curl not installed"  >>  ' + LinkNeoBoot + '/files/modulecheck')
+                else:
                     os.system('echo "\n*    opkg packed everything is OK !"  >>  ' + LinkNeoBoot + '/files/modulecheck')
             elif getCPUtype() != 'ARMv7' and getCPUtype() == 'MIPS':
                 if os.system('opkg list-installed | grep kernel-module-nandsim') != 0:
-                            os.system('echo "\n*    kernel-module-nandsim not installed"  >>  ' + LinkNeoBoot + '/files/modulecheck')                   
+                            os.system('echo "\n*    kernel-module-nandsim not installed"  >>  ' + LinkNeoBoot + '/files/modulecheck')
                 if os.system('opkg list-installed | grep mtd-utils-jffs2') != 0:
-                            os.system('echo "*    mtd-utils-jffs2 not installed"  >>  ' + LinkNeoBoot + '/files/modulecheck')                
+                            os.system('echo "*    mtd-utils-jffs2 not installed"  >>  ' + LinkNeoBoot + '/files/modulecheck')
                 if os.system('opkg list-installed | grep lzo') != 0:
-                            os.system('echo "*    lzo not installed"  >>  ' + LinkNeoBoot + '/files/modulecheck')                                            
-                if os.system('opkg list-installed | grep python-setuptools') != 0: 
-                            os.system('echo "*    python-setuptools not installed"  >>  ' + LinkNeoBoot + '/files/modulecheck')                                                                        
-                if os.system('opkg list-installed | grep util-linux-sfdisk') != 0: 
-                            os.system('echo "*    util-linux-sfdisk not installed"  >>  ' + LinkNeoBoot + '/files/modulecheck')                 
-                if os.system('opkg list-installed | grep packagegroup-base-nfs') != 0: 
-                            os.system('echo "*    packagegroup-base-nfs not installed"  >>  ' + LinkNeoBoot + '/files/modulecheck')                                           
+                            os.system('echo "*    lzo not installed"  >>  ' + LinkNeoBoot + '/files/modulecheck')
+                if os.system('opkg list-installed | grep python-setuptools') != 0:
+                            os.system('echo "*    python-setuptools not installed"  >>  ' + LinkNeoBoot + '/files/modulecheck')
+                if os.system('opkg list-installed | grep util-linux-sfdisk') != 0:
+                            os.system('echo "*    util-linux-sfdisk not installed"  >>  ' + LinkNeoBoot + '/files/modulecheck')
+                if os.system('opkg list-installed | grep packagegroup-base-nfs') != 0:
+                            os.system('echo "*    packagegroup-base-nfs not installed"  >>  ' + LinkNeoBoot + '/files/modulecheck')
                 if os.system('opkg list-installed | grep ofgwrite') != 0:
-                            os.system('echo "*    ofgwrite not installed"  >>  ' + LinkNeoBoot + '/files/modulecheck')                                                                                                                                                                                                                                                                                                                                                                
-                if os.system('opkg list-installed | grep bzip2') != 0:  
-                            os.system('echo "*    bzip2 not installed"  >>  ' + LinkNeoBoot + '/files/modulecheck')                                                                                                                                                                                                                                                                                                                                                              
+                            os.system('echo "*    ofgwrite not installed"  >>  ' + LinkNeoBoot + '/files/modulecheck')
+                if os.system('opkg list-installed | grep bzip2') != 0:
+                            os.system('echo "*    bzip2 not installed"  >>  ' + LinkNeoBoot + '/files/modulecheck')
                 if os.system('opkg list-installed | grep mtd-utils') != 0:
-                            os.system('echo "*    mtd-utils not installed"  >>  ' + LinkNeoBoot + '/files/modulecheck')                
+                            os.system('echo "*    mtd-utils not installed"  >>  ' + LinkNeoBoot + '/files/modulecheck')
                 if os.system('opkg list-installed | grep mtd-utils-ubifs') != 0:
-                            os.system('echo "*    mtd-utils-ubifs not installed"  >>  ' + LinkNeoBoot + '/files/modulecheck')                                                                                                                                                                                                                                                                                                                                                                
-                else:            
+                            os.system('echo "*    mtd-utils-ubifs not installed"  >>  ' + LinkNeoBoot + '/files/modulecheck')
+                else:
                     os.system('echo "\n*    opkg packed everything is OK !"  >>  ' + LinkNeoBoot + '/files/modulecheck')
-            else:            
+            else:
                 os.system('echo "\n*    STB is not ARMv7 or MIPS"  >>  ' + LinkNeoBoot + '/files/modulecheck')
 
             cmd = 'echo "\n<===================================================="  >> ' + LinkNeoBoot + '/files/modulecheck;  cat ' + LinkNeoBoot + '/files/modulecheck'
             cmd1 = ''
             self.session.openWithCallback(self.close, Console, _('NeoBoot....'), [cmd,
-                     cmd1]) 
+                     cmd1])
             self.close()
 
     def myClose(self, message):
@@ -1262,18 +1262,18 @@ class CheckInstall(Screen):
 class SkinChange(Screen):
     if isFHD():
         skin = """ <screen name="SkinChange" position="center,center" size="850,746" title="NeoBoot Skin Change">
-          <widget name="lab1" position="24, 5" size="819, 62" font="baslk;35" halign="center" valign="center" transparent="1" foregroundColor="#99FFFF" />            
-          <widget name="lab2" position="22, 82" size="819, 61" font="baslk;35" halign="center" valign="center" transparent="1" foregroundColor="#99FFFF" />            
-          <widget name="lab3" position="21, 150" size="819, 62" font="baslk;35" halign="center" valign="center" transparent="1" foregroundColor="#99FFFF" />            
-          <widget source="list" render="Listbox" itemHeight="40" font="Regular;21" position="20, 218" zPosition="1" size="820, 376" scrollbarMode="showOnDemand" transparent="1"> 
-          <convert type="StringList" font="Regular;35" />         
-          </widget>           
-          <ePixmap position="270,650" size="34, 34" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red.png" alphatest="blend" zPosition="1" />          
-          <widget name="key_red" position="320,650" zPosition="2" size="280,35" font="baslk;30" halign="left" valign="center" backgroundColor="red" transparent="1" foregroundColor="red" />           
+          <widget name="lab1" position="24, 5" size="819, 62" font="baslk;35" halign="center" valign="center" transparent="1" foregroundColor="#99FFFF" />
+          <widget name="lab2" position="22, 82" size="819, 61" font="baslk;35" halign="center" valign="center" transparent="1" foregroundColor="#99FFFF" />
+          <widget name="lab3" position="21, 150" size="819, 62" font="baslk;35" halign="center" valign="center" transparent="1" foregroundColor="#99FFFF" />
+          <widget source="list" render="Listbox" itemHeight="40" font="Regular;21" position="20, 218" zPosition="1" size="820, 376" scrollbarMode="showOnDemand" transparent="1">
+          <convert type="StringList" font="Regular;35" />
+          </widget>
+          <ePixmap position="270,650" size="34, 34" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red.png" alphatest="blend" zPosition="1" />
+          <widget name="key_red" position="320,650" zPosition="2" size="280,35" font="baslk;30" halign="left" valign="center" backgroundColor="red" transparent="1" foregroundColor="red" />
         </screen>"""
 
     else:
-        skin = ' <screen position="center,center" size="700,550" title="Backup the image from NeoBoot"><widget name="lab1" position="20,20" size="660,30" font="baslk;24" halign="center" valign="center" transparent="1"/>\n\n             <widget name="lab2" position="20,50" size="660,30" font="baslk;24" halign="center" valign="center" transparent="1"/>\n\n             <widget name="lab3" position="20,100" size="660,30" font="baslk;22" halign="center" valign="center" transparent="1"/>\n \n             <widget source="list" render="Listbox" position="40,130" zPosition="1" size="620,360" scrollbarMode="showOnDemand" transparent="1" >\n\t\t\t\n             <convert type="StringList" />\n</widget>\n<ePixmap position="280,500" size="140,40" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/redcor.png" alphatest="on" zPosition="1" />\n\n               <widget name="key_red" position="280,500" zPosition="2" size="140,40" font="baslk;20" halign="left" valign="center" backgroundColor="red" transparent="1" />\n\n            </screen>'   
+        skin = ' <screen position="center,center" size="700,550" title="Backup the image from NeoBoot"><widget name="lab1" position="20,20" size="660,30" font="baslk;24" halign="center" valign="center" transparent="1"/>\n\n             <widget name="lab2" position="20,50" size="660,30" font="baslk;24" halign="center" valign="center" transparent="1"/>\n\n             <widget name="lab3" position="20,100" size="660,30" font="baslk;22" halign="center" valign="center" transparent="1"/>\n \n             <widget source="list" render="Listbox" position="40,130" zPosition="1" size="620,360" scrollbarMode="showOnDemand" transparent="1" >\n\t\t\t\n             <convert type="StringList" />\n</widget>\n<ePixmap position="280,500" size="140,40" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/redcor.png" alphatest="on" zPosition="1" />\n\n               <widget name="key_red" position="280,500" zPosition="2" size="140,40" font="baslk;20" halign="left" valign="center" backgroundColor="red" transparent="1" />\n\n            </screen>'
 
     def __init__(self, session):
         Screen.__init__(self, session)
@@ -1286,12 +1286,12 @@ class SkinChange(Screen):
          'ok': self.SkinGO,
          'red': self.SkinGO,
          '9': self.restareE2})
-                  
+
         self.onShow.append(self.updateInfo)
 
     def updateInfo(self):
         self.skindir = '' + LinkNeoBoot + '/neoskins/'
- 
+
         if pathExists(self.skindir) == 0 and createDir(self.skindir):
             pass
 
@@ -1321,14 +1321,14 @@ class SkinChange(Screen):
     def DefaultSkin(self):
             cmd = "echo -e '\n\n%s '" % _('Please wait, NeoBot is working, skin change is progress...')
             cmd1 = "echo -e '\n\n%s '" % _('NeoBoot: Complete Skin Change!')
-#            cmd2 = 'cp -r ' +LinkNeoBoot+ '/neoskins/default.py ' +LinkNeoBoot+ '/skin.py'            
+#            cmd2 = 'cp -r ' +LinkNeoBoot+ '/neoskins/default.py ' +LinkNeoBoot+ '/skin.py'
             cmd2 = 'rm -f ' + LinkNeoBoot + '/usedskin.p*; sleep 2'
             cmd3 = 'ln -sf "neoskins/default.py" "' + LinkNeoBoot + '/usedskin.py"'
             self.session.open(Console, _('NeoBoot Skin Change'), [cmd, cmd1, cmd2, cmd3])
 
     def doSkinChange(self, answer):
         if answer is True:
-            if isFHD():        
+            if isFHD():
                 if getBoxHostName() == 'vuultimo4k':
                     system('cp -r ' + LinkNeoBoot + '/images/ultimo4k.png ' + LinkNeoBoot + '/images/box.png')
                 elif getBoxHostName() == 'vusolo4k':
@@ -1336,7 +1336,7 @@ class SkinChange(Screen):
                 elif getBoxHostName() == 'vuduo4k':
                     system('cp -r ' + LinkNeoBoot + '/images/duo4k.png ' + LinkNeoBoot + '/images/box.png')
                 elif getBoxHostName() == 'vuduo4kse':
-                    system('cp -r ' + LinkNeoBoot + '/images/duo4k.png ' + LinkNeoBoot + '/images/box.png')                               
+                    system('cp -r ' + LinkNeoBoot + '/images/duo4k.png ' + LinkNeoBoot + '/images/box.png')
                 elif getBoxHostName() == 'vuuno4k':
                     system('cp -r ' + LinkNeoBoot + '/images/uno4k.png ' + LinkNeoBoot + '/images/box.png')
                 elif getBoxHostName() == 'vuuno4kse':
@@ -1344,44 +1344,44 @@ class SkinChange(Screen):
                 elif getBoxHostName() == 'vuzero4kse':
                     system('cp -r ' + LinkNeoBoot + '/images/zero4kse.png ' + LinkNeoBoot + '/images/box.png')
                 elif getBoxHostName() == 'sf4008':
-                    system('cp -r ' + LinkNeoBoot + '/images/sf4008.png ' + LinkNeoBoot + '/images/box.png')                                
+                    system('cp -r ' + LinkNeoBoot + '/images/sf4008.png ' + LinkNeoBoot + '/images/box.png')
                 elif getBoxHostName() == 'ustym4kpro':
-                    system('cp -r ' + LinkNeoBoot + '/images/ustym4kpro.png ' + LinkNeoBoot + '/images/box.png')                                            
+                    system('cp -r ' + LinkNeoBoot + '/images/ustym4kpro.png ' + LinkNeoBoot + '/images/box.png')
                 elif getBoxHostName() == 'h7' or getBoxHostName() == 'zgemmah7':
                     system('cp -r ' + LinkNeoBoot + '/images/zgmmah7.png ' + LinkNeoBoot + '/images/box.png')
                 elif getBoxHostName() == 'vusolo2':
                     system('cp -r ' + LinkNeoBoot + '/images/solo2.png ' + LinkNeoBoot + '/images/box.png')
-                                    
+
                 cmd = "echo -e '\n\n%s '" % _('Please wait, NeoBot is working, skin change is progress...')
-                cmd1 = 'rm -f ' + LinkNeoBoot + '/usedskin.p*; sleep 2'            
+                cmd1 = 'rm -f ' + LinkNeoBoot + '/usedskin.p*; sleep 2'
                 cmd2 = 'sleep 2; cp -r ' + self.skindir + '/' + self.selectedskin + '/*.py ' + LinkNeoBoot + '/usedskin.py'
-                cmd3 = "echo -e '\n\n%s '" % _('NeoBoot: Complete Skin Change!')   
-                cmd4 = "echo -e '\n\n%s '" % _('To use the new skin please restart enigma2')  
+                cmd3 = "echo -e '\n\n%s '" % _('NeoBoot: Complete Skin Change!')
+                cmd4 = "echo -e '\n\n%s '" % _('To use the new skin please restart enigma2')
                 self.session.open(Console, _('NeoBoot Skin Change'), [cmd, cmd1, cmd2, cmd3, cmd4])
             elif isHD():
                 cmd = "echo -e '\n\n%s '" % _('Please wait, NeoBot is working, skin change is progress...')
-                cmd1 = 'rm -f ' + LinkNeoBoot + '/usedskin.p*; sleep 2'            
+                cmd1 = 'rm -f ' + LinkNeoBoot + '/usedskin.p*; sleep 2'
                 cmd2 = 'sleep 2; cp -r ' + self.skindir + '/' + self.selectedskin + '/*.py ' + LinkNeoBoot + '/usedskin.py'
                 cmd3 = "echo -e '\n\n%s '" % _('NeoBoot: Complete Skin Change!')
-                cmd4 = "echo -e '\n\n%s '" % _('Skin change available only for full hd skin.')  
-                cmd5 = "echo -e '\n\n%s '" % _('Please come back to default skin.')                           
-                cmd6 = "echo -e '\n\n%s '" % _('To use the new skin please restart enigma2')  
+                cmd4 = "echo -e '\n\n%s '" % _('Skin change available only for full hd skin.')
+                cmd5 = "echo -e '\n\n%s '" % _('Please come back to default skin.')
+                cmd6 = "echo -e '\n\n%s '" % _('To use the new skin please restart enigma2')
                 self.session.open(Console, _('NeoBoot Skin Change'), [cmd, cmd1, cmd2, cmd3, cmd4, cmd5, cmd6])
-                
+
         else:
             self.close()
 
     def checkimageskin(self):
-            if fileCheck('/etc/vtiversion.info'):                    
-#                fail = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/usedskin.py' 
+            if fileCheck('/etc/vtiversion.info'):
+#                fail = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/usedskin.py'
 #                f = open(fail, 'r')
 #                content = f.read()
-#                f.close()                            
+#                f.close()
 #                localfile2 = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/usedskin.py'
 #                temp_file2 = open(localfile2, 'w')
 #                temp_file2.write(content.replace('selektor.png', 'slekvti.png'))
-#                temp_file2.close()                             
-                self.restareE2() 
+#                temp_file2.close()
+                self.restareE2()
             else:
                 self.restareE2()
 
@@ -1398,22 +1398,22 @@ class SkinChange(Screen):
 
 class BlocUnblockImageSkin(Screen):
     __module__ = __name__
-    skin = """<screen name="Skin tool" title="Skin tool" position="center,center" size="856,657">            
-          <widget name="lab1" position="20,5" size="820,130" font="baslk;30" halign="center" valign="center" transparent="1" foregroundColor="#00ffa500" />                      
-          <widget source="list" render="Listbox" itemHeight="43" font="Regular;21" position="25,155" zPosition="1" size="815,430" scrollbarMode="showOnDemand" transparent="1">           
-          <convert type="StringList" font="Regular;43" />           
-          </widget>           
-          <ePixmap position="172,609" size="37,38" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red.png" alphatest="blend" zPosition="1" />                
-          <widget name="key_red" position="224,611" zPosition="2" size="611,35" font="baslk;30" halign="left" valign="center" backgroundColor="red" transparent="1" />                
+    skin = """<screen name="Skin tool" title="Skin tool" position="center,center" size="856,657">
+          <widget name="lab1" position="20,5" size="820,130" font="baslk;30" halign="center" valign="center" transparent="1" foregroundColor="#00ffa500" />
+          <widget source="list" render="Listbox" itemHeight="43" font="Regular;21" position="25,155" zPosition="1" size="815,430" scrollbarMode="showOnDemand" transparent="1">
+          <convert type="StringList" font="Regular;43" />
+          </widget>
+          <ePixmap position="172,609" size="37,38" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red.png" alphatest="blend" zPosition="1" />
+          <widget name="key_red" position="224,611" zPosition="2" size="611,35" font="baslk;30" halign="left" valign="center" backgroundColor="red" transparent="1" />
           </screen>"""
 
     def __init__(self, session):
         Screen.__init__(self, session)
-        self['lab1'] = Label(_('Block or unblock the neoboot skin display in the system skin.'))    
-        self['key_red'] = Label(_('Block or unlock skins.'))              
+        self['lab1'] = Label(_('Block or unblock the neoboot skin display in the system skin.'))
+        self['key_red'] = Label(_('Block or unlock skins.'))
         self['list'] = List([])
         self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'back': self.restareE2,
-         'red': self.deleteback})         
+         'red': self.deleteback})
         self.backupdir = '/usr/share/enigma2'
         self.onShow.append(self.updateInfo)
 
@@ -1421,7 +1421,7 @@ class BlocUnblockImageSkin(Screen):
         self.backupdir = '/usr/share/enigma2'
         if pathExists(self.backupdir) == 0 and createDir(self.backupdir):
             pass
-            
+
         imageslist = []
         for fn in listdir(self.backupdir):
             imageslist.append(fn)
@@ -1432,7 +1432,7 @@ class BlocUnblockImageSkin(Screen):
         image = self['list'].getCurrent()
         self.delimage = image.strip()
         if fileExists(self.backupdir + '/' + self.delimage + '/skin.xml'):
-            self.deleteback2()                                             
+            self.deleteback2()
         else:
             self.myClose(_('Sorry, not find skin neoboot.'))
 
@@ -1440,29 +1440,29 @@ class BlocUnblockImageSkin(Screen):
         image = self['list'].getCurrent()
         if image:
             self.delimage = image.strip()
-            message = (_('Select Yes to lock or No to unlock.\n  %s     ?') % image)                                    
+            message = (_('Select Yes to lock or No to unlock.\n  %s     ?') % image)
             ybox = self.session.openWithCallback(self.Block_Unlock_Skin, MessageBox, message, MessageBox.TYPE_YESNO)
             ybox.setTitle(_('Confirmation...'))
 
     def Block_Unlock_Skin(self, answer):
-        if answer is True:    
+        if answer is True:
                 fail = self.backupdir + '/' + self.delimage + '/skin.xml'
                 f = open(fail, 'r')
                 content = f.read()
-                f.close() 
-                localfile2 = self.backupdir + '/' + self.delimage + '/skin.xml'           
+                f.close()
+                localfile2 = self.backupdir + '/' + self.delimage + '/skin.xml'
                 temp_file2 = open(localfile2, 'w')
                 temp_file2.write(content.replace('NeoBootImageChoose', 'neoBootImageChoose'))
-                temp_file2.close()                                                                     
-        else: 
+                temp_file2.close()
+        else:
                 fail = self.backupdir + '/' + self.delimage + '/skin.xml'
                 f = open(fail, 'r')
                 content = f.read()
-                f.close() 
-                localfile2 = self.backupdir + '/' + self.delimage + '/skin.xml'           
+                f.close()
+                localfile2 = self.backupdir + '/' + self.delimage + '/skin.xml'
                 temp_file2 = open(localfile2, 'w')
                 temp_file2.write(content.replace('neoBootImageChoose', 'NeoBootImageChoose'))
-                temp_file2.close()                                              
+                temp_file2.close()
 
     def restareE2(self):
         restartbox = self.session.openWithCallback(self.restartGUI, MessageBox, _('GUI needs a restart.\nDo you want to Restart the GUI now?'), MessageBox.TYPE_YESNO)
@@ -1475,7 +1475,7 @@ class BlocUnblockImageSkin(Screen):
             self.close()
 
     def myClose(self, message):
-            self.session.open(MessageBox, message, MessageBox.TYPE_INFO)        
+            self.session.open(MessageBox, message, MessageBox.TYPE_INFO)
             self.close()
 
 
@@ -1493,64 +1493,64 @@ class InternalFlash(Screen):
         self['key_red'] = Label(_('Start - Red'))
         self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'back': self.close,
          'red': self.mountIF})
-         
+
     def mountIF(self):
         if fileExists('/.multinfo') and getCPUtype() != 'MIPS':
-            self.mountinternalflash()                                            
+            self.mountinternalflash()
         else:
             self.myClose(_('Sorry, the operation is not possible from Flash or not supported.'))
             self.close()
 
     def mountinternalflash(self):
-            if fileExists('/.multinfo') and getCPUtype() == 'ARMv7':           
+            if fileExists('/.multinfo') and getCPUtype() == 'ARMv7':
                 if os.path.exists('/proc/stb/info/boxtype'):
-                    if getBoxHostName == 'sf4008':  #getCPUSoC() == 'bcm7251'  
-                        os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p4 /media/InternalFlash')  
+                    if getBoxHostName == 'sf4008':  #getCPUSoC() == 'bcm7251'
+                        os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p4 /media/InternalFlash')
 
                 if os.path.exists('/proc/stb/info/boxtype'):
-                    if getBoxHostName == 'et1x000': #getCPUSoC() == 'bcm7251' or   
-                        os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p4 /media/InternalFlash')  
+                    if getBoxHostName == 'et1x000': #getCPUSoC() == 'bcm7251' or
+                        os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p4 /media/InternalFlash')
 
                 if os.path.exists('/proc/stb/info/boxtype'):
-                    if getBoxHostName == 'ax51': #getCPUSoC() == 'bcm7251s' or   
-                        os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p4 /media/InternalFlash')  
+                    if getBoxHostName == 'ax51': #getCPUSoC() == 'bcm7251s' or
+                        os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p4 /media/InternalFlash')
 
                 if os.path.exists('/proc/stb/info/boxtype'):
-                    if getCPUSoC() == 'bcm7251s' or getBoxHostName() == 'h7' or getBoxHostName() == 'zgemmah7':   
+                    if getCPUSoC() == 'bcm7251s' or getBoxHostName() == 'h7' or getBoxHostName() == 'zgemmah7':
                          os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p3 /media/InternalFlash')
 
                 if os.path.exists('/proc/stb/info/boxtype'):
-                    if getBoxHostName() == 'zgemmah9s':   
+                    if getBoxHostName() == 'zgemmah9s':
                         os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p7 /media/InternalFlash')
-                    
+
 #                if os.path.exists('/proc/stb/info/boxtype'):
-#                    if getBoxHostName() == 'zgemmah9combo':   
-#                        os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p7 /media/InternalFlash')                    
+#                    if getBoxHostName() == 'zgemmah9combo':
+#                        os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p7 /media/InternalFlash')
 
-                if getBoxHostName == 'sf8008':   
-                    os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p13 /media/InternalFlash')  
+                if getBoxHostName == 'sf8008':
+                    os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p13 /media/InternalFlash')
 
-                if getBoxHostName == 'ax60':   
+                if getBoxHostName == 'ax60':
                     os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p21 /media/InternalFlash')
 
-                if getBoxHostName() == 'ustym4kpro' or getTunerModel() == 'ustym4kpro':   
+                if getBoxHostName() == 'ustym4kpro' or getTunerModel() == 'ustym4kpro':
                     os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p13 /media/InternalFlash')
 
                 if os.path.exists('/proc/stb/info/model'):
-                    if getTunerModel() == 'dm900' or getCPUSoC() == 'BCM97252SSFF':   
+                    if getTunerModel() == 'dm900' or getCPUSoC() == 'BCM97252SSFF':
                         os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p2 /media/InternalFlash')
-                    
+
                 if getBoxVuModel() == 'uno4kse' or getBoxVuModel() == 'uno4k' or getBoxVuModel() == 'ultimo4k' or getBoxVuModel() == 'solo4k':
                     os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p4 /media/InternalFlash')
 
                 if getBoxVuModel() == 'zero4k':
                     os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p7 /media/InternalFlash')
 
-                if getBoxVuModel() == 'duo4k':               
+                if getBoxVuModel() == 'duo4k':
                     os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p9 /media/InternalFlash')
 
-                if getBoxVuModel() == 'duo4kse':               
-                    os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p9 /media/InternalFlash')                    
+                if getBoxVuModel() == 'duo4kse':
+                    os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p9 /media/InternalFlash')
 
                 if getCPUSoC() == 'bcm7252s' or getBoxHostName() == 'gbquad4k':
                     os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p5 /media/InternalFlash')
@@ -1573,23 +1573,23 @@ class InternalFlash(Screen):
 
 class DeletingLanguages(Screen):
     __module__ = __name__
-    skin = """ <screen name="DeletingLanguages" title="Deleting Languages" position="center,center" size="850,647">            
-          <widget name="lab1" position="20,73" size="820,50" font="baslk;30" halign="center" valign="center" transparent="1" foregroundColor="#00ffa500" />                      
-          <widget source="list" render="Listbox" itemHeight="40" font="Regular;21" position="25,142" zPosition="1" size="815,416" scrollbarMode="showOnDemand" transparent="1">           
-          <convert type="StringList" font="Regular;35" />           
-          </widget>           
-          <ePixmap position="107,588" size="34,34" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red.png" alphatest="blend" zPosition="1" />                
-          <widget name="key_red" position="153,588" zPosition="2" size="368,35" font="baslk;30" halign="left" valign="center" backgroundColor="red" transparent="1" />                
+    skin = """ <screen name="DeletingLanguages" title="Deleting Languages" position="center,center" size="850,647">
+          <widget name="lab1" position="20,73" size="820,50" font="baslk;30" halign="center" valign="center" transparent="1" foregroundColor="#00ffa500" />
+          <widget source="list" render="Listbox" itemHeight="40" font="Regular;21" position="25,142" zPosition="1" size="815,416" scrollbarMode="showOnDemand" transparent="1">
+          <convert type="StringList" font="Regular;35" />
+          </widget>
+          <ePixmap position="107,588" size="34,34" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red.png" alphatest="blend" zPosition="1" />
+          <widget name="key_red" position="153,588" zPosition="2" size="368,35" font="baslk;30" halign="left" valign="center" backgroundColor="red" transparent="1" />
           </screen>"""
 
     def __init__(self, session):
         Screen.__init__(self, session)
         self['lab1'] = Label(_('Select to delete.'))
-        self['key_red'] = Label(_('Delete file'))              
+        self['key_red'] = Label(_('Delete file'))
         self['list'] = List([])
         self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'back': self.close,
          'ok': self.deleteback,
-         'red': self.deleteback})         
+         'red': self.deleteback})
         self.backupdir = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/locale'
         self.onShow.append(self.updateInfo)
 
@@ -1597,7 +1597,7 @@ class DeletingLanguages(Screen):
         self.backupdir = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/locale'
         if pathExists(self.backupdir) == 0 and createDir(self.backupdir):
             pass
-            
+
         imageslist = []
         for fn in listdir(self.backupdir):
             imageslist.append(fn)
@@ -1608,7 +1608,7 @@ class DeletingLanguages(Screen):
         image = self['list'].getCurrent()
         if image:
             self.delimage = image.strip()
-            message = (_('File:  %s  remove ?') % image)                                    
+            message = (_('File:  %s  remove ?') % image)
             ybox = self.session.openWithCallback(self.dodeleteback, MessageBox, message, MessageBox.TYPE_YESNO)
             ybox.setTitle(_('Confirmation of Deletion...'))
 
@@ -1638,19 +1638,19 @@ class ATVcamfeed(Screen):
          'red': self.addcamatv})
 
     def addcamatv(self):
-        if getImageATv() == 'okfeedCAMatv':           
+        if getImageATv() == 'okfeedCAMatv':
             cmd = "echo -e '\n\n%s '" % _('NeoBoot - ATV add cam feed ...')
-            cmd1 = 'wget -O - -q http://updates.mynonpublic.com/oea/feed | bash' 
+            cmd1 = 'wget -O - -q http://updates.mynonpublic.com/oea/feed | bash'
             self.session.open(Console, _('NeoBoot: Cams feed add...'), [cmd, cmd1])
 
-        elif getImageATv() != 'okfeedCAMatv': 
+        elif getImageATv() != 'okfeedCAMatv':
             self.myClose(_('Sorry, is not image Open ATV !!!'))
 
     def myClose(self, message):
         self.session.open(MessageBox, message, MessageBox.TYPE_INFO)
         self.close()
-        
-        
+
+
 class TunerInfo(Screen):
     __module__ = __name__
     skin = """<screen name="TunerInfo" title="NeoBoot - Sat Tuners " position="center,center" size="700,300" flags="wfNoBorder">
@@ -1665,20 +1665,20 @@ class TunerInfo(Screen):
         self['key_red'] = Label(_('Start - Red'))
         self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'back': self.close,
          'red': self.iNFO})
-         
+
     def iNFO(self):
         try:
             cmd = ' cat ' + LinkNeoBoot + '/stbinfo.cfg'
             cmd1 = ''
             self.session.openWithCallback(self.close, Console, _('NeoBoot....'), [cmd,
-                     cmd1]) 
+                     cmd1])
             self.close()
 
         except:
             False
-            
 
-class CreateSwap(Screen):            
+
+class CreateSwap(Screen):
     __module__ = __name__
     skin = """<screen name="TunerInfo" title="NeoBoot - Create Swap " position="center,center" size="700,300" flags="wfNoBorder">
         <widget name="lab1" position="20,20" size="660,210" font="baslk;25" halign="center" valign="center" transparent="1" />
@@ -1692,54 +1692,54 @@ class CreateSwap(Screen):
         self['key_red'] = Label(_('Start create file swap.'))
         self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'back': self.close,
          'red': self.CreateSwap})
-         
+
     def CreateSwap(self):
         if os.path.exists('/media/hdd/ImageBoot/.neonextboot'):
             if not os.path.exists('/media/hdd/swapfile'):
-                cmd0 = "echo -e '\n\n%s '" % _('Creation swap 512MB, please wait...')            
+                cmd0 = "echo -e '\n\n%s '" % _('Creation swap 512MB, please wait...')
                 cmd1 = 'dd if=/dev/zero of=/media/hdd/swapfile bs=1024 count=524288'
                 cmd2 = 'mkswap /media/hdd/swapfile'
-                cmd3 = 'swapon /media/hdd/swapfile' 
-                cmd4 = 'echo "/media/hdd/swapfile swap swap defaults 0 0 "  >> /etc/fstab'  
+                cmd3 = 'swapon /media/hdd/swapfile'
+                cmd4 = 'echo "/media/hdd/swapfile swap swap defaults 0 0 "  >> /etc/fstab'
                 cmd5 = 'echo "/sbin/swapon /hdd/swapfile; swapon -a "  > /etc/init.d/rcS.local'
-                cmd6 = 'chmod 755 /etc/init.d/rcS.local; chmod 755 /media/hdd/swapfile; /sbin/swapon /hdd/swapfile'  
-                cmd7 = "echo -e '\n\n%s '" % _('Creation complete swap 512MB')                                  
-                self.session.open(Console, _('NeoBoot....'), [cmd0, 
-                 cmd1,                 
-                 cmd2, 
-                 cmd3, 
-                 cmd4, 
-                 cmd5, 
-                 cmd6,                 
-                 cmd7]) 
+                cmd6 = 'chmod 755 /etc/init.d/rcS.local; chmod 755 /media/hdd/swapfile; /sbin/swapon /hdd/swapfile'
+                cmd7 = "echo -e '\n\n%s '" % _('Creation complete swap 512MB')
+                self.session.open(Console, _('NeoBoot....'), [cmd0,
+                 cmd1,
+                 cmd2,
+                 cmd3,
+                 cmd4,
+                 cmd5,
+                 cmd6,
+                 cmd7])
             else:
-                self.myClose(_('The file swapfile already exists!')) 
-        elif os.path.exists('/media/usb/ImageBoot/.neonextboot'):                                             
+                self.myClose(_('The file swapfile already exists!'))
+        elif os.path.exists('/media/usb/ImageBoot/.neonextboot'):
             if not os.path.exists('/media/usb/swapfile'):
-                cmd0 = "echo -e '\n\n%s '" % _('Creation swap 512MB, please wait...')            
+                cmd0 = "echo -e '\n\n%s '" % _('Creation swap 512MB, please wait...')
                 cmd1 = 'dd if=/dev/zero of=/media/usb/swapfile bs=1024 count=524288'
                 cmd2 = 'mkswap /media/usb/swapfile'
-                cmd3 = 'swapon /media/usb/swapfile' 
-                cmd4 = 'echo "/media/usb/swapfile swap swap defaults 0 0 "  >> /etc/fstab'  
+                cmd3 = 'swapon /media/usb/swapfile'
+                cmd4 = 'echo "/media/usb/swapfile swap swap defaults 0 0 "  >> /etc/fstab'
                 cmd5 = 'echo "/sbin/swapon /usb/swapfile; swapon -a "  > /etc/init.d/rcS.local'
-                cmd6 = 'chmod 755 /etc/init.d/rcS.local; chmod 755 /media/usb/swapfile; /sbin/swapon /usb/swapfile' 
-                cmd7 = "echo -e '\n\n%s '" % _('Creation complete swap 512MB')                
-                self.session.open(Console, _('NeoBoot....'), [cmd0, 
-                 cmd1,                 
-                 cmd2, 
-                 cmd3, 
-                 cmd4, 
-                 cmd5, 
-                 cmd6,                 
-                 cmd7])                  
-            else: 
+                cmd6 = 'chmod 755 /etc/init.d/rcS.local; chmod 755 /media/usb/swapfile; /sbin/swapon /usb/swapfile'
+                cmd7 = "echo -e '\n\n%s '" % _('Creation complete swap 512MB')
+                self.session.open(Console, _('NeoBoot....'), [cmd0,
+                 cmd1,
+                 cmd2,
+                 cmd3,
+                 cmd4,
+                 cmd5,
+                 cmd6,
+                 cmd7])
+            else:
                 self.myClose(_('The file swapfile already exists!'))
-        else:        
+        else:
             self.myClose(_('The folder hdd or usb not  exists!'))
 
     def myClose(self, message):
         self.session.open(MessageBox, message, MessageBox.TYPE_INFO)
-        self.close()           
+        self.close()
 
 
 class MultiBootMyHelp(Screen):
@@ -1773,7 +1773,7 @@ class MultiBootMyHelp(Screen):
         message += 'ubi_reader by Jason Pruitt  - Thanks\n\n'
         message += 'Translation by gutosie and other people!\n\n'
         message += _('Thank you to everyone not here for helping to improve NeoBoot \n\n')
-        message += _('Successful fun :)\n\n')                      
+        message += _('Successful fun :)\n\n')
         self['lab1'].show()
         self['lab1'].setText(message)
 
@@ -1792,7 +1792,7 @@ class MyHelpNeo(Screen):
 
     __module__ = __name__
 
-    def __init__(self, session):		
+    def __init__(self, session):
         Screen.__init__(self, session)
         self['lab1'] = ScrollLabel('')
         self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'DirectionActions'], {'back': self.close,
@@ -1804,7 +1804,7 @@ class MyHelpNeo(Screen):
         self['lab1'].hide()
         self.updatetext()
 
-    def updatetext(self):		
+    def updatetext(self):
         message = _('NeoBoot Ver. ' + PLUGINVERSION + '  Enigma2\n\nDuring the entire installation process does not restart the receiver !!!\n\n')
         message += _('NeoBoot Ver. updates ' + UPDATEVERSION + '  \n\n')
         message = _('For proper operation NeoBota type device is required USB stick or HDD, formatted on your system files Linux ext3 or ext4..\n\n')
@@ -1814,8 +1814,8 @@ class MyHelpNeo(Screen):
         message += _('4. Install the needed packages...\n\n')
         message += _('5. For proper installation NenoBota receiver must be connected to the Internet.\n\n')
         message += _('6. In the event of a problem with the installation cancel and  inform the author of the plug of a problem.\n\n')
-        message += _('Buy a satellite tuner in the store: http://www.expert-tvsat.com/\n')   
-        message += _('Have fun !!!')             
+        message += _('Buy a satellite tuner in the store: http://www.expert-tvsat.com/\n')
+        message += _('Have fun !!!')
         self['lab1'].show()
         self['lab1'].setText(message)
 
@@ -1829,11 +1829,11 @@ class Opis(Screen):
         <widget name="key_red" position="30,950" size="430,50" zPosition="1" font="baslk; 30" halign="center" backgroundColor="red" transparent="1" foregroundColor="#ffffff" />
         <widget name="key_green" position="660,950" size="538,50" zPosition="1" font="baslk; 30" halign="center" backgroundColor="red" transparent="1" foregroundColor="#ffffff" />
         <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/scroll.png" position="1144,160" size="26,685" zPosition="5" alphatest="blend"/>
-        <ePixmap position="1350,750" zPosition="1" size="400,241" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/matrixhd.png" /> 
+        <ePixmap position="1350,750" zPosition="1" size="400,241" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/matrixhd.png" />
         <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red25.png" position="100,1000" size="230,36" alphatest="blend" />
-        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/green25.png" position="785,1000" size="230,36" alphatest="blend" />        
+        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/green25.png" position="785,1000" size="230,36" alphatest="blend" />
         <widget name="lab1" position="100,160" size="1070,680" font="baslk; 30"  backgroundColor="black" transparent="1" />
-        </screen>"""                  		 		   		
+        </screen>"""
     else:
         skin = """<screen position="center,center" size="1280,720" title="NeoBoot - INFORMATION">
         <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/1frame_base-fs8.png"  position="0,0" zPosition="-1" size="1280,720" />
@@ -1849,14 +1849,14 @@ class Opis(Screen):
         </screen>"""
     __module__ = __name__
 
-    def __init__(self, session):		
+    def __init__(self, session):
         Screen.__init__(self, session)
         self['key_red'] = Label(_('Remove NeoBoot of STB'))
         self['key_green'] = Label(_('Instal neoobot from github'))
         self['lab1'] = ScrollLabel('')
         self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'DirectionActions'], {'back': self.close,
          'red': self.delete,
-         'green': self.neoinstallgithub,         
+         'green': self.neoinstallgithub,
          'ok': self.close,
          'up': self['lab1'].pageUp,
          'left': self['lab1'].pageUp,
@@ -1865,23 +1865,23 @@ class Opis(Screen):
         self['lab1'].hide()
         self.updatetext()
 
-    def updatetext(self):		
+    def updatetext(self):
         message = _('\\  NeoBoot Ver. ' + PLUGINVERSION + ' - NeoBoot Ver. updates ' + UPDATEVERSION + '//\n\n')
         message += _('\----------NEOBOOT - VIP FULL VERSION----------/\n')
-        message += _('Get the full version of the multiboot plugin.\n')        
-        message += _('Send an e-mail request for the neoboot vip version.\n')   
+        message += _('Get the full version of the multiboot plugin.\n')
+        message += _('Send an e-mail request for the neoboot vip version.\n')
         message += _('e-mail:    krzysztofgutosie@gmail.com\n\n')
         message += _('----------------Free donate----------------\n')
-        message += _('Spendenbetrag\nDonaco\nDarowizna\nПожертвование\n')   
-        message += _('Donate to the project\n')    
+        message += _('Spendenbetrag\nDonaco\nDarowizna\nПожертвование\n')
+        message += _('Donate to the project\n')
         message += _('- Access to the latest version\n')
         message += _('- Online support\n')
-        message += _('- Full version\n')        
+        message += _('- Full version\n')
         message += _('- More information email\n')
         message += _('We thank you for any help\n')
         message += _('If you want to support the neoboot project, you can do so by contacting us by e-mail:\n')
         message += _(' krzysztofgutosie@gmail.com\n\n')
-        message += _(' PayPal adress:  krzysztofgutosie@gmail.com\n')        
+        message += _(' PayPal adress:  krzysztofgutosie@gmail.com\n')
         message += _('---------------- ¯\_(ツ)_/¯ ----------------\n\n')
         message += _('1. Requirements: For proper operation of the device NeoBota are required USB stick or HDD.\n\n')
         message += _('2. NeoBot is fully automated\n\n')
@@ -1891,68 +1891,68 @@ class Opis(Screen):
         message += _('6. The installed to multiboot images, it is not indicated update to a newer version.\n\n')
         message += _('The authors plug NeoBot not liable for damage a receiver, NeoBoota incorrect use or installation of unauthorized additions or images.!!!\n\n')
         message += _('\nCompletely uninstall NeoBota: \nIf you think NeoBot not you need it, you can uninstall it.\nTo uninstall now press the red button on the remote control.\n\n')
-        message += _('Have fun !!!')        
+        message += _('Have fun !!!')
         self['lab1'].show()
         self['lab1'].setText(message)
 
-    def neoinstallgithub(self):		
+    def neoinstallgithub(self):
         message = _('Are you sure you want to reinstall neoboot from github.')
         ybox = self.session.openWithCallback(self.neogithub, MessageBox, message, MessageBox.TYPE_YESNO)
         ybox.setTitle(_('Install.'))
 
-    def neogithub(self, answer):  
-        if answer is True: 
-            if fileExists('' + LinkNeoBoot + '/.location'):        
-                        system('rm -f ' + LinkNeoBoot + '/.location')  
-            if fileExists('/usr/bin/curl'):                    
+    def neogithub(self, answer):
+        if answer is True:
+            if fileExists('' + LinkNeoBoot + '/.location'):
+                        system('rm -f ' + LinkNeoBoot + '/.location')
+            if fileExists('/usr/bin/curl'):
                         cmd1 = 'rm -f /usr/lib/periodon/.kodn; curl -kLs https://raw.githubusercontent.com/gutosie/neoboot/master/iNB.sh|sh'
                         self.session.open(Console, _('NeoBoot....'), [cmd1])
                         self.close()
-            elif fileExists('/usr/bin/wget'):            
+            elif fileExists('/usr/bin/wget'):
                         cmd1 = 'rm -f /usr/lib/periodon/.kodn; cd /tmp; rm ./*.sh; wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/iNB.sh;chmod 755 ./iNB.sh;sh ./iNB.sh; rm ./iNB.sh; cd /'
                         self.session.open(Console, _('NeoBoot....'), [cmd1])
-                        self.close()                                
-            elif fileExists('/usr/bin/fullwget'): 
+                        self.close()
+            elif fileExists('/usr/bin/fullwget'):
                         cmd1 = 'rm -f /usr/lib/periodon/.kodn; cd /tmp; rm ./*.sh; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/iNB.sh;chmod 755 ./iNB.sh;sh ./iNB.sh; rm ./iNB.sh; cd /'
                         self.session.open(Console, _('NeoBoot....'), [cmd1])
-                        self.close()                                         
+                        self.close()
             else:
                         pass
         else:
-                    self.close() 
+                    self.close()
 
-    def delete(self):		
+    def delete(self):
         message = _('Are you sure you want to completely remove NeoBoota of your image?\n\nIf you choose so all directories NeoBoota will be removed.\nA restore the original image settings Flash.')
         ybox = self.session.openWithCallback(self.mbdelete, MessageBox, message, MessageBox.TYPE_YESNO)
         ybox.setTitle(_('Removed successfully.'))
 
-    def mbdelete(self, answer):		
-        if answer is True:                                                                
+    def mbdelete(self, answer):
+        if answer is True:
             if fileExists('/etc/fstab.org'):
-                system('rm -r /etc/fstab; mv /etc/fstab.org /etc/fstab') 
+                system('rm -r /etc/fstab; mv /etc/fstab.org /etc/fstab')
             if fileExists('/etc/init.d/volatile-media.sh.org'):
-                system(' mv /etc/init.d/volatile-media.sh.org /etc/init.d/volatile-media.sh; rm -r /etc/init.d/volatile-media.sh.org; chmod 755 /etc/init.d/volatile-media.sh ')                                                                 
-            if os.path.isfile('%sImageBoot/.neonextboot' % getNeoLocation()): 
+                system(' mv /etc/init.d/volatile-media.sh.org /etc/init.d/volatile-media.sh; rm -r /etc/init.d/volatile-media.sh.org; chmod 755 /etc/init.d/volatile-media.sh ')
+            if os.path.isfile('%sImageBoot/.neonextboot' % getNeoLocation()):
                 os.system('rm -f /etc/neoimage; rm -f /etc/imageboot; rm -f %sImageBoot/.neonextboot; rm -f %sImageBoot/.version; rm -f %sImageBoot/.Flash; ' % (getNeoLocation(), getNeoLocation(), getNeoLocation()))
-            if os.path.isfile('%sImagesUpload/.kernel ' % getNeoLocation()): 
+            if os.path.isfile('%sImagesUpload/.kernel ' % getNeoLocation()):
                 os.system('rm -r %sImagesUpload/.kernel' % getNeoLocation())
             cmd = "echo -e '\n\n%s '" % _('Recovering setting....\n')
-            cmd1 = 'rm -R ' + LinkNeoBoot + '' 
-            cmd2 = 'rm -R /sbin/neoinit*'                                    
-            cmd3 = 'ln -sfn /sbin/init.sysvinit /sbin/init'     
-            cmd4 = 'rm -rf /usr/lib/enigma2/python/Tools/Testinout.p*' 
+            cmd1 = 'rm -R ' + LinkNeoBoot + ''
+            cmd2 = 'rm -R /sbin/neoinit*'
+            cmd3 = 'ln -sfn /sbin/init.sysvinit /sbin/init'
+            cmd4 = 'rm -rf /usr/lib/enigma2/python/Tools/Testinout.p*'
             cmd5 = 'rm -rf /usr/lib/periodon'
-            cmd6 = 'opkg install --force-maintainer --force-reinstall --force-overwrite --force-downgrade volatile-media; sleep 10; PATH=/sbin:/bin:/usr/sbin:/usr/bin; echo -n "Rebooting... "; reboot -d -f' 
+            cmd6 = 'opkg install --force-maintainer --force-reinstall --force-overwrite --force-downgrade volatile-media; sleep 10; PATH=/sbin:/bin:/usr/sbin:/usr/bin; echo -n "Rebooting... "; reboot -d -f'
             self.session.open(Console, _('NeoBot was removed !!! \nThe changes will be visible only after complete restart of the receiver.'), [cmd,
              cmd1,
              cmd2,
              cmd3,
              cmd4,
-             cmd5,             
+             cmd5,
              cmd6])
             self.close()
         else:
-            self.close()            
+            self.close()
 
 
 class ReinstallKernel(Screen):
@@ -1962,7 +1962,7 @@ class ReinstallKernel(Screen):
     <widget name="lab1" position="20,20" size="660,210" font="baslk;25" halign="center" valign="center" transparent="1"/>
     <ePixmap position="210,250" size="34,34" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red.png" alphatest="blend" zPosition="1" />
     <widget name="key_red" position="250,250" zPosition="2" size="280,40" font="baslk;30" halign="left" valign="center" backgroundColor="red" transparent="1" />
-    </screen>"""                                                                            
+    </screen>"""
 
     def __init__(self, session):
         Screen.__init__(self, session)
@@ -1985,7 +1985,7 @@ class ReinstallKernel(Screen):
                     mess = _('Update available only from the image Flash.')
                     self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
                 else:
-                    self.kernel_update()                                            
+                    self.kernel_update()
 
         else:
             self.kernel_update()
@@ -1994,7 +1994,7 @@ class ReinstallKernel(Screen):
                 os.system('echo "Flash "  > ' + getNeoLocation() + 'ImageBoot/.neonextboot')
                 out = open('' + getNeoLocation() + 'ImagesUpload/.kernel/used_flash_kernel', 'w')
                 out.write('Used Kernel:  Flash')
-                out.close()            
+                out.close()
                 cmd1 = 'rm -f /home/root/*.ipk; opkg download kernel-image; sleep 2; opkg install --force-maintainer --force-reinstall --force-overwrite --force-downgrade /home/root/*.ipk; opkg configure update-modules; rm -f /home/root/*.ipk'
                 self.session.open(Console, _('NeoBoot....'), [cmd1])
                 self.close()
@@ -2012,7 +2012,7 @@ class neoDONATION(Screen):
 
     __module__ = __name__
 
-    def __init__(self, session):		
+    def __init__(self, session):
         Screen.__init__(self, session)
         self['lab1'] = ScrollLabel('')
         self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'DirectionActions'], {'back': self.close,
@@ -2024,20 +2024,20 @@ class neoDONATION(Screen):
         self['lab1'].hide()
         self.updatetext()
 
-    def updatetext(self):		
+    def updatetext(self):
         message = _('NeoBoot Ver. ' + PLUGINVERSION + '  Enigma2\n\n')
         message += _('NeoBoot Ver. updates ' + UPDATEVERSION + '  \n\n')
         message += _('----------------Free donate----------------\n\n')
-        message += _('Spendenbetrag\nDonaco\nDarowizna\nПожертвование\n')   
-        message += _('Donate to the project\n')     
+        message += _('Spendenbetrag\nDonaco\nDarowizna\nПожертвование\n')
+        message += _('Donate to the project\n')
         message += _('- Access to the latest version\n')
         message += _('- Online support\n')
         message += _('- More information email\n')
         message += _('We thank you for any help\n')
-        message += _('If you want to support the neoboot project, you can do so by contacting us by e-mail:\n')         
-        message += _(' krzysztofgutosie@gmail.com\n\n') 
-        message += _(' PayPal adress:  krzysztofgutosie@gmail.com\n')        
-        message += _('----------------Free donate----------------\n')   
+        message += _('If you want to support the neoboot project, you can do so by contacting us by e-mail:\n')
+        message += _(' krzysztofgutosie@gmail.com\n\n')
+        message += _(' PayPal adress:  krzysztofgutosie@gmail.com\n')
+        message += _('----------------Free donate----------------\n')
         message += _('¯\_(ツ)_/¯ Have fun !!!')
         self['lab1'].show()
         self['lab1'].setText(message)

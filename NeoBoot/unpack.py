@@ -1,11 +1,11 @@
-# -*- coding: utf-8 -*-  
-                              
-#from __init__ import _  
-from Plugins.Extensions.NeoBoot.__init__ import _                                                                                                                                                  
+# -*- coding: utf-8 -*-
+
+#from __init__ import _
+from Plugins.Extensions.NeoBoot.__init__ import _
 from Plugins.Extensions.NeoBoot.files.stbbranding import getNeoLocation, getKernelVersionString, getKernelImageVersion, getCPUtype, getCPUSoC, getImageNeoBoot, getBoxVuModel, getBoxHostName, getTunerModel
 from enigma import getDesktop
 from enigma import eTimer
-from Screens.Screen import Screen                                                                                                                                               
+from Screens.Screen import Screen
 from Screens.Console import Console
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
@@ -29,12 +29,12 @@ from Tools.Directories import fileExists, pathExists, createDir, resolveFilename
 from os import system, listdir, mkdir, chdir, getcwd, rename as os_rename, remove as os_remove, popen
 from os.path import dirname, isdir, isdir as os_isdir
 import os
-import time                                  
-if fileExists('/etc/vtiversion.info') or fileExists('/etc/bhversion') or fileExists('/usr/lib/python3.8') and fileExists('/.multinfo'):   
-    from Screens.Console import Console                   
+import time
+if fileExists('/etc/vtiversion.info') or fileExists('/etc/bhversion') or fileExists('/usr/lib/python3.8') and fileExists('/.multinfo'):
+    from Screens.Console import Console
 else:
     try:
-            from Plugins.Extensions.NeoBoot.files.neoconsole import Console 
+            from Plugins.Extensions.NeoBoot.files.neoconsole import Console
     except:
             from Screens.Console import Console
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
@@ -61,7 +61,7 @@ def isUHD():
 
 
 class InstallImage(Screen, ConfigListScreen):
-    if isFHD():           
+    if isFHD():
         skin = """<screen position="130,120" size="1650,875" title="NeoBoot - Installation">
                   <eLabel position="41,107" size="1541,2" backgroundColor="blue" foregroundColor="blue" name="linia" />
                   <eLabel position="40,744" size="1545,2" backgroundColor="blue" foregroundColor="blue" name="linia" />
@@ -98,7 +98,7 @@ class InstallImage(Screen, ConfigListScreen):
     def __init__(self, session):
         Screen.__init__(self, session)
         fn = 'NewImage'
-        sourcelist = []                        
+        sourcelist = []
         for fn in os.listdir('%sImagesUpload' % getNeoLocation()):
             if fn.find('.zip') != -1:
                 fn = fn.replace('.zip', '')
@@ -107,15 +107,15 @@ class InstallImage(Screen, ConfigListScreen):
             if fn.find('.rar') != -1:
                 fn = fn.replace('.rar', '')
                 sourcelist.append((fn, fn))
-                continue             
+                continue
             if fn.find('.tar.xz') != -1:
                 fn = fn.replace('.tar.xz', '')
-                sourcelist.append((fn, fn))                             
+                sourcelist.append((fn, fn))
                 continue
             if fn.find('.tar.gz') != -1:
                 fn = fn.replace('.tar.gz', '')
                 sourcelist.append((fn, fn))
-                continue   
+                continue
             if fn.find('.tar.bz2') != -1:
                 fn = fn.replace('.tar.bz2', '')
                 sourcelist.append((fn, fn))
@@ -123,7 +123,7 @@ class InstallImage(Screen, ConfigListScreen):
             if fn.find('.mb') != -1:
                 fn = fn.replace('.mb', '')
                 sourcelist.append((fn, fn))
-                continue                               
+                continue
             if fn.find('.nfi') != -1:
                 fn = fn.replace('.nfi', '')
                 sourcelist.append((fn, fn))
@@ -132,25 +132,25 @@ class InstallImage(Screen, ConfigListScreen):
             sourcelist = [('None', 'None')]
         self.source = ConfigSelection(choices=sourcelist)
         self.target = ConfigText(fixed_size=False)
-        self.stopenigma = ConfigYesNo(default=False)     
+        self.stopenigma = ConfigYesNo(default=False)
         self.CopyFiles = ConfigYesNo(default=True)
-        if fileExists('/proc/stb/info/vumodel') and not fileExists('/proc/stb/info/boxtype'):                
+        if fileExists('/proc/stb/info/vumodel') and not fileExists('/proc/stb/info/boxtype'):
             self.CopyKernel = ConfigYesNo(default=True)
-        else: 
-            self.CopyKernel = ConfigYesNo(default=False)              
-        self.TvList = ConfigYesNo(default=False) 
+        else:
+            self.CopyKernel = ConfigYesNo(default=False)
+        self.TvList = ConfigYesNo(default=False)
         self.LanWlan = ConfigYesNo(default=False)
         if fileExists('/proc/stb/info/vumodel') and not fileExists('/proc/stb/info/boxtype'):
-            self.Sterowniki = ConfigYesNo(default=False) 
+            self.Sterowniki = ConfigYesNo(default=False)
         else:
-            self.Sterowniki = ConfigYesNo(default=True)                                                                
-        self.InstallSettings = ConfigYesNo(default=False)        
-        self.ZipDelete = ConfigYesNo(default=False)                 
+            self.Sterowniki = ConfigYesNo(default=True)
+        self.InstallSettings = ConfigYesNo(default=False)
+        self.ZipDelete = ConfigYesNo(default=False)
         self.RepairFTP = ConfigYesNo(default=False)
         self.SoftCam = ConfigYesNo(default=False)
-        self.MediaPortal = ConfigYesNo(default=False)                                                                             
+        self.MediaPortal = ConfigYesNo(default=False)
         self.PiconR = ConfigYesNo(default=False)
-        self.Kodi = ConfigYesNo(default=False)        
+        self.Kodi = ConfigYesNo(default=False)
         self.BlackHole = ConfigYesNo(default=False)
         self.target.value = ''
         self.curselimage = ''
@@ -171,36 +171,36 @@ class InstallImage(Screen, ConfigListScreen):
          'red': self.cancel,
          'green': self.imageInstall,
          'yellow': self.HelpInstall,
-         'blue': self.openKeyboard}, -2)        
+         'blue': self.openKeyboard}, -2)
         self['key_green'] = Label(_('Install'))
         self['key_red'] = Label(_('Cancel'))
         self['key_yellow'] = Label(_('Help'))
-        self['key_blue'] = Label(_('Keyboard'))        
+        self['key_blue'] = Label(_('Keyboard'))
         self['HelpWindow'] = Pixmap()
         self['HelpWindow'].hide()
 
     def createSetup(self):
         self.list = []
         self.list.append(getConfigListEntry(_('Source Image file'), self.source))
-        self.list.append(getConfigListEntry(_('Image Name'), self.target)) 
-        self.list.append(getConfigListEntry(_('Stop E2 processes during installation?'), self.stopenigma))      
-        self.list.append(getConfigListEntry(_('Copy files from Flash to the installed image ?'), self.CopyFiles))         
-        self.list.append(getConfigListEntry(_('Copy the kernel of the installed system (recommended ?'), self.CopyKernel))         
-        self.list.append(getConfigListEntry(_('Copy the channel list ?'), self.TvList))   
-        self.list.append(getConfigListEntry(_('Copy network settings LAN-WLAN ?'), self.LanWlan))               
-        self.list.append(getConfigListEntry(_('Copy the drivers ? (Recommended only other image.)'), self.Sterowniki))                                                                
-        self.list.append(getConfigListEntry(_('Copy Settings to the new Image'), self.InstallSettings))                                                                                
-        self.list.append(getConfigListEntry(_('Delete Image zip after Install ?'), self.ZipDelete)) 
+        self.list.append(getConfigListEntry(_('Image Name'), self.target))
+        self.list.append(getConfigListEntry(_('Stop E2 processes during installation?'), self.stopenigma))
+        self.list.append(getConfigListEntry(_('Copy files from Flash to the installed image ?'), self.CopyFiles))
+        self.list.append(getConfigListEntry(_('Copy the kernel of the installed system (recommended ?'), self.CopyKernel))
+        self.list.append(getConfigListEntry(_('Copy the channel list ?'), self.TvList))
+        self.list.append(getConfigListEntry(_('Copy network settings LAN-WLAN ?'), self.LanWlan))
+        self.list.append(getConfigListEntry(_('Copy the drivers ? (Recommended only other image.)'), self.Sterowniki))
+        self.list.append(getConfigListEntry(_('Copy Settings to the new Image'), self.InstallSettings))
+        self.list.append(getConfigListEntry(_('Delete Image zip after Install ?'), self.ZipDelete))
         self.list.append(getConfigListEntry(_('Repair FTP ? (Recommended only other image if it does not work.)'), self.RepairFTP))
-        self.list.append(getConfigListEntry(_('Copy config SoftCam ?'), self.SoftCam)) 
-        self.list.append(getConfigListEntry(_('Copy MediaPortal ?'), self.MediaPortal))                 
-        self.list.append(getConfigListEntry(_('Copy picon flash to image install ?'), self.PiconR)) 
+        self.list.append(getConfigListEntry(_('Copy config SoftCam ?'), self.SoftCam))
+        self.list.append(getConfigListEntry(_('Copy MediaPortal ?'), self.MediaPortal))
+        self.list.append(getConfigListEntry(_('Copy picon flash to image install ?'), self.PiconR))
         self.list.append(getConfigListEntry(_('Transfer kodi settings ?'), self.Kodi))
         self.list.append(getConfigListEntry(_('Path BlackHole ? (Not recommended for VuPlus)'), self.BlackHole))
-     
+
     def HelpInstall(self):
             self.session.open(HelpInstall)
-                       
+
     def typeChange(self, value):
         self.createSetup()
         self['config'].l.setList(self.list)
@@ -252,26 +252,26 @@ class InstallImage(Screen, ConfigListScreen):
                 message += _('NeoBot started installing new image.\n')
                 message += _('The installation process may take a few minutes.\n')
                 message += _('Please: DO NOT reboot your STB and turn off the power.\n')
-                message += _('Please, wait...\n')                
+                message += _('Please, wait...\n')
                 message += "'"
                 cmd1 = 'python ' + pluginpath + '/ex_init.py'
                 cmd = '%s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s ' % (cmd1,
                  source,
                  target.replace(' ', '.'),
-                 str(self.stopenigma.value),                  
-                 str(self.CopyFiles.value),                 
-                 str(self.CopyKernel.value),                 
-                 str(self.TvList.value),  
-                 str(self.LanWlan.value),                               
-                 str(self.Sterowniki.value),                                                                                                                        
-                 str(self.InstallSettings.value), 
-                 str(self.ZipDelete.value),                                                                    
-                 str(self.RepairFTP.value),                                  
-                 str(self.SoftCam.value), 
-                 str(self.MediaPortal.value), 
-                 str(self.PiconR.value), 
-                 str(self.Kodi.value),                                                  
-                 str(self.BlackHole.value))  
+                 str(self.stopenigma.value),
+                 str(self.CopyFiles.value),
+                 str(self.CopyKernel.value),
+                 str(self.TvList.value),
+                 str(self.LanWlan.value),
+                 str(self.Sterowniki.value),
+                 str(self.InstallSettings.value),
+                 str(self.ZipDelete.value),
+                 str(self.RepairFTP.value),
+                 str(self.SoftCam.value),
+                 str(self.MediaPortal.value),
+                 str(self.PiconR.value),
+                 str(self.Kodi.value),
+                 str(self.BlackHole.value))
                 print("[MULTI-BOOT]: "), cmd
                 from Plugins.Extensions.NeoBoot.plugin import PLUGINVERSION
                 self.session.open(Console, _('NeoBoot v.%s - Install new image') % PLUGINVERSION, [message, cmd])
@@ -306,49 +306,48 @@ class HelpInstall(Screen):
         self.updatetext()
 
     def updatetext(self):
-        
+
         message = _('Source Image file')
-        message += _(' - Select the software to be installed with the cursor (left or right).\n\n')  
-              
+        message += _(' - Select the software to be installed with the cursor (left or right).\n\n')
+
         message += _('Image Name')
-        message += _(' - to change, press blue on the remote control.\n\n')   
-             
+        message += _(' - to change, press blue on the remote control.\n\n')
+
         message += _('Copy files from Flash to the installed image ?')
-        message += _(' - this checking this option on it nothing will be copied from the image flash to the installed image in neoboot.\n\n')  
-              
+        message += _(' - this checking this option on it nothing will be copied from the image flash to the installed image in neoboot.\n\n')
+
         message += _('Copy the kernel of the installed system (recommended ?')
         message += _('- after selecting this option, the kernel of the installed image will be copied to neoboot, only recommended for STB vuplus\n\n')
-                
+
         message += _('Copy the channel list ?')
         message += _(' - Option to copy channel list from flash to image installed in neoboot.\n\n')
-                
+
         message += _('Copy mounting disks ? (Recommended)')
         message += _(' - the option transfers mounts to the image installed in neoboot from the flashlight, recommended only if you are installing an image from a different model than you have.\n\n')
-                
+
         message += _('Copy network settings LAN-WLAN ?')
         message += _(' - the option moves files with the settings for lan and wlan.\n\n')
-                
-        message += _('Copy the drivers ? (Recommended only other image.)')  
-        message += _(' - Option to copy drivers to the image installed in neoboot from the flashlight, recommended only if you are installing an image from a different model than you have.\n\n') 
-                      
+
+        message += _('Copy the drivers ? (Recommended only other image.)')
+        message += _(' - Option to copy drivers to the image installed in neoboot from the flashlight, recommended only if you are installing an image from a different model than you have.\n\n')
+
         message += _('Copy Settings to the new Image')
         message += _(' - the option copies the software settings from the flashlight to the system being installed in the neobot.\n\n')
-                
+
         message += _('Delete Image zip after Install ?')
         message += _(' - po instalacji, opcja kasuje plik zip image z katalogu ImagesUpload.\n\n')
-                
+
         message += _('Repair FTP ? (Recommended only other image if it does not work.)')
         message += _(' - the option in some cases repairs the File Transfer Protocol connection in the installed image.\n\n')
-                
+
         message += _('Copy config SoftCam ?')
         message += _(' -  the option copies oscam configi and cccam, openpli default.\n\n')
-                
-        message += _('Copy picon flash to image install ?')  
+
+        message += _('Copy picon flash to image install ?')
         message += _(' - cpuy picon from flash to image install in neoboot\n\n')
-        
-        message += _('Path BlackHole ? (Not recommended for VuPlus)')  
+
+        message += _('Path BlackHole ? (Not recommended for VuPlus)')
         message += _(' - option for image blackhole, helps to run BH in neoboot\n\n')
-                     
+
         self['lab1'].show()
         self['lab1'].setText(message)
-                
