@@ -557,7 +557,7 @@ class SetDiskLabel(Screen):
     def __init__(self, session):
         global liczymy
         Screen.__init__(self, session)
-        self.labList = ['hdd', 'usb','card', 'cf']
+        self.labList = ['hdd', 'usb', 'card', 'cf']
         self.list = []
         self.sprDev()
         self.devlist = []

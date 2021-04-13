@@ -463,7 +463,7 @@ class NeoBootInstallation(Screen):
                     os.system('rm -f /etc/neoimage; rm -f /etc/imageboot; rm -f %sImageBoot/.neonextboot; rm -f %sImageBoot/.version; rm -f %sImageBoot/.Flash; ' % (getNeoLocation(), getNeoLocation(), getNeoLocation()))
 
             if os.path.isfile('%sImagesUpload/.kernel/zImage*.ipk or %sImagesUpload/.kernel/zImage*.bin' % (getNeoLocation(), getNeoLocation())): 
-                        os.system('rm -f %sImagesUpload/.kernel/zImage*.ipk; rm -f %sImagesUpload/.kernel/zImage*.bin' % (getNeoLocation(),getNeoLocation()))                    
+                        os.system('rm -f %sImagesUpload/.kernel/zImage*.ipk; rm -f %sImagesUpload/.kernel/zImage*.bin' % (getNeoLocation(), getNeoLocation()))                    
 
             if fileExists('/etc/issue.net'):
                 try:
@@ -507,7 +507,7 @@ class NeoBootInstallation(Screen):
                     writefile.write(imagetype)
                     writefile.close()                                                                                                                           
             elif fileExists('/etc/vtiversion.info'):
-                    f = open("/etc/vtiversion.info",'r') 
+                    f = open("/etc/vtiversion.info", 'r') 
                     imagever = f.readline().strip().replace("Release ", " ")
                     f.close()
                     image = imagever
@@ -515,7 +515,7 @@ class NeoBootInstallation(Screen):
                     writefile.write(imagever)
                     writefile.close()
             elif fileExists('/etc/bhversion'):
-                    f = open("/etc/bhversion",'r') 
+                    f = open("/etc/bhversion", 'r') 
                     imagever = f.readline().strip()
                     f.close()
                     image = imagever

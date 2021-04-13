@@ -12,13 +12,13 @@ LogFileObj = None
 def Log(param=''):
     global LogFileObj
     #first close object if exists
-    if param.lower() in ['open','write','append','close']:
+    if param.lower() in ['open', 'write', 'append', 'close']:
         if LogFileObj is not None:
             LogFileObj.close()
             if LogFileObj.closed:
                 LogFileObj = None
                 try:
-                    with open('/tmp/NeoBoot.log','a') as f:
+                    with open('/tmp/NeoBoot.log', 'a') as f:
                         f.write('LogFile closed properly\n')
                         f.close()
                 except Exception:
@@ -27,7 +27,7 @@ def Log(param=''):
                 print("ERROR closing LogFile!!!")
     #second create object if does not exist
     if LogFileObj is None:
-        if param.lower() in ['open','write']:
+        if param.lower() in ['open', 'write']:
             LogFileObj = open(LogFile, "w")
         elif param.lower() in ['append']:
             LogFileObj = open(LogFile, "a")
@@ -415,7 +415,7 @@ def getBoxVuModel():
 def getVuModel():
     if fileExists("/proc/stb/info/vumodel") and not fileExists("/proc/stb/info/boxtype"):
         brand = "Vu+"
-        f = open("/proc/stb/info/vumodel",'r')
+        f = open("/proc/stb/info/vumodel", 'r')
         procmodel = f.readline().strip()
         f.close()
         model = procmodel.title().replace("olose", "olo SE").replace("olo2se", "olo2 SE").replace("2", "²")
@@ -473,13 +473,13 @@ def getImageDistroN():
                         f.close()
                         
     elif not fileExists('/.multinfo') and fileExists('/etc/vtiversion.info'):
-                    f = open("/etc/vtiversion.info",'r')
+                    f = open("/etc/vtiversion.info", 'r')
                     imagever = f.readline().strip().replace("Release ", " ")
                     f.close()
                     image = imagever
 
     elif not fileExists('/.multinfo') and fileExists('/etc/bhversion'):
-                    f = open("/etc/bhversion",'r')
+                    f = open("/etc/bhversion", 'r')
                     imagever = f.readline().strip()
                     f.close()
                     image = imagever
