@@ -2,6 +2,7 @@
 from zlib import crc32
 from ubi.defines import *
 
+
 def ec_hdr(ec_hdr, buf):
     if ec_hdr.hdr_crc != ~crc32(buf[:-4]) & 4294967295L:
         ec_hdr.errors.append('crc')

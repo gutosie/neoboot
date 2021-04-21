@@ -2,7 +2,7 @@
 
 #from __init__ import _
 from Plugins.Extensions.NeoBoot.__init__ import _
-from Plugins.Extensions.NeoBoot.files.stbbranding import getSupportedTuners, getCPUtype, getCPUSoC,  getImageNeoBoot, getBoxHostName, getTunerModel, getNeoLocation, getNeoMount, getNeoMount2,getNeoMount3, getNeoMount4, getNeoMount5, getMountPointNeo2
+from Plugins.Extensions.NeoBoot.files.stbbranding import getSupportedTuners, getCPUtype, getCPUSoC, getImageNeoBoot, getBoxHostName, getTunerModel, getNeoLocation, getNeoMount, getNeoMount2, getNeoMount3, getNeoMount4, getNeoMount5, getMountPointNeo2
 from enigma import getDesktop
 from enigma import eTimer
 from Screens.Screen import Screen
@@ -31,6 +31,7 @@ from os.path import dirname, isdir, isdir as os_isdir
 import os
 import time
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
+
 
 class StartImage(Screen):
     screenwidth = getDesktop(0).size().width()
@@ -62,6 +63,7 @@ class StartImage(Screen):
         \n\t\t        </screen>"""
 
     __module__ = __name__
+
     def __init__(self, session):
         Screen.__init__(self, session)
         self.list = []
@@ -84,10 +86,10 @@ class StartImage(Screen):
 
     def KeyOk(self):
         if getImageNeoBoot() != 'Flash':
-                os.system('rm -rf %sImageBoot/%s/usr/bin/enigma2_pre_start.sh' % ( getNeoLocation(), getImageNeoBoot()))
+                os.system('rm -rf %sImageBoot/%s/usr/bin/enigma2_pre_start.sh' % (getNeoLocation(), getImageNeoBoot()))
                 self.StartImageInNeoBoot()
         else:
-            os.system('rm -rf %sImageBoot/%s/usr/bin/enigma2_pre_start.sh' % ( getNeoLocation(), getImageNeoBoot()))
+            os.system('rm -rf %sImageBoot/%s/usr/bin/enigma2_pre_start.sh' % (getNeoLocation(), getImageNeoBoot()))
             self.StartImageInNeoBoot()
 
         #---------------------------------------------
@@ -96,12 +98,12 @@ class StartImage(Screen):
 
     def StartImageInNeoBoot(self):
         if getImageNeoBoot() != 'Flash':
-            if fileExists('%sImageBoot/%s/.control_ok' % ( getNeoLocation(),  getImageNeoBoot())):
+            if fileExists('%sImageBoot/%s/.control_ok' % (getNeoLocation(), getImageNeoBoot())):
                 system('touch /tmp/.control_ok ')
             else:
-                system('touch %sImageBoot/%s/.control_boot_new_image ' % ( getNeoLocation(), getImageNeoBoot() ))
+                system('touch %sImageBoot/%s/.control_boot_new_image ' % (getNeoLocation(), getImageNeoBoot()))
         if fileExists('/.multinfo') and getCPUtype() == 'ARMv7':
-                os.system(' ' +LinkNeoBoot+ '/files/findsk.sh; mkdir -p /media/InternalFlash; mount /tmp/root /media/InternalFlash')  
+                os.system(' ' + LinkNeoBoot + '/files/findsk.sh; mkdir -p /media/InternalFlash; mount /tmp/root /media/InternalFlash')
 
         self.sel = self['list'].getCurrent()
         if self.sel:
@@ -119,61 +121,61 @@ class StartImage(Screen):
                 os.system('rm -f /media/InternalFlash/linuxrootfs3/etc/init.d/neobootmount.sh;')
             elif fileExists('/media/InternalFlash/linuxrootfs4/etc/init.d/neobootmount.sh'):
                 os.system('rm -f /media/InternalFlash/linuxrootfs4/etc/init.d/neobootmount.sh;')
-#            else:                                                                                                 
-#                pass                                                                  
+#            else:
+#                pass
             #_____ARM procesor____
-            if (getSupportedTuners()):         
+            if (getSupportedTuners()):
                         if getImageNeoBoot() == 'Flash':
                             if fileExists('/.multinfo'):
                                 if fileExists('/media/InternalFlash/linuxrootfs1/sbin/neoinitarm'):
                                         cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT - REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
-                                        cmd1 = 'cd /media/InternalFlash/linuxrootfs1; ln -sfn /sbin/init.sysvinit /media/InternalFlash/linuxrootfs1/sbin/init; sleep 5; reboot -d -f '  
+                                        cmd1 = 'cd /media/InternalFlash/linuxrootfs1; ln -sfn /sbin/init.sysvinit /media/InternalFlash/linuxrootfs1/sbin/init; sleep 5; reboot -d -f '
                                         self.session.open(Console, _('NeoBoot-Reboot ....'), [cmd, cmd1])
                                 elif fileExists('/media/InternalFlash/linuxrootfs2/sbin/neoinitarm'):
                                         cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT - REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
-                                        cmd1 = 'cd /media/InternalFlash/linuxrootfs2; ln -sfn /sbin/init.sysvinit /media/InternalFlash/linuxrootfs2/sbin/init; sleep 5; reboot -d -f '  
+                                        cmd1 = 'cd /media/InternalFlash/linuxrootfs2; ln -sfn /sbin/init.sysvinit /media/InternalFlash/linuxrootfs2/sbin/init; sleep 5; reboot -d -f '
                                         self.session.open(Console, _('NeoBoot-Reboot ....'), [cmd, cmd1])
                                 elif fileExists('/media/InternalFlash/linuxrootfs3/sbin/neoinitarm'):
                                         cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT - REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
-                                        cmd1 = 'cd /media/InternalFlash/linuxrootfs3; ln -sfn /sbin/init.sysvinit /media/InternalFlash/linuxrootfs3/sbin/init; sleep 5; reboot -d -f '  
+                                        cmd1 = 'cd /media/InternalFlash/linuxrootfs3; ln -sfn /sbin/init.sysvinit /media/InternalFlash/linuxrootfs3/sbin/init; sleep 5; reboot -d -f '
                                         self.session.open(Console, _('NeoBoot-Reboot ....'), [cmd, cmd1])
-                                elif fileExists('/media/InternalFlash/linuxrootfs4/sbin/neoinitarm') :
+                                elif fileExists('/media/InternalFlash/linuxrootfs4/sbin/neoinitarm'):
                                         cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT - REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
-                                        cmd1 = 'cd /media/InternalFlash/linuxrootfs4; ln -sfn /sbin/init.sysvinit /media/InternalFlash/linuxrootfs4/sbin/init; sleep 5; reboot -d -f '  
+                                        cmd1 = 'cd /media/InternalFlash/linuxrootfs4; ln -sfn /sbin/init.sysvinit /media/InternalFlash/linuxrootfs4/sbin/init; sleep 5; reboot -d -f '
                                         self.session.open(Console, _('NeoBoot-Reboot ....'), [cmd, cmd1])
                                 elif fileExists('/media/InternalFlash/sbin/init'):
                                         cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT - REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
-                                        cmd1 = 'cd /media/InternalFlash; ln -sfn /sbin/init.sysvinit /media/InternalFlash/sbin/init; sleep 5; reboot -d -f '  
-                                        self.session.open(Console, _('NeoBoot-Reboot ....'), [cmd, cmd1])                                
+                                        cmd1 = 'cd /media/InternalFlash; ln -sfn /sbin/init.sysvinit /media/InternalFlash/sbin/init; sleep 5; reboot -d -f '
+                                        self.session.open(Console, _('NeoBoot-Reboot ....'), [cmd, cmd1])
                                 else:
                                         cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT - REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
-                                        cmd1 = 'sleep 5; reboot -d -f '  
-                                        self.session.open(Console, _('NeoBoot-Reboot ....'), [cmd, cmd1])                             
+                                        cmd1 = 'sleep 5; reboot -d -f '
+                                        self.session.open(Console, _('NeoBoot-Reboot ....'), [cmd, cmd1])
                             elif not fileExists('/.multinfo'):
                                 cmd = "echo -e '\n\n%s '" % _('NEOBOOT - Restart image flash....\nPlease wait, in a moment the decoder will be restarted...\n')
-                                cmd1='sleep 5; ln -sfn /sbin/init.sysvinit /sbin/init; reboot -d -f '
+                                cmd1 = 'sleep 5; ln -sfn /sbin/init.sysvinit /sbin/init; reboot -d -f '
                                 self.session.open(Console, _('NeoBoot ....'), [cmd, cmd1])
                             else:
                                 cmd = "echo -e '\n\n%s '" % _('NEOBOOT - Restart image flash....\nPlease wait, in a moment the decoder will be restarted...\n')
-                                cmd1='sleep 5; ln -sfn /sbin/init.sysvinit /sbin/init; reboot -d -f '
+                                cmd1 = 'sleep 5; ln -sfn /sbin/init.sysvinit /sbin/init; reboot -d -f '
                                 self.session.open(Console, _('NeoBoot-ERROR!!! ....'), [cmd, cmd1])
                         elif getImageNeoBoot() != 'Flash':
                             if fileExists('/.multinfo'):
                                 cmd = "echo -e '\n\n%s '" % _('NEOBOOT - Restart image flash....\nPlease wait, in a moment the decoder will be restarted...\n')
-                                cmd1='sleep 5; reboot -d -f '
+                                cmd1 = 'sleep 5; reboot -d -f '
                                 self.session.open(Console, _('NeoBoot ....'), [cmd, cmd1])
                             elif not fileExists('/.multinfo'):
                                 cmd = "echo -e '\n\n%s '" % _('NEOBOOT - Restart image flash....\nPlease wait, in a moment the decoder will be restarted...\n')
-                                cmd1='sleep 5; ln -sfn /sbin/neoinitarm /sbin/init; reboot -d -f '
+                                cmd1 = 'sleep 5; ln -sfn /sbin/neoinitarm /sbin/init; reboot -d -f '
                                 self.session.open(Console, _('NeoBoot ....'), [cmd, cmd1])
                             else:
                                 cmd = "echo -e '\n\n%s '" % _('NEOBOOT - Restart image flash....\nPlease wait, in a moment the decoder will be restarted...\n')
-                                cmd1='sleep 5; ln -sfn /sbin/init.sysvinit /sbin/init; reboot -d -f '
+                                cmd1 = 'sleep 5; ln -sfn /sbin/init.sysvinit /sbin/init; reboot -d -f '
                                 self.session.open(Console, _('NeoBoot-ERROR!!! ....'), [cmd, cmd1])
                         else:
                             os.system('echo "Flash "  >> ' + getNeoLocation() + 'ImageBoot/.neonextboot')
                             self.messagebox = self.session.open(MessageBox, _('It looks like it that multiboot does not support this STB.'), MessageBox.TYPE_INFO, 8)
-                            self.close() 
+                            self.close()
 
             else:
                             os.system('echo "Flash "  >> ' + getNeoLocation() + 'ImageBoot/.neonextboot')

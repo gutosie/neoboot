@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 
-from Plugins.Extensions.NeoBoot.__init__ import _                                                                                                                                                    
-from Plugins.Extensions.NeoBoot.files.stbbranding import getSupportedTuners, getNeoLocation, getCPUtype, getCPUSoC,  getImageNeoBoot, getBoxVuModel, getBoxHostName, getNeoMount, getNeoMount2,getNeoMount3, getNeoMount4, getNeoMount5, getMountPointNeo2
+from Plugins.Extensions.NeoBoot.__init__ import _
+from Plugins.Extensions.NeoBoot.files.stbbranding import getSupportedTuners, getNeoLocation, getCPUtype, getCPUSoC, getImageNeoBoot, getBoxVuModel, getBoxHostName, getNeoMount, getNeoMount2, getNeoMount3, getNeoMount4, getNeoMount5, getMountPointNeo2
 from enigma import getDesktop
 from enigma import eTimer
-from Screens.Screen import Screen                                                                                                                                               
+from Screens.Screen import Screen
 from Screens.Console import Console
-from Screens.MessageBox import MessageBox                          
+from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Screens.Standby import TryQuitMainloop
@@ -28,7 +28,7 @@ from Tools.Directories import fileExists, pathExists, createDir, resolveFilename
 from os import system, listdir, mkdir, chdir, getcwd, rename as os_rename, remove as os_remove, popen
 from os.path import dirname, isdir, isdir as os_isdir
 import os
-import time                  
+import time
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
 
 
@@ -62,6 +62,7 @@ class StartImage(Screen):
         \n\t\t        </screen>"""
 
     __module__ = __name__
+
     def __init__(self, session):
         Screen.__init__(self, session)
         self.list = []
@@ -71,7 +72,7 @@ class StartImage(Screen):
          'back': self.close})
         self['label1'] = Label(_('Start the chosen system now ?'))
         self['label2'] = Label(_('Select OK to run the image.'))
-        
+
     def select(self):
         self.list = []
         mypath = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
@@ -82,56 +83,55 @@ class StartImage(Screen):
         self.list.append(res)
         self['list'].list = self.list
 
-    def KeyOk(self): 
-        if getImageNeoBoot() != 'Flash': 
-                os.system('rm -rf %sImageBoot/%s/usr/bin/enigma2_pre_start.sh' % ( getNeoLocation(), getImageNeoBoot())) 
+    def KeyOk(self):
+        if getImageNeoBoot() != 'Flash':
+                os.system('rm -rf %sImageBoot/%s/usr/bin/enigma2_pre_start.sh' % (getNeoLocation(), getImageNeoBoot()))
                 self.StartImageInNeoBoot()
         else:
-            os.system('rm -rf %sImageBoot/%s/usr/bin/enigma2_pre_start.sh' % ( getNeoLocation(), getImageNeoBoot())) 
+            os.system('rm -rf %sImageBoot/%s/usr/bin/enigma2_pre_start.sh' % (getNeoLocation(), getImageNeoBoot()))
             self.StartImageInNeoBoot()
         #---------------------------------------------
         getMountPointNeo2()
         #---------------------------------------------
 
-    def StartImageInNeoBoot(self):                              
+    def StartImageInNeoBoot(self):
         if getImageNeoBoot() != 'Flash':
-            if fileExists('%sImageBoot/%s/.control_ok' % ( getNeoLocation(),  getImageNeoBoot())): 
-                system('touch /tmp/.control_ok ') 
+            if fileExists('%sImageBoot/%s/.control_ok' % (getNeoLocation(), getImageNeoBoot())):
+                system('touch /tmp/.control_ok ')
             else:
-                system('touch %sImageBoot/%s/.control_boot_new_image ' % ( getNeoLocation(), getImageNeoBoot() ))
+                system('touch %sImageBoot/%s/.control_boot_new_image ' % (getNeoLocation(), getImageNeoBoot()))
 
-        #system('chmod 755 /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/kernel.sh')                                                  
+        #system('chmod 755 /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/kernel.sh')
         self.sel = self['list'].getCurrent()
         if self.sel:
-            self.sel = self.sel[2]     
-        if self.sel == 0:          
+            self.sel = self.sel[2]
+        if self.sel == 0:
             if fileExists('/media/InternalFlash/etc/init.d/neobootmount.sh'):
                 os.system('rm -f /media/InternalFlash/etc/init.d/neobootmount.sh;')
-            if (getSupportedTuners()):    
-                        if getImageNeoBoot() == 'Flash':  
+            if (getSupportedTuners()):
+                        if getImageNeoBoot() == 'Flash':
                                 cmd = "echo -e '\n\n%s '" % _('NEOBOOT - Restart image flash....\nPlease wait, in a moment the decoder will be restarted...\n')
-                                cmd1='sleep 8; ln -sfn /sbin/init.sysvinit /sbin/init; reboot -f '
+                                cmd1 = 'sleep 8; ln -sfn /sbin/init.sysvinit /sbin/init; reboot -f '
                                 self.session.open(Console, _('NeoBoot ....'), [cmd, cmd1])
                         elif getImageNeoBoot() != 'Flash':
                             if fileExists('/.multinfo'):
                                 cmd = "echo -e '\n\n%s '" % _('NEOBOOT - Restart image flash....\nPlease wait, in a moment the decoder will be restarted...\n')
-                                cmd1='sleep 5; reboot -f '
+                                cmd1 = 'sleep 5; reboot -f '
                                 self.session.open(Console, _('NeoBoot ....'), [cmd, cmd1])
                             elif not fileExists('/.multinfo'):
                                 cmd = "echo -e '\n\n%s '" % _('NEOBOOT - Restart image flash....\nPlease wait, in a moment the decoder will be restarted...\n')
-                                cmd1='sleep 8; ln -sfn /sbin/neoinitmips /sbin/init; reboot -f '
+                                cmd1 = 'sleep 8; ln -sfn /sbin/neoinitmips /sbin/init; reboot -f '
                                 self.session.open(Console, _('NeoBoot ....'), [cmd, cmd1])
                             else:
                                 cmd = "echo -e '\n\n%s '" % _('NEOBOOT - Restart image flash....\nPlease wait, in a moment the decoder will be restarted...\n')
-                                cmd1='sleep 8; ln -sfn /sbin/init.sysvinit /sbin/init; reboot -f '
+                                cmd1 = 'sleep 8; ln -sfn /sbin/init.sysvinit /sbin/init; reboot -f '
                                 self.session.open(Console, _('NeoBoot-ERROR!!! ....'), [cmd, cmd1])
                         else:
                             os.system('echo "Flash "  >> ' + getNeoLocation() + 'ImageBoot/.neonextboot')
                             self.messagebox = self.session.open(MessageBox, _('It looks like it that multiboot does not support this STB.'), MessageBox.TYPE_INFO, 8)
-                            self.close() 
+                            self.close()
 
             else:
                             os.system('echo "Flash "  >> ' + getNeoLocation() + 'ImageBoot/.neonextboot')
                             self.messagebox = self.session.open(MessageBox, _('It looks like it that multiboot does not support this STB.'), MessageBox.TYPE_INFO, 8)
                             self.close()
-                            

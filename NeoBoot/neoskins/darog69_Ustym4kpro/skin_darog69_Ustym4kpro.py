@@ -5,7 +5,7 @@ import os
 # darog69 = ./neoskins/darog69_Ustym4kpro/skin_darog69_Ustym4kpro.py
 
 ### ImageChooseFULLHD  - darog69_Ustym4kpro
-ImageChooseFULLHD ="""
+ImageChooseFULLHD = """
 <screen name="NeoBootImageChoose" position="center,center" size="1920,1080" title=" " flags="wfNoBorder" backgroundColor="transparent">
   <widget name="progreso" position="595,590" size="530,15" borderWidth="1" zPosition="3" />
   <ePixmap position="center,0" zPosition="-3" size="1920,1080" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/darog69_Ustym4kpro/skin.png" />
@@ -51,11 +51,9 @@ ImageChooseFULLHD ="""
   <widget name="label14" position="595,25" zPosition="1" size="350,56" font="Regular;35" halign="center" valign="center" backgroundColor="black" transparent="1" foregroundColor="green" />
   <widget name="label15" position="322,584" zPosition="1" size="265,42" font="Regular;35" halign="center" valign="center" backgroundColor="black" transparent="1" foregroundColor="green" />
   <widget name="label19" position="150,910" zPosition="1" size="750,45" font="Regular;35" halign="left" valign="center" backgroundColor="black" transparent="1" foregroundColor="unff00" />
-  
+
 </screen>
-  
+
 """
 
 ###
- 
- 

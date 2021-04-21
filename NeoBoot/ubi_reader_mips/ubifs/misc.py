@@ -27,6 +27,7 @@ key_types = ['ino',
  'dent',
  'xent']
 
+
 def parse_key(key):
     hkey, lkey = struct.unpack('<II', key[0:UBIFS_SK_LEN])
     ino_num = hkey & UBIFS_S_KEY_HASH_MASK

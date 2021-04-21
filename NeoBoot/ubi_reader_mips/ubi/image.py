@@ -3,6 +3,7 @@ from ubi import display
 from ubi.volume import get_volumes
 from ubi.block import get_blocks_in_list
 
+
 class description(object):
 
     def __init__(self, blocks, layout_info):
@@ -34,5 +35,5 @@ class description(object):
 
     volumes = property(_get_volumes)
 
-    def display(self, tab = ''):
+    def display(self, tab=''):
         display.image(self, tab)

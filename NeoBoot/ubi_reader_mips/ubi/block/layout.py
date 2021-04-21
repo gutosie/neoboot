@@ -1,6 +1,7 @@
 #!/usr/bin/python
 from ubi.block import sort
 
+
 def group_pairs(blocks, layout_blocks_list):
     layouts_grouped = [[blocks[layout_blocks_list[0]].peb_num]]
     for l in layout_blocks_list[1:]:

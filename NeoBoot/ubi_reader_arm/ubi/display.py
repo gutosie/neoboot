@@ -1,7 +1,8 @@
 #!/usr/bin/python
 from ubi.defines import PRINT_COMPAT_LIST, PRINT_VOL_TYPE_LIST, UBI_VTBL_AUTORESIZE_FLG
 
-def ubi(ubi, tab = ''):
+
+def ubi(ubi, tab=''):
     print '%sUBI File' % tab
     print '%s---------------------' % tab
     print '\t%sMin I/O: %s' % (tab, ubi.min_io_size)
@@ -15,7 +16,7 @@ def ubi(ubi, tab = ''):
     print '\t%sFirst UBI PEB Number: %s' % (tab, ubi.first_peb_num)
 
 
-def image(image, tab = ''):
+def image(image, tab=''):
     print '%s%s' % (tab, image)
     print '%s---------------------' % tab
     print '\t%sImage Sequence Num: %s' % (tab, image.image_seq)
@@ -25,7 +26,7 @@ def image(image, tab = ''):
     print '\t%sPEB Range: %s - %s' % (tab, image.peb_range[0], image.peb_range[1])
 
 
-def volume(volume, tab = ''):
+def volume(volume, tab=''):
     print '%s%s' % (tab, volume)
     print '%s---------------------' % tab
     print '\t%sVol ID: %s' % (tab, volume.vol_id)
@@ -38,7 +39,7 @@ def volume(volume, tab = ''):
     print '\n'
 
 
-def block(block, tab = '\t'):
+def block(block, tab='\t'):
     print '%s%s' % (tab, block)
     print '%s---------------------' % tab
     print '\t%sFile Offset: %s' % (tab, block.file_offset)
@@ -68,14 +69,14 @@ def block(block, tab = '\t'):
     print '\n'
 
 
-def ec_hdr(ec_hdr, tab = ''):
+def ec_hdr(ec_hdr, tab=''):
     for key, value in ec_hdr:
         if key == 'errors':
             value = ','.join(value)
         print '%s%s: %r' % (tab, key, value)
 
 
-def vid_hdr(vid_hdr, tab = ''):
+def vid_hdr(vid_hdr, tab=''):
     for key, value in vid_hdr:
         if key == 'errors':
             value = ','.join(value)
@@ -92,7 +93,7 @@ def vid_hdr(vid_hdr, tab = ''):
         print '%s%s: %s' % (tab, key, value)
 
 
-def vol_rec(vol_rec, tab = ''):
+def vol_rec(vol_rec, tab=''):
     for key, value in vol_rec:
         if key == 'errors':
             value = ','.join(value)

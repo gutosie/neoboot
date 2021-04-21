@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 
 #from __init__ import _
-from Plugins.Extensions.NeoBoot.__init__ import _ 
+from Plugins.Extensions.NeoBoot.__init__ import _
 #from __future__ import print_function
-from Plugins.Extensions.NeoBoot.files.stbbranding import getNeoLocation, getCPUtype, getCPUSoC,  getImageNeoBoot, getBoxVuModel, getBoxHostName, getNeoMount, getNeoMount2,getNeoMount3, getNeoMount4, getNeoMount5, getMountPointNeo2
+from Plugins.Extensions.NeoBoot.files.stbbranding import getNeoLocation, getCPUtype, getCPUSoC, getImageNeoBoot, getBoxVuModel, getBoxHostName, getNeoMount, getNeoMount2, getNeoMount3, getNeoMount4, getNeoMount5, getMountPointNeo2
 from enigma import getDesktop
 from enigma import eTimer
-from Screens.Screen import Screen                                                                                                                                               
+from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.VirtualKeyBoard import VirtualKeyBoard
@@ -30,8 +30,9 @@ from Tools.Directories import fileExists, pathExists, createDir, resolveFilename
 from os import system, listdir, mkdir, chdir, getcwd, rename as os_rename, remove as os_remove, popen
 from os.path import dirname, isdir, isdir as os_isdir
 import os
-import time                  
+import time
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
+
 
 class StartImage(Screen):
     screenwidth = getDesktop(0).size().width()
@@ -63,6 +64,7 @@ class StartImage(Screen):
         \n\t\t        </screen>"""
 
     __module__ = __name__
+
     def __init__(self, session):
         Screen.__init__(self, session)
         self.list = []
@@ -85,10 +87,10 @@ class StartImage(Screen):
 
     def KeyOk(self):
         if getImageNeoBoot() != "Flash":
-                os.system('rm -rf %sImageBoot/%s/usr/bin/enigma2_pre_start.sh' % ( getNeoLocation(), getImageNeoBoot()))
+                os.system('rm -rf %sImageBoot/%s/usr/bin/enigma2_pre_start.sh' % (getNeoLocation(), getImageNeoBoot()))
                 self.StartImageInNeoBoot()
         else:
-            os.system('rm -rf %sImageBoot/%s/usr/bin/enigma2_pre_start.sh' % ( getNeoLocation(), getImageNeoBoot()))
+            os.system('rm -rf %sImageBoot/%s/usr/bin/enigma2_pre_start.sh' % (getNeoLocation(), getImageNeoBoot()))
             self.StartImageInNeoBoot()
         #---------------------------------------------
         getMountPointNeo2()
@@ -96,13 +98,13 @@ class StartImage(Screen):
 
     def StartImageInNeoBoot(self):
         if getImageNeoBoot() != "Flash":
-            if fileExists('%sImageBoot/%s/.control_ok' % ( getNeoLocation(),  getImageNeoBoot())):
+            if fileExists('%sImageBoot/%s/.control_ok' % (getNeoLocation(), getImageNeoBoot())):
                 system('touch /tmp/.control_ok ')
             else:
-                system('touch %sImageBoot/%s/.control_boot_new_image ' % ( getNeoLocation(), getImageNeoBoot() ))
+                system('touch %sImageBoot/%s/.control_boot_new_image ' % (getNeoLocation(), getImageNeoBoot()))
 
         if fileExists('/.multinfo') and getCPUtype() == "ARMv7":
-                if  getBoxVuModel() == "uno4kse" or getBoxVuModel() == "uno4k"  or  getBoxVuModel() == "ultimo4k" or  getBoxVuModel() == "solo4k":
+                if getBoxVuModel() == "uno4kse" or getBoxVuModel() == "uno4k" or getBoxVuModel() == "ultimo4k" or getBoxVuModel() == "solo4k":
                     os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p4 /media/InternalFlash')
 
         system('chmod 755 ' + LinkNeoBoot + '/files/kernel.sh')
@@ -115,9 +117,9 @@ class StartImage(Screen):
             if not fileExists('/bin/busybox.nosuid'):
                 os.system('ln -sf "busybox" "/bin/busybox.nosuid" ')
             #VUPLUS ARM  ultimo4k, solo4k, uno4k, uno4kse - mmcblk0p1.sh
-            if getCPUtype() == "ARMv7" and getBoxHostName() == "vuultimo4k" or getBoxHostName() == "vusolo4k" or getBoxHostName() == "vuuno4k" or getBoxHostName() == "vuuno4kse" :
-                        if not fileExists('%sImagesUpload/.kernel/flash-kernel-%s.bin' % (getNeoLocation(), getBoxHostName()) ):
-                            mess = (_('Error - in the location %sImagesUpload/.kernel/ \nkernel file not found flash-kernel-%s.bin') % (getNeoLocation(), getBoxHostName())  )
+            if getCPUtype() == "ARMv7" and getBoxHostName() == "vuultimo4k" or getBoxHostName() == "vusolo4k" or getBoxHostName() == "vuuno4k" or getBoxHostName() == "vuuno4kse":
+                        if not fileExists('%sImagesUpload/.kernel/flash-kernel-%s.bin' % (getNeoLocation(), getBoxHostName())):
+                            mess = (_('Error - in the location %sImagesUpload/.kernel/ \nkernel file not found flash-kernel-%s.bin') % (getNeoLocation(), getBoxHostName()))
                             self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
                         else:
                             if getImageNeoBoot() == "Flash":
@@ -129,21 +131,21 @@ class StartImage(Screen):
                                     cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT - REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
                                     cmd1 = 'sleep 5; ln -sf "init.sysvinit" "/sbin/init"; reboot -dfhi'
 
-                            elif  getImageNeoBoot() != "Flash":
+                            elif getImageNeoBoot() != "Flash":
                                 if not fileExists("/.multinfo"):
-                                    if not fileExists('%sImageBoot/%s/boot/zImage.%s' % ( getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
+                                    if not fileExists('%sImageBoot/%s/boot/zImage.%s' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
                                         cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT - REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
                                         cmd1 = 'sleep 5; ln -sfn /sbin/neoinitarm /sbin/init; /etc/init.d/reboot'
 
-                                    elif fileExists('%sImageBoot/%s/boot/zImage.%s' % ( getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
+                                    elif fileExists('%sImageBoot/%s/boot/zImage.%s' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
                                         cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT - REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
                                         cmd1 = 'ln -sfn /sbin/neoinitarmvu /sbin/init; ' + LinkNeoBoot + '/files/kernel.sh '
 
                                 elif fileExists("/.multinfo"):
-                                    if not fileExists('%sImageBoot/%s/boot/zImage.%s' % ( getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
+                                    if not fileExists('%sImageBoot/%s/boot/zImage.%s' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
                                         cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT - REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
                                         cmd1 = 'dd if=' + getNeoLocation() + 'ImagesUpload/.kernel/flash-kernel-' + getBoxHostName() + '.bin of=/dev/mmcblk0p1; cd /media/InternalFlash; ln -sf "neoinitarm" "/media/InternalFlash/sbin/init" ; sleep 2; reboot -dfhi '
-                                    elif fileExists('%sImageBoot/%s/boot/zImage.%s' % ( getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
+                                    elif fileExists('%sImageBoot/%s/boot/zImage.%s' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
                                         cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT - REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
                                         cmd1 = 'cd /media/InternalFlash; ln -sf "neoinitarmvu" "/media/InternalFlash/sbin/init"; ' + LinkNeoBoot + '/files/kernel.sh '
 

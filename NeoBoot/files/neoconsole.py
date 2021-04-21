@@ -1,6 +1,6 @@
-# -*- coding: utf-8 -*- 
- 
-from Plugins.Extensions.NeoBoot.__init__ import _ 
+# -*- coding: utf-8 -*-
+
+from Plugins.Extensions.NeoBoot.__init__ import _
 #from __future__ import print_function
 from enigma import eConsoleAppContainer
 from Screens.Screen import Screen
@@ -19,19 +19,19 @@ class Console(Screen):
 #    def __init__(self, session, title = 'Console', cmdlist = None, finishedCallback = None, closeOnSuccess = False):
 #        Screen.__init__(self, session)
 
-    def __init__(self, session, title = _('Console'), cmdlist = None, finishedCallback = None, closeOnSuccess = False):
+    def __init__(self, session, title=_('Console'), cmdlist=None, finishedCallback=None, closeOnSuccess=False):
         Screen.__init__(self, session)
         self.finishedCallback = finishedCallback
         self.closeOnSuccess = closeOnSuccess
         self.errorOcurred = False
         self['key_red'] = Label(_('Stop action'))
-        self['key_green'] = Label(_('Hide Console'))                                                
+        self['key_green'] = Label(_('Hide Console'))
         self['text'] = ScrollLabel('')
         self['summary_description'] = StaticText('')
         self['actions'] = ActionMap(['WizardActions', 'DirectionActions', 'ColorActions'], {'ok': self.cancel,
          'back': self.cancel,
          'up': self.key_up,
-         'down': self.key_down,        
+         'down': self.key_down,
          'green': self.key_green,
          'red': self.key_red}, -1)
         self.cmdlist = cmdlist
@@ -59,7 +59,7 @@ class Console(Screen):
     def startRun(self):
         self['text'].setText(_('Execution progress:') + '\n\n')
         self['summary_description'].setText(_('Execution progress:'))
-        print ("[Console] executing in run"), self.run, (" the command:"), self.cmdlist[self.run]
+        print("[Console] executing in run"), self.run, (" the command:"), self.cmdlist[self.run]
         if self.doExec(self.cmdlist[self.run]):
             self.runFinished(-1)
 
@@ -77,7 +77,7 @@ class Console(Screen):
             self.toggleScreenHide(True)
             if self.cancel_msg:
                 self.cancel_msg.close()
-            from Tools.Directories import fileExists    
+            from Tools.Directories import fileExists
             if not fileExists('/etc/vtiversion.info'):
                 lastpage = self['text'].isAtLastPage()
             self['text'].appendText('\n' + _('Execution finished!!'))
@@ -126,7 +126,7 @@ class Console(Screen):
         else:
             self.cancel_msg = self.session.openWithCallback(self.cancelCB, MessageBox, _('Cancel execution?'), type=MessageBox.TYPE_YESNO, default=False)
 
-    def cancelCB(self, ret = None):
+    def cancelCB(self, ret=None):
         self.cancel_msg = None
         if ret:
             self.cancel(True)
@@ -147,7 +147,7 @@ class Console(Screen):
         else:
             yield source
 
-    def saveOutputTextCB(self, ret = None):
+    def saveOutputTextCB(self, ret=None):
         if ret:
             from os import path
             failtext = _("Path to save not exist: '/tmp/'")
@@ -186,7 +186,7 @@ class Console(Screen):
         else:
             self.output_file = ''
 
-    def toggleScreenHide(self, setshow = False):
+    def toggleScreenHide(self, setshow=False):
         if self.screen_hide or setshow:
             self.show()
         else:
@@ -206,7 +206,7 @@ class Console(Screen):
 
         return rd
 
-    def cancel(self, force = False):
+    def cancel(self, force=False):
         if self.screen_hide:
             self.toggleScreenHide()
             return

@@ -4,6 +4,7 @@ from ubi import display
 from ubi.defines import *
 from ubi.headers import *
 
+
 class description(object):
 
     def __init__(self, block_buf):
@@ -28,12 +29,12 @@ class description(object):
     def __repr__(self):
         return 'Block: PEB# %s: LEB# %s' % (self.peb_num, self.leb_num)
 
-    def display(self, tab = ''):
+    def display(self, tab=''):
         display.block(self, tab)
 
 
 def get_blocks_in_list(blocks, idx_list):
-    return {i:blocks[i] for i in idx_list}
+    return {i: blocks[i] for i in idx_list}
 
 
 def extract_blocks(ubi):

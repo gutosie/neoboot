@@ -4,7 +4,8 @@ import struct
 from ubifs.defines import *
 from ubifs.misc import decompress
 
-def dents(ubifs, inodes, dent_node, path = '', perms = False):
+
+def dents(ubifs, inodes, dent_node, path='', perms=False):
     inode = inodes[dent_node.inum]
     dent_path = os.path.join(path, dent_node.name)
     if dent_node.type == UBIFS_ITYPE_DIR:
