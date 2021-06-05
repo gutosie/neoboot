@@ -70,7 +70,7 @@ else
     fi
 	if [ ! -f $NEODEVICE$IMAGEKATALOG/.neonextboot  ]; then
 	        if [ -f /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/mountpoint.sh  ]; then
-                        /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/neo.sh
+                        /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/mountpoint.sh
                         echo "_________________________ NeoBoot mount by MOUNTPOINT _________________________ "
 	        fi
 	elif [ $mnttest == "label" ]; then
@@ -80,7 +80,7 @@ else
 	fi
     fi
     if [ ! -f  $NEODEVICE$IMAGEKATALOG/.neonextboot ]; then
-            #ln -sfn /sbin/init.sysvinit /sbin/init
+            ln -sfn /sbin/init.sysvinit /sbin/init
             echo "Flash " > $NEODEVICE$IMAGEKATALOG/.neonextboot
             echo "====================================================> "
             echo "NEOBOOT - does not detect the location file neonextboot. Back to flash..."
