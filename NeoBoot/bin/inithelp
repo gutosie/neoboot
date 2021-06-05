@@ -80,7 +80,7 @@ else
 	fi
     fi
     if [ ! -f  $NEODEVICE$IMAGEKATALOG/.neonextboot ]; then
-            ln -sfn /sbin/init.sysvinit /sbin/init
+            #ln -sfn /sbin/init.sysvinit /sbin/init
             echo "Flash " > $NEODEVICE$IMAGEKATALOG/.neonextboot
             echo "====================================================> "
             echo "NEOBOOT - does not detect the location file neonextboot. Back to flash..."
