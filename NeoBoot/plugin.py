@@ -55,8 +55,8 @@ else:
             from Screens.Console import Console
 
 loggscrash = time.localtime(time.time())
-PLUGINVERSION = '9.25'
-UPDATEVERSION = '9.27'
+PLUGINVERSION = '9.26'
+UPDATEVERSION = '9.28'
 UPDATEDATE = '"+%Y07%d"'
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
 
