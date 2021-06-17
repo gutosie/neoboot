@@ -1323,7 +1323,7 @@ def NEOBootExtract(source, target, ZipDelete):
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/sf4008'):
             os.system('echo "Please wait. System installation Octagon SF4008."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/sf4008/rootfs.tar.bz2; tar -jxf ' + getNeoLocation() + 'ImagesUpload/sf4008/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
-            rc = os.system(cmd)SF8008m     
+            rc = os.system(cmd)     
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/octagon/sf8008m'):
             os.system('echo "Please wait. System installation Octagon SF8008m."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/octagon/sf8008m/rootfs.tar.bz2; tar -jxf ' + getNeoLocation() + 'ImagesUpload/octagon/sf8008m/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
