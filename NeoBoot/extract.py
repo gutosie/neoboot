@@ -760,7 +760,7 @@ def RemoveUnpackDirs():
         rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/usb_update.bin ' + getNeoLocation() + 'ImagesUpload/octagon; rm -r ' + getNeoLocation() + 'ImagesUpload/octagon')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/octagon/sf8008m'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/octagon')
-        elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/h7'):
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/h7'):
         rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/bootargs.bin ' + getNeoLocation() + 'ImagesUpload/h7; mv ' + getNeoLocation() + 'ImagesUpload/fastboot.bin ' + getNeoLocation() + 'ImagesUpload/h7')
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/h7')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/h9'):
