@@ -8,7 +8,7 @@ from Tools.CList import CList
 from Components.SystemInfo import SystemInfo
 from Components.Console import Console
 from Plugins.Extensions.NeoBoot.files import Task
-if fileExists('/usr/lib/python3.8'):
+if fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.9'):
     from Components import Task
 else:
     import Task
