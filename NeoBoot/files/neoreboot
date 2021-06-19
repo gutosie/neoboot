@@ -28,7 +28,7 @@ import os
 import time
 import sys
 import struct, shutil
-if fileExists('/etc/vtiversion.info') or fileExists('/usr/lib/python3.8') and fileExists('/.multinfo'):   
+if fileExists('/etc/vtiversion.info') or fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.9') and fileExists('/.multinfo'):   
     from Screens.Console import Console                   
 else:
     from Plugins.Extensions.NeoBoot.files.neoconsole import Console
