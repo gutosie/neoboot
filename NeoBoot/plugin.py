@@ -46,7 +46,7 @@ import os
 import time
 from time import gmtime, strftime
 from Tools.Testinout import getTestIn, getTestOut, getTestInTime, getTestOutTime, getAccessN, getAccesDate, getButtonPin, getTestToTest
-if fileExists('/etc/vtiversion.info') or fileExists('/etc/bhversion') or fileExists('/usr/lib/python3.8') and fileExists('/.multinfo'):
+if fileExists('/etc/vtiversion.info') or fileExists('/etc/bhversion') or fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.9') and fileExists('/.multinfo'):
     from Screens.Console import Console
 else:
     try:
@@ -55,7 +55,7 @@ else:
             from Screens.Console import Console
 
 loggscrash = time.localtime(time.time())
-PLUGINVERSION = '9.26'
+PLUGINVERSION = '9.27'
 UPDATEVERSION = '9.30'
 UPDATEDATE = '"+%Y07%d"'
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
@@ -843,6 +843,12 @@ class NeoBootImageChoose(Screen):
                 False
 
     def close_exit(self):
+        if fileExists('/usr/lib/python3.9'):
+            self.close()            
+        else:
+            self.close_exit2()
+            
+    def close_exit2(self):
         system('touch /tmp/.init_reboot')
         if fileExists('/tmp/error_neo'):
             try:
