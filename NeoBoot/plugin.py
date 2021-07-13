@@ -1638,7 +1638,7 @@ def main(session, **kwargs):
                 f2.close()
                 if mypath2 != 'Flash' or mypath2 == 'Flash' and checkimage():
 
-                    if fileExists('/.multinfo'):
+                    if fileExists('/.multinfo') or fileExists('/usr/lib/periodon/.fullaccess'):
                                     session.open(NeoBootImageChoose)
                     else:
                         if float(PLUGINVERSION) != version:
