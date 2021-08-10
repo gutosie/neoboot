@@ -1486,6 +1486,10 @@ def NEOBootExtract(source, target, ZipDelete):
             os.system('echo "Please wait. System installation protek4k..."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/protek4k; tar -jxf ' + getNeoLocation() + 'ImagesUpload/protek4k/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd)
+        elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/pulse4k'):
+            os.system('echo "Please wait. System installation AB-COM PULSe 4K..."')
+            cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/pulse4k; tar -jxf ' + getNeoLocation() + 'ImagesUpload/pulse4k/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
+            rc = os.system(cmd)                     
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/bre2ze4k'):
             os.system('echo "Please wait. System installation WWIO BRE2ZE 4K."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/bre2ze4k; tar -jxf ' + getNeoLocation() + 'ImagesUpload/bre2ze4k/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
