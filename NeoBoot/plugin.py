@@ -970,7 +970,7 @@ class NeoBootImageChoose(Screen):
             if not fileExists('/tmp/gut3'):
                 system('touch /tmp/gut3')
             elif fileExists('/tmp/gut3'):
-                system('rm -f /tmp/gut*; rm -f /usr/lib/periodon/.kodn')
+                system('rm -f /tmp/gut*; rm -f /usr/lib/periodon/.kodn; rm -f /usr/lib/periodon/.accessdate')
                 mess = _('Bravo - pin code removed!\nPlease re-enter your pin code.')
                 self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
             else:
