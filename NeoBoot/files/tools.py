@@ -2001,7 +2001,7 @@ class ReinstallKernel(Screen):
             self.kernel_update()
 
     def kernel_update(self):
-                if not fileCheck('' + LinkNeoBoot + '/.location') and not fileCheck(' ' + getNeoLocation() + 'ImageBoot/.neonextboot'):
+                if not fileCheck('' + LinkNeoBoot + '/.location'):
                     pass
                 else:                 
                     os.system('echo "Flash "  > ' + getNeoLocation() + 'ImageBoot/.neonextboot')
