@@ -1905,24 +1905,28 @@ class Opis(Screen):
         ybox.setTitle(_('Install.'))
 
     def neogithub(self, answer):
-        if answer is True:
-            if fileExists('' + LinkNeoBoot + '/.location'):
+        if fileExists('/.multinfo'):
+            self.myClose(_('Sorry, Neoboot can be installed or upgraded only when booted from Flash'))
+            self.close()
+        else:    
+            if answer is True:
+                if fileExists('' + LinkNeoBoot + '/.location'):
                         system('rm -f ' + LinkNeoBoot + '/.location')
-            if fileExists('/usr/bin/curl'):
+                if fileExists('/usr/bin/curl'):
                         cmd1 = 'rm -f /usr/lib/periodon/.kodn; curl -kLs https://raw.githubusercontent.com/gutosie/neoboot/master/iNB.sh|sh'
                         self.session.open(Console, _('NeoBoot....'), [cmd1])
                         self.close()
-            elif fileExists('/usr/bin/wget'):
+                elif fileExists('/usr/bin/wget'):
                         cmd1 = 'rm -f /usr/lib/periodon/.kodn; cd /tmp; rm ./*.sh; wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/iNB.sh;chmod 755 ./iNB.sh;sh ./iNB.sh; rm ./iNB.sh; cd /'
                         self.session.open(Console, _('NeoBoot....'), [cmd1])
                         self.close()
-            elif fileExists('/usr/bin/fullwget'):
+                elif fileExists('/usr/bin/fullwget'):
                         cmd1 = 'rm -f /usr/lib/periodon/.kodn; cd /tmp; rm ./*.sh; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/iNB.sh;chmod 755 ./iNB.sh;sh ./iNB.sh; rm ./iNB.sh; cd /'
                         self.session.open(Console, _('NeoBoot....'), [cmd1])
                         self.close()
-            else:
+                else:
                         pass
-        else:
+            else:
                     self.close()
 
     def delete(self):
@@ -1957,7 +1961,9 @@ class Opis(Screen):
             self.close()
         else:
             self.close()
-
+    def myClose(self, message):
+        self.session.open(MessageBox, message, MessageBox.TYPE_INFO)
+        self.close()         
 
 class ReinstallKernel(Screen):
     __module__ = __name__
