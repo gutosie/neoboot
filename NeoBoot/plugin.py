@@ -55,7 +55,7 @@ else:
             from Screens.Console import Console
 
 loggscrash = time.localtime(time.time())
-PLUGINVERSION = '9.29'
+PLUGINVERSION = '9.30'
 UPDATEVERSION = '9.30'
 UPDATEDATE = '"+%Y09%d"'
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
@@ -970,7 +970,7 @@ class NeoBootImageChoose(Screen):
             if not fileExists('/tmp/gut3'):
                 system('touch /tmp/gut3')
             elif fileExists('/tmp/gut3'):
-                system('rm -f /tmp/gut*; rm -f /usr/lib/periodon/.kodn; rm -f /usr/lib/periodon/.accessdate')
+                system('rm -f /tmp/gut*; rm -f /usr/lib/periodon/.kodn; rm -f /usr/lib/periodon/.accessdate; rm -f /tmp/.finishdate; rm -f /tmp/.nkod')
                 mess = _('Bravo - pin code removed!\nPlease re-enter your pin code.')
                 self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
             else:
@@ -1580,6 +1580,9 @@ def main(session, **kwargs):
             if not fileExists('%sImageBoot/.version' % getNeoLocation()):
                 if fileExists('' + LinkNeoBoot + '/files/neo.sh'):
                     os.system('chmod 0755 ' + LinkNeoBoot + '/files/neo.sh; ' + LinkNeoBoot + '/files/neo.sh')
+                    if not fileExists('%sImageBoot/.version' % getNeoLocation()):
+                        os.system('chmod 0755 ' + LinkNeoBoot + '/files/mountpoint.sh; ' + LinkNeoBoot + '/files/mountpoint.sh')            
+                    
         if not fileExists('/.multinfo') and fileExists('' + LinkNeoBoot + '/.location'):
             if checkInternet():
                 if not os.path.exists('/tmp/.finishdate'):
