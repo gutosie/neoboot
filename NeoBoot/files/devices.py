@@ -106,8 +106,9 @@ class ManagerDevice(Screen):
         if fileExists('/.multinfo'):
                 self.session.open(MessageBox, _("This option is available only from Flash"), MessageBox.TYPE_INFO, timeout=10)
         else:
-                os.system('rm -f /home/root/*.ipk; opkg download kernel-image; sleep 2; opkg install --force-maintainer --force-reinstall --force-overwrite --force-downgrade /home/root/*.ipk; opkg configure update-modules; rm -f /home/root/*.ipk; sleep 5; reboot -f')
-
+                from Plugins.Extensions.NeoBoot.files.tools import ReinstallKernel
+                self.session.open(ReinstallKernel)
+                
     def setWindowTitle(self):
         self.setTitle(_('Mount Manager'))
 
