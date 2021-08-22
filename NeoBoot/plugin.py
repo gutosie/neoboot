@@ -55,8 +55,8 @@ else:
             from Screens.Console import Console
 
 loggscrash = time.localtime(time.time())
-PLUGINVERSION = '9.30'
-UPDATEVERSION = '9.30'
+PLUGINVERSION = '9.31'
+UPDATEVERSION = '9.31'
 UPDATEDATE = '"+%Y09%d"'
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
 
@@ -714,14 +714,20 @@ class NeoBootImageChoose(Screen):
         self['label11'] = Label('')
         self['label12'] = Label('')
         self['label13'] = Label(_('Version update: '))
-        self['label14'] = Label(_('NeoBoot version: '))
+        if fileExists('/usr/lib/periodon/.accessdate'):
+            self['label14'] = Label(_('NeoBoot version VIP: '))
+        else:        
+            self['label14'] = Label(_('NeoBoot version: '))
         self['label15'] = Label(_('Memory disc:'))
-        self['label16'] = Label(_('Kernel'))
+        self['label16'] = Label(_('Kernel'))       
         self['label17'] = Label('')
         self['label18'] = Label('')
         self['label19'] = Label('')
         self['label20'] = Label('')
-        self['label21'] = Label('NEO VIP')
+        if fileExists('/usr/lib/periodon/.accessdate'):
+            self['label21'] = Label('On - VIP')
+        else:                
+            self['label21'] = Label('Off - VIP')
         self['actions'] = ActionMap(['WizardActions',
          'ColorActions',
          'MenuActions',
