@@ -2001,10 +2001,13 @@ class ReinstallKernel(Screen):
             self.kernel_update()
 
     def kernel_update(self):
-                os.system('echo "Flash "  > ' + getNeoLocation() + 'ImageBoot/.neonextboot')
-                out = open('' + getNeoLocation() + 'ImagesUpload/.kernel/used_flash_kernel', 'w')
-                out.write('Used Kernel:  Flash')
-                out.close()
+                if not fileCheck('' + LinkNeoBoot + '/.location') and not fileCheck(' ' + getNeoLocation() + 'ImageBoot/.neonextboot'):
+                    pass
+                else:                 
+                    os.system('echo "Flash "  > ' + getNeoLocation() + 'ImageBoot/.neonextboot')
+                    out = open('' + getNeoLocation() + 'ImagesUpload/.kernel/used_flash_kernel', 'w')
+                    out.write('Used Kernel:  Flash')
+                    out.close()
                 cmd1 = 'rm -f /home/root/*.ipk; opkg download kernel-image; sleep 2; opkg install --force-maintainer --force-reinstall --force-overwrite --force-downgrade /home/root/*.ipk; opkg configure update-modules; rm -f /home/root/*.ipk'
                 self.session.open(Console, _('NeoBoot....'), [cmd1])
                 self.close()
