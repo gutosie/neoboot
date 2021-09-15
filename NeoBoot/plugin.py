@@ -57,7 +57,7 @@ else:
 loggscrash = time.localtime(time.time())
 PLUGINVERSION = '9.31'
 UPDATEVERSION = '9.31'
-UPDATEDATE = '"+%Y09%d"'
+UPDATEDATE = '"+%Y12%d"'
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
 
 try:
