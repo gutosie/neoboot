@@ -1446,6 +1446,10 @@ def NEOBootExtract(source, target, ZipDelete):
             os.system('echo "Please wait. System installation Qviart lunix3-4k w toku..."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/update/lunix3-4k; tar -jxf ' + getNeoLocation() + 'ImagesUpload/update/lunix3-4k/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd)
+        elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/update/lunix4k'):
+            os.system('echo "Please wait. System installation Qviart Lunix 4K w toku..."')
+            cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/update/lunix4k; tar -jxf ' + getNeoLocation() + 'ImagesUpload/update/lunix4k/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
+            rc = os.system(cmd)            
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/dinobot/u5'):
             os.system('echo "Please wait. System installation dinobot w toku..."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/dinobot/u5; tar -jxf ' + getNeoLocation() + 'ImagesUpload/dinobot/u5/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
