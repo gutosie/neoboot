@@ -586,6 +586,10 @@ class NeoBootInstallation(Screen):
                         os.system('chmod 755 /sbin/neoinitarm; chmod 755 /sbin/neoinitarmvu')
                         os.system('dd if=/dev/mmcblk0p1 of=%sImagesUpload/.kernel/flash-kernel-%s.bin' % (getNeoLocation(), getBoxHostName()))
                         os.system('mv ' + LinkNeoBoot + '/tmpfiles/target/vu_mmcblk0p1.sh ' + LinkNeoBoot + '/files/kernel.sh; mv ' + LinkNeoBoot + '/tmpfiles/runpy/vu4k_run.py ' + LinkNeoBoot + '/run.py; rm -f; rm -f ' + LinkNeoBoot + '/bin/neoinitarmvuDuo4k; cd')
+
+                elif getBoxHostName() == "lunix4k" and getCPUSoC() == "72604" and getBoxHostName() != "vuzero4k":
+                        os.system('cp -f ' + LinkNeoBoot + '/bin/neoinitarmvu /sbin/neoinitarm; chmod 0755 /sbin/neoinitarm; ln -sfn /sbin/neoinitarm /sbin/init; mv ' + LinkNeoBoot + '/tmpfiles/runpy/arm_run.py ' + LinkNeoBoot + '/run.py; rm -f ' + LinkNeoBoot + '/bin/neoinitarmvuDuo4k; cd') 
+
                 else:
                         os.system('cp -f ' + LinkNeoBoot + '/bin/neoinitarm /sbin/neoinitarm; chmod 0755 /sbin/neoinitarm; ln -sfn /sbin/neoinitarm /sbin/init; mv ' + LinkNeoBoot + '/tmpfiles/runpy/arm_run.py ' + LinkNeoBoot + '/run.py; rm -f ' + LinkNeoBoot + '/bin/neoinitarmvuDuo4k; cd')
             # STB MIPS
