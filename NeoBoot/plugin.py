@@ -944,8 +944,8 @@ class NeoBootImageChoose(Screen):
                     if getButtonPin() == 'pinok':
                         os.system('sleep 2; rm -f /tmp/gut*; date %s  > /usr/lib/periodon/.accessdate' % UPDATEDATE)
                         if fileExists('/usr/lib/periodon/.accessdate') and fileExists('/usr/lib/periodon/.kodn'):
-                                mess = _('Bravo! Neoboot vip full version activated OK!\nPlease restart your system E2.')
-                                self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
+                                restartbox = self.session.openWithCallback(self.GUIRestart, MessageBox, _('Bravo! Neoboot vip full version activated OK!\nPlease restart your system E2.'), MessageBox.TYPE_YESNO, 10)
+                                restartbox.setTitle(_('Restart GUI now !!'))
                         elif not fileExists('/usr/lib/periodon/.accessdate'):
                                 mess = _('VIP Access Activation Fails with Error code 0x10.')
                                 self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
@@ -977,8 +977,8 @@ class NeoBootImageChoose(Screen):
                 system('touch /tmp/gut3')
             elif fileExists('/tmp/gut3'):
                 system('rm -f /tmp/gut*; rm -f /usr/lib/periodon/.kodn; rm -f /usr/lib/periodon/.accessdate; rm -f /tmp/.finishdate; rm -f /tmp/.nkod')
-                mess = _('Bravo - pin code removed!\nPlease re-enter your pin code.')
-                self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
+                restartbox = self.session.openWithCallback(self.GUIRestart, MessageBox, _('Bravo - pin code removed!\nPlease re-enter your pin code.'), MessageBox.TYPE_YESNO, 10)
+                restartbox.setTitle(_('Restart GUI now !!')) 
             else:
                 pass
         else:
@@ -987,7 +987,12 @@ class NeoBootImageChoose(Screen):
             else:
                     system('touch /tmp/gutosiepin')
 
-
+    def GUIRestart(self, answer):
+        if answer is True:
+            self.session.open(TryQuitMainloop, 3)
+        else:
+            self.close()
+            
 #    def neoboot_update(self):
 #            mess = _('Updated unnecessary, you have the latest version. Please try again later.')
 #            self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
