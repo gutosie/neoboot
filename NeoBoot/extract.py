@@ -1294,9 +1294,8 @@ def NEOBootExtract(source, target, ZipDelete):
             rc = os.system(cmd)
             
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/update/lunix/cfe/oe_rootfs.bin'):
-            #os.chdir('' + getNeoLocation() + 'ImagesUploadupdate/lunix/cfe') 
-            #os.system('mv -f oe_rootfs.bin rootfs.bin')        
-            os.system('mv -f ' + getNeoLocation() + 'ImagesUpload/update/lunix/cfe/oe_rootfs.bin ' + getNeoLocation() + 'ImagesUpload/rootfs.bin')
+            os.chdir('update')      
+            os.system('mv -f ' + getNeoLocation() + 'ImagesUpload/update/lunix/cfe/oe_rootfs.bin ' + getNeoLocation() + 'ImagesUpload/update/rootfs.bin')
             os.system('echo "Instalacja - ubi_reader w toku..."')
             print("[NeoBoot] Extracting UBIFS image and moving extracted image to our target")
             cmd = 'chmod 777 ' + extensions_path + 'NeoBoot/ubi_reader/ubi_extract_files.py'
@@ -1309,7 +1308,7 @@ def NEOBootExtract(source, target, ZipDelete):
             cmd = 'chmod -R +x ' + getNeoLocation() + 'ImageBoot/' + target
             rc = os.system(cmd)
             cmd = 'rm -rf ' + getNeoLocation() + 'ubi'
-            rc = os.system(cmd)   
+            rc = os.system(cmd) 
             
         #vuplus________________________
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/vuplus/solo4k'):
