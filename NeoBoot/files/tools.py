@@ -1353,6 +1353,8 @@ class SkinChange(Screen):
                     system('cp -r ' + LinkNeoBoot + '/images/solo2.png ' + LinkNeoBoot + '/images/box.png')
                 elif getBoxHostName() == 'bre2ze4k':
                     system('cp -r ' + LinkNeoBoot + '/images/bre2ze4k.png ' + LinkNeoBoot + '/images/box.png')
+                elif getBoxHostName() == 'lunix4k':
+                    system('cp -r ' + LinkNeoBoot + '/images/lunix4k.png ' + LinkNeoBoot + '/images/box.png')                    
                 else:
                     system('cp -r ' + LinkNeoBoot + '/images/logo.png ' + LinkNeoBoot + '/images/box.png')                    
 
