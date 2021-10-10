@@ -1,0 +1,1347 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: NeoBoot\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2021-10-10 05:37+0200\n"
+"Last-Translator: gutosie <gutosie@o2.pl>\n"
+"Language-Team: by biko_73\n"
+"Language: ar\n"
+"Language edit: en\n"
+"by FerbiusMIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 3.0\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"MIME-Version: 1.0\n"
+
+msgid ""
+"\n"
+"Completely uninstall NeoBota: \n"
+"If you think NeoBot not you need it, you can uninstall it.\n"
+"To uninstall now press the red button on the remote control.\n"
+"\n"
+msgstr ""
+"\n"
+"إلغاء تثبيت نيوبوت تماما: \n"
+"إذا كنت تعتقد أن نيوبوت لا تحتاج إليه ، فيمكنك إلغاء تثبيته.\n"
+"لإلغاء تثبيت الآن اضغط على الزر الأحمر على جهاز التحكم عن بعد.\n"
+"\n"
+
+msgid "Start the chosen system now ?"
+msgstr "بدء تشغيل النظام المختار الآن؟"
+
+msgid ""
+" is already installed.\n"
+" Please try another name."
+msgstr ""
+" مثبت بالفعل.\n"
+" الرجاء محاولة اسم آخر."
+
+msgid ""
+"   \n"
+"   Available: "
+msgstr ""
+"   \n"
+"متوفر: "
+
+msgid "Boot Image"
+msgstr "صورة الأقلاع"
+
+msgid "Cancel"
+msgstr "إلغاء"
+
+msgid "Install"
+msgstr "تثبيت"
+
+msgid "Delete Confirmation"
+msgstr "تأكيد الـحـذف"
+
+msgid "Devices Panel"
+msgstr "لوحة الأجهزة"
+
+msgid ""
+"Do You really want to install NeoBoot in:\n"
+" "
+msgstr ""
+"هل تريد حقا تثبيت نيوبوت في:\n"
+" "
+
+msgid "Help"
+msgstr "المساعدة"
+
+msgid "Please choose an image to boot"
+msgstr "الرجاء اختيار صورة الأقلاع"
+
+msgid "WARNING !: The update brings with it the risk of errors.\n"
+msgstr "تحذير!: التحديث يجلب معه مخاطر الأخطاء.\n"
+
+msgid "Before upgrading it is recommended that you make a backup NeoBoot."
+msgstr "يوصى بعمل نسخة احتياطية من نيوبوت ،قبل الترقية."
+
+msgid "Do you want to run the update now ?\n"
+msgstr "هل تريد التحديث الان؟\n"
+
+msgid "Canceled update."
+msgstr "إلغاء التحديث."
+
+msgid ""
+"NeoBoot has detected update.\n"
+"Do you want to update NeoBoota now ?"
+msgstr ""
+"اكتشف نيوبوت تحديثًا.\n"
+"هل تريد تحديث إصدار نيوبوت الآن؟"
+
+msgid "Image Name"
+msgstr "اسم الصورة"
+
+msgid "Image will be booted on the next STB boot!"
+msgstr "سيتم الإقلاع على الصوره عند الإقلاع التالي!"
+
+msgid "Info"
+msgstr "معلومات"
+
+msgid "Install & run multiple images."
+msgstr "تثبيت و تشغيل صور متعدده."
+
+msgid "Install Confirmation"
+msgstr "تأكيد التثبيت"
+
+msgid "Install Image"
+msgstr "تثبيت الصورة"
+
+msgid "Installation aborted !"
+msgstr "إخفاق التثبيت!"
+
+msgid "NeoBoot"
+msgstr "نيوبوت"
+
+msgid "NeoBoot - Image Installation"
+msgstr "نيوبوت - تثبيت الصوره"
+
+msgid "NeoBoot - Installation"
+msgstr "نيوبوت - تثبيت"
+
+msgid "NeoBoot - Menu"
+msgstr "نيوبوت - قائمة"
+
+msgid "Deleting in progress...\n"
+msgstr "جاري الحذف\n"
+
+msgid "NeoBoot has been installed succesfully !"
+msgstr "تم تنصيب نيوبوت بنجاح!"
+
+msgid "NeoBoot is running from:"
+msgstr "نيوبوت يعمل من خلال:"
+
+msgid "NeoBoot is running image:"
+msgstr "الصورة التي تعمل من خلال نيوبوت:"
+
+msgid ""
+"NeoBoot successfully updated. You can restart the plugin now.\n"
+"Have fun !!!"
+msgstr ""
+"تم بنجاح تحديث النيوبوت.يمكنك إعادة تشغيل بلوجين النيوبوت الأن.\n"
+"إستمتع بالنيوبوت!!"
+
+msgid ""
+"NeoBoot successfully updated list tv.\n"
+"Have fun !!"
+msgstr ""
+"تم تحديث قائمه التلفاز بنجاح من خلال نيوبوت\n"
+"استمتع به !!"
+
+msgid "NeoBot started installing new image.\n"
+msgstr "بدأ نيوبوت في تثبيت صوره جديده\n"
+
+msgid "NeoBoot: Deleting Image"
+msgstr "نيوبوت - حذف الصوره"
+
+msgid "NeoBoot: Install new image"
+msgstr "نيوبوت - تثبيت صوره جديده"
+
+msgid "Number of images installed:"
+msgstr "عدد الصور المثبته:"
+
+msgid "Please: DO NOT reboot your STB and turn off the power.\n"
+msgstr "من فضلك : لا تقم بإعادة تشغيل جهازك ولاتقوم بإغلاقه .\n"
+
+msgid "Remove Image "
+msgstr "أزاله صوره "
+
+msgid "Download Image"
+msgstr "تحميل صوره"
+
+msgid "Removing canceled!"
+msgstr "إلغاء الحذف!"
+
+msgid "Delete password"
+msgstr "حذف كلمة السر"
+
+msgid "Update NeoBot"
+msgstr "تحديث نيوبوت"
+
+msgid "Make copy"
+msgstr "عمل نسخه"
+
+msgid "Restoring backup"
+msgstr "جاري عمل الاستعادة"
+
+msgid "The update has been canceled."
+msgstr "لقد تم إلغاء التحديث."
+
+msgid "Install the new images from the Internet"
+msgstr "تثبيت صوره جديده عبر الانترنت"
+
+msgid "Sorry it seems that there are not Linux formatted devices mounted on your STB. To install NeoBoot you need a Linux formatted part1 device. Click on the blue button to open Devices Panel"
+msgstr ""
+"عذراً ، يبدو أنه لا توجد (ذاكره خارجيه) مرتبطه بجهاز الإستقبال الخاص بك. لتثبيت نيوبوت ، تحتاج إلى عمل تهيئه وارتباط (فلاش ميموري او كارت ذاكره او قرص صلب). انقر فوق الزر الأزرق لفتح لوحة "
+"الأجهزة"
+
+msgid "Sorry the name of the new Image is too long."
+msgstr "عذراً الأسم الخاص بالصورة طويل جداً."
+
+msgid "Sorry this name is reserved. Choose another name for the new Image."
+msgstr "عذراً يوجد صوره بالفعل بهذا الاسم . اختر اسماً آخر للصورة الجديدة."
+
+msgid "Sorry you cannot delete Flash image"
+msgstr "عذرا لا يمكنك حذف صوره فلاش الداخلي"
+
+msgid "Sorry you cannot delete the image currently booted from."
+msgstr "عذرا لا يمكنك حذف الصورة التي يتم الإقلاع منها حالياً."
+
+msgid "Sorry, Meoboot can be installed or upgraded only when booted from Flash"
+msgstr "عذراً ، يمكنك تثبيت او ترقية النيوبوت فقط عند التشغيل من صوره الفلاش"
+
+msgid "Sorry, an Image with the name "
+msgstr "عذراً، توجد صورة بهذا الأسم "
+
+msgid ""
+"Sorry, there is not any connected devices in your STB.\n"
+"Please connect HDD or USB to install NeoBoot!"
+msgstr ""
+"عذرًا ، لا توجد أي أجهزة متصلة بجهاز الإستقبال الخاص بك.\n"
+"يرجى توصيل محرك الأقراص الثابتة أو فلاش ميموري لتثبيت نيوبوت!"
+
+msgid "Sorry: Wrong image in flash found. You have to install in flash OpenPli Image"
+msgstr "عذراً: تم العثور على صورة خاطئة في الفلاش. يجب عليك تثبيت برنامج صورة اوبن بي ال أي على الفلاش الداخلي"
+
+msgid "Source Image file"
+msgstr "مصدر ملفات الصورة"
+
+msgid "Would you like to download the image from the network now ?"
+msgstr "هل تود تحميل الصورة من الانترنت الآن؟"
+
+msgid ""
+"The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\n"
+"Make sure you select a valid partition type."
+msgstr ""
+"المسار ليس مقسم EXT2 أو EXT3 أو EXT4 أو NFS.\n"
+"تأكد من تحديد نوع تقسيم صالح."
+
+msgid ""
+"The directory %s is not writable.\n"
+"Make sure you select a writable directory instead."
+msgstr ""
+"المسار  غير قابل للكتابة.\n"
+"تأكد من اختيار مسار قابل للكتابة بدلا من ذلك."
+
+msgid "Please, wait..."
+msgstr "من فضلك أنتظر..."
+
+msgid "Keyboard"
+msgstr "لوحة المفاتيح"
+
+msgid "Copy the channel list ?"
+msgstr "عمل نسخ لقائمة القنوات ؟"
+
+msgid "Copy CamdMenager ?"
+msgstr "نسخ لإدارة الكامات ؟"
+
+msgid "Copy the drivers ? (Recommended only other image.)"
+msgstr "نسخ الدرايفات؟ (يوصى به فقط عند تثبيت صور لأجهزه أخرى.)"
+
+msgid "Copy mounting disks ? (Recommended)"
+msgstr "نسخ الأقراص المرتبطه؟ (موصى به)"
+
+msgid "Remove zip file after installation ?"
+msgstr "إزالة ملف الصورة المضغوط بعد انتهاء التثبيت؟"
+
+msgid "Used: "
+msgstr "المستخدم: "
+
+msgid "Copy the network settings DNS ? (Not recommended for VTi)"
+msgstr "نسخ إعدادات الشبكة DNS؟ (غير مستحسن للصوره ـ VTi)"
+
+msgid "Start the new image after installation ?"
+msgstr "بدء الصورة الجديدة بعد انتهاء التثبيت؟"
+
+msgid "ZatrzymaA procesy E2 czas installacji?"
+msgstr "هل تريد إيقاف العمليات الجاريه على الإينجما2 اثناء التثبيت؟"
+
+msgid "Overwrite the files of the module and firmware ?"
+msgstr "الكتابة فوق ملفات الموديل والبرامج الثابتة؟"
+
+msgid "Welcome to NeoBoot %s Plugin installation."
+msgstr "مرحبًا بك في تثبيت بلوجين نيوبوت."
+
+msgid "You are not running OpenPli Image. You must mount devices Your self."
+msgstr "أنت لا تقوم بتشغيل صوره  اوبن بي ال أي . يجب ان يتم عمل (أرتباط للذاكره الخارجيه)."
+
+msgid "You have to provide a name for the new Image."
+msgstr "يجب عليك تزويد أسم للصورة الجديدة."
+
+msgid ""
+"You have to select one Image to install.\n"
+"Please, upload your zip file in the folder: /media/neoboot/ImagesUpload and select the image to install."
+msgstr ""
+"يجب تحديد واختيار صوره للتثبيت\n"
+"\n"
+"يجب اختيار ملف صورة مضغوط من المسار : /ميديا/ نيوبوت/مجلد الرفع للنيوبوت واختار صورة للتثبيت."
+
+msgid "You really want to install NeoBoot in:"
+msgstr "هل تريد حقا تثبيت نيوبوت في:"
+
+msgid "no image to remove"
+msgstr "لم يحدد صوره للحذف"
+
+msgid "remove"
+msgstr "أزاله"
+
+msgid "unknown"
+msgstr "غير معروف"
+
+msgid "/proc/mounts"
+msgstr "/proc/mounts"
+
+msgid " Failed to open /proc/mounts"
+msgstr " Failed to open /proc/mounts"
+
+msgid " /proc/filesystems"
+msgstr " /proc/filesystems"
+
+msgid " Failed to read /proc/filesystems:"
+msgstr " Failed to read /proc/filesystems:"
+
+msgid "device"
+msgstr "الجهاز"
+
+msgid "/part"
+msgstr "/جزء"
+
+msgid "part"
+msgstr "جزء"
+
+msgid "disc"
+msgstr "قرص"
+
+msgid "/sys/block/"
+msgstr "/سيستم/بلوك/"
+
+msgid "/dev"
+msgstr "/الجهاز"
+
+msgid "Unable to determine structure of /dev"
+msgstr "تعذر تحديد هيكل / dev"
+
+msgid "new Harddisk"
+msgstr "قرص صلب جديد"
+
+msgid "External (CF)"
+msgstr "خارجي (CF)"
+
+msgid "Internal"
+msgstr "داخلي"
+
+msgid "External"
+msgstr "خارجي"
+
+msgid "size"
+msgstr "الحجم"
+
+msgid "/model"
+msgstr "الموديل/"
+
+msgid "/vendor"
+msgstr "/بائع"
+
+msgid " Failed to get model:"
+msgstr " فشل في معرفه الموديل:"
+
+msgid "umount "
+msgstr "ازاله الأرتباط "
+
+msgid "[Harddisk]"
+msgstr "[قرص صلب]"
+
+msgid " mounting:"
+msgstr " المرتبطه:"
+
+msgid "Initialiting storage device..."
+msgstr "تهيئة وحدة التخزين ..."
+
+msgid "Removing partition table"
+msgstr "إزالة جدول القرص"
+
+msgid "Rereading partition table"
+msgstr "إعادة قراءة جدول التقسيم"
+
+msgid "Waiting for partition"
+msgstr "في إنتظار التقسيم"
+
+msgid "Creating partition"
+msgstr "إنشاء تقسيم"
+
+msgid "Creating filesystem"
+msgstr "انشاء ملفات النظام"
+
+msgid "/proc/version"
+msgstr "/proc/version"
+
+msgid "Failed to detect Linux version:"
+msgstr "فشل في تحديد إصدار اللينوكس:"
+
+msgid "largefile"
+msgstr "ملف كبير"
+
+msgid "Waiting for mount"
+msgstr "في انتظار الإرتباط"
+
+msgid "Checking filesystem..."
+msgstr "فحص ملفات النظام...."
+
+msgid "You system does not support ext4"
+msgstr "النظام لا يدعم ext4"
+
+msgid "Converting ext3 to ext4..."
+msgstr "تحويل الإمتداد ext3 الي ext4 ...."
+
+msgid "Partition(mountpoint=%s,description=%s,device=%s)"
+msgstr "التقسيم(نقطه الارتباط=%s,الوصف=%s,الجهاز=%s)"
+
+msgid "Device %s is not mounted"
+msgstr "الجهاز غير مرتبط"
+
+msgid "update packages"
+msgstr "تحديث الباكيجات"
+
+msgid "update"
+msgstr "تحديث"
+
+msgid "Internal flash"
+msgstr "الفلاش الداخلى"
+
+msgid " enumerating block devices..."
+msgstr " تعداد أجهزة البلوك ..."
+
+msgid " enumerating network mounts..."
+msgstr " تعداد الشبكة المرتبطه ..."
+
+msgid "new Network Mount"
+msgstr "ارتباط نقطه شبكه جديده"
+
+msgid "new Network Mount being used as HDD replacement -> /media/hdd/"
+msgstr "يتم استخدام الارتباط عبر الشبكه الجديد كبديل لمحرك الأقراص الثابتة -> /ميديا/هارد/"
+
+msgid "couldn't determine blockdev physdev for device"
+msgstr "تعذر تحديد تقسيم كتل الفلي للجهاز"
+
+msgid "External Storage %s"
+msgstr "الذاكرة الخارجيه"
+
+msgid "couldn't read model: "
+msgstr "تعذر قراءة الموديل "
+
+msgid "Partition %d"
+msgstr "تقسيم  %d"
+
+msgid " Failed to set %s speed to %s"
+msgstr " فشل اعداد %s السرعه الي %s"
+
+msgid "Unmount"
+msgstr "الغاء الإرتباط"
+
+msgid "Mount"
+msgstr "إرتباط"
+
+msgid "/dev/nomount.%s"
+msgstr "/الجهاز/غير مرتبط.%s"
+
+msgid "ERROR: Failed to create /dev/nomount file:"
+msgstr "خطأ: فشل في إنشاء/جهاز/ملف غير مرتبط:"
+
+msgid "ERROR: Failed to remove /dev/nomount file:"
+msgstr "خطأ: فشل إزالة /الجهاز/الملف غير مرتبط:"
+
+msgid "Writing inode tables:"
+msgstr "كتابه جدول مؤشر الفهرسه:"
+
+msgid "Creating journal"
+msgstr "إنشاء دفتر"
+
+msgid "inode"
+msgstr "مؤشر الفهرسه"
+
+msgid "journal"
+msgstr "دفتر"
+
+msgid " No mountpoints found?"
+msgstr " لم يتم إيجاد نقاط ارتباط؟"
+
+msgid "Failed to remove path '%s':"
+msgstr "فشل في إزاله المسار '/s':"
+
+msgid "unavailable"
+msgstr "غير متاح"
+
+msgid "Processor"
+msgstr "المعالج"
+
+msgid "processor"
+msgstr "المعالج"
+
+msgid "undefined"
+msgstr "غير محدد"
+
+msgid "Extract contents of UBI image."
+msgstr "استخراج محتويات صورة UBI."
+
+msgid ""
+"\n"
+"[NeoBoot] Zip file unzipped.\n"
+"Installation in progress, please wait ..."
+msgstr ""
+"\n"
+"[نيوبوت] ضغط ملف غير مضغوط.\n"
+"التثبيت قيد التقدم ، الرجاء الانتظار ..."
+
+msgid ""
+"Wait almost over ...\n"
+"Loading the image to: %s"
+msgstr ""
+"الرجاء الإنتظار قارب على الانتهاء ...\n"
+"تحميل الصورة إلى"
+
+msgid "Maintain file permissions, requires running as root. (default: False)"
+msgstr "الحفاظ على صلاحيات الملف ، يتطلب التشغيل كجذر. (افتراضي: لا)"
+
+msgid "Suppress warnings and non-fatal errors. (default: False)"
+msgstr "إيقاف التحذيرات والأخطاء غير الفادحة. (افتراضي: لا)"
+
+msgid "Specify PEB size"
+msgstr "حدد حجم التصميم المبني مسبقاً"
+
+msgid "Specify output directory path."
+msgstr "تحديد مسار دليل الإخراج."
+
+msgid "filepath"
+msgstr "مسار الملف"
+
+msgid "File to extract contents of."
+msgstr "ملف لاستخراج المحتويات."
+
+msgid "File path doesn't exist."
+msgstr "مسار الملف غير موجود."
+
+msgid "Volume output directory is not empty. %s"
+msgstr "دليل إخراج وحدة التخزين ليس فارغًا"
+
+msgid "Writing to: %s"
+msgstr "الكتابة لـ"
+
+msgid "errors"
+msgstr "الاخطاء"
+
+msgid "Error Count Header"
+msgstr "عدد الأخطاء الرئيسيه"
+
+msgid "Volume Table Record: %s"
+msgstr "حجم جدول التسجيل"
+
+msgid "name"
+msgstr "الأسم"
+
+msgid "Volume: %s"
+msgstr "الحجم"
+
+msgid "No blocks found."
+msgstr "لم يتم العثور على بلوكات."
+
+msgid "Delete"
+msgstr "حـذف"
+
+msgid "Read Only"
+msgstr "قراءه فقط"
+
+msgid "Preserve"
+msgstr "يحفظ"
+
+msgid "Reject"
+msgstr "رفض"
+
+msgid "%sUBI File"
+msgstr "ملف صور الكتل غير المصنفة"
+
+msgid "\t%sMin I/O: %s"
+msgstr " دقيقة: الإدخال/ الإخراج"
+
+msgid "\t%sLEB Size: %s"
+msgstr " حجم LEB"
+
+msgid "\t%sPEB Size: %s"
+msgstr " حجم PEB"
+
+msgid "\t%sTotal Block Count: %s"
+msgstr " إجمالي عدد الكتل"
+
+msgid "\t%sData Block Count: %s"
+msgstr "\t%sعدد كتلة البيانات: %s"
+
+msgid "\t%sLayout Block Count: %s"
+msgstr "\t%sعدد كتل التخطيط: %s"
+
+msgid "\t%sInternal Volume Block Count: %s"
+msgstr "\t%sعدد كتلة الحجم الداخلي: %s"
+
+msgid "\t%sUnknown Block Count: %s"
+msgstr "\t%sعدد الكتل غير معروف: %s"
+
+msgid "\t%sFirst UBI PEB Number: %s"
+msgstr "\t%sاولاً ترقيم المصمم بناؤه سابقاً UBI: %s"
+
+msgid "\t%sImage Sequence Num: %s"
+msgstr "\t%sتسلسل ترقيم الصورة: %s"
+
+msgid "\t%sVolume Name:%s"
+msgstr "\t%sاسم الصوت:%s"
+
+msgid "\t%sPEB Range: %s - %s"
+msgstr "\t%sPEB نطاق: %s - %s"
+
+msgid "\t%sName: %s"
+msgstr "\t%sالأسم: %s"
+
+msgid "\t%sBlock Count: %s"
+msgstr "\t%sتعداد الكتله: %s"
+
+msgid "\t%sVolume Record"
+msgstr "\t%s تسجيل الصوت"
+
+msgid "\t%sFile Offset: %s"
+msgstr "\t%sتكافؤ الملفات: %s"
+
+msgid "\t%sBlock Size: %s"
+msgstr "\t%sحجم الكتله: %s"
+
+msgid "\t%sInternal Volume: %s"
+msgstr "\t%s الصوت الداخلي: %s"
+
+msgid "\t%sIs Volume Table: %s"
+msgstr "\t%sIs  جدول الصوت : %s"
+
+msgid "\t%sIs Valid: %s"
+msgstr "\t%sIs صلاحية: %s"
+
+msgid "\t%sErase Count Header"
+msgstr "\t%sمسح عداد الرأس"
+
+msgid "\t%sVID Header Header"
+msgstr "\t%sVID رأس رأس"
+
+msgid "autoresize"
+msgstr "تغيير الحجم التلقائي"
+
+msgid "Image: %s"
+msgstr "الصورة: %s"
+
+msgid "Start offset larger than file size!"
+msgstr "بدء الإزاحة أكبر من حجم الملف!"
+
+msgid "UBIFS Common Header"
+msgstr "العنوان المشترك لنظام ملفات صور الكتل غير المصنفة"
+
+msgid "UBIFS Super Block Node"
+msgstr "مؤشر الكتل لنظام ملفات صور الكتل غير المصنفة"
+
+msgid "UBIFS Master Block Node"
+msgstr "مؤشر الكتل الرئيسيه لنظام ملفات صور الكتل غير المصنفة"
+
+msgid "UBIFS Directory Entry Node"
+msgstr "مؤشر مدخل  نظام ملفات صور الكتل غير المصنفة"
+
+msgid "offset"
+msgstr "تكفأ مع"
+
+msgid "UBIFS Data Node"
+msgstr "مؤشر بيانات نظام ملفات صور الكتل غير المصنفة"
+
+msgid "UBIFS Index Node"
+msgstr "مؤشر فهرسة نظام ملفات صور الكتل غير المصنفة"
+
+msgid "Backup"
+msgstr "نسخة إحتياطية"
+
+msgid "list"
+msgstr "قائمة"
+
+msgid "Backup Confirmation"
+msgstr "تأكيد عمل النسخة الأحتياطيه"
+
+msgid "NeoBoot: Backup Image"
+msgstr "نيوبوت: عمل نسخه إحتياطيه"
+
+msgid "Backup Image"
+msgstr "عمل نسخه أحتياطيه من الصورة"
+
+msgid "Backup image"
+msgstr "عمل نسخه أحتياطيه من الصورة"
+
+msgid "Install Kernel"
+msgstr "تثبيت النواه"
+
+msgid "Used Kernel:Flash"
+msgstr "النواه المستخدمه:الفلاش الداخليه"
+
+msgid "Kernel Version: "
+msgstr "نسخة النواة "
+
+msgid "Flash"
+msgstr "الفلاشه الداخليه"
+
+msgid "Sorry you cannot overwrite the image currently booted from. Please, boot from Flash to restore this backup."
+msgstr "عذرا لا يمكنك الكتابة فوق الصورة التي تم الإقلاع منها حاليا. من فضلك ، قم بالإقلاع من الفلاش الداخليه لاستعادة هذه النسخة الاحتياطية."
+
+msgid "Restore Confirmation"
+msgstr "تأكيد الإستعاده"
+
+msgid "Wait please, NeoBoot is working: ....Restore in progress...."
+msgstr "الرجاء الإنتظار ، نيوبوت يعمل: .... جاري الاستعادة ...."
+
+msgid "NeoBoot: Restore COMPLETE !"
+msgstr "نيوبوت: إكتمال الإستعادة !"
+
+msgid "NeoBoot: Restore Image"
+msgstr "نيوبوت: استعادة الصورة"
+
+msgid ""
+"\n"
+"\n"
+"NeoBoot restoring media mounts...."
+msgstr ""
+"\n"
+"يستعيد نيوبوت وحدات تثبيت الوسائط ..."
+
+msgid ""
+"\n"
+"\n"
+"NeoBoot remove complete...."
+msgstr ""
+"\n"
+"\n"
+"أكتمال إزالة نيوبوت...."
+
+msgid "NeoBoot is removing..."
+msgstr "إزاله نيوبوت..."
+
+msgid "NeoBoot: Deleting All Images"
+msgstr "نيوبوت: حذف كل الصور"
+
+msgid "NeoBoot: Download Image...."
+msgstr "نيوبوت: تحميل الصوره...."
+
+msgid "NeoBoot new Image download"
+msgstr "تم تحميل صوره جديده بواسطة نيوبوت"
+
+msgid ""
+"GUI needs a restart.\n"
+"Do you want to Restart the GUI now?"
+msgstr ""
+"يحتاج الجهاز إلى إعادة التشغيل.\n"
+"هل تريد إعادة تشغيل الجهاز الآن؟"
+
+msgid "Restart GUI now?"
+msgstr "إعادة تشغيل واجهة الجهاز الأن ؟"
+
+msgid "Backup NeoBoot"
+msgstr "عمل نسخه إحتياطيه من نيوبوت"
+
+msgid "NeoBoot is based on a egamiboot < mod by gutosie and madu >\n"
+msgstr "يعتمد نيوبوت على بلوجين الإقلاع للإيجامي <معدل بواسطة جوتوسي و مادو>\n"
+
+msgid "nfidump by gutemine - Thanks\n"
+msgstr "تفريغ nfi بواسطة جوتمين - شكرا\n"
+
+msgid "Sorry, NeoBot installs new images only from the Flash"
+msgstr "عذرًا ، يقوم نيوبوت بتثبيت الصور الجديدة فقط من الفلاش الداخلي"
+
+msgid ""
+"NeoBot has detected that it is not running image from the memory of the decoder.\n"
+"Start selected image now ?"
+msgstr ""
+"اكتشف نيوبوت أنه لا يقوم بتشغيل الصورة من ذاكرة جهاز الإستقبال.\n"
+"بدء الصورة المحددة الآن؟"
+
+msgid "Download additional images from the network"
+msgstr "تنزيل صور إضافية من الشبكة"
+
+msgid "The installation process may take a few minutes.\n"
+msgstr ""
+"مة\n"
+"قد تستغرق عملية التثبيت بضع دقائق. \n"
+
+msgid "Please, wait...\n"
+msgstr "الرجاء, الإنتظار....\n"
+
+msgid "Copy the system settings ? (Not recommended)"
+msgstr "نسخ إعدادات ضبط النظام؟ (لا يوصى بها)"
+
+msgid "Multi image"
+msgstr "صور متعدده"
+
+msgid "NeoBoot installation image"
+msgstr "تنصيب الصور على نيوبوت"
+
+msgid "STB name:"
+msgstr "أسم جهاز الإستقبال:"
+
+msgid ""
+"[NeoBoot] The /media/neoboot/ImagesUpload directory is EMPTY !!!\n"
+"Please upload the image files in .ZIP or .NFI formats to install.\n"
+msgstr ""
+"[نيوبوت] دليل / وسائط / نيوبوت / تحميل الصور فارغ !!!\n"
+"يرجى تحميل ملفات الصور بتنسيقات .ZIP أو .NFI للتثبيت.\n"
+
+msgid ""
+"The /media/neoboot/ImagesUpload directory is EMPTY!\n"
+"Please upload the image files in .ZIP or .NFI formats to install."
+msgstr ""
+"الدليل / وسائط / نيوبوت / تحميل الصور فارغ!\n"
+"يرجى تحميل ملفات الصور بتنسيقات .ZIP أو .NFI للتثبيت."
+
+msgid "The operation has been canceled or meoboot is not running in stb VuPlus"
+msgstr "تم إلغاء العملية أو أن نيوبوت لا يعمل على جهاز إستقبال فيو بلس"
+
+msgid ""
+"NeoBoot successfully updated IPTVPlayer.\n"
+"Have fun !!"
+msgstr ""
+"قام نيوبوت بتحديث مشغل الاي بي تي في بنجاح.\n"
+"استمتع !!"
+
+msgid "Instruction"
+msgstr "تعليمات"
+
+msgid "Device Manager"
+msgstr "مدير الاجهزة"
+
+msgid "Info disc"
+msgstr "معلومات القرص"
+
+msgid ""
+"NeoBot checks the connected media.\n"
+"WAIT ...\n"
+"\n"
+"DISCS:"
+msgstr ""
+"يتحقق نيوبوت من الوسائط المتصلة.\n"
+"انتظار ...\n"
+"\n"
+"الأقراص:"
+
+msgid "    NeoBot - Available media:"
+msgstr "    نيوبوت - الوسائط المتاحة:"
+
+msgid "After selecting OK start Mounting Manager, option Mount - green\n"
+msgstr "بعد تحديد موافق ، ابدأ ادارة التركيبات، خيار ارتباط - أخضر\n"
+
+msgid "Do you want to run the manager to mount the drives correctly ?\n"
+msgstr "هل تريد تشغيل مدير إرتباط محرك الأقراص بشكل صحيح؟\n"
+
+msgid "Device Manager encountered an error, disk drives not installed correctly !!!"
+msgstr "واجهت إدارة الأجهزة خطأ ، محركات الأقراص غير مثبتة بشكل صحيح !!!"
+
+msgid ""
+"\n"
+" ... q(-_-)p ...\n"
+"NeoBot to function properly need additional packages.\n"
+"Select Yes and wait ...\n"
+"Proces installation may take a few moments ...\n"
+"Install ?"
+msgstr ""
+"\n"
+"... q (-_-) q ...\n"
+"يحتاج نيوبوت للعمل بشكل صحيح إلى حزم إضافية.\n"
+"حدد نعم وانتظر ...\n"
+"قد يستغرق تثبيت العملية بضع لحظات ...\n"
+"تثبيت ؟"
+
+msgid "Installing packages ..."
+msgstr "تثبيت الحزم ..."
+
+msgid "Installation operation canceled. This is not a vuplus box !!!"
+msgstr "تم إلغاء عملية التثبيت. هذا ليس جهاز فيو بلس !!!"
+
+msgid "Canceled ... NeoBoot will not work properly !!! NeoBoot works only on VuPlus box, Ultimo4k, Solo4k, Uno4k !!!"
+msgstr "تم الإلغاء ... نيوبوت لن يعمل بشكل صحيح !!! نيوبوت يعمل فقط على موديلات فيو بلس ، Ultimo4k ، Solo4k ، Uno4k !!!"
+
+msgid "The download neoboot update."
+msgstr "تحديث تحميل نيوبوت."
+
+msgid "Installation"
+msgstr "تثبيت"
+
+msgid "Version update: "
+msgstr "تحديث الإصدار: "
+
+msgid "NeoBoot version: "
+msgstr "إصدار نيوبوت: "
+
+msgid "WARNING !!! First, mount the device."
+msgstr "تحذير !!! أولا قم بعمل إرتباط بجهازك."
+
+msgid ""
+"Here is the list of mounted devices in Your STB\n"
+"Please choose a device where You would like to install NeoBoot"
+msgstr ""
+"فيما يلي قائمة بالأجهزة المرتبطه بجهاز إستقبالك\n"
+"الرجاء اختيار الجهاز الذي ترغب في تثبيت نيوبوت عليه"
+
+msgid "Tools Neoboot"
+msgstr "أدوات نيوبوت"
+
+msgid "No file location NeoBot, do re-install the plugin."
+msgstr "لا يوجد ملف نيوبوت ، أعد تثبيت البلوجين."
+
+msgid ""
+"  Enigma2\n"
+"\n"
+"During the entire installation process does not restart the receiver !!!\n"
+"\n"
+msgstr ""
+" إينجما 2\n"
+"\n"
+"لا يتم إعادة تشغيل جهاز الاستقبال أثناء عملية التثبيت بأكملها !!!\n"
+
+msgid "NeoBoot Ver. updates     "
+msgstr "تحديث إصدار نيوبوت .    "
+
+msgid "NeoBoot Ver. updates    "
+msgstr "تحديث إصدار نيوبوت .    "
+
+msgid "Ver. updates    "
+msgstr "تحديثات الإصدار "
+
+msgid ""
+"2. NeoBot is fully automated\n"
+"\n"
+msgstr "2. نيوبوت الي بالكامل\n"
+
+msgid ""
+"For proper operation NeoBota type device is required USB stick or HDD, formatted on your system files Linux ext3 or ext4..\n"
+"\n"
+msgstr "للتشغيل السليم ، يلزم نيوبوت وجود جهاز من نوع فلاش ميموري أو محرك أقراص ثابتة ، مهيأه بنظام لينوكس ext3 أو ext4 ..\n"
+
+msgid ""
+"1. If you do not have a media formatted with the ext3 or ext4 is open to the Device Manager <Initialize>, select the drive and format it.\n"
+"\n"
+msgstr "1. إذا لم يكن لديك وسائط مهيأة باستخدام ext3 أو ext4 أذهب الي مدير الأجهزة <تهيئة> ، حدد محرك الأقراص وقم بتهيئته.\n"
+
+msgid ""
+"2. Go to the device manager and install correctly hdd and usb ...\n"
+"\n"
+msgstr "2. انتقل إلى مدير الجهاز وقم بتثبيت محرك الأقراص الصلبة و الفلاش ميموري بشكل صحيح ...\n"
+
+msgid ""
+"3. Install NeoBota on the selected device.\n"
+"\n"
+msgstr ""
+"3. قم بتثبيت نيوبوت على الجهاز المحدد. \n"
+"\n"
+"\n"
+
+msgid ""
+"4. Install the needed packages...\n"
+"\n"
+msgstr "4. تثبيت الحزم المطلوبة ...\n"
+
+msgid ""
+"5. For proper installation XenoBota receiver must be connected to the Internet.\n"
+"\n"
+msgstr "5. للتثبيت الصحيح ، يجب توصيل جهاز استقبال Xeno Bota بالإنترنت.\n"
+
+msgid ""
+"6. In the event of a problem with the installation cancel and  inform the author of the plug of a problem.\n"
+"\n"
+msgstr "6. في حالة وجود مشكلة في التثبيت ، قم بالإلغاء وإبلاغ مطور البلوجين بوجود مشكلة.\n"
+
+msgid "NeoBoot Ver. "
+msgstr "إصدار نيوبوت. "
+
+msgid "Have fun !!!"
+msgstr "استمتع !!!"
+
+msgid "Remove NeoBoot of STB"
+msgstr "إزالة نيوبوت من جهاز الإستقبال"
+
+msgid ""
+"1. Requirements: For proper operation of the device NeoBota are required USB stick or HDD.\n"
+"\n"
+msgstr "1. المتطلبات: للتشغيل السليم للجهاز ، يلزم لنيوبوت وجود فلاش ميموري أو محرك أقراص صلبة .\n"
+
+msgid ""
+"3. To install a new image in NeoBoot should be sent by FTP software file compressed in ZIP or NIF to the folder: \n"
+"/media/neoboot/ImagesUpload and remote control plugin NeoBoot use the green button <Installation>\n"
+"\n"
+msgstr ""
+"2. لتثبيت صورة جديدة في نيوبوت ، يجب إرسالها عن طريق برتوكول FTP مضغوطه بالإمتداد ZIP أو NIF إلى المجلد:\n"
+"/ميديا/نيوبوت/مجلد تحميل الصور  ومن جهاز التحكم وعلى واجهه بلوجين نيوبوت استخدم الزر الأخضر <التثبيت>\n"
+
+msgid ""
+"4. For proper installation and operation of additional image multiboot, use only the image intended for your receiver. !!!\n"
+"\n"
+msgstr "3. للتثبيت والتشغيل السليم لصورة إضافيه على الاقلاع المتعدد ، استخدم فقط الصورة المخصصة لجهاز الاستقبال الخاص بك. !!!\n"
+
+msgid ""
+"5. By installing the multiboot images of a different type than for your model STB DOING THIS AT YOUR OWN RISK !!!\n"
+"\n"
+msgstr "4. القيام بتثبيت صور متعددة أنظمة التشغيل من نوع مختلف عن الموديل الخاص بجهاز إستقبالك على مسؤوليتك الخاصة !!!\n"
+
+msgid ""
+"6. The installed to multiboot images, it is not indicated update to a newer version.\n"
+"\n"
+msgstr "5. لا تظهر الإشاره إلى وجود تحديث إلى إصدار أحدث على الصور  المثبته على الإقلاع المتعدد ، .\n"
+
+msgid ""
+"The authors plug NeoBot not liable for damage a receiver, NeoBoota incorrect use or installation of unauthorized additions or images.!!!\n"
+"\n"
+msgstr "مطور نيوبوت غير مسئول عن اي تلف لأجهزة الاستقبال أو الاستخدام غير الصحيح أو تثبيت إضافات أو صور غير مصرح بها. !!!\n"
+
+msgid ""
+"Are you sure you want to completely remove NeoBoot of your image?\n"
+"\n"
+"If you choose so all directories NeoBoota will be removed.\n"
+"A restore the original image settings Flash."
+msgstr ""
+"هل أنت متأكد أنك تريد إزالة نيوبوت من صورتك تمامًا؟\n"
+"\n"
+"إذا اخترت ذلك ، ستتم إزالة جميع مسارات وملفات نيوبوت.\n"
+"و استعادة إعدادات الصورة الأصلية على الفلاش."
+
+msgid "Delete the selected image - "
+msgstr "احذف الصورة المحددة "
+
+msgid "Choose what you want to do !"
+msgstr "اختر ما تريد القيام به !"
+
+msgid ""
+"\n"
+"Delete ?"
+msgstr ""
+"\n"
+"حذف ؟"
+
+msgid ""
+"NeoBot was removed !!! \n"
+"The changes will be visible only after complete restart of the receiver."
+msgstr ""
+"تمت إزالة نيوبوت !!!\n"
+"ستكون التغيرات مرئية فقط بعد إعادة التشغيل الكامل لجهاز الاستقبال."
+
+msgid "Removed successfully."
+msgstr "تم الحذف بنجاح ."
+
+msgid "Recovering setting....\n"
+msgstr "استعادة الإعدادات ....\n"
+
+msgid "Update neoboot in all images ?"
+msgstr "تحديث نيوبوت في جميع الصور؟"
+
+msgid ""
+"NeoBoot: Upgrading in progress\n"
+"Please wait..."
+msgstr ""
+"نيوبوت: الترقية قيد التقدم\n"
+"الرجاء الأنتظار..."
+
+msgid ""
+"[NeoBoot] For proper operation of the image blackhole in neobot, you need to install additional packages. \n"
+"\n"
+" Install now ?"
+msgstr ""
+"[نيوبوت] للتشغيل السليم للصورة بلاك هول في نيوبوت ، تحتاج إلى تثبيت حزم إضافية.\n"
+"\n"
+"  تثبيت الآن ؟"
+
+msgid "Cancelled ... [meoboot] detected no file vmlinuz.gz. You can not run image BlackHole \\ nImage BlackHole without the module will not be work properly !!!"
+msgstr ""
+"تم الإلغاء ... لم يكتشف [نيوبوت] أي ملف vmlinuz.gz. \n"
+"لا يمكنك تشغيل صورة بلاك هول \n"
+"nlmag\\ صورة بلاك هول بدون الوحدة النمطية لن تعمل بشكل صحيح !!!"
+
+msgid ""
+"Meoboot detected that you want to run the image blackhole. \\Warning!!!  - BlackHole not run without the boot manager !!!\n"
+"If you are running an image blackhole not converted to another during the restart from the boot manager !!!\n"
+"Start the selected image now ?"
+msgstr ""
+"اكتشف نيوبوت أنك تريد تشغيل صورة بلاك هول.\n"
+" \\تحذير!!! - البلاك هول لا يعمل بدون مدير إقلاع !!!\n"
+"إذا كنت تقوم بتشغيل صورة بلاك هول لم يتم تحويلها إلى أخرى أثناء إعادة التشغيل من مدير الإقلاع !!!\n"
+"ابدأ الصورة المحددة الآن؟"
+
+msgid "Meoboot detected that is not installed on the model VuPlus, you can not run an image BlackHole !!!"
+msgstr "اكتشف نيوبوت أنه غير مثبت على موديل فيو بلس ، لا يمكنك تشغيل صورة بلاك هول !!!"
+
+msgid ""
+"NeoBoot has detected that it is running image blackhole.\n"
+"To change the image should return to Flash !!! \n"
+"\n"
+"Start selected image now ?"
+msgstr ""
+"اكتشف نيوبوت أن التشغيل لصوره بلاك هول.\n"
+"لتغيير الصورة يجب العودة للفلاش !!!\n"
+"\n"
+"بدء الصورة المحددة الآن؟"
+
+msgid "Download image..."
+msgstr "تحميل صوره ..."
+
+msgid "Not Detected kernel-module-nandsim, install ?"
+msgstr "لم يتم الكشف عن وحدة كيرنيل نانو سيم ، هل تريد التثبيت؟"
+
+msgid ""
+"The installation has encountered an error !!!.\n"
+"This may be no connection to the server or the link has expired.\n"
+"When installing a new image use options ubi_reader..."
+msgstr ""
+"واجه التثبيت خطأ !!!.\n"
+"قد لا يكون هذا اتصال بالخادم أو أن الرابط قد انتهت صلاحيته.\n"
+"عند تثبيت صورة جديدة ، استخدم خيارات ubi_reader ..."
+
+msgid "Cancelled ... Image BlackHole without the module will not work properly !!!"
+msgstr "تم الإلغاء ... صورة بلاك هول لن تعمل بشكل صحيح بدون وحده القياس !!!"
+
+msgid "Package installation is complete. You can test image BlackHole ..."
+msgstr "اكتمل تثبيت الحزمة. يمكنك اختبار صورة بلاك هول ..."
+
+msgid "Cancelled ... neoboot without the module will not work properly !!!"
+msgstr "تم الإلغاء ... لن يعمل نيوبوت بدون تحديد الموديل بشكل صحيح !!!"
+
+msgid "Package installation is complete. You can test new image."
+msgstr "اكتمل تثبيت الحزمة. يمكنك اختبار الصورة الجديدة."
+
+msgid "Cancelled"
+msgstr "الغاء"
+
+msgid "Canceled start off the image ..."
+msgstr "إلغاء بدء تشغيل الصورة ..."
+
+msgid "Exit"
+msgstr "خروج"
+
+msgid "Start the device manager ?"
+msgstr "بدء تشغيل مدير الجهاز؟"
+
+msgid "Select OK to run the image."
+msgstr "حدد موافق لتشغيل الصورة."
+
+msgid "Use options without the boot manager."
+msgstr "استخدم الخيارات بدون قائمة إدارة الاقلاع."
+
+msgid "Use options with the boot manager."
+msgstr "استخدم الخيارات مع قائمة إدارة الاقلاع ."
+
+msgid "Use the next start."
+msgstr "استخدم البداية التالية."
+
+msgid "Use nandsim"
+msgstr "استخدم نانو سيم كارد"
+
+msgid "Use  ubi_reader"
+msgstr "استخدم ubi قارئ"
+
+msgid "Unpack the image tar.bz2 4K"
+msgstr "قم بفك ضغط الصورة tar.bz2 4K"
+
+msgid "Unpack the image - no change."
+msgstr "فك الصورة - لا تغيير."
+
+msgid "Choose option to extract image"
+msgstr "اختر خيارا لاستخراج الصورة"
+
+msgid "Installing multiple images"
+msgstr "تثبيت صور متعددة"
+
+msgid ""
+"[NeoBoot]\n"
+"We detected that you want to install more than 14 images, be sure to use options without the boot manager.\n"
+"\n"
+msgstr ""
+"[نيوبوت]\n"
+"اكتشفنا أنك تريد تثبيت أكثر من 14 صورة ، تأكد من استخدام الخيارات بدون مدير التمهيد.\n"
+
+msgid "Do you want to install ?"
+msgstr "هل تريد التثبيت ؟"
+
+msgid "Sorry there is not enought available space on your device. You need at least 800 Mb free to install a new image."
+msgstr "عذرا ، لا توجد مساحة كافية متاحة على جهازك. تحتاج إلى 800 ميجا بايت على الأقل متاحه لتثبيت صورة جديدة."
+
+msgid "Downloading available only from the image Flash."
+msgstr "التنزيل متاح فقط من صورة الفلاش الداخلي."
+
+msgid "Information available only when running Flash."
+msgstr "المعلومات متاحة فقط عند تشغيل الفلاش الداخلي."
+
+msgid "Sorry, NeoBoot can installed or upgraded only when booted from Flash."
+msgstr "عذرًا ، لا يمكن تثبيت نيوبوت أو ترقيته إلا عند بدء تشغيله من الفلاش الداخلي ."
+
+msgid "Delete the selected image  :"
+msgstr "احذف الصورة المحددة:"
+
+msgid "More options"
+msgstr "المزيد من الخيارات"
+
+msgid "NeoBot - First use the Device Manager and mount the drives correctly !!!"
+msgstr "نيوبوت - استخدم أولاً إدارة الأجهزة وقم بتركيب محركات الأقراص بشكل صحيح !!!"
+
+msgid ""
+"\n"
+"[NeoBoot] The installation image is ready.\n"
+"Return to test the installed image.\n"
+"Press EXIT!"
+msgstr ""
+"\n"
+"[نيوبوت] صورة التثبيت جاهزة.\n"
+"العودة لاختبار الصورة المثبتة.\n"
+"اضغط خروج!"
+
+msgid "[NeoBoot]From the installation, you can not run an image BlackHole."
+msgstr "[نيوبوت] من التثبيت ، لا يمكنك تشغيل صورة بلاك هول."
+
+msgid "Updated unnecessary, you have the latest version. Please try again later."
+msgstr "تحديث غير ضروري ، لديك أحدث إصدار. الرجاء معاودة المحاولة في وقت لاحق."
+
+msgid "MOUNTING. / Restart image.'"
+msgstr "الإرتباط. / إعادة تشغيل الصورة."
+
+msgid ""
+"\n"
+"Completed assembly of disks.\n"
+"To save the setting, switch the STB in deep standby !!!\n"
+"Restart ?"
+msgstr ""
+"\n"
+"تم تجميع الأقراص.\n"
+"لحفظ الإعداد ، قم بتبديل الجهاز في وضع الاستعداد العميق !!!\n"
+"اعادة التشغيل ؟"
+
+msgid "Please, wait...."
+msgstr "الرجاء, الإنتظار...."
+
+msgid "Continues mounting equipment..."
+msgstr "تواصل أرتباط المعدات ..."
+
+msgid "Installing a proven and successful !!!!"
+msgstr "تثبيت مجربة وناجحة !!!!"
+
+msgid "The selected image starts after you hard reboot tuner."
+msgstr "تبدأ الصورة المحددة بعد إعادة تشغيل الموالف."
+
+msgid "Welcome to the world of Python"
+msgstr "مرحبًا بك في عالم بايثون"
+
+msgid "Wait please while scanning for devices..."
+msgstr "انتظر من فضلك أثناء البحث عن الأجهزة ..."
+
+msgid "Unfortunately, at the moment not found an update, try again later."
+msgstr "للأسف ، لم يتم العثور على تحديث في الوقت الحالي ، حاول مرة أخرى لاحقًا."
+
+msgid "Initialize"
+msgstr "التهئية"
+
+msgid "Mount Manager."
+msgstr "إدارة الارتباط."
+
+msgid "SetupMounts"
+msgstr "إعدادات الارتباط"
+
+msgid "Save"
+msgstr "حفظ"
+
+msgid "Memory disc:"
+msgstr "قرص الذاكرة:"
+
+msgid ""
+"Completed update NeoBoot. You need to restart the E2 !!!\n"
+"Restart now ?"
+msgstr ""
+"اكتمل تحديث نيوبوت. تحتاج إلى إعادة تشغيل اينجما2 !!!\n"
+"اعادة التشغيل ؟"
+
+msgid "Copy the boxbranding  ?"
+msgstr "نسخ العلامة التجارية للجهاز ؟"
+
+msgid ""
+"Completed assembly of disks.\n"
+"Return to installation ?"
+msgstr ""
+"تم تجميع الأقراص.\n"
+"العودة إلى التثبيت؟"
+
+msgid "Return to installation..."
+msgstr "العودة إلى التثبيت ..."
+
+msgid "Repair FTP ? (Recommended only other image if it does not work.)"
+msgstr ""
+"إصلاح FTP\n"
+"؟ (يوصى باستخدامه إذا لم تعمل الصور الأخرى.)"
+
+msgid "Copy the extensions plugins  ?"
+msgstr "نسخ البلوجينات من مجلد الملحقات؟"
+
+msgid "Copy the system plugins ?"
+msgstr "نسخ بلوجينات النظام؟"
+
+msgid "Deep standby"
+msgstr "وضع الاستـعداد العـميق"
+
+msgid "Start with change kernel - Recommended"
+msgstr "ابدأ بنواة التغيير - موصى به"
+
+msgid "Copy Settings to the new Image"
+msgstr "نسخ الإعدادات للصورة الجديدة"
+
+msgid "Boot new Image directly ?"
+msgstr "الإقلاع من الصورة الجديدة مباشرة؟"
+
+msgid "Delete Image zip after Install ?"
+msgstr "هل تريد حذف ملف الصورة المظغوطه بعد التثبيت؟"
+
+msgid "Remove password ftp for the new Image ?"
+msgstr "هل تريد إزالة كلمة مرور بروتوكول نقل الملفات للصورة الجديدة؟"
+
+msgid "OK Start image..."
+msgstr "موافق ابدأ الصورة ..."
+
+msgid "Copy network settings LAN-WLAN ?"
+msgstr "نسخ إعدادات الشبكة السلكيه-الا سلكيه؟"
+
+msgid "There is no NeoBootUpdate.tar.gz to install.\n"
+msgstr "لا يوجد تحديث لنيوبوت .tar.gz ليتم تثبيته.\n"
+
+msgid "The update file is available at http://all-forum.cba.pl\n"
+msgstr "ملف التحديث متاح على http://all-forum.cba.pl\n"
+
+msgid "Please name NeoBootUpdate.tar.gz for the downloaded file and upload to / tmp and try again.\n"
+msgstr "يرجى إعادة تسمية ملف تحديث النيوبوت بالإمتداد .tar.gz للملف الذي تم تنزيله وتحميله إلى / tmp وحاول مرة أخرى.\n"
+
+msgid "Copy the kernel of the installed system (recommended only for Vu+) ?"
+msgstr "نسخ نواة النظام المثبت (موصى به فقط لـ فيو بلس)؟"
+
+msgid "Do not copy files from Flash to the installed image ?"
+msgstr "لا تنسخ الملفات من الفلاش إلى الصورة المثبتة؟"
+
+msgid "Copy settings SoftCam ?"
+msgstr "إعدادات نسخ السوفت كام؟"
+
+msgid "Path BlackHole ? (Not recommended for VuPlus)"
+msgstr "مسار البلاكهول؟ (غير مستحسن لـأجهزه فيو بلس)"
