@@ -238,7 +238,7 @@ class NeoBootInstallation(Screen):
             pass
 
     def updateList(self):
-        mycf, myusb, myusb2, myusb3, mysd, mycard, myhdd, myssd = ('', '', '', '', '', '', '', '')
+        mycf, mymmc, myusb, myusb2, myusb3, mysd, mycard, myhdd, myssd = ('', '', '', '', '', '', '', '', '')
         myoptions = []
         if fileExists('/proc/mounts'):
             fileExists('/proc/mounts')
@@ -246,6 +246,9 @@ class NeoBootInstallation(Screen):
             for line in f.readlines():
                 if line.find('/media/cf') != -1:
                     mycf = '/media/cf/'
+                    continue
+                if line.find('/media/mmc') != -1:
+                    mymmc = '/media/mmc/'
                     continue
                 if line.find('/media/usb') != -1:
                     myusb = '/media/usb/'
@@ -274,6 +277,10 @@ class NeoBootInstallation(Screen):
             self.list.append(mycf)
         else:
             mycf
+        if mymmc:
+            self.list.append(mymmc)
+        else:
+            mymmc
         if myusb:
             self.list.append(myusb)
         else:
