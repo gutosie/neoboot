@@ -818,6 +818,8 @@ def RemoveUnpackDirs():
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.bz2')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/et10000'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/et10000')
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/pulse4k*'):
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/pulse4k*')        
 
 
 def NEOBootExtract(source, target, ZipDelete):
@@ -1517,7 +1519,11 @@ def NEOBootExtract(source, target, ZipDelete):
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/pulse4k'):
             os.system('echo "Please wait. System installation AB-COM PULSe 4K..."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/pulse4k; tar -jxf ' + getNeoLocation() + 'ImagesUpload/pulse4k/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
-            rc = os.system(cmd)                     
+            rc = os.system(cmd)
+        elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/pulse4kmini'):
+            os.system('echo "Please wait. System installation AB-COM PULSe 4K..."')
+            cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/pulse4kmini; tar -jxf ' + getNeoLocation() + 'ImagesUpload/pulse4kmini/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
+            rc = os.system(cmd)
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/bre2ze4k'):
             os.system('echo "Please wait. System installation WWIO BRE2ZE 4K."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/bre2ze4k; tar -jxf ' + getNeoLocation() + 'ImagesUpload/bre2ze4k/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
