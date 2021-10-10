@@ -390,6 +390,10 @@ class DevicesConf(Screen, ConfigListScreen):
         if devicetype.find('card') != -1:
             name = _('CARD: ')
             mypixmap = '' + LinkNeoBoot + '/images/dev_sd.png'
+        if devicetype.find('mmc') != -1:
+            name = _('MMC: ')
+            mypixmap = '' + LinkNeoBoot + '/images/dev_sd.png'            
+            
 
         name = name + model
         f = open('/proc/mounts', 'r')
@@ -425,6 +429,7 @@ class DevicesConf(Screen, ConfigListScreen):
          ('/media/usb3', '/media/cf'),
          ('/media/usb3', '/media/card'),
          ('/media/cf', '/media/cf'),
+         ('/media/mmc', '/media/mmc'),         
          ('/media/card', '/media/card')]))
         if dtype == 'Linux':
             dtype = 'ext2', 'ext3', 'ext4'
@@ -593,6 +598,8 @@ class SetDiskLabel(Screen):
         lista = ['']
         if getTunerModel() in ('sf8008', 'sf8008s', 'sf8008t'):
             blackL = 'mmcblk0'
+        if getTunerModel() in ('h9se'):
+            blackL = 'mmcblk1'
         else:
             blackL = getoutput('cat /etc/udev/mount-helper.sh | grep "BLACKLISTED="')
             blackL = blackL[13:-1]
