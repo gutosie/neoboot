@@ -785,6 +785,8 @@ def RemoveUnpackDirs():
         if os.path.exists('' + getNeoLocation() + 'ImagesUpload/usb_update.bin'):
             rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/usb_update.bin ' + getNeoLocation() + 'ImagesUpload/uclan')
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/uclan')
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/ustym4kpro'):
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/ustym4kpro')        
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/beyonwiz'):
         rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/apploader.bin ' + getNeoLocation() + 'ImagesUpload/beyonwiz')
         rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/bootargs.bin ' + getNeoLocation() + 'ImagesUpload/beyonwiz')
@@ -1476,6 +1478,10 @@ def NEOBootExtract(source, target, ZipDelete):
             os.system('echo "Please wait. System installation ustym4kpro w toku..."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/uclan/ustym4kpro; tar -jxf ' + getNeoLocation() + 'ImagesUpload/uclan/ustym4kpro/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd)
+        elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/ustym4kpro'):
+            os.system('echo "Please wait. System installation ustym4kpro w toku..."')
+            cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/ustym4kpro; tar -jxf ' + getNeoLocation() + 'ImagesUpload/ustym4kpro/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
+            rc = os.system(cmd)            
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/et1x000'):
             os.system('echo "Please wait. System installation GI ET-11000 4K w toku..."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/et1x000; tar -jxf ' + getNeoLocation() + 'ImagesUpload/et1x000/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
