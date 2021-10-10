@@ -1432,6 +1432,22 @@ def NEOBootExtract(source, target, ZipDelete):
             os.system('echo "Please wait. System installation Zgemma H7."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/zgemma/h7/rootfs.tar.bz2; tar -jxf ' + getNeoLocation() + 'ImagesUpload/zgemma/h7/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd)
+        elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/h9/rootfs.ubi'):
+            os.chdir('h9')
+            os.system('mv -f rootfs.ubi rootfs.bin')
+            os.system('echo "Instalacja - ubi_reader w toku..."')
+            print("[NeoBoot] Extracting UBIFS image and moving extracted image to our target")
+            cmd = 'chmod 777 ' + extensions_path + 'NeoBoot/ubi_reader/ubi_extract_files.py'
+            rc = os.system(cmd)
+            cmd = 'python ' + extensions_path + 'NeoBoot/ubi_reader/ubi_extract_files.py rootfs.bin -o ' + getNeoLocation() + 'ubi'
+            rc = os.system(cmd)
+            os.chdir('/home/root')
+            cmd = 'cp -af -p ' + getNeoLocation() + 'ubi/rootfs/* ' + getNeoLocation() + 'ImageBoot/' + target
+            rc = os.system(cmd)
+            cmd = 'chmod -R +x ' + getNeoLocation() + 'ImageBoot/' + target
+            rc = os.system(cmd)
+            cmd = 'rm -rf ' + getNeoLocation() + 'ubi'
+            rc = os.system(cmd)            
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/zgemma/h9/rootfs.tar.bz2'):
             os.system('echo "Please wait. System installation Zgemma H9S ."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/zgemma/h9/rootfs.tar.bz2; tar -jxf ' + getNeoLocation() + 'ImagesUpload/zgemma/h9/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
@@ -1439,7 +1455,7 @@ def NEOBootExtract(source, target, ZipDelete):
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/zgemma/h9se/rootfs.tar.bz2'):
             os.system('echo "Please wait. System installation Zgemma H9SE ."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/zgemma/h9se/rootfs.tar.bz2; tar -jxf ' + getNeoLocation() + 'ImagesUpload/zgemma/h9se/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
-            rc = os.system(cmd)
+            rc = os.system(cmd)    
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/zgemma/i55plus/rootfs.tar.bz2'):
             os.system('echo "Please wait. System installation Zgemma i55plus ."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/zgemma/i55plus/rootfs.tar.bz2; tar -jxf ' + getNeoLocation() + 'ImagesUpload/zgemma/i55plus/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
