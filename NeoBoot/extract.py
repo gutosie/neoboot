@@ -823,8 +823,8 @@ def RemoveUnpackDirs():
             rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/pulse4k*/force_pulse4kmini_READ.ME; rm -r ' + getNeoLocation() + 'ImagesUpload/pulse4k*/unforce_pulse4kmini.txt')    
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/pulse4k*')
         
-    if os.path.exists('' + getNeoLocation() + 'ImagesUpload/unforce_*.txt'):
-        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/unforce_*.txt')        
+    if os.path.exists('' + getNeoLocation() + 'ImagesUpload/unforce_h9combo.txt'):
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/unforce_h9combo.txt')        
         
 def NEOBootExtract(source, target, ZipDelete):
     RemoveUnpackDirs()
