@@ -823,6 +823,9 @@ def RemoveUnpackDirs():
             rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/pulse4k*/force_pulse4kmini_READ.ME; rm -r ' + getNeoLocation() + 'ImagesUpload/pulse4k*/unforce_pulse4kmini.txt')    
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/pulse4k*')
         
+    if os.path.exists('' + getNeoLocation() + 'ImagesUpload/unforce_*.txt'):
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/unforce_*.txt')        
+        
 def NEOBootExtract(source, target, ZipDelete):
     RemoveUnpackDirs()
     os.system('echo "Press green to hide Console or red to abort the installation\nInstallation started:"; date +%T;echo "Extracting the installation file..."')
