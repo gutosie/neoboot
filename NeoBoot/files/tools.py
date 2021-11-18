@@ -1542,7 +1542,8 @@ class InternalFlash(Screen):
                     os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p21 /media/InternalFlash')
 
                 if getBoxHostName() == 'ustym4kpro' or getTunerModel() == 'ustym4kpro':
-                    os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p13 /media/InternalFlash')
+                    os.system(' ' + LinkNeoBoot + '/files/findsk.sh; mkdir -p /media/InternalFlash; mount /tmp/root /media/InternalFlash')
+                    #os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p13 /media/InternalFlash')
 
                 if os.path.exists('/proc/stb/info/model'):
                     if getTunerModel() == 'dm900' or getCPUSoC() == 'BCM97252SSFF':
