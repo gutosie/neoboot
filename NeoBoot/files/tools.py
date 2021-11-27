@@ -33,7 +33,7 @@ from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE, 
 from os import system, listdir, mkdir, chdir, getcwd, rename as os_rename, remove as os_remove, popen
 from os.path import dirname, isdir, isdir as os_isdir
 from enigma import eTimer
-from Plugins.Extensions.NeoBoot.files.stbbranding import fileCheck, getNeoLocation, getImageNeoBoot, getKernelVersionString, getBoxHostName, getCPUtype, getBoxVuModel, getTunerModel, getCPUSoC, getImageATv, getBoxModelVU
+from Plugins.Extensions.NeoBoot.files.stbbranding import fileCheck, getNeoLocation, getImageNeoBoot, getKernelVersionString, getBoxHostName, getCPUtype, getBoxVuModel, getTunerModel, getCPUSoC, getImageATv, getBoxModelVU, getBoxMacAddres
 import os
 import time
 import sys
@@ -1816,6 +1816,7 @@ class MyHelpNeo(Screen):
     def updatetext(self):
         message = _('NeoBoot Ver. ' + PLUGINVERSION + '  Enigma2\n\nDuring the entire installation process does not restart the receiver !!!\n\n')
         message += _('NeoBoot Ver. updates ' + UPDATEVERSION + '  \n\n')
+        message += _('NeoBoot Ver. updates ' + UPDATEVERSION + '  \n\n')
         message = _('For proper operation NeoBota type device is required USB stick or HDD, formatted on your system files Linux ext3 or ext4..\n\n')
         message += _('1. If you do not have a media formatted with the ext3 or ext4 is open to the Device Manager <Initialize>, select the drive and format it.\n\n')
         message += _('2. Go to the device manager and install correctly hdd and usb ...\n\n')
@@ -1880,6 +1881,7 @@ class Opis(Screen):
         message += _('Get the full version of the multiboot plugin.\n')
         message += _('Send an e-mail request for the neoboot vip version.\n')
         message += _('e-mail:    krzysztofgutosie@gmail.com\n\n')
+        message += _('Your receiver mac address is:  ' + getBoxMacAddres() + '  \n\n')
         message += _('----------------Free donate----------------\n')
         message += _('Spendenbetrag\nDonaco\nDarowizna\nПожертвование\n')
         message += _('Donate to the project\n')
@@ -2055,6 +2057,7 @@ class neoDONATION(Screen):
         message += _('If you want to support the neoboot project, you can do so by contacting us by e-mail:\n')
         message += _(' krzysztofgutosie@gmail.com\n\n')
         message += _(' PayPal adress:  krzysztofgutosie@gmail.com\n')
+        message += _('Your receiver mac address is:  ' + getBoxMacAddres() + '  \n\n')
         message += _('----------------Free donate----------------\n')
         message += _('¯\_(ツ)_/¯ Have fun !!!')
         self['lab1'].show()
