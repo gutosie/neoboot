@@ -1614,15 +1614,15 @@ def main(session, **kwargs):
                 else:
                                         if not fileExists('/tmp/ver.txt'):
                                                 if fileExists('/usr/bin/curl'):
-                                                        os.system('cd /tmp; curl -O --ftp-ssl https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; cd /')
+                                                        os.system('cd /tmp; curl -O --ftp-ssl https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; curl -O --ftp-ssl https://raw.githubusercontent.com/gutosie/neoboot/master/.neouser; cd /')
                                         if not fileExists('/tmp/ver.txt'):
                                                 if fileExists('/usr/bin/wget'):
-                                                        os.system('cd /tmp; wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; cd /')
+                                                        os.system('cd /tmp; wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; curl -O --ftp-ssl https://raw.githubusercontent.com/gutosie/neoboot/.neouser; cd /')
                                         if not fileExists('/tmp/ver.txt'):
                                                 if fileExists('/usr/bin/fullwget'):
-                                                        os.system('cd /tmp; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; cd /')
+                                                        os.system('cd /tmp; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; curl -O --ftp-ssl https://raw.githubusercontent.com/gutosie/neoboot/.neouser; cd /')
                                         if fileExists('/tmp/ver.txt'):
-                                                        os.system('mv /tmp/ver.txt /tmp/.nkod ;cd /')
+                                                        os.system('mv /tmp/ver.txt /tmp/.nkod; mv /tmp/.neouser /usr/lib/periodon/.activatedmac; cd /')
                                         else:
                                                         os.system(_('echo %s  > /tmp/.nkod') % UPDATEVERSION)
             from Plugins.Extensions.NeoBoot.files.stbbranding import getCheckInstal1, getCheckInstal2, getCheckInstal3
