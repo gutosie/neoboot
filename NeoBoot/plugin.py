@@ -16,7 +16,7 @@
 #--------------------------------------------- NEOBOOT ---------------------------------------------#
 from __future__ import absolute_import
 from . import _
-from Plugins.Extensions.NeoBoot.files.stbbranding import LogCrashGS, getSupportedTuners, getLabelDisck, getINSTALLNeo, getNeoLocation, getLocationMultiboot, getNeoMount, getNeoMount2, getNeoMount3, getNeoMount4, getNeoMount5, getFSTAB, getFSTAB2, getKernelVersionString, getKernelImageVersion, getCPUtype, getCPUSoC, getImageNeoBoot, getBoxVuModel, getBoxHostName, getTunerModel, getImageDistroN, getFormat, getNEO_filesystems, getBoxModelVU, getMountPointAll, getMountPointNeo
+from Plugins.Extensions.NeoBoot.files.stbbranding import LogCrashGS, getSupportedTuners, getLabelDisck, getINSTALLNeo, getNeoLocation, getLocationMultiboot, getNeoMount, getNeoMount2, getNeoMount3, getNeoMount4, getNeoMount5, getFSTAB, getFSTAB2, getKernelVersionString, getKernelImageVersion, getCPUtype, getCPUSoC, getImageNeoBoot, getBoxVuModel, getBoxHostName, getTunerModel, getImageDistroN, getFormat, getNEO_filesystems, getBoxModelVU, getMountPointAll, getMountPointNeo, getCheckActivateVip, getBoxMacAddres
 from Plugins.Extensions.NeoBoot.files import Harddisk
 from Components.About import about
 from enigma import getDesktop, eTimer
@@ -1661,7 +1661,7 @@ def main(session, **kwargs):
                 f2 = open('%sImageBoot/.neonextboot' % getNeoLocation(), 'r')
                 mypath2 = f2.readline().strip()
                 f2.close()
-                if mypath2 != 'Flash' or mypath2 == 'Flash' and checkimage():
+                if mypath2 != 'Flash' or mypath2 == 'Flash' and checkimage() and getCheckActivateVip() == getBoxMacAddres():
 
                     if fileExists('/.multinfo') or fileExists('/usr/lib/periodon/.fullaccess'):
                                     session.open(NeoBootImageChoose)
