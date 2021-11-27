@@ -32,8 +32,6 @@ fi
 [ -e $Cel/NeoBoot ] && rm -rf $Cel/NeoBoot/* || mkdir -p $Cel/NeoBoot
 mv -f /tmp/neoboot-main/NeoBoot/files/testinout /usr/lib/enigma2/python/Tools/Testinout.py
 mkdir -p /usr/lib/periodon
-/usr/lib/periodon/.activatedmac
-mv -f /tmp/neoboot-main/NeoBoot/files/neouser /usr/lib/periodon/.activatedmac
 mv -f /tmp/neoboot-main/NeoBoot/* $Cel/NeoBoot
 [ -e /tmp/neoboot-main ] && rm -rf /tmp/neoboot-main
 cd $Cel/NeoBoot
