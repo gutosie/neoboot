@@ -739,6 +739,8 @@ class NeoBootImageChoose(Screen):
             self['label21'] = Label('On - VIP')
         else:                
             self['label21'] = Label('Off - VIP')
+        if not fileExists('/usr/lib/periodon/.accessdate'):            
+            self['label22'] = Label('PRESS VIP PIN CODE NOW: xxxx')            
         self['actions'] = ActionMap(['WizardActions',
          'ColorActions',
          'MenuActions',
