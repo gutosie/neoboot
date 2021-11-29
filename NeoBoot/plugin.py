@@ -1661,15 +1661,17 @@ def main(session, **kwargs):
                 f2 = open('%sImageBoot/.neonextboot' % getNeoLocation(), 'r')
                 mypath2 = f2.readline().strip()
                 f2.close()
-                if mypath2 != 'Flash' or mypath2 == 'Flash' and checkimage() and getCheckActivateVip() == getBoxMacAddres():
-
-                    if fileExists('/.multinfo') or fileExists('/usr/lib/periodon/.fullaccess'):
-                                    session.open(NeoBootImageChoose)
+                if mypath2 != 'Flash' or mypath2 == 'Flash' and checkimage():
+                    if  getCheckActivateVip() != getBoxMacAddres():                    
+                            session.open(MessageBox, _('Instal neoobot from github'), type=MessageBox.TYPE_ERROR)
                     else:
-                        if float(PLUGINVERSION) != version:
-                                session.open(MyUpgrade)
+                        if fileExists('/.multinfo') or fileExists('/usr/lib/periodon/.fullaccess'):
+                                    session.open(NeoBootImageChoose)
                         else:
-                                session.open(NeoBootImageChoose)
+                            if float(PLUGINVERSION) != version:
+                                    session.open(MyUpgrade)
+                            else:
+                                    session.open(NeoBootImageChoose)
                 else:
                     session.open(MessageBox, _('Sorry, Unable to install, bad satellite receiver or you do not have the full plug-in version\n The full version of the NEO VIP plugin is on address:\nkrzysztofgutosie@.gmail.com'), type=MessageBox.TYPE_ERROR)
         else:
