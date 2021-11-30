@@ -229,14 +229,24 @@ class MBTools(Screen):
         res = (_('Supported sat tuners'), png, 19)
         self.list.append(res)
         self['list']. list = self.list
-
-        res = (_('NeoBoot Information'), png, 20)
+        
+        res = (_('Instal Panel Extra Feed'), png, 20)
+        self.list.append(res)
+        self['list']. list = self.list 
+              
+        res = (_('Instal Multi Stalker'), png, 21)
         self.list.append(res)
         self['list']. list = self.list
 
-        res = (_('NeoBoot donate'), png, 21)
+        res = (_('NeoBoot Information'), png, 22)
         self.list.append(res)
         self['list']. list = self.list
+
+        res = (_('NeoBoot donate'), png, 23)
+        self.list.append(res)
+        self['list']. list = self.list
+        
+
 
     def KeyOk(self):
         self.sel = self['list'].getCurrent()
@@ -282,14 +292,17 @@ class MBTools(Screen):
             pass
         if self.sel == 19 and self.session.open(TunerInfo):
             pass
-        if self.sel == 20 and self.session.open(MultiBootMyHelp):
+        if self.sel == 20 and self.session.open(PanelExtraFeed):
+            pass 
+        if self.sel == 21 and self.session.open(MultiStalker):
+            pass                           
+        if self.sel == 22 and self.session.open(MultiBootMyHelp):
             pass
-        if self.sel == 21 and self.session.open(neoDONATION):
+        if self.sel == 23 and self.session.open(neoDONATION):
             pass
-
-        if self.sel == 22 and self.session.open(CheckInternet):
-            pass
-
+            
+#        if self.sel == 24 and self.session.open(CheckInternet):
+#            pass
 
 class MBBackup(Screen):
     if isFHD():
@@ -1750,6 +1763,65 @@ class CreateSwap(Screen):
     def myClose(self, message):
         self.session.open(MessageBox, message, MessageBox.TYPE_INFO)
         self.close()
+
+
+class PanelExtraFeed(Screen):
+    __module__ = __name__
+
+    skin = """<screen name="Panel_Extra_Feed" title="Module kernel" position="center,center" size="700,300" >
+    <widget name="lab1" position="20,20" size="660,210" font="baslk;25" halign="center" valign="center" transparent="1"/>
+    <ePixmap position="210,250" size="34,34" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red.png" alphatest="blend" zPosition="1" />
+    <widget name="key_red" position="250,250" zPosition="2" size="280,40" font="baslk;30" halign="left" valign="center" backgroundColor="red" transparent="1" />
+    </screen>"""
+
+    def __init__(self, session):
+        Screen.__init__(self, session)
+        self['lab1'] = Label(_('Re-installing Panel_Extra_Feed. \n\nInstall?'))
+        self['key_red'] = Label(_('Installation'))
+        self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'back': self.close,
+         'red': self.panel_update})
+
+    def panel_update(self):
+                os.system('rm -f /tmp/*.ipk')
+                if fileExists('/usr/bin/curl'):
+                            os.system('cd /tmp; curl -O --ftp-ssl http://read.cba.pl/Vu+/Panel_Extra_Feed-4.5_v17.04.2021_all.ipk')
+                if not fileExists('/tmp/Panel_Extra_Feed-4.5_v17.04.2021_all.ipk'):
+                    if fileExists('/usr/bin/fullwget'):
+                        cmd1 = 'cd /tmp; fullwget --no-check-certificate http://read.cba.pl/Vu+/Panel_Extra_Feed-4.5_v17.04.2021_all.ipk'
+                        system(cmd1)
+                if not fileExists('/tmp/Panel_Extra_Feed-4.5_v17.04.2021_all.ipk'):
+                    if fileExists('/usr/bin/wget'):
+                            os.system('cd /tmp; wget --no-check-certificate http://read.cba.pl/Vu+/Panel_Extra_Feed-4.5_v17.04.2021_all.ipk')
+                if fileExists('/tmp/Panel_Extra_Feed-4.5_v17.04.2021_all.ipk'):
+                    cmd2 = 'opkg install --force-overwrite --force-reinstall --force-downgrade /tmp/Panel_Extra_Feed-4.5_v17.04.2021_all.ipk'
+                    self.session.open(Console, _('Enigma2 restarting..'), [cmd2])
+                    self.close()                    
+                else:
+                    self.session.open(MessageBox, _('The plugin not installed.\nAccess Fails with Error code error-panel_install.'), MessageBox.TYPE_INFO, 10)
+                    self.close()
+
+
+class MultiStalker(Screen):
+    __module__ = __name__
+
+    skin = """<screen name="Multi-Stalker" title="Enigam2 restarting..." position="center,center" size="700,300" >
+    <widget name="lab1" position="20,20" size="660,210" font="baslk;25" halign="center" valign="center" transparent="1"/>
+    <ePixmap position="210,250" size="34,34" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red.png" alphatest="blend" zPosition="1" />
+    <widget name="key_red" position="250,250" zPosition="2" size="280,40" font="baslk;30" halign="left" valign="center" backgroundColor="red" transparent="1" />
+    </screen>"""
+
+    def __init__(self, session):
+        Screen.__init__(self, session)
+        self['lab1'] = Label(_('Re-installing Multi-Stalker. \n\nInstall?'))
+        self['key_red'] = Label(_('Installation'))
+        self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'back': self.close,
+         'red': self.MultiStalker_update})
+
+    def MultiStalker_update(self):
+                os.system('rm -f /tmp/*.ipk')
+                cmd1 = 'wget -q "--no-check-certificate" https://raw.githubusercontent.com/ziko-ZR1/Multi-Stalker-install/main/Downloads/installer.sh -O - | /bin/sh'
+                self.session.open(Console, _('Enigma2 restarting..'), [cmd1])
+                self.close()                    
 
 
 class MultiBootMyHelp(Screen):
