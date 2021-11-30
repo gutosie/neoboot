@@ -2024,7 +2024,7 @@ class ReinstallKernel(Screen):
 class neoDONATION(Screen):
     if isFHD():
         skin = """<screen position="center,center" size="1820,840" title="NeoBoot - INFORMATION">
-        <widget name="lab1" position="69,134" size="1780,913" font="tasat;25" backgroundColor="black" transparent="1" />
+        <widget name="lab1" position="57,5" size="1780,913" font="tasat;25" backgroundColor="black" transparent="1" />
         </screen>"""
     else:
         skin = """<screen position="center,center" size="1180,620" title="NeoBoot - INFORMATION">
