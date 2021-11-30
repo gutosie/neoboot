@@ -33,7 +33,7 @@ import os
 ###____ Skin Ultra HD - ImageChooseFULLHD   ___ mod. gutosie___
 ImageChooseFULLHD = """
 <screen name="ImageChooseFULLHD" position="center,center" size="1920,1080" title=" " flags="wfNoBorder" backgroundColor="transparent">
-  <ePixmap position="79,49" zPosition="-2" size="188,56" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/ico_neo.png" />
+  <eLabel backgroundColor="black" font="dugme; 30" foregroundColor="#99FFFF" position="70,50" size="298,55" valign="center" text="NEOBoot Multi-image" transparent="1" />
   <widget name="config" position="1177,250" size="668,715" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/selektor.png" itemHeight="45" font="dugme;30" scrollbarMode="showOnDemand" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" foregroundColorSelected="#00FFFFF" backgroundColorSelected="#1A27408B" scrollbarSliderBorderWidth="1" scrollbarWidth="8" scrollbarSliderForegroundColor="#99FFFF" scrollbarSliderBorderColor="#0027408B" enableWrapAround="1" transparent="1" />
   <widget name="progreso" position="590,600" size="542,10" borderWidth="1" zPosition="3" />
   <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/skin.png" position="center,center" zPosition="-7" size="1920,1080" />
