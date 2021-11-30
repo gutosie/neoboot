@@ -1270,7 +1270,7 @@ class NeoBootImageChoose(Screen):
     def mytools(self):
         if not fileExists('/.multinfo'):
             if getTestIn() == getTestOut() and getCheckActivateVip() == getBoxMacAddres():
-                if getAccessN() == '1234':
+                if ('1234%s' % getTestToTest()) == getAccessN():
                     if (getSupportedTuners()) == (getBoxHostName()):
                         try:
                             from Plugins.Extensions.NeoBoot.files.tools import MBTools
@@ -1354,7 +1354,7 @@ class NeoBootImageChoose(Screen):
 
     def ImageInstall(self):
         if not fileExists('/.multinfo'):
-            if getAccessN() != '1234':   #%s' % UPDATEVERSION
+            if ('1234%s' % getTestToTest()) != getAccessN():
                 count = 0
                 for fn in listdir('' + getNeoLocation() + '/ImageBoot'):
                     dirfile = '' + getNeoLocation() + '/ImageBoot/' + fn
@@ -1495,7 +1495,7 @@ class NeoBootImageChoose(Screen):
 
     def bootIMG(self):
         if not fileExists('/.multinfo'):
-            if getAccessN() == '1234':
+            if ('1234%s' % getTestToTest()) == getAccessN():
                 self.bootIMG2()
             else:
                     myerror = _('Sorry, this is not neoboot vip version.\nGet NEO-VIP version, more info press blue button.')
