@@ -121,13 +121,14 @@ class BoundFunction:
 
 class MBTools(Screen):
     if isFHD():
-        skin = """<screen name="MBTools" position="70,93" size="1115,938" title="NeoBoot tools">
-          <eLabel position="21,62" size="1095,4" backgroundColor="blue" foregroundColor="blue" name="linia" />
-          <eLabel position="20,935" size="1095,4" backgroundColor="blue" foregroundColor="blue" name="linia" />
+        skin = """<screen name="MBTools" position="70,93" size="1205,942" title="Tools">
+          <ePixmap position="990,0" zPosition="-2" size="213,93" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/ico_neo.png" />
+          <eLabel position="20,61" size="1180,4" backgroundColor="blue" foregroundColor="blue" name="linia" />
+          <eLabel position="20,935" size="1180,5" backgroundColor="blue" foregroundColor="blue" name="linia" />
           <ePixmap position="25,-1" size="45,65" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/updown.png" alphatest="on" />
-          <eLabel backgroundColor="background" font="baslk; 30" foregroundColor="yellow" position="293,2" size="275,57" text="Menu list NEOBoot" />
-          <widget source="list" render="Listbox" position="20,75" size="1094,847" scrollbarMode="showOnDemand">
-          <convert type="TemplatedMultiContent">\n                \t\t{"template": [\n                    \t\t\tMultiContentEntryText(pos = (50, 1), size = (920, 56), flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER, text = 0),\n                    \t\t\tMultiContentEntryPixmapAlphaTest(pos = (6, 4), size = (66, 66), png = 1),\n                    \t\t\t],\n                    \t\t\t"fonts": [gFont("Regular", 35)],\n                    \t\t\t"itemHeight": 60\n                \t\t}\n            \t\t</convert>
+          <eLabel backgroundColor="background" font="baslk; 29" foregroundColor="yellow" position="293,2" size="280,60" text="Menu list NEOBoot" />
+          <widget source="list" render="Listbox" position="20,80" size="1177,855" scrollbarMode="showOnDemand">
+          <convert type="TemplatedMultiContent">\n                \t\t{"template": [\n                    \t\t\tMultiContentEntryText(pos = (50, 1), size = (925, 58), flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER, text = 0),\n                    \t\t\tMultiContentEntryPixmapAlphaTest(pos = (6, 4), size = (66, 66), png = 1),\n                    \t\t\t],\n                    \t\t\t"fonts": [gFont("Regular", 35)],\n                    \t\t\t"itemHeight": 60\n                \t\t}\n            \t\t</convert>
           </widget>
           </screen>"""
     else:
