@@ -33,7 +33,7 @@ from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE, 
 from os import system, listdir, mkdir, chdir, getcwd, rename as os_rename, remove as os_remove, popen
 from os.path import dirname, isdir, isdir as os_isdir
 from enigma import eTimer
-from Plugins.Extensions.NeoBoot.files.stbbranding import fileCheck, getNeoLocation, getImageNeoBoot, getKernelVersionString, getBoxHostName, getCPUtype, getBoxVuModel, getTunerModel, getCPUSoC, getImageATv, getBoxModelVU, getBoxMacAddres
+from Plugins.Extensions.NeoBoot.files.stbbranding import fileCheck, getNeoLocation, getImageNeoBoot, getKernelVersionString, getBoxHostName, getCPUtype, getBoxVuModel, getTunerModel, getCPUSoC, getImageATv, getBoxModelVU, getBoxMacAddres, getMountDiskSTB
 import os
 import time
 import sys
@@ -242,11 +242,15 @@ class MBTools(Screen):
         self.list.append(res)
         self['list']. list = self.list
         
-        res = (_('NeoBoot Information'), png, 23)
+        res = (_('Initialization - formatting disk for neoboot.'), png, 23)
+        self.list.append(res)
+        self['list']. list = self.list        
+        
+        res = (_('NeoBoot Information'), png, 24)
         self.list.append(res)
         self['list']. list = self.list
 
-        res = (_('NeoBoot donate'), png, 24)
+        res = (_('NeoBoot donate'), png, 25)
         self.list.append(res)
         self['list']. list = self.list
         
@@ -301,10 +305,12 @@ class MBTools(Screen):
         if self.sel == 21 and self.session.open(MultiStalker):
             pass
         if self.sel == 22 and self.session.open(MultibootFlashonline):
-            pass                                       
-        if self.sel == 23 and self.session.open(MultiBootMyHelp):
+            pass 
+        if self.sel == 23 and self.session.open(InitializationFormattingDisk):
+            pass                                                  
+        if self.sel == 24 and self.session.open(MultiBootMyHelp):
             pass
-        if self.sel == 24 and self.session.open(neoDONATION):
+        if self.sel == 25 and self.session.open(neoDONATION):
             pass
             
 #        if self.sel == 24 and self.session.open(CheckInternet):
@@ -1864,6 +1870,65 @@ class MultibootFlashonline(Screen):
                 else:
                     self.session.open(MessageBox, _('The plugin not installed.\nAccess Fails with Error code error-panel_install.'), MessageBox.TYPE_INFO, 10)
                     self.close()
+
+
+class InitializationFormattingDisk(Screen):
+    __module__ = __name__
+
+    skin = """ <screen name="Formatting Disk" title="Formatting" position="center,center" size="850,647">
+          <widget name="lab1" position="20,73" size="820,50" font="baslk;30" halign="center" valign="center" transparent="1" foregroundColor="#00ffa500" />
+          <widget source="list" render="Listbox" itemHeight="40" font="Regular;21" position="25,142" zPosition="1" size="815,416" scrollbarMode="showOnDemand" transparent="1">
+          <convert type="StringList" font="Regular;35" />
+          </widget>
+          <ePixmap position="107,588" size="34,34" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red.png" alphatest="blend" zPosition="1" />
+          <widget name="key_red" position="153,588" zPosition="2" size="368,35" font="baslk;30" halign="left" valign="center" backgroundColor="red" transparent="1" />
+          </screen>"""
+    
+    def __init__(self, session):
+        Screen.__init__(self, session)
+        self['lab1'] = Label(_('Select disk.'))
+        self['key_red'] = Label(_('Formatting'))
+        self['list'] = List([])
+        self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'back': self.close,
+         'ok': self.deleteback,
+         'red': self.deleteback})
+        self.backupdir = '/tmp/disk'
+        self.onShow.append(self.updateInfo)
+
+    def updateInfo(self):
+        os.system(' mkdir -p /tmp/disk ')
+        getMountDiskSTB()
+        self.backupdir = '/tmp/disk'
+        if pathExists(self.backupdir) == 0 and createDir(self.backupdir):
+            pass
+
+        imageslist = []
+        for fn in listdir(self.backupdir):
+            imageslist.append(fn)
+
+        self['list'].list = imageslist
+
+    def deleteback(self):
+        image = self['list'].getCurrent()
+        if image:
+            self.diskNeoFormatting = image.strip()
+            message = (_('Hard disk:  %s  Formatting ?') % image)
+            ybox = self.session.openWithCallback(self.dodeleteback, MessageBox, message, MessageBox.TYPE_YESNO)
+            ybox.setTitle(_('Format the disk ???'))
+
+    def dodeleteback(self, answer):
+        if answer is True:
+            cmd = "echo -e '\n\n%s '" % _('NeoBoot - Formatting disk .....')
+            cmd1 = "echo -e '\n\n%s '" % _('Please wait and dont disconnect the power !!! ....')
+            cmd2 = 'umount -f -l  /dev/' + self.diskNeoFormatting 
+            cmd3 = 'sleep 2; mkfs.ext3 -i 8400  /dev/' + self.diskNeoFormatting 
+            cmd4 = 'sleep 2; tune2fs -O extents,uninit_bg,dir_index  /dev/' + self.diskNeoFormatting
+            cmd5 = "echo -e '\n\n%s '" % _('Receiver reboot in 10 seconds... !!!')
+            cmd6 = 'rm -r /tmp/disk ;sleep 10; reboot -d -f'                                 
+            self.session.open(Console, _('Disk Formatting...!'), [cmd, cmd1, cmd2, cmd3, cmd4, cmd5, cmd6])
+            self.updateInfo()
+        else:
+            self.close()
 
 
 class MultiBootMyHelp(Screen):

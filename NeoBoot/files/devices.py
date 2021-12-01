@@ -71,7 +71,7 @@ class ManagerDevice(Screen):
         self['key_red'] = Label(_('Initialize ext3'))
         self['key_green'] = Label(_('SetupMounts'))
         self['key_yellow'] = Label(_('Initialize ext4'))
-        self['key_blue'] = Label(_('Reinstall Kernel'))
+        self['key_blue'] = Label(_('Formatting Disk'))
         self['lab1'] = Label()
         self.onChangedEntry = []
         self.list = []
@@ -81,7 +81,7 @@ class ManagerDevice(Screen):
          'red': self.Format_ext3,
          'green': self.SetupMounts,
          'yellow': self.Format_ext4,
-         'blue': self.Kernel_update,
+         'blue': self.InitializationNeoB,
          'back': self.close})
         self.activityTimer = eTimer()
         self.activityTimer.timeout.get().append(self.updateList2)
@@ -102,12 +102,12 @@ class ManagerDevice(Screen):
         from Screens.HarddiskSetup import HarddiskSelection
         self.session.openWithCallback(self.updateList, HarddiskSelection)
 
-    def Kernel_update(self):
+    def InitializationNeoB(self):
         if fileExists('/.multinfo'):
                 self.session.open(MessageBox, _("This option is available only from Flash"), MessageBox.TYPE_INFO, timeout=10)
         else:
-                from Plugins.Extensions.NeoBoot.files.tools import ReinstallKernel
-                self.session.open(ReinstallKernel)
+                from Plugins.Extensions.NeoBoot.files.tools import InitializationFormattingDisk
+                self.session.open(InitializationFormattingDisk)
                 
     def setWindowTitle(self):
         self.setTitle(_('Mount Manager'))
