@@ -1920,11 +1920,11 @@ class InitializationFormattingDisk(Screen):
         if answer is True:
             cmd = "echo -e '\n\n%s '" % _('NeoBoot - Formatting disk .....')
             cmd1 = "echo -e '\n\n%s '" % _('Please wait and dont disconnect the power !!! ....')
-            cmd2 = 'init 4; umount -f -l  /dev/' + self.diskNeoFormatting 
+            cmd2 = 'umount -f -l  /dev/' + self.diskNeoFormatting 
             cmd3 = 'sleep 2; mkfs.ext3 -i 8400  /dev/' + self.diskNeoFormatting 
             cmd4 = 'sleep 2; tune2fs -O extents,uninit_bg,dir_index  /dev/' + self.diskNeoFormatting
-            cmd5 = "echo -e '\n\n%s '" % _('Receiver reboot in 10 seconds... !!!')
-            cmd6 = 'rm -r /tmp/disk ;sync; sync; init 3; sleep 5; /etc/init.d/reboot'                                  
+            cmd5 = "echo -e '\n\n%s '" % _('Receiver reboot in 5 seconds... !!!')
+            cmd6 = 'rm -r /tmp/disk ;sync; sync; sleep 5; /etc/init.d/reboot'                                  
             self.session.open(Console, _('Disk Formatting...!'), [cmd, cmd1, cmd2, cmd3, cmd4, cmd5, cmd6])
             self.updateInfo()
         else:
