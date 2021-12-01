@@ -16,7 +16,7 @@
 #--------------------------------------------- NEOBOOT ---------------------------------------------#
 from __future__ import absolute_import
 from . import _
-from Plugins.Extensions.NeoBoot.files.stbbranding import LogCrashGS, getSupportedTuners, getLabelDisck, getINSTALLNeo, getNeoLocation, getLocationMultiboot, getNeoMount, getNeoMount2, getNeoMount3, getNeoMount4, getNeoMount5, getFSTAB, getFSTAB2, getKernelVersionString, getKernelImageVersion, getCPUtype, getCPUSoC, getImageNeoBoot, getBoxVuModel, getBoxHostName, getTunerModel, getImageDistroN, getFormat, getNEO_filesystems, getBoxModelVU, getMountPointAll, getMountPointNeo
+from Plugins.Extensions.NeoBoot.files.stbbranding import LogCrashGS, getSupportedTuners, getLabelDisck, getINSTALLNeo, getNeoLocation, getLocationMultiboot, getNeoMount, getNeoMount2, getNeoMount3, getNeoMount4, getNeoMount5, getFSTAB, getFSTAB2, getKernelVersionString, getKernelImageVersion, getCPUtype, getCPUSoC, getImageNeoBoot, getBoxVuModel, getBoxHostName, getTunerModel, getImageDistroN, getFormat, getNEO_filesystems, getBoxModelVU, getMountPointAll, getMountPointNeo, getCheckActivateVip, getBoxMacAddres
 from Plugins.Extensions.NeoBoot.files import Harddisk
 from Components.About import about
 from enigma import getDesktop, eTimer
@@ -55,8 +55,8 @@ else:
             from Screens.Console import Console
 
 loggscrash = time.localtime(time.time())
-PLUGINVERSION = '9.32'
-UPDATEVERSION = '9.32'
+PLUGINVERSION = '9.33'
+UPDATEVERSION = '9.33'
 UPDATEDATE = '"+%Y12%d"'
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
 
@@ -725,7 +725,7 @@ class NeoBootImageChoose(Screen):
         self['label11'] = Label('')
         self['label12'] = Label('')
         self['label13'] = Label(_('Version update: '))
-        if fileExists('/usr/lib/periodon/.accessdate'):
+        if fileExists('/usr/lib/periodon/.kodn'):
             self['label14'] = Label(_('NeoBoot version VIP: '))
         else:        
             self['label14'] = Label(_('NeoBoot version: '))
@@ -735,10 +735,12 @@ class NeoBootImageChoose(Screen):
         self['label18'] = Label('')
         self['label19'] = Label('')
         self['label20'] = Label('')
-        if fileExists('/usr/lib/periodon/.accessdate'):
+        if fileExists('/usr/lib/periodon/.kodn'):
             self['label21'] = Label('On - VIP')
         else:                
             self['label21'] = Label('Off - VIP')
+        if not fileExists('/usr/lib/periodon/.kodn'):            
+            self['label22'] = Label('PRESS VIP PIN CODE NOW: xxxx')            
         self['actions'] = ActionMap(['WizardActions',
          'ColorActions',
          'MenuActions',
@@ -1267,8 +1269,8 @@ class NeoBootImageChoose(Screen):
 
     def mytools(self):
         if not fileExists('/.multinfo'):
-            if getTestIn() == getTestOut():
-                if getAccessN() == '1234':
+            if getTestIn() == getTestOut() and getCheckActivateVip() == getBoxMacAddres():
+                if ('1234%s' % getTestToTest()) == getAccessN():
                     if (getSupportedTuners()) == (getBoxHostName()):
                         try:
                             from Plugins.Extensions.NeoBoot.files.tools import MBTools
@@ -1352,7 +1354,7 @@ class NeoBootImageChoose(Screen):
 
     def ImageInstall(self):
         if not fileExists('/.multinfo'):
-            if getAccessN() != '1234':   #%s' % UPDATEVERSION
+            if ('1234%s' % getTestToTest()) != getAccessN():
                 count = 0
                 for fn in listdir('' + getNeoLocation() + '/ImageBoot'):
                     dirfile = '' + getNeoLocation() + '/ImageBoot/' + fn
@@ -1368,7 +1370,7 @@ class NeoBootImageChoose(Screen):
                 else:
                         self.ImageInstallTestOK()
             else:
-                if getTestIn() == getTestOut():
+                if getTestIn() == getTestOut() and getCheckActivateVip() == getBoxMacAddres():
                     self.ImageInstallTestOK()
                 else:
                     myerror = _('Sorry, this is not neoboot vip version.\nGet NEO-VIP version, more info press blue button or try to update.')
@@ -1493,7 +1495,7 @@ class NeoBootImageChoose(Screen):
 
     def bootIMG(self):
         if not fileExists('/.multinfo'):
-            if getAccessN() == '1234':
+            if ('1234%s' % getTestToTest()) == getAccessN():
                 self.bootIMG2()
             else:
                     myerror = _('Sorry, this is not neoboot vip version.\nGet NEO-VIP version, more info press blue button.')
@@ -1614,15 +1616,15 @@ def main(session, **kwargs):
                 else:
                                         if not fileExists('/tmp/ver.txt'):
                                                 if fileExists('/usr/bin/curl'):
-                                                        os.system('cd /tmp; curl -O --ftp-ssl https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; cd /')
+                                                        os.system('cd /tmp; curl -O --ftp-ssl https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; curl -O --ftp-ssl https://raw.githubusercontent.com/gutosie/neoboot/master/.neouser; cd /')
                                         if not fileExists('/tmp/ver.txt'):
                                                 if fileExists('/usr/bin/wget'):
-                                                        os.system('cd /tmp; wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; cd /')
+                                                        os.system('cd /tmp; wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; curl -O --ftp-ssl https://raw.githubusercontent.com/gutosie/neoboot/.neouser; cd /')
                                         if not fileExists('/tmp/ver.txt'):
                                                 if fileExists('/usr/bin/fullwget'):
-                                                        os.system('cd /tmp; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; cd /')
+                                                        os.system('cd /tmp; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; curl -O --ftp-ssl https://raw.githubusercontent.com/gutosie/neoboot/.neouser; cd /')
                                         if fileExists('/tmp/ver.txt'):
-                                                        os.system('mv /tmp/ver.txt /tmp/.nkod ;cd /')
+                                                        os.system('mv /tmp/ver.txt /tmp/.nkod; mv /tmp/.neouser /usr/lib/periodon/.activatedmac; cd /')
                                         else:
                                                         os.system(_('echo %s  > /tmp/.nkod') % UPDATEVERSION)
             from Plugins.Extensions.NeoBoot.files.stbbranding import getCheckInstal1, getCheckInstal2, getCheckInstal3
@@ -1660,9 +1662,8 @@ def main(session, **kwargs):
         if fileExists('' + LinkNeoBoot + '/.location') and fileExists('%sImageBoot/.neonextboot' % getNeoLocation()):
                 f2 = open('%sImageBoot/.neonextboot' % getNeoLocation(), 'r')
                 mypath2 = f2.readline().strip()
-                f2.close()
-                if mypath2 != 'Flash' or mypath2 == 'Flash' and checkimage():
-
+                f2.close()                    
+                if mypath2 != 'Flash' or mypath2 == 'Flash' and checkimage() : #and getCheckActivateVip() == getBoxMacAddres():
                     if fileExists('/.multinfo') or fileExists('/usr/lib/periodon/.fullaccess'):
                                     session.open(NeoBootImageChoose)
                     else:

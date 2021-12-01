@@ -33,7 +33,7 @@ from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE, 
 from os import system, listdir, mkdir, chdir, getcwd, rename as os_rename, remove as os_remove, popen
 from os.path import dirname, isdir, isdir as os_isdir
 from enigma import eTimer
-from Plugins.Extensions.NeoBoot.files.stbbranding import fileCheck, getNeoLocation, getImageNeoBoot, getKernelVersionString, getBoxHostName, getCPUtype, getBoxVuModel, getTunerModel, getCPUSoC, getImageATv, getBoxModelVU
+from Plugins.Extensions.NeoBoot.files.stbbranding import fileCheck, getNeoLocation, getImageNeoBoot, getKernelVersionString, getBoxHostName, getCPUtype, getBoxVuModel, getTunerModel, getCPUSoC, getImageATv, getBoxModelVU, getBoxMacAddres
 import os
 import time
 import sys
@@ -121,13 +121,14 @@ class BoundFunction:
 
 class MBTools(Screen):
     if isFHD():
-        skin = """<screen name="MBTools" position="70,93" size="910,938" title="NeoBoot tools">
-          <eLabel position="20,68" size="890,2" backgroundColor="blue" foregroundColor="blue" name="linia" />
-          <eLabel position="20,935" size="890,2" backgroundColor="blue" foregroundColor="blue" name="linia" />
+        skin = """<screen name="MBTools" position="70,93" size="1205,942" title="Tools">
+          <ePixmap position="990,0" zPosition="-2" size="213,93" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/ico_neo.png" />
+          <eLabel position="20,61" size="1180,4" backgroundColor="blue" foregroundColor="blue" name="linia" />
+          <eLabel position="20,935" size="1180,5" backgroundColor="blue" foregroundColor="blue" name="linia" />
           <ePixmap position="25,-1" size="45,65" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/updown.png" alphatest="on" />
-          <eLabel backgroundColor="background" font="baslk; 30" foregroundColor="yellow" position="293,2" size="275,57" text="Menu list NEOBoot" />
-          <widget source="list" render="Listbox" position="20,75" size="885,847" scrollbarMode="showOnDemand">
-          <convert type="TemplatedMultiContent">\n                \t\t{"template": [\n                    \t\t\tMultiContentEntryText(pos = (50, 1), size = (920, 56), flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER, text = 0),\n                    \t\t\tMultiContentEntryPixmapAlphaTest(pos = (6, 4), size = (66, 66), png = 1),\n                    \t\t\t],\n                    \t\t\t"fonts": [gFont("Regular", 35)],\n                    \t\t\t"itemHeight": 60\n                \t\t}\n            \t\t</convert>
+          <eLabel backgroundColor="background" font="baslk; 29" foregroundColor="yellow" position="293,2" size="280,60" text="Menu list NEOBoot" />
+          <widget source="list" render="Listbox" position="20,80" size="1177,855" scrollbarMode="showOnDemand">
+          <convert type="TemplatedMultiContent">\n                \t\t{"template": [\n                    \t\t\tMultiContentEntryText(pos = (50, 1), size = (925, 58), flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER, text = 0),\n                    \t\t\tMultiContentEntryPixmapAlphaTest(pos = (6, 4), size = (66, 66), png = 1),\n                    \t\t\t],\n                    \t\t\t"fonts": [gFont("Regular", 35)],\n                    \t\t\t"itemHeight": 60\n                \t\t}\n            \t\t</convert>
           </widget>
           </screen>"""
     else:
@@ -228,14 +229,28 @@ class MBTools(Screen):
         res = (_('Supported sat tuners'), png, 19)
         self.list.append(res)
         self['list']. list = self.list
-
-        res = (_('NeoBoot Information'), png, 20)
+        
+        res = (_('Instal Panel Extra Feed'), png, 20)
+        self.list.append(res)
+        self['list']. list = self.list 
+              
+        res = (_('Instal Multi Stalker'), png, 21)
+        self.list.append(res)
+        self['list']. list = self.list
+        
+        res = (_('Instal Multiboot Flash Online'), png, 22)
+        self.list.append(res)
+        self['list']. list = self.list
+        
+        res = (_('NeoBoot Information'), png, 23)
         self.list.append(res)
         self['list']. list = self.list
 
-        res = (_('NeoBoot donate'), png, 21)
+        res = (_('NeoBoot donate'), png, 24)
         self.list.append(res)
         self['list']. list = self.list
+        
+
 
     def KeyOk(self):
         self.sel = self['list'].getCurrent()
@@ -281,14 +296,19 @@ class MBTools(Screen):
             pass
         if self.sel == 19 and self.session.open(TunerInfo):
             pass
-        if self.sel == 20 and self.session.open(MultiBootMyHelp):
+        if self.sel == 20 and self.session.open(PanelExtraFeed):
+            pass 
+        if self.sel == 21 and self.session.open(MultiStalker):
             pass
-        if self.sel == 21 and self.session.open(neoDONATION):
+        if self.sel == 22 and self.session.open(MultibootFlashonline):
+            pass                                       
+        if self.sel == 23 and self.session.open(MultiBootMyHelp):
             pass
-
-        if self.sel == 22 and self.session.open(CheckInternet):
+        if self.sel == 24 and self.session.open(neoDONATION):
             pass
-
+            
+#        if self.sel == 24 and self.session.open(CheckInternet):
+#            pass
 
 class MBBackup(Screen):
     if isFHD():
@@ -1751,6 +1771,101 @@ class CreateSwap(Screen):
         self.close()
 
 
+class PanelExtraFeed(Screen):
+    __module__ = __name__
+
+    skin = """<screen name="Panel_Extra_Feed" title="Module kernel" position="center,center" size="700,300" >
+    <widget name="lab1" position="20,20" size="660,210" font="baslk;25" halign="center" valign="center" transparent="1"/>
+    <ePixmap position="210,250" size="34,34" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red.png" alphatest="blend" zPosition="1" />
+    <widget name="key_red" position="250,250" zPosition="2" size="280,40" font="baslk;30" halign="left" valign="center" backgroundColor="red" transparent="1" />
+    </screen>"""
+
+    def __init__(self, session):
+        Screen.__init__(self, session)
+        self['lab1'] = Label(_('Re-installing Panel_Extra_Feed. \n\nInstall?'))
+        self['key_red'] = Label(_('Installation'))
+        self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'back': self.close,
+         'red': self.panel_update})
+
+    def panel_update(self):
+                os.system('rm -f /tmp/*.ipk')
+                if fileExists('/usr/bin/curl'):
+                            os.system('cd /tmp; curl -O --ftp-ssl http://read.cba.pl/Vu+/Panel_Extra_Feed-4.5_v17.04.2021_all.ipk')
+                if not fileExists('/tmp/Panel_Extra_Feed-4.5_v17.04.2021_all.ipk'):
+                    if fileExists('/usr/bin/fullwget'):
+                        cmd1 = 'cd /tmp; fullwget --no-check-certificate http://read.cba.pl/Vu+/Panel_Extra_Feed-4.5_v17.04.2021_all.ipk'
+                        system(cmd1)
+                if not fileExists('/tmp/Panel_Extra_Feed-4.5_v17.04.2021_all.ipk'):
+                    if fileExists('/usr/bin/wget'):
+                            os.system('cd /tmp; wget --no-check-certificate http://read.cba.pl/Vu+/Panel_Extra_Feed-4.5_v17.04.2021_all.ipk')
+                if fileExists('/tmp/Panel_Extra_Feed-4.5_v17.04.2021_all.ipk'):
+                    cmd2 = 'opkg install --force-overwrite --force-reinstall --force-downgrade /tmp/Panel_Extra_Feed-4.5_v17.04.2021_all.ipk'
+                    self.session.open(Console, _('Enigma2 restarting..'), [cmd2])
+                    self.close()                    
+                else:
+                    self.session.open(MessageBox, _('The plugin not installed.\nAccess Fails with Error code error-panel_install.'), MessageBox.TYPE_INFO, 10)
+                    self.close()
+
+
+class MultiStalker(Screen):
+    __module__ = __name__
+
+    skin = """<screen name="Multi-Stalker" title="Enigam2 restarting..." position="center,center" size="700,300" >
+    <widget name="lab1" position="20,20" size="660,210" font="baslk;25" halign="center" valign="center" transparent="1"/>
+    <ePixmap position="210,250" size="34,34" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red.png" alphatest="blend" zPosition="1" />
+    <widget name="key_red" position="250,250" zPosition="2" size="280,40" font="baslk;30" halign="left" valign="center" backgroundColor="red" transparent="1" />
+    </screen>"""
+
+    def __init__(self, session):
+        Screen.__init__(self, session)
+        self['lab1'] = Label(_('Re-installing Multi-Stalker. \n\nInstall?'))
+        self['key_red'] = Label(_('Installation'))
+        self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'back': self.close,
+         'red': self.MultiStalker_update})
+
+    def MultiStalker_update(self):
+                os.system('rm -f /tmp/*.ipk')
+                cmd1 = 'wget -q "--no-check-certificate" https://raw.githubusercontent.com/ziko-ZR1/Multi-Stalker-install/main/Downloads/installer.sh -O - | /bin/sh'
+                self.session.open(Console, _('Enigma2 restarting..'), [cmd1])
+                self.close()                    
+
+class MultibootFlashonline(Screen):
+    __module__ = __name__
+
+    skin = """<screen name="MultibootFlashonline" title="Enigam2 restarting..." position="center,center" size="700,300" >
+    <widget name="lab1" position="20,20" size="660,210" font="baslk;25" halign="center" valign="center" transparent="1"/>
+    <ePixmap position="210,250" size="34,34" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red.png" alphatest="blend" zPosition="1" />
+    <widget name="key_red" position="250,250" zPosition="2" size="280,40" font="baslk;30" halign="left" valign="center" backgroundColor="red" transparent="1" />
+    </screen>"""
+
+    def __init__(self, session):
+        Screen.__init__(self, session)
+        self['lab1'] = Label(_('Re-installing MultibootFlashonline. \n\nInstall?'))
+        self['key_red'] = Label(_('Installation'))
+        self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'back': self.close,
+         'red': self.MultibootFlashonline_update})
+
+    def MultibootFlashonline_update(self):
+                os.system('rm -f /tmp/*.ipk')
+                os.system('rm -f /tmp/*.ipk')
+                if fileExists('/usr/bin/curl'):
+                            os.system('cd /tmp; curl -O --ftp-ssl http://178.63.156.75/paneladdons/Pluginsoe20/multiboot/enigma2-plugin-extensions-multiboot-flashonline_6.2_all.ipk')
+                if not fileExists('/tmp/enigma2-plugin-extensions-multiboot-flashonline_6.2_all.ipk'):
+                    if fileExists('/usr/bin/fullwget'):
+                        cmd1 = 'cd /tmp; fullwget --no-check-certificate http://178.63.156.75/paneladdons/Pluginsoe20/multiboot/enigma2-plugin-extensions-multiboot-flashonline_6.2_all.ipk'
+                        system(cmd1)
+                if not fileExists('/tmp/enigma2-plugin-extensions-multiboot-flashonline_6.2_all.ipk'):
+                    if fileExists('/usr/bin/wget'):
+                            os.system('cd /tmp; wget --no-check-certificate http://178.63.156.75/paneladdons/Pluginsoe20/multiboot/enigma2-plugin-extensions-multiboot-flashonline_6.2_all.ipk')
+                if fileExists('/tmp/enigma2-plugin-extensions-multiboot-flashonline_6.2_all.ipk'):
+                    cmd2 = 'opkg install --force-overwrite --force-reinstall --force-downgrade /tmp/enigma2-plugin-extensions-multiboot-flashonline_6.2_all.ipk'
+                    self.session.open(Console, _('Enigma2 restarting..'), [cmd2])
+                    self.close()                    
+                else:
+                    self.session.open(MessageBox, _('The plugin not installed.\nAccess Fails with Error code error-panel_install.'), MessageBox.TYPE_INFO, 10)
+                    self.close()
+
+
 class MultiBootMyHelp(Screen):
     if isFHD():
         skin = """<screen name="MultiBootMyHelp" position="center,center" size="1920,1080" title="NeoBoot - Opis" flags="wfNoBorder">
@@ -1816,6 +1931,7 @@ class MyHelpNeo(Screen):
     def updatetext(self):
         message = _('NeoBoot Ver. ' + PLUGINVERSION + '  Enigma2\n\nDuring the entire installation process does not restart the receiver !!!\n\n')
         message += _('NeoBoot Ver. updates ' + UPDATEVERSION + '  \n\n')
+        message += _('NeoBoot Ver. updates ' + UPDATEVERSION + '  \n\n')
         message = _('For proper operation NeoBota type device is required USB stick or HDD, formatted on your system files Linux ext3 or ext4..\n\n')
         message += _('1. If you do not have a media formatted with the ext3 or ext4 is open to the Device Manager <Initialize>, select the drive and format it.\n\n')
         message += _('2. Go to the device manager and install correctly hdd and usb ...\n\n')
@@ -1880,6 +1996,7 @@ class Opis(Screen):
         message += _('Get the full version of the multiboot plugin.\n')
         message += _('Send an e-mail request for the neoboot vip version.\n')
         message += _('e-mail:    krzysztofgutosie@gmail.com\n\n')
+        message += _('>>>  Your receiver mac address is:  ' + getBoxMacAddres() +  '  <<<  \n\n')
         message += _('----------------Free donate----------------\n')
         message += _('Spendenbetrag\nDonaco\nDarowizna\nПожертвование\n')
         message += _('Donate to the project\n')
@@ -2021,7 +2138,7 @@ class ReinstallKernel(Screen):
 class neoDONATION(Screen):
     if isFHD():
         skin = """<screen position="center,center" size="1820,840" title="NeoBoot - INFORMATION">
-        <widget name="lab1" position="69,134" size="1780,913" font="tasat;25" backgroundColor="black" transparent="1" />
+        <widget name="lab1" position="57,5" size="1780,913" font="tasat;25" backgroundColor="black" transparent="1" />
         </screen>"""
     else:
         skin = """<screen position="center,center" size="1180,620" title="NeoBoot - INFORMATION">
@@ -2045,6 +2162,10 @@ class neoDONATION(Screen):
     def updatetext(self):
         message = _('NeoBoot Ver. ' + PLUGINVERSION + '  Enigma2\n\n')
         message += _('NeoBoot Ver. updates ' + UPDATEVERSION + '  \n\n')
+        message += _('If you want to support the neoboot project, you can do so by contacting us by e-mail:\n')
+        message += _(' krzysztofgutosie@gmail.com\n\n')
+        message += _(' PayPal adress:  krzysztofgutosie@gmail.com\n')
+        message += _('>>> Your receiver mac address is:  ' + getBoxMacAddres() +  ' <<<  \n\n')        
         message += _('----------------Free donate----------------\n\n')
         message += _('Spendenbetrag\nDonaco\nDarowizna\nПожертвование\n')
         message += _('Donate to the project\n')
@@ -2052,9 +2173,6 @@ class neoDONATION(Screen):
         message += _('- Online support\n')
         message += _('- More information email\n')
         message += _('We thank you for any help\n')
-        message += _('If you want to support the neoboot project, you can do so by contacting us by e-mail:\n')
-        message += _(' krzysztofgutosie@gmail.com\n\n')
-        message += _(' PayPal adress:  krzysztofgutosie@gmail.com\n')
         message += _('----------------Free donate----------------\n')
         message += _('¯\_(ツ)_/¯ Have fun !!!')
         self['lab1'].show()

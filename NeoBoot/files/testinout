@@ -63,15 +63,11 @@ def getTestOut():
 
 
 def getAccessN():
-    neopro = 'UNKNOWN'
+    neopro = ''
     if os.path.exists('/usr/lib/periodon/.kodn'):
         with open('/usr/lib/periodon/.kodn', 'r') as f:
-            lines3 = f.read()
+            neopro = f.readline().strip()
             f.close()
-        if lines3.find('1234') != -1:
-            neopro = '1234'
-        elif not lines3.find('1234') != -1:
-            neopro = '1235'
     return neopro
 
 

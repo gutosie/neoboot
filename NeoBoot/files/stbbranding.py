@@ -9,7 +9,6 @@ LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
 
 LogFileObj = None
 
-
 def Log(param=''):
     global LogFileObj
     #first close object if exists
@@ -960,6 +959,24 @@ def getMountPointNeo2():
         elif getNeoMount5() == 'mmc_install_/dev/sdb1':
                     os.system('echo "umount -l /media/mmc\nmkdir -p /media/mmc\n/bin/mount /dev/sdb1 /media/mmc"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
         os.system('echo "\n\nexit 0"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+	
+def getBoxMacAddres():
+    os.system("ifconfig eth0 |grep -i hwaddr |awk '{print $5}' > /tmp/.mymac")
+    if os.path.exists('/tmp/.mymac'):
+        with open('/tmp/.mymac', 'r') as f:
+            myboxmac = f.readline().strip()
+            f.close()
+    return myboxmac    
+
+def getCheckActivateVip():
+    supportedvip = ''
+    if os.path.exists('/usr/lib/periodon/.activatedmac'):
+        with open('/usr/lib/periodon/.activatedmac', 'r') as f:
+            lines = f.read()
+            f.close()
+        if lines.find("%s" % getBoxMacAddres()) != -1:
+            supportedvip = '%s' % getBoxMacAddres()
+    return supportedvip	
 
 
 boxbrand = sys.modules[__name__]
