@@ -31,7 +31,7 @@ import os
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 import gettext
 import os
-from Plugins.Extensions.NeoBoot.files.stbbranding import getTunerModel
+from Plugins.Extensions.NeoBoot.files.stbbranding import getTunerModel, getCheckExt
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
 
 
@@ -237,6 +237,12 @@ class ManagerDevice(Screen):
             self.list.append(res)
 
     def SetupMounts(self):
+        if getCheckExt() != 'vfat' and getCheckExt() == 'ext3' or getCheckExt() == 'ext4' :    
+            self.SetupMountsGo()
+        else:
+            self.session.open(MessageBox, _('Disk the directory HDD or USB is not a ext2, ext3 or ext4.\nMake sure you select a valid partition type to install neoboot.'), type=MessageBox.TYPE_ERROR)
+
+    def SetupMountsGo(self):
         if not fileExists('/etc/fstab.org'):
             os.system('cp -f /etc/fstab /etc/fstab.org')
         elif fileExists('/etc/fstab.org'):
