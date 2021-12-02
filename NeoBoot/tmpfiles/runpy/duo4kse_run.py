@@ -36,9 +36,10 @@ LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
 class StartImage(Screen):
     screenwidth = getDesktop(0).size().width()
     if screenwidth and screenwidth == 1920:
-        skin = """<screen position="center, center" size="1241, 850" title="NeoBoot">
-        \n\t\t\t<ePixmap position="491, 673" zPosition="-2" size="365, 160" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/matrixhd.png" />
-        <widget source="list" render="Listbox" position="20, 171" size="1194, 290" scrollbarMode="showOnDemand">\n\t\t\t\t<convert type="TemplatedMultiContent">
+        skin = """<screen position="center,center" size="1241,885" title="NeoBoot">
+        \n\t\t\t<ePixmap position="450,410" zPosition="-2" size="537,303" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/matrixhd.png" />
+        <eLabel position="33,801" size="1180,3" backgroundColor="red" foregroundColor="blue" name="linia" />
+        <widget source="list" render="Listbox" position="20, 171" size="1194,141" scrollbarMode="showOnDemand">\n\t\t\t\t<convert type="TemplatedMultiContent">
         \n                \t\t{"template": [
         \n                    \t\t\tMultiContentEntryText(pos = (90, 1), size = (920, 66), flags = RT_HALIGN_CENTER|RT_VALIGN_CENTER, text = 0),
         \n                    \t\t\tMultiContentEntryPixmapAlphaTest(pos = (8, 4), size = (66, 66), png = 1),
@@ -46,20 +47,7 @@ class StartImage(Screen):
         \n                    \t\t\t"fonts": [gFont("Regular", 40)],\n                    \t\t\t"itemHeight": 66\n                \t\t}
         \n            \t\t</convert>\n\t\t</widget>
         \n         <widget name="label1" position="21, 29" zPosition="1" size="1184, 116" font="Regular;35" halign="center" valign="center" backgroundColor="black" transparent="1" foregroundColor="red" />
-        \n\t\t        <widget name="label2" position="22, 480" zPosition="-2" size="1205, 168" font="Regular;35" halign="center" valign="center" backgroundColor="black" transparent="1" foregroundColor="red" />
-        \n\t\t        </screen>"""
-    else:
-        skin = """<screen position="center, center" size="835, 500" title="NeoBoot">
-        \n\t\t\t           <ePixmap position="0,0" zPosition="-1" size="835,500" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/frame835x500.png"  />
-        <widget source="list" render="Listbox" position="16, 150" size="800, 40"    selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/listselection800x35.png" scrollbarMode="showOnDemand">
-        \n\t\t\t\t<convert type="TemplatedMultiContent">
-        \n                \t\t{"template": [
-        \n                    \t\t\tMultiContentEntryText(pos = (180, 0), size = (520, 36), flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER, text = 0),
-        \n                    \t\t\tMultiContentEntryPixmapAlphaTest(pos = (4, 2), size = (36, 36), png = 1),
-        \n                    \t\t\t],\n                    \t\t\t"fonts": [gFont("Regular", 22)],
-        \n                    \t\t\t"itemHeight": 35\n               \t\t}\n            \t\t</convert>
-        \n\t\t</widget>\n<widget name="label1" font="Regular; 26" position="15, 70" size="803, 58" halign="center" valign="center" backgroundColor="black" transparent="1" foregroundColor="#00cc99" />
-        <widget name="label2" position="40, 232" zPosition="2" size="806, 294" font="Regular;25" halign="center" valign="center" backgroundColor="black" transparent="1" foregroundColor="#00cc99" />
+        \n\t\t        <widget name="label2" position="15,347" zPosition="-2" size="1205,60" font="Regular;35" halign="center" valign="center" backgroundColor="black" transparent="1" foregroundColor="red" />
         \n\t\t        </screen>"""
 
     __module__ = __name__
