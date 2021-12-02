@@ -369,6 +369,9 @@ class NeoBootInstallation(Screen):
         if fileExists('/.multinfo'):
             mess = _('Sorry, Neoboot can be installed or upgraded only when booted from Flash')
             self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
+        elif getFormat() != 'ext3' or getFormat() != 'ext4':
+            self['label2'].setText(_('Sorry it seems that there are not Linux formatted devices mounted on your STB. To install NeoBoot you need a Linux formatted part1 device. Click on the blue button to open Devices Panel.'))
+            self.session.open(MessageBox, _('Disk the directory HDD or USB is not a ext2, ext3 or ext4.\nMake sure you select a valid partition type to install neoboot.'), type=MessageBox.TYPE_ERROR)            
         else:
             self.checkinstall2()
 
