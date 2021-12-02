@@ -1029,5 +1029,32 @@ def getMountDiskSTB():
 
     return neo_disk    
 
+def getCheckExtDisk():
+    os.system("cat /proc/mounts | egrep -o '.ext.' | sort | uniq > /tmp/.myext")
+    if os.path.exists('/tmp/.myext'):
+        with open('/tmp/.myext', 'r') as f:
+            myboxEXT = f.readline().strip()
+            f.close()
+    return myboxEXT 
+        
+def getCheckExt():
+    neoExt = 'UNKNOWN'
+    if os.path.exists('/proc/mounts'):
+        with open('/proc/mounts', 'r') as f:
+            lines = f.read()
+            f.close()
+        if lines.find('/media/usb vfat') != -1:
+            neoExt = 'vfat'
+        elif lines.find('/media/hdd vfat') != -1:
+            neoExt = 'vfat'
+        elif lines.find('/media/hdd ext3') != -1:
+            neoExt = 'ext3'
+        elif lines.find('/media/hdd ext4') != -1:
+            neoExt = 'ext4'
+        elif lines.find('/media/usb ext3') != -1:
+            neoExt = 'ext3'
+        elif lines.find('/media/usb ext4') != -1:
+            neoExt = 'ext4'                         
+    return neoExt 
 
 boxbrand = sys.modules[__name__]
