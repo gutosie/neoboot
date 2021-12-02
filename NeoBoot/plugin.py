@@ -16,7 +16,7 @@
 #--------------------------------------------- NEOBOOT ---------------------------------------------#
 from __future__ import absolute_import
 from . import _
-from Plugins.Extensions.NeoBoot.files.stbbranding import LogCrashGS, getSupportedTuners, getLabelDisck, getINSTALLNeo, getNeoLocation, getLocationMultiboot, getNeoMount, getNeoMount2, getNeoMount3, getNeoMount4, getNeoMount5, getFSTAB, getFSTAB2, getKernelVersionString, getKernelImageVersion, getCPUtype, getCPUSoC, getImageNeoBoot, getBoxVuModel, getBoxHostName, getTunerModel, getImageDistroN, getFormat, getNEO_filesystems, getBoxModelVU, getMountPointAll, getMountPointNeo, getCheckActivateVip, getBoxMacAddres
+from Plugins.Extensions.NeoBoot.files.stbbranding import LogCrashGS, getSupportedTuners, getLabelDisck, getINSTALLNeo, getNeoLocation, getLocationMultiboot, getNeoMount, getNeoMount2, getNeoMount3, getNeoMount4, getNeoMount5, getFSTAB, getFSTAB2, getKernelVersionString, getKernelImageVersion, getCPUtype, getCPUSoC, getImageNeoBoot, getBoxVuModel, getBoxHostName, getTunerModel, getImageDistroN, getFormat, getNEO_filesystems, getBoxModelVU, getMountPointAll, getMountPointNeo, getCheckActivateVip, getBoxMacAddres, getCheckExt
 from Plugins.Extensions.NeoBoot.files import Harddisk
 from Components.About import about
 from enigma import getDesktop, eTimer
@@ -203,6 +203,7 @@ class NeoBootInstallation(Screen):
         writefile.close()
 
     def SetDiskLabel(self):
+        if getCheckExt() != 'vfat' and getCheckExt() == 'ext3' or getCheckExt() == 'ext4' :        
             try:
                     from Plugins.Extensions.NeoBoot.files.devices import SetDiskLabel
                     self.session.open(SetDiskLabel)
@@ -211,6 +212,8 @@ class NeoBootInstallation(Screen):
                     LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
                     mess = _('Sorry cannot open menu set disk label\nAccess Fails with Error code 0x01.')
                     self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
+        else:
+            self.session.open(MessageBox, _('Disk the directory HDD or USB is not a ext2, ext3 or ext4.\nMake sure you select a valid partition type to install neoboot.'), type=MessageBox.TYPE_ERROR)                     
 
     def Instrukcja(self):
             try:
@@ -369,8 +372,11 @@ class NeoBootInstallation(Screen):
         if fileExists('/.multinfo'):
             mess = _('Sorry, Neoboot can be installed or upgraded only when booted from Flash')
             self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)            
-        else: 
-            self.checkinstall2()
+        elif getCheckExt() != 'vfat' and getCheckExt() == 'ext3' or getCheckExt() == 'ext4' :
+                self.checkinstall2()   
+        else:
+                self['label2'].setText(_('Sorry it seems that there are not Linux formatted devices mounted on your STB. To install NeoBoot you need a Linux formatted part1 device. Click on the blue button to open Devices Panel.'))
+                self.session.open(MessageBox, _('Disk the directory HDD or USB is not a ext2, ext3 or ext4.\nMake sure you select a valid partition type to install neoboot.'), type=MessageBox.TYPE_ERROR)
 
     def checkinstall2(self):
         if fileExists('/media/usb/ImageBoot/') and fileExists('/media/hdd/ImageBoot/'):
