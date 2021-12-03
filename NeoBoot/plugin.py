@@ -1466,7 +1466,7 @@ class NeoBootImageChoose(Screen):
                     message = (_('The %sImagesUpload directory is EMPTY!!!\nInstall the plugin to download new image online ?\n --- Continue? ---') % getNeoLocation())
                     ybox = self.session.openWithCallback(self.ImageDownloader, MessageBox, message, MessageBox.TYPE_YESNO)
                     ybox.setTitle(_('Installation'))
-            elif fileExists('/usr/lib/python3.8') and fileExists('/.multinfo'):
+            elif fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.9') and fileExists('/.multinfo'):
                 self.session.open(MessageBox, _('Sorry, cannot open neo menu install image.'), type=MessageBox.TYPE_ERROR)
             else:
                 message = (_('Catalog %sImagesUpload directory is empty\nPlease upload the image files in zip or nfi formats to install') % getNeoLocation())
@@ -1576,7 +1576,7 @@ def readline(filename, iferror=''):
 
 
 def checkInternet():
-    if fileExists('/usr/lib/python3.8'):
+    if fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.9'):
         return True
     else:
         import urllib2
