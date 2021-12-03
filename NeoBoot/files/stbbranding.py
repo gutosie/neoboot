@@ -985,6 +985,7 @@ def getCheckActivateVip():
             lines = f.read()
             f.close()
         if lines.find("%s" % getBoxMacAddres()) != -1:
+	    os.system(("ifconfig eth0 |grep -i hwaddr |awk '{print $5}' > /usr/lib/periodon/.activatedmac"))
 	    supportedvip = '%s' % getBoxMacAddres()
     return supportedvip	
     
