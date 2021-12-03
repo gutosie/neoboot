@@ -19,7 +19,6 @@ from Components.config import getConfigListEntry, config, ConfigSelection, NoSav
 from Components.Console import Console
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
-from commands import getoutput
 from Plugins.Extensions.NeoBoot.files.Harddisk import Harddisk
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import fileExists, resolveFilename, SCOPE_CURRENT_SKIN
@@ -32,6 +31,10 @@ from Screens.VirtualKeyBoard import VirtualKeyBoard
 import gettext
 import os
 from Plugins.Extensions.NeoBoot.files.stbbranding import getTunerModel, getCheckExt
+if fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.9') :
+    getoutput = "os.system"    
+else:
+    from commands import getoutput
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
 
 
