@@ -206,7 +206,7 @@ class NeoBootInstallation(Screen):
         if fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.9'):
             self.session.open(MessageBox, _('Skip this step and install NeoBoot.'), type=MessageBox.TYPE_ERROR) 
             
-        if getCheckExt() != 'vfat' and getCheckExt() == 'ext3' or getCheckExt() == 'ext4' :        
+        elif getCheckExt() != 'vfat' and getCheckExt() == 'ext3' or getCheckExt() == 'ext4' :        
             try:
                     from Plugins.Extensions.NeoBoot.files.devices import SetDiskLabel
                     self.session.open(SetDiskLabel)
@@ -360,7 +360,7 @@ class NeoBootInstallation(Screen):
         check = False
         if fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.9'):
             self.session.open(MessageBox, _('Skip this step and install NeoBoot.'), type=MessageBox.TYPE_ERROR)
-        if check == False:
+        elif check == False:
             message = _('After selecting OK start Mounting Manager, option Mount - green\n')
             message += _('Do you want to run the manager to mount the drives correctly ?\n')
             ybox = self.session.openWithCallback(self.device2, MessageBox, message, MessageBox.TYPE_YESNO)
