@@ -36,6 +36,7 @@ if fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.9') :
 else:
     from commands import getoutput
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
+file = file
 
 
 class ManagerDevice(Screen):
