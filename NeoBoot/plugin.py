@@ -1279,8 +1279,17 @@ class NeoBootImageChoose(Screen):
         self['label10'].setText(strview)
 
     def mytools(self):
-        if not fileExists('/.multinfo'):
-            if getTestIn() == getTestOut() and getCheckActivateVip() == getBoxMacAddres():
+        if getCheckActivateVip() == getBoxMacAddres():
+                        try:
+                            from Plugins.Extensions.NeoBoot.files.tools import MBTools
+                            self.session.open(MBTools)
+                        except Exception as e:
+                            loggscrash = time.localtime(time.time())
+                            LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
+                            mess = _('Sorry cannot open neo menu. Access Fails with Error code 0x50.')
+                            self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)        
+        elif not fileExists('/.multinfo'):
+            if getTestIn() == getTestOut():
                 if ('1234%s' % getTestToTest()) == getAccessN():
                     if (getSupportedTuners()) == (getBoxHostName()):
                         try:
@@ -1364,7 +1373,9 @@ class NeoBootImageChoose(Screen):
             self.session.open(MessageBox, _('Removing canceled!'), MessageBox.TYPE_INFO)
 
     def ImageInstall(self):
-        if not fileExists('/.multinfo'):
+        if getCheckActivateVip() == getBoxMacAddres():
+                    self.ImageInstallTestOK()    
+        elif not fileExists('/.multinfo'):
             if ('1234%s' % getTestToTest()) != getAccessN():
                 count = 0
                 for fn in listdir('' + getNeoLocation() + '/ImageBoot'):
@@ -1381,9 +1392,6 @@ class NeoBootImageChoose(Screen):
                 else:
                         self.ImageInstallTestOK()
             else:
-                if getTestIn() == getTestOut() and getCheckActivateVip() == getBoxMacAddres():
-                    self.ImageInstallTestOK()
-                else:
                     myerror = _('Sorry, this is not neoboot vip version.\nGet NEO-VIP version, more info press blue button or try to update.')
                     self.session.open(MessageBox, myerror, MessageBox.TYPE_INFO)
         else:
