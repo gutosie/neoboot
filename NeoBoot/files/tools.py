@@ -2022,6 +2022,7 @@ class Opis(Screen):
         <widget name="key_green" position="660,950" size="538,50" zPosition="1" font="baslk; 30" halign="center" backgroundColor="red" transparent="1" foregroundColor="#ffffff" />
         <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/scroll.png" position="1144,160" size="26,685" zPosition="5" alphatest="blend"/>
         <ePixmap position="1350,750" zPosition="1" size="400,241" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/matrixhd.png" />
+        <ePixmap position="1479,543" zPosition="1" size="328,181" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/ico_neo.png" />
         <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red25.png" position="100,1000" size="230,36" alphatest="blend" />
         <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/green25.png" position="785,1000" size="230,36" alphatest="blend" />
         <widget name="lab1" position="100,160" size="1070,680" font="baslk; 30"  backgroundColor="black" transparent="1" />
