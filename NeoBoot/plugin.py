@@ -666,6 +666,7 @@ class NeoBootInstallation(Screen):
 
             if os.path.isfile('/etc/name'):
                 self.myclose2(_('The plug-in has been successfully installed.'))
+                self.close()
             else:
                 if not fileExists('/etc/name'):
                     os.system('touch /etc/name')
