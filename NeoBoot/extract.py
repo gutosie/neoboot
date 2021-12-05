@@ -818,11 +818,14 @@ def RemoveUnpackDirs():
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.bz2')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/et10000'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/et10000')
-    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/pulse4k*'):
-        if os.path.exists('' + getNeoLocation() + 'ImagesUpload/pulse4k*/force_pulse4kmini_READ.ME'):
-            rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/pulse4k*/force_pulse4kmini_READ.ME; rm -r ' + getNeoLocation() + 'ImagesUpload/pulse4k*/unforce_pulse4kmini.txt')    
-        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/pulse4k*')
-        
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/pulse4k'):
+        if os.path.exists('' + getNeoLocation() + 'ImagesUpload/pulse4k/force_pulse4k_READ.ME'):
+            rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/pulse4k/force_pulse4k_READ.ME; rm -r ' + getNeoLocation() + 'ImagesUpload/pulse4k/unforce_pulse4k.txt')    
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/pulse4k')
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/pulse4kmin'):
+        if os.path.exists('' + getNeoLocation() + 'ImagesUpload/pulse4kmin/force_pulse4kmini_READ.ME'):
+            rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/pulse4kmini/force_pulse4kmini_READ.ME; rm -r ' + getNeoLocation() + 'ImagesUpload/pulse4kmini/unforce_pulse4kmini.txt')    
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/pulse4kmin')     
     if os.path.exists('' + getNeoLocation() + 'ImagesUpload/unforce_h9combo.txt'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/unforce_h9combo.txt')        
         
