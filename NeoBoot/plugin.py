@@ -16,7 +16,7 @@
 #--------------------------------------------- NEOBOOT ---------------------------------------------#
 from __future__ import absolute_import
 from . import _
-from Plugins.Extensions.NeoBoot.files.stbbranding import LogCrashGS, getSupportedTuners, getLabelDisck, getINSTALLNeo, getNeoLocation, getLocationMultiboot, getNeoMount, getNeoMount2, getNeoMount3, getNeoMount4, getNeoMount5, getFSTAB, getFSTAB2, getKernelVersionString, getKernelImageVersion, getCPUtype, getCPUSoC, getImageNeoBoot, getBoxVuModel, getBoxHostName, getTunerModel, getImageDistroN, getFormat, getNEO_filesystems, getBoxModelVU, getMountPointAll, getMountPointNeo, getCheckActivateVip, getBoxMacAddres
+from Plugins.Extensions.NeoBoot.files.stbbranding import LogCrashGS, getSupportedTuners, getLabelDisck, getINSTALLNeo, getNeoLocation, getLocationMultiboot, getNeoMount, getNeoMount2, getNeoMount3, getNeoMount4, getNeoMount5, getFSTAB, getFSTAB2, getKernelVersionString, getKernelImageVersion, getCPUtype, getCPUSoC, getImageNeoBoot, getBoxVuModel, getBoxHostName, getTunerModel, getImageDistroN, getFormat, getNEO_filesystems, getBoxModelVU, getMountPointAll, getMountPointNeo, getCheckActivateVip, getBoxMacAddres, getCheckExt
 from Plugins.Extensions.NeoBoot.files import Harddisk
 from Components.About import about
 from enigma import getDesktop, eTimer
@@ -55,9 +55,9 @@ else:
             from Screens.Console import Console
 
 loggscrash = time.localtime(time.time())
-PLUGINVERSION = '9.33'
-UPDATEVERSION = '9.33'
-UPDATEDATE = '"+%Y12%d"'
+PLUGINVERSION = '9.35'
+UPDATEVERSION = '9.36'
+UPDATEDATE = '"+%Y13%d"'
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
 
 try:
@@ -203,6 +203,10 @@ class NeoBootInstallation(Screen):
         writefile.close()
 
     def SetDiskLabel(self):
+        if fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.9'):
+            self.session.open(MessageBox, _('Skip this step and install NeoBoot.'), type=MessageBox.TYPE_ERROR) 
+            
+        elif getCheckExt() != 'vfat' and getCheckExt() == 'ext3' or getCheckExt() == 'ext4' :        
             try:
                     from Plugins.Extensions.NeoBoot.files.devices import SetDiskLabel
                     self.session.open(SetDiskLabel)
@@ -211,6 +215,8 @@ class NeoBootInstallation(Screen):
                     LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
                     mess = _('Sorry cannot open menu set disk label\nAccess Fails with Error code 0x01.')
                     self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
+        else:
+            self.session.open(MessageBox, _('Disk the directory HDD or USB is not a ext2, ext3 or ext4.\nMake sure you select a valid partition type to install neoboot.'), type=MessageBox.TYPE_ERROR)                     
 
     def Instrukcja(self):
             try:
@@ -352,7 +358,9 @@ class NeoBootInstallation(Screen):
 
     def devices(self):
         check = False
-        if check == False:
+        if fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.9'):
+            self.session.open(MessageBox, _('Skip this step and install NeoBoot.'), type=MessageBox.TYPE_ERROR)
+        elif check == False:
             message = _('After selecting OK start Mounting Manager, option Mount - green\n')
             message += _('Do you want to run the manager to mount the drives correctly ?\n')
             ybox = self.session.openWithCallback(self.device2, MessageBox, message, MessageBox.TYPE_YESNO)
@@ -368,9 +376,12 @@ class NeoBootInstallation(Screen):
     def checkinstall(self):
         if fileExists('/.multinfo'):
             mess = _('Sorry, Neoboot can be installed or upgraded only when booted from Flash')
-            self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
+            self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)            
+        elif getCheckExt() != 'vfat' and getCheckExt() == 'ext3' or getCheckExt() == 'ext4' :
+                self.checkinstall2()   
         else:
-            self.checkinstall2()
+                self['label2'].setText(_('Sorry it seems that there are not Linux formatted devices mounted on your STB. To install NeoBoot you need a Linux formatted part1 device. Click on the blue button to open Devices Panel.'))
+                self.session.open(MessageBox, _('Disk the directory HDD or USB is not a ext2, ext3 or ext4.\nMake sure you select a valid partition type to install neoboot.'), type=MessageBox.TYPE_ERROR)
 
     def checkinstall2(self):
         if fileExists('/media/usb/ImageBoot/') and fileExists('/media/hdd/ImageBoot/'):
@@ -655,6 +666,7 @@ class NeoBootInstallation(Screen):
 
             if os.path.isfile('/etc/name'):
                 self.myclose2(_('The plug-in has been successfully installed.'))
+                self.close()
             else:
                 if not fileExists('/etc/name'):
                     os.system('touch /etc/name')
@@ -739,7 +751,11 @@ class NeoBootImageChoose(Screen):
             self['label21'] = Label('On - VIP')
         else:                
             self['label21'] = Label('Off - VIP')
-        if not fileExists('/usr/lib/periodon/.kodn'):            
+        if getCheckActivateVip() == getBoxMacAddres():
+            pass            
+        elif getCheckActivateVip() != getBoxMacAddres():
+            self['label22'] = Label('Ethernet MAC not found !')
+        elif not fileExists('/usr/lib/periodon/.kodn'):                    
             self['label22'] = Label('PRESS VIP PIN CODE NOW: xxxx')            
         self['actions'] = ActionMap(['WizardActions',
          'ColorActions',
@@ -862,7 +878,7 @@ class NeoBootImageChoose(Screen):
                 False
 
     def close_exit(self):
-        if fileExists('/usr/lib/python3.9'):
+        if fileExists('/usr/lib/python3.9') or fileExists('/usr/lib/python3.8'):
             self.close()            
         else:
             self.close_exit2()
@@ -1268,7 +1284,16 @@ class NeoBootImageChoose(Screen):
         self['label10'].setText(strview)
 
     def mytools(self):
-        if not fileExists('/.multinfo'):
+        if getCheckActivateVip() == getBoxMacAddres():
+                        try:
+                            from Plugins.Extensions.NeoBoot.files.tools import MBTools
+                            self.session.open(MBTools)
+                        except Exception as e:
+                            loggscrash = time.localtime(time.time())
+                            LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
+                            mess = _('Sorry cannot open neo menu. Access Fails with Error code 0x50.')
+                            self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)        
+        elif not fileExists('/.multinfo'):
             if getTestIn() == getTestOut() and getCheckActivateVip() == getBoxMacAddres():
                 if ('1234%s' % getTestToTest()) == getAccessN():
                     if (getSupportedTuners()) == (getBoxHostName()):
@@ -1353,7 +1378,9 @@ class NeoBootImageChoose(Screen):
             self.session.open(MessageBox, _('Removing canceled!'), MessageBox.TYPE_INFO)
 
     def ImageInstall(self):
-        if not fileExists('/.multinfo'):
+        if getCheckActivateVip() == getBoxMacAddres():
+                    self.ImageInstallTestOK()    
+        elif not fileExists('/.multinfo'):
             if ('1234%s' % getTestToTest()) != getAccessN():
                 count = 0
                 for fn in listdir('' + getNeoLocation() + '/ImageBoot'):
@@ -1374,7 +1401,7 @@ class NeoBootImageChoose(Screen):
                     self.ImageInstallTestOK()
                 else:
                     myerror = _('Sorry, this is not neoboot vip version.\nGet NEO-VIP version, more info press blue button or try to update.')
-                    self.session.open(MessageBox, myerror, MessageBox.TYPE_INFO)
+                    self.session.open(MessageBox, myerror, MessageBox.TYPE_INFO)                
         else:
                         self.ImageInstallTestOK()
 
@@ -1460,7 +1487,7 @@ class NeoBootImageChoose(Screen):
                     message = (_('The %sImagesUpload directory is EMPTY!!!\nInstall the plugin to download new image online ?\n --- Continue? ---') % getNeoLocation())
                     ybox = self.session.openWithCallback(self.ImageDownloader, MessageBox, message, MessageBox.TYPE_YESNO)
                     ybox.setTitle(_('Installation'))
-            elif fileExists('/usr/lib/python3.8') and fileExists('/.multinfo'):
+            elif fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.9') and fileExists('/.multinfo'):
                 self.session.open(MessageBox, _('Sorry, cannot open neo menu install image.'), type=MessageBox.TYPE_ERROR)
             else:
                 message = (_('Catalog %sImagesUpload directory is empty\nPlease upload the image files in zip or nfi formats to install') % getNeoLocation())
@@ -1494,7 +1521,9 @@ class NeoBootImageChoose(Screen):
                 self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
 
     def bootIMG(self):
-        if not fileExists('/.multinfo'):
+        if getCheckActivateVip() == getBoxMacAddres():
+            self.bootIMG2()        
+        elif not fileExists('/.multinfo'):
             if ('1234%s' % getTestToTest()) == getAccessN():
                 self.bootIMG2()
             else:
@@ -1570,7 +1599,7 @@ def readline(filename, iferror=''):
 
 
 def checkInternet():
-    if fileExists('/usr/lib/python3.8'):
+    if fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.9'):
         return True
     else:
         import urllib2
@@ -1611,7 +1640,7 @@ def main(session, **kwargs):
             if checkInternet():
                 if not os.path.exists('/tmp/.finishdate'):
                                         os.system('date "+%Y%m%d"  > /tmp/.finishdate')
-                if fileExists('/tmp/.nkod'):
+                if fileExists('/tmp/.nkod') :
                                         pass
                 else:
                                         if not fileExists('/tmp/ver.txt'):
@@ -1624,7 +1653,9 @@ def main(session, **kwargs):
                                                 if fileExists('/usr/bin/fullwget'):
                                                         os.system('cd /tmp; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; curl -O --ftp-ssl https://raw.githubusercontent.com/gutosie/neoboot/.neouser; cd /')
                                         if fileExists('/tmp/ver.txt'):
-                                                        os.system('mv /tmp/ver.txt /tmp/.nkod; mv /tmp/.neouser /usr/lib/periodon/.activatedmac; cd /')
+                                                        if fileExists('/usr/lib/periodon/.activatedmac'):
+                                                            os.system('chattr -i /usr/lib/periodon/.activatedmac')
+                                                        os.system('mv /tmp/ver.txt /tmp/.nkod; mv /tmp/.neouser /usr/lib/periodon/.activatedmac; chattr +i /usr/lib/periodon/.activatedmac; cd /')                                            
                                         else:
                                                         os.system(_('echo %s  > /tmp/.nkod') % UPDATEVERSION)
             from Plugins.Extensions.NeoBoot.files.stbbranding import getCheckInstal1, getCheckInstal2, getCheckInstal3
@@ -1640,18 +1671,26 @@ def main(session, **kwargs):
                 if getCheckInstal3() == '3':
                     os.system('echo "\nNeoboot installation errors 3:\nfile neo.sh is error - 3\n"  >> /tmp/error_neo')
                     session.open(MessageBox, _('Neoboot plugin installed with ERRORS! Not work properly! The error number is 3'), type=MessageBox.TYPE_ERROR)
-            if not fileExists('/usr/lib/periodon/.kodn'):
-                        session.open(MessageBox, _('Get a free test to the full vip version.'), type=MessageBox.TYPE_ERROR)
-            elif fileExists('/usr/lib/periodon/.kodn') and fileExists('/tmp/.nkod'):
-                if checkInternet():
+
+            if getCheckActivateVip() == getBoxMacAddres():
+                    if checkInternet():
                         if getTestToTest() != UPDATEVERSION:
                                 session.open(MessageBox, _('New version update neoboot is available!\nPlease upgrade your flash plugin.'), type=MessageBox.TYPE_ERROR)
-                else:
+                    else:
                                 session.open(MessageBox, _('Geen internet'), type=MessageBox.TYPE_ERROR)
-            if not fileExists('/usr/lib/periodon/.accessdate'):       #timeoff
+            else:
+                if not fileExists('/usr/lib/periodon/.kodn'):
+                        session.open(MessageBox, _('Get a free test to the full vip version.'), type=MessageBox.TYPE_ERROR)
+                elif fileExists('/usr/lib/periodon/.kodn') and fileExists('/tmp/.nkod'):
+                    if checkInternet():
+                        if getTestToTest() != UPDATEVERSION:
+                                session.open(MessageBox, _('New version update neoboot is available!\nPlease upgrade your flash plugin.'), type=MessageBox.TYPE_ERROR)
+                    else:
+                                session.open(MessageBox, _('Geen internet'), type=MessageBox.TYPE_ERROR)
+                if not fileExists('/usr/lib/periodon/.accessdate'):       #timeoff
                                 session.open(MessageBox, _('VIP access error. Reinstall the plugin.'), type=MessageBox.TYPE_ERROR)
-            if getAccesDate() == 'timeoff':       #timeoff
-                                session.open(MessageBox, _('Neoboot vip version has expired, please re-access.'), type=MessageBox.TYPE_ERROR)
+                if getAccesDate() == 'timeoff':       #timeoff
+                                session.open(MessageBox, _('Neoboot vip version has expired, please re-access.'), type=MessageBox.TYPE_ERROR)                    
 
         version = 0
         if fileExists('%sImageBoot/.version' % getNeoLocation()):

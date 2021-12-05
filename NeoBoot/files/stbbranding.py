@@ -297,6 +297,16 @@ def getLabelDisck():
 #checking device  neo
 
 
+def getNeoMountDisc():
+    lines_mount = 'UNKNOWN'
+    if os.path.exists('/proc/mounts'):
+        with open('/proc/mounts', 'r') as f:
+            lines_mount = f.read()
+            f.close()
+
+    return lines_mount
+    
+
 def getNeoMount():
     neo = 'UNKNOWN'
     if os.path.exists('/proc/mounts'):
@@ -321,8 +331,8 @@ def getNeoMount():
             neo = 'hdd_install_/dev/sdf1'
 
     return neo
-
-
+    
+    
 def getNeoMount2():
     neo = 'UNKNOWN'
     if os.path.exists('/proc/mounts'):
@@ -976,7 +986,75 @@ def getCheckActivateVip():
             f.close()
         if lines.find("%s" % getBoxMacAddres()) != -1:
             supportedvip = '%s' % getBoxMacAddres()
-    return supportedvip	
+    return supportedvip
+    
+def getMountDiskSTB():
+    neo_disk = ' '
+    if os.path.exists('/proc/mounts'):
+        with open('/proc/mounts', 'r') as f:
+            lines = f.read()
+            f.close()   
+        if lines.find('/dev/sda1 /media/hdd') != -1:
+            os.system('touch /tmp/disk/sda1; touch /tmp/disk/#---Select_the_disk_HDD_to_be_formatted:')            
+        if lines.find('/dev/sdb1 /media/hdd') != -1:
+            os.system('touch /tmp/disk/sdb1; touch /tmp/disk/#---Select_the_disk_HDD_to_be_formatted:')            
+        if lines.find('/dev/sda2 /media/hdd') != -1:
+            os.system('touch /tmp/disk/sda2; touch /tmp/disk/#---Select_the_disk_HDD_to_be_formatted:')            
+        if lines.find('/dev/sdb2 /media/hdd') != -1:
+            os.system('touch /tmp/disk/sdb2; touch /tmp/disk/#---Select_the_disk_HDD_to_be_formatted:')            
+        if lines.find('/dev/sdc1 /media/hdd') != -1:
+            os.system('touch /tmp/disk/sdc1; touch /tmp/disk/#---Select_the_disk_HDD_to_be_formatted:')            
+        if lines.find('/dev/sdd1 /media/hdd') != -1:
+            os.system('touch /tmp/disk/sdd1; touch /tmp/disk/#---Select_the_disk_HDD_to_be_formatted:')            
+        if lines.find('/dev/sde1 /media/hdd') != -1:
+            os.system('touch /tmp/disk/sde1; touch /tmp/disk/#---Select_the_disk_HDD_to_be_formatted:')            
+        if lines.find('/dev/sdf1 /media/hdd') != -1:
+            os.system('touch /tmp/disk/sdf1; touch /tmp/disk/#---Select_the_disk_HDD_to_be_formatted:')            
+        if lines.find('/dev/sda1 /media/usb') != -1:
+            os.system('touch /tmp/disk/sda1; touch /tmp/disk/#---Select_the_disk_USB_to_be_formatted:')            
+        if lines.find('/dev/sdb1 /media/usb') != -1:
+            os.system('touch /tmp/disk/sdb1; touch /tmp/disk/#---Select_the_disk_USB_to_be_formatted:')            
+        if lines.find('/dev/sda2 /media/usb') != -1:
+            os.system('touch /tmp/disk/sda2; touch /tmp/disk/#---Select_the_disk_USB_to_be_formatted:')            
+        if lines.find('/dev/sdb2 /media/usb') != -1:
+            os.system('touch /tmp/disk/sdb2; touch /tmp/disk/#---Select_the_disk_USB_to_be_formatted:')            
+        if lines.find('/dev/sdc1 /media/usb') != -1:
+            os.system('touch /tmp/disk/sdc1; touch /tmp/disk/#---Select_the_disk_USB_to_be_formatted:')            
+        if lines.find('/dev/sdd1 /media/usb') != -1:
+            os.system('touch /tmp/disk/sdd1; touch /tmp/disk/#---Select_the_disk_USB_to_be_formatted:')            
+        if lines.find('/dev/sde1 /media/usb') != -1:
+            os.system('touch /tmp/disk/sde1; touch /tmp/disk/#---Select_the_disk_USB_to_be_formatted:')            
+        if lines.find('/dev/sdf1 /media/usb') != -1:
+            os.system('touch /tmp/disk/sdf1; touch /tmp/disk/#---Select_the_disk_USB_to_be_formatted:')            
 
+    return neo_disk    
+
+def getCheckExtDisk():
+    os.system("cat /proc/mounts | egrep -o '.ext.' | sort | uniq > /tmp/.myext")
+    if os.path.exists('/tmp/.myext'):
+        with open('/tmp/.myext', 'r') as f:
+            myboxEXT = f.readline().strip()
+            f.close()
+    return myboxEXT 
+        
+def getCheckExt():
+    neoExt = 'UNKNOWN'
+    if os.path.exists('/proc/mounts'):
+        with open('/proc/mounts', 'r') as f:
+            lines = f.read()
+            f.close()
+        if lines.find('/media/usb vfat') != -1:
+            neoExt = 'vfat'
+        elif lines.find('/media/hdd vfat') != -1:
+            neoExt = 'vfat'
+        elif lines.find('/media/hdd ext3') != -1:
+            neoExt = 'ext3'
+        elif lines.find('/media/hdd ext4') != -1:
+            neoExt = 'ext4'
+        elif lines.find('/media/usb ext3') != -1:
+            neoExt = 'ext3'
+        elif lines.find('/media/usb ext4') != -1:
+            neoExt = 'ext4'                         
+    return neoExt 
 
 boxbrand = sys.modules[__name__]

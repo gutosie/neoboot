@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NeoBoot\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-11-30 09:31+0200\n"
+"PO-Revision-Date: 2021-12-02 09:21+0200\n"
 "Last-Translator: gutosie <Krzysio Gutosie>\n"
 "Language-Team: gutosie- GaduGadu nr. 5111900 <http://all-forum.cba.pl >\n"
 "Language: pl\n"
@@ -2754,3 +2754,31 @@ msgid ""
 msgstr ""
 "Błąd dostepu do menu instalacji neoboota.\n"
 "Kod błędu 0x08."
+
+msgid "Sorry it seems that there are not Linux formatted devices mounted on your STB. To install NeoBoot you need a Linux formatted part1 device. Click on the blue button to open Devices Panel."
+msgstr "Przepraszamy, wygląda na to, że na twoim STB nie ma zainstalowanych urządzeń sformatowanych w systemie Linux. Aby zainstalować NeoBoot, potrzebujesz urządzenia part1 sformatowanego w systemie Linux. Kliknij niebieski przycisk, aby otworzyć panel urządzeń i sformatuj dysk."
+
+msgid ""
+"Disk the directory HDD or USB is not a ext2, ext3 or ext4.\n"
+"Make sure you select a valid partition type to install neoboot."
+msgstr ""
+"Dysk katalogu HDD lub USB nie jest partycją ext2, ext3 lub ext4.\n"
+"Upewnij się, że wybrałeś prawidłowy typ partycji do zainstalowania neoboota."
+
+msgid "Please wait and dont disconnect the power !!! ...."
+msgstr "Proszę czekać i nie odłączać zasilania !!! ...."
+
+msgid "Receiver reboot in 5 seconds... !!!"
+msgstr "Restart odbiornika za 5 sekund... !!!"
+
+msgid "Formatting"
+msgstr "Formatowanie"
+
+msgid "Formatting Disk"
+msgstr "Formatowanie dysku"
+
+msgid "Select disk."
+msgstr "Wybierz dysk:"
+
+msgid "Hard disk:  %s  Formatting ?"
+msgstr "Wybrany dysk to:  %s  formatować ?"

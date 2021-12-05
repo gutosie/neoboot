@@ -19,7 +19,6 @@ from Components.config import getConfigListEntry, config, ConfigSelection, NoSav
 from Components.Console import Console
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
-from commands import getoutput
 from Plugins.Extensions.NeoBoot.files.Harddisk import Harddisk
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import fileExists, resolveFilename, SCOPE_CURRENT_SKIN
@@ -31,9 +30,12 @@ import os
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 import gettext
 import os
-from Plugins.Extensions.NeoBoot.files.stbbranding import getTunerModel
+from Plugins.Extensions.NeoBoot.files.stbbranding import getTunerModel, getCheckExt
+if fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.9') :
+    getoutput = "os.system"    
+else:
+    from commands import getoutput
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
-
 
 class ManagerDevice(Screen):
     screenwidth = getDesktop(0).size().width()
@@ -71,7 +73,7 @@ class ManagerDevice(Screen):
         self['key_red'] = Label(_('Initialize ext3'))
         self['key_green'] = Label(_('SetupMounts'))
         self['key_yellow'] = Label(_('Initialize ext4'))
-        self['key_blue'] = Label(_('Reinstall Kernel'))
+        self['key_blue'] = Label(_('Formatting Disk'))
         self['lab1'] = Label()
         self.onChangedEntry = []
         self.list = []
@@ -81,7 +83,7 @@ class ManagerDevice(Screen):
          'red': self.Format_ext3,
          'green': self.SetupMounts,
          'yellow': self.Format_ext4,
-         'blue': self.Kernel_update,
+         'blue': self.InitializationNeoB,
          'back': self.close})
         self.activityTimer = eTimer()
         self.activityTimer.timeout.get().append(self.updateList2)
@@ -102,12 +104,12 @@ class ManagerDevice(Screen):
         from Screens.HarddiskSetup import HarddiskSelection
         self.session.openWithCallback(self.updateList, HarddiskSelection)
 
-    def Kernel_update(self):
+    def InitializationNeoB(self):
         if fileExists('/.multinfo'):
                 self.session.open(MessageBox, _("This option is available only from Flash"), MessageBox.TYPE_INFO, timeout=10)
         else:
-                from Plugins.Extensions.NeoBoot.files.tools import ReinstallKernel
-                self.session.open(ReinstallKernel)
+                from Plugins.Extensions.NeoBoot.files.tools import InitializationFormattingDisk
+                self.session.open(InitializationFormattingDisk)
                 
     def setWindowTitle(self):
         self.setTitle(_('Mount Manager'))
@@ -237,6 +239,12 @@ class ManagerDevice(Screen):
             self.list.append(res)
 
     def SetupMounts(self):
+        if getCheckExt() != 'vfat' and getCheckExt() == 'ext3' or getCheckExt() == 'ext4' :    
+            self.SetupMountsGo()
+        else:
+            self.session.open(MessageBox, _('Disk the directory HDD or USB is not a ext2, ext3 or ext4.\nMake sure you select a valid partition type to install neoboot.'), type=MessageBox.TYPE_ERROR)
+
+    def SetupMountsGo(self):
         if not fileExists('/etc/fstab.org'):
             os.system('cp -f /etc/fstab /etc/fstab.org')
         elif fileExists('/etc/fstab.org'):

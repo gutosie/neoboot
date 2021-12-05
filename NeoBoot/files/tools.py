@@ -33,7 +33,7 @@ from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE, 
 from os import system, listdir, mkdir, chdir, getcwd, rename as os_rename, remove as os_remove, popen
 from os.path import dirname, isdir, isdir as os_isdir
 from enigma import eTimer
-from Plugins.Extensions.NeoBoot.files.stbbranding import fileCheck, getNeoLocation, getImageNeoBoot, getKernelVersionString, getBoxHostName, getCPUtype, getBoxVuModel, getTunerModel, getCPUSoC, getImageATv, getBoxModelVU, getBoxMacAddres
+from Plugins.Extensions.NeoBoot.files.stbbranding import fileCheck, getNeoLocation, getImageNeoBoot, getKernelVersionString, getBoxHostName, getCPUtype, getBoxVuModel, getTunerModel, getCPUSoC, getImageATv, getBoxModelVU, getBoxMacAddres, getMountDiskSTB
 import os
 import time
 import sys
@@ -121,13 +121,15 @@ class BoundFunction:
 
 class MBTools(Screen):
     if isFHD():
-        skin = """<screen name="MBTools" position="70,93" size="1205,942" title="Tools">
-          <ePixmap position="990,0" zPosition="-2" size="213,93" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/ico_neo.png" />
-          <eLabel position="20,61" size="1180,4" backgroundColor="blue" foregroundColor="blue" name="linia" />
-          <eLabel position="20,935" size="1180,5" backgroundColor="blue" foregroundColor="blue" name="linia" />
+        skin = """<screen name="MBTools" position="105,81" size="1720,940" title="Tools">
+          <ePixmap position="1423,735" zPosition="-2" size="298,119" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/ico_neo.png" />
+          <ePixmap position="1307,377" zPosition="-2" size="409,256" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/matrixhd.png" />
+          <eLabel position="20,60" size="1690,5" backgroundColor="blue" foregroundColor="blue" name="linia" />
+          <eLabel position="20,935" size="1690,5" backgroundColor="blue" foregroundColor="blue" name="linia" />
           <ePixmap position="25,-1" size="45,65" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/updown.png" alphatest="on" />
-          <eLabel backgroundColor="background" font="baslk; 29" foregroundColor="yellow" position="293,2" size="280,60" text="Menu list NEOBoot" />
-          <widget source="list" render="Listbox" position="20,80" size="1177,855" scrollbarMode="showOnDemand">
+          <eLabel backgroundColor="background" font="baslk; 29" foregroundColor="yellow" position="623,-2" size="280,60" text="Menu list NEOBoot" />
+          <eLabel backgroundColor="background" font="baslk; 29" foregroundColor="red" position="1341,195" size="366,60" text="NEOBOOT VIP Activated" />
+          <widget source="list" render="Listbox" position="20,80" size="1282,855" scrollbarMode="showOnDemand">
           <convert type="TemplatedMultiContent">\n                \t\t{"template": [\n                    \t\t\tMultiContentEntryText(pos = (50, 1), size = (925, 58), flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER, text = 0),\n                    \t\t\tMultiContentEntryPixmapAlphaTest(pos = (6, 4), size = (66, 66), png = 1),\n                    \t\t\t],\n                    \t\t\t"fonts": [gFont("Regular", 35)],\n                    \t\t\t"itemHeight": 60\n                \t\t}\n            \t\t</convert>
           </widget>
           </screen>"""
@@ -146,6 +148,7 @@ class MBTools(Screen):
     def updateList(self):
         self.list = []
         mypath = '' + LinkNeoBoot + ''
+        os.system(("chattr -i /usr/lib/periodon/.activatedmac; ifconfig eth0 |grep -i hwaddr |awk '{print $5}' > /usr/lib/periodon/.activatedmac; chattr +i /usr/lib/periodon/.activatedmac"))
         if not fileExists(mypath + 'icons'):
             mypixmap = '' + LinkNeoBoot + '/images/ok.png'
         png = LoadPixmap(mypixmap)
@@ -242,11 +245,15 @@ class MBTools(Screen):
         self.list.append(res)
         self['list']. list = self.list
         
-        res = (_('NeoBoot Information'), png, 23)
+        res = (_('Initialization - formatting disk for neoboot.'), png, 23)
+        self.list.append(res)
+        self['list']. list = self.list        
+        
+        res = (_('NeoBoot Information'), png, 24)
         self.list.append(res)
         self['list']. list = self.list
 
-        res = (_('NeoBoot donate'), png, 24)
+        res = (_('NeoBoot donate'), png, 25)
         self.list.append(res)
         self['list']. list = self.list
         
@@ -301,10 +308,12 @@ class MBTools(Screen):
         if self.sel == 21 and self.session.open(MultiStalker):
             pass
         if self.sel == 22 and self.session.open(MultibootFlashonline):
-            pass                                       
-        if self.sel == 23 and self.session.open(MultiBootMyHelp):
+            pass 
+        if self.sel == 23 and self.session.open(InitializationFormattingDisk):
+            pass                                                  
+        if self.sel == 24 and self.session.open(MultiBootMyHelp):
             pass
-        if self.sel == 24 and self.session.open(neoDONATION):
+        if self.sel == 25 and self.session.open(neoDONATION):
             pass
             
 #        if self.sel == 24 and self.session.open(CheckInternet):
@@ -1866,6 +1875,65 @@ class MultibootFlashonline(Screen):
                     self.close()
 
 
+class InitializationFormattingDisk(Screen):
+    __module__ = __name__
+
+    skin = """ <screen name="Formatting Disk" title="Formatting" position="center,center" size="850,647">
+          <widget name="lab1" position="20,73" size="820,50" font="baslk;30" halign="center" valign="center" transparent="1" foregroundColor="#00ffa500" />
+          <widget source="list" render="Listbox" itemHeight="40" font="Regular;21" position="25,142" zPosition="1" size="815,416" scrollbarMode="showOnDemand" transparent="1">
+          <convert type="StringList" font="Regular;35" />
+          </widget>
+          <ePixmap position="107,588" size="34,34" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red.png" alphatest="blend" zPosition="1" />
+          <widget name="key_red" position="153,588" zPosition="2" size="368,35" font="baslk;30" halign="left" valign="center" backgroundColor="red" transparent="1" />
+          </screen>"""
+    
+    def __init__(self, session):
+        Screen.__init__(self, session)
+        self['lab1'] = Label(_('Select disk.'))
+        self['key_red'] = Label(_('Formatting'))
+        self['list'] = List([])
+        self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'back': self.close,
+         'ok': self.deleteback,
+         'red': self.deleteback})
+        self.backupdir = '/tmp/disk'
+        self.onShow.append(self.updateInfo)
+
+    def updateInfo(self):
+        os.system(' mkdir -p /tmp/disk ')
+        getMountDiskSTB()
+        self.backupdir = '/tmp/disk'
+        if pathExists(self.backupdir) == 0 and createDir(self.backupdir):
+            pass
+
+        imageslist = []
+        for fn in listdir(self.backupdir):
+            imageslist.append(fn)
+
+        self['list'].list = imageslist
+
+    def deleteback(self):
+        image = self['list'].getCurrent()
+        if image:
+            self.diskNeoFormatting = image.strip()
+            message = (_('Hard disk:  %s  Formatting ?') % image)
+            ybox = self.session.openWithCallback(self.dodeleteback, MessageBox, message, MessageBox.TYPE_YESNO)
+            ybox.setTitle(_('Format the disk ???'))
+
+    def dodeleteback(self, answer):
+        if answer is True:
+            cmd = "echo -e '\n\n%s '" % _('NeoBoot - Formatting disk .....')
+            cmd1 = "echo -e '\n\n%s '" % _('Please wait and dont disconnect the power !!! ....')
+            cmd2 = 'umount -f -l  /dev/' + self.diskNeoFormatting 
+            cmd3 = 'sleep 2; mkfs.ext3 -i 8400  /dev/' + self.diskNeoFormatting 
+            cmd4 = 'sleep 2; tune2fs -O extents,uninit_bg,dir_index  /dev/' + self.diskNeoFormatting
+            cmd5 = "echo -e '\n\n%s '" % _('Receiver reboot in 5 seconds... !!!')
+            cmd6 = 'rm -r /tmp/disk ;sync; sync; sleep 5; /etc/init.d/reboot'                                  
+            self.session.open(Console, _('Disk Formatting...!'), [cmd, cmd1, cmd2, cmd3, cmd4, cmd5, cmd6])
+            self.updateInfo()
+        else:
+            self.close()
+
+
 class MultiBootMyHelp(Screen):
     if isFHD():
         skin = """<screen name="MultiBootMyHelp" position="center,center" size="1920,1080" title="NeoBoot - Opis" flags="wfNoBorder">
@@ -1955,6 +2023,7 @@ class Opis(Screen):
         <widget name="key_green" position="660,950" size="538,50" zPosition="1" font="baslk; 30" halign="center" backgroundColor="red" transparent="1" foregroundColor="#ffffff" />
         <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/scroll.png" position="1144,160" size="26,685" zPosition="5" alphatest="blend"/>
         <ePixmap position="1350,750" zPosition="1" size="400,241" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/matrixhd.png" />
+        <ePixmap position="1479,543" zPosition="1" size="328,181" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/ico_neo.png" />
         <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red25.png" position="100,1000" size="230,36" alphatest="blend" />
         <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/green25.png" position="785,1000" size="230,36" alphatest="blend" />
         <widget name="lab1" position="100,160" size="1070,680" font="baslk; 30"  backgroundColor="black" transparent="1" />
