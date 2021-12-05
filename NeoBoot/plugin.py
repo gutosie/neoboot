@@ -1289,7 +1289,7 @@ class NeoBootImageChoose(Screen):
                             mess = _('Sorry cannot open neo menu. Access Fails with Error code 0x50.')
                             self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)        
         elif not fileExists('/.multinfo'):
-            if getTestIn() == getTestOut():
+            if getTestIn() == getTestOut() and getCheckActivateVip() == getBoxMacAddres():
                 if ('1234%s' % getTestToTest()) == getAccessN():
                     if (getSupportedTuners()) == (getBoxHostName()):
                         try:
@@ -1392,8 +1392,11 @@ class NeoBootImageChoose(Screen):
                 else:
                         self.ImageInstallTestOK()
             else:
+                if getTestIn() == getTestOut() and getCheckActivateVip() == getBoxMacAddres():
+                    self.ImageInstallTestOK()
+                else:
                     myerror = _('Sorry, this is not neoboot vip version.\nGet NEO-VIP version, more info press blue button or try to update.')
-                    self.session.open(MessageBox, myerror, MessageBox.TYPE_INFO)
+                    self.session.open(MessageBox, myerror, MessageBox.TYPE_INFO)                
         else:
                         self.ImageInstallTestOK()
 
