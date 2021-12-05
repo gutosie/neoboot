@@ -751,7 +751,9 @@ class NeoBootImageChoose(Screen):
         else:                
             self['label21'] = Label('Off - VIP')
         if getCheckActivateVip() == getBoxMacAddres():
-            pass
+            pass            
+        elif getCheckActivateVip() != getBoxMacAddres():
+            self['label22'] = Label('Ethernet MAC not found !')
         elif not fileExists('/usr/lib/periodon/.kodn'):                    
             self['label22'] = Label('PRESS VIP PIN CODE NOW: xxxx')            
         self['actions'] = ActionMap(['WizardActions',
@@ -1518,7 +1520,9 @@ class NeoBootImageChoose(Screen):
                 self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
 
     def bootIMG(self):
-        if not fileExists('/.multinfo'):
+        if getCheckActivateVip() == getBoxMacAddres():
+            self.bootIMG2()        
+        elif not fileExists('/.multinfo'):
             if ('1234%s' % getTestToTest()) == getAccessN():
                 self.bootIMG2()
             else:
