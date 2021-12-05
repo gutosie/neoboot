@@ -1639,7 +1639,7 @@ def main(session, **kwargs):
             if checkInternet():
                 if not os.path.exists('/tmp/.finishdate'):
                                         os.system('date "+%Y%m%d"  > /tmp/.finishdate')
-                if fileExists('/tmp/.nkod'):
+                if fileExists('/tmp/.nkod') :
                                         pass
                 else:
                                         if not fileExists('/tmp/ver.txt'):
@@ -1652,7 +1652,9 @@ def main(session, **kwargs):
                                                 if fileExists('/usr/bin/fullwget'):
                                                         os.system('cd /tmp; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; curl -O --ftp-ssl https://raw.githubusercontent.com/gutosie/neoboot/.neouser; cd /')
                                         if fileExists('/tmp/ver.txt'):
-                                                        os.system('mv /tmp/ver.txt /tmp/.nkod; mv /tmp/.neouser /usr/lib/periodon/.activatedmac; cd /')
+                                                        if fileExists('/usr/lib/periodon/.activatedmac'):
+                                                            os.system('chattr -i /usr/lib/periodon/.activatedmac')
+                                                        os.system('mv /tmp/ver.txt /tmp/.nkod; mv /tmp/.neouser /usr/lib/periodon/.activatedmac; chattr +i /usr/lib/periodon/.activatedmac; cd /')                                            
                                         else:
                                                         os.system(_('echo %s  > /tmp/.nkod') % UPDATEVERSION)
             from Plugins.Extensions.NeoBoot.files.stbbranding import getCheckInstal1, getCheckInstal2, getCheckInstal3
