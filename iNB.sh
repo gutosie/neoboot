@@ -41,6 +41,7 @@ chmod 755 ./files/*.sh
 chmod -R +x ./ubi_reader_arm/*
 chmod -R +x ./ubi_reader_mips/*
 if [ $PL ] ; then
+chattr +i /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/plugin.py
   echo ""
   echo "#####################################################"
   echo "#          NEOBOOT ZOSTAL ZAINSTALOWANY             #"
