@@ -1662,23 +1662,26 @@ def main(session, **kwargs):
                 if getCheckInstal3() == '3':
                     os.system('echo "\nNeoboot installation errors 3:\nfile neo.sh is error - 3\n"  >> /tmp/error_neo')
                     session.open(MessageBox, _('Neoboot plugin installed with ERRORS! Not work properly! The error number is 3'), type=MessageBox.TYPE_ERROR)
-            if not fileExists('/usr/lib/periodon/.kodn'):
-                        session.open(MessageBox, _('Get a free test to the full vip version.'), type=MessageBox.TYPE_ERROR)
-            elif fileExists('/usr/lib/periodon/.kodn') and fileExists('/tmp/.nkod'):
-                if checkInternet():
+
+            if getCheckActivateVip() == getBoxMacAddres():
+                    if checkInternet():
                         if getTestToTest() != UPDATEVERSION:
                                 session.open(MessageBox, _('New version update neoboot is available!\nPlease upgrade your flash plugin.'), type=MessageBox.TYPE_ERROR)
-                else:
+                    else:
                                 session.open(MessageBox, _('Geen internet'), type=MessageBox.TYPE_ERROR)
-                        
-            if getCheckActivateVip() == getBoxMacAddres():
-                pass
             else:
+                if not fileExists('/usr/lib/periodon/.kodn'):
+                        session.open(MessageBox, _('Get a free test to the full vip version.'), type=MessageBox.TYPE_ERROR)
+                elif fileExists('/usr/lib/periodon/.kodn') and fileExists('/tmp/.nkod'):
+                    if checkInternet():
+                        if getTestToTest() != UPDATEVERSION:
+                                session.open(MessageBox, _('New version update neoboot is available!\nPlease upgrade your flash plugin.'), type=MessageBox.TYPE_ERROR)
+                    else:
+                                session.open(MessageBox, _('Geen internet'), type=MessageBox.TYPE_ERROR)
                 if not fileExists('/usr/lib/periodon/.accessdate'):       #timeoff
                                 session.open(MessageBox, _('VIP access error. Reinstall the plugin.'), type=MessageBox.TYPE_ERROR)
-
                 if getAccesDate() == 'timeoff':       #timeoff
-                                session.open(MessageBox, _('Neoboot vip version has expired, please re-access.'), type=MessageBox.TYPE_ERROR)
+                                session.open(MessageBox, _('Neoboot vip version has expired, please re-access.'), type=MessageBox.TYPE_ERROR)                    
 
         version = 0
         if fileExists('%sImageBoot/.version' % getNeoLocation()):
