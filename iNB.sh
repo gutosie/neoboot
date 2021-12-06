@@ -5,6 +5,13 @@
 if `grep -q 'osd.language=pl_PL' </etc/enigma2/settings`; then
   PL=1
 fi
+if [ -f /etc/apt/apt.conf ] ; then
+    STATUS='/var/lib/dpkg/status'
+    OS='DreamOS'
+elif [ -f /etc/opkg/opkg.conf ] ; then
+   STATUS='/var/lib/opkg/status'
+   OS='Opensource'
+fi
 [ -e /tmp/neoboot.zip ] && rm -f /tmp/neoboot.zip
 [ -e /tmp/neoboot-main ] && rm -rf /tmp/neoboot-main
 [ $PL ] && echo "Pobieranie archiwum..." || echo "Downloading archive file..."
@@ -44,23 +51,24 @@ chmod 755 ./files/*.sh
 chmod -R +x ./ubi_reader_arm/*
 chmod -R +x ./ubi_reader_mips/*
 if [ $PL ] ; then
-chattr +i /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/plugin.py
   echo ""
   echo "#####################################################"
   echo "#          NEOBOOT ZOSTAL ZAINSTALOWANY             #"
-  echo "#                                                   #"
-  echo "#               ZRESTARTUJ TUNER                    #"
   echo "#####################################################"
   echo ""
 else
   echo ""
   echo "#####################################################"
   echo "#          NEOBOOT INSTALLED SUCCESSFULLY           #"
-  echo "#                                                   #"
-  echo "#            PLEASE RESTART YOUR STB                #"
   echo "#####################################################"
   echo ""
 fi
-echo "              ----- Restart GUI... -----               "
-sleep 5; killall -9 enigma2
+echo "          ----- Restart Enigma2 GUI ... -----               "
+chattr +i /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/plugin.py
+sleep 5
+if [ $OS = 'DreamOS' ]; then 
+    systemctl restart enigma2
+else
+    killall -9 enigma2
+fi
 exit 0     
