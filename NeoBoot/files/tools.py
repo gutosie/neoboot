@@ -39,7 +39,7 @@ import time
 import sys
 import struct
 import shutil
-if fileExists('/etc/vtiversion.info') or fileExists('/etc/bhversion') or fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.9') and fileExists('/.multinfo'):
+if fileExists('/etc/vtiversion.info') or fileExists('/etc/bhversion') or fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.9') :
     from Screens.Console import Console
 else:
     try:
