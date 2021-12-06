@@ -654,7 +654,7 @@ class NeoBootInstallation(Screen):
             elif getCPUtype() == 'MIPS':
                         os.system('cd ' + LinkNeoBoot + '/;rm -f ./files/findsk.sh; mv ./bin/fbclearmips ./bin/fbclear; chmod 755 ./bin/fbclear; rm -f ./bin/fbcleararm; mv ./ubi_reader_mips ./ubi_reader; rm -r ./ubi_reader_arm; rm -f /bin/neoinitarm; rm -f /bin/neoinitarmvu; rm -r ./bin/nanddump_arm; rm -f /bin/neoinitarmvuDuo4k; rm -f ./bin/neobmarm')
 
-            os.system(' ln -sfn ' + getNeoLocation() + 'ImageBoot/.neonextboot /etc/neoimage; chmod 644 ' + getNeoLocation() + 'ImagesUpload/.kernel/*; ln -sfn ' + getNeoLocation() + 'ImageBoot /etc/imageboot; rm -r ' + LinkNeoBoot + '/tmpfiles; chmod 0755 ' + LinkNeoBoot + '/files/kernel.sh')
+            os.system(' ln -sfn ' + getNeoLocation() + 'ImageBoot/.neonextboot /etc/neoimage; chmod 644 ' + getNeoLocation() + 'ImagesUpload/.kernel/*; ln -sfn ' + getNeoLocation() + 'ImageBoot /etc/imageboot; rm -r ' + LinkNeoBoot + '/tmpfiles; chmod 0755 ' + LinkNeoBoot + '/files/kernel.sh; chattr +i ' + LinkNeoBoot + '/plugin.py; chattr +i ' + LinkNeoBoot + '/plugin.pyo')
 
             if os.path.isfile('' + LinkNeoBoot + '/.location'):
                 if getLabelDisck() != 'LABEL=':
