@@ -10,6 +10,10 @@ fi
 [ $PL ] && echo "Pobieranie archiwum..." || echo "Downloading archive file..."
 URL='https://github.com/gutosie/neoboot/archive/main.zip'
 curl -kLs $URL  -o /tmp/neoboot.zip
+Cel="/usr/lib/enigma2/python/Plugins/Extensions"
+if [ -e $Cel/NeoBoot/plugin.py ]; then 
+   chattr -i /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/plugin.py; chattr -i /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/plugin.pyo
+fi
 cd /tmp/
 #pobieranie
 if [ ! -e /tmp/neoboot.zip ]; then 
@@ -24,12 +28,8 @@ unzip -qn ./neoboot.zip
 rm -f /tmp/neoboot.zip
 [ -e /tmp/main.zip ] && rm -rf /tmp/main.zip
 #kopiowanie
-Cel="/usr/lib/enigma2/python/Plugins/Extensions"
 if [ -e $Cel/NeoBoot/.location ]; then 
    rm -rf $Cel/NeoBoot/.location   
-fi
-if [ -e $Cel/NeoBoot/plugin.py ]; then 
-   chattr -i /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/plugin.py; chattr -i /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/plugin.pyo
 fi
 [ $PL ] && echo "Instalowanie..." || echo "Instaling..."
 [ -e $Cel/NeoBoot ] && rm -rf $Cel/NeoBoot/* || mkdir -p $Cel/NeoBoot
