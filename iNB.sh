@@ -65,7 +65,9 @@ else
 fi
 echo "          ----- Restart Enigma2 GUI ... -----               "
 chattr +i /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/plugin.py
-sleep 5
+sleep 2
+[ $PL ] && echo "        Gotowe !" || echo "        Done !"
+sleep 2
 if [ $OS = 'DreamOS' ]; then 
     systemctl restart enigma2
 else
