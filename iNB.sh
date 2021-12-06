@@ -28,6 +28,9 @@ Cel="/usr/lib/enigma2/python/Plugins/Extensions"
 if [ -e $Cel/NeoBoot/.location ]; then 
    rm -rf $Cel/NeoBoot/.location   
 fi
+if [ -e $Cel/NeoBoot/plugin.py ]; then 
+   chattr -i /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/plugin.py; chattr -i /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/plugin.pyo
+fi
 [ $PL ] && echo "Instalowanie..." || echo "Instaling..."
 [ -e $Cel/NeoBoot ] && rm -rf $Cel/NeoBoot/* || mkdir -p $Cel/NeoBoot
 mv -f /tmp/neoboot-main/NeoBoot/files/testinout /usr/lib/enigma2/python/Tools/Testinout.py
