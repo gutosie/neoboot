@@ -1123,7 +1123,7 @@ class NeoBootImageChoose(Screen):
 
     def restartGUI(self, answer):
         if answer is True:
-            os.system('rm -f ' + LinkNeoBoot + '/.location; rm -r ' + LinkNeoBoot + '/ubi_reader')
+            os.system('rm -f ' + LinkNeoBoot + '/.location; rm -r ' + LinkNeoBoot + '/ubi_reader; chattr +i ' + LinkNeoBoot + '/plugin.py; chattr +i ' + LinkNeoBoot + '/plugin.pyo')
             self.session.open(TryQuitMainloop, 3)
         else:
             self.close()
