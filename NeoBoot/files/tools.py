@@ -2101,6 +2101,7 @@ class Opis(Screen):
             self.close()
         else:    
             if answer is True:
+                os.system('chattr -i ' + LinkNeoBoot + '/plugin.py; chattr -i ' + LinkNeoBoot + '/plugin.pyo')
                 if fileExists('' + LinkNeoBoot + '/.location'):
                         system('rm -f ' + LinkNeoBoot + '/.location')
                 if fileExists('/usr/bin/curl'):

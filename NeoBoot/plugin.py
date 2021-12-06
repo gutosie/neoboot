@@ -654,7 +654,7 @@ class NeoBootInstallation(Screen):
             elif getCPUtype() == 'MIPS':
                         os.system('cd ' + LinkNeoBoot + '/;rm -f ./files/findsk.sh; mv ./bin/fbclearmips ./bin/fbclear; chmod 755 ./bin/fbclear; rm -f ./bin/fbcleararm; mv ./ubi_reader_mips ./ubi_reader; rm -r ./ubi_reader_arm; rm -f /bin/neoinitarm; rm -f /bin/neoinitarmvu; rm -r ./bin/nanddump_arm; rm -f /bin/neoinitarmvuDuo4k; rm -f ./bin/neobmarm')
 
-            os.system(' ln -sfn ' + getNeoLocation() + 'ImageBoot/.neonextboot /etc/neoimage; chmod 644 ' + getNeoLocation() + 'ImagesUpload/.kernel/*; ln -sfn ' + getNeoLocation() + 'ImageBoot /etc/imageboot; rm -r ' + LinkNeoBoot + '/tmpfiles; chmod 0755 ' + LinkNeoBoot + '/files/kernel.sh')
+            os.system(' ln -sfn ' + getNeoLocation() + 'ImageBoot/.neonextboot /etc/neoimage; chmod 644 ' + getNeoLocation() + 'ImagesUpload/.kernel/*; ln -sfn ' + getNeoLocation() + 'ImageBoot /etc/imageboot; rm -r ' + LinkNeoBoot + '/tmpfiles; chmod 0755 ' + LinkNeoBoot + '/files/kernel.sh; chattr +i ' + LinkNeoBoot + '/plugin.py; chattr +i ' + LinkNeoBoot + '/plugin.pyo')
 
             if os.path.isfile('' + LinkNeoBoot + '/.location'):
                 if getLabelDisck() != 'LABEL=':
@@ -1114,7 +1114,7 @@ class NeoBootImageChoose(Screen):
     def goUpdateNEO(self):
                 if fileExists('' + LinkNeoBoot + '/wget-log'):
                         os.system('rm ' + LinkNeoBoot + '/wget-log')
-                os.system('cd /tmp/; cp -rf ./neoboot-main/NeoBoot /usr/lib/enigma2/python/Plugins/Extensions; rm -rf /tmp/neoboot*;  rm ' + LinkNeoBoot + '/ver.txt; cd ' + LinkNeoBoot + '/; chmod 0755 ./bin/neoini*;  chmod 0755 ./ex_init.py; chmod 0755 ./tmpfiles/target/*; chmod 0755 ./files/userscript.sh; cd /; date %s  > /usr/lib/periodon/.accessdate' % UPDATEDATE)
+                os.system('chattr -i ' + LinkNeoBoot + '/plugin.py; chattr -i ' + LinkNeoBoot + '/plugin.pyo; cd /tmp/; cp -rf ./neoboot-main/NeoBoot /usr/lib/enigma2/python/Plugins/Extensions; rm -rf /tmp/neoboot*;  rm ' + LinkNeoBoot + '/ver.txt; cd ' + LinkNeoBoot + '/; chmod 0755 ./bin/neoini*;  chmod 0755 ./ex_init.py; chmod 0755 ./tmpfiles/target/*; chmod 0755 ./files/userscript.sh; cd /; date %s  > /usr/lib/periodon/.accessdate' % UPDATEDATE)
                 if getCPUtype() == 'MIPS':
                     os.system('cd ' + LinkNeoBoot + '/; cp -rf ./bin/neoinitmipsvu /sbin; chmod 755 /sbin/neoinitmipsvu; cp -rf ./bin/neoinitmips /sbin; chmod 755 /sbin/neoinitmips; cd')
                 os.system('cd ' + LinkNeoBoot + '/; rm ./bin/install; rm -f ./files/testinout; rm ./files/mountpoint.sh; rm ./files/neo.sh; rm -f /usr/lib/periodon/.kodn; rm -f /tmp/.nkod; rm -rf /tmp/main.zip')
@@ -1123,7 +1123,7 @@ class NeoBootImageChoose(Screen):
 
     def restartGUI(self, answer):
         if answer is True:
-            os.system('rm -f ' + LinkNeoBoot + '/.location; rm -r ' + LinkNeoBoot + '/ubi_reader')
+            os.system('rm -f ' + LinkNeoBoot + '/.location; rm -r ' + LinkNeoBoot + '/ubi_reader; chattr +i ' + LinkNeoBoot + '/plugin.py; chattr +i ' + LinkNeoBoot + '/plugin.pyo')
             self.session.open(TryQuitMainloop, 3)
         else:
             self.close()
