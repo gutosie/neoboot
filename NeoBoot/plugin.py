@@ -46,7 +46,7 @@ import os
 import time
 from time import gmtime, strftime
 from Tools.Testinout import getTestIn, getTestOut, getTestInTime, getTestOutTime, getAccessN, getAccesDate, getButtonPin, getTestToTest
-if fileExists('/etc/vtiversion.info') or fileExists('/etc/bhversion') or fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.9') and fileExists('/.multinfo'):
+if fileExists('/etc/vtiversion.info') or fileExists('/etc/bhversion') or fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.9'):
     from Screens.Console import Console
 else:
     try:
