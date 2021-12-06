@@ -1915,7 +1915,7 @@ class InitializationFormattingDisk(Screen):
         image = self['list'].getCurrent()
         if image:
             self.diskNeoFormatting = image.strip()
-            message = (_('Hard disk:  %s  Formatting ?') % image)
+            message = (_('Hard disk:  %s  Formatting ? Attention! All data will be lost !!!') % image)
             ybox = self.session.openWithCallback(self.dodeleteback, MessageBox, message, MessageBox.TYPE_YESNO)
             ybox.setTitle(_('Format the disk ???'))
 
