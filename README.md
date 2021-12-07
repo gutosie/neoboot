@@ -89,5 +89,5 @@ krzysztofgutosie@gmail.com
     We thank you for any help                 
     Have fun !!!
     
-    ![neoboot](https://user-images.githubusercontent.com/4014580/145024947-ec24fbed-19f5-4f5b-829b-7ea66fea66b0.jpg)
+    https://user-images.githubusercontent.com/4014580/145024947-ec24fbed-19f5-4f5b-829b-7ea66fea66b0.jpg
 
