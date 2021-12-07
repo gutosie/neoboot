@@ -1,19 +1,19 @@
 # -*- coding: utf-8 -*-
-
-####################### _q(-_-)p_ gutosie _q(-_-)p_ #######################
+#-------------------------------------- _q(-_-)p_ gutosie _q(-_-)p_ --------------------------------------#
+#--------------------------------------------- -#[NEOBOOT]#- ---------------------------------------------#
 # Copyright (c) , gutosie  license
-#
-# Redystrybucja wersji programu i dokonywania modyfikacji JEST DOZWOLONE, pod warunkiem zachowania niniejszej informacji o prawach autorskich.
-# Autor NIE ponosi JAKIEJKOLWIEK odpowiedzialnoĹ›ci za skutki uĹĽtkowania tego programu oraz za wykorzystanie zawartych tu informacji.
-# Modyfikacje przeprowadzasz na wlasne ryzyko!!!
-# O wszelkich zmianach prosze poinformowaÄ‡ na  http://all-forum.cba.pl w temacie pod nazwa  -#[NEOBOOT]#-
-
-# This text/program is free document/software. Redistribution and use in
-# source and binary forms, with or without modification, ARE PERMITTED provided
-# save this copyright notice. This document/program is distributed WITHOUT any
-# warranty, use at YOUR own risk.
+#EN:
+# Redistribution of the program version and making modifications IS PROHIBITED.
+# The author assumes NO responsibility for the consequences of using this program or for the use that may be made of the information contained therein.
+# Creating an ipk package and placing it in the official repository of ANY software is forbidden without my permission.
+# Please respect the work. Never remove anyone from the authors list.
+#PL:
+# Redystrybucja wersji programu i dokonywania modyfikacji JEST ZABRONIONE.
+# Autor NIE ponosi JAKIEJKOLWIEK odpowiedzialnoÄąâ€şci za skutki uÄąÄ˝tkowania tego programu oraz za wykorzystanie zawartych tu informacji.
+# Tworzenie paczki ipk i umieszczanie jej w oficjalnym repozytorium DOWOLNEGO softu jest zabronione bez mojej zgody.
+# Prosze uszanuj prace. Nigdy nie usuwaj nikogo z listy autorow.
+#--------------------------------------------- -#[NEOBOOT]#- ---------------------------------------------#
 #neoboot modules
-#--------------------------------------------- NEOBOOT ---------------------------------------------#
 from __future__ import absolute_import
 from . import _
 from Plugins.Extensions.NeoBoot.files.stbbranding import LogCrashGS, getSupportedTuners, getLabelDisck, getINSTALLNeo, getNeoLocation, getLocationMultiboot, getNeoMount, getNeoMount2, getNeoMount3, getNeoMount4, getNeoMount5, getFSTAB, getFSTAB2, getKernelVersionString, getKernelImageVersion, getCPUtype, getCPUSoC, getImageNeoBoot, getBoxVuModel, getBoxHostName, getTunerModel, getImageDistroN, getFormat, getNEO_filesystems, getBoxModelVU, getMountPointAll, getMountPointNeo, getCheckActivateVip, getBoxMacAddres, getCheckExt
