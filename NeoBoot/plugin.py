@@ -756,7 +756,7 @@ class NeoBootImageChoose(Screen):
         if not fileExists('/usr/lib/periodon/.kodn'):                    
             self['label22'] = Label(_('PRESS VIP PIN CODE NOW: xxxx'))
         if getTestToTest() != UPDATEVERSION:
-            self['label22'] = Label(_('Update ' + getTestToTest() + ' is available.'))            
+            self['label23'] = Label(_('Update ' + getTestToTest() + ' is available.'))            
         self['actions'] = ActionMap(['WizardActions',
          'ColorActions',
          'MenuActions',
