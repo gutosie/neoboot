@@ -2066,7 +2066,7 @@ class Opis(Screen):
         message += _('Send an e-mail request for the neoboot vip version.\n')
         message += _('e-mail:    krzysztofgutosie@gmail.com\n\n')
         message += _(' ' + getBoxHostName() + ' Ethernet MAC:  ' + getBoxMacAddres() +  '\n')
-        message += _(' Email your receiver Ethernet MAC and get a neoboto VIP\n\n')
+        message += _(' Email your receiver Ethernet MAC and get a neoboto VIP\n')
         message += _('----------------Free donate----------------\n')
         message += _('Spendenbetrag\nDonaco\nDarowizna\nПожертвование\n')
         message += _('Donate to the project\n')
