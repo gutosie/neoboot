@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NeoBoot\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-12-07 11:46+0200\n"
+"PO-Revision-Date: 2021-12-07 12:22+0200\n"
 "Last-Translator: gutosie <Krzysio Gutosie>\n"
 "Language-Team: gutosie- GaduGadu nr. 5111900 <http://all-forum.cba.pl >\n"
 "Language: pl\n"
@@ -2780,6 +2780,15 @@ msgstr "Formatowanie dysku"
 msgid "Select disk."
 msgstr "Wybierz dysk:"
 
+msgid "Install Panel Extra Feed"
+msgstr "Zainstaluj Panel Extra Feed"
+
+msgid "Install Multi Stalker"
+msgstr "Zainstaluj Multi Stalker"
+
+msgid "Install Multiboot Flash Online"
+msgstr "Zainstaluj Multiboot Flash Online"
+
 msgid "Initialization - formatting disk for neoboot."
 msgstr "Inicjalizacja - formatowanie dysku pod neoboota."
 
@@ -2789,9 +2798,5 @@ msgstr "Wybrany dysk to:  %s  formatować ? Uwaga! Wszystkie dane zostaną utrac
 msgid "Skip this step and install NeoBoot."
 msgstr "Pomiń ten krok i zainstaluj neoboota."
 
-msgid ""
-" Email your receiver Ethernet MAC and get a neoboto VIP   \n"
-"\n"
-msgstr ""
-" Wyślij na email Ethernet MAC twojego odbiornika i zdobądź neoboota VIP \n"
-"\n"
+msgid " Email your receiver Ethernet MAC and get a neoboto VIP\n"
+msgstr "Wyślij na email Ethernet MAC twojego odbiornika i zdobądź neoboota VIP\n"
