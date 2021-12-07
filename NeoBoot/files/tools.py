@@ -233,15 +233,15 @@ class MBTools(Screen):
         self.list.append(res)
         self['list']. list = self.list
         
-        res = (_('Instal Panel Extra Feed'), png, 20)
+        res = (_('Install Panel Extra Feed'), png, 20)
         self.list.append(res)
         self['list']. list = self.list 
               
-        res = (_('Instal Multi Stalker'), png, 21)
+        res = (_('Install Multi Stalker'), png, 21)
         self.list.append(res)
         self['list']. list = self.list
         
-        res = (_('Instal Multiboot Flash Online'), png, 22)
+        res = (_('Install Multiboot Flash Online'), png, 22)
         self.list.append(res)
         self['list']. list = self.list
         
