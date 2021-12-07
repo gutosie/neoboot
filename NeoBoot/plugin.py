@@ -747,16 +747,14 @@ class NeoBootImageChoose(Screen):
         self['label18'] = Label('')
         self['label19'] = Label('')
         self['label20'] = Label('')
-        if fileExists('/usr/lib/periodon/.kodn'):
-            self['label21'] = Label('On - VIP')
-        else:                
-            self['label21'] = Label('Off - VIP')
         if getCheckActivateVip() == getBoxMacAddres():
-            pass            
-        elif getCheckActivateVip() != getBoxMacAddres():
+            self['label21'] = Label('VIP: On') 
+        else:                
+            self['label21'] = Label('VIP: Off') 
+        if getCheckActivateVip() != getBoxMacAddres():
             self['label22'] = Label('Ethernet MAC not found !')
-        elif not fileExists('/usr/lib/periodon/.kodn'):                    
-            self['label22'] = Label('PRESS VIP PIN CODE NOW: xxxx')            
+        if not fileExists('/usr/lib/periodon/.kodn'):                    
+            self['label22'] = Label('PRESS VIP PIN CODE NOW: xxxx')    
         self['actions'] = ActionMap(['WizardActions',
          'ColorActions',
          'MenuActions',
