@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NeoBoot\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-12-07 12:22+0200\n"
+"PO-Revision-Date: 2021-12-07 15:02+0200\n"
 "Last-Translator: gutosie <Krzysio Gutosie>\n"
 "Language-Team: gutosie- GaduGadu nr. 5111900 <http://all-forum.cba.pl >\n"
 "Language: pl\n"
@@ -2800,3 +2800,12 @@ msgstr "Pomiń ten krok i zainstaluj neoboota."
 
 msgid " Email your receiver Ethernet MAC and get a neoboto VIP\n"
 msgstr "Wyślij na email Ethernet MAC twojego odbiornika i zdobądź neoboota VIP\n"
+
+msgid "Ethernet MAC not found !"
+msgstr "Nie znaleziono Ethernet MAC !"
+
+msgid "PRESS VIP PIN CODE NOW: xxxx"
+msgstr "Wpisz VIP pin kod teraz: xxxx"
+
+msgid "Update ' + getTestToTest() + ' is available."
+msgstr "Aktualizacja ' + getTestToTest() + ' dostępna."
