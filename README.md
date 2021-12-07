@@ -38,6 +38,8 @@ cd /tmp; fullwget --no-check-certificate https://raw.githubusercontent.com/gutos
 
 #
 
+![neoboot](https://user-images.githubusercontent.com/4014580/145025575-966b82bb-d8b5-48ba-84bd-f2fc41ce8758.jpg)
+
 
 List supported tuners is in stbinfo.cfg file. 
 
@@ -88,5 +90,4 @@ krzysztofgutosie@gmail.com
 
     We thank you for any help                 
     Have fun !!!
-    
 
