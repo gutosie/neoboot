@@ -2129,6 +2129,7 @@ class Opis(Screen):
 
     def mbdelete(self, answer):
         if answer is True:
+            os.system('chattr -i ' + LinkNeoBoot + '/plugin.py; chattr -i ' + LinkNeoBoot + '/plugin.pyo; chattr -i /usr/lib/periodon/.activatedmac')
             if fileExists('/etc/fstab.org'):
                 system('rm -r /etc/fstab; mv /etc/fstab.org /etc/fstab')
             if fileExists('/etc/init.d/volatile-media.sh.org'):
