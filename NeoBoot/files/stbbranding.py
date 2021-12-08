@@ -971,7 +971,7 @@ def getMountPointNeo2():
         os.system('echo "\n\nexit 0"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
 	
 def getBoxMacAddres():
-    os.system('%s > /tmp/.mymac' % ("ifconfig "))          
+    os.system('%s > /tmp/.mymac' % ("ifconfig -a"))          
     if fileExists('/tmp/.mymac'):
                     f = open("/tmp/.mymac", 'r')
                     myboxmac = f.readline().strip().replace("eth0      Link encap:Ethernet  HWaddr ", "")
