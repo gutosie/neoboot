@@ -148,7 +148,8 @@ class MBTools(Screen):
     def updateList(self):
         self.list = []
         mypath = '' + LinkNeoBoot + ''
-        os.system(("chattr -i /usr/lib/periodon/.activatedmac; ifconfig eth0 |grep -i hwaddr |awk '{print $5}' > /usr/lib/periodon/.activatedmac; chattr +i /usr/lib/periodon/.activatedmac"))
+        #os.system(("chattr -i /usr/lib/periodon/.activatedmac; ifconfig eth0 |grep -i hwaddr |awk '{print $5}' > /usr/lib/periodon/.activatedmac; chattr +i /usr/lib/periodon/.activatedmac"))
+        os.system(("chattr -i /usr/lib/periodon/.activatedmac"))
         if not fileExists(mypath + 'icons'):
             mypixmap = '' + LinkNeoBoot + '/images/ok.png'
         png = LoadPixmap(mypixmap)
