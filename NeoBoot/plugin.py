@@ -1294,7 +1294,7 @@ class NeoBootImageChoose(Screen):
                             mess = _('Sorry cannot open neo menu. Access Fails with Error code 0x50.')
                             self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)        
         elif not fileExists('/.multinfo'):
-            if getTestIn() == getTestOut() and getCheckActivateVip() == getBoxMacAddres():
+            if getTestIn() == getTestOut() :
                 if ('1234%s' % getTestToTest()) == getAccessN():
                     if (getSupportedTuners()) == (getBoxHostName()):
                         try:
