@@ -971,12 +971,19 @@ def getMountPointNeo2():
         os.system('echo "\n\nexit 0"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
 	
 def getBoxMacAddres():
-    os.system("ifconfig eth0 |grep -i hwaddr |awk '{print $5}' > /tmp/.mymac")
-    if os.path.exists('/tmp/.mymac'):
-        with open('/tmp/.mymac', 'r') as f:
-            myboxmac = f.readline().strip()
-            f.close()
-    return myboxmac    
+    os.system('%s > /tmp/.mymac' % ("ifconfig "))          
+    if fileExists('/tmp/.mymac'):
+                    f = open("/tmp/.mymac", 'r')
+                    myboxmac = f.readline().strip().replace("eth0      Link encap:Ethernet  HWaddr ", "")
+                    f.close()
+                    EthernetMac = myboxmac                       
+                    writefile = open('/tmp/.mymac' , 'w')
+                    writefile.write(myboxmac)
+                    writefile.close()
+    if not fileExists('/tmp/.mymac'):
+            EthernetMac = '12:34:56:78:91:02'
+                        
+    return EthernetMac    
 
 def getCheckActivateVip():
     supportedvip = ''
