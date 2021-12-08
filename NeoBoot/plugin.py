@@ -1371,9 +1371,11 @@ class NeoBootImageChoose(Screen):
     def RemoveIMAGE(self, yesno):
         if yesno:
             cmd = _("echo -e 'Deleting in progress...\n'")
-            cmd1 = 'chattr -i %sImageBoot/' % getNeoLocation() + self.mysel
-            cmd2 = 'rm -r %sImageBoot/' % getNeoLocation() + self.mysel
-            self.session.openWithCallback(self.up, Console, _('NeoBoot: Deleting Image'), [cmd, cmd1, cmd2])
+            cmd1 = 'chattr -i %sImageBoot/' % getNeoLocation() + self.mysel            
+            cmd2 = 'chattr -i %sImageBoot/' % getNeoLocation() + self.mysel + '/usr/lib/periodon/.activatedmac'
+            cmd3 = 'chattr -i %sImageBoot/' % getNeoLocation() + self.mysel + '' + LinkNeoBoot +'/plugin.py'
+            cmd4 = 'rm -r %sImageBoot/' % getNeoLocation() + self.mysel
+            self.session.openWithCallback(self.up, Console, _('NeoBoot: Deleting Image'), [cmd, cmd1, cmd2, cmd3, cmd4])
         else:
             self.session.open(MessageBox, _('Removing canceled!'), MessageBox.TYPE_INFO)
 
