@@ -103,6 +103,9 @@ ImageChooseULTRAHD = """
   <widget name="label5" position="1062,1050" size="1230,90" font="genel;60" foregroundColor="#0058CCFF" backgroundColor="#1A0F0F0F" halign="left" valign="center" zPosition="1" transparent="1" />
   <widget name="label6" position="1062,1140" size="1230,90" font="genel;60" foregroundColor="#0058CCFF" backgroundColor="#1A0F0F0F" halign="left" valign="center" zPosition="1" transparent="1" />
   <widget name="label7" position="1062,1230" size="1230,90" font="genel;60" foregroundColor="#0058CCFF" backgroundColor="#1A0F0F0F" halign="left" valign="center" zPosition="1" transparent="1" />
+  <widget name="label21" position="840,410" size="370,39" font="Regular;22" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00ff7f50" />\n
+  <widget name="label22" position="840,330" size="370,39" font="Regular;22" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" />\n
+  <widget name="label23" position="840,370" size="370,39" font="Regular;22" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" />\n
   <eLabel position="210,1350" size="2100,3" backgroundColor="#0027408B" />
   <ePixmap position="210,1410" size="90,90" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/metrix/skin/key_1_UHD.png" zPosition="1" alphatest="blend" />
   <ePixmap position="210,1512" size="90,90" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/metrix/skin/key_2_UHD.png" zPosition="1" alphatest="blend" />
