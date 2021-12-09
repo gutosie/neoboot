@@ -25,6 +25,9 @@ ImageChooseHD = """
   <widget name="label6" position="346,597" zPosition="1" size="444,25" font="Regular;20" halign="left" valign="center" backgroundColor="black" transparent="1" foregroundColor="red" />
   <widget name="label8" position="320,381" zPosition="1" size="378,25" font="Regular;20" halign="left" valign="center" backgroundColor="black" transparent="1" foregroundColor="white" />
   <widget name="label7" position="700,381" zPosition="1" size="66,25" font="Regular;20" halign="right" valign="center" backgroundColor="black" transparent="1" foregroundColor="#58ccff" />
+  <widget name="label21" position="840,410" size="370,39" font="Regular;22" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00ff7f50" />
+  <widget name="label22" position="840,330" size="370,39" font="Regular;22" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" />
+  <widget name="label23" position="840,370" size="370,39" font="Regular;22" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" />
   <eLabel backgroundColor="black" font="Regular; 20" foregroundColor="#58ccff" position="319,450" size="51,25" text="1 &gt;" transparent="1" />
   <eLabel backgroundColor="black" font="Regular; 20" foregroundColor="#58ccff" position="318,480" size="52,25" text="2 &gt;" transparent="1" />
   <eLabel backgroundColor="black" font="Regular; 20" foregroundColor="#58ccff" position="318,510" size="52,25" text="3 &gt;" transparent="1" />
