@@ -246,7 +246,7 @@ class MBTools(Screen):
         self.list.append(res)
         self['list']. list = self.list
         
-        res = (_('Install DreamSatPanel'), png, 23)
+        res = (_('Install Dream Sat Panel'), png, 23)
         self.list.append(res)
         self['list']. list = self.list
                 
