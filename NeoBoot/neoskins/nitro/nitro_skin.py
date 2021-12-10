@@ -8,7 +8,7 @@ import os
 ImageChooseFULLHD = """                                                                                   
 <screen name="ImageChooseFULLHD" position="center,center" size="1920,1080" title=" " flags="wfNoBorder" backgroundColor="transparent">
     <ePixmap position="5,0" size="1920,1080" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/nitro/skin/background.png" transparent="1" alphatest="on" />
-    <widget name="config" position="1196,182" size="660,428" itemHeight="43" zPosition="3" font="baslk;32" scrollbarMode="showOnDemand" foregroundColor="#99FFFF" backgroundColor="#1A0F0F0F" foregroundColorSelected="yellow" backgroundColorSelected="#1A27408B" scrollbarSliderBorderWidth="1" scrollbarWidth="8" scrollbarSliderForegroundColor="#99FFFF" scrollbarSliderBorderColor="#0027408B" enableWrapAround="1" transparent="1" />   
+    <widget name="config" position="1196,182" size="660,386" itemHeight="43" zPosition="3" font="baslk;32" scrollbarMode="showOnDemand" foregroundColor="#99FFFF" backgroundColor="#1A0F0F0F" foregroundColorSelected="yellow" backgroundColorSelected="#1A27408B" scrollbarSliderBorderWidth="1" scrollbarWidth="8" scrollbarSliderForegroundColor="#99FFFF" scrollbarSliderBorderColor="#0027408B" enableWrapAround="1" transparent="1" />
     <widget name="progreso" position="75,459" size="530,10" borderWidth="1" zPosition="3" />
     <widget name="device_icon" position="632,446" size="157,136" alphatest="on" zPosition="2" backgroundColor="background" />
     <widget source="key_red" render="Label" font="Regular;33" foregroundColor="red" backgroundColor="background" position="41,950" size="255,45" halign="center" transparent="1" zPosition="1" />
