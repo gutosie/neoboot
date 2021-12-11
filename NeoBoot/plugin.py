@@ -203,7 +203,7 @@ class NeoBootInstallation(Screen):
         writefile.close()
 
     def SetDiskLabel(self):
-        if fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.9') or fileExists(' /tmp/.upneo') :
+        if fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.9') or fileExists('/tmp/.upneo') :
             self.session.open(MessageBox, _('Skip this step and install NeoBoot.'), type=MessageBox.TYPE_ERROR) 
             
         elif getCheckExt() != 'vfat' and getCheckExt() == 'ext3' or getCheckExt() == 'ext4' :        
@@ -358,7 +358,7 @@ class NeoBootInstallation(Screen):
 
     def devices(self):
         check = False
-        if fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.9') or fileExists(' /tmp/.upneo') :
+        if fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.9') or fileExists('/tmp/.upneo') :
             self.session.open(MessageBox, _('Skip this step and install NeoBoot.'), type=MessageBox.TYPE_ERROR)
         elif check == False:
             message = _('After selecting OK start Mounting Manager, option Mount - green\n')
