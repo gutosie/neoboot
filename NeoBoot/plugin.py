@@ -751,9 +751,9 @@ class NeoBootImageChoose(Screen):
             self['label21'] = Label('VIP: On') 
         else:                
             self['label21'] = Label('VIP: Off') 
-        if getCheckActivateVip() != getBoxMacAddres():
+        if getCheckActivateVip() != getBoxMacAddres() and not fileExists('/.multinfo'):
             self['label22'] = Label(_('Ethernet MAC not found.'))
-        if not fileExists('/usr/lib/periodon/.kodn'):                    
+        if not fileExists('/usr/lib/periodon/.kodn') and not fileExists('/.multinfo'):                   
             self['label22'] = Label(_('PRESS VIP PIN CODE NOW: xxxx'))
         if getTestToTest() != UPDATEVERSION and not fileExists('/.multinfo'):
             self['label23'] = Label(_('Update ' + getTestToTest() + ' is available.'))
