@@ -203,7 +203,7 @@ class NeoBootInstallation(Screen):
         writefile.close()
 
     def SetDiskLabel(self):
-        if fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.9'):
+        if fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.9') or fileExists(' /tmp/.upneo') :
             self.session.open(MessageBox, _('Skip this step and install NeoBoot.'), type=MessageBox.TYPE_ERROR) 
             
         elif getCheckExt() != 'vfat' and getCheckExt() == 'ext3' or getCheckExt() == 'ext4' :        
@@ -358,7 +358,7 @@ class NeoBootInstallation(Screen):
 
     def devices(self):
         check = False
-        if fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.9'):
+        if fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.9') or fileExists(' /tmp/.upneo') :
             self.session.open(MessageBox, _('Skip this step and install NeoBoot.'), type=MessageBox.TYPE_ERROR)
         elif check == False:
             message = _('After selecting OK start Mounting Manager, option Mount - green\n')
@@ -1116,7 +1116,7 @@ class NeoBootImageChoose(Screen):
 
     def goUpdateNEO(self):
                 if fileExists('' + LinkNeoBoot + '/wget-log'):
-                        os.system('rm ' + LinkNeoBoot + '/wget-log')
+                        os.system('touch /tmp/.upneo; rm ' + LinkNeoBoot + '/wget-log')
                 os.system('chattr -i ' + LinkNeoBoot + '/plugin.py; chattr -i ' + LinkNeoBoot + '/plugin.pyo; cd /tmp/; cp -rf ./neoboot-main/NeoBoot /usr/lib/enigma2/python/Plugins/Extensions; rm -rf /tmp/neoboot*;  rm ' + LinkNeoBoot + '/ver.txt; cd ' + LinkNeoBoot + '/; chmod 0755 ./bin/neoini*;  chmod 0755 ./ex_init.py; chmod 0755 ./tmpfiles/target/*; chmod 0755 ./files/userscript.sh; cd /; date %s  > /usr/lib/periodon/.accessdate' % UPDATEDATE)
                 if getCPUtype() == 'MIPS':
                     os.system('cd ' + LinkNeoBoot + '/; cp -rf ./bin/neoinitmipsvu /sbin; chmod 755 /sbin/neoinitmipsvu; cp -rf ./bin/neoinitmips /sbin; chmod 755 /sbin/neoinitmips; cd')
