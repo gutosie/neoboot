@@ -2832,3 +2832,9 @@ msgstr "Ustaw etykietę dysku"
 
 msgid "Start the set disk label"
 msgstr "Uruchom by ustawić etykietę dysku."
+
+msgid "Copy the FeedExtra Player plugin from flash to all images"
+msgstr "Skopiuj wtyczkę FeedExtra Player z pamięci flash do wszystkich obrazów."
+
+msgid "Sorry, the operation is not possible from Flash or not supported."
+msgstr "Przepraszamy, operacja nie jest możliwa z Flasha lub nie jest obsługiwana."
