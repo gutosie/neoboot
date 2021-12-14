@@ -166,99 +166,103 @@ class MBTools(Screen):
         self.list.append(res)
         self['list']. list = self.list
 
-        res = (_('Delete image ZIP from the ImagesUpload directory'), png, 3)
+        res = (_('Set Disk Label'), png, 3)
+        self.list.append(res)
+        self['list']. list = self.list       
+
+        res = (_('Delete image ZIP from the ImagesUpload directory'), png, 4)
         self.list.append(res)
         self['list']. list = self.list
 
-        res = (_('NeoBoot Backup'), png, 4)
+        res = (_('NeoBoot Backup'), png, 5)
         self.list.append(res)
         self['list']. list = self.list
 
-        res = (_('Restore neoboot backup'), png, 5)
+        res = (_('Restore neoboot backup'), png, 6)
         self.list.append(res)
         self['list']. list = self.list
 
-        res = (_('Uninstall NeoBoot'), png, 6)
+        res = (_('Uninstall NeoBoot'), png, 7)
         self.list.append(res)
         self['list']. list = self.list
 
-        res = (_('Update NeoBoot on all images.'), png, 7)
+        res = (_('Update NeoBoot on all images.'), png, 8)
         self.list.append(res)
         self['list']. list = self.list
 
-        res = (_('Update TV list on installed image.'), png, 8)
+        res = (_('Update TV list on installed image.'), png, 9)
         self.list.append(res)
         self['list']. list = self.list
 
-        res = (_('Update IPTVPlayer on installed image.'), png, 9)
+        res = (_('Update IPTVPlayer on installed image.'), png, 10)
         self.list.append(res)
         self['list']. list = self.list
 
-        res = (_('Update FeedExtra on the installed image.'), png, 10)
+        res = (_('Update FeedExtra on the installed image.'), png, 11)
         self.list.append(res)
         self['list']. list = self.list
 
-        res = (_('Removing the root password.'), png, 11)
+        res = (_('Removing the root password.'), png, 12)
         self.list.append(res)
         self['list']. list = self.list
 
-        res = (_('Check the correctness of neoboot installation'), png, 12)
+        res = (_('Check the correctness of neoboot installation'), png, 13)
         self.list.append(res)
         self['list']. list = self.list
 
-        res = (_('Skin change'), png, 13)
+        res = (_('Skin change'), png, 14)
         self.list.append(res)
         self['list']. list = self.list
 
-        res = (_('Block or unlock skins.'), png, 14)
+        res = (_('Block or unlock skins.'), png, 15)
         self.list.append(res)
         self['list']. list = self.list
 
-        res = (_('Mount Internal Flash'), png, 15)
+        res = (_('Mount Internal Flash'), png, 16)
         self.list.append(res)
         self['list']. list = self.list
 
-        res = (_('Deleting languages'), png, 16)
+        res = (_('Deleting languages'), png, 17)
         self.list.append(res)
         self['list']. list = self.list
 
-        res = (_('Updates feed cam OpenATV softcam'), png, 17)
+        res = (_('Updates feed cam OpenATV softcam'), png, 18)
         self.list.append(res)
         self['list']. list = self.list
 
-        res = (_('Create swap- file.'), png, 18)
+        res = (_('Create swap- file.'), png, 19)
         self.list.append(res)
         self['list']. list = self.list
 
-        res = (_('Supported sat tuners'), png, 19)
+        res = (_('Supported sat tuners'), png, 20)
         self.list.append(res)
         self['list']. list = self.list
         
-        res = (_('Install Panel Extra Feed'), png, 20)
+        res = (_('Install Panel Extra Feed'), png, 21)
         self.list.append(res)
         self['list']. list = self.list 
               
-        res = (_('Install Multi Stalker'), png, 21)
+        res = (_('Install Multi Stalker'), png, 22)
         self.list.append(res)
         self['list']. list = self.list
         
-        res = (_('Install Multiboot Flash Online'), png, 22)
+        res = (_('Install Multiboot Flash Online'), png, 23)
         self.list.append(res)
         self['list']. list = self.list
         
-        res = (_('Install Dream Sat Panel'), png, 23)
+        res = (_('Install Dream Sat Panel'), png, 24)
         self.list.append(res)
         self['list']. list = self.list
                 
-        res = (_('Initialization - formatting disk for neoboot.'), png, 24)
+        res = (_('Initialization - formatting disk for neoboot.'), png, 25)
         self.list.append(res)
         self['list']. list = self.list        
         
-        res = (_('NeoBoot Information'), png, 25)
+        res = (_('NeoBoot Information'), png, 26)
         self.list.append(res)
         self['list']. list = self.list
 
-        res = (_('NeoBoot donate'), png, 26)
+        res = (_('NeoBoot donate'), png, 27)
         self.list.append(res)
         self['list']. list = self.list
         
@@ -272,56 +276,57 @@ class MBTools(Screen):
             pass
         if self.sel == 2 and self.session.open(MenagerDevices):
             pass
-        if self.sel == 3 and self.session.open(MBDeleUpload):
+        if self.sel == 3 and self.session.open(SetDiskLabel):
+            pass            
+        if self.sel == 4 and self.session.open(MBDeleUpload):
             pass
-        if self.sel == 4 and self.session.open(BackupMultiboot):
+        if self.sel == 5 and self.session.open(BackupMultiboot):
             pass
-        if self.sel == 5 and self.session.open(ReinstllNeoBoot):
+        if self.sel == 6 and self.session.open(ReinstllNeoBoot):
             pass
-        if self.sel == 6 and self.session.open(UnistallMultiboot):
+        if self.sel == 7 and self.session.open(UnistallMultiboot):
             pass
-        if self.sel == 7 and self.session.open(UpdateNeoBoot):
+        if self.sel == 8 and self.session.open(UpdateNeoBoot):
             pass
-        if self.sel == 8 and self.session.open(ListTv):
+        if self.sel == 9 and self.session.open(ListTv):
             pass
-        if self.sel == 9 and self.session.open(IPTVPlayer):
+        if self.sel == 10 and self.session.open(IPTVPlayer):
             pass
-        if self.sel == 10 and self.session.open(FeedExtra):
+        if self.sel == 11 and self.session.open(FeedExtra):
             pass
-        if self.sel == 11 and self.session.open(SetPasswd):
+        if self.sel == 12 and self.session.open(SetPasswd):
             pass
-        if self.sel == 12 and self.session.open(CheckInstall):
+        if self.sel == 13 and self.session.open(CheckInstall):
             pass
-        if self.sel == 13 and self.session.open(SkinChange):
+        if self.sel == 14 and self.session.open(SkinChange):
             pass
-        if self.sel == 14 and self.session.open(BlocUnblockImageSkin):
+        if self.sel == 15 and self.session.open(BlocUnblockImageSkin):
             pass
-        if self.sel == 15 and self.session.open(InternalFlash):
+        if self.sel == 16 and self.session.open(InternalFlash):
             pass
-        if self.sel == 16 and self.session.open(DeletingLanguages):
+        if self.sel == 17 and self.session.open(DeletingLanguages):
             pass
-        if self.sel == 17 and self.session.open(ATVcamfeed):
+        if self.sel == 18 and self.session.open(ATVcamfeed):
             pass
-        if self.sel == 18 and self.session.open(CreateSwap):
+        if self.sel == 19 and self.session.open(CreateSwap):
             pass
-        if self.sel == 19 and self.session.open(TunerInfo):
+        if self.sel == 20 and self.session.open(TunerInfo):
             pass
-        if self.sel == 20 and self.session.open(PanelExtraFeed):
+        if self.sel == 21 and self.session.open(PanelExtraFeed):
             pass 
-        if self.sel == 21 and self.session.open(MultiStalker):
+        if self.sel == 22 and self.session.open(MultiStalker):
             pass
-        if self.sel == 22 and self.session.open(MultibootFlashonline):
+        if self.sel == 23 and self.session.open(MultibootFlashonline):
             pass 
-        if self.sel == 23 and self.session.open(DreamSatPanel):
+        if self.sel == 24 and self.session.open(DreamSatPanel):
             pass                        
-        if self.sel == 24 and self.session.open(InitializationFormattingDisk):
+        if self.sel == 25 and self.session.open(InitializationFormattingDisk):
             pass                                                  
-        if self.sel == 25 and self.session.open(MultiBootMyHelp):
+        if self.sel == 26 and self.session.open(MultiBootMyHelp):
             pass
-        if self.sel == 26 and self.session.open(neoDONATION):
-            pass
-            
-#        if self.sel == 24 and self.session.open(CheckInternet):
+        if self.sel == 27 and self.session.open(neoDONATION):
+            pass            
+#        if self.sel == 28and self.session.open(CheckInternet):
 #            pass
 
 class MBBackup(Screen):
@@ -638,6 +643,27 @@ class MenagerDevices(Screen):
         except:
             False
 
+class SetDiskLabel(Screen):
+    __module__ = __name__
+    skin = """<screen name="DiskLabel" title="Set Disk Label" position="center,center" size="700,300" flags="wfNoBorder">
+        <widget name="lab1" position="20,20" size="660,210" font="baslk;25" halign="center" valign="center" transparent="1" />
+        <ePixmap position="200,250" size="34,34" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red.png" alphatest="blend" zPosition="1" />
+        <widget name="key_red" position="250,250" zPosition="2" size="280,35" font="baslk;30" halign="left" valign="center" backgroundColor="red" transparent="1" foregroundColor="red" />
+        </screen>"""
+
+    def __init__(self, session):
+        Screen.__init__(self, session)
+        self['lab1'] = Label(_('Start the set disk label'))
+        self['key_red'] = Label(_('Run'))
+        self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'back': self.close,
+         'red': self.MD})
+
+    def MD(self):
+        try:
+                    from Plugins.Extensions.NeoBoot.files.devices import SetDiskLabel
+                    self.session.open(SetDiskLabel)
+        except:
+            False         
 
 class MBDeleUpload(Screen):
     __module__ = __name__
