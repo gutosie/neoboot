@@ -1268,7 +1268,8 @@ class CheckInstall(Screen):
             self.myClose(_('Sorry, Neoboot can be installed or upgraded only when booted from Flash'))
 
     def neocheck2(self):
-            os.system(_('rm -f ' + LinkNeoBoot + '/files/modulecheck; echo %s - %s  >  ' + LinkNeoBoot + '/files/modulecheck') % (getBoxModelVU(), getCPUSoC()))
+            os.system(_('rm -f ' + LinkNeoBoot + '/files/modulecheck; echo %s - %s  >  ' + LinkNeoBoot + '/files/modulecheck') % (getBoxHostName(), getCPUSoC()))
+            os.system('echo "Devices:"  >>  ' + LinkNeoBoot + '/files/modulecheck; cat /sys/block/sd*/device/vendor | sed "s/ *$//" >> ' + LinkNeoBoot + '/files/modulecheck; cat /sys/block/sd*/device/model | sed "s/ *$//" >> ' + LinkNeoBoot + '/files/modulecheck')
             os.system('echo "\n====================================================>\nCheck result:"  >> ' + LinkNeoBoot + '/files/modulecheck')
             os.system('echo "*    neoboot location:"  >>  ' + LinkNeoBoot + '/files/modulecheck; cat "/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location"  >>  ' + LinkNeoBoot + '/files/modulecheck')
             os.system('echo "\n*    neoboot location install:"  >>  ' + LinkNeoBoot + '/files/modulecheck; cat "/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/install"  >>  ' + LinkNeoBoot + '/files/modulecheck')
