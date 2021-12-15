@@ -112,16 +112,16 @@ class StartImage(Screen):
         if self.sel == 0:
             if not fileExists('/bin/busybox.nosuid'):
                 os.system('ln -sf "busybox" "/bin/busybox.nosuid" ')
-            if fileExists('/media/InternalFlash/etc/init.d/neobootmount.sh'):
-                os.system('rm -f /media/InternalFlash/etc/init.d/neobootmount.sh;')
-            if fileExists('/media/InternalFlash/linuxrootfs1/etc/init.d/neobootmount.sh'):
-                os.system('rm -f /media/InternalFlash/linuxrootfs1/etc/init.d/neobootmount.sh;')
-            if fileExists('/media/InternalFlash/linuxrootfs2/etc/init.d/neobootmount.sh'):
-                os.system('rm -f /media/InternalFlash/linuxrootfs2/etc/init.d/neobootmount.sh;')
-            if fileExists('/media/InternalFlash/linuxrootfs3/etc/init.d/neobootmount.sh'):
-                os.system('rm -f /media/InternalFlash/linuxrootfs3/etc/init.d/neobootmount.sh;')
-            if fileExists('/media/InternalFlash/linuxrootfs4/etc/init.d/neobootmount.sh'):
-                os.system('rm -f /media/InternalFlash/linuxrootfs4/etc/init.d/neobootmount.sh;')
+            if fileExists('/media/InternalFlash/etc/init.d/neomountboot.sh'):
+                os.system('rm -f /media/InternalFlash/etc/init.d/neomountboot.sh;')
+            if fileExists('/media/InternalFlash/linuxrootfs1/etc/init.d/neomountboot.sh'):
+                os.system('rm -f /media/InternalFlash/linuxrootfs1/etc/init.d/neomountboot.sh;')
+            if fileExists('/media/InternalFlash/linuxrootfs2/etc/init.d/neomountboot.sh'):
+                os.system('rm -f /media/InternalFlash/linuxrootfs2/etc/init.d/neomountboot.sh;')
+            if fileExists('/media/InternalFlash/linuxrootfs3/etc/init.d/neomountboot.sh'):
+                os.system('rm -f /media/InternalFlash/linuxrootfs3/etc/init.d/neomountboot.sh;')
+            if fileExists('/media/InternalFlash/linuxrootfs4/etc/init.d/neomountboot.sh'):
+                os.system('rm -f /media/InternalFlash/linuxrootfs4/etc/init.d/neomountboot.sh;')
 #            else:
 #                pass
             #_____ARM procesor____
