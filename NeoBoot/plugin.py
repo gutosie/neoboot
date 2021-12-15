@@ -1287,7 +1287,7 @@ class NeoBootImageChoose(Screen):
         self['label10'].setText(strview)
 
     def mytools(self):
-        if getCheckActivateVip() == getBoxMacAddres():
+        if getCheckActivateVip() == getBoxMacAddres() and fileExists('/usr/lib/periodon/.kodn'):
                         try:
                             from Plugins.Extensions.NeoBoot.files.tools import MBTools
                             self.session.open(MBTools)
@@ -1385,7 +1385,7 @@ class NeoBootImageChoose(Screen):
             self.session.open(MessageBox, _('Removing canceled!'), MessageBox.TYPE_INFO)
 
     def ImageInstall(self):
-        if getCheckActivateVip() == getBoxMacAddres():
+        if getCheckActivateVip() == getBoxMacAddres() and fileExists('/usr/lib/periodon/.kodn'):
                     self.ImageInstallTestOK()    
         elif not fileExists('/.multinfo'):
             if ('1234%s' % getTestToTest()) != getAccessN():
