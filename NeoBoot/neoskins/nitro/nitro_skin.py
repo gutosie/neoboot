@@ -19,8 +19,8 @@ ImageChooseFULLHD = """
     <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/nitro/skin/green.png" position="324,950" size="255,45" alphatest="blend" />
     <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/nitro/skin/yellow.png" position="615,950" size="255,45" alphatest="blend" />
     <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/nitro/skin/blue.png" position="900,950" size="255,45" alphatest="blend" />
-    <widget name="key_1" position="140,728" zPosition="1" size="390,45" font="Regular;30" halign="left" valign="center" backgroundColor="background" transparent="1" />
-    <widget name="key_2" position="140,660" zPosition="1" size="390,45" font="Regular;30" halign="left" valign="center" backgroundColor="background" transparent="1" />
+    <widget name="key_1" position="140,660" zPosition="1" size="390,45" font="Regular;30" halign="left" valign="center" backgroundColor="background" transparent="1" />
+    <widget name="key_2" position="140,728" zPosition="1" size="390,45" font="Regular;30" halign="left" valign="center" backgroundColor="background" transparent="1" />    
     <widget name="key_3" position="140,791" zPosition="1" size="390,45" font="Regular;30" halign="left" valign="center" backgroundColor="background" transparent="1" />
     <widget name="label1" position="1194,127" size="720,48" zPosition="1" halign="left" font="Regular; 34" foregroundColor="#00FF00" backgroundColor="background" transparent="1" />
     <widget name="label2" position="75,145" zPosition="1" size="652,46" font="Regular; 30" halign="left" valign="center" backgroundColor="background" transparent="1" />
