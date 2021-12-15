@@ -114,7 +114,7 @@ def NEOBootMainEx(source, target, stopenigma, CopyFiles, CopyKernel, TvList, Lan
 
     if os.path.exists('%s/ImageBoot/%s/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot' % (media, target)):
         os.system('rm -r %s/ImageBoot/%s/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot' % (media, target))
-
+        
     list_two = ['mkdir -p ' + media_target + '/media' + dev_null,
      'rm ' + media_target + media + dev_null,
      'rmdir ' + media_target + media + dev_null,
@@ -122,6 +122,8 @@ def NEOBootMainEx(source, target, stopenigma, CopyFiles, CopyKernel, TvList, Lan
      #'cp /etc/passwd ' + media_target + '/etc/passwd' + dev_null,
 #     'cp ' + extensions_path + 'NeoBoot/bin/hdd' + media_target+'/etc/init.d/hddusb' + dev_null,
      'cp /etc/hostname ' + media_target + '/etc/hostname' + dev_null,
+     'cp -a /usr/share/enigma2/rc_models/* ' + media_target + '/usr/share/enigma2/rc_models/' + dev_null,
+     'cp -r -p /usr/share/enigma2/rc_models ' + media_target + '/usr/share/enigma2' + dev_null,
      'cp -af ' + extensions_path + 'NeoBoot ' + media_target + extensions_path + 'NeoBoot' + dev_null,
      'mkdir -p ' + media_target + extensions_path + 'NeoReboot' + dev_null,
      'touch ' + media_target + extensions_path + 'NeoReboot/__init__.py' + dev_null,
@@ -200,7 +202,8 @@ def NEOBootMainEx(source, target, stopenigma, CopyFiles, CopyKernel, TvList, Lan
         if not os.path.exists('%s/ImageBoot/%s/usr/lib/enigma2/python/boxbranding.so' % (media, target)):
             cmd = 'cp -af /usr/lib/enigma2/python/boxbranding.so %s/ImageBoot/%s/usr/lib/enigma2/python/boxbranding.so > /dev/null 2>&1' % (media, target)
             rc = os.system(cmd)
-        os.system('echo "Copied plugins..."')
+        if os.path.exists('%s/ImageBoot/%s/usr/lib/enigma2/python/Plugins/Extensions/HbbTV' % (media, target)):
+            os.system('rm -rf %s/ImageBoot/%s/usr/lib/enigma2/python/Plugins/Extensions/HbbTV' % (media, target))
 
         if TvList == 'True':
             if not os.path.exists('%s/ImageBoot/%s/etc/enigma2' % (media, target)):
@@ -481,43 +484,7 @@ def NEOBootMainEx(source, target, stopenigma, CopyFiles, CopyKernel, TvList, Lan
                 out = open(namefile2, 'w')
                 f = open(namefile, 'r')
                 for line in f.readlines():
-                    if line.find('/dev/mmcblk0p1') != -1:
-                        line = '#' + line
-                    elif line.find('/dev/mmcblk0p2') != -1:
-                        line = '#' + line
-                    elif line.find('/dev/mmcblk0p3') != -1:
-                        line = '#' + line
-                    elif line.find('/dev/mmcblk0p4') != -1:
-                        line = '#' + line
-                    elif line.find('/dev/mmcblk0p5') != -1:
-                        line = '#' + line
-                    elif line.find('/dev/mmcblk0p6') != -1:
-                        line = '#' + line
-                    elif line.find('/dev/mmcblk0p7') != -1:
-                        line = '#' + line
-                    elif line.find('/dev/mmcblk0p8') != -1:
-                        line = '#' + line
-                    elif line.find('/dev/mmcblk0p9') != -1:
-                        line = '#' + line
-                    elif line.find('/dev/root') != -1:
-                        line = '#' + line
-                    elif line.find('/dev/mtdblock1') != -1:
-                        line = '#' + line
-                    elif line.find('/dev/mtdblock2') != -1:
-                        line = '#' + line
-                    elif line.find('/dev/mtdblock3') != -1:
-                        line = '#' + line
-                    elif line.find('/dev/mtdblock4') != -1:
-                        line = '#' + line
-                    elif line.find('/dev/mtdblock5') != -1:
-                        line = '#' + line
-                    elif line.find('/dev/mtdblock6') != -1:
-                        line = '#' + line
-                    elif line.find('/dev/mtdblock7') != -1:
-                        line = '#' + line
-                    elif line.find('/dev/mtdblock8') != -1:
-                        line = '#' + line
-                    elif line.find('/dev/mtdblock9') != -1:
+                    if line.find('/dev/mmcblk0p2') != -1:
                         line = '#' + line
                     elif line.find('/dev/root') != -1:
                         line = '#' + line
