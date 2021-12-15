@@ -20,11 +20,8 @@ else
 		        echo -n "github server unavailable"
 		        echo -n "The network has no connection. It is not OK"
 		        echo -n "Network restart..."
-				/etc/init.d/networking stop;
-				echo "_____stopping network connection_____"
-				sleep 2
-				echo "_____start network connection_____"
-				/etc/init.d/networking start;
+				echo "_____restart network connection_____"
+				/etc/init.d/networking restart;
 				sleep 5
 		else
 		        echo "github server available"
