@@ -961,6 +961,9 @@ class MyUpgrade2(Screen):
                         target = dirfile + '' + LinkNeoBoot + ''
                         target1 = dirfile + '/usr/lib/'
                         target2 = dirfile + '/usr/lib/enigma2/python/Tools/'
+                        os.system('chattr -i /usr/lib/periodon/.activatedmac; chattr -i ' + LinkNeoBoot +'/plugin.py; chattr -i ' + target + '/usr/lib/periodon/.activatedmac; chattr -i ' + target + '' + LinkNeoBoot +'/plugin.py')
+                        if fileExists('' + LinkNeoBoot +'/plugin.pyo'):
+                            cmd3 = 'chattr -i ' + target + '' + LinkNeoBoot +'/plugin.pyo'
                         cmd = 'rm -r ' + target + ' > /dev/null 2>&1'
                         system(cmd)
                         cmd = 'cp -r ' + LinkNeoBoot + ' ' + target
