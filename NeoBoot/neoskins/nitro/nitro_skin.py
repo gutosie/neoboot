@@ -6,8 +6,10 @@ import os
 
 ### ImageChooseFULLHD            
 ImageChooseFULLHD = """                                                                                   
-<screen name="ImageChooseFULLHD" position="center,center" size="1920,1080" title=" " flags="wfNoBorder" backgroundColor="background">
-    <ePixmap position="5,0" size="1920,1080" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/nitro/skin/background.png" transparent="1" alphatest="on" />
+<screen name="ImageChooseFULLHD" position="center,center" size="1920,1080" title=" " flags="wfNoBorder" backgroundColor="transparent">
+
+    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/nitro/skin/background.png" position="center,center" zPosition="-7" size="1920,1080" />                                                                          
+
     <widget name="config" position="1196,182" size="660,386" itemHeight="43" zPosition="3" font="baslk;32" scrollbarMode="showOnDemand" foregroundColor="#99FFFF" backgroundColor="#1A0F0F0F" foregroundColorSelected="yellow" backgroundColorSelected="#1A27408B" scrollbarSliderBorderWidth="1" scrollbarWidth="8" scrollbarSliderForegroundColor="#99FFFF" scrollbarSliderBorderColor="#0027408B" enableWrapAround="1" transparent="1" />
     <widget name="progreso" position="75,459" size="530,10" borderWidth="1" zPosition="3" />
     <widget name="device_icon" position="632,446" size="157,136" alphatest="on" zPosition="2" backgroundColor="black" />
@@ -52,13 +54,16 @@ ImageChooseFULLHD = """
     <widget source="global.CurrentTime" render="Label" position="1404,84" size="450,38" backgroundColor="black" transparent="1" zPosition="1" font="Regular;24" valign="center" halign="right">
       <convert type="ClockToText">Date</convert>
     </widget>
+    
     <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/nitro/skin/key_1_FHD.png" alphatest="blend" position="75,659" size="50,50" zPosition="3" />
     <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/nitro/skin/key_2_FHD.png" alphatest="blend" position="75,727" size="50,50" zPosition="3" />
     <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/nitro/skin/key_3_FHD.png" alphatest="blend" position="75,790" size="50,50" zPosition="3" />
     <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/key_menu.png" alphatest="blend" position="70,855" size="58,50" zPosition="3" />
+
     <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/nitro/skin/div-h.png" alphatest="blend" position="75,389" size="1095,15" zPosition="3" />
     <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/nitro/skin/div-h.png" alphatest="blend" position="75,588" size="1095,15" zPosition="3" />
-    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/matrix.png" alphatest="blend" position="554,623" size="545,340" zPosition="3" />
+    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/matrix.png" alphatest="off" position="554,623" size="545,340" zPosition="3" />
+
     <widget source="session.VideoPicture" render="Pig" position="1196,589" size="679,378" backgroundColor="transparent" zPosition="1" />
     <widget name="key_menu" position="140,848" zPosition="1" size="390,46" font="Regular;30" halign="left" valign="center" backgroundColor="black" transparent="1" foregroundColor="#99ffff" />
 </screen>
