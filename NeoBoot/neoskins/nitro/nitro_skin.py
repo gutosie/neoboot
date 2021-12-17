@@ -41,8 +41,9 @@ if not fileExists('/etc/vtiversion.info'):
     <widget name="label19" position="70,909" zPosition="1" size="462,35" font="Regular; 25" halign="left" valign="center" backgroundColor="background" transparent="1" foregroundColor="black" />
     <widget name="label21" position="75,12" zPosition="1" size="178,46" font="Regular; 42" halign="left" valign="center" backgroundColor="background" transparent="1" foregroundColor="black" />    
     <widget name="label22" position="780,445" zPosition="1" size="390,60" font="Regular;30" halign="center" valign="center" backgroundColor="background" transparent="1" foregroundColor="#00FF00" />
-    <widget name="label23" position="780,510" size="390,60" font="dugme;30" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" />
-    <widget name="label24" position="781,409" size="413,174" font="dugme;30" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" />    
+    <widget name="label23" position="780,445" zPosition="1" size="390,60" font="Regular;30" halign="center" valign="center" backgroundColor="background" transparent="1" foregroundColor="#00FF00" />
+    <widget name="label24" position="780,510" size="390,60" font="dugme;30" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" />
+    <widget name="label25" position="781,409" size="413,174" font="dugme;30" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" />    
     <widget source="global.CurrentTime" render="Label" position="1626,35" size="225,37" backgroundColor="background" transparent="1" zPosition="1" font="Regular;33" valign="center" halign="right">
       <convert type="ClockToText">Format:%-H:%M</convert>
     </widget>
