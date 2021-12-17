@@ -11,7 +11,7 @@ import shutil
 
 
 def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterowniki, InstallSettings, ZipDelete, RepairFTP, SoftCam, MediaPortal, PiconR, Kodi, BlackHole):
-    NEOBootR(source, target, stopenigma, CopyFiles, CopyKernel, TvList, LanWlan, Sterowniki, InstallSettings, ZipDelete, RepairFTP, SoftCam, MediaPortal, PiconR, Kodi, BlackHole)
+    NEOBootR(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterowniki, InstallSettings, ZipDelete, RepairFTP, SoftCam, MediaPortal, PiconR, Kodi, BlackHole)
 
 
 def LanguageUsed():
@@ -91,7 +91,7 @@ dev_null = ' > /dev/null 2>&1'
 supportedTuners = 'vuplus'
 
 
-def NEOBootMainEx(source, target, stopenigma, CopyFiles, CopyKernel, TvList, LanWlan, Sterowniki, InstallSettings, ZipDelete, RepairFTP, SoftCam, MediaPortal, PiconR, Kodi, BlackHole):
+def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterowniki, InstallSettings, ZipDelete, RepairFTP, SoftCam, MediaPortal, PiconR, Kodi, BlackHole):
     media_target = mediahome + target
     list_one = ['rm -r ' + media_target + dev_null, 'mkdir ' + media_target + dev_null, 'chmod -R 0777 ' + media_target]
     for command in list_one:
@@ -638,8 +638,6 @@ def NEOBootMainEx(source, target, stopenigma, CopyFiles, CopyKernel, TvList, Lan
         os.system('rm -f ' + getNeoLocation() + 'ImageBoot/.without_copying')
 
     rc = RemoveUnpackDirs()
-    if os.path.exists('/tmp/init4'):
-        os.system('rm -f /tmp/init4; init 3')
 
     os.system('echo "End of installation:"; date +%T')
     os.system('echo "If you want to save the installation process from the console press green."')
