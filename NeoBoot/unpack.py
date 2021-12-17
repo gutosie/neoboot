@@ -132,7 +132,6 @@ class InstallImage(Screen, ConfigListScreen):
             sourcelist = [('None', 'None')]
         self.source = ConfigSelection(choices=sourcelist)
         self.target = ConfigText(fixed_size=False)
-        self.stopenigma = ConfigYesNo(default=False)
         self.CopyFiles = ConfigYesNo(default=True)
         if fileExists('/proc/stb/info/vumodel') and not fileExists('/proc/stb/info/boxtype'):
             self.CopyKernel = ConfigYesNo(default=True)
@@ -183,7 +182,6 @@ class InstallImage(Screen, ConfigListScreen):
         self.list = []
         self.list.append(getConfigListEntry(_('Source Image file'), self.source))
         self.list.append(getConfigListEntry(_('Image Name'), self.target))
-        self.list.append(getConfigListEntry(_('Stop E2 processes during installation?'), self.stopenigma))
         self.list.append(getConfigListEntry(_('Copy files from Flash to the installed image ?'), self.CopyFiles))
         self.list.append(getConfigListEntry(_('Copy the kernel of the installed system (recommended ?'), self.CopyKernel))
         self.list.append(getConfigListEntry(_('Copy the channel list ?'), self.TvList))
@@ -255,10 +253,9 @@ class InstallImage(Screen, ConfigListScreen):
                 message += _('Please, wait...\n')
                 message += "'"
                 cmd1 = 'python ' + pluginpath + '/ex_init.py'
-                cmd = '%s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s ' % (cmd1,
+                cmd = '%s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s ' % (cmd1,
                  source,
                  target.replace(' ', '.'),
-                 str(self.stopenigma.value),
                  str(self.CopyFiles.value),
                  str(self.CopyKernel.value),
                  str(self.TvList.value),
