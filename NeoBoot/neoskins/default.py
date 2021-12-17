@@ -83,14 +83,12 @@ ImageChooseFULLHD = """
   <widget name="label19" position="80,907" size="502,45" font="dugme;25" halign="left" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="orange" />
   <widget name="label20" position="1368,50" zPosition="1" size="537,55" font="dugme;30" halign="left" valign="center" backgroundColor="black" transparent="1" foregroundColor="yellow" />
   <widget name="label21" position="371,49" size="179,56" font="dugme;30" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00ff7f50" />
-  <widget name="label22" position="589,791" size="542,90" font="dugme;45" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" />
-  <widget name="label23" position="589,791" size="542,90" font="dugme;45" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" /> 
-  <widget name="label24" position="588,878" size="541,90" font="dugme;45" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" />
+  <widget name="label22" position="589,700" size="542,90" font="dugme;45" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" />
+  <widget name="label23" position="589,790" size="542,90" font="dugme;45" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" /> 
+  <widget name="label24" position="588,880" size="541,90" font="dugme;45" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" />
   <widget name="label25" position="321,481" size="268,94" font="dugme;25" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" />
-
 </screen>
 """
-
 
 ###____ Skin Ultra HD - ImageChooseULTRAHD ___ mod. gutosie___
 ImageChooseULTRAHD = """
@@ -158,8 +156,10 @@ ImageChooseHD = """
                 <widget name="label6" position="354,380" size="410,30" font="genel;20" foregroundColor="#0058CCFF" backgroundColor="#1A0F0F0F" halign="left" valign="center" zPosition="1" transparent="1" />\n
                 <widget name="label7" position="354,410" size="410,30" font="genel;20" foregroundColor="#0058CCFF" backgroundColor="#1A0F0F0F" halign="left" valign="center" zPosition="1" transparent="1" />\n
                 <widget name="label21" position="843,290" size="370,40" font="Regular;22" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00ff7f50" />\n
-                <widget name="label22" position="843,210" size="370,40" font="Regular;22" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" />\n
-                <widget name="label23" position="843,250" size="370,40" font="Regular;22" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" />\n
+                <widget name="label22" position="840,390" size="370,40" font="Regular;22" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" />\n
+                <widget name="label23" position="840,330" size="370,40" font="Regular;22" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" />\n
+                <widget name="label24" position="840,370" size="370,40" font="Regular;22" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" />\n  
+                <widget name="label25" position="840,220" size="370,65" font="dugme;25" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" />
                 <eLabel position="70,450" size="700,1" backgroundColor="#0027408B" />\n
                 <ePixmap position="70,470" size="30,30" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/key_1.png" zPosition="1" alphatest="blend" />\n
                 <ePixmap position="70,504" size="30,30" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/key_2.png" zPosition="1" alphatest="blend" />\n
