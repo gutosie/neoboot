@@ -24,7 +24,6 @@ from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import fileExists, resolveFilename, SCOPE_CURRENT_SKIN
 from os import system, rename, path, mkdir, remove, listdir
 from time import sleep
-import fileinput
 import re
 import os
 from Screens.VirtualKeyBoard import VirtualKeyBoard
