@@ -10,7 +10,7 @@ import shutil
 #--------------------------------------------- 2021 ---------------------------------------------#
 
 
-def NEOBootMainEx(source, target, stopenigma, CopyFiles, CopyKernel, TvList, LanWlan, Sterowniki, InstallSettings, ZipDelete, RepairFTP, SoftCam, MediaPortal, PiconR, Kodi, BlackHole):
+def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterowniki, InstallSettings, ZipDelete, RepairFTP, SoftCam, MediaPortal, PiconR, Kodi, BlackHole):
     NEOBootR(source, target, stopenigma, CopyFiles, CopyKernel, TvList, LanWlan, Sterowniki, InstallSettings, ZipDelete, RepairFTP, SoftCam, MediaPortal, PiconR, Kodi, BlackHole)
 
 
@@ -100,10 +100,6 @@ def NEOBootMainEx(source, target, stopenigma, CopyFiles, CopyKernel, TvList, Lan
     rc = NEOBootExtract(source, target, ZipDelete)
 
     os.system('sync; echo 1 > /proc/sys/vm/drop_caches')
-
-    if stopenigma == 'True':
-        os.system('echo "All system processes have been stopped,\n please wait, after the installation is completed, E2 will restart..."')
-        os.system('rm /tmp/init4; touch /tmp/init4; init 4')
 
     if not os.path.exists('%s/ImageBoot/%s/usr/lib/enigma2/python/Plugins/Extensions' % (media, target)):
         os.system('mkdir -p %s/ImageBoot/%s/usr/lib/' % (media, target))
