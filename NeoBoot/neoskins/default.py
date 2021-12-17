@@ -83,8 +83,10 @@ ImageChooseFULLHD = """
   <widget name="label19" position="80,907" size="502,45" font="dugme;25" halign="left" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="orange" />
   <widget name="label20" position="1368,50" zPosition="1" size="537,55" font="dugme;30" halign="left" valign="center" backgroundColor="black" transparent="1" foregroundColor="yellow" />
   <widget name="label21" position="371,49" size="179,56" font="dugme;30" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00ff7f50" />
-  <widget name="label22" position="1180,830" size="660,90" font="dugme;45" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" />
-  <widget name="label23" position="593,830" size="535,90" font="dugme;45" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" />
+  <widget name="label22" position="589,791" size="542,90" font="dugme;45" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" />
+  <widget name="label23" position="589,791" size="542,90" font="dugme;45" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" /> 
+  <widget name="label24" position="588,878" size="541,90" font="dugme;45" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" />
+  <widget name="label25" position="321,481" size="268,94" font="dugme;25" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" />
 
 </screen>
 """
