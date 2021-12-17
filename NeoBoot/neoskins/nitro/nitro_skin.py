@@ -1,4 +1,4 @@
-# skin = ./meoskins/nitro_skin   - mod. gutosie
+# skin = ./neoskins/nitro_skin   - mod. gutosie
 
 from Screens.Screen import Screen
 from Components.Pixmap import Pixmap
@@ -11,17 +11,21 @@ ImageChooseFULLHD = """
     <widget name="config" position="1196,182" size="660,386" itemHeight="43" zPosition="3" font="baslk;32" scrollbarMode="showOnDemand" foregroundColor="#99FFFF" backgroundColor="#1A0F0F0F" foregroundColorSelected="yellow" backgroundColorSelected="#1A27408B" scrollbarSliderBorderWidth="1" scrollbarWidth="8" scrollbarSliderForegroundColor="#99FFFF" scrollbarSliderBorderColor="#0027408B" enableWrapAround="1" transparent="1" />
     <widget name="progreso" position="75,459" size="530,10" borderWidth="1" zPosition="3" />
     <widget name="device_icon" position="632,446" size="157,136" alphatest="on" zPosition="2" backgroundColor="black" />
-    <widget source="key_red" render="Label" font="Regular;33" foregroundColor="red" backgroundColor="black" position="41,950" size="255,45" halign="center" transparent="1" zPosition="1" />
-    <widget source="key_green" render="Label" font="Regular;33" foregroundColor="green" backgroundColor="black" position="324,950" size="255,45" halign="center" transparent="1" zPosition="1" />
-    <widget source="key_yellow" render="Label" font="Regular;33" foregroundColor="yellow" backgroundColor="black" position="615,950" size="255,45" halign="center" transparent="1" zPosition="1" />
-    <widget source="key_blue" render="Label" font="Regular;33" foregroundColor="blue" backgroundColor="black" position="900,950" size="255,45" halign="center" transparent="1" zPosition="1" />    
+
+    <widget name="key_red" position="41,950" zPosition="1" size="255,45" font="Regular;33" halign="center" valign="center" foregroundColor="red" transparent="1" backgroundColor="black" />
+    <widget name="key_green" position="324,950" zPosition="1" size="255,45" font="Regular;33" halign="center" valign="center" foregroundColor="green" transparent="1" backgroundColor="black" />
+    <widget name="key_yellow" position="615,950" zPosition="1" size="255,45" font="Regular;33" halign="center" valign="center" foregroundColor="yellow" transparent="1" backgroundColor="black" />
+    <widget name="key_blue" position="900,950" zPosition="1" size="255,45" font="Regular;33" halign="center" valign="center" foregroundColor="blue" transparent="1" backgroundColor="black" />    
+
     <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/nitro/skin/red.png" position="41,950" size="255,44" alphatest="blend" />
     <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/nitro/skin/green.png" position="324,950" size="255,45" alphatest="blend" />
     <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/nitro/skin/yellow.png" position="615,950" size="255,45" alphatest="blend" />
     <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/nitro/skin/blue.png" position="900,950" size="255,45" alphatest="blend" />
+
     <widget name="key_1" position="140,660" zPosition="1" size="390,45" font="Regular;30" halign="left" valign="center" backgroundColor="black" transparent="1" />
     <widget name="key_2" position="140,728" zPosition="1" size="390,45" font="Regular;30" halign="left" valign="center" backgroundColor="black" transparent="1" />    
     <widget name="key_3" position="140,791" zPosition="1" size="390,45" font="Regular;30" halign="left" valign="center" backgroundColor="black" transparent="1" />
+
     <widget name="label1" position="1194,127" size="720,48" zPosition="1" halign="left" font="Regular; 34" foregroundColor="#00FF00" backgroundColor="black" transparent="1" />
     <widget name="label2" position="75,145" zPosition="1" size="652,46" font="Regular; 30" halign="left" valign="center" backgroundColor="black" transparent="1" />
     <widget name="label3" position="75,473" zPosition="1" size="540,99" font="Regular; 28" halign="center" valign="center" backgroundColor="black" transparent="1" foregroundColor="yellow" />
@@ -41,6 +45,7 @@ ImageChooseFULLHD = """
     <widget name="label22" position="780,445" size="390,60" font="dugme;30" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" />
     <widget name="label23" position="780,510" size="390,60" font="dugme;30" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" />
     <widget name="label24" position="781,409" size="413,174" font="dugme;30" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" />    
+
     <widget source="global.CurrentTime" render="Label" position="1626,35" size="225,37" backgroundColor="black" transparent="1" zPosition="1" font="Regular;33" valign="center" halign="right">
       <convert type="ClockToText">Format:%-H:%M</convert>
     </widget>
