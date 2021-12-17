@@ -756,7 +756,7 @@ class NeoBootImageChoose(Screen):
             self['label21'] = Label('VIP: On') 
         else:                
             self['label21'] = Label('VIP: Off') 
-        if not fileExists('/.multinfo'):
+        if not fileExists('/etc/vtiversion.info') and not fileExists('/.multinfo'):
             if getCheckActivateVip() != getBoxMacAddres():
                 self['label22'] = Label(_('Ethernet MAC not found.'))
             if not fileExists('/usr/lib/periodon/.kodn'):                   
