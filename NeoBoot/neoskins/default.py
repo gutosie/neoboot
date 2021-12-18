@@ -83,12 +83,10 @@ ImageChooseFULLHD = """
   <widget name="label19" position="80,907" size="502,45" font="dugme;25" halign="left" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="orange" />
   <widget name="label20" position="1368,50" zPosition="1" size="537,55" font="dugme;30" halign="left" valign="center" backgroundColor="black" transparent="1" foregroundColor="yellow" />
   <widget name="label21" position="371,49" size="179,56" font="dugme;30" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00ff7f50" />
-  <widget name="label22" position="589,700" size="542,90" font="dugme;45" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" />
-  <widget name="label23" position="589,790" size="542,90" font="dugme;45" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" /> 
-  <widget name="label24" position="588,880" size="541,90" font="dugme;45" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" />
-  <widget name="label25" position="321,481" size="268,94" font="dugme;25" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" />
+
 </screen>
 """
+
 
 ###____ Skin Ultra HD - ImageChooseULTRAHD ___ mod. gutosie___
 ImageChooseULTRAHD = """
@@ -103,9 +101,6 @@ ImageChooseULTRAHD = """
   <widget name="label5" position="1062,1050" size="1230,90" font="genel;60" foregroundColor="#0058CCFF" backgroundColor="#1A0F0F0F" halign="left" valign="center" zPosition="1" transparent="1" />
   <widget name="label6" position="1062,1140" size="1230,90" font="genel;60" foregroundColor="#0058CCFF" backgroundColor="#1A0F0F0F" halign="left" valign="center" zPosition="1" transparent="1" />
   <widget name="label7" position="1062,1230" size="1230,90" font="genel;60" foregroundColor="#0058CCFF" backgroundColor="#1A0F0F0F" halign="left" valign="center" zPosition="1" transparent="1" />
-  <widget name="label21" position="840,410" size="370,39" font="Regular;22" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00ff7f50" />\n
-  <widget name="label22" position="840,330" size="370,39" font="Regular;22" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" />\n
-  <widget name="label23" position="840,370" size="370,39" font="Regular;22" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" />\n
   <eLabel position="210,1350" size="2100,3" backgroundColor="#0027408B" />
   <ePixmap position="210,1410" size="90,90" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/metrix/skin/key_1_UHD.png" zPosition="1" alphatest="blend" />
   <ePixmap position="210,1512" size="90,90" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/metrix/skin/key_2_UHD.png" zPosition="1" alphatest="blend" />
@@ -155,11 +150,6 @@ ImageChooseHD = """
                 <widget name="label5" position="354,350" size="410,30" font="genel;20" foregroundColor="#0058CCFF" backgroundColor="#1A0F0F0F" halign="left" valign="center" zPosition="1" transparent="1" />\n
                 <widget name="label6" position="354,380" size="410,30" font="genel;20" foregroundColor="#0058CCFF" backgroundColor="#1A0F0F0F" halign="left" valign="center" zPosition="1" transparent="1" />\n
                 <widget name="label7" position="354,410" size="410,30" font="genel;20" foregroundColor="#0058CCFF" backgroundColor="#1A0F0F0F" halign="left" valign="center" zPosition="1" transparent="1" />\n
-                <widget name="label21" position="843,290" size="370,40" font="Regular;22" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00ff7f50" />\n
-                <widget name="label22" position="840,390" size="370,40" font="Regular;22" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" />\n
-                <widget name="label23" position="840,330" size="370,40" font="Regular;22" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" />\n
-                <widget name="label24" position="840,370" size="370,40" font="Regular;22" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" />\n  
-                <widget name="label25" position="840,220" size="370,65" font="dugme;25" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00FF00" />
                 <eLabel position="70,450" size="700,1" backgroundColor="#0027408B" />\n
                 <ePixmap position="70,470" size="30,30" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/key_1.png" zPosition="1" alphatest="blend" />\n
                 <ePixmap position="70,504" size="30,30" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/key_2.png" zPosition="1" alphatest="blend" />\n
@@ -185,8 +175,8 @@ ImageChooseHD = """
                 <widget name="key_blue" position="710,638" size="104,30" noWrap="1" zPosition="1" valign="center" font="dugme;18" halign="left" backgroundColor="#1A0F0F0F" foregroundColor="#00FFFFFF" transparent="1" />\n
                 <eLabel position="40,25" zPosition="-10" size="754,650" backgroundColor="#1A0F0F0F" name="layer1" />\n
                 <eLabel position="795,60" zPosition="-10" size="445,580" backgroundColor="#1A27408B" name="layer2" />\n
-                <ePixmap position="813,340" size="422,254" zPosition="5" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/matrixhd.png" transparent="1" alphatest="blend" />\n
-                <ePixmap position="954,145" size="280,60" zPosition="5" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/ico_neo.png" transparent="1" alphatest="blend" />\n
+                <ePixmap position="817,335" size="422,229" zPosition="5" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/matrixhd.png" transparent="1" alphatest="blend" />\n
+                <ePixmap position="943,179" size="295,60" zPosition="5" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/ico_neo.png" transparent="1" alphatest="blend" />\n
                 <widget source="global.CurrentTime" render="Label" position="1089,73" size="140,60" font="tasat;50" noWrap="1" halign="center" valign="bottom" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" transparent="1">
                 <convert type="ClockToText">Default</convert>
                 </widget>\n
