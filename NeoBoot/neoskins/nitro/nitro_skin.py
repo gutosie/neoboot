@@ -11,10 +11,10 @@ ImageChooseFULLHD = """
     <widget name="config" position="1196,182" size="660,386" itemHeight="43" zPosition="3" font="baslk;32" scrollbarMode="showOnDemand" foregroundColor="#99FFFF" backgroundColor="#1A0F0F0F" foregroundColorSelected="yellow" backgroundColorSelected="#1A27408B" scrollbarSliderBorderWidth="1" scrollbarWidth="8" scrollbarSliderForegroundColor="#99FFFF" scrollbarSliderBorderColor="#0027408B" enableWrapAround="1" transparent="1" />
     <widget name="progreso" position="75,459" size="530,10" borderWidth="1" zPosition="3" />
     <widget name="device_icon" position="632,446" size="157,136" alphatest="on" zPosition="2" backgroundColor="black" />
-    <widget name="key_red" position="41,950" zPosition="1" size="255,60" font="Regular;33" halign="center" valign="center" foregroundColor="red" transparent="1" backgroundColor="black" />
-    <widget name="key_green" position="324,950" zPosition="1" size="255,60" font="Regular;33" halign="center" valign="center" foregroundColor="green" transparent="1" backgroundColor="black" />
-    <widget name="key_yellow" position="615,950" zPosition="1" size="255,60" font="Regular;33" halign="center" valign="center" foregroundColor="yellow" transparent="1" backgroundColor="black" />
-    <widget name="key_blue" position="900,950" zPosition="1" size="255,60" font="Regular;33" halign="center" valign="center" foregroundColor="blue" transparent="1" backgroundColor="black" />
+    <widget name="key_red" position="41,960" zPosition="1" size="255,70" font="Regular;33" halign="center" valign="center" foregroundColor="red" transparent="1" backgroundColor="black" />
+    <widget name="key_green" position="324,960" zPosition="1" size="255,70" font="Regular;33" halign="center" valign="center" foregroundColor="green" transparent="1" backgroundColor="black" />
+    <widget name="key_yellow" position="615,960" zPosition="1" size="255,70" font="Regular;33" halign="center" valign="center" foregroundColor="yellow" transparent="1" backgroundColor="black" />
+    <widget name="key_blue" position="900,960" zPosition="1" size="255,70" font="Regular;33" halign="center" valign="center" foregroundColor="blue" transparent="1" backgroundColor="black" />
     <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/nitro/skin/red.png" position="41,950" size="255,44" alphatest="blend" />
     <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/nitro/skin/green.png" position="324,950" size="255,45" alphatest="blend" />
     <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/nitro/skin/yellow.png" position="615,950" size="255,45" alphatest="blend" />
