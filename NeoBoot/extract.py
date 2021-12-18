@@ -788,7 +788,11 @@ def RemoveUnpackDirs():
             rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/pulse4kmini/force_pulse4kmini_READ.ME; rm -r ' + getNeoLocation() + 'ImagesUpload/pulse4kmini/unforce_pulse4kmini.txt')    
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/pulse4kmin')     
     if os.path.exists('' + getNeoLocation() + 'ImagesUpload/unforce_h9combo.txt'):
-        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/unforce_h9combo.txt')        
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/unforce_h9combo.txt')
+    if os.path.exists('' + getNeoLocation() + 'ImagesUpload/kernel.bin '):
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/kernel.bin ') 
+    if os.path.exists('' + getNeoLocation() + 'ImagesUpload/imageversion'):
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/imageversion')        
         
 def NEOBootExtract(source, target, ZipDelete):
     RemoveUnpackDirs()
@@ -1524,9 +1528,13 @@ def NEOBootExtract(source, target, ZipDelete):
             rc = os.system(cmd)
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/' + source + '.tar.bz2'):
             os.system('echo "Please wait. System installation spakowanego w plik tar.bz2 w toku..."')
-            os.system('cp -af ' + getNeoLocation() + 'ImagesUpload/' + source + '.tar.bz2  ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.bz2')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.bz2; tar -jxf ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd)
+        elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/rootfs.tar.bz2'):
+            os.system('echo "Please wait. System installation spakowanego w plik tar.bz2 w toku..."')
+            cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.bz2; tar -jxf ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
+            rc = os.system(cmd)
+            
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/' + source + '.mb'):
             os.system('echo "Please wait. System installation spakowanego w plik .mb w toku..."')
             os.system('cp -af ' + getNeoLocation() + 'ImagesUpload/' + source + '.mb  ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.gz')
