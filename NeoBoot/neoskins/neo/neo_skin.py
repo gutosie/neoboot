@@ -116,7 +116,6 @@ ImageChooseFULLHD = """
 
 #VIP
   <widget name="label21" position="384,49" size="148,45" font="dugme;30" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00ff7f50" />
-  <widget name="label22" position="1180,830" size="660,90" font="dugme;40" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="yellow" />
 
 </screen>
 """
