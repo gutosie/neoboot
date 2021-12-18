@@ -789,10 +789,10 @@ def RemoveUnpackDirs():
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/pulse4kmin')     
     if os.path.exists('' + getNeoLocation() + 'ImagesUpload/unforce_h9combo.txt'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/unforce_h9combo.txt')
-    if os.path.exists('' + getNeoLocation() + 'ImagesUpload/kernel.bin'):
-        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/kernel.bin') 
     if os.path.exists('' + getNeoLocation() + 'ImagesUpload/imageversion'):
-        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/imageversion')        
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/imageversion')
+    if os.path.exists('' + getNeoLocation() + 'ImagesUpload/kernel.bin'):
+        rc = os.system('rm -rf ' + getNeoLocation() + 'ImagesUpload/kernel.bin')        
         
 def NEOBootExtract(source, target, ZipDelete):
     RemoveUnpackDirs()
