@@ -50,6 +50,5 @@ ImageChooseFULLHD = """
   <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/key_menu.png" alphatest="blend" position="90,920" size="52,38" zPosition="3" />
   <widget source="session.VideoPicture" render="Pig" position="1200,582" size="660,370" backgroundColor="transparent" zPosition="1" />
   <widget name="key_menu" position="135,915" zPosition="1" size="249,46" font="Regular;30" halign="center" valign="center" backgroundColor="black" transparent="1" foregroundColor="#99FFFF" />
-  <widget name="label22" position="510,55" size="770,55" font="dugme;40" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="yellow" />
 </screen>
 """
