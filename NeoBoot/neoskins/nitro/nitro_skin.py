@@ -4,8 +4,7 @@ from Screens.Screen import Screen
 from Components.Pixmap import Pixmap
 import os
 
-
-### ImageChooseFULLHD            
+### ImageChooseFULLHD                       
 ImageChooseFULLHD = """                                                                                   
 <screen name="ImageChooseFULLHD" position="center,center" size="1920,1080" title=" " flags="wfNoBorder" backgroundColor="transparent">
     <ePixmap position="5,0" size="1920,1080" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/nitro/skin/background.png" transparent="1" alphatest="on" />
@@ -38,7 +37,7 @@ ImageChooseFULLHD = """
     <widget name="label15" position="75,408" zPosition="1" size="265,46" font="Regular; 30" halign="left" valign="center" backgroundColor="background" foregroundColor="yellow" transparent="1" />
     <widget name="label17" position="255,12" zPosition="1" size="451,46" font="Regular; 42" halign="left" valign="center" backgroundColor="background" transparent="1" foregroundColor="black" />
     <widget name="label19" position="70,909" zPosition="1" size="462,35" font="Regular; 25" halign="left" valign="center" backgroundColor="background" transparent="1" foregroundColor="black" />
-    <widget name="label21" position="75,12" zPosition="1" size="178,46" font="Regular; 42" halign="left" valign="center" backgroundColor="background" transparent="1" foregroundColor="black" />
+    <widget name="label21" position="75,12" zPosition="1" size="178,46" font="Regular; 42" halign="left" valign="center" backgroundColor="background" transparent="1" foregroundColor="black" />   
     <widget source="global.CurrentTime" render="Label" position="1626,35" size="225,37" backgroundColor="background" transparent="1" zPosition="1" font="Regular;33" valign="center" halign="right">
       <convert type="ClockToText">Format:%-H:%M</convert>
     </widget>
