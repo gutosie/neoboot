@@ -1,4 +1,4 @@
-#!/usr/bin/python
+     #!/usr/bin/python
 # -*- coding: utf-8 -*-
 # system modules
 
@@ -30,10 +30,11 @@ from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE, SCOPE_CURRENT_SKIN, fileExists, pathExists, createDir
+from Tools.Testinout import getTestToTest
 from os import system, listdir, mkdir, chdir, getcwd, rename as os_rename, remove as os_remove, popen
 from os.path import dirname, isdir, isdir as os_isdir
 from enigma import eTimer
-from Plugins.Extensions.NeoBoot.files.stbbranding import fileCheck, getNeoLocation, getImageNeoBoot, getKernelVersionString, getBoxHostName, getCPUtype, getBoxVuModel, getTunerModel, getCPUSoC, getImageATv, getBoxModelVU, getBoxMacAddres, getMountDiskSTB
+from Plugins.Extensions.NeoBoot.files.stbbranding import fileCheck, getNeoLocation, getImageNeoBoot, getKernelVersionString, getBoxHostName, getCPUtype, getBoxVuModel, getTunerModel, getCPUSoC, getImageATv, getBoxModelVU, getBoxMacAddres, getMountDiskSTB, getCheckActivateVip, getBoxMacAddres, getChipSetString
 import os
 import time
 import sys
@@ -91,7 +92,21 @@ def getCPUtype():
             cpu = 'MIPS'
     return cpu
 
+def getNeoActivatedtest():
+        neoactivated = 'NEOBOOT MULTIBOOT'
+        if not fileExists('/.multinfo'):        
+            if getCheckActivateVip() != getBoxMacAddres():       
+                neoactivated = 'Ethernet MAC not found.'
+            elif not fileExists('/usr/lib/periodon/.kodn'):                   
+                neoactivated = 'VIP Pin code missing.'
+            elif getTestToTest() != UPDATEVERSION :
+                neoactivated = _('Update %s is available.') % getTestToTest()
+            else:    
+                if getCheckActivateVip() == getBoxMacAddres() and fileExists('/usr/lib/periodon/.kodn') and getTestToTest() == UPDATEVERSION :
+                    neoactivated = 'NEOBOOT VIP ACTIVATED'                
 
+        return neoactivated
+    
 if os.path.exists('/etc/hostname'):
     with open('/etc/hostname', 'r') as f:
         myboxname = f.readline().strip()
@@ -2082,10 +2097,11 @@ class Opis(Screen):
         <widget name="key_green" position="660,950" size="538,50" zPosition="1" font="baslk; 30" halign="center" backgroundColor="red" transparent="1" foregroundColor="#ffffff" />
         <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/scroll.png" position="1144,160" size="26,685" zPosition="5" alphatest="blend"/>
         <ePixmap position="1350,750" zPosition="1" size="400,241" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/matrixhd.png" />
-        <ePixmap position="1479,543" zPosition="1" size="328,181" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/ico_neo.png" />
+        <ePixmap position="1475,530" zPosition="1" size="330,85" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/ico_neo.png" />
         <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red25.png" position="100,1000" size="230,36" alphatest="blend" />
         <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/green25.png" position="785,1000" size="230,36" alphatest="blend" />
         <widget name="lab1" position="100,160" size="1070,680" font="baslk; 30"  backgroundColor="black" transparent="1" />
+        <widget name="lab2" position="1280,595" zPosition="1" size="560,60" font="Regular; 35" halign="center" valign="center" backgroundColor="black" transparent="1" foregroundColor="green" />    
         </screen>"""
     else:
         skin = """<screen position="center,center" size="1280,720" title="NeoBoot - INFORMATION">
@@ -2097,9 +2113,10 @@ class Opis(Screen):
         <widget name="lab1" position="50,100" size="730,450" font="Regular;20" backgroundColor="black"  />
         <widget source="session.VideoPicture" render="Pig" position=" 836,89" size="370,208" zPosition="3" backgroundColor="#ff000000" />
         <widget source="Title" render="Label"  position="200,25" size="800,30" font="Regular;28" halign="left" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1"/>
-        <ePixmap position="920,520" zPosition="1" size="228,130" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/1matrix.png" />
-        <ePixmap position="955,373" zPosition="1" size="253,74" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/ico_neo.png" />
+        <ePixmap position="926,507" zPosition="1" size="228,130" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/1matrix.png" />
+        <ePixmap position="967,340" zPosition="1" size="255,65" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/ico_neo.png" />
         <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/scroll.png" position="754,100" size="26,455" zPosition="5" alphatest="blend" backgroundColor="black" transparent="1" />
+        <widget name="lab2" position="825,405" zPosition="1" size="425,50" font="Regular; 23" halign="center" valign="center" backgroundColor="black" transparent="1" foregroundColor="green" />        
         </screen>"""
     __module__ = __name__
 
@@ -2107,7 +2124,8 @@ class Opis(Screen):
         Screen.__init__(self, session)
         self['key_red'] = Label(_('Remove NeoBoot of STB'))
         self['key_green'] = Label(_('Instal neoobot from github'))
-        self['lab1'] = ScrollLabel('')
+        self['lab1'] = ScrollLabel('') 
+        self['lab2'] = Label(_('' + getNeoActivatedtest() + ''))        
         self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'DirectionActions'], {'back': self.close,
          'red': self.delete,
          'green': self.neoinstallgithub,
