@@ -1314,6 +1314,7 @@ class NeoBootImageChoose(Screen):
 
             else:
                 myerror = _('Sorry, this is not neoboot vip version.\nGet NEO-VIP version, more info press blue button or try to update.')
+                myerror += _('\nVIP - Try entering the pin code again.')
                 self.session.open(MessageBox, myerror, MessageBox.TYPE_INFO)
         else:
                         try:
