@@ -35,6 +35,7 @@ from os import system, listdir, mkdir, chdir, getcwd, rename as os_rename, remov
 from os.path import dirname, isdir, isdir as os_isdir
 from enigma import eTimer
 from Plugins.Extensions.NeoBoot.files.stbbranding import fileCheck, getNeoLocation, getImageNeoBoot, getKernelVersionString, getBoxHostName, getCPUtype, getBoxVuModel, getTunerModel, getCPUSoC, getImageATv, getBoxModelVU, getBoxMacAddres, getMountDiskSTB, getCheckActivateVip, getBoxMacAddres, getChipSetString
+from Components.Harddisk import harddiskmanager, getProcMounts
 import os
 import time
 import sys
@@ -1768,63 +1769,85 @@ class TunerInfo(Screen):
 
 class CreateSwap(Screen):
     __module__ = __name__
-    skin = """<screen name="TunerInfo" title="NeoBoot - Create Swap " position="center,center" size="700,300" flags="wfNoBorder">
-        <widget name="lab1" position="20,20" size="660,210" font="baslk;25" halign="center" valign="center" transparent="1" />
-        <ePixmap position="200,250" size="34,34" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red.png" alphatest="blend" zPosition="1" />
-        <widget name="key_red" position="250,250" zPosition="2" size="280,35" font="baslk;30" halign="left" valign="center" backgroundColor="red" transparent="1" foregroundColor="red" />
+    skin = """<screen name="Swap" title="NeoBoot - Create Swap " position="center,center" size="892,198" flags="wfNoBorder">
+        <widget name="lab1" position="112,27" size="660,85" font="baslk;25" halign="center" valign="center" transparent="1" />
+        <widget name="key_green" position="75,140" zPosition="2" size="315,45" font="baslk;30" halign="left" valign="center" backgroundColor="red" transparent="1" foregroundColor="red" />
+        <widget name="key_red" position="490,140" zPosition="2" size="315,45" font="baslk;30" halign="left" valign="center" backgroundColor="green" transparent="1" foregroundColor="green" />
         </screen>"""
 
-    def __init__(self, session):
+    from Screens.Console import Console
+    def __init__(self, session):       
         Screen.__init__(self, session)
         self['lab1'] = Label(_('Create swap-file.'))
         self['key_red'] = Label(_('Start create file swap.'))
+        self['key_green'] = Label(_('Remove file swap.'))        
         self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'back': self.close,
-         'red': self.CreateSwap})
+         'red': self.RemoveSwap,
+         'green': self.CreateSwap})
 
     def CreateSwap(self):
-        if os.path.exists('/media/hdd/ImageBoot/.neonextboot'):
-            if not os.path.exists('/media/hdd/swapfile'):
-                cmd0 = "echo -e '\n\n%s '" % _('Creation swap 512MB, please wait...')
-                cmd1 = 'dd if=/dev/zero of=/media/hdd/swapfile bs=1024 count=524288'
-                cmd2 = 'mkswap /media/hdd/swapfile'
-                cmd3 = 'swapon /media/hdd/swapfile'
-                cmd4 = 'echo "/media/hdd/swapfile swap swap defaults 0 0 "  >> /etc/fstab'
-                cmd5 = 'echo "/sbin/swapon /hdd/swapfile; swapon -a "  > /etc/init.d/rcS.local'
-                cmd6 = 'chmod 755 /etc/init.d/rcS.local; chmod 755 /media/hdd/swapfile; /sbin/swapon /hdd/swapfile'
-                cmd7 = "echo -e '\n\n%s '" % _('Creation complete swap 512MB')
-                self.session.open(Console, _('NeoBoot....'), [cmd0,
-                 cmd1,
-                 cmd2,
-                 cmd3,
-                 cmd4,
-                 cmd5,
-                 cmd6,
-                 cmd7])
-            else:
-                self.myClose(_('The file swapfile already exists!'))
-        elif os.path.exists('/media/usb/ImageBoot/.neonextboot'):
-            if not os.path.exists('/media/usb/swapfile'):
-                cmd0 = "echo -e '\n\n%s '" % _('Creation swap 512MB, please wait...')
-                cmd1 = 'dd if=/dev/zero of=/media/usb/swapfile bs=1024 count=524288'
-                cmd2 = 'mkswap /media/usb/swapfile'
-                cmd3 = 'swapon /media/usb/swapfile'
-                cmd4 = 'echo "/media/usb/swapfile swap swap defaults 0 0 "  >> /etc/fstab'
-                cmd5 = 'echo "/sbin/swapon /usb/swapfile; swapon -a "  > /etc/init.d/rcS.local'
-                cmd6 = 'chmod 755 /etc/init.d/rcS.local; chmod 755 /media/usb/swapfile; /sbin/swapon /usb/swapfile'
-                cmd7 = "echo -e '\n\n%s '" % _('Creation complete swap 512MB')
-                self.session.open(Console, _('NeoBoot....'), [cmd0,
-                 cmd1,
-                 cmd2,
-                 cmd3,
-                 cmd4,
-                 cmd5,
-                 cmd6,
-                 cmd7])
-            else:
-                self.myClose(_('The file swapfile already exists!'))
-        else:
-            self.myClose(_('The folder hdd or usb not  exists!'))
+		parts = []
+		supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'vfat'))
+		candidates = []
+		mounts = getProcMounts()
+		for partition in harddiskmanager.getMountedPartitions(False, mounts):
+			if partition.filesystem(mounts) in supported_filesystems:
+				candidates.append((partition.description, partition.mountpoint))
+		if len(candidates):
+			self.session.openWithCallback(self.doCSplace, ChoiceBox, title = _("Please select device to use as swapfile location"), list = candidates)
+		else:
+			self.session.open(MessageBox, _("Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"), MessageBox.TYPE_INFO, timeout = 10)
 
+    def doCSplace(self, name):    
+		if name:
+			self.new_place = name[1]
+			myoptions = [[_("8 MB"), '8192'], [_("16 MB"), '16384'], [_("32 MB"), '32768'], [_("64 MB"), '65536'], [_("96 MB"), '98304'], [_("128 MB"), '131072'], [_("256 MB"), '262144'], [_("512 MB"), '524288'], [_("1024 MB"), '1048576']]
+			self.session.openWithCallback(self.doChoiceSize, ChoiceBox, title=_("Select the Swap File Size:"), list=myoptions)
+
+
+    def doChoiceSize(self, swapsize):
+		if swapsize:
+			self["actions"].setEnabled(False)
+			swapsize = swapsize[1]
+			myfile = self.new_place + 'swapfile'
+                        cmd0 = "echo -e '\n\n%s '" % _('Creation swap ' + myfile+ ', please wait...')
+                        cmd1 = 'dd if=/dev/zero of=' + myfile + ' bs=1024 count=' + swapsize + ' 2>/dev/null'
+                        cmd2 = 'mkswap ' + myfile
+                        cmd3 = 'echo "' + myfile+ ' swap swap defaults 0 0 "  >> /etc/fstab'
+                        cmd4 = 'echo "/sbin/swapon ' + myfile+ '; swapon -a "  > /etc/init.d/rcS.local'
+                        cmd5 = 'chmod 755 /etc/init.d/rcS.local; chmod 755 ' + myfile+ '; /sbin/swapon ' + myfile+ ''
+                        cmd6 = "echo -e '\n\n%s '" % _('Creation complete swap ' + swapsize + '')
+                        self.session.open(Console, _('NeoBoot....'), [cmd0,
+                         cmd1,     
+                         cmd2,
+                         cmd3,
+                         cmd4,
+                         cmd5,
+                         cmd6])
+                        self.close()
+                        
+    def RemoveSwap(self):
+            if os.path.exists('/media/hdd/swapfile'):
+                        cmd0 = "echo -e '\n\n%s '" % _('Remove swap, please wait...')
+                        cmd1 = '/sbin/swapoff -a; rm -rf /media/hdd/swapfile '
+                        self.session.open(Console, _('NeoBoot....'), [cmd0,
+                         cmd1,])
+                        self.close()
+            elif os.path.exists('/media/usb/swapfile'):
+                        cmd0 = "echo -e '\n\n%s '" % _('Remove swap, please wait...')
+                        cmd1 = '/sbin/swapoff -a; rm -rf /media/usb/swapfile'
+                        self.session.open(Console, _('NeoBoot....'), [cmd0,
+                         cmd1,])
+                        self.close()
+            elif os.path.exists('/swapfile'):
+                        cmd0 = "echo -e '\n\n%s '" % _('Remove swap, please wait...')
+                        cmd1 = '/sbin/swapoff -a; rm -rf /swapfile'
+                        self.session.open(Console, _('NeoBoot....'), [cmd0,
+                         cmd1,])
+                        self.close()
+            else:
+                        self.myClose(_('The swap in hdd or usb not exists.'))
+                        
     def myClose(self, message):
         self.session.open(MessageBox, message, MessageBox.TYPE_INFO)
         self.close()
