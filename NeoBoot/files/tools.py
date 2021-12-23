@@ -1786,6 +1786,12 @@ class CreateSwap(Screen):
          'green': self.CreateSwap})
 
     def CreateSwap(self):
+        if not os.path.exists('/media/hdd/swapfile') and not os.path.exists('/media/usb/swapfile') and not os.path.exists('/swapfile'):
+                self.goCreateSwap()
+        else:
+                self.myClose(_('The file swapfile already exists.'))
+                
+    def goCreateSwap(self):
 		parts = []
 		supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'vfat'))
 		candidates = []
@@ -1803,8 +1809,7 @@ class CreateSwap(Screen):
 			self.new_place = name[1]
 			myoptions = [[_("8 MB"), '8192'], [_("16 MB"), '16384'], [_("32 MB"), '32768'], [_("64 MB"), '65536'], [_("96 MB"), '98304'], [_("128 MB"), '131072'], [_("256 MB"), '262144'], [_("512 MB"), '524288'], [_("1024 MB"), '1048576']]
 			self.session.openWithCallback(self.doChoiceSize, ChoiceBox, title=_("Select the Swap File Size:"), list=myoptions)
-
-
+			
     def doChoiceSize(self, swapsize):
 		if swapsize:
 			self["actions"].setEnabled(False)
@@ -1814,7 +1819,7 @@ class CreateSwap(Screen):
                         cmd1 = 'dd if=/dev/zero of=' + myfile + ' bs=1024 count=' + swapsize + ' 2>/dev/null'
                         cmd2 = 'mkswap ' + myfile
                         cmd3 = 'echo "' + myfile+ ' swap swap defaults 0 0 "  >> /etc/fstab'
-                        cmd4 = 'echo "/sbin/swapon ' + myfile+ '; swapon -a "  > /etc/init.d/rcS.local'
+                        cmd4 = 'echo "/sbin/swapon ' + myfile+ '; swapon -a "  >> /etc/init.d/rcS.local'
                         cmd5 = 'chmod 755 /etc/init.d/rcS.local; chmod 755 ' + myfile+ '; /sbin/swapon ' + myfile+ ''
                         cmd6 = "echo -e '\n\n%s '" % _('Creation complete swap ' + swapsize + '')
                         self.session.open(Console, _('NeoBoot....'), [cmd0,
@@ -1825,7 +1830,7 @@ class CreateSwap(Screen):
                          cmd5,
                          cmd6])
                         self.close()
-                        
+			
     def RemoveSwap(self):
             if os.path.exists('/media/hdd/swapfile'):
                         cmd0 = "echo -e '\n\n%s '" % _('Remove swap, please wait...')
@@ -1846,7 +1851,7 @@ class CreateSwap(Screen):
                          cmd1,])
                         self.close()
             else:
-                        self.myClose(_('The swap in hdd or usb not exists.'))
+                        self.myClose(_('The swap not exists.'))
                         
     def myClose(self, message):
         self.session.open(MessageBox, message, MessageBox.TYPE_INFO)
