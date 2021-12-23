@@ -1814,16 +1814,16 @@ class CreateSwap(Screen):
 		if swapsize:
 			self["actions"].setEnabled(False)
 			swapsize = swapsize[1]
-			myfile = self.new_place + 'swapfile'
+			myfile = self.new_place + '/swapfile'
                         cmd0 = "echo -e '\n\n%s '" % _('Creation swap ' + myfile+ ', please wait...')
                         cmd1 = 'dd if=/dev/zero of=' + myfile + ' bs=1024 count=' + swapsize + ' 2>/dev/null'
                         cmd2 = 'mkswap ' + myfile
-                        cmd3 = 'echo "' + myfile+ ' swap swap defaults 0 0 "  >> /etc/fstab'
+                        cmd3 = 'echo "'+ myfile + ' swap swap defaults 0 0"  >> /etc/fstab'
                         if os.path.exists('/etc/init.d/rc.local'):
-                            cmd4 = 'echo "/sbin/swapon ' + myfile+ '; swapon -a "  >> /etc/init.d/rc.local; chmod 755 /etc/init.d/rc.local'
+                            cmd4 = 'echo "/sbin/swapon ' + myfile + '; swapon -a "  >> /etc/init.d/rc.local; chmod 755 /etc/init.d/rc.local'
                         else:
-                            cmd4 = 'echo "/sbin/swapon ' + myfile+ '; swapon -a "  >> /etc/init.d/rcS.local; chmod 755 /etc/init.d/rcS.local'
-                        cmd5 = 'chmod 755 ' + myfile+ '; /sbin/swapon ' + myfile+ ''
+                            cmd4 = 'echo "/sbin/swapon ' + myfile + '; swapon -a "  > /etc/init.d/rcS.local; chmod 755 /etc/init.d/rcS.local'
+                        cmd5 = 'chmod 755 ' + myfile + '; /sbin/swapon ' + myfile + ''
                         cmd6 = "echo -e '\n\n%s '" % _('Creation complete swap ' + swapsize + '')
                         self.session.open(Console, _('NeoBoot....'), [cmd0,
                          cmd1,     
