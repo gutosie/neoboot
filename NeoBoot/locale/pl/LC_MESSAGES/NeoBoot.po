@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NeoBoot\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-12-19 06:35+0200\n"
+"PO-Revision-Date: 2021-12-24 16:09+0200\n"
 "Last-Translator: gutosie <Krzysio Gutosie>\n"
 "Language-Team: gutosie- GaduGadu nr. 5111900 <http://all-forum.cba.pl >\n"
 "Language: pl\n"
@@ -1317,7 +1317,7 @@ msgid "Updated unnecessary, you have the latest version. Please try again later.
 msgstr "Aktualizacja niepotrzebna,masz najnowszą wersję.Spróbuj ponownie później."
 
 msgid "MOUNTING. Restart image.'"
-msgstr "MONTOWANIE. Ponownie uruchom oprogramowanie."
+msgstr "MONTOWANIE. Ponownie uruchom system."
 
 msgid ""
 "\n"
@@ -2328,9 +2328,7 @@ msgstr "Wykonaj kopię oprogramowanie z neoboota."
 msgid ""
 " - Option to copy drivers to the image installed in neoboot from the flashlight, recommended only if you are installing an image from a different model than you have.\n"
 "\n"
-msgstr ""
-" - opcja przenosi z flasza sterowniki do instalowanego oprogramowania w neoboot, zalecane tylko w przypadku jeśli instalujemy image od innego model niż posiadamy. Mając np. obiornik vuplus i instalując oprogramowanie np. od innej marki zaznaczamy opcję na \"Tak\".\n"
-"\n"
+msgstr "\"\" - opcja przenosi z flasza sterowniki do instalowanego oprogramowania w neoboot, zalecane tylko w przypadku jeśli instalujemy image od innego model niż posiadamy. Mając np. obiornik vuplus i instalując oprogramowanie np. od innej marki zaznaczamy opcję na Tak\n"
 
 msgid "Choose the image you want to make a copy of"
 msgstr "Wybierz oprogramowanie, którego kopię chcesz wykonać."
@@ -2722,6 +2720,9 @@ msgstr "Utwórz wymianę-swap."
 msgid "Create swap-file."
 msgstr "Utwórz plik-swap."
 
+msgid "Remove file swap."
+msgstr "Usuń plik swap."
+
 msgid "Start create file swap."
 msgstr "Utwórz wymianę plik swap."
 
@@ -2730,6 +2731,27 @@ msgstr "Wtyczka nie została zainstalowana."
 
 msgid "The file swapfile already exists!"
 msgstr "Plik swapfile już istnieje!"
+
+msgid "The swap not exists."
+msgstr "Swap nie istnieje."
+
+msgid "Remove swap, please wait..."
+msgstr "Uswanie pliku swap, proszę czekać..."
+
+msgid "Creation complete swap "
+msgstr "Tworzenie pliku wymiany swap zakonczone."
+
+msgid "Creation swap ' + myfile+ ', please wait..."
+msgstr "Tworzenie swap ' + myfile+ ', proszę czekać..."
+
+msgid "Select the Swap File Size:"
+msgstr "Wybierz rozmiar pliku wymiany:"
+
+msgid "Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"
+msgstr "Przepraszamy, nie podłączono żadnych fizycznych urządzeń obsługujących SWAP. Nie można utworzyć pliku wymiany w sieci lub systemie plików fat32"
+
+msgid "Please select device to use as swapfile location"
+msgstr "Wybierz urządzenie, które ma być używane jako lokalizacja pliku wymiany"
 
 msgid ""
 "Your receiver is not on the list of supported tuners.\n"
