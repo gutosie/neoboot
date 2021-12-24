@@ -1834,37 +1834,33 @@ class CreateSwap(Screen):
                 lines = f.read()
                 f.close()
             if os.path.exists('/media/hdd/swapfile') or os.path.exists('/media/usb/swapfile') or os.path.exists('/swapfile') :
-                        cmd0 = "echo -e '\n\n%s '" % _('Remove swap, please wait...')                     
+                        cmd0 = "echo -e '\n%s '" % _('Remove swap, please wait...')                     
                         fail = '/etc/fstab'
                         f = open(fail, 'r')
                         content = f.read()
                         f.close()
                         localfile2 = '/etc/fstab'
                         temp_file2 = open(localfile2, 'w')
-                        if lines.find('/media/hdd//swapfile swap swap defaults 0 0') != -1:
-                            temp_file2.write(content.replace("/media/hdd//swapfile swap swap defaults 0 0",""))
-                            cmd1 = '/sbin/swapoff -a; sleep 2; rm -rf /media/hdd/swapfile; sleep 2 '
-                        elif lines.find('/media/hdd/swapfile swap swap defaults 0 0') != -1:
+                        if lines.find('/media/hdd/swapfile swap swap defaults 0 0') != -1:
                             temp_file2.write(content.replace("/media/hdd/swapfile swap swap defaults 0 0",""))
-                            cmd1 = '/sbin/swapoff -a; sleep 2; rm -rf /media/hdd/swapfile; sleep 2 '
+                            cmd2 = '/sbin/swapoff -a; sleep 2; rm -rf /media/hdd/swapfile; sleep 2 '
+                        elif lines.find('/media/hdd//swapfile swap swap defaults 0 0') != -1:
+                            temp_file2.write(content.replace("/media/hdd//swapfile swap swap defaults 0 0",""))
+                            cmd2 = '/sbin/swapoff -a; sleep 2; rm -rf /media/hdd/swapfile; sleep 2 '
                         elif lines.find('/media/usb/swapfile swap swap defaults 0 0') != -1:
                             temp_file2.write(content.replace("/media/usb/swapfile swap swap defaults 0 0",""))
-                            cmd1 = '/sbin/swapoff -a; sleep 2; rm -rf /media/usb/swapfile; sleep 2 '
+                            cmd2 = '/sbin/swapoff -a; sleep 2; rm -rf /media/usb/swapfile; sleep 2 '
                         elif lines.find('/media/usb//swapfile swap swap defaults 0 0') != -1:
                             temp_file2.write(content.replace("/media/usb//swapfile swap swap defaults 0 0",""))
-                            cmd1 = '/sbin/swapoff -a; sleep 2; rm -rf /media/usb/swapfile; sleep 2 '
-                        elif lines.find('//swapfile swap swap defaults 0 0') != -1:
-                            temp_file2.write(content.replace("//swapfile swap swap defaults 0 0",""))
-                            cmd1 = '/sbin/swapoff -a; sleep 2; rm -rf /swapfile; sleep 2 '                            
+                            cmd2 = '/sbin/swapoff -a; sleep 2; rm -rf /media/usb/swapfile; sleep 2 '
                         elif lines.find('/swapfile swap swap defaults 0 0') != -1:
                             temp_file2.write(content.replace("/swapfile swap swap defaults 0 0",""))
-                            cmd1 = '/sbin/swapoff -a; sleep 2; rm -rf /swapfile; sleep 2 '
-                        temp_file2.close()
-                        
+                            cmd2 = '/sbin/swapoff -a; sleep 2; rm -rf /swapfile; sleep 2 '
+                        temp_file2.close()                        
+                        cmd1 = "echo -e '\n\n%s '" % _('Swap file has been deleted.')                        
                         self.session.open(Console, _('NeoBoot....'), [cmd0,
                          cmd1])
                         self.close()
-
             else:
                         self.myClose(_('The swap not exists.'))
                         
