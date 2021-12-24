@@ -5,7 +5,7 @@ echo "_________________________ Start inithelp __________________________"
 if [ -f /proc/stb/info/vumodel ];  then  
         VUMODEL=$( cat /proc/stb/info/vumodel )
 fi
-NEOBOOT=/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot
+NEOBOOT=/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/
 NEODEVICE=`cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`
 IMAGEKATALOG=ImageBoot
 BOXHOSTNAME=`cat /etc/hostname`        
