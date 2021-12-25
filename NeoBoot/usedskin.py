@@ -242,7 +242,6 @@ MyUpgradeHD = """
 ###____ Skin NeoBootInstallationFULLHD - NeoBootInstallationFULLHD ___mod. gutosie ___
 NeoBootInstallationFULLHD = """
 <screen name="NeoBootInstallationFULLHD" position="410,138" size="1200,850" title="NeoBoot">
-        <widget name="label3" position="10,632" size="1178,114" zPosition="1" halign="center" font="dugme;28" backgroundColor="black" transparent="1" foregroundColor="#ffffff" />
         <ePixmap position="643,282" zPosition="-2" size="531,331" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/matrix.png" />
         <eLabel position="15,76" size="1177,2" backgroundColor="blue" foregroundColor="blue" name="linia" />
         <eLabel position="10,622" size="1168,3" backgroundColor="blue" foregroundColor="blue" name="linia" />
@@ -250,6 +249,9 @@ NeoBootInstallationFULLHD = """
         <eLabel position="15,276" size="1183,2" backgroundColor="blue" foregroundColor="blue" name="linia" />
         <widget name="label1" position="14,4" size="1180,62" zPosition="1" halign="center" font="dugme;28" backgroundColor="black" transparent="1" foregroundColor="#ffffff" />
         <widget name="label2" position="15,82" size="1178,190" zPosition="1" halign="center" font="dugme;28" backgroundColor="black" transparent="1" foregroundColor="yellow" />
+        <widget name="label3" position="623,630" size="562,115" zPosition="1" halign="center" font="dugme;28" backgroundColor="black" transparent="1" foregroundColor="#ffffff" />
+        <widget name="label4" position="13,632" size="298,55" zPosition="1" halign="center" font="dugme;28" backgroundColor="black" transparent="1" foregroundColor="#ffffff" />
+        <widget name="label5" position="13,686" size="298,48" zPosition="1" halign="center" font="dugme;28" backgroundColor="black" transparent="1" foregroundColor="#ffffff" />
         <widget name="config" position="15,285" size="641,329" font="dugme; 28" itemHeight="42" scrollbarMode="showOnDemand" />
         <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/redcor.png" position="48,812" size="140,28" alphatest="on" />
         <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/greencor.png" position="311,816" size="185,28" alphatest="on" />
