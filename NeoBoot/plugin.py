@@ -270,6 +270,8 @@ class NeoBootInstallation(Screen):
             os.system('chattr -i ' + LinkNeoBoot + '/plugin.py; chattr -i ' + LinkNeoBoot + '/plugin.pyo; chattr -i /usr/lib/periodon/.activatedmac')
             if fileExists('/etc/fstab.org'):
                 system('rm -r /etc/fstab; mv /etc/fstab.org /etc/fstab')
+            if fileExists('/etc/rcS.d/S99neo.local'):
+                system('rm -r /etc/rcS.d/S99neo.local')                
             if fileExists('/etc/init.d/volatile-media.sh.org'):
                 system(' mv /etc/init.d/volatile-media.sh.org /etc/init.d/volatile-media.sh; rm -r /etc/init.d/volatile-media.sh.org; chmod 755 /etc/init.d/volatile-media.sh ')
             if os.path.isfile('%sImageBoot/.neonextboot' % getNeoLocation()):
