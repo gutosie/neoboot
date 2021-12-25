@@ -252,6 +252,7 @@ NeoBootInstallationFULLHD = """
         <widget name="label3" position="623,630" size="562,115" zPosition="1" halign="center" font="dugme;28" backgroundColor="black" transparent="1" foregroundColor="#ffffff" />
         <widget name="label4" position="13,632" size="298,55" zPosition="1" halign="center" font="dugme;28" backgroundColor="black" transparent="1" foregroundColor="#ffffff" />
         <widget name="label5" position="13,686" size="298,48" zPosition="1" halign="center" font="dugme;28" backgroundColor="black" transparent="1" foregroundColor="#ffffff" />
+        <widget name="label6" position="311,656" size="310,60" zPosition="1" halign="center" font="dugme;28" backgroundColor="black" transparent="1" foregroundColor="red" />
         <widget name="config" position="15,285" size="641,329" font="dugme; 28" itemHeight="42" scrollbarMode="showOnDemand" />
         <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/redcor.png" position="48,812" size="140,28" alphatest="on" />
         <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/greencor.png" position="311,816" size="185,28" alphatest="on" />
@@ -313,4 +314,5 @@ NeoBootInstallationHD = """
   <widget name="label3" position="20,339" size="816,61" zPosition="1" halign="center" font="Regular;24" backgroundColor="black" transparent="1" foregroundColor="#58ccff" />
   <widget name="label4" position="49,451" size="288,32" zPosition="1" halign="center" font="dugme;22" backgroundColor="black" transparent="1" foregroundColor="#ffffff" />
   <widget name="label5" position="376,452" size="293,32" zPosition="1" halign="center" font="dugme;22" backgroundColor="black" transparent="1" foregroundColor="#ffffff" />
+  <widget name="label6" position="540,54" size="293,32" zPosition="1" halign="center" font="dugme;22" backgroundColor="black" transparent="1" foregroundColor="red" />
   </screen>"""
