@@ -323,4 +323,5 @@ NeoBootInstallationHD = """
   <widget name="label3" position="20,339" size="816,61" zPosition="1" halign="center" font="Regular;24" backgroundColor="black" transparent="1" foregroundColor="#58ccff" />
   <widget name="label4" position="49,451" size="288,32" zPosition="1" halign="center" font="dugme;22" backgroundColor="black" transparent="1" foregroundColor="#ffffff" />
   <widget name="label5" position="376,452" size="293,32" zPosition="1" halign="center" font="dugme;22" backgroundColor="black" transparent="1" foregroundColor="#ffffff" />
+  <widget name="label6" position="540,54" size="293,32" zPosition="1" halign="center" font="dugme;22" backgroundColor="black" transparent="1" foregroundColor="#ffffff" /> 
   </screen>"""
