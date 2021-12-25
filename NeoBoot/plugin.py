@@ -188,12 +188,14 @@ class NeoBootInstallation(Screen):
         self['label2'] = Label(_('Here is the list of mounted devices in Your STB\nPlease choose a device where You would like to install NeoBoot'))        
         self['label3'] = Label(_('It is recommended to give a label to the disk.'))
         self['label4'] = Label(_('Press MENU - Backup'))
-        self['label5'] = Label(_('Press 1 - Mounting'))                
+        self['label5'] = Label(_('Press 1 - Mounting'))
+        self['label6'] = Label(_('Press 2 - Delete NeoBoot'))         
         self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'MenuActions', 'NumberActionMap', 'SetupActions', 'number' 'DirectionActions'], {'red': self.Instrukcja,
          'green': self.checkinstall,
          'ok': self.checkinstall,
          'menu': self.helpneo,
          '1': self.datadrive,
+         '2': self.deleteneo,         
          'yellow': self.SetDiskLabel,
          'blue': self.devices,
          'back': self.close})
@@ -257,6 +259,40 @@ class NeoBootInstallation(Screen):
                 pass
         else:
             self.session.open(MessageBox, _('Neoboot backup not found.'), type=MessageBox.TYPE_INFO)
+            
+    def deleteneo(self):
+        message = _('Are you sure you want to completely remove NeoBoota of your image?\n\nIf you choose so all directories NeoBoota will be removed.\nA restore the original image settings Flash.')
+        ybox = self.session.openWithCallback(self.mbdelete, MessageBox, message, MessageBox.TYPE_YESNO)
+        ybox.setTitle(_('Removed successfully.'))
+
+    def mbdelete(self, answer):
+        if answer is True:
+            os.system('chattr -i ' + LinkNeoBoot + '/plugin.py; chattr -i ' + LinkNeoBoot + '/plugin.pyo; chattr -i /usr/lib/periodon/.activatedmac')
+            if fileExists('/etc/fstab.org'):
+                system('rm -r /etc/fstab; mv /etc/fstab.org /etc/fstab')
+            if fileExists('/etc/init.d/volatile-media.sh.org'):
+                system(' mv /etc/init.d/volatile-media.sh.org /etc/init.d/volatile-media.sh; rm -r /etc/init.d/volatile-media.sh.org; chmod 755 /etc/init.d/volatile-media.sh ')
+            if os.path.isfile('%sImageBoot/.neonextboot' % getNeoLocation()):
+                os.system('rm -f /etc/neoimage; rm -f /etc/imageboot; rm -f %sImageBoot/.neonextboot; rm -f %sImageBoot/.version; rm -f %sImageBoot/.Flash; ' % (getNeoLocation(), getNeoLocation(), getNeoLocation()))
+            if os.path.isfile('%sImagesUpload/.kernel ' % getNeoLocation()):
+                os.system('rm -r %sImagesUpload/.kernel' % getNeoLocation())
+            cmd = "echo -e '\n\n%s '" % _('Recovering setting....\n')
+            cmd1 = 'rm -R ' + LinkNeoBoot + ''
+            cmd2 = 'rm -R /sbin/neoinit*'
+            cmd3 = 'ln -sfn /sbin/init.sysvinit /sbin/init'
+            cmd4 = 'rm -rf /usr/lib/enigma2/python/Tools/Testinout.p*'
+            cmd5 = 'rm -rf /usr/lib/periodon'
+            cmd6 = 'opkg install --force-maintainer --force-reinstall --force-overwrite --force-downgrade volatile-media; sleep 10; PATH=/sbin:/bin:/usr/sbin:/usr/bin; echo -n "Rebooting... "; reboot -d -f'
+            self.session.open(Console, _('NeoBot was removed !!! \nThe changes will be visible only after complete restart of the receiver.'), [cmd,
+             cmd1,
+             cmd2,
+             cmd3,
+             cmd4,
+             cmd5,
+             cmd6])
+            self.close()
+        else:
+            self.close()            
 
     def updateList(self):
         mycf, mymmc, myusb, myusb2, myusb3, mysd, mycard, myhdd, myssd = ('', '', '', '', '', '', '', '', '')
