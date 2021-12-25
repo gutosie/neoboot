@@ -153,6 +153,10 @@ def getNeoLocation():
         with open('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location', 'r') as f:
             locatino = f.readline().strip()
             f.close()
+    elif os.path.exists('/media/hdd/ImageBoot'):
+            locatino = '/media/hdd/'
+    elif os.path.exists('/media/usb/ImageBoot'):
+            locatino = '/media/usb/'		
     return locatino
 
 
