@@ -953,6 +953,7 @@ class NeoBootImageChoose(Screen):
                 self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
 
         if not fileExists('/.multinfo'):
+            system('ln -sfn /sbin/init.sysvinit /sbin/init')
             out = open('%sImageBoot/.neonextboot' % getNeoLocation(), 'w')
             out.write('Flash')
             out.close()
