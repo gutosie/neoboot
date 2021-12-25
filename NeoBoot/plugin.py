@@ -185,12 +185,15 @@ class NeoBootInstallation(Screen):
         self['key_yellow'] = Label(_('SetDiskLabel'))
         self['key_blue'] = Label(_('Device Manager'))
         self['label1'] = Label(_('Welcome to NeoBoot %s Plugin installation.') % PLUGINVERSION)
+        self['label2'] = Label(_('Here is the list of mounted devices in Your STB\nPlease choose a device where You would like to install NeoBoot'))        
         self['label3'] = Label(_('It is recommended to give a label to the disk.'))
-        self['label2'] = Label(_('Here is the list of mounted devices in Your STB\nPlease choose a device where You would like to install NeoBoot'))
-        self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'DirectionActions'], {'red': self.Instrukcja,
+        self['label4'] = Label(_('Press MENU - Backup'))
+        self['label5'] = Label(_('Press 1 - Mounting'))                
+        self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'MenuActions', 'NumberActionMap', 'SetupActions', 'number' 'DirectionActions'], {'red': self.Instrukcja,
          'green': self.checkinstall,
          'ok': self.checkinstall,
-         'key_menu': self.datadrive,
+         'menu': self.helpneo,
+         '1': self.datadrive,
          'yellow': self.SetDiskLabel,
          'blue': self.devices,
          'back': self.close})
@@ -242,6 +245,18 @@ class NeoBootInstallation(Screen):
             loggscrash = time.localtime(time.time())
             LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
             pass
+        
+    def helpneo(self):
+        if fileExists('/media/hdd/CopyNEOBoot') or fileExists('/media/usb/CopyNEOBoot') :        
+            try:
+                from Plugins.Extensions.NeoBoot.files.tools import ReinstllNeoBoot
+                self.session.open(ReinstllNeoBoot)
+            except Exception as e:
+                loggscrash = time.localtime(time.time())
+                LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
+                pass
+        else:
+            self.session.open(MessageBox, _('Neoboot backup not found.'), type=MessageBox.TYPE_INFO)
 
     def updateList(self):
         mycf, mymmc, myusb, myusb2, myusb3, mysd, mycard, myhdd, myssd = ('', '', '', '', '', '', '', '', '')
