@@ -247,7 +247,6 @@ MyUpgradeHD = """
 ###____ Skin NeoBootInstallationFULLHD - NeoBootInstallationFULLHD ___mod. gutosie ___
 NeoBootInstallationFULLHD = """
 <screen name="NeoBootInstallationFULLHD" position="410,138" size="1200,850" title="NeoBoot">
-        <widget name="label3" position="10,632" size="1178,114" zPosition="1" halign="center" font="dugme;28" backgroundColor="black" transparent="1" foregroundColor="#ffffff" />
         <ePixmap position="643,282" zPosition="-2" size="531,331" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/matrix.png" />
         <eLabel position="15,76" size="1177,2" backgroundColor="blue" foregroundColor="blue" name="linia" />
         <eLabel position="10,622" size="1168,3" backgroundColor="blue" foregroundColor="blue" name="linia" />
@@ -255,6 +254,9 @@ NeoBootInstallationFULLHD = """
         <eLabel position="15,276" size="1183,2" backgroundColor="blue" foregroundColor="blue" name="linia" />
         <widget name="label1" position="14,4" size="1180,62" zPosition="1" halign="center" font="dugme;28" backgroundColor="black" transparent="1" foregroundColor="#ffffff" />
         <widget name="label2" position="15,82" size="1178,190" zPosition="1" halign="center" font="dugme;28" backgroundColor="black" transparent="1" foregroundColor="yellow" />
+        <widget name="label3" position="623,630" size="562,115" zPosition="1" halign="center" font="dugme;28" backgroundColor="black" transparent="1" foregroundColor="#ffffff" />
+        <widget name="label4" position="13,632" size="298,55" zPosition="1" halign="center" font="dugme;28" backgroundColor="black" transparent="1" foregroundColor="#ffffff" />
+        <widget name="label5" position="13,686" size="298,48" zPosition="1" halign="center" font="dugme;28" backgroundColor="black" transparent="1" foregroundColor="#ffffff" />
         <widget name="config" position="15,285" size="641,329" font="dugme; 28" itemHeight="42" scrollbarMode="showOnDemand" />
         <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/redcor.png" position="48,812" size="140,28" alphatest="on" />
         <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/greencor.png" position="311,816" size="185,28" alphatest="on" />
@@ -272,6 +274,10 @@ NeoBootInstallationUltraHD = """
         <widget source="Title" render="Label" position="174,108" size="1575,150" font="baslk;102" valign="bottom" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" noWrap="1" transparent="1" />
         <widget name="label1" position="210,360" size="2100,90" font="genel;72" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" zPosition="1" transparent="1" />
         <widget name="label2" position="210,480" size="2100,570" font="genel;60" foregroundColor="#00DAA520" backgroundColor="#1A0F0F0F" zPosition="1" transparent="1" />
+
+        <widget name="label4" position="13,632" size="298,55" zPosition="1" halign="center" font="dugme;28" backgroundColor="black" transparent="1" foregroundColor="#ffffff" />
+        <widget name="label5" position="13,686" size="298,48" zPosition="1" halign="center" font="dugme;28" backgroundColor="black" transparent="1" foregroundColor="#ffffff" />
+        
         <widget name="config" position="210,690" size="2100,540" itemHeight="108" font="genel;60" zPosition="2" scrollbarMode="showOnDemand" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" foregroundColorSelected="#00FFFFF" backgroundColorSelected="#1A27408B" scrollbarSliderBorderWidth="1" scrollbarWidth="8" scrollbarSliderForegroundColor="#00FFFFFF" scrollbarSliderBorderColor="#0027408B" enableWrapAround="1" transparent="1" />
         <eLabel position="210,1470" size="2100,3" backgroundColor="#0027408B" />
         <widget name="label3" position="150,1500" size="2100,90" font="genel;60" halign="center" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" zPosition="1" transparent="1" />
@@ -314,4 +320,6 @@ NeoBootInstallationHD = """
   <widget name="key_yellow" position="474,406" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="yellow" transparent="1" />
   <widget name="key_blue" position="672,415" zPosition="1" size="145,45" font="Regular;20" halign="center" valign="center" backgroundColor="blue" transparent="1" />
   <widget name="label3" position="20,339" size="816,61" zPosition="1" halign="center" font="Regular;24" backgroundColor="black" transparent="1" foregroundColor="#58ccff" />
+  <widget name="label4" position="49,451" size="288,32" zPosition="1" halign="center" font="dugme;22" backgroundColor="black" transparent="1" foregroundColor="#ffffff" />
+  <widget name="label5" position="376,452" size="293,32" zPosition="1" halign="center" font="dugme;22" backgroundColor="black" transparent="1" foregroundColor="#ffffff" />
   </screen>"""
