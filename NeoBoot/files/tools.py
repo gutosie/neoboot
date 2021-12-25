@@ -2229,7 +2229,9 @@ class Opis(Screen):
         if answer is True:
             os.system('chattr -i ' + LinkNeoBoot + '/plugin.py; chattr -i ' + LinkNeoBoot + '/plugin.pyo; chattr -i /usr/lib/periodon/.activatedmac')
             if fileExists('/etc/rcS.d/S99neo.local'):
-                system('rm -r /etc/rcS.d/S99neo.local')          
+                system('rm -r /etc/rcS.d/S99neo.local')
+            if fileExists('/etc/name'):
+                system('rm -r /etc/name')               
             if fileExists('/etc/fstab.org'):
                 system('rm -r /etc/fstab; mv /etc/fstab.org /etc/fstab')
             if fileExists('/etc/init.d/volatile-media.sh.org'):
