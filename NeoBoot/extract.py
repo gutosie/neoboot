@@ -703,6 +703,8 @@ def RemoveUnpackDirs():
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/osmini')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/xp1000 '):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/xp1000 ')
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/et5x00 '):
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/et5x00 ')        
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/dinobot '):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/dinobot ')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/e2/update'):
