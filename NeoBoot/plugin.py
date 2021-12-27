@@ -684,6 +684,8 @@ class NeoBootInstallation(Screen):
                             os.system('cd ' + LinkNeoBoot + '/; rm ./bin/fontforneoboot.ttf; rm ./bin/libpngneo; mv ' + LinkNeoBoot + '/tmpfiles/target/vu_dev_mtd2.sh ' + LinkNeoBoot + '/files/kernel.sh; mv ' + LinkNeoBoot + '/tmpfiles/runpy/vu_mtd2_run.py ' + LinkNeoBoot + '/run.py; cd')
 
                         #Other stb MIPS
+                        elif getBoxHostName() == "et5x00":   
+                            os.system('cd ' + LinkNeoBoot + '/; chmod 755 ./bin/nandwrite; mv ./bin/fontforneoboot.ttf /usr/share/fonts; mv ./bin/libpngneo /usr/lib; cp -f ./bin/neoinitarmvuDuo4k /sbin/neoinitmips; cp -f ./bin/neoinitmipsvu /sbin/neoinitmipsvu; chmod 0755 /sbin/neoinit*; rm -f ./bin/neobm; mv ./bin/neobmmips ./bin/neobm; chmod 0755 ./bin/neobm; chmod 0755 /usr/lib/libpngneo; cd; chmod 0755 /sbin/neoinitmips; ln -sf /media/neoboot/ImageBoot/.neonextboot /etc/neoimage; mv ' + LinkNeoBoot + '/tmpfiles/runpy/mips_run.py ' + LinkNeoBoot + '/run.py; cd')                        
                         else:
                             os.system('cd ' + LinkNeoBoot + '/; chmod 755 ./bin/nandwrite; mv ./bin/fontforneoboot.ttf /usr/share/fonts; mv ./bin/libpngneo /usr/lib; cp -f ./bin/neoinitmips /sbin/neoinitmips; cp -f ./bin/neoinitmipsvu /sbin/neoinitmipsvu; chmod 0755 /sbin/neoinit*; rm -f ./bin/neobm; mv ./bin/neobmmips ./bin/neobm; chmod 0755 ./bin/neobm; chmod 0755 /usr/lib/libpngneo; cd; chmod 0755 /sbin/neoinitmips; ln -sf /media/neoboot/ImageBoot/.neonextboot /etc/neoimage; mv ' + LinkNeoBoot + '/tmpfiles/runpy/mips_run.py ' + LinkNeoBoot + '/run.py; cd')
 
