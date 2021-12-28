@@ -136,7 +136,7 @@ class StartImage(Screen):
                                 if not fileExists('/.multinfo'):
                                     if not fileExists('%sImageBoot/%s/boot/zImage.%s' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
                                         cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT - REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
-                                        cmd1 = 'sleep 5; ln -sfn /sbin/neoinitarm /sbin/init; /etc/init.d/reboot'
+                                        cmd1 = 'sleep 5; ln -sfn /sbin/neoinitarm /sbin/init; reboot -d -f'
 
                                     elif fileExists('%sImageBoot/%s/boot/zImage.%s' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
                                         cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT - REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
