@@ -131,11 +131,11 @@ class StartImage(Screen):
 
                                     if fileExists('' + getNeoLocation() + 'ImageBoot/' + getImageNeoBoot() + '/boot/' + getBoxHostName() + '.vmlinux.gz'):
                                         cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT-REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
-                                        cmd1 = 'ln -sfn /sbin/neoinitmipsvu /sbin/init; /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/kernel.sh'
+                                        cmd1 = 'ln -sfn /sbin/neoinitmips /sbin/init; /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/kernel.sh'
 
                                     elif not fileExists('%sImageBoot/%s/boot/%s.vmlinux.gz' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
                                         cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT > REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
-                                        cmd1 = 'ln -sfn /sbin/neoinitmipsvu /sbin/init; reboot -d -f'
+                                        cmd1 = 'ln -sfn /sbin/neoinitmips /sbin/init; reboot -d -f'
 
                                 elif fileExists('/.multinfo'):
                                     if not fileExists('%sImageBoot/%s/boot/%s.vmlinux.gz' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
