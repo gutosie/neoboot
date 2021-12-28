@@ -30,7 +30,11 @@ IMAGENEXTBOOT=/ImageBoot/.neonextboot
 NEOBOOTMOUNT=$( cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location) 
 BOXHOSTNAME=$( cat /etc/hostname)
 UPLOAD=ImagesUpload
-NandWrite=/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/nandwrite
+if [ -f /usr/sbin/nandwrite ];  then  
+    NandWrite=/usr/sbin/nandwrite    
+else
+    NandWrite=/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/nandwrite
+fi
 
 if [ -f $NEOBOOTMOUNT$IMAGENEXTBOOT ]; then
   TARGET=`cat $NEOBOOTMOUNT$IMAGENEXTBOOT`
