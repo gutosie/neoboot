@@ -123,7 +123,7 @@ class StartImage(Screen):
                                     cmd1 = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/kernel.sh'
                                 elif not fileExists('/.multinfo'):
                                     cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT >> Reboot...............\nPlease wait, in a moment the decoder will be restarted...')
-                                    cmd1 = 'ln -sfn /sbin/init.sysvinit /sbin/init; /etc/init.d/reboot'
+                                    cmd1 = 'ln -sfn /sbin/init.sysvinit /sbin/init; reboot -d -f'
 
                             elif getImageNeoBoot() != 'Flash':
                                 if not fileExists('/.multinfo'):
@@ -134,12 +134,12 @@ class StartImage(Screen):
 
                                     elif not fileExists('%sImageBoot/%s/boot/%s.vmlinux.gz' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
                                         cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT > REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
-                                        cmd1 = 'ln -sfn /sbin/neoinitmipsvu /sbin/init; /etc/init.d/reboot'
+                                        cmd1 = 'ln -sfn /sbin/neoinitmipsvu /sbin/init; reboot -d -f'
 
                                 elif fileExists('/.multinfo'):
                                     if not fileExists('%sImageBoot/%s/boot/%s.vmlinux.gz' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
                                         cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT_REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
-                                        cmd1 = 'flash_eraseall /dev/mtd2; sleep 2; ' + LinkNeoBoot + '/bin/nandwrite -p /dev/mtd2 %sImagesUpload/.kernel/%s.vmlinux.gz; /etc/init.d/reboot' % (getNeoLocation(), getBoxHostName())
+                                        cmd1 = 'flash_eraseall /dev/mtd2; sleep 2; ' + LinkNeoBoot + '/bin/nandwrite -p /dev/mtd2 %sImagesUpload/.kernel/%s.vmlinux.gz; reboot -d -f' % (getNeoLocation(), getBoxHostName())
 
                                     elif fileExists('%sImageBoot/%s/boot/%s.vmlinux.gz' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
                                         cmd = "echo -e '\n\n%s '" % _('...............REBOOT now...............\nPlease wait, in a moment the decoder will be restarted...')
