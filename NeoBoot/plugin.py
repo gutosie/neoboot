@@ -686,7 +686,7 @@ class NeoBootInstallation(Screen):
                         #Other stb MIPS
                         elif getBoxHostName() == "et5x00":
                             if fileExists('/usr/sbin/nanddump'):                                                                                                                                  
-                                os.system('cd ' + getNeoLocation() + 'ImagesUpload/.kernel/; nanddump --omitoob -f vmlinux.gz /dev/mtd1; mv ./vmlinux.gz ./' + getBoxHostName() + '.vmlinux.gz')
+                                os.system('cd ' + getNeoLocation() + 'ImagesUpload/.kernel/; /usr/sbin/nanddump --omitoob -f vmlinux.gz /dev/mtd1; mv ./vmlinux.gz ./' + getBoxHostName() + '.vmlinux.gz')
                             elif not fileExists('/usr/sbin/nanddump'):
                                 os.system('cd ' + getNeoLocation() + 'ImagesUpload/.kernel/; ' + LinkNeoBoot + '/bin/nanddump_mips --omitoob -f vmlinux.gz /dev/mtd1; mv ./vmlinux.gz ./' + getBoxHostName() + '.vmlinux.gz')
                             os.system('cd ' + LinkNeoBoot + '/; cp -f ./bin/neoinitarmvuDuo4k /sbin/neoinitmips; rm ./bin/fontforneoboot.ttf; rm ./bin/libpngneo; mv ' + LinkNeoBoot + '/tmpfiles/target/xtrend_dev_mtd1.sh ' + LinkNeoBoot + '/files/kernel.sh;mv ' + LinkNeoBoot + '/tmpfiles/runpy/xtrend_mtd1_run.py ' + LinkNeoBoot + '/run.py; cd')                            
