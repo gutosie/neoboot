@@ -62,7 +62,6 @@ if [ $BOXHOSTNAME = "et5x00" ] ; then
                             dd if=$NEOBOOTMOUNT$UPLOAD/.kernel/$BOXHOSTNAME.vmlinux.gz of=/dev/mtdblock1 
                         else
                             $NandWrite -p /dev/mtd1 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXHOSTNAME.vmlinux.gz > /dev/null 2>&1 
-                            $NandWrite -p /dev/mtd1 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXHOSTNAME.vmlinux.gz > /dev/null 2>&1 
                         fi
                                     
                     fi 
@@ -70,8 +69,9 @@ if [ $BOXHOSTNAME = "et5x00" ] ; then
                 update-alternatives --remove vmlinux vmlinux-`uname -r` || true                                          
                 echo "NEOBOOT is booting image " $TARGET
                 echo "...............Shutdown Now..............."
-                sleep 5                                
+                echo "CHIPSET: " $CHIPSET " BOX NAME: "$BOXHOSTNAME" MODEL: "$BOXHOSTNAME" "                               
                 echo "Used Kernel: " $TARGET > $NEOBOOTMOUNT$UPLOAD/.kernel/used_flash_kernel
+                sleep 5 
                 reboot -d -f                
         else                  	    
                         if [ -e /.multinfo ] ; then
@@ -111,11 +111,12 @@ if [ $BOXHOSTNAME = "et5x00" ] ; then
                         update-alternatives --remove vmlinux vmlinux-`uname -r` || true
                         echo "NEOBOOT is booting image " $TARGET
                         echo "Used Kernel: " $TARGET   > $NEOBOOTMOUNT$UPLOAD/.kernel/used_flash_kernel                                         
-                        echo "...............Shutdown Now..............." 
+                        echo "...............Shutdown Now..............."
+                        echo "CHIPSET: " $CHIPSET " BOX NAME: "$BOXHOSTNAME" MODEL: "$BOXHOSTNAME" " 
                         sleep 5
                         reboot -d -f
         fi
-    fi                        
+    fi        
 else
                     ln -sfn /sbin/init.sysvinit /sbin/init
                     echo "CHIPSET: " $CHIPSET " BOX NAME: "$BOXHOSTNAME" MODEL: "$BOXHOSTNAME" "
