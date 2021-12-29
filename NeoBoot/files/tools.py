@@ -1738,7 +1738,34 @@ class ATVcamfeed(Screen):
     def myClose(self, message):
         self.session.open(MessageBox, message, MessageBox.TYPE_INFO)
         self.close()
+     
+     
+class TunerInfo(Screen):
+    __module__ = __name__
+    skin = """<screen name="TunerInfo" title="NeoBoot - Sat Tuners " position="center,center" size="700,300" flags="wfNoBorder">
+        <widget name="lab1" position="20,20" size="660,210" font="baslk;25" halign="center" valign="center" transparent="1" />
+        <ePixmap position="200,250" size="34,34" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red.png" alphatest="blend" zPosition="1" />
+        <widget name="key_red" position="250,250" zPosition="2" size="280,35" font="baslk;30" halign="left" valign="center" backgroundColor="red" transparent="1" foregroundColor="red" />
+        </screen>"""
 
+    def __init__(self, session):
+        Screen.__init__(self, session)
+        self['lab1'] = Label(_('List of supported stb.'))
+        self['key_red'] = Label(_('Start - Red'))
+        self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'back': self.close,
+         'red': self.iNFO})
+         
+    def iNFO(self):
+        try:
+            cmd = ' cat ' +LinkNeoBoot+ '/stbinfo.cfg'
+            cmd1 = ''
+            self.session.openWithCallback(self.close, Console, _('NeoBoot....'), [cmd,
+                     cmd1]) 
+            self.close()
+
+        except:
+            False
+               
 
 class CreateSwap(Screen):
     __module__ = __name__
@@ -1817,28 +1844,40 @@ class CreateSwap(Screen):
                 system('/sbin/swapoff -a; sleep 2; rm -rf /media/usb/swapfile; sleep 2')          
             if os.path.exists('/swapfile'):
                 system('/sbin/swapoff -a; sleep 2; rm -rf /swapfile; sleep 2')
-            with open('/etc/fstab', 'r') as f:
-                lines = f.read()
-                f.close()                                 
-            fail = '/etc/fstab'
-            f = open(fail, 'r')
-            content = f.read()
-            f.close()
-            localfile2 = '/etc/fstab'
-            temp_file2 = open(localfile2, 'w')
-            if lines.find('/media/hdd/swapfile swap swap defaults 0 0') != -1:
-                temp_file2.write(content.replace("/media/hdd/swapfile swap swap defaults 0 0",""))
-            elif lines.find('/media/hdd//swapfile swap swap defaults 0 0') != -1:
-                temp_file2.write(content.replace("/media/hdd//swapfile swap swap defaults 0 0",""))
-            elif lines.find('/media/usb/swapfile swap swap defaults 0 0') != -1:
-                temp_file2.write(content.replace("/media/usb/swapfile swap swap defaults 0 0",""))                
-            elif lines.find('/media/usb//swapfile swap swap defaults 0 0') != -1:
-                temp_file2.write(content.replace("/media/usb//swapfile swap swap defaults 0 0",""))
-            elif lines.find('//swapfile swap swap defaults 0 0') != -1:
-                temp_file2.write(content.replace("/swapfile swap swap defaults 0 0",""))                
-            elif lines.find('/swapfile swap swap defaults 0 0') != -1:
-                temp_file2.write(content.replace("/swapfile swap swap defaults 0 0",""))
-            temp_file2.close()  
+                    
+            swapfileinstall = ' '
+            if os.path.exists('/etc/fstab'):
+                with open('/etc/fstab', 'r') as f:
+                    lines = f.read()
+                    f.close()
+                if lines.find('swapfile') != -1:
+                    swapfileinstall = 'swapfileyes'
+
+            if swapfileinstall == 'swapfileyes':
+                with open('/etc/fstab', 'r') as f:
+                    lines = f.read()
+                    f.close()                                 
+                fail = '/etc/fstab'
+                f = open(fail, 'r')
+                content = f.read()
+                f.close()
+                localfile2 = '/etc/fstab'
+                temp_file2 = open(localfile2, 'w')
+                
+                if lines.find('/media/hdd/swapfile swap swap defaults 0 0') != -1:
+                    temp_file2.write(content.replace("/media/hdd/swapfile swap swap defaults 0 0",""))
+                elif lines.find('/media/hdd//swapfile swap swap defaults 0 0') != -1:
+                    temp_file2.write(content.replace("/media/hdd//swapfile swap swap defaults 0 0",""))
+                elif lines.find('/media/usb/swapfile swap swap defaults 0 0') != -1:
+                    temp_file2.write(content.replace("/media/usb/swapfile swap swap defaults 0 0",""))                
+                elif lines.find('/media/usb//swapfile swap swap defaults 0 0') != -1:
+                    temp_file2.write(content.replace("/media/usb//swapfile swap swap defaults 0 0",""))
+                elif lines.find('//swapfile swap swap defaults 0 0') != -1:
+                    temp_file2.write(content.replace("/swapfile swap swap defaults 0 0",""))                
+                elif lines.find('/swapfile swap swap defaults 0 0') != -1:
+                    temp_file2.write(content.replace("/swapfile swap swap defaults 0 0",""))          
+                temp_file2.close()
+                             
             cmd1 = "echo -e '\n\n%s '" % _('Swap file has been deleted.')                        
             self.session.open(Console, _('NeoBoot....'), [cmd0,
             cmd1])
