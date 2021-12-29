@@ -35,6 +35,10 @@ else
     NandWrite=/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/nandwrite   
 fi
 
+#dd if=/media/hdd/ImagesUpload/.kernel/kernel.bin of=/dev/mtdblock1
+#/usr/sbin/nandwrite -p /dev/mtd1 /media/hdd/ImagesUpload/.kernel/kernel.bin
+#/usr/sbin/nandwrite -p /dev/mtd1 /media/hdd/ImagesUpload/.kernel/et5x00.vmlinux.gz
+
 if [ -f $NEOBOOTMOUNT$IMAGENEXTBOOT ]; then
   TARGET=`cat $NEOBOOTMOUNT$IMAGENEXTBOOT`
 else
@@ -42,7 +46,6 @@ else
 fi
                    
 if [ $BOXHOSTNAME = "et5x00" ] ; then
-    if [ ! -e /proc/stb/info/vumodel ] || [ -f /proc/stb/info/boxtype ] ; then
         if [ $TARGET = "Flash" ]; then                    
                 if [ -e /.multinfo ]; then                                                
                             if [ ! -e /proc/stb/info/vumodel ] || [ -f /proc/stb/info/boxtype ]; then
@@ -52,7 +55,11 @@ if [ $BOXHOSTNAME = "et5x00" ] ; then
                                     flash_eraseall /dev/mtd1 > /dev/null 2>&1
                                     [ $PL ] && echo "Wgrywanie kernel do /dev/mtd1..." || echo "Writing kernel to from  /dev/mtd1"  
                                     sleep 2
-                                    $NandWrite -p /dev/mtd1 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXHOSTNAME.vmlinux.gz > /dev/null 2>&1
+                                    if [ -e /usr/dd ]; then
+                                        dd if=$NEOBOOTMOUNT$UPLOAD/.kernel/flash-kernel-$BOXHOSTNAME.bin of=/dev/mtdblock1 > /dev/null 2>&1
+                                    else
+                                        $NandWrite -p /dev/mtd1 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXHOSTNAME.vmlinux.gz > /dev/null 2>&1 
+                                    fi
                                 fi
                             fi
                             update-alternatives --remove vmlinux vmlinux-`uname -r` || true                                          
@@ -68,7 +75,11 @@ if [ $BOXHOSTNAME = "et5x00" ] ; then
                                         flash_eraseall /dev/mtd1 > /dev/null 2>&1
                                         [ $PL ] && echo "Wgrywanie kernel do /dev/mtd1..." || echo "Writing kernel to from  /dev/mtd1"                                           
                                         sleep 2
-                                        $NandWrite -p /dev/mtd1 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXHOSTNAME.vmlinux.gz > /dev/null 2>&1
+                                        if [ -e /usr/dd ]; then
+                                            dd if=$NEOBOOTMOUNT$UPLOAD/.kernel/$BOXHOSTNAME.vmlinux.gz of=/dev/mtdblock1 > /dev/null 2>&1
+                                        else
+                                            $NandWrite -p /dev/mtd1 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXHOSTNAME.vmlinux.gz > /dev/null 2>&1
+                                        fi
                                     fi
                                 fi
                             fi    
@@ -92,7 +103,12 @@ if [ $BOXHOSTNAME = "et5x00" ] ; then
                                     flash_eraseall /dev/mtd1 > /dev/null 2>&1
                                     [ $PL ] && echo "Wgrywanie kernel do /dev/mtd1..." || echo "Writing kernel to from  /dev/mtd1"                                                                      
                                     sleep 2
-                                    $NandWrite -p /dev/mtd1 $NEOBOOTMOUNT$IMAGE/$TARGET/boot/$BOXHOSTNAME.vmlinux.gz > /dev/null 2>&1  
+                                    if [ -e /usr/dd ]; then
+                                        dd if=$NEOBOOTMOUNT$IMAGE/$TARGET/boot/$BOXHOSTNAME.vmlinux.gz of=/dev/mtdblock1 > /dev/null 2>&1
+                                    else
+                                        $NandWrite -p /dev/mtd1 $NEOBOOTMOUNT$IMAGE/$TARGET/boot/$BOXHOSTNAME.vmlinux.gz > /dev/null 2>&1
+                                    fi
+                                      
                                     update-alternatives --remove vmlinux vmlinux-`uname -r` || true
                                     echo "NEOBOOT is booting image" $TARGET
                                     echo "Used Kernel: " $TARGET   > $NEOBOOTMOUNT$UPLOAD/.kernel/used_flash_kernel
@@ -103,11 +119,16 @@ if [ $BOXHOSTNAME = "et5x00" ] ; then
                                     flash_eraseall /dev/mtd1 > /dev/null 2>&1 
                                     [ $PL ] && echo "Wgrywanie kernel do /dev/mtd1..." || echo "Writing kernel to from  /dev/mtd1"
                                     sleep 2
-                                    $NandWrite -p /dev/mtd1 $NEOBOOTMOUNT$IMAGE/$TARGET/boot/$BOXHOSTNAME.vmlinux.gz > /dev/null 2>&1                                                                                                     
+                                    if [ -e /usr/dd ]; then
+                                        dd if=$NEOBOOTMOUNT$IMAGE/$TARGET/boot/$BOXHOSTNAME.vmlinux.gz of=/dev/mtdblock1 > /dev/null 2>&1
+                                    else
+                                        $NandWrite -p /dev/mtd1 $NEOBOOTMOUNT$IMAGE/$TARGET/boot/$BOXHOSTNAME.vmlinux.gz > /dev/null 2>&1
+                                    fi
+                                                                                                                                         
                                     update-alternatives --remove vmlinux vmlinux-`uname -r` || true
                                     echo "NEOBOOT is booting image " $TARGET
                                     echo "Used Kernel: " $TARGET   > $NEOBOOTMOUNT$UPLOAD/.kernel/used_flash_kernel                                       
-                        fi                
+                        fi               
                         echo "...............Shutdown Now..............." 
                         sync && echo 3 > /proc/sys/vm/drop_caches
                         sleep 5
