@@ -30,7 +30,12 @@ NEOBOOTMOUNT=$( cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location
 BOXHOSTNAME=$( cat /etc/hostname)
 UPLOAD=ImagesUpload
 NandWrite=/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/nandwrite  
-CHECK_NANDWRITE=$( cat /tmp/check_nandwrite)             
+
+if [ -f /tmp/check_nandwrite ];  then
+    CHECK_NANDWRITE=$( cat /tmp/check_nandwrite)
+else             
+    CHECK_NANDWRITE=" "
+fi            
 
 if [ -f $NEOBOOTMOUNT$IMAGENEXTBOOT ]; then
   TARGET=`cat $NEOBOOTMOUNT$IMAGENEXTBOOT`
@@ -41,93 +46,86 @@ fi
                    
 if  [ $BOXHOSTNAME = "vusolo2" ] || [ $BOXHOSTNAME = "vuduo2" ] || [ $BOXHOSTNAME = "vusolose" ] || [ $BOXHOSTNAME = "vuzero" ]; then     #[ $BOXHOSTNAME = "mbultra" ]
     if [ -f /proc/stb/info/vumodel ] || [ ! -e /proc/stb/info/boxtype ] ; then
-        if [ $TARGET = "Flash" ]; then                    
-                if [ -e /.multinfo ]; then                                                
+        if [ $TARGET = "Flash" ]; then
+                if [ -e /.multinfo ]; then
                     if [ -e $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXHOSTNAME.vmlinux.gz ] ; then
                         [ $PL ] && echo "Kasowanie kernel z /dev/mtd2..." || echo "Erase kernel from  /dev/mtd2"
-                        sleep 2                                
-                        flash_eraseall /dev/mtd2 > /dev/null 2>&1
-                        [ $PL ] && echo "Wgrywanie kernel do /dev/mtd2..." || echo "Writing kernel to from  /dev/mtd2"  
                         sleep 2
-
+                        flash_eraseall /dev/mtd2 > /dev/null 2>&1
+                        [ $PL ] && echo "Wgrywanie kernel do /dev/mtd2..." || echo "Writing kernel to from  /dev/mtd2"
+                        sleep 2
                         if [ $CHECK_NANDWRITE = "nandwrite" ] ; then
-                            nandwrite -p /dev/mtd2 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXHOSTNAME.vmlinux.gz > /dev/null 2>&1
-                            [ $PL ] && echo "nandwrite - kernel wgrany" || echo "Writing kernel to /dev/mtd2"            
-                        elif [ $CHECK_NANDWRITE = "nandwrite" ] ; then
-                            dd if=$NEOBOOTMOUNT$UPLOAD/.kernel/$BOXHOSTNAME.vmlinux.gz of=/dev/mtdblock1 
+                            nandwrite -p /dev/mtd2 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXHOSTNAME.vmlinux.gz > /dev/null 2>&1 
+                            [ $PL ] && echo "nandwrite - kernel wgrany" || echo "Writing kernel to /dev/mtd2"
                         else
-                            $NandWrite -p /dev/mtd2 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXHOSTNAME.vmlinux.gz > /dev/null 2>&1 
+                            echo "Writing kernel /dev/mtd2 " $TARGET
+                            $NandWrite -p /dev/mtd2 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXHOSTNAME.vmlinux.gz > /dev/null 2>&1
                         fi
-                                    
-                    fi 
+                    fi
                 fi
-                
-                update-alternatives --remove vmlinux vmlinux-`uname -r` || true                                          
+                update-alternatives --remove vmlinux vmlinux-`uname -r` || true
                 echo "NEOBOOT is booting image " $TARGET
+                echo "$TARGET "  > $NEOBOOTMOUNT/ImageBoot/.neonextboot
+                echo "CHIPSET: " $CHIPSET " BOX NAME: "$BOXHOSTNAME" MODEL: "$BOXHOSTNAME" "
                 echo "...............Shutdown Now..............."
-                sleep 5                                
+                sleep 5
                 echo "Used Kernel: " $TARGET > $NEOBOOTMOUNT$UPLOAD/.kernel/used_flash_kernel
-                reboot -d -f                
-        else                  	    
+                reboot -d -f
+        else
                         if [ -e /.multinfo ] ; then
                                 INFOBOOT=$( cat /.multinfo )
                                 if [ $TARGET = $INFOBOOT ] ; then
-                                    echo "NEOBOOT is booting image from " $TARGET                                    
-                                else                                    
-                                    [ $PL ] && echo "Kasowanie kernel z /dev/mtd2..." || echo "Erase kernel from  /dev/mtd2"                                   
+                                    echo "NEOBOOT is booting image from " $TARGET
+                                else
+                                    [ $PL ] && echo "Kasowanie kernel z /dev/mtd2..." || echo "Erase kernel from  /dev/mtd2"
                                     sleep 2
                                     flash_eraseall /dev/mtd2 > /dev/null 2>&1
-                                    [ $PL ] && echo "Wgrywanie kernel do /dev/mtd2..." || echo "Writing kernel to from  /dev/mtd2"                                                                      
+                                    [ $PL ] && echo "Wgrywanie kernel do /dev/mtd2..." || echo "Writing kernel to from  /dev/mtd2"
                                     sleep 2
-                                    
                                     if [ $CHECK_NANDWRITE = "nandwrite" ] ; then
                                         echo "writing kernel flash - BOOT IMAGE "
                                        /usr/sbin/nandwrite -p /dev/mtd2 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXHOSTNAME.vmlinux.gz > /dev/null 2>&1
-                                       [ $PL ] && echo "nandwrite - kernel zmieniony" || echo "Writing kernel to /dev/mtd2"                            
-                                    elif [ -e /dev/mtdblock1 ] ; then
-                                        echo "writing kernel mtd1 " $TARGET 
-                                        dd if=/media/hdd/ImageBoot/$TARGET/boot/$BOXHOSTNAME.vmlinux.gz of=/dev/mtdblock1
+                                       [ $PL ] && echo "nandwrite - kernel zmieniony" || echo "Writing kernel to /dev/mtd2"           
                                     else
+                                        echo "writing kernel mtd1 " $TARGET
                                         $NandWrite -p /dev/mtd2 $NEOBOOTMOUNT$IMAGE/$TARGET/boot/$BOXHOSTNAME.vmlinux.gz > /dev/null 2>&1
                                     fi
-                                      
                                     update-alternatives --remove vmlinux vmlinux-`uname -r` || true
                                     echo "NEOBOOT is booting image" $TARGET
                                     echo "Used Kernel: " $TARGET   > $NEOBOOTMOUNT$UPLOAD/.kernel/used_flash_kernel
                                 fi
                         else
-                                    [ $PL ] && echo "Kasowanie kernel z /dev/mtd2..." || echo "Erase kernel from  /dev/mtd2"                                   
+                                    [ $PL ] && echo "Kasowanie kernel z /dev/mtd2..." || echo "Erase kernel from  /dev/mtd2"
                                     sleep 2
-                                    flash_eraseall /dev/mtd2 > /dev/null 2>&1 
+                                    flash_eraseall /dev/mtd2 > /dev/null 2>&1
                                     [ $PL ] && echo "Zapis kernel do /dev/mtd2..." || echo "Writing kernel to from  /dev/mtd2"
                                     sleep 2
-                                    
                                     if [ $CHECK_NANDWRITE = "nandwrite" ] ; then
                                         echo "writing kernel flash - IMAGE BOOT "
-                                       /usr/sbin/nandwrite -np /dev/mtd2 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXHOSTNAME.vmlinux.gz > /dev/null 2>&1
-                                       [ $PL ] && echo "Kernel zmieniony" || echo "Writing kernel to /dev/mtd2"                          
-                                    elif [ -e /dev/mtdblock1 ] ; then
-                                        echo "writing kernel mtdblock1 " $TARGET
-                                        dd if=$NEOBOOTMOUNT$IMAGE/$TARGET/boot/$BOXHOSTNAME.vmlinux.gz of=/dev/mtdblock1 > /dev/null 2>&1
+                                        sleep 2
+                                       /usr/sbin/nandwrite -p /dev/mtd2 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXHOSTNAME.vmlinux.gz > /dev/null 2>&1
+                                       [ $PL ] && echo "Kernel zmieniony" || echo "Writing kernel to /dev/mtd2"            
                                     else
+                                        echo "writing kernel mtdblock1 " $TARGET
                                         $NandWrite -p /dev/mtd2 $NEOBOOTMOUNT$IMAGE/$TARGET/boot/$BOXHOSTNAME.vmlinux.gz > /dev/null 2>&1
                                     fi
-                                                                          
                         fi
                         update-alternatives --remove vmlinux vmlinux-`uname -r` || true
                         echo "NEOBOOT is booting image " $TARGET
-                        echo "Used Kernel: " $TARGET   > $NEOBOOTMOUNT$UPLOAD/.kernel/used_flash_kernel                                         
-                        echo "...............Shutdown Now..............." 
+                        echo "Used Kernel: " $TARGET   > $NEOBOOTMOUNT$UPLOAD/.kernel/used_flash_kernel
+                        echo "CHIPSET: " $CHIPSET " BOX NAME: "$BOXHOSTNAME" MODEL: "$BOXHOSTNAME" "
+                        echo "$TARGET "  > $NEOBOOTMOUNT/ImageBoot/.neonextboot
+                        echo "...............Shutdown Now..............."
                         sleep 5
                         reboot -d -f
         fi
-    fi        
+    fi
 else
                     ln -sfn /sbin/init.sysvinit /sbin/init
-                    echo "CHIPSET: " $CHIPSET " BOX NAME: "$BOXHOSTNAME" MODEL: "$VUMODEL" "
+                    echo "CHIPSET: " $CHIPSET " BOX NAME: "$BOXHOSTNAME" MODEL: "$BOXHOSTNAME" "
                     echo "$TARGET "  > $NEOBOOTMOUNT/ImageBoot/.neonextboot
-                    [ $PL ] && echo "Ten model stb nie jest wpierany" || echo "This stb model is not supported." 
-                    [ $PL ] && echo "Wspierane modele: vusolo2, vuduo2, vusolose, vuzero" || echo "Supported model: vusolo2, vuduo2, vusolose, vuzero "                    
+                    [ $PL ] && echo "Ten model stb nie jest wpierany" || echo "This stb model is not supported."
+                    [ $PL ] && echo "Wspierane modele: vuduo, vusolo, vuuno, vuultimo" || echo "Supported model: vuduo, vusolo, vuuno, vuultimo "              
                     exit 0
 fi
 exit 0
