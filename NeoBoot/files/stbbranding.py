@@ -1066,6 +1066,17 @@ def getCheckExt():
             neoExt = 'ext3'
         elif lines.find('/media/usb ext4') != -1:
             neoExt = 'ext4'                         
-    return neoExt 
+    return neoExt
+
+def getNandWrite():
+    NandWrite = 'UNKNOWN'
+    if os.path.exists('/usr/sbin/nandwrite'):
+        with open('/usr/sbin/nandwrite', 'r') as f:
+            lines = f.read()
+            f.close()
+        if lines.find('nandwrite') != -1:
+            NandWrite = 'nandwrite'
+                        
+    return NandWrite
 
 boxbrand = sys.modules[__name__]
