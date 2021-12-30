@@ -58,7 +58,7 @@ if [ $BOXHOSTNAME = "et5x00" ] ; then
                             [ $PL ] && echo "nandwrite - kernel wgrany" || echo "Writing kernel to /dev/mtd1"
                         else
                             echo "Writing kernel /dev/mtd1 " $TARGET
-                            $NandWrite -p /dev/mtd1 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXHOSTNAME.vmlinux.gz
+                            $NandWrite -p /dev/mtd1 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXHOSTNAME.vmlinux.gz > /dev/null 2>&1
                         fi
                     fi
                 fi
@@ -83,11 +83,11 @@ if [ $BOXHOSTNAME = "et5x00" ] ; then
                                     sleep 2
                                     if [ $CHECK_NANDWRITE = "nandwrite" ] ; then
                                         echo "writing kernel flash - BOOT IMAGE "
-                                       /usr/sbin/nandwrite -p /dev/mtd1 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXHOSTNAME.vmlinux.gz
+                                       /usr/sbin/nandwrite -p /dev/mtd1 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXHOSTNAME.vmlinux.gz > /dev/null 2>&1
                                        [ $PL ] && echo "nandwrite - kernel zmieniony" || echo "Writing kernel to /dev/mtd1"           
                                     else
                                         echo "writing kernel mtd1 " $TARGET
-                                        $NandWrite -p /dev/mtd1 $NEOBOOTMOUNT$IMAGE/$TARGET/boot/$BOXHOSTNAME.vmlinux.gz
+                                        $NandWrite -p /dev/mtd1 $NEOBOOTMOUNT$IMAGE/$TARGET/boot/$BOXHOSTNAME.vmlinux.gz > /dev/null 2>&1
                                     fi
                                     update-alternatives --remove vmlinux vmlinux-`uname -r` || true
                                     echo "NEOBOOT is booting image" $TARGET
@@ -102,11 +102,11 @@ if [ $BOXHOSTNAME = "et5x00" ] ; then
                                     if [ $CHECK_NANDWRITE = "nandwrite" ] ; then
                                         echo "writing kernel flash - IMAGE BOOT "
                                         sleep 2
-                                       /usr/sbin/nandwrite -p /dev/mtd1 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXHOSTNAME.vmlinux.gz
+                                       /usr/sbin/nandwrite -p /dev/mtd1 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXHOSTNAME.vmlinux.gz > /dev/null 2>&1
                                        [ $PL ] && echo "Kernel zmieniony" || echo "Writing kernel to /dev/mtd1"            
                                     else
                                         echo "writing kernel mtdblock1 " $TARGET
-                                        $NandWrite -p /dev/mtd1 $NEOBOOTMOUNT$IMAGE/$TARGET/boot/$BOXHOSTNAME.vmlinux.gz
+                                        $NandWrite -p /dev/mtd1 $NEOBOOTMOUNT$IMAGE/$TARGET/boot/$BOXHOSTNAME.vmlinux.gz > /dev/null 2>&1
                                     fi
                         fi
                         update-alternatives --remove vmlinux vmlinux-`uname -r` || true
