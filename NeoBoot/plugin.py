@@ -681,7 +681,7 @@ class NeoBootInstallation(Screen):
 
                         #vuplus stb mtd2
                         #blokada dla mips
-                        eif fileExists('/gutosie'):                        
+                        elif fileExists('/gutosie'):                        
                         #elif getBoxHostName() == 'vusolo2' or getBoxHostName() == 'vuduo2' or getBoxHostName() == 'vusolose' or getBoxHostName() == 'vuzero':
                             if fileExists('/usr/sbin/nanddump'):
                                 os.system('cd ' + getNeoLocation() + 'ImagesUpload/.kernel/; /usr/sbin/nanddump /dev/mtd2 --omitoob -f vmlinux.gz /dev/mtd2; mv ./vmlinux.gz ./' + getBoxHostName() + '.vmlinux.gz')
