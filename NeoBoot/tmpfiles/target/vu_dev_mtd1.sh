@@ -33,7 +33,7 @@ NandWrite=/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/nandwrite
 if [ -f /tmp/check_nandwrite ];  then
     CHECK_NANDWRITE=$( cat /tmp/check_nandwrite)
 else
-    CHECK_NANDWRITE=" "
+    CHECK_NANDWRITE=error
 fi
 
 if [ -f $NEOBOOTMOUNT$IMAGENEXTBOOT ]; then
@@ -50,9 +50,9 @@ if [ $VUMODEL = "bm750" ] || [ $BOXHOSTNAME = "vuduo" ] || [ $BOXHOSTNAME = "vus
                         [ $PL ] && echo "Kasowanie kernel z /dev/mtd1..." || echo "Erase kernel from  /dev/mtd1"
                         sleep 2
                         cp -f $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXHOSTNAME.vmlinux.gz /tmp/vmlinux.gz 
-                        [ $PL ] && echo "Wgrywanie kernel do /dev/mtd1..." || echo "Writing kernel to from  /dev/mtd1"
+                        [ $PL ] && echo "Wgrywanie kernel do /dev/mtd1..." || echo "Writing kernel to /dev/mtd1"
                         sleep 2
-                        if [ -e /tmp/check_nandwrite ] || [ $CHECK_NANDWRITE = "nandwrite" ] ; then
+                        if [ $CHECK_NANDWRITE = "nandwrite" ] ; then
                             set -e
                                 if [ "x$D" == "x" ]; then
                                     if [ -f /tmp/vmlinux.gz ] ; then
@@ -93,7 +93,7 @@ if [ $VUMODEL = "bm750" ] || [ $BOXHOSTNAME = "vuduo" ] || [ $BOXHOSTNAME = "vus
                                     
                                     [ $PL ] && echo "Wgrywanie kernel do /dev/mtd1... " || echo "Writing kernel to from  /dev/mtd1 "
                                     sleep 2
-                                    if [ -e /tmp/check_nandwrite ] || [ $CHECK_NANDWRITE = "nandwrite" ] ; then
+                                    if [ $CHECK_NANDWRITE = "nandwrite" ] ; then
                                         echo "writing kernel flash - BOOT IMAGE "
                                         set -e
                                             if [ "x$D" == "x" ]; then
@@ -127,7 +127,7 @@ if [ $VUMODEL = "bm750" ] || [ $BOXHOSTNAME = "vuduo" ] || [ $BOXHOSTNAME = "vus
                                     cp -f $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXHOSTNAME.vmlinux.gz /tmp/vmlinux.gz
                                     [ $PL ] && echo "Zapis kernel do /dev/mtd1... " || echo "Writing kernel to from  /dev/mtd1 "
                                     sleep 2
-                                    if [ -e /tmp/check_nandwrite ] || [ $CHECK_NANDWRITE = "nandwrite" ] ; then
+                                    if [ $CHECK_NANDWRITE = "nandwrite" ] ; then
                                         echo "writing kernel flash - IMAGE BOOT "
                                         set -e
                                             if [ "x$D" == "x" ]; then
