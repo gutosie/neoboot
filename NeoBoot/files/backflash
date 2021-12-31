@@ -47,35 +47,7 @@ fi
                    
 if [ -e /.multinfo ]; then
     #if [ $TARGET = "Flash" ]; then                    
-    if [ $BOXNAME = "bm750" ] || [ $BOXNAME = "vuduo" ] || [ $BOXNAME = "vusolo" ] || [ $BOXNAME = "vuuno" ] || [ $BOXNAME = "vuultimo" ]; then                                                
-                            if [ -f /proc/stb/info/vumodel ] || [ ! -e /proc/stb/info/boxtype ]; then
-                                if [ -e $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXNAME.vmlinux.gz ] ; then
-                                    echo "Kasowanie kernel z /dev/mtd1..."
-                                    sleep 2                                
-                                    flash_eraseall /dev/mtd1  
-                                    echo "Instalacja kernel do /dev/mtd1..." 
-                                    sleep 2
-		                                $NandWrite -p /dev/mtd1 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXNAME.vmlinux.gz
-                                fi
-                            fi
-                            update-alternatives --remove vmlinux vmlinux-`uname -r` || true                                          
-                            echo "NEOBOOT is booting image from " $TARGET
-                            echo "Used Kernel: " $TARGET > $NEOBOOTMOUNT$UPLOAD/.kernel/used_flash_kernel 
-    elif  [ $BOXNAME = "vusolo2" ] || [ $BOXNAME = "vuduo2" ] || [ $BOXNAME = "vusolose" ] || [ $BOXNAME = "vuzero" ]; then     #[ $BOXNAME = "mbultra" ]
-                            if [ -f /proc/stb/info/vumodel ] || [ ! -e /proc/stb/info/boxtype ]; then
-                                if [ -e $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXNAME.vmlinux.gz ] ; then
-                                    echo "Kasowanie kernel z /dev/mtd2..."
-                                    sleep 2                                
-                                    flash_eraseall /dev/mtd2  
-                                    echo "Instalacja kernel do /dev/mtd2..." 
-                                    sleep 2
-		                                $NandWrite -p /dev/mtd2 $NEOBOOTMOUNT$UPLOAD/.kernel/$BOXNAME.vmlinux.gz
-                                fi
-                            fi
-                            update-alternatives --remove vmlinux vmlinux-`uname -r` || true                                          
-                            echo "NEOBOOT is booting image from " $TARGET
-                            echo "Used Kernel: " $TARGET > $NEOBOOTMOUNT$UPLOAD/.kernel/used_flash_kernel
-    elif [ $BOXNAME = "vuultimo4k" ] || [ $BOXNAME = "vusolo4k" ] || [ $BOXNAME = "vuuno4kse" ] || [ $BOXNAME = "vuuno4k" ]; then
+    if [ $BOXNAME = "vuultimo4k" ] || [ $BOXNAME = "vusolo4k" ] || [ $BOXNAME = "vuuno4kse" ] || [ $BOXNAME = "vuuno4k" ]; then
                 INFOBOOT=$( cat /.multinfo )
                 if [ $TARGET = $INFOBOOT ] ; then
                                     echo "NEOBOOT is booting image " $TARGET
