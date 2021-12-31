@@ -366,24 +366,25 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
 
         if BlackHole == 'True':
             if 'BlackHole' in source and os.path.exists('%s/ImageBoot/%s/usr/lib/enigma2/python/Blackhole' % (media, target)):
-                ver = source.replace('BlackHole-', '')
-                try:
-                    text = ver.split('-')[0]
-                except:
-                    text = ''
-
-                cmd = 'mkdir ' + getNeoLocation() + 'ImageBoot/%s/boot/blackhole' % target
+                cmd = 'mkdir -p ' + getNeoLocation() + 'ImageBoot/%s/boot/blackhole' % target
                 rc = os.system(cmd)
-                cmd = 'cp -f ' + extensions_path + 'NeoBoot/bin/version ' + getNeoLocation() + 'ImageBoot/%s/boot/blackhole' % target
+                cmd = 'cp -f ' + extensions_path + 'NeoBoot/bin/version ' + getNeoLocation() + 'ImageBoot/%s/boot/blackhole/version' % target
                 rc = os.system(cmd)
                 cmd = 'mv ' + getNeoLocation() + 'ImageBoot/' + target + '/usr/lib/enigma2/python/Blackhole/BhUtils.pyo ' + getNeoLocation() + 'ImageBoot/%s/usr/lib/enigma2/python/Blackhole/BhUtils.pyo.org' % target
                 rc = os.system(cmd)
                 cmd = 'cp -af ' + extensions_path + 'NeoBoot/bin/utilsbh ' + getNeoLocation() + 'ImageBoot/%s/usr/lib/enigma2/python/Blackhole/BhUtils.py' % target
                 rc = os.system(cmd)
+                
+                ver = source.replace('BlackHole-', '')
+                try:
+                    text = ver.split('-')[0]
+                except:
+                    text = ''
                 localfile = '' + getNeoLocation() + 'ImageBoot/%s/boot/blackhole/version' % target
                 temp_file = open(localfile, 'w')
                 temp_file.write(text)
                 temp_file.close()
+                
                 cmd = 'mv ' + getNeoLocation() + 'ImageBoot/' + target + '/usr/bin/enigma2 ' + getNeoLocation() + 'ImageBoot/%s/usr/bin/enigma2-or' % target
                 rc = os.system(cmd)
                 fail = '' + getNeoLocation() + 'ImageBoot/%s/usr/bin/enigma2-or' % target
