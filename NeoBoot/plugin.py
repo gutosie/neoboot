@@ -55,8 +55,8 @@ else:
             from Screens.Console import Console
 
 loggscrash = time.localtime(time.time())
-PLUGINVERSION = '9.43'
-UPDATEVERSION = '9.43'
+PLUGINVERSION = '9.44'
+UPDATEVERSION = '9.44'
 UPDATEDATE = '"+%Y12%d"'
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
 
@@ -668,6 +668,8 @@ class NeoBootInstallation(Screen):
             # STB MIPS
             elif getCPUtype() == 'MIPS':
                         #vuplus stb mtd1
+                        if fileExists('' + getNeoLocation() + 'ImagesUpload/.kernel/' + getBoxHostName() + '.vmlinux.gz'):
+                            os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/.kernel/' + getBoxHostName() + '.vmlinux.gz')                    
                         #blokada dla mips
                         if fileExists('/gutosie'):                    
                         #if getBoxHostName() == 'bm750' or getBoxHostName() == 'vuduo' or getBoxHostName() == 'vusolo' or getBoxHostName() == 'vuuno' or getBoxHostName() == 'vuultimo':
