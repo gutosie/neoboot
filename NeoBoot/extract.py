@@ -155,9 +155,9 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
                 os.system('mv ' + getNeoLocation() + 'ImagesUpload/vuplus/' + getBoxVuModel() + '/kernel_cfe_auto.bin ' + media_target + '/boot/' + getBoxHostName() + '.vmlinux.gz' + dev_null)
                 os.system('echo "Copied kernel.bin STB-MIPS"')
 
-            elif getCPUtype() == "MIPS" and getBoxHostName() == 'et5x00' :
-                os.system('mv ' + getNeoLocation() + 'ImagesUpload/' + getBoxHostName() + '/kernel.bin ' + media_target + '/boot/' + getBoxHostName() + '.vmlinux.gz' + dev_null)
-                os.system('echo "Copied kernel.bin STB-MIPS Clarke-Tech & Xtrend"')
+            #elif getCPUtype() == "MIPS" and getBoxHostName() == 'et5x00' :
+                #os.system('mv ' + getNeoLocation() + 'ImagesUpload/' + getBoxHostName() + '/kernel.bin ' + media_target + '/boot/' + getBoxHostName() + '.vmlinux.gz' + dev_null)
+                #os.system('echo "Copied kernel.bin STB-MIPS Clarke-Tech & Xtrend"')
             #arm vuplus arms
             elif getCPUtype() == "ARMv7" and getBoxHostName() == "vuultimo4k" or getBoxHostName() == "vusolo4k" or getBoxHostName() == "vuuno4k" or getBoxHostName() == "vuuno4kse" or getBoxHostName() == "vuduo4k" or getBoxHostName() == "vuduo4kse" or getBoxHostName() == "vuzero4k":
                 os.system('mv ' + getNeoLocation() + 'ImagesUpload/vuplus/' + getBoxVuModel() + '/kernel_auto.bin ' + media_target + '/boot/zImage.' + getBoxHostName() + '' + dev_null)
