@@ -133,13 +133,13 @@ class InstallImage(Screen, ConfigListScreen):
         self.source = ConfigSelection(choices=sourcelist)
         self.target = ConfigText(fixed_size=False)
         self.CopyFiles = ConfigYesNo(default=True)
-        if fileExists('/proc/stb/info/vumodel') and not fileExists('/proc/stb/info/boxtype'):
+        if getCPUtype() == "ARMv7" and getBoxHostName() == 'vuduo4k' or getBoxHostName() == 'vuduo4kse' or getBoxHostName() == "vuultimo4k" or getBoxHostName() == "vusolo4k" or getBoxHostName() == "vuuno4k" or getBoxHostName() == "vuuno4kse" or getBoxHostName() == "vuzer4k" :
             self.CopyKernel = ConfigYesNo(default=True)
         else:
             self.CopyKernel = ConfigYesNo(default=False)
         self.TvList = ConfigYesNo(default=False)
         self.LanWlan = ConfigYesNo(default=False)
-        if fileExists('/proc/stb/info/vumodel') and not fileExists('/proc/stb/info/boxtype'):
+        if getCPUtype() == "ARMv7" and getBoxHostName() == 'vuduo4k' or getBoxHostName() == 'vuduo4kse' or getBoxHostName() == "vuultimo4k" or getBoxHostName() == "vusolo4k" or getBoxHostName() == "vuuno4k" or getBoxHostName() == "vuuno4kse" or getBoxHostName() == "vuzer4k" :
             self.Sterowniki = ConfigYesNo(default=False)
         else:
             self.Sterowniki = ConfigYesNo(default=True)
