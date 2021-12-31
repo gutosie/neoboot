@@ -128,8 +128,7 @@ class NBIChoose2(Screen):
                     from Plugins.Extensions.NeoBoot.run import StartImage
                     self.session.open(StartImage)
                 except:
-                    self.session.open(TryQuitMainloop, 2)
-                    self.close()
+                    os.system('reboot -f')
 
     def forceBoot(self):                                            
         self.session.open(ForceReboot)
