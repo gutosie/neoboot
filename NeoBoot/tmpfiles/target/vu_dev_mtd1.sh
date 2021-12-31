@@ -58,7 +58,7 @@ if [ $VUMODEL = "bm750" ] || [ $BOXHOSTNAME = "vuduo" ] || [ $BOXHOSTNAME = "vus
                                     if [ -f /tmp/vmlinux.gz ] ; then
                                         flash_eraseall /dev/mtd1 > /dev/null 2>&1
                                         nandwrite -p /dev/mtd1 /tmp/vmlinux.gz > /dev/null 2>&1
-                                        [ $PL ] && echo "nandwrite - kernel wgrany" || echo "Writing kernel to /dev/mtd1"
+                                        [ $PL ] && echo " Sukces, nandwrite kernel wgrany" || echo "Success writing kernel to /dev/mtd1"
                                     else
                                         [ $PL ] && echo "W lokalizacji /tmp/ nie ma pliku vmlinux.gz" || echo "No found vmlinux.gz in  /tmp/"
                                     fi
@@ -71,7 +71,7 @@ if [ $VUMODEL = "bm750" ] || [ $BOXHOSTNAME = "vuduo" ] || [ $BOXHOSTNAME = "vus
                                     if [ -f /tmp/vmlinux.gz ] ; then
                                         flash_eraseall /dev/mtd1 > /dev/null 2>&1
                                         $NandWrite -p /dev/mtd1 /tmp/vmlinux.gz > /dev/null 2>&1
-                                        [ $PL ] && echo "nandwrite - kernel wgrany" || echo "Writing kernel to /dev/mtd1"
+                                        [ $PL ] && echo "OK - kernel wgrany" || echo "Ok - writing kernel to /dev/mtd1"
                                     else
                                         [ $PL ] && echo "W lokalizacji /tmp/ nie ma pliku vmlinux.gz" || echo "No found vmlinux.gz in  /tmp/"
                                     fi
@@ -100,7 +100,7 @@ if [ $VUMODEL = "bm750" ] || [ $BOXHOSTNAME = "vuduo" ] || [ $BOXHOSTNAME = "vus
                                                 if [ -f /tmp/vmlinux.gz ] ; then
                                                     flash_eraseall /dev/mtd1 > /dev/null 2>&1
                                                     nandwrite -p /dev/mtd1 /tmp/vmlinux.gz > /dev/null 2>&1
-                                                    [ $PL ] && echo "nandwrite - kernel zmieniony " || echo "Writing kernel to /dev/mtd1 "
+                                                    [ $PL ] && echo "Sukces, nandwrite kernel zmieniony " || echo "Success nandwrite writing kernel to /dev/mtd1 "
                                                 else
                                                     [ $PL ] && echo "W lokalizacji /tmp/ nie ma pliku vmlinux.gz" || echo "No found vmlinux.gz in  /tmp/"
                                                 fi
@@ -113,7 +113,7 @@ if [ $VUMODEL = "bm750" ] || [ $BOXHOSTNAME = "vuduo" ] || [ $BOXHOSTNAME = "vus
                                                 if [ -f /tmp/vmlinux.gz ] ; then
                                                     flash_eraseall /dev/mtd1 > /dev/null 2>&1
                                                     $NandWrite -p /dev/mtd1 /tmp/vmlinux.gz > /dev/null 2>&1
-                                                    [ $PL ] && echo "nandwrite kernel wczytany" || echo "Writing kernel to /dev/mtd1"
+                                                    [ $PL ] && echo "OK -nandwrite kernel wczytany" || echo "OK - Writing kernel to /dev/mtd1"
                                                 else
                                                     [ $PL ] && echo "W lokalizacji /tmp/ nie ma pliku vmlinux.gz " || echo "No found vmlinux.gz in  /tmp/ "
                                                 fi
@@ -134,7 +134,7 @@ if [ $VUMODEL = "bm750" ] || [ $BOXHOSTNAME = "vuduo" ] || [ $BOXHOSTNAME = "vus
                                                 if [ -f /tmp/vmlinux.gz ] ; then
                                                     flash_eraseall /dev/mtd1 > /dev/null 2>&1
                                                     nandwrite -p /dev/mtd1 /tmp/vmlinux.gz > /dev/null 2>&1
-                                                    [ $PL ] && echo "Kernel zmieniony " || echo "Writing kernel to /dev/mtd1 "
+                                                    [ $PL ] && echo "Sukces OK Kernel zmieniony - Sukces " || echo "Writing kernel success to /dev/mtd1 "
                                                 else
                                                     [ $PL ] && echo "W lokalizacji /tmp/ nie ma pliku vmlinux.gz " || echo "No found vmlinux.gz in  /tmp/ "
                                                 fi
@@ -147,7 +147,7 @@ if [ $VUMODEL = "bm750" ] || [ $BOXHOSTNAME = "vuduo" ] || [ $BOXHOSTNAME = "vus
                                                 if [ -f /tmp/vmlinux.gz ] ; then
                                                     flash_eraseall /dev/mtd1 > /dev/null 2>&1
                                                     $NandWrite -p /dev/mtd1 /tmp/vmlinux.gz > /dev/null 2>&1
-                                                    [ $PL ] && echo "/dev/mtd1 kernel wgrany " || echo "Writing kernel to /dev/mtd1 "
+                                                    [ $PL ] && echo "OK - /dev/mtd1 kernel wgrany " || echo "/dev/mtd1 Writing kernel success  "
                                                 else
                                                     [ $PL ] && echo "W lokalizacji /tmp/ nie ma pliku vmlinux.gz " || echo "No found vmlinux.gz in  /tmp/ "
                                                 fi
