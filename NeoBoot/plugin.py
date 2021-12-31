@@ -842,7 +842,10 @@ class NeoBootImageChoose(Screen):
 
         if not fileExists('' + LinkNeoBoot + '/files/neo.sh'):
                 getMountPointNeo()
-
+                
+        if os.path.exists('/media/hdd/swapfile') or os.path.exists('/media/usb/swapfile') or os.path.exists('/swapfile'):
+            system('swapon -a')
+            
         if fileExists('/tmp/.init_reboot'):
             system('rm /tmp/.init_reboot')
 
