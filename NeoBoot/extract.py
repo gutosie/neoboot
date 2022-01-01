@@ -1469,6 +1469,18 @@ def NEOBootExtract(source, target, ZipDelete):
             os.system('echo "Please wait. System installation dinobot w toku..."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/dinobot/u5; tar -jxf ' + getNeoLocation() + 'ImagesUpload/dinobot/u5/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd)
+        elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/dinobot/u53'):
+            os.system('echo "Please wait. System installation dinobot w toku..."')
+            cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/dinobot/u53; tar -jxf ' + getNeoLocation() + 'ImagesUpload/dinobot/u53/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
+            rc = os.system(cmd)
+        elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/dinobot/u5pvr'):
+            os.system('echo "Please wait. System installation dinobot w toku..."')
+            cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/dinobot/u5pvr; tar -jxf ' + getNeoLocation() + 'ImagesUpload/dinobot/u5pvr/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
+            rc = os.system(cmd)
+        elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/dinobot/u57'):
+            os.system('echo "Please wait. System installation dinobot w toku..."')
+            cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/dinobot/u57; tar -jxf ' + getNeoLocation() + 'ImagesUpload/dinobot/u57/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
+            rc = os.system(cmd)
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/uclan/ustym4kpro'):
             os.system('echo "Please wait. System installation ustym4kpro w toku..."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/uclan/ustym4kpro; tar -jxf ' + getNeoLocation() + 'ImagesUpload/uclan/ustym4kpro/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
