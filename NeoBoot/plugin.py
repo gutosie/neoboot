@@ -1254,8 +1254,10 @@ class NeoBootImageChoose(Screen):
             f.close()
             os.remove('/tmp/memoryinfo.tmp')
 
-        perc = int(usperc[0:-1])
-#        perc = int()  # jak czasami robi error to odhaszowac i zahaszowac wyzej
+        try:            
+            perc = int(usperc[0:-1])
+        except:           
+            perc = int()  # jak czasami robi error to odhaszowac i zahaszowac wyzej
         self['progreso'].setValue(perc)
         green = '#00389416'
         red = '#00ff2525'
