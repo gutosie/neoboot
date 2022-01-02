@@ -38,6 +38,7 @@ cd /tmp; fullwget --no-check-certificate https://raw.githubusercontent.com/gutos
 
 #
 
+![2AC5694061764352826110151BF37430 (1)](https://user-images.githubusercontent.com/4014580/147877740-0d115fa1-ba09-4527-9dfb-ee6585651a66.jpg)
 ![nep_skin](https://user-images.githubusercontent.com/4014580/145280636-0491cfa8-691f-4aec-b716-3248d5dfef4b.jpg)
 
 ![neoboot](https://user-images.githubusercontent.com/4014580/145025575-966b82bb-d8b5-48ba-84bd-f2fc41ce8758.jpg)
