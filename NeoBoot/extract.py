@@ -365,13 +365,13 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
                     os.system('echo "Kodi not found."')
 
         if BlackHole == 'True':
-            if 'BlackHole' in source and os.path.exists('%s/ImageBoot/%s/usr/lib/enigma2/python/Blackhole' % (media, target)):
+            if 'BlackHole' in source or os.path.exists('%s/ImageBoot/%s/usr/lib/enigma2/python/Blackhole' % (media, target)):
                 cmd = 'mkdir -p ' + getNeoLocation() + 'ImageBoot/%s/boot/blackhole' % target
                 rc = os.system(cmd)
                 cmd = 'mv ' + getNeoLocation() + 'ImageBoot/' + target + '/usr/lib/enigma2/python/Blackhole/BhUtils.pyo ' + getNeoLocation() + 'ImageBoot/%s/usr/lib/enigma2/python/Blackhole/BhUtils.pyo.org' % target
                 rc = os.system(cmd)
                 cmd = 'cp -af ' + extensions_path + 'NeoBoot/bin/utilsbh ' + getNeoLocation() + 'ImageBoot/%s/usr/lib/enigma2/python/Blackhole/BhUtils.py' % target
-                rc = os.system(cmd)                
+                rc = os.system(cmd)
                 ver = source.replace('BlackHole-', '')
                 try:
                     text = ver.split('-')[0]
@@ -380,7 +380,7 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
                 localfile = '' + getNeoLocation() + 'ImageBoot/%s/boot/blackhole/version' % target
                 temp_file = open(localfile, 'w')
                 temp_file.write(text)
-                temp_file.close()                 
+                temp_file.close()
                 cmd = 'mv ' + getNeoLocation() + 'ImageBoot/' + target + '/usr/bin/enigma2 ' + getNeoLocation() + 'ImageBoot/%s/usr/bin/enigma2-or' % target
                 rc = os.system(cmd)
                 fail = '' + getNeoLocation() + 'ImageBoot/%s/usr/bin/enigma2-or' % target
@@ -394,9 +394,11 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
                 cmd = 'chmod -R 0755 %s' % localfile2
                 rc = os.system(cmd)
                 cmd = 'rm -r ' + getNeoLocation() + 'ImageBoot/%s/usr/bin/enigma2-or' % target
-                rc = os.system(cmd)                
-                cmd = 'cp -f ' + extensions_path + 'NeoBoot/bin/version ' + getNeoLocation() + 'ImageBoot/%s/boot/blackhole/version' % target
-                rc = os.system(cmd)
+                rc = os.system(cmd) 
+                #cmd = 'cp -af' + getNeoLocation() + 'ImageBoot/' + target + '/etc/bhversion ' + getNeoLocation() + 'ImageBoot/%s/boot/blackhole/version' % target
+                #rc = os.system(cmd)
+                #cmd = 'cp -f ' + extensions_path + 'NeoBoot/bin/version ' + getNeoLocation() + 'ImageBoot/%s/boot/blackhole/version' % target
+                #rc = os.system(cmd)
 
 # for all image:
         if os.path.exists('%s/ImageBoot/%s/etc/rc.local' % (media, target)):
