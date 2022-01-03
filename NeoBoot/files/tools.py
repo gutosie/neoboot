@@ -1427,8 +1427,6 @@ class SkinChange(Screen):
                     system('cp -af ' + LinkNeoBoot + '/images/sf4008.png ' + LinkNeoBoot + '/images/box.png')
                 elif getBoxHostName() == 'ustym4kpro':
                     system('cp -af ' + LinkNeoBoot + '/images/ustym4kpro.png ' + LinkNeoBoot + '/images/box.png')
-                elif getBoxHostName() == 'h7' or getBoxHostName() == 'zgemmah7':
-                    system('cp -af ' + LinkNeoBoot + '/images/zgmmah7.png ' + LinkNeoBoot + '/images/box.png')
                 elif getBoxHostName() == 'vusolo2':
                     system('cp -af ' + LinkNeoBoot + '/images/solo2.png ' + LinkNeoBoot + '/images/box.png')
                 elif getBoxHostName() == 'bre2ze4k':
@@ -1436,7 +1434,11 @@ class SkinChange(Screen):
                 elif getBoxHostName() == 'lunix4k':
                     system('cp -af ' + LinkNeoBoot + '/images/lunix4k.png ' + LinkNeoBoot + '/images/box.png') 
                 elif getBoxHostName() == 'zgemmah9s':
-                    system('cp -af ' + LinkNeoBoot + '/images/zgemmah9se.png ' + LinkNeoBoot + '/images/box.png') 
+                    system('cp -af ' + LinkNeoBoot + '/images/zgemmah9se.png ' + LinkNeoBoot + '/images/box.png')
+                elif getBoxHostName() == 'h7' or getBoxHostName() == 'zgemmah7':
+                    system('cp -af ' + LinkNeoBoot + '/images/zgmmah7.png ' + LinkNeoBoot + '/images/box.png')                    
+                elif getBoxHostName() == 'zgemmah9combo':
+                    system('cp -af ' + LinkNeoBoot + '/images/zgmmah9twin.png ' + LinkNeoBoot + '/images/box.png')                     
                 else:
                     system('cp -af ' + LinkNeoBoot + '/images/logo.png ' + LinkNeoBoot + '/images/box.png')                    
 
