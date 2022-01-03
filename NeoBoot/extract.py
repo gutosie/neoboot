@@ -605,7 +605,23 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
                     os.rename(filename2, filename)
                     cmd = 'chmod -R 0755 %s' % filename
                     rc = os.system(cmd)
-
+                    
+            if os.path.exists('%s/ImageBoot/%s/var/lib/opkg/status' % (media, target)):                
+                cmd = 'mv ' + getNeoLocation() + 'ImageBoot/' + target + '/var/lib/opkg/status ' + getNeoLocation() + 'ImageBoot/%s/var/lib/opkg/status-or' % target
+                rc = os.system(cmd)
+                fail = '' + getNeoLocation() + 'ImageBoot/%s/var/lib/opkg/status-or' % target
+                f = open(fail, 'r')
+                content = f.read()
+                f.close()
+                localfile2 = '' + getNeoLocation() + 'ImageBoot/%s/var/lib/opkg/status' % target
+                temp_file2 = open(localfile2, 'w')
+                temp_file2.write(content.replace('kernel-image', '#kernel-image'))
+                temp_file2.close()
+                
+                cmd = 'chmod -R 0755 %s' % localfile2
+                rc = os.system(cmd)
+                cmd = 'rm -r ' + getNeoLocation() + 'ImageBoot/%s/var/lib/opkg/status-or' % target
+                rc = os.system(cmd)                    
 
 #    cmd = 'cp -f ' + extensions_path + 'NeoBoot/bin/hdd ' + getNeoLocation() + 'ImageBoot/%s/etc/init.d/hddusb' % target
 #    rc = os.system(cmd)
