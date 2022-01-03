@@ -982,11 +982,11 @@ class MyUpgrade2(Screen):
                             cmd3 = 'chattr -i ' + target + '' + LinkNeoBoot +'/plugin.pyo'
                         cmd = 'rm -r ' + target + ' > /dev/null 2>&1'
                         system(cmd)
-                        cmd = 'cp -r ' + LinkNeoBoot + ' ' + target
+                        cmd = 'cp -af ' + LinkNeoBoot + ' ' + target
                         system(cmd)
-                        cmd1 = 'cp -rf ' + periodo + ' ' + target1
+                        cmd1 = 'cp -af ' + periodo + ' ' + target1
                         system(cmd1)
-                        cmd2 = 'cp -rf ' + testinout + ' ' + target2
+                        cmd2 = 'cp -af ' + testinout + ' ' + target2
                         system(cmd2)
 
                 out = open('%sImageBoot/.version' % getNeoLocation(), 'w')
@@ -1066,13 +1066,13 @@ class ListTv2(Screen):
                 dirfile = '' + getNeoLocation() + 'ImageBoot/' + fn
                 if isdir(dirfile):
                     target = dirfile + '/etc/'
-                    cmd = 'cp -r -f /etc/enigma2 ' + target
+                    cmd = 'cp -af /etc/enigma2 ' + target
                     system(cmd)
                     target1 = dirfile + '/etc/tuxbox'
-                    cmd = 'cp -r -f /etc/tuxbox/satellites.xml ' + target1
+                    cmd = 'cp -af /etc/tuxbox/satellites.xml ' + target1
                     system(cmd)
                     target2 = dirfile + '/etc/tuxbox'
-                    cmd = 'cp -r -f /etc/tuxbox/terrestrial.xml ' + target2
+                    cmd = 'cp -af /etc/tuxbox/terrestrial.xml ' + target2
                     system(cmd)
 
             os.system('rm -f -R /etc/enigma2')
@@ -1151,7 +1151,7 @@ class IPTVPlayer2(Screen):
                     target = dirfile + '/usr/lib/enigma2/python/Plugins/Extensions/IPTVPlayer'
                     cmd = 'rm -r ' + target + ' > /dev/null 2>&1'
                     system(cmd)
-                    cmd = 'cp -r /usr/lib/enigma2/python/Plugins/Extensions/IPTVPlayer ' + target
+                    cmd = 'cp -af /usr/lib/enigma2/python/Plugins/Extensions/IPTVPlayer ' + target
                     system(cmd)
 
             self.myClose(_('NeoBoot successfully updated IPTVPlayer.\nHave fun !!'))
@@ -1401,7 +1401,7 @@ class SkinChange(Screen):
     def DefaultSkin(self):
             cmd = "echo -e '\n\n%s '" % _('Please wait, NeoBot is working, skin change is progress...')
             cmd1 = "echo -e '\n\n%s '" % _('NeoBoot: Complete Skin Change!')
-#            cmd2 = 'cp -r ' +LinkNeoBoot+ '/neoskins/default.py ' +LinkNeoBoot+ '/skin.py'
+#            cmd2 = 'cp -af ' +LinkNeoBoot+ '/neoskins/default.py ' +LinkNeoBoot+ '/skin.py'
             cmd2 = 'rm -f ' + LinkNeoBoot + '/usedskin.p*; sleep 2'
             cmd3 = 'ln -sf "neoskins/default.py" "' + LinkNeoBoot + '/usedskin.py"'
             self.session.open(Console, _('NeoBoot Skin Change'), [cmd, cmd1, cmd2, cmd3])
@@ -1410,46 +1410,46 @@ class SkinChange(Screen):
         if answer is True:
             if isFHD():
                 if getBoxHostName() == 'vuultimo4k':
-                    system('cp -r ' + LinkNeoBoot + '/images/ultimo4k.png ' + LinkNeoBoot + '/images/box.png')
+                    system('cp -af ' + LinkNeoBoot + '/images/ultimo4k.png ' + LinkNeoBoot + '/images/box.png')
                 elif getBoxHostName() == 'vusolo4k':
-                    system('cp -r ' + LinkNeoBoot + '/images/solo4k.png ' + LinkNeoBoot + '/images/box.png')
+                    system('cp -af ' + LinkNeoBoot + '/images/solo4k.png ' + LinkNeoBoot + '/images/box.png')
                 elif getBoxHostName() == 'vuduo4k':
-                    system('cp -r ' + LinkNeoBoot + '/images/duo4k.png ' + LinkNeoBoot + '/images/box.png')
+                    system('cp -af ' + LinkNeoBoot + '/images/duo4k.png ' + LinkNeoBoot + '/images/box.png')
                 elif getBoxHostName() == 'vuduo4kse':
-                    system('cp -r ' + LinkNeoBoot + '/images/duo4k.png ' + LinkNeoBoot + '/images/box.png')
+                    system('cp -af ' + LinkNeoBoot + '/images/duo4k.png ' + LinkNeoBoot + '/images/box.png')
                 elif getBoxHostName() == 'vuuno4k':
-                    system('cp -r ' + LinkNeoBoot + '/images/uno4k.png ' + LinkNeoBoot + '/images/box.png')
+                    system('cp -af ' + LinkNeoBoot + '/images/uno4k.png ' + LinkNeoBoot + '/images/box.png')
                 elif getBoxHostName() == 'vuuno4kse':
-                    system('cp -r ' + LinkNeoBoot + '/images/uno4kse.png ' + LinkNeoBoot + '/images/box.png')
+                    system('cp -af ' + LinkNeoBoot + '/images/uno4kse.png ' + LinkNeoBoot + '/images/box.png')
                 elif getBoxHostName() == 'vuzero4kse':
-                    system('cp -r ' + LinkNeoBoot + '/images/zero4kse.png ' + LinkNeoBoot + '/images/box.png')
+                    system('cp -af ' + LinkNeoBoot + '/images/zero4kse.png ' + LinkNeoBoot + '/images/box.png')
                 elif getBoxHostName() == 'sf4008':
-                    system('cp -r ' + LinkNeoBoot + '/images/sf4008.png ' + LinkNeoBoot + '/images/box.png')
+                    system('cp -af ' + LinkNeoBoot + '/images/sf4008.png ' + LinkNeoBoot + '/images/box.png')
                 elif getBoxHostName() == 'ustym4kpro':
-                    system('cp -r ' + LinkNeoBoot + '/images/ustym4kpro.png ' + LinkNeoBoot + '/images/box.png')
+                    system('cp -af ' + LinkNeoBoot + '/images/ustym4kpro.png ' + LinkNeoBoot + '/images/box.png')
                 elif getBoxHostName() == 'h7' or getBoxHostName() == 'zgemmah7':
-                    system('cp -r ' + LinkNeoBoot + '/images/zgmmah7.png ' + LinkNeoBoot + '/images/box.png')
+                    system('cp -af ' + LinkNeoBoot + '/images/zgmmah7.png ' + LinkNeoBoot + '/images/box.png')
                 elif getBoxHostName() == 'vusolo2':
-                    system('cp -r ' + LinkNeoBoot + '/images/solo2.png ' + LinkNeoBoot + '/images/box.png')
+                    system('cp -af ' + LinkNeoBoot + '/images/solo2.png ' + LinkNeoBoot + '/images/box.png')
                 elif getBoxHostName() == 'bre2ze4k':
-                    system('cp -r ' + LinkNeoBoot + '/images/bre2ze4k.png ' + LinkNeoBoot + '/images/box.png')
+                    system('cp -af ' + LinkNeoBoot + '/images/bre2ze4k.png ' + LinkNeoBoot + '/images/box.png')
                 elif getBoxHostName() == 'lunix4k':
-                    system('cp -r ' + LinkNeoBoot + '/images/lunix4k.png ' + LinkNeoBoot + '/images/box.png') 
+                    system('cp -af ' + LinkNeoBoot + '/images/lunix4k.png ' + LinkNeoBoot + '/images/box.png') 
                 elif getBoxHostName() == 'zgemmah9s':
-                    system('cp -r ' + LinkNeoBoot + '/images/zgemmah9se.png ' + LinkNeoBoot + '/images/box.png') 
+                    system('cp -af ' + LinkNeoBoot + '/images/zgemmah9se.png ' + LinkNeoBoot + '/images/box.png') 
                 else:
-                    system('cp -r ' + LinkNeoBoot + '/images/logo.png ' + LinkNeoBoot + '/images/box.png')                    
+                    system('cp -af ' + LinkNeoBoot + '/images/logo.png ' + LinkNeoBoot + '/images/box.png')                    
 
                 cmd = "echo -e '\n\n%s '" % _('Please wait, NeoBot is working, skin change is progress...')
                 cmd1 = 'rm -f ' + LinkNeoBoot + '/usedskin.p*; sleep 2'
-                cmd2 = 'sleep 2; cp -r ' + self.skindir + '/' + self.selectedskin + '/*.py ' + LinkNeoBoot + '/usedskin.py'
+                cmd2 = 'sleep 2; cp -af ' + self.skindir + '/' + self.selectedskin + '/*.py ' + LinkNeoBoot + '/usedskin.py'
                 cmd3 = "echo -e '\n\n%s '" % _('NeoBoot: Complete Skin Change!')
                 cmd4 = "echo -e '\n\n%s '" % _('To use the new skin please restart enigma2')
                 self.session.open(Console, _('NeoBoot Skin Change'), [cmd, cmd1, cmd2, cmd3, cmd4])
             elif isHD():
                 cmd = "echo -e '\n\n%s '" % _('Please wait, NeoBot is working, skin change is progress...')
                 cmd1 = 'rm -f ' + LinkNeoBoot + '/usedskin.p*; sleep 2'
-                cmd2 = 'sleep 2; cp -r ' + self.skindir + '/' + self.selectedskin + '/*.py ' + LinkNeoBoot + '/usedskin.py'
+                cmd2 = 'sleep 2; cp -af ' + self.skindir + '/' + self.selectedskin + '/*.py ' + LinkNeoBoot + '/usedskin.py'
                 cmd3 = "echo -e '\n\n%s '" % _('NeoBoot: Complete Skin Change!')
                 cmd4 = "echo -e '\n\n%s '" % _('Skin change available only for full hd skin.')
                 cmd5 = "echo -e '\n\n%s '" % _('Please come back to default skin.')
