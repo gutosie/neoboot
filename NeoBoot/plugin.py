@@ -677,7 +677,7 @@ class NeoBootInstallation(Screen):
                             elif not fileExists('/usr/sbin/nanddump'):
                                 os.system('cd ' + getNeoLocation() + 'ImagesUpload/.kernel/; ' + LinkNeoBoot + '/bin/nanddump_mips --omitoob -f vmlinux.gz /dev/mtd1; mv ./vmlinux.gz ./' + getBoxHostName() + '.vmlinux.gz')
                             os.system('cd ' + LinkNeoBoot + '/; rm ./bin/fontforneoboot.ttf; rm ./bin/libpngneo; mv ' + LinkNeoBoot + '/tmpfiles/target/vu_dev_mtd1.sh ' + LinkNeoBoot + '/files/kernel.sh;mv ' + LinkNeoBoot + '/tmpfiles/runpy/vu_mtd1_run.py ' + LinkNeoBoot + '/run.py; cd')
-                            os.system('cd ' + LinkNeoBoot + '/; cp -af ./bin/neoinitmips /sbin/neoinitmips; cp -f ./bin/neoinitmipsvu ./bin/neoinitmipsvu; cd')
+                            os.system('cd ' + LinkNeoBoot + '/; cp -af ./bin/neoinitmips /sbin/neoinitmips; cp -af ./bin/neoinitmipsvu ./bin/neoinitmipsvu; cd')
 
                         #vuplus stb mtd2                        
                         elif getBoxHostName() == 'vusolo2' or getBoxHostName() == 'vuduo2' or getBoxHostName() == 'vusolose' or getBoxHostName() == 'vuzero':
@@ -686,7 +686,7 @@ class NeoBootInstallation(Screen):
                             elif not fileExists('/usr/sbin/nanddump'):
                                 os.system('cd ' + getNeoLocation() + 'ImagesUpload/.kernel/; ' + LinkNeoBoot + '/bin/nanddump_mips --omitoob -f vmlinux.gz /dev/mtd2; mv ./vmlinux.gz ./' + getBoxHostName() + '.vmlinux.gz')
                             os.system('cd ' + LinkNeoBoot + '/; rm ./bin/fontforneoboot.ttf; rm ./bin/libpngneo; mv ' + LinkNeoBoot + '/tmpfiles/target/vu_dev_mtd2.sh ' + LinkNeoBoot + '/files/kernel.sh; mv ' + LinkNeoBoot + '/tmpfiles/runpy/vu_mtd2_run.py ' + LinkNeoBoot + '/run.py; cd')
-                            os.system('cd ' + LinkNeoBoot + '/; cp -af ./bin/neoinitmips /sbin/neoinitmips; cp -f ./bin/neoinitmipsvu ./bin/neoinitmipsvu; cd')
+                            os.system('cd ' + LinkNeoBoot + '/; cp -af ./bin/neoinitmips /sbin/neoinitmips; cp -af ./bin/neoinitmips_vu ./bin/neoinitmipsvu; cd')
                             
                         #Other stb MIPS
                         else:
@@ -1172,9 +1172,9 @@ class NeoBootImageChoose(Screen):
     def goUpdateNEO(self):
                 if fileExists('' + LinkNeoBoot + '/wget-log'):
                         os.system('touch /tmp/.upneo; rm ' + LinkNeoBoot + '/wget-log')
-                os.system('chattr -i ' + LinkNeoBoot + '/plugin.py; chattr -i ' + LinkNeoBoot + '/plugin.pyo; cd /tmp/; cp -rf ./neoboot-main/NeoBoot /usr/lib/enigma2/python/Plugins/Extensions; rm -rf /tmp/neoboot*;  rm ' + LinkNeoBoot + '/ver.txt; cd ' + LinkNeoBoot + '/; chmod 0755 ./bin/neoini*;  chmod 0755 ./ex_init.py; chmod 0755 ./tmpfiles/target/*; chmod 0755 ./files/userscript.sh; cd /; date %s  > /usr/lib/periodon/.accessdate' % UPDATEDATE)
-                if getCPUtype() == 'MIPS':
-                    os.system('cd ' + LinkNeoBoot + '/; cp -rf ./bin/neoinitmipsvu /sbin; chmod 755 /sbin/neoinitmipsvu; cp -rf ./bin/neoinitmips /sbin; chmod 755 /sbin/neoinitmips; cd')
+                os.system('chattr -i ' + LinkNeoBoot + '/plugin.py; chattr -i ' + LinkNeoBoot + '/plugin.pyo; cd /tmp/; cp -af ./neoboot-main/NeoBoot /usr/lib/enigma2/python/Plugins/Extensions; rm -rf /tmp/neoboot*;  rm ' + LinkNeoBoot + '/ver.txt; cd ' + LinkNeoBoot + '/; chmod 0755 ./bin/neoini*;  chmod 0755 ./ex_init.py; chmod 0755 ./tmpfiles/target/*; chmod 0755 ./files/userscript.sh; cd /; date %s  > /usr/lib/periodon/.accessdate' % UPDATEDATE)
+                #if getCPUtype() == 'MIPS':
+                    #os.system('cd ' + LinkNeoBoot + '/; cp -af ./bin/neoinitmipsvu /sbin; chmod 755 /sbin/neoinitmipsvu; cp -af ./bin/neoinitmips /sbin; chmod 755 /sbin/neoinitmips; cd')
                 os.system('cd ' + LinkNeoBoot + '/; rm ./bin/install; rm -f ./files/testinout; rm ./files/mountpoint.sh; rm ./files/neo.sh; rm -f /usr/lib/periodon/.kodn; rm -f /tmp/.nkod; rm -rf /tmp/main.zip')
                 restartbox = self.session.openWithCallback(self.restartGUI, MessageBox, _('Completed update NeoBoot.\nYou need to restart the E2 and re-enter your pin code VIP!!!\nRestart now ?'), MessageBox.TYPE_YESNO)
                 restartbox.setTitle(_('Restart GUI now ?'))
