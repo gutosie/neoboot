@@ -88,7 +88,7 @@ else
 		    for item in $orgimag1; do        				 			
                 selectmnt=`blkid | find "$selectinstall"  | cut -d" " -f1`                        
 			    if [ $selectmnt = $selectinstall ]; then
-				        echo "selectmnt="$selectmnt
+				        echo "selectmnt is:" $selectmnt
                         mnttest="location"
 				        mount $selectmnt `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location` > /dev/null 2>&1		
                         echo "Neoboot location detected." 				
