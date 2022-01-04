@@ -29,7 +29,7 @@ else
 		for item in $orgimag1; do
 			selectmnt=`blkid | sed '/$selectinstall/!d' | cut -d":" -f1`
 			if [ $selectmnt == $item ]; then
-				echo "selectmnt=" $selectmnt
+				echo "selectmnt is:" $selectmnt
                         	mnttest="uuid"
 				mount $selectmnt $NEO > /dev/null 2>&1
 			fi
