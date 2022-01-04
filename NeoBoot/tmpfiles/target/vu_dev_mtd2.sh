@@ -7,6 +7,10 @@ if `grep -q 'osd.language=pl_PL' </etc/enigma2/settings`; then
   PL=1
 fi
 
+if [ -f /proc/stb/info/vumodel ];  then  
+    VUMODEL=$( cat /proc/stb/info/vumodel )     
+fi
+
 if [ -f /proc/stb/info/boxtype ];  then
     BOXTYPE=$( cat /proc/stb/info/boxtype )
 fi
