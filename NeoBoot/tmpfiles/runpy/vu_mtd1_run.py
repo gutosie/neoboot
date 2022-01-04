@@ -117,7 +117,7 @@ class StartImage(Screen):
 
             #VUPLUS MIPS vu_dev_mtd1.sh
             if getBoxHostName() == 'vuultimo' or getBoxHostName() == 'bm750' or getBoxHostName() == 'vuduo' or getBoxHostName() == 'vuuno' or getBoxHostName() == 'vusolo' or getBoxHostName() == 'vuduo':
-                        if getCPUtype() != 'MIPS'
+                        if getCPUtype() == 'MIPS'
                             if not fileExists('%sImagesUpload/.kernel/%s.vmlinux.gz' % (getNeoLocation(), getBoxHostName())):
                                 self.myclose2(_('Error - in the location %sImagesUpload/.kernel/ \nkernel file not found flash kernel vmlinux.gz ' % getNeoLocation()))
                         else:
