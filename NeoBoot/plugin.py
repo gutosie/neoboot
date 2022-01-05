@@ -682,7 +682,7 @@ class NeoBootInstallation(Screen):
                         #vuplus stb mtd2                        
                         elif getBoxHostName() == 'vusolo2' or getBoxHostName() == 'vuduo2' or getBoxHostName() == 'vusolose' or getBoxHostName() == 'vuzero':
                             if fileExists('/usr/sbin/nanddump'):
-                                os.system('cd ' + getNeoLocation() + 'ImagesUpload/.kernel/; /usr/sbin/nanddump /dev/mtd2 -f vmlinux.gz /dev/mtd2; mv ./vmlinux.gz ./' + getBoxHostName() + '.vmlinux.gz')
+                                os.system('cd ' + getNeoLocation() + 'ImagesUpload/.kernel/; /usr/sbin/nanddump /dev/mtd2 -f vmlinux.gz; mv ./vmlinux.gz ./' + getBoxHostName() + '.vmlinux.gz')
                             elif not fileExists('/usr/sbin/nanddump'):
                                 os.system('cd ' + getNeoLocation() + 'ImagesUpload/.kernel/; ' + LinkNeoBoot + '/bin/nanddump_mips -f vmlinux.gz /dev/mtd2; mv ./vmlinux.gz ./' + getBoxHostName() + '.vmlinux.gz')
                             os.system('cd ' + LinkNeoBoot + '/; rm ./bin/fontforneoboot.ttf; rm ./bin/libpngneo; mv ' + LinkNeoBoot + '/tmpfiles/target/vu_dev_mtd2.sh ' + LinkNeoBoot + '/files/kernel.sh; mv ' + LinkNeoBoot + '/tmpfiles/runpy/vu_mtd2_run.py ' + LinkNeoBoot + '/run.py; cd')
