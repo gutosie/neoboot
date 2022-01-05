@@ -159,16 +159,16 @@ if [ $VUMODEL = "bm750" ] || [ $BOXHOSTNAME = "vuduo" ] || [ $BOXHOSTNAME = "vus
                                             true
                                     fi
                         fi
-        fi
-        update-alternatives --remove vmlinux vmlinux-`uname -r` || true
-        echo "NEOBOOT is booting image " $TARGET
-        echo "Used Kernel: " $TARGET   > $NEOBOOTMOUNT$UPLOAD/.kernel/used_flash_kernel
-        echo "CHIPSET: " $CHIPSET " BOX NAME: "$BOXHOSTNAME" MODEL: "$BOXHOSTNAME" "
-        echo "$TARGET "  > $NEOBOOTMOUNT/ImageBoot/.neonextboot
-        echo "...............Shutdown Now..............."
-        sleep 10
-        reboot -d -f         
-    fi   
+        fi        
+    fi
+    update-alternatives --remove vmlinux vmlinux-`uname -r` || true
+    echo "NEOBOOT is booting image " $TARGET
+    echo "Used Kernel: " $TARGET   > $NEOBOOTMOUNT$UPLOAD/.kernel/used_flash_kernel
+    echo "CHIPSET: " $CHIPSET " BOX NAME: "$BOXHOSTNAME" MODEL: "$BOXHOSTNAME" "
+    echo "$TARGET "  > $NEOBOOTMOUNT/ImageBoot/.neonextboot
+    echo "...............Shutdown Now..............."
+    sleep 5
+    reboot -d -f    
 else
                     ln -sfn /sbin/init.sysvinit /sbin/init
                     echo "CHIPSET: " $CHIPSET " BOX NAME: "$BOXHOSTNAME" MODEL: "$BOXHOSTNAME" "
