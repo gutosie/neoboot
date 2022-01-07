@@ -610,8 +610,7 @@ class NeoBootInstallation(Screen):
                 if os.system('opkg list-installed | grep curl') != 0:
                             os.system('opkg install curl')
                 if getCPUtype() == 'MIPS':
-                    if os.system('opkg list-installed | grep kernel-module-nandsim') != 0:
-                            os.system('opkg install kernel-module-nandsim')
+                    os.system('opkg install --force-overwrite --force-reinstall kernel-module-nandsim')
                     if os.system('opkg list-installed | grep mtd-utils-jffs2') != 0:
                             os.system('opkg install mtd-utils-jffs2')
                     if os.system('opkg list-installed | grep lzo') != 0:
