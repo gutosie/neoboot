@@ -10,8 +10,8 @@ import shutil
 #--------------------------------------------- 2021 ---------------------------------------------#
 
 
-def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterowniki, InstallSettings, ZipDelete, RepairFTP, SoftCam, MediaPortal, PiconR, Kodi, BlackHole):
-    NEOBootR(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterowniki, InstallSettings, ZipDelete, RepairFTP, SoftCam, MediaPortal, PiconR, Kodi, BlackHole)
+def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterowniki, Montowanie, InstallSettings, ZipDelete, RepairFTP, SoftCam, MediaPortal, PiconR, Kodi, BlackHole):
+    NEOBootR(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterowniki, Montowanie, InstallSettings, ZipDelete, RepairFTP, SoftCam, MediaPortal, PiconR, Kodi, BlackHole)
 
 
 def LanguageUsed():
@@ -91,7 +91,7 @@ dev_null = ' > /dev/null 2>&1'
 supportedTuners = 'vuplus'
 
 
-def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterowniki, InstallSettings, ZipDelete, RepairFTP, SoftCam, MediaPortal, PiconR, Kodi, BlackHole):
+def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterowniki, Montowanie, InstallSettings, ZipDelete, RepairFTP, SoftCam, MediaPortal, PiconR, Kodi, BlackHole):
     media_target = mediahome + target
     list_one = ['rm -r ' + media_target + dev_null, 'mkdir ' + media_target + dev_null, 'chmod -R 0777 ' + media_target]
     for command in list_one:
