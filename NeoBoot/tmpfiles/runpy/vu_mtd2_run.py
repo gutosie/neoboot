@@ -116,7 +116,7 @@ class StartImage(Screen):
 #################_____mips___##########################
 
             #VUPLUS MIPS vu_dev_mtd2.sh
-            if getBoxHostName() == 'vusolose' or getBoxHostName() == 'vuduo2' or getBoxHostName() == 'vuzero':
+            if getBoxHostName() == 'vusolo2' or getBoxHostName() == 'vusolose' or getBoxHostName() == 'vuduo2' or getBoxHostName() == 'vuzero':
                         if not fileExists('%sImagesUpload/.kernel/%s.vmlinux.gz' % (getNeoLocation(), getBoxHostName())):
                                 self.myclose2(_('Error - in the location %sImagesUpload/.kernel/ \nkernel file not found flash kernel vmlinux.gz ' % getNeoLocation()))
                         else:
@@ -150,36 +150,6 @@ class StartImage(Screen):
 
                             self.session.open(Console, _('NeoBoot MIPS....'), [cmd, cmd1])
                             self.close()
-                            
-            elif getBoxHostName() == 'vusolo2':
-                        if not fileExists('%sImagesUpload/.kernel/%s.vmlinux.gz' % (getNeoLocation(), getBoxHostName())):
-                                self.myclose2(_('Error - in the location %sImagesUpload/.kernel/ \nkernel file not found flash kernel vmlinux.gz ' % getNeoLocation()))
-                        else:                                
-                            if getImageNeoBoot() == 'Flash':                    
-                                if fileExists('/.multinfo'):  
-                                    cmd2='/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/kernel.sh' 
-                                    self.session.open(Console, _('NeoBoot Arm....'), [cmd2])                 
-                                elif not fileExists('/.multinfo'):  
-                                    self.session.open(TryQuitMainloop, 2)                                      
-                            elif getImageNeoBoot() != 'Flash':                    
-                                if not fileExists('/.multinfo'):                        
-                                    if not fileExists('/media/neoboot/ImageBoot/%s/boot/%s.vmlinux.gz' % ( getImageNeoBoot(),  getBoxVuModel())):
-                                        cmd2='ln -sfn /sbin/neoinitmips /sbin/init; /etc/init.d/reboot' 
-                                        self.session.open(Console, _('NeoBoot Arm....'), [cmd2])                                                                                                    
-                                    elif fileExists('/media/neoboot/ImageBoot/%s/boot/%s.vmlinux.gz' % ( getImageNeoBoot(),  getBoxVuModel())):                                              
-                                        cmd2='ln -sfn /sbin/neoinitmipsvu /sbin/init; /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/kernel.sh' 
-                                        self.session.open(Console, _('NeoBoot Arm....'), [cmd2])              
-                                elif fileExists('/.multinfo'):    
-                                    if not fileExists('/media/neoboot/ImageBoot/%s/boot/%s.vmlinux.gz' % ( getImageNeoBoot(),  getBoxVuModel())):
-                                        cmd2='opkg install --force-reinstall --force-overwrite --force-downgrade /media/neoboot/ImagesUpload/.kernel/zImage.%s.ipk; /etc/init.d/reboot' % getBoxVuModel() 
-                                        self.session.open(Console, _('NeoBoot Arm....'), [cmd2])
-                                    elif fileExists('/media/neoboot/ImageBoot/%s/boot/%s.vmlinux.gz' % ( getImageNeoBoot(),  getBoxVuModel())):
-                                        cmd2='/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/kernel.sh'
-                                        self.session.open(Console, _('NeoBoot Arm....'), [cmd2])                                        
-                            else:
-                                os.system('echo "Flash "  >> /media/neoboot/ImageBoot/.neonextboot')
-                                self.messagebox = self.session.open(MessageBox, _('WyglÄ…da na to ĹĽe model STB nie jest wpierany przez multiboota!!! '), MessageBox.TYPE_INFO, 8)
-                                self.close()
             else:
                             os.system('echo "Flash "  >> ' + getNeoLocation() + 'ImageBoot/.neonextboot')
                             self.messagebox = self.session.open(MessageBox, _('It looks like it that multiboot does not support this STB.'), MessageBox.TYPE_INFO, 8)
