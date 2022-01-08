@@ -259,6 +259,24 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
             cmd = 'cp -af /lib/firmware %s/ImageBoot/%s/lib > /dev/null 2>&1' % (media, target)
             rc = os.system(cmd)
             os.system('echo "System drivers copied..."')
+            
+        if Montowanie == 'True':
+            if os.path.exists('%s/ImageBoot/%s/etc/fstab' % (media, target)):
+                cmd = 'mv %s/ImageBoot/%s/etc/fstab %s/ImageBoot/%s/etc/fstab.org' % (media,
+                 target,
+                 media,
+                 target)
+                rc = os.system(cmd)
+            if os.path.exists('%s/ImageBoot/%s/etc/init.d/volatile-media.sh' % (media, target)):
+                cmd = 'mv %s/ImageBoot/%s/etc/init.d/volatile-media.sh %s/ImageBoot/%s/etc/init.d/volatile-media.sh.org' % (media,
+                 target,
+                 media,
+                 target)
+                rc = os.system(cmd)
+            cmd = 'cp -r /etc/fstab %s/ImageBoot/%s/etc/fstab' % (media, target)
+            rc = os.system(cmd)
+            cmd = 'cp -r /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/S50fat.sh %s/ImageBoot/%s/etc/rcS.d' % (media, target)
+            rc = os.system(cmd)            
 
         if InstallSettings == 'True':
             if not os.path.exists('%s/ImageBoot/%s/etc/enigma2' % (media, target)):
