@@ -598,12 +598,10 @@ class NeoBootInstallation(Screen):
                     writefile.close()
 
             if not os.path.isfile('/etc/name'):
-                if os.system('opkg update; opkg list-installed | grep python-subprocess') != 0:
-                            os.system('opkg install python-subprocess')
-                if os.system('opkg list-installed | grep python-argparse') != 0:
-                            os.system('opkg install python-argparse')
-                if os.system('opkg list-installed | grep curl') != 0:
-                            os.system('opkg install curl')
+                system('opkg update')
+                os.system('opkg install install --force-overwrite --force-reinstall python-subprocess')
+                os.system('opkg install install --force-overwrite --force-reinstall python-argparse')
+                os.system('opkg install curl')
                 if getCPUtype() == 'MIPS':
                     os.system('opkg install --force-overwrite --force-reinstall kernel-module-nandsim')
                     os.system('opkg install --force-overwrite --force-reinstall mtd-utils-jffs2')
@@ -665,13 +663,26 @@ class NeoBootInstallation(Screen):
                             os.system('cp -Rf ' + LinkNeoBoot + '/bin/neoinitmips /sbin/neoinitmips; cp -Rf ' + LinkNeoBoot + '/bin/neoinitmipsvu /sbin/neoinitmipsvu')
 
                         #vuplus stb mtd2                        
-                        elif getBoxHostName() == 'vusolo2' or getBoxHostName() == 'vuduo2' or getBoxHostName() == 'vusolose' or getBoxHostName() == 'vuzero':
+                        elif getBoxHostName() == 'vuduo2' or getBoxHostName() == 'vusolose' or getBoxHostName() == 'vuzero':
                             if fileExists('/usr/sbin/nanddump'):
                                 os.system('cd ' + getNeoLocation() + 'ImagesUpload/.kernel/; /usr/sbin/nanddump /dev/mtd2 -f vmlinux.gz; mv ./vmlinux.gz ./' + getBoxHostName() + '.vmlinux.gz')
                             elif not fileExists('/usr/sbin/nanddump'):
                                 os.system('cd ' + getNeoLocation() + 'ImagesUpload/.kernel/; ' + LinkNeoBoot + '/bin/nanddump_mips -f vmlinux.gz /dev/mtd2; mv ./vmlinux.gz ./' + getBoxHostName() + '.vmlinux.gz')
                             os.system('cd ' + LinkNeoBoot + '/; rm ./bin/fontforneoboot.ttf; rm ./bin/libpngneo; mv ' + LinkNeoBoot + '/tmpfiles/target/vu_dev_mtd2.sh ' + LinkNeoBoot + '/files/kernel.sh; mv ' + LinkNeoBoot + '/tmpfiles/runpy/vu_mtd2_run.py ' + LinkNeoBoot + '/run.py; cd')
                             os.system('cp -Rf ' + LinkNeoBoot + '/bin/neoinitmips /sbin/neoinitmips; cp -Rf ' + LinkNeoBoot + '/bin/neoinitmips_vu /sbin/neoinitmipsvu')
+                           
+                        elif getBoxHostName() == 'vusolo2':
+                            if fileExists('/usr/sbin/nanddump'):
+                                os.system('cd ' + getNeoLocation() + 'ImagesUpload/.kernel/; /usr/sbin/nanddump /dev/mtd2 -f vmlinux.gz; mv ./vmlinux.gz ./' + getBoxHostName() + '.vmlinux.gz')
+                            elif not fileExists('/usr/sbin/nanddump'):
+                                os.system('cd ' + getNeoLocation() + 'ImagesUpload/.kernel/; ' + LinkNeoBoot + '/bin/nanddump_mips -o -b vmlinux.gz /dev/mtd2; mv ./vmlinux.gz ./' + getBoxHostName() + '.vmlinux.gz')
+                            os.system('cd ' + LinkNeoBoot + '/; rm ./bin/fontforneoboot.ttf; rm ./bin/libpngneo; mv ' + LinkNeoBoot + '/tmpfiles/target/vu_dev_mtd2.sh ' + LinkNeoBoot + '/files/kernel.sh; mv ' + LinkNeoBoot + '/tmpfiles/runpy/vu_mtd2_run.py ' + LinkNeoBoot + '/run.py; cd')
+                            os.system('cp -Rf ' + LinkNeoBoot + '/bin/neoinitmips /sbin/neoinitmips; cp -Rf ' + LinkNeoBoot + '/bin/neoinitmips_vu /sbin/neoinitmipsvu')
+
+                            os.system('opkg install --force-maintainer --force-reinstall --force-overwrite --force-downgrade kernel-image')
+                            if fileExists('/home/root/*.ipk'):
+                                    os.system('rm -Rf /home/root/*.ipk')                                                                                                                                           
+                            os.system('opkg download kernel-image; sleep 2; mv /home/root/*.ipk ' + getNeoLocation() + 'ImagesUpload/.kernel/zImage.%s.ipk' % getBoxVuModel())
                             
                         #Other stb MIPS
                         else:
