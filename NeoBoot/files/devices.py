@@ -30,7 +30,7 @@ from Screens.VirtualKeyBoard import VirtualKeyBoard
 import gettext
 import os
 from Plugins.Extensions.NeoBoot.files.stbbranding import getTunerModel, getCheckExt
-if fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.9') :
+if not fileExists('/usr/lib/python2.7'):
     getoutput = "os.system"    
 else:
     from commands import getoutput
