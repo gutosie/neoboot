@@ -30,13 +30,10 @@ from os import system, listdir, mkdir, chdir, getcwd, rename as os_rename, remov
 from os.path import dirname, isdir, isdir as os_isdir
 import os
 import time
-if fileExists('/etc/vtiversion.info') or fileExists('/etc/bhversion') or fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.9') :
-    from Screens.Console import Console
+if not fileExists('/etc/vtiversion.info') and not fileExists('/etc/bhversion') and fileExists('/usr/lib/python2.7'):
+    from Plugins.Extensions.NeoBoot.files.neoconsole import Console
 else:
-    try:
-            from Plugins.Extensions.NeoBoot.files.neoconsole import Console
-    except:
-            from Screens.Console import Console
+    from Screens.Console import Console
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
 
 
