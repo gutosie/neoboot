@@ -41,13 +41,10 @@ import time
 import sys
 import struct
 import shutil
-if fileExists('/etc/vtiversion.info') or fileExists('/etc/bhversion') or fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.9') :
-    from Screens.Console import Console
+if not fileExists('/etc/vtiversion.info') and not fileExists('/etc/bhversion') and fileExists('/usr/lib/python2.7'):
+    from Plugins.Extensions.NeoBoot.files.neoconsole import Console
 else:
-    try:
-            from Plugins.Extensions.NeoBoot.files.neoconsole import Console
-    except:
-            from Screens.Console import Console
+    from Screens.Console import Console
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
 neoboot = getNeoLocation()
 media = getNeoLocation()
