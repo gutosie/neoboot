@@ -29,7 +29,7 @@ import os
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 import gettext
 import os
-from Plugins.Extensions.NeoBoot.files.stbbranding import getTunerModel, getCheckExt
+from Plugins.Extensions.NeoBoot.files.stbbranding import getTunerModel, getCheckExt, getBoxHostName
 if not fileExists('/usr/lib/python2.7'):
     getoutput = "os.system"    
 else:
@@ -463,8 +463,8 @@ class DevicesConf(Screen, ConfigListScreen):
         ybox.setTitle(_('Please, wait....'))
 
     def delay(self, val):
-        #if fileExists('/etc/init.d/volatile-media.sh'):
-            #system('mv /etc/init.d/volatile-media.sh /etc/init.d/volatile-media.sh.org')
+        if fileExists('/etc/init.d/volatile-media.sh') and getBoxHostName() == "vusolo2":
+            system('mv /etc/init.d/volatile-media.sh /etc/init.d/volatile-media.sh.org')
         message = _('Completed assembly of disks.\nReturn to installation ?')
         ybox = self.session.openWithCallback(self.myclose, MessageBox, message, MessageBox.TYPE_YESNO)
         ybox.setTitle(_('MOUNTING....'))
