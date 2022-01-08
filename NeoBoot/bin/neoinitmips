@@ -62,10 +62,7 @@ else
 	/etc/init.d/mdev > /dev/null 2>&1
 	echo "NEOBOOT is starting mdev"
         echo " "
-	echo "/sbin/mdev" > /proc/sys/kernel/hotplug
-	/etc/init.d/mdev > /dev/null 2>&1
 	sleep 1
-        echo " "
         echo "Search NEOBOOT... "	
 	if [ ! -e `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`  ]; then
 	        mkdir `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location` > /dev/null 2>&1
