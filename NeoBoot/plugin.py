@@ -46,14 +46,10 @@ import os
 import time
 from time import gmtime, strftime
 from Tools.Testinout import getTestIn, getTestOut, getTestInTime, getTestOutTime, getAccessN, getAccesDate, getButtonPin, getTestToTest
-if fileExists('/etc/vtiversion.info') or fileExists('/etc/bhversion') or fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.9'):
-    from Screens.Console import Console
+if not fileExists('/etc/vtiversion.info') and not fileExists('/etc/bhversion') and fileExists('/usr/lib/python2.7'):
+    from Plugins.Extensions.NeoBoot.files.neoconsole import Console
 else:
-    try:
-            from Plugins.Extensions.NeoBoot.files.neoconsole import Console
-    except:
-            from Screens.Console import Console
-
+    from Screens.Console import Console
 loggscrash = time.localtime(time.time())
 PLUGINVERSION = '9.45'
 UPDATEVERSION = '9.45'
@@ -208,10 +204,9 @@ class NeoBootInstallation(Screen):
         writefile.close()
 
     def SetDiskLabel(self):
-        if fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.9') or fileExists('/tmp/.upneo') :
-            self.session.open(MessageBox, _('Skip this step and install neoboot.\nThis option is available in the neoboot menu.'), type=MessageBox.TYPE_INFO) 
-            
-        elif getCheckExt() != 'vfat' and getCheckExt() == 'ext3' or getCheckExt() == 'ext4' :        
+        #if fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.9') or fileExists('/tmp/.upneo') :
+            #self.session.open(MessageBox, _('Skip this step and install neoboot.\nThis option is available in the neoboot menu.'), type=MessageBox.TYPE_INFO)
+        if getCheckExt() != 'vfat' and getCheckExt() == 'ext3' or getCheckExt() == 'ext4':
             try:
                     from Plugins.Extensions.NeoBoot.files.devices import SetDiskLabel
                     self.session.open(SetDiskLabel)
@@ -413,9 +408,9 @@ class NeoBootInstallation(Screen):
 
     def devices(self):
         check = False
-        if fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.9') or fileExists('/tmp/.upneo') :
-            self.session.open(MessageBox, _('Skip this step and install neoboot.\nThis option is available in the neoboot menu.'), type=MessageBox.TYPE_INFO)
-        elif check == False:
+        #if fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.9') or fileExists('/tmp/.upneo') :
+            #self.session.open(MessageBox, _('Skip this step and install neoboot.\nThis option is available in the neoboot menu.'), type=MessageBox.TYPE_INFO)
+        if check == False:
             message = _('After selecting OK start Mounting Manager, option Mount - green\n')
             message += _('Do you want to run the manager to mount the drives correctly ?\n')
             ybox = self.session.openWithCallback(self.device2, MessageBox, message, MessageBox.TYPE_YESNO)
@@ -925,10 +920,10 @@ class NeoBootImageChoose(Screen):
                 False
 
     def close_exit(self):
-        if fileExists('/usr/lib/python3.9') or fileExists('/usr/lib/python3.8'):
-            self.close()            
+        if fileExists('/usr/lib/python2.7'):
+            self.close_exit2()            
         else:
-            self.close_exit2()
+            self.close()
             
     def close_exit2(self):
         system('touch /tmp/.init_reboot')
@@ -1542,7 +1537,7 @@ class NeoBootImageChoose(Screen):
                     message = (_('The %sImagesUpload directory is EMPTY!!!\nInstall the plugin to download new image online ?\n --- Continue? ---') % getNeoLocation())
                     ybox = self.session.openWithCallback(self.ImageDownloader, MessageBox, message, MessageBox.TYPE_YESNO)
                     ybox.setTitle(_('Installation'))
-            elif fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.9') and fileExists('/.multinfo'):
+            elif not fileExists('/usr/lib/python2.7') and fileExists('/.multinfo'):
                 self.session.open(MessageBox, _('Sorry, cannot open neo menu install image.'), type=MessageBox.TYPE_ERROR)
             else:
                 message = (_('Catalog %sImagesUpload directory is empty\nPlease upload the image files in zip or nfi formats to install') % getNeoLocation())
@@ -1654,9 +1649,7 @@ def readline(filename, iferror=''):
 
 
 def checkInternet():
-    if fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.9'):
-        return True
-    else:
+    if fileExists('/usr/lib/python2.7'):
         import urllib2
         import urllib
         try:
@@ -1668,8 +1661,10 @@ def checkInternet():
             return False
         else:
             return True
+    else:
+        return True        
 
-
+    
 def checkimage():
     mycheck = False
     if not fileExists('/proc/stb/info') or not fileExists('' + LinkNeoBoot + '/neoskins/neo/neo_skin.py') or not fileExists('' + LinkNeoBoot + '/bin/utilsbh') or not fileExists('' + LinkNeoBoot + '/stbinfo.cfg'):
