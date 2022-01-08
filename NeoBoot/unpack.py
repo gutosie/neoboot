@@ -140,6 +140,10 @@ class InstallImage(Screen, ConfigListScreen):
             self.Sterowniki = ConfigYesNo(default=False)
         else:
             self.Sterowniki = ConfigYesNo(default=True)
+        if getCPUtype() == "MIPS" and getBoxHostName() == "vusolo2":
+            self.Montowanie = ConfigYesNo(default=True)
+        else:
+            self.Montowanie = ConfigYesNo(default=False)            
         self.InstallSettings = ConfigYesNo(default=False)
         self.ZipDelete = ConfigYesNo(default=False)
         self.RepairFTP = ConfigYesNo(default=False)
@@ -187,6 +191,7 @@ class InstallImage(Screen, ConfigListScreen):
         self.list.append(getConfigListEntry(_('Copy the channel list ?'), self.TvList))
         self.list.append(getConfigListEntry(_('Copy network settings LAN-WLAN ?'), self.LanWlan))
         self.list.append(getConfigListEntry(_('Copy the drivers ? (Recommended only other image.)'), self.Sterowniki))
+        self.list.append(getConfigListEntry(_('Copy mounting disks ? (Recommended)'), self.Montowanie))
         self.list.append(getConfigListEntry(_('Copy Settings to the new Image'), self.InstallSettings))
         self.list.append(getConfigListEntry(_('Delete Image zip after Install ?'), self.ZipDelete))
         self.list.append(getConfigListEntry(_('Repair FTP ? (Recommended only other image if it does not work.)'), self.RepairFTP))
@@ -253,7 +258,7 @@ class InstallImage(Screen, ConfigListScreen):
                 message += _('Please, wait...\n')
                 message += "'"
                 cmd1 = 'python ' + pluginpath + '/ex_init.py'
-                cmd = '%s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s ' % (cmd1,
+                cmd = '%s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s ' % (cmd1,
                  source,
                  target.replace(' ', '.'),
                  str(self.CopyFiles.value),
@@ -261,6 +266,7 @@ class InstallImage(Screen, ConfigListScreen):
                  str(self.TvList.value),
                  str(self.LanWlan.value),
                  str(self.Sterowniki.value),
+                 str(self.Montowanie.value),
                  str(self.InstallSettings.value),
                  str(self.ZipDelete.value),
                  str(self.RepairFTP.value),
