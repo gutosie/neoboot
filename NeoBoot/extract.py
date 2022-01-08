@@ -274,8 +274,6 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
                  target)
                 rc = os.system(cmd)
             cmd = 'cp -r /etc/fstab %s/ImageBoot/%s/etc/fstab' % (media, target)
-            rc = os.system(cmd)
-            cmd = 'cp -r /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/S50fat.sh %s/ImageBoot/%s/etc/rcS.d' % (media, target)
             rc = os.system(cmd)            
 
         if InstallSettings == 'True':
