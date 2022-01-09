@@ -261,20 +261,24 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
             os.system('echo "System drivers copied..."')
             
         if Montowanie == 'True':
-            if os.path.exists('%s/ImageBoot/%s/etc/fstab' % (media, target)):
-                cmd = 'mv %s/ImageBoot/%s/etc/fstab %s/ImageBoot/%s/etc/fstab.org' % (media,
-                 target,
-                 media,
-                 target)
+            if getCPUtype() == "MIPS":
+                if os.path.exists('%s/ImageBoot/%s/etc/fstab' % (media, target)):
+                    cmd = 'mv %s/ImageBoot/%s/etc/fstab %s/ImageBoot/%s/etc/fstab.org' % (media,
+                     target,
+                     media,
+                     target)
+                    rc = os.system(cmd)
+                if os.path.exists('%s/ImageBoot/%s/etc/init.d/volatile-media.sh' % (media, target)):
+                    cmd = 'mv %s/ImageBoot/%s/etc/init.d/volatile-media.sh %s/ImageBoot/%s/etc/init.d/volatile-media.sh.org' % (media,
+                     target,
+                     media,
+                     target)
+                    rc = os.system(cmd)
+                cmd = 'cp -r /etc/fstab %s/ImageBoot/%s/etc/fstab' % (media, target)
                 rc = os.system(cmd)
-            if os.path.exists('%s/ImageBoot/%s/etc/init.d/volatile-media.sh' % (media, target)):
-                cmd = 'mv %s/ImageBoot/%s/etc/init.d/volatile-media.sh %s/ImageBoot/%s/etc/init.d/volatile-media.sh.org' % (media,
-                 target,
-                 media,
-                 target)
-                rc = os.system(cmd)
-            cmd = 'cp -r /etc/fstab %s/ImageBoot/%s/etc/fstab' % (media, target)
-            rc = os.system(cmd)            
+            elif getCPUtype() == "ARMv7":
+                os.system('echo "No copied mount ARM..."')
+                
 
         if InstallSettings == 'True':
             if not os.path.exists('%s/ImageBoot/%s/etc/enigma2' % (media, target)):
