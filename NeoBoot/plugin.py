@@ -651,7 +651,7 @@ class NeoBootInstallation(Screen):
             # STB MIPS
             elif getCPUtype() == 'MIPS':
                         os.system('chmod 755 ' + LinkNeoBoot + '/bin/nfidump; chmod 0755 ' + LinkNeoBoot + '/bin/nanddump_mips; cd /')
-                        if fileExists('' + getNeoLocation() + 'ImagesUpload/.kernel/' + getBoxHostName() + '.vmlinux.gz'):
+                        if fileExists('' + getNeoLocation() + 'ImagesUpload/.kernel/' + getBoxHostName() + '.vmlinux.gz') and not os.path.isfile('/etc/name'):
                             os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/.kernel/' + getBoxHostName() + '.vmlinux.gz')                
                         #vuplus stb mtd1                   
                         if getBoxHostName() == 'bm750' or getBoxHostName() == 'vuduo' or getBoxHostName() == 'vusolo' or getBoxHostName() == 'vuuno' or getBoxHostName() == 'vuultimo':
