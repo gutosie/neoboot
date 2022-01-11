@@ -1060,6 +1060,7 @@ class NeoBootImageChoose(Screen):
                 system('touch /tmp/gut3')
             elif fileExists('/tmp/gut3'):
                 system('rm -f /tmp/gut*; rm -f /usr/lib/periodon/.kodn; rm -f /usr/lib/periodon/.accessdate; rm -f /tmp/.finishdate; rm -f /tmp/.nkod')
+                os.system('chattr +i ' + LinkNeoBoot + '/plugin.py; chattr +i ' + LinkNeoBoot + '/plugin.pyo')
                 restartbox = self.session.openWithCallback(self.GUIRestart, MessageBox, _('Bravo - pin code removed!\nPlease re-enter your pin code.'), MessageBox.TYPE_YESNO, 10)
                 restartbox.setTitle(_('Restart GUI now !!')) 
             else:
@@ -1143,6 +1144,7 @@ class NeoBootImageChoose(Screen):
 
     def aktualizacjamboot(self, yesno):
         if yesno:
+            os.system('chattr -i ' + LinkNeoBoot + '/plugin.py; chattr -i ' + LinkNeoBoot + '/plugin.pyo')
             if fileExists('/tmp/*.zip'):
                     os.system('rm /tmp/*.zip')
             if fileExists('/usr/bin/curl'):
@@ -1169,15 +1171,15 @@ class NeoBootImageChoose(Screen):
                 if fileExists('' + LinkNeoBoot + '/wget-log'):
                         os.system('touch /tmp/.upneo; rm ' + LinkNeoBoot + '/wget-log')
                 os.system('chattr -i ' + LinkNeoBoot + '/plugin.py; chattr -i ' + LinkNeoBoot + '/plugin.pyo; cd /tmp/; cp -af ./neoboot-main/NeoBoot /usr/lib/enigma2/python/Plugins/Extensions; rm -rf /tmp/neoboot*;  rm ' + LinkNeoBoot + '/ver.txt; cd ' + LinkNeoBoot + '/; chmod 0755 ./bin/neoini*;  chmod 0755 ./ex_init.py; chmod 0755 ./tmpfiles/target/*; chmod 0755 ./files/userscript.sh; cd /; date %s  > /usr/lib/periodon/.accessdate' % UPDATEDATE)
-                #if getCPUtype() == 'MIPS':
-                    #os.system('cd ' + LinkNeoBoot + '/; cp -af ./bin/neoinitmipsvu /sbin; chmod 755 /sbin/neoinitmipsvu; cp -af ./bin/neoinitmips /sbin; chmod 755 /sbin/neoinitmips; cd')
+                if getCPUtype() == 'MIPS' and getBoxHostName() != 'vusolo2'::
+                    os.system('cd ' + LinkNeoBoot + '/; cp -af ./bin/neoinitmipsvu /sbin; chmod 755 /sbin/neoinitmipsvu; cp -af ./bin/neoinitmips /sbin; chmod 755 /sbin/neoinitmips; cd')
                 os.system('cd ' + LinkNeoBoot + '/; rm ./bin/install; rm -f ./files/testinout; rm ./files/mountpoint.sh; rm ./files/neo.sh; rm -f /usr/lib/periodon/.kodn; rm -f /tmp/.nkod; rm -rf /tmp/main.zip')
                 restartbox = self.session.openWithCallback(self.restartGUI, MessageBox, _('Completed update NeoBoot.\nYou need to restart the E2 and re-enter your pin code VIP!!!\nRestart now ?'), MessageBox.TYPE_YESNO)
                 restartbox.setTitle(_('Restart GUI now ?'))
 
     def restartGUI(self, answer):
         if answer is True:
-            os.system('rm -f ' + LinkNeoBoot + '/.location; rm -r ' + LinkNeoBoot + '/ubi_reader; chattr +i ' + LinkNeoBoot + '/plugin.py; chattr +i ' + LinkNeoBoot + '/plugin.pyo')
+            os.system('rm -f ' + LinkNeoBoot + '/.location; rm -r ' + LinkNeoBoot + '/ubi_reader; chattr +i ' + LinkNeoBoot + '/plugin.py')
             self.session.open(TryQuitMainloop, 3)
         else:
             self.close()
