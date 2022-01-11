@@ -276,6 +276,7 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
                     rc = os.system(cmd)
                 cmd = 'cp -r /etc/fstab %s/ImageBoot/%s/etc/fstab' % (media, target)
                 rc = os.system(cmd)
+                os.system('echo "The fstab mount file was copied..."')
             elif getCPUtype() == "ARMv7":
                 os.system('echo "No copied mount ARM..."')
                 
