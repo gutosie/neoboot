@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 # system modules
 
+from __future__ import absolute_import
+from __future__ import print_function
 from Plugins.Extensions.NeoBoot.__init__ import _
 import codecs
 from enigma import getDesktop
