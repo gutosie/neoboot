@@ -143,7 +143,7 @@ class StartImage(Screen):
 
                                 elif fileExists('/.multinfo'):
                                     if not fileExists('%sImageBoot/%s/boot/%s.vmlinux.gz' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
-                                        cmd = 'flash_eraseall /dev/mtd1; sleep 2; ' + LinkNeoBoot + '/bin/nandwrite -p /dev/mtd1 %sImagesUpload/.kernel/%s.vmlinux.gz; reboot -d -f' % (getNeoLocation(), getBoxHostName())
+                                        cmd = 'flash_eraseall /dev/mtd1; sleep 2; ' + LinkNeoBoot + '/bin/nandwrite -p /dev/mtd1 %sImagesUpload/.kernel/%s.vmlinux.gz' % (getNeoLocation(), getBoxHostName())
                                         rc = os.system(cmd)
                                         self.session.open(TryQuitMainloop, 2)                                       
 
