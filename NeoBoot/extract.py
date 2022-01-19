@@ -1011,6 +1011,13 @@ def NEOBootExtract(source, target, ZipDelete):
             if os.path.exists('' + getNeoLocation() + 'ImagesUpload/xp1000'):
                 os.chdir('xp1000')
                 brand = 'xp1000'
+            #GigaBlue    
+            if os.path.exists('' + getNeoLocation() + 'ImagesUpload/gigablue'):
+                os.chdir('gigablue')
+                brand = 'gigablue'
+                rootfname = 'rootfs.bin'
+                if os.path.exists('' + getNeoLocation() + 'ImagesUpload/gigablue/x1'):
+                    os.chdir('x1')
             #VuPlus
             if os.path.exists('' + getNeoLocation() + 'ImagesUpload/vuplus'):
                 os.chdir('vuplus')
@@ -1041,6 +1048,7 @@ def NEOBootExtract(source, target, ZipDelete):
             if os.path.exists('' + getNeoLocation() + 'ImagesUpload/osmini'):
                 os.chdir('osmini')
                 brand = 'osmini'
+                rootfname = 'rootfs.bin'
 
             #Instalacja image nandsim
             os.system('echo "Instalacja - nandsim w toku..."')
