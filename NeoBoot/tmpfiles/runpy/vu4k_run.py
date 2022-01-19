@@ -128,14 +128,16 @@ class StartImage(Screen):
                                     cmd1 = 'cd /media/InternalFlash; ln -sf "init.sysvinit" "/media/InternalFlash/sbin/init"; ' + LinkNeoBoot + '/files/kernel.sh '
 
                                 elif not fileExists("/.multinfo"):
-                                    cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT - REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
-                                    cmd1 = 'sleep 5; ln -sf "init.sysvinit" "/sbin/init"; reboot -d -f'
+                                    cmd = 'ln -sf "init.sysvinit" "/sbin/init'
+                                    rc = os.system(cmd)
+                                    self.session.open(TryQuitMainloop, 2)
 
                             elif getImageNeoBoot() != "Flash":
                                 if not fileExists("/.multinfo"):
                                     if not fileExists('%sImageBoot/%s/boot/zImage.%s' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
-                                        cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT - REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
-                                        cmd1 = 'sleep 5; ln -sfn /sbin/neoinitarm /sbin/init; reboot -d -f'
+                                        cmd = 'ln -sfn /sbin/neoinitarm /sbin/init'
+                                        rc = os.system(cmd)
+                                        self.session.open(TryQuitMainloop, 2)
 
                                     elif fileExists('%sImageBoot/%s/boot/zImage.%s' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
                                         cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT - REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
@@ -143,8 +145,10 @@ class StartImage(Screen):
 
                                 elif fileExists("/.multinfo"):
                                     if not fileExists('%sImageBoot/%s/boot/zImage.%s' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
-                                        cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT - REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
-                                        cmd1 = 'dd if=' + getNeoLocation() + 'ImagesUpload/.kernel/flash-kernel-' + getBoxHostName() + '.bin of=/dev/mmcblk0p1; cd /media/InternalFlash; ln -sf "neoinitarm" "/media/InternalFlash/sbin/init" ; sleep 2; reboot -dfhi '
+                                        cmd = 'dd if=' + getNeoLocation() + 'ImagesUpload/.kernel/flash-kernel-' + getBoxHostName() + '.bin of=/dev/mmcblk0p1; cd /media/InternalFlash; ln -sf "neoinitarm" "/media/InternalFlash/sbin/init"'
+                                        rc = os.system(cmd)
+                                        self.session.open(TryQuitMainloop, 2)
+                                        
                                     elif fileExists('%sImageBoot/%s/boot/zImage.%s' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
                                         cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT - REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
                                         cmd1 = 'cd /media/InternalFlash; ln -sf "neoinitarmvu" "/media/InternalFlash/sbin/init"; ' + LinkNeoBoot + '/files/kernel.sh '
