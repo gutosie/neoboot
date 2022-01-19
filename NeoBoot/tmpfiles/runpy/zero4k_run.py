@@ -127,27 +127,24 @@ class StartImage(Screen):
                                     cmd1 = 'cd /media/InternalFlash; ln -sf "init.sysvinit" "/media/InternalFlash/sbin/init"; /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/kernel.sh '
 
                                 elif not fileExists('/.multinfo'):
-                                    cmd = 'ln -sf "init.sysvinit" "/sbin/init"'
-                                    rc = os.system(cmd)
-                                    self.session.open(TryQuitMainloop, 2)
+                                    cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT - REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
+                                    cmd1 = 'sleep 5; ln -sf "init.sysvinit" "/sbin/init"; reboot -d -f'
 
                             elif getImageNeoBoot() != 'Flash':
                                 if not fileExists('/.multinfo'):
                                     if not fileExists('%sImageBoot/%s/boot/zImage.%s' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
-                                        cmd = 'ln -sfn /sbin/neoinitarm /sbin/init'
-                                        rc = os.system(cmd)
-                                        self.session.open(TryQuitMainloop, 2)                                        
-                                        
+                                        cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT - REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
+                                        cmd1 = 'sleep 5; ln -sfn /sbin/neoinitarm /sbin/init; reboot -d -f'
+
                                     elif fileExists('%sImageBoot/%s/boot/zImage.%s' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
                                         cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT - REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
                                         cmd1 = 'ln -sfn /sbin/neoinitarmvu /sbin/init; /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/kernel.sh '
 
                                 elif fileExists('/.multinfo'):
                                     if not fileExists('%sImageBoot/%s/boot/zImage.%s' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
-                                        cmd = 'dd if=' + getNeoLocation() + 'ImagesUpload/.kernel/flash-kernel-' + getBoxHostName() + '.bin of=/dev/mmcblk0p1; cd /media/InternalFlash; ln -sf "neoinitarm" "/media/InternalFlash/sbin/init"'
-                                        rc = os.system(cmd)
-                                        self.session.open(TryQuitMainloop, 2)
-                                        
+                                        cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT - REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
+                                        cmd1 = 'dd if=' + getNeoLocation() + 'ImagesUpload/.kernel/flash-kernel-' + getBoxHostName() + '.bin of=/dev/mmcblk0p1; cd /media/InternalFlash; ln -sf "neoinitarm" "/media/InternalFlash/sbin/init" ; sleep 2; reboot -dfhi '
+
                                     elif fileExists('%sImageBoot/%s/boot/zImage.%s' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
                                         cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT - REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
                                         cmd1 = 'cd /media/InternalFlash; ln -sf "neoinitarmvu" "/media/InternalFlash/sbin/init"; /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/kernel.sh '
