@@ -15,6 +15,7 @@
 #--------------------------------------------- -#[NEOBOOT]#- ---------------------------------------------#
 #neoboot modules
 from __future__ import absolute_import
+from __future__ import print_function
 from . import _
 from Plugins.Extensions.NeoBoot.files.stbbranding import LogCrashGS, getSupportedTuners, getLabelDisck, getINSTALLNeo, getNeoLocation, getLocationMultiboot, getNeoMount, getNeoMount2, getNeoMount3, getNeoMount4, getNeoMount5, getFSTAB, getFSTAB2, getKernelVersionString, getKernelImageVersion, getChipSetString, getCPUtype, getCPUSoC, getImageNeoBoot, getBoxVuModel, getBoxHostName, getTunerModel, getImageDistroN, getFormat, getNEO_filesystems, getBoxModelVU, getMountPointAll, getMountPointNeo, getCheckActivateVip, getBoxMacAddres, getCheckExt
 from Plugins.Extensions.NeoBoot.files import Harddisk
