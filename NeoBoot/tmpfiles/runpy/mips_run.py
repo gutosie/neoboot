@@ -110,22 +110,19 @@ class StartImage(Screen):
                 os.system('rm -f /media/InternalFlash/etc/init.d/neobootmount.sh;')
             if (getSupportedTuners()):
                         if getImageNeoBoot() == 'Flash':
-                                cmd = "echo -e '\n\n%s '" % _('NEOBOOT - Restart image flash....\nPlease wait, in a moment the decoder will be restarted...\n')
-                                cmd1 = 'sleep 8; ln -sfn /sbin/init.sysvinit /sbin/init; reboot -f '
-                                self.session.open(Console, _('NeoBoot ....'), [cmd, cmd1])
+                                cmd = 'ln -sfn /sbin/init.sysvinit /sbin/init'
+                                rc = os.system(cmd)
+                                self.session.open(TryQuitMainloop, 2)
                         elif getImageNeoBoot() != 'Flash':
                             if fileExists('/.multinfo'):
-                                cmd = "echo -e '\n\n%s '" % _('NEOBOOT - Restart image flash....\nPlease wait, in a moment the decoder will be restarted...\n')
-                                cmd1 = 'sleep 5; reboot -f '
-                                self.session.open(Console, _('NeoBoot ....'), [cmd, cmd1])
+                                self.session.open(TryQuitMainloop, 2)
                             elif not fileExists('/.multinfo'):
-                                cmd = "echo -e '\n\n%s '" % _('NEOBOOT - Restart image flash....\nPlease wait, in a moment the decoder will be restarted...\n')
-                                cmd1 = 'sleep 8; ln -sfn /sbin/neoinitmips /sbin/init; reboot -f '
-                                self.session.open(Console, _('NeoBoot ....'), [cmd, cmd1])
+                                cmd = 'ln -sfn /sbin/neoinitmips /sbin/init'
+                                rc = os.system(cmd)
+                                self.session.open(TryQuitMainloop, 2)
                             else:
-                                cmd = "echo -e '\n\n%s '" % _('NEOBOOT - Restart image flash....\nPlease wait, in a moment the decoder will be restarted...\n')
-                                cmd1 = 'sleep 8; ln -sfn /sbin/init.sysvinit /sbin/init; reboot -f '
-                                self.session.open(Console, _('NeoBoot-ERROR!!! ....'), [cmd, cmd1])
+                                os.system('echo "Flash "  >> ' + getNeoLocation() + 'ImageBoot/.neonextboot')
+                                self.session.open(TryQuitMainloop, 2) 
                         else:
                             os.system('echo "Flash "  >> ' + getNeoLocation() + 'ImageBoot/.neonextboot')
                             self.messagebox = self.session.open(MessageBox, _('It looks like it that multiboot does not support this STB.'), MessageBox.TYPE_INFO, 8)
