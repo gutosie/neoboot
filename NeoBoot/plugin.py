@@ -740,7 +740,7 @@ class NeoBootInstallation(Screen):
 
     def RebootSTB(self, answer):
         if answer is True:
-            cmd = 'echo 3 > /proc/sys/vm/drop_caches; shutdown -r now && reboot -d -f & '
+            cmd = 'echo 3 > /proc/sys/vm/drop_caches; shutdown -r now ;sleep 1; reboot -d -f &'
             rc = os.system(cmd)             
             #os.system('sync && echo 3 > /proc/sys/vm/drop_caches; reboot -d -f')
         else:
