@@ -169,7 +169,7 @@ if  [ $BOXHOSTNAME = "vusolo2" ] || [ $BOXHOSTNAME = "vuduo2" ] || [ $BOXHOSTNAM
     echo "$TARGET "  > $NEOBOOTMOUNT/ImageBoot/.neonextboot
     echo "...............Shutdown Now..............."
     sleep 5
-    shutdown -r now && reboot -d -f & 
+    reboot -d -f 
 else
                     ln -sfn /sbin/init.sysvinit /sbin/init
                     echo "CHIPSET: " $CHIPSET " BOX NAME: "$BOXHOSTNAME" MODEL: "$BOXHOSTNAME" "
