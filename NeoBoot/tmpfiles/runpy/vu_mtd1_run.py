@@ -125,8 +125,9 @@ class StartImage(Screen):
                                     cmd = "echo -e '\n\n%s '" % _('...............NeoBoot  REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
                                     cmd1 = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/kernel.sh'
                                 elif not fileExists('/.multinfo'):
-                                    cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT >> Reboot...............\nPlease wait, in a moment the decoder will be restarted...')
-                                    cmd1 = 'ln -sfn /sbin/init.sysvinit /sbin/init; reboot -d -f'
+                                    cmd = 'ln -sfn /sbin/init.sysvinit /sbin/init'
+                                    rc = os.system(cmd)
+                                    self.session.open(TryQuitMainloop, 2) 
 
                             elif getImageNeoBoot() != 'Flash':
                                 if not fileExists('/.multinfo'):
@@ -136,13 +137,15 @@ class StartImage(Screen):
                                         cmd1 = 'ln -sfn /sbin/neoinitmipsvu /sbin/init; /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/kernel.sh'
 
                                     elif not fileExists('%sImageBoot/%s/boot/%s.vmlinux.gz' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
-                                        cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT > REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
-                                        cmd1 = 'ln -sfn /sbin/neoinitmipsvu /sbin/init; reboot -d -f'
+                                        cmd = 'ln -sfn /sbin/neoinitmipsvu /sbin/init'
+                                        rc = os.system(cmd)
+                                        self.session.open(TryQuitMainloop, 2)                                         
 
                                 elif fileExists('/.multinfo'):
                                     if not fileExists('%sImageBoot/%s/boot/%s.vmlinux.gz' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
-                                        cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT_REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
-                                        cmd1 = 'flash_eraseall /dev/mtd1; sleep 2; ' + LinkNeoBoot + '/bin/nandwrite -p /dev/mtd1 %sImagesUpload/.kernel/%s.vmlinux.gz; reboot -d -f' % (getNeoLocation(), getBoxHostName())
+                                        cmd = 'flash_eraseall /dev/mtd1; sleep 2; ' + LinkNeoBoot + '/bin/nandwrite -p /dev/mtd1 %sImagesUpload/.kernel/%s.vmlinux.gz; reboot -d -f' % (getNeoLocation(), getBoxHostName())
+                                        rc = os.system(cmd)
+                                        self.session.open(TryQuitMainloop, 2)                                       
 
                                     elif fileExists('%sImageBoot/%s/boot/%s.vmlinux.gz' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
                                         cmd = "echo -e '\n\n%s '" % _('...............REBOOT now...............\nPlease wait, in a moment the decoder will be restarted...')
