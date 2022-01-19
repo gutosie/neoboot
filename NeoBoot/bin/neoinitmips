@@ -323,7 +323,6 @@ else
 fi
 # boot Flash
 if [ -f /sbin/init.sysvinit ]; then
-        ln -sfn /sbin/init.sysvinit /sbin/init
 		echo "Running /sbin/init.sysvinit - boot Flash"
 		exec /sbin/init.sysvinit $1
 fi
