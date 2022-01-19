@@ -12,9 +12,9 @@ elif [ -f /etc/opkg/opkg.conf ] ; then
    STATUS='/var/lib/opkg/status'
    OS='Opensource'
 fi
-if [ -e /etc/name ]; then 
-   rm -rf /etc/name   
-fi
+#if [ -e /etc/name ]; then 
+   #rm -rf /etc/name   
+#fi
 [ -e /tmp/neoboot.zip ] && rm -f /tmp/neoboot.zip
 [ -e /tmp/neoboot-main ] && rm -rf /tmp/neoboot-main
 [ $PL ] && echo "Pobieranie archiwum..." || echo "Downloading archive file..."
