@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 #from __init__ import _
+from __future__ import absolute_import
+from __future__ import print_function
 from Plugins.Extensions.NeoBoot.__init__ import _
 from Plugins.Extensions.NeoBoot.files.stbbranding import getNeoLocation, getKernelVersionString, getKernelImageVersion, getCPUtype, getCPUSoC, getImageNeoBoot, getBoxVuModel, getBoxHostName, getTunerModel
 from enigma import getDesktop
