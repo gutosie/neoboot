@@ -2265,7 +2265,9 @@ class Opis(Screen):
 
     def mbdelete(self, answer):
         if answer is True:
-            os.system('chattr -i ' + LinkNeoBoot + '/plugin.py; chattr -i ' + LinkNeoBoot + '/plugin.pyo; chattr -i /usr/lib/periodon/.activatedmac')
+            os.system('touch /tmp/.upneo; chattr -i ' + LinkNeoBoot + '/plugin.py')
+            if fileExists('' + LinkNeoBoot + '/plugin.pyo'):
+                os.system('chattr -i ' + LinkNeoBoot + '/plugin.pyo')
             if fileExists('/etc/rcS.d/S99neo.local'):
                 system('rm -r /etc/rcS.d/S99neo.local')
             if fileExists('/etc/name'):
