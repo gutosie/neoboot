@@ -11,8 +11,8 @@ import shutil
 #--------------------------------------------- 2021 ---------------------------------------------#
 
 
-def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterowniki, Montowanie, InstallSettings, ZipDelete, RepairFTP, SoftCam, MediaPortal, PiconR, Kodi, BlackHole):
-    NEOBootR(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterowniki, Montowanie, InstallSettings, ZipDelete, RepairFTP, SoftCam, MediaPortal, PiconR, Kodi, BlackHole)
+def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterowniki, Montowanie, InstallSettings, ZipDelete, RepairFTP, SoftCam, MediaPortal, PiconR, Kodi, BlackHole, Nandsim):
+    NEOBootR(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterowniki, Montowanie, InstallSettings, ZipDelete, RepairFTP, SoftCam, MediaPortal, PiconR, Kodi, BlackHole, Nandsim)
 
 
 def LanguageUsed():
@@ -92,13 +92,13 @@ dev_null = ' > /dev/null 2>&1'
 supportedTuners = 'vuplus'
 
 
-def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterowniki, Montowanie, InstallSettings, ZipDelete, RepairFTP, SoftCam, MediaPortal, PiconR, Kodi, BlackHole):
+def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterowniki, Montowanie, InstallSettings, ZipDelete, RepairFTP, SoftCam, MediaPortal, PiconR, Kodi, BlackHole, Nandsim):
     media_target = mediahome + target
     list_one = ['rm -r ' + media_target + dev_null, 'mkdir ' + media_target + dev_null, 'chmod -R 0777 ' + media_target]
     for command in list_one:
         os.system(command)
 
-    rc = NEOBootExtract(source, target, ZipDelete)
+    rc = NEOBootExtract(source, target, ZipDelete, Nandsim)
 
     os.system('sync; echo 1 > /proc/sys/vm/drop_caches')
 
@@ -842,7 +842,7 @@ def RemoveUnpackDirs():
     if os.path.exists('' + getNeoLocation() + 'ImagesUpload/kernel.bin'):
         rc = os.system('rm -rf ' + getNeoLocation() + 'ImagesUpload/kernel.bin')        
         
-def NEOBootExtract(source, target, ZipDelete):
+def NEOBootExtract(source, target, ZipDelete, Nandsim):
     RemoveUnpackDirs()
     os.system('echo "Press green to hide Console or red to abort the installation\nInstallation started:"; date +%T;echo "Extracting the installation file..."')
 
@@ -902,7 +902,7 @@ def NEOBootExtract(source, target, ZipDelete):
         rootfname = 'rootfs.bin'
         brand = ''
         #NANDSIM
-        if os.path.exists('/lib/modules/%s/kernel/drivers/mtd/nand/nandsim.ko' % getKernelVersion()):
+        if Nandsim == 'True' and os.path.exists('/lib/modules/%s/kernel/drivers/mtd/nand/nandsim.ko' % getKernelVersion()):
             for i in range(0, 20):
                     mtdfile = '/dev/mtd' + str(i)
                     if os.path.exists(mtdfile) is False:
