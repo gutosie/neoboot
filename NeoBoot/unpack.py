@@ -157,6 +157,8 @@ class InstallImage(Screen, ConfigListScreen):
             self.BlackHole = ConfigYesNo(default=True)
         else:        
             self.BlackHole = ConfigYesNo(default=False)
+        if getCPUtype() == 'MIPS':
+            self.Nandsim = ConfigYesNo(default=True)            
         self.target.value = ''
         self.curselimage = ''
         try:
@@ -202,6 +204,8 @@ class InstallImage(Screen, ConfigListScreen):
         self.list.append(getConfigListEntry(_('Copy picon flash to image install ?'), self.PiconR))
         self.list.append(getConfigListEntry(_('Transfer kodi settings ?'), self.Kodi))
         self.list.append(getConfigListEntry(_('Path BlackHole ? (Not recommended for VuPlus)'), self.BlackHole))
+        if getCPUtype() == 'MIPS':
+            self.list.append(getConfigListEntry(_('Use Nandsim to install image ?'), self.Nandsim))        
 
     def HelpInstall(self):
             self.session.open(HelpInstall)
@@ -260,7 +264,7 @@ class InstallImage(Screen, ConfigListScreen):
                 message += _('Please, wait...\n')
                 message += "'"
                 cmd1 = 'python ' + pluginpath + '/ex_init.py'
-                cmd = '%s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s ' % (cmd1,
+                cmd = '%s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s ' % (cmd1,
                  source,
                  target.replace(' ', '.'),
                  str(self.CopyFiles.value),
@@ -276,7 +280,8 @@ class InstallImage(Screen, ConfigListScreen):
                  str(self.MediaPortal.value),
                  str(self.PiconR.value),
                  str(self.Kodi.value),
-                 str(self.BlackHole.value))
+                 str(self.BlackHole.value),
+                 str(self.Nandsim.value))
                 print("[MULTI-BOOT]: "), cmd
                 from Plugins.Extensions.NeoBoot.plugin import PLUGINVERSION
                 self.session.open(Console, _('NeoBoot v.%s - Install new image') % PLUGINVERSION, [message, cmd])
