@@ -158,7 +158,9 @@ class InstallImage(Screen, ConfigListScreen):
         else:        
             self.BlackHole = ConfigYesNo(default=False)
         if getCPUtype() == 'MIPS':
-            self.Nandsim = ConfigYesNo(default=True)            
+            self.Nandsim = ConfigYesNo(default=True)
+        else:        
+            self.Nandsim = ConfigYesNo(default=False)             
         self.target.value = ''
         self.curselimage = ''
         try:
