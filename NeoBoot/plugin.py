@@ -1543,10 +1543,11 @@ class NeoBootImageChoose(Screen):
                         from Plugins.Extensions.NeoBoot.unpack import InstallImage
                         self.session.open(InstallImage)
                     except Exception as e:
+                        showlog = 'cat ' + getNeoLocation() + 'ImageBoot/neoboot.log'
                         loggscrash = time.localtime(time.time())
                         LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
-                        mess = _('Sorry, cannot open instalation menu.\nAccess error with error code 0x72.')
-                        self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
+                        #mess = _('Sorry, cannot open instalation menu.\nAccess error with error code 0x72.')
+                        self.session.openWithCallback(self.close, Console, _('NeoBoot ERROR !!!'), [showlog])
 
     def DownloaderImage(self):
             if not os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/ImageDownloader/download.py'):
