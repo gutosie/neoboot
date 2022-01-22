@@ -1079,4 +1079,14 @@ def getNandWrite():
                         
     return NandWrite
 
+def getMyUUID():
+    os.system("tune2fs -l /dev/sd?? | awk '/UUID/ {print $NF}' > /tmp/.myuuid") 
+    try:
+        if os.path.isfile('/tmp/.myuuid'):
+            return open('/tmp/.myuuid').read().strip().upper()
+    except:
+        pass
+
+    return _('unavailable')
+
 boxbrand = sys.modules[__name__]
