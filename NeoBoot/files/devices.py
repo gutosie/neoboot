@@ -29,7 +29,7 @@ import os
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 import gettext
 import os
-from Plugins.Extensions.NeoBoot.files.stbbranding import getTunerModel, getCheckExt, getBoxHostName
+from Plugins.Extensions.NeoBoot.files.stbbranding import getTunerModel, getCheckExt, getBoxHostName, getMyUUID
 if not fileExists('/usr/lib/python2.7'):
     getoutput = "os.system"    
 else:
@@ -482,8 +482,12 @@ class DevicesConf(Screen, ConfigListScreen):
         if result:
             self.device = extra_args[0]
             self.mountp = extra_args[1]
-            self.device_uuid = 'UUID=' + result.split('UUID=')[1].split(' ')[0].replace('"', '')
-            self.device_type = result.split('TYPE=')[1].split(' ')[0].replace('"', '')
+            if fileExists('/usr/lib/python2.7'):
+                self.device_uuid = ('UUID=' + result.split('UUID=')[1].split(' ')[0].readline().strip().replace('"', ''))            
+                self.device_type = result.split('TYPE=')[1].split(' ')[0].replace('"', '')
+            else:              
+                self.device_uuid = 'UUID=' + getMyUUID()
+                self.device_type = getCheckExt()                        
             if self.device_type.startswith('ext'):
                 self.device_type = 'auto'
             elif self.device_type.startswith('ntfs') and result.find('ntfs-3g') != -1:
@@ -497,11 +501,17 @@ class DevicesConf(Screen, ConfigListScreen):
             open('/etc/fstab.tmp', 'w').writelines([l for l in open('/etc/fstab').readlines() if self.device_uuid not in l])
             rename('/etc/fstab.tmp', '/etc/fstab')
             out = open('/etc/fstab', 'a')
-            line = self.device_uuid + '\t' + self.mountp + '\t' + self.device_type + '\tdefaults\t0 0\n'
+            if fileExists('/usr/lib/python2.7'):
+                line = self.device_uuid + '\t' + self.mountp + '\t' + self.device_type + '\tdefaults\t0 0\n'
+            else:
+                line = 'UUID=' + getMyUUID() + '\t' + self.mountp + '\t' + self.device_type + '\tdefaults\t0 0\n'                           
             out.write(line)
             out.close()
-
-            self.device_uuid2 = result.split('UUID=')[1].split(' ')[0].replace('"', '')
+            if fileExists('/usr/lib/python2.7'):
+                self.device_uuid2 = result.split('UUID=')[1].split(' ')[0].replace('"', '')
+            else:
+                self.device_uuid = getMyUUID()
+                
 #            if fileExists('/usr/lib/enigma2/python/Plugins/SystemPlugins/DeviceManager2'):
 #                out1 = open('/etc/devicemanager.cfg', 'a')
 #                line1 = '"' + self.device_uuid2 + '"' + ':' + self.mountp + '\n'
