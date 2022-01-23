@@ -2074,58 +2074,63 @@ class InitializationFormattingDisk(Screen):
                
                
 class DiskLabelSet(Screen):
-    skin = """ <screen name="LABEL Disk" title="Label" position="center,center" size="850,647">
-          <widget name="lab1" position="20,73" size="820,50" font="baslk;30" halign="center" valign="center" transparent="1" foregroundColor="#00ffa500" />
-          <widget source="list" render="Listbox" itemHeight="40" font="Regular;21" position="25,142" zPosition="1" size="815,416" scrollbarMode="showOnDemand" transparent="1">
-          <convert type="StringList" font="Regular;35" />
-          </widget>
-          <ePixmap position="107,588" size="34,34" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red.png" alphatest="blend" zPosition="1" />
-          <widget name="key_red" position="153,588" zPosition="2" size="368,35" font="baslk;30" halign="left" valign="center" backgroundColor="red" transparent="1" />
-          </screen>"""
-    
+    __module__ = __name__
+
+    skin = """<screen name="Label" title="Set Label" position="center,center" size="700,300" >
+    <widget name="lab1" position="20,20" size="660,210" font="baslk;25" halign="center" valign="center" transparent="1"/>
+    <ePixmap position="210,250" size="34,34" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red.png" alphatest="blend" zPosition="1" />
+    <widget name="key_red" position="250,250" zPosition="2" size="280,40" font="baslk;30" halign="left" valign="center" backgroundColor="red" transparent="1" />
+    </screen>"""
+
     def __init__(self, session):
         Screen.__init__(self, session)
-        self['lab1'] = Label(_('Select disk.'))
-        self['key_red'] = Label(_('Label'))
-        self['list'] = List([])
+        self['lab1'] = Label(_('Label'))
+        self['key_red'] = Label(_('Installation'))
         self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'back': self.close,
-         'ok': self.deleteback,
-         'red': self.deleteback})
-        self.backupdir = '/tmp/disk'
-        self.onShow.append(self.updateInfo)
+         'red': self.SetLabelDisk})
 
-    def updateInfo(self):
-        os.system(' mkdir -p /tmp/disk ')
-        getMountDiskSTB()
-        self.backupdir = '/tmp/disk'
-        if pathExists(self.backupdir) == 0 and createDir(self.backupdir):
-            pass
-
-        imageslist = []
-        for fn in listdir(self.backupdir):
-            imageslist.append(fn)
-
-        self['list'].list = imageslist
-
-    def deleteback(self):
-        image = self['list'].getCurrent()
-        if image:
-            self.diskNeoLabel = image.strip()
-            message = (_('Hard disk:  %s  Label ? ') % image)
-            ybox = self.session.openWithCallback(self.dodeleteback, MessageBox, message, MessageBox.TYPE_YESNO)
-            ybox.setTitle(_('Label the disk ???'))
-
-    def dodeleteback(self, answer):
-        if answer is True:
-            cmd = "echo -e '\n\n%s '" % _('NeoBoot - Label disk .....')
-            cmd1 = "echo -e '\n\n%s '" % _('Please wait and dont disconnect the power !!! ....')
-            cmd2 = 'sleep 2; tune2fs -O extents,uninit_bg,dir_index  /dev/' + self.diskNeoLabel
-            cmd3 = "echo -e '\n\n%s '" % _('Label OK')
-            cmd4 = 'rm -r /tmp/disk ;sync; sync; sleep 5'                                  
-            self.session.open(Console, _('Disk Label...!'), [cmd, cmd1, cmd2, cmd3, cmd4])
-            self.updateInfo()
-        else:
-            self.close()               
+    def SetLabelDisk(self):
+        if os.path.exists('/proc/mounts'):
+            with open('/proc/mounts', 'r') as f:
+                lines = f.read()
+                f.close()
+            cmd = "echo -e '\n\n%s '" % _('NeoBoot - Label disk .....')            
+            cmd1 = "echo -e '\n\n%s'" % _('Please wait')                               
+            if lines.find('/dev/sda1 /media/hdd') != -1:
+                os.system('tune2fs -L hdd /dev/sda1')                        
+            if lines.find('/dev/sdb1 /media/hdd') != -1:
+                os.system('tune2fs -L hdd /dev/sdb1')                        
+            if lines.find('/dev/sda2 /media/hdd') != -1:
+                os.system('tune2fs -L hdd /dev/sda2')                        
+            if lines.find('/dev/sdb2 /media/hdd') != -1:
+                os.system('tune2fs -L hdd /dev/sdb2')                        
+            if lines.find('/dev/sdc1 /media/hdd') != -1:
+                os.system('tune2fs -L hdd /dev/sdc1')                        
+            if lines.find('/dev/sdd1 /media/hdd') != -1:
+                os.system('tune2fs -L hdd /dev/sdd1')                        
+            if lines.find('/dev/sde1 /media/hdd') != -1:
+                os.system('tune2fs -L hdd /dev/sde1')                        
+            if lines.find('/dev/sdf1 /media/hdd') != -1:
+                os.system('tune2fs -L hdd /dev/sdf1')                        
+            if lines.find('/dev/sda1 /media/usb') != -1:
+                os.system('tune2fs -L usb /dev/sda1')                        
+            if lines.find('/dev/sdb1 /media/usb') != -1:
+                os.system('tune2fs -L usb /dev/sdb1')                        
+            if lines.find('/dev/sda2 /media/usb') != -1:
+                os.system('tune2fs -L usb /dev/sda2')                        
+            if lines.find('/dev/sdb2 /media/usb') != -1:
+                os.system('tune2fs -L usb /dev/sdb2')                        
+            if lines.find('/dev/sdc1 /media/usb') != -1:
+                os.system('tune2fs -L usb /dev/sdc1')                        
+            if lines.find('/dev/sdd1 /media/usb') != -1:
+                os.system('tune2fs -L usb /dev/sdd1')                        
+            if lines.find('/dev/sde1 /media/usb') != -1:
+                os.system('tune2fs -L usb /dev/sde1')                        
+            if lines.find('/dev/sdf1 /media/usb') != -1:
+                os.system('tune2fs -L usb /dev/sdf1')                                            
+            cmd2 = "echo -e '\n\n%s '" % _('Label set OK')                                  
+            self.session.open(Console, _('Disk Label...!'), [cmd, cmd1, cmd2])
+            self.close()             
 
 
 class MultiBootMyHelp(Screen):
