@@ -30,6 +30,7 @@ from Screens.VirtualKeyBoard import VirtualKeyBoard
 import gettext
 from Plugins.Extensions.NeoBoot.files.stbbranding import getTunerModel, getCheckExt, getBoxHostName, getMyUUID
 if not fileExists('/usr/lib/python2.7'):
+    open = file
     getoutput = "os.system"    
 else:
     from commands import getoutput
@@ -482,7 +483,7 @@ class DevicesConf(Screen, ConfigListScreen):
             self.device = extra_args[0]
             self.mountp = extra_args[1]
             if fileExists('/usr/lib/python2.7'):
-                self.device_uuid = ('UUID=' + result.split('UUID=')[1].split(' ')[0].readline().strip().replace('"', ''))            
+                self.device_uuid = 'UUID=' + result.split('UUID=')[1].split(' ')[0].replace('"', '')
                 self.device_type = result.split('TYPE=')[1].split(' ')[0].replace('"', '')
             else:              
                 self.device_uuid = 'UUID=' + getMyUUID()
