@@ -127,6 +127,7 @@ class StartImage(Screen):
             #_____ARM procesor____
             if (getSupportedTuners()):
                         if getImageNeoBoot() == 'Flash':
+                            if fileExists('/.multinfo'):                    
                                 if fileExists('/media/InternalFlash/linuxrootfs1/sbin/neoinitarm'):
                                         os.system('ln -sf "init.sysvinit" "/media/InternalFlash/linuxrootfs1/sbin/init"')
                                 if fileExists('/media/InternalFlash/linuxrootfs2/sbin/neoinitarm'):
