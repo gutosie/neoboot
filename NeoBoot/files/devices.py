@@ -28,7 +28,6 @@ import re
 import os
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 import gettext
-import os
 from Plugins.Extensions.NeoBoot.files.stbbranding import getTunerModel, getCheckExt, getBoxHostName, getMyUUID
 if not fileExists('/usr/lib/python2.7'):
     getoutput = "os.system"    
