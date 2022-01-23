@@ -675,8 +675,12 @@ class SetDiskLabel(Screen):
 
     def MD(self):
         try:
+            if fileExists('/usr/lib/python2.7'):
                     from Plugins.Extensions.NeoBoot.files.devices import SetDiskLabel
                     self.session.open(SetDiskLabel)
+            else:
+                    from Plugins.Extensions.NeoBoot.files.tools import DiskLabelSet
+                    self.session.open(DiskLabelSet)
         except:
             False         
 
@@ -2067,6 +2071,61 @@ class InitializationFormattingDisk(Screen):
             self.updateInfo()
         else:
             self.close()
+               
+               
+class DiskLabelSet(Screen):
+    skin = """ <screen name="LABEL Disk" title="Label" position="center,center" size="850,647">
+          <widget name="lab1" position="20,73" size="820,50" font="baslk;30" halign="center" valign="center" transparent="1" foregroundColor="#00ffa500" />
+          <widget source="list" render="Listbox" itemHeight="40" font="Regular;21" position="25,142" zPosition="1" size="815,416" scrollbarMode="showOnDemand" transparent="1">
+          <convert type="StringList" font="Regular;35" />
+          </widget>
+          <ePixmap position="107,588" size="34,34" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red.png" alphatest="blend" zPosition="1" />
+          <widget name="key_red" position="153,588" zPosition="2" size="368,35" font="baslk;30" halign="left" valign="center" backgroundColor="red" transparent="1" />
+          </screen>"""
+    
+    def __init__(self, session):
+        Screen.__init__(self, session)
+        self['lab1'] = Label(_('Select disk.'))
+        self['key_red'] = Label(_('Label'))
+        self['list'] = List([])
+        self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'back': self.close,
+         'ok': self.deleteback,
+         'red': self.deleteback})
+        self.backupdir = '/tmp/disk'
+        self.onShow.append(self.updateInfo)
+
+    def updateInfo(self):
+        os.system(' mkdir -p /tmp/disk ')
+        getMountDiskSTB()
+        self.backupdir = '/tmp/disk'
+        if pathExists(self.backupdir) == 0 and createDir(self.backupdir):
+            pass
+
+        imageslist = []
+        for fn in listdir(self.backupdir):
+            imageslist.append(fn)
+
+        self['list'].list = imageslist
+
+    def deleteback(self):
+        image = self['list'].getCurrent()
+        if image:
+            self.diskNeoLabel = image.strip()
+            message = (_('Hard disk:  %s  Label ? ') % image)
+            ybox = self.session.openWithCallback(self.dodeleteback, MessageBox, message, MessageBox.TYPE_YESNO)
+            ybox.setTitle(_('Label the disk ???'))
+
+    def dodeleteback(self, answer):
+        if answer is True:
+            cmd = "echo -e '\n\n%s '" % _('NeoBoot - Label disk .....')
+            cmd1 = "echo -e '\n\n%s '" % _('Please wait and dont disconnect the power !!! ....')
+            cmd2 = 'sleep 2; tune2fs -O extents,uninit_bg,dir_index  /dev/' + self.diskNeoLabel
+            cmd3 = "echo -e '\n\n%s '" % _('Label OK')
+            cmd4 = 'rm -r /tmp/disk ;sync; sync; sleep 5'                                  
+            self.session.open(Console, _('Disk Label...!'), [cmd, cmd1, cmd2, cmd3, cmd4])
+            self.updateInfo()
+        else:
+            self.close()               
 
 
 class MultiBootMyHelp(Screen):
