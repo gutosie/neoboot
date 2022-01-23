@@ -1006,37 +1006,37 @@ def getMountDiskSTB():
             lines = f.read()
             f.close()   
         if lines.find('/dev/sda1 /media/hdd') != -1:
-            os.system('touch /tmp/disk/sda1; touch /tmp/disk/#---Select_the_disk_HDD_to_be_formatted:')            
+            os.system('touch /tmp/disk/sda1; touch /tmp/disk/#---Select_the_disk_HDD:')            
         if lines.find('/dev/sdb1 /media/hdd') != -1:
-            os.system('touch /tmp/disk/sdb1; touch /tmp/disk/#---Select_the_disk_HDD_to_be_formatted:')            
+            os.system('touch /tmp/disk/sdb1; touch /tmp/disk/#---Select_the_disk_HDD:')            
         if lines.find('/dev/sda2 /media/hdd') != -1:
-            os.system('touch /tmp/disk/sda2; touch /tmp/disk/#---Select_the_disk_HDD_to_be_formatted:')            
+            os.system('touch /tmp/disk/sda2; touch /tmp/disk/#---Select_the_disk_HDD:')            
         if lines.find('/dev/sdb2 /media/hdd') != -1:
-            os.system('touch /tmp/disk/sdb2; touch /tmp/disk/#---Select_the_disk_HDD_to_be_formatted:')            
+            os.system('touch /tmp/disk/sdb2; touch /tmp/disk/#---Select_the_disk_HDD:')            
         if lines.find('/dev/sdc1 /media/hdd') != -1:
-            os.system('touch /tmp/disk/sdc1; touch /tmp/disk/#---Select_the_disk_HDD_to_be_formatted:')            
+            os.system('touch /tmp/disk/sdc1; touch /tmp/disk/#---Select_the_disk_HDD:')            
         if lines.find('/dev/sdd1 /media/hdd') != -1:
-            os.system('touch /tmp/disk/sdd1; touch /tmp/disk/#---Select_the_disk_HDD_to_be_formatted:')            
+            os.system('touch /tmp/disk/sdd1; touch /tmp/disk/#---Select_the_disk_HDD:')            
         if lines.find('/dev/sde1 /media/hdd') != -1:
-            os.system('touch /tmp/disk/sde1; touch /tmp/disk/#---Select_the_disk_HDD_to_be_formatted:')            
+            os.system('touch /tmp/disk/sde1; touch /tmp/disk/#---Select_the_disk_HDD:')            
         if lines.find('/dev/sdf1 /media/hdd') != -1:
-            os.system('touch /tmp/disk/sdf1; touch /tmp/disk/#---Select_the_disk_HDD_to_be_formatted:')            
+            os.system('touch /tmp/disk/sdf1; touch /tmp/disk/#---Select_the_disk_HDD:')            
         if lines.find('/dev/sda1 /media/usb') != -1:
-            os.system('touch /tmp/disk/sda1; touch /tmp/disk/#---Select_the_disk_USB_to_be_formatted:')            
+            os.system('touch /tmp/disk/sda1; touch /tmp/disk/#---Select_the_disk_USB:')            
         if lines.find('/dev/sdb1 /media/usb') != -1:
-            os.system('touch /tmp/disk/sdb1; touch /tmp/disk/#---Select_the_disk_USB_to_be_formatted:')            
+            os.system('touch /tmp/disk/sdb1; touch /tmp/disk/#---Select_the_disk_USB:')            
         if lines.find('/dev/sda2 /media/usb') != -1:
-            os.system('touch /tmp/disk/sda2; touch /tmp/disk/#---Select_the_disk_USB_to_be_formatted:')            
+            os.system('touch /tmp/disk/sda2; touch /tmp/disk/#---Select_the_disk_USB:')            
         if lines.find('/dev/sdb2 /media/usb') != -1:
-            os.system('touch /tmp/disk/sdb2; touch /tmp/disk/#---Select_the_disk_USB_to_be_formatted:')            
+            os.system('touch /tmp/disk/sdb2; touch /tmp/disk/#---Select_the_disk_USB:')            
         if lines.find('/dev/sdc1 /media/usb') != -1:
-            os.system('touch /tmp/disk/sdc1; touch /tmp/disk/#---Select_the_disk_USB_to_be_formatted:')            
+            os.system('touch /tmp/disk/sdc1; touch /tmp/disk/#---Select_the_disk_USB:')            
         if lines.find('/dev/sdd1 /media/usb') != -1:
-            os.system('touch /tmp/disk/sdd1; touch /tmp/disk/#---Select_the_disk_USB_to_be_formatted:')            
+            os.system('touch /tmp/disk/sdd1; touch /tmp/disk/#---Select_the_disk_USB:')            
         if lines.find('/dev/sde1 /media/usb') != -1:
-            os.system('touch /tmp/disk/sde1; touch /tmp/disk/#---Select_the_disk_USB_to_be_formatted:')            
+            os.system('touch /tmp/disk/sde1; touch /tmp/disk/#---Select_the_disk_USB:')            
         if lines.find('/dev/sdf1 /media/usb') != -1:
-            os.system('touch /tmp/disk/sdf1; touch /tmp/disk/#---Select_the_disk_USB_to_be_formatted:')            
+            os.system('touch /tmp/disk/sdf1; touch /tmp/disk/#---Select_the_disk_USB:')            
 
     return neo_disk    
 
