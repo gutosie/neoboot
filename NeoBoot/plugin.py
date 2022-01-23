@@ -209,8 +209,12 @@ class NeoBootInstallation(Screen):
             #self.session.open(MessageBox, _('Skip this step and install neoboot.\nThis option is available in the neoboot menu.'), type=MessageBox.TYPE_INFO)
         if getCheckExt() != 'vfat' and getCheckExt() == 'ext3' or getCheckExt() == 'ext4':
             try:
+                if fileExists('/usr/lib/python2.7'):
                     from Plugins.Extensions.NeoBoot.files.devices import SetDiskLabel
                     self.session.open(SetDiskLabel)
+                else:
+                    from Plugins.Extensions.NeoBoot.files.tools import DiskLabelSet
+                    self.session.open(DiskLabelSet)
             except Exception as e:
                     loggscrash = time.localtime(time.time())
                     LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
