@@ -629,7 +629,8 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
                     cmd = 'chmod -R 0755 %s' % filename
                     rc = os.system(cmd)
                     
-            if os.path.exists('%s/ImageBoot/%s/var/lib/opkg/status' % (media, target)):                
+            #_______________________________________________status1 zmienione        
+            if os.path.exists('%s/ImageBoot/%s/var/lib/opkg/status1' % (media, target)):                
                 cmd = 'mv ' + getNeoLocation() + 'ImageBoot/' + target + '/var/lib/opkg/status ' + getNeoLocation() + 'ImageBoot/%s/var/lib/opkg/status-or' % target
                 rc = os.system(cmd)
                 fail = '' + getNeoLocation() + 'ImageBoot/%s/var/lib/opkg/status-or' % target
