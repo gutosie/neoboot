@@ -24,6 +24,9 @@ Cel="/usr/lib/enigma2/python/Plugins/Extensions"
 if [ -e $Cel/NeoBoot/plugin.py ]; then 
    chattr -i /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/plugin.py; chattr -i /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/plugin.pyo
 fi
+if [ -e /usr/lib/periodon/.activatedmac ]; then 
+   chattr -i /usr/lib/periodon/.activatedmac; rm -f /usr/lib/periodon/.activatedmac
+fi
 cd /tmp/
 #pobieranie
 if [ ! -e /tmp/neoboot.zip ]; then 
