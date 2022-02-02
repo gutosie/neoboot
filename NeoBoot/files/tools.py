@@ -273,11 +273,16 @@ class MBTools(Screen):
         self.list.append(res)
         self['list']. list = self.list        
         
-        res = (_('NeoBoot Information'), png, 26)
+        if "vu" + getBoxVuModel() == getBoxHostName() and getCPUtype() == "MIPS":        
+            res = (_('Boot Managers.'), png, 26)
+            self.list.append(res)
+            self['list']. list = self.list                
+        
+        res = (_('NeoBoot Information'), png, 27)
         self.list.append(res)
         self['list']. list = self.list
 
-        res = (_('NeoBoot donate'), png, 27)
+        res = (_('NeoBoot donate'), png, 28)
         self.list.append(res)
         self['list']. list = self.list
         
@@ -337,9 +342,11 @@ class MBTools(Screen):
             pass                        
         if self.sel == 25 and self.session.open(InitializationFormattingDisk):
             pass                                                  
-        if self.sel == 26 and self.session.open(MultiBootMyHelp):
+        if self.sel == 26 and self.session.open(BootManagers):
+            pass                                                                      
+        if self.sel == 27 and self.session.open(MultiBootMyHelp):
             pass
-        if self.sel == 27 and self.session.open(neoDONATION):
+        if self.sel == 28 and self.session.open(neoDONATION):
             pass            
 #        if self.sel == 28and self.session.open(CheckInternet):
 #            pass
