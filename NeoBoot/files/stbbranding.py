@@ -1076,11 +1076,11 @@ def getExtCheckHddUsb():
         with open('/proc/mounts', 'r') as f:
             lines = f.read()
             f.close()
-        if lines.find('/media/hdd ext3') != -1 or lines.find('/media/hdd type ext3') != -1 and os.path.exists('/media/hdd/ImageBoot'):
-            neoExt = 'ext3' 
-        if lines.find('/media/usb ext3') != -1 or lines.find('/media/usb type ext3') != -1 and os.path.exists('/media/usb/ImageBoot'):
-            neoExt = 'ext3'                        
-    return neoExt 
+        if lines.find('/media/hdd ext4') != -1 or lines.find('/media/hdd type ext4') != -1 and os.path.exists('/media/hdd/ImageBoot'):
+            neoExt = 'ext4'
+        if lines.find('/media/usb ext4') != -1 or lines.find('/media/usb type ext4') != -1 and os.path.exists('/media/usb/ImageBoot'):
+            neoExt = 'ext4'                        
+    return neoExt
 
 def getNandWrite():
     NandWrite = 'UNKNOWN'
