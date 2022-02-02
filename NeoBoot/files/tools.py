@@ -1776,8 +1776,8 @@ class CreateSwap(Screen):
     __module__ = __name__
     skin = """<screen name="Swap" title="NeoBoot - Create Swap " position="center,center" size="892,198" flags="wfNoBorder">
         <widget name="lab1" position="112,27" size="660,85" font="baslk;25" halign="center" valign="center" transparent="1" />
-        <widget name="key_green" position="75,140" zPosition="2" size="405,45" font="baslk;30" halign="left" valign="center" backgroundColor="red" transparent="1" foregroundColor="red" />
-        <widget name="key_red" position="490,140" zPosition="2" size="400,45" font="baslk;30" halign="left" valign="center" backgroundColor="green" transparent="1" foregroundColor="green" />
+        <widget name="key_green" position="75,140" zPosition="2" size="405,45" font="baslk;30" halign="left" valign="center" backgroundColor="red" transparent="1" foregroundColor="green" />
+        <widget name="key_red" position="490,140" zPosition="2" size="400,45" font="baslk;30" halign="left" valign="center" backgroundColor="green" transparent="1" foregroundColor="red" />
         </screen>"""
 
     def __init__(self, session):       
@@ -2075,6 +2075,45 @@ class InitializationFormattingDisk(Screen):
         else:
             self.close()
                
+class BootManagers(Screen):
+    __module__ = __name__
+    skin = """<screen name="Boot Managers" title="Boot" position="center,center" size="892,198" flags="wfNoBorder">
+        <widget name="lab1" position="112,27" size="660,85" font="baslk;25" halign="center" valign="center" transparent="1" />
+        <widget name="key_green" position="75,140" zPosition="2" size="405,45" font="baslk;30" halign="left" valign="center" backgroundColor="red" transparent="1" foregroundColor="green" />
+        <widget name="key_red" position="490,140" zPosition="2" size="400,45" font="baslk;30" halign="left" valign="center" backgroundColor="green" transparent="1" foregroundColor="red" />
+        </screen>"""
+
+    def __init__(self, session):       
+        Screen.__init__(self, session)
+        self['lab1'] = Label(_('Boot test'))
+        self['key_red'] = Label(_('Do not use Boot Manager.'))
+        self['key_green'] = Label(_('Use Boot Manager.'))        
+        self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'back': self.close,
+         'red': self.RemoveBootManagers,
+         'green': self.CreateBootManagers})
+
+    def CreateBootManagers(self):
+            cmd0 = "echo -e '\n\n%s '" % _('Creation Boot Manager , please wait...')
+            cmd1 = 'cp -af ' + LinkNeoBoot + '/bin/neoinitmips /sbin/neoinitmipsvu'
+            cmd2 = "echo -e '\n\n%s '" % _('Creation Boot Manager complete\nThe boot manager has been activated ! ')
+            self.session.open(Console, _('NeoBoot....'), [cmd0,
+             cmd1,
+             cmd2])
+            self.close()
+            
+    def RemoveBootManagers(self):
+            cmd0 = "echo -e '\n\n%s '" % _('Creation Boot Manager , please wait...')
+            cmd1 = 'cp -af ' + LinkNeoBoot + '/bin/neoinitmipsvu /sbin/neoinitmipsvu'
+            cmd2 = "echo -e '\n\n%s '" % _('Creation Boot Manager complete\nBoot manager has been hidden !')
+            self.session.open(Console, _('NeoBoot....'), [cmd0,
+             cmd1,
+             cmd2])
+            self.close()
+                                            
+    def myClose(self, message):
+        self.session.open(MessageBox, message, MessageBox.TYPE_INFO)
+        self.close()
+               
                
 class DiskLabelSet(Screen):
     __module__ = __name__
@@ -2222,7 +2261,7 @@ class Opis(Screen):
         <widget source="session.VideoPicture" render="Pig" position=" 1253,134" size="556,313" zPosition="3" backgroundColor="#ff000000"/>
         <eLabel text="INFORMATION NeoBoot" position="340,50"  size="500,55" font="baslk;40" halign="left" foregroundColor="#58bcff" backgroundColor="black" transparent="1"/>
         <widget name="key_red" position="30,950" size="430,50" zPosition="1" font="baslk; 30" halign="center" backgroundColor="red" transparent="1" foregroundColor="#ffffff" />
-        <widget name="key_green" position="660,950" size="538,50" zPosition="1" font="baslk; 30" halign="center" backgroundColor="red" transparent="1" foregroundColor="#ffffff" />
+        <widget name="key_green" position="660,950" size="538,50" zPosition="1" font="baslk; 30" halign="center" backgroundColor="green" transparent="1" foregroundColor="#ffffff" />
         <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/scroll.png" position="1144,160" size="26,685" zPosition="5" alphatest="blend"/>
         <ePixmap position="1350,750" zPosition="1" size="400,241" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/matrixhd.png" />
         <ePixmap position="1475,530" zPosition="1" size="330,85" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/ico_neo.png" />
@@ -2237,7 +2276,7 @@ class Opis(Screen):
         <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red25.png" position="50,680" size="230,36" alphatest="blend"  />
         <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/green25.png" position="480,680" size="230,36" alphatest="blend" />
         <widget name="key_red" position="35,630" zPosition="1" size="270,40" font="Regular;20" halign="center" valign="center" backgroundColor="red" transparent="1" />
-        <widget name="key_green" position="380,630" zPosition="1" size="401,40" font="Regular;20" halign="center" valign="center" backgroundColor="red" transparent="1" />
+        <widget name="key_green" position="380,630" zPosition="1" size="401,40" font="Regular;20" halign="center" valign="center" backgroundColor="green" transparent="1" />
         <widget name="lab1" position="50,100" size="730,450" font="Regular;20" backgroundColor="black"  />
         <widget source="session.VideoPicture" render="Pig" position=" 836,89" size="370,208" zPosition="3" backgroundColor="#ff000000" />
         <widget source="Title" render="Label"  position="200,25" size="800,30" font="Regular;28" halign="left" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1"/>
