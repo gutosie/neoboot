@@ -1068,6 +1068,18 @@ def getCheckExt():
             neoExt = 'ext4'                         
     return neoExt
 
+def getExtCheckHddUsb():
+    neoExt = 'UNKNOWN'
+    if os.path.exists('/proc/mounts'):
+        with open('/proc/mounts', 'r') as f:
+            lines = f.read()
+            f.close()
+        if lines.find('/media/hdd ext3') != -1:
+            neoExt = 'ext3' 
+        if lines.find('/media/usb ext3') != -1:
+            neoExt = 'ext3'                        
+    return neoExt 
+
 def getNandWrite():
     NandWrite = 'UNKNOWN'
     if os.path.exists('/usr/sbin/nandwrite'):
