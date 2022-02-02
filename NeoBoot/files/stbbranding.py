@@ -148,16 +148,18 @@ def getImageATv():
 
 
 def getNeoLocation():
-    locatino = 'UNKNOWN'
+    locatinoneo = 'UNKNOWN'
     if os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location'):
         with open('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location', 'r') as f:
             locatino = f.readline().strip()
             f.close()
     elif os.path.exists('/media/hdd/ImageBoot'):
-            locatino = '/media/hdd/'
+            locatinoneo = '/media/hdd/'
     elif os.path.exists('/media/usb/ImageBoot'):
-            locatino = '/media/usb/'		
-    return locatino
+            locatinoneo = '/media/usb/'
+    else
+            locatinoneo = locatino    		
+    return locatinoneo
 
 
 #check ext
@@ -1074,9 +1076,9 @@ def getExtCheckHddUsb():
         with open('/proc/mounts', 'r') as f:
             lines = f.read()
             f.close()
-        if lines.find('/media/hdd ext3') != -1:
+        if lines.find('/media/hdd ext3') != -1 and os.path.exists('/media/hdd/ImageBoot'):
             neoExt = 'ext3' 
-        if lines.find('/media/usb ext3') != -1:
+        if lines.find('/media/usb ext3') != -1 and os.path.exists('/media/usb/ImageBoot'):
             neoExt = 'ext3'                        
     return neoExt 
 
