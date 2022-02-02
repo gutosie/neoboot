@@ -273,7 +273,7 @@ class MBTools(Screen):
         self.list.append(res)
         self['list']. list = self.list        
         
-        if "vu" + getBoxVuModel() == getBoxHostName() and getCPUtype() == "MIPS":        
+        if "vu" + getBoxVuModel() == getBoxHostName() and getCPUtype() == "MIPS" and not fileExists('/.multinfo')::        
             res = (_('Boot Managers.'), png, 26)
             self.list.append(res)
             self['list']. list = self.list                
