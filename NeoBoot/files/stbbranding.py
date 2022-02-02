@@ -157,7 +157,7 @@ def getNeoLocation():
             locatinoneo = '/media/hdd/'
     elif os.path.exists('/media/usb/ImageBoot'):
             locatinoneo = '/media/usb/'
-    else
+    else:
             locatinoneo = locatino    		
     return locatinoneo
 
