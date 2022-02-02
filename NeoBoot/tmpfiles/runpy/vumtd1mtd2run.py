@@ -166,7 +166,7 @@ class StartImage(Screen):
                                         cmd = "echo -e '\n%s '" % _('...............NEOBOOT > REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
                                         cmd1 = 'ln -sfn /sbin/neoinitmips /sbin/init'
                                         cmd2 = 'update-alternatives --remove vmlinux vmlinux-`uname -r` || true'
-                                        cmd3 = "echo -e '\n%s '" % _('KERNEL NOT changed !\nSTB NAME: ' + getBoxHostName() + '\nNeoBoot location:' + getNeoLocation() + '\nCPU: ' + getCPUSoC() + '\nImagen boot: ' + getImageNeoBoot() + ' ')
+                                        cmd3 = "echo -e '\n%s '" % _('Start image without changing the kernel!\nSTB NAME: ' + getBoxHostName() + '\nNeoBoot location:' + getNeoLocation() + '\nCPU: ' + getCPUSoC() + '\nImagen boot: ' + getImageNeoBoot() + ' ')
                                         cmd4 = 'sync; sleep 8; reboot -d -f'                                        
  
 
@@ -175,7 +175,7 @@ class StartImage(Screen):
                                         cmd = "echo -e '\n%s '" % _('...............NEOBOOT_REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
                                         cmd1 = 'update-alternatives --remove vmlinux vmlinux-`uname -r` || true'
                                         cmd2 = 'sync' 
-                                        cmd3 = "echo -e '\n%s '" % _('STB NAME: ' + getBoxHostName() + '\nNeoBoot location:' + getNeoLocation() + '\nCPU: ' + getCPUSoC() + '\nImagen boot: ' + getImageNeoBoot() + ' ') 
+                                        cmd3 = "echo -e '\n%s '" % _('Start image based on flash kernel !\nSTB NAME: ' + getBoxHostName() + '\nNeoBoot location:' + getNeoLocation() + '\nCPU: ' + getCPUSoC() + '\nImagen boot: ' + getImageNeoBoot() + ' ') 
                                         cmd4 = 'sleep 8; reboot -d -f'
                                         
                                     elif fileExists('%sImageBoot/%s/boot/%s.vmlinux.gz' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
