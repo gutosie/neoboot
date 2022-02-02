@@ -172,11 +172,14 @@ class StartImage(Screen):
 
                                 elif fileExists('/.multinfo'):
                                     if not fileExists('%sImageBoot/%s/boot/%s.vmlinux.gz' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
-                                        cmd = "echo -e '\n%s '" % _('...............NEOBOOT_REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
-                                        cmd1 = 'update-alternatives --remove vmlinux vmlinux-`uname -r` || true'
-                                        cmd2 = 'sync' 
-                                        cmd3 = "echo -e '\n%s '" % _('Start image based on flash kernel !\nSTB NAME: ' + getBoxHostName() + '\nNeoBoot location:' + getNeoLocation() + '\nCPU: ' + getCPUSoC() + '\nImagen boot: ' + getImageNeoBoot() + ' ') 
-                                        cmd4 = 'sleep 8; reboot -d -f'
+                                        cmd = "echo -e '\n%s '" % _('...............NeoBoot  REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
+                                        cmd1 = 'flash_erase /dev/' + mtd + ' 0 0 > /dev/null 2>&1 ; flash_eraseall /dev/' + mtd + ' > /dev/null 2>&1'
+                                        if getNandWrite() == 'nandwrite':
+                                            cmd2 = 'nandwrite -p /dev/' + mtd + ' ' + getNeoLocation() + 'ImagesUpload/.kernel/' + getBoxHostName() + '.vmlinux.gz > /dev/null 2>&1'
+                                        else:
+                                            cmd2 = '' + LinkNeoBoot + '/bin/nandwrite -p /dev/' + mtd + ' ' + getNeoLocation() + 'ImagesUpload/.kernel/' + getBoxHostName() + '.vmlinux.gz > /dev/null 2>&1'                                                                        
+                                        cmd3 = "echo -e '\n%s '" % _('Changed kernel COMPLETE ! ' + getNandWrite() + '\nSTB NAME: ' + getBoxHostName() + '\nNeoBoot location:' + getNeoLocation() + '\nCPU: ' + getCPUSoC() + '\nImagen boot: ' + getImageNeoBoot() + ' ')
+                                        cmd4 = 'update-alternatives --remove vmlinux vmlinux-`uname -r` || true; sync; sleep 8; reboot -d -f'
                                         
                                     elif fileExists('%sImageBoot/%s/boot/%s.vmlinux.gz' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
                                         cmd = "echo -e '\n%s '" % _('...............REBOOT now...............\nPlease wait, in a moment the decoder will be restarted...')
