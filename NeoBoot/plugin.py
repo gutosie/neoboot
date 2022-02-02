@@ -664,7 +664,7 @@ class NeoBootInstallation(Screen):
                                 os.system('cd ' + getNeoLocation() + 'ImagesUpload/.kernel/; /usr/sbin/nanddump -f vmlinux.gz /dev/mtd1; mv ./vmlinux.gz ./' + getBoxHostName() + '.vmlinux.gz')
                             elif not fileExists('/usr/sbin/nanddump'):
                                 os.system('cd ' + getNeoLocation() + 'ImagesUpload/.kernel/; ' + LinkNeoBoot + '/bin/nanddump_mips -f vmlinux.gz /dev/mtd1; mv ./vmlinux.gz ./' + getBoxHostName() + '.vmlinux.gz')
-                            os.system('cd ' + LinkNeoBoot + '/; rm ./bin/fontforneoboot.ttf; rm ./bin/libpngneo; mv ' + LinkNeoBoot + '/tmpfiles/target/vu_dev_mtd1.sh ' + LinkNeoBoot + '/files/kernel.sh;mv ' + LinkNeoBoot + '/tmpfiles/runpy/vumtd1mtd2run.py' + LinkNeoBoot + '/run.py; cd')
+                            os.system('cd ' + LinkNeoBoot + '/; rm ./bin/fontforneoboot.ttf; rm ./bin/libpngneo; mv ' + LinkNeoBoot + '/tmpfiles/target/vu_dev_mtd1.sh ' + LinkNeoBoot + '/files/kernel.sh;mv ' + LinkNeoBoot + '/tmpfiles/runpy/vumtd1mtd2run.py ' + LinkNeoBoot + '/run.py; cd')
                             #os.system('cp -af ' + LinkNeoBoot + '/bin/neoinitmips /sbin/neoinitmipsvu') #test nowe pli
                             os.system('cp -af ' + LinkNeoBoot + '/bin/neoinitmips /sbin/neoinitmips; cp -Rf ' + LinkNeoBoot + '/bin/neoinitmipsvu /sbin/neoinitmipsvu')
 
@@ -674,7 +674,7 @@ class NeoBootInstallation(Screen):
                                 os.system('cd ' + getNeoLocation() + 'ImagesUpload/.kernel/; /usr/sbin/nanddump /dev/mtd2 -f vmlinux.gz; mv ./vmlinux.gz ./' + getBoxHostName() + '.vmlinux.gz')
                             elif not fileExists('/usr/sbin/nanddump'):
                                 os.system('cd ' + getNeoLocation() + 'ImagesUpload/.kernel/; ' + LinkNeoBoot + '/bin/nanddump_mips -f vmlinux.gz /dev/mtd2; mv ./vmlinux.gz ./' + getBoxHostName() + '.vmlinux.gz')
-                            os.system('cd ' + LinkNeoBoot + '/; rm ./bin/fontforneoboot.ttf; rm ./bin/libpngneo; mv ' + LinkNeoBoot + '/tmpfiles/target/vu_dev_mtd2.sh ' + LinkNeoBoot + '/files/kernel.sh; mv ' + LinkNeoBoot + '/tmpfiles/runpy/vumtd1mtd2run.py' + LinkNeoBoot + '/run.py; cd')
+                            os.system('cd ' + LinkNeoBoot + '/; rm ./bin/fontforneoboot.ttf; rm ./bin/libpngneo; mv ' + LinkNeoBoot + '/tmpfiles/target/vu_dev_mtd2.sh ' + LinkNeoBoot + '/files/kernel.sh; mv ' + LinkNeoBoot + '/tmpfiles/runpy/vumtd1mtd2run.py ' + LinkNeoBoot + '/run.py; cd')
                             os.system('cp -af ' + LinkNeoBoot + '/bin/neoinitmips /sbin/neoinitmips; cp -Rf ' + LinkNeoBoot + '/bin/neoinitmips_vu /sbin/neoinitmipsvu')
                            
                         elif getBoxHostName() == 'vusolo2':
@@ -682,7 +682,7 @@ class NeoBootInstallation(Screen):
                                 os.system('cd ' + getNeoLocation() + 'ImagesUpload/.kernel/; /usr/sbin/nanddump /dev/mtd2 -f vmlinux.gz; mv ./vmlinux.gz ./' + getBoxHostName() + '.vmlinux.gz')
                             elif not fileExists('/usr/sbin/nanddump'):
                                 os.system('cd ' + getNeoLocation() + 'ImagesUpload/.kernel/; ' + LinkNeoBoot + '/bin/nanddump_mips -o -b vmlinux.gz /dev/mtd2; mv ./vmlinux.gz ./' + getBoxHostName() + '.vmlinux.gz')
-                            os.system('cd ' + LinkNeoBoot + '/; rm ./bin/fontforneoboot.ttf; rm ./bin/libpngneo; mv ' + LinkNeoBoot + '/tmpfiles/target/vu_dev_mtd2.sh ' + LinkNeoBoot + '/files/kernel.sh; mv ' + LinkNeoBoot + '/tmpfiles/runpy/vumtd1mtd2run.py' + LinkNeoBoot + '/run.py; cd')
+                            os.system('cd ' + LinkNeoBoot + '/; rm ./bin/fontforneoboot.ttf; rm ./bin/libpngneo; mv ' + LinkNeoBoot + '/tmpfiles/target/vu_dev_mtd2.sh ' + LinkNeoBoot + '/files/kernel.sh; mv ' + LinkNeoBoot + '/tmpfiles/runpy/vumtd1mtd2run.py ' + LinkNeoBoot + '/run.py; cd')
                             os.system('cp -af ' + LinkNeoBoot + '/bin/neoinitmips /sbin/neoinitmips; cp -Rf ' + LinkNeoBoot + '/bin/neoinitmips_vu /sbin/neoinitmipsvu')
 
                             os.system('opkg install --force-maintainer --force-reinstall --force-overwrite --force-downgrade kernel-image')
