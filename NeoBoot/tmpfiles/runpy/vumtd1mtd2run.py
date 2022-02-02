@@ -164,7 +164,7 @@ class StartImage(Screen):
                                                                                                                                          
                                     elif not fileExists('%sImageBoot/%s/boot/%s.vmlinux.gz' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
                                         cmd = "echo -e '\n%s '" % _('...............NEOBOOT > REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
-                                        cmd1 = 'ln -sfn /sbin/neoinitmips /sbin/init'
+                                        cmd1 = 'ln -sfn /sbin/neoinitmipsvu /sbin/init'
                                         cmd2 = 'update-alternatives --remove vmlinux vmlinux-`uname -r` || true'
                                         cmd3 = "echo -e '\n%s '" % _('Start image without changing the kernel!\nSTB NAME: ' + getBoxHostName() + '\nNeoBoot location:' + getNeoLocation() + '\nCPU: ' + getCPUSoC() + '\nImagen boot: ' + getImageNeoBoot() + ' ')
                                         cmd4 = 'sync; sleep 8; reboot -d -f'                                        
