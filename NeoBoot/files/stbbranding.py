@@ -1083,7 +1083,7 @@ def getExtCheckHddUsb():
     return neoExt
 
 def getNandWrite():
-    NandWrite = 'UNKNOWN'
+    NandWrite = 'NandWrite'
     if os.path.exists('/usr/sbin/nandwrite'):
         with open('/usr/sbin/nandwrite', 'r') as f:
             lines = f.read()
