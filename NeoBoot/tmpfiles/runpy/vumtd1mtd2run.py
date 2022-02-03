@@ -136,7 +136,7 @@ class StartImage(Screen):
                             if getImageNeoBoot() == 'Flash':
                                 if fileExists('/.multinfo'):
                                     cmd = "echo -e '\n%s '" % _('...............NeoBoot  REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
-                                    cmd1 = 'flash_erase /dev/' + mtd + ' 0 0 > /dev/null 2>&1 ; flash_eraseall /dev/' + mtd + ' > /dev/null 2>&1'
+                                    cmd1 = 'flash_erase /dev/' + mtd + ' 0 0 > /dev/null 2>&1 ; flash_eraseall /dev/' + mtd + ' 0 0 > /dev/null 2>&1'
                                     if getNandWrite() == 'nandwrite':
                                         cmd2 = 'nandwrite -p /dev/' + mtd + ' ' + getNeoLocation() + 'ImagesUpload/.kernel/' + getBoxHostName() + '.vmlinux.gz > /dev/null 2>&1'
                                     else:
@@ -162,7 +162,7 @@ class StartImage(Screen):
                                 elif not fileExists('/.multinfo'):
                                     if fileExists('' + getNeoLocation() + 'ImageBoot/' + getImageNeoBoot() + '/boot/' + getBoxHostName() + '.vmlinux.gz'):
                                         cmd = "echo -e '\n%s '" % _('...............NEOBOOT-REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
-                                        cmd1 = 'flash_erase /dev/' + mtd + ' 0 0 > /dev/null 2>&1; flash_eraseall /dev/' + mtd + ' > /dev/null 2>&1'
+                                        cmd1 = 'flash_erase /dev/' + mtd + ' 0 0 > /dev/null 2>&1; flash_eraseall /dev/' + mtd + ' 0 0 > /dev/null 2>&1'
                                         if getNandWrite() == 'nandwrite':
                                             cmd2 = 'nandwrite -p /dev/' + mtd + ' ' + getNeoLocation() + 'ImageBoot/' + getImageNeoBoot() + '/boot/' + getBoxHostName() + '.vmlinux.gz > /dev/null 2>&1'
                                         else:
@@ -181,7 +181,7 @@ class StartImage(Screen):
                                 elif fileExists('/.multinfo'):
                                     if not fileExists('%sImageBoot/%s/boot/%s.vmlinux.gz' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
                                         cmd = "echo -e '\n%s '" % _('...............NeoBoot  REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
-                                        cmd1 = 'flash_erase /dev/' + mtd + ' 0 0 > /dev/null 2>&1 ; flash_eraseall /dev/' + mtd + ' > /dev/null 2>&1'
+                                        cmd1 = 'flash_erase /dev/' + mtd + ' 0 0 > /dev/null 2>&1 ; flash_eraseall /dev/' + mtd + ' 0 0 > /dev/null 2>&1'
                                         if getNandWrite() == 'nandwrite':
                                             cmd2 = 'nandwrite -p /dev/' + mtd + ' ' + getNeoLocation() + 'ImagesUpload/.kernel/' + getBoxHostName() + '.vmlinux.gz > /dev/null 2>&1'
                                         else:
@@ -191,7 +191,7 @@ class StartImage(Screen):
                                         
                                     elif fileExists('%sImageBoot/%s/boot/%s.vmlinux.gz' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
                                         cmd = "echo -e '\n%s '" % _('...............REBOOT now...............\nPlease wait, in a moment the decoder will be restarted...')
-                                        cmd1 = 'flash_erase /dev/' + mtd + ' 0 0 > /dev/null 2>&1 ; flash_eraseall /dev/' + mtd + ' > /dev/null 2>&1 '
+                                        cmd1 = 'flash_erase /dev/' + mtd + ' 0 0 > /dev/null 2>&1 ; flash_eraseall /dev/' + mtd + ' 0 0 > /dev/null 2>&1 '
                                         if getNandWrite() == 'nandwrite':
                                             cmd2 = 'nandwrite -p /dev/' + mtd + ' ' + getNeoLocation() + 'ImageBoot/' + getImageNeoBoot() + '/boot/' + getBoxHostName() + '.vmlinux.gz > /dev/null 2>&1'
                                         else:
