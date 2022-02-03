@@ -134,6 +134,8 @@ class InstallImage(Screen, ConfigListScreen):
         self.CopyFiles = ConfigYesNo(default=True)
         if getCPUtype() == "ARMv7" and getBoxHostName() == 'vuduo4k' or getBoxHostName() == 'vuduo4kse' or getBoxHostName() == "vuultimo4k" or getBoxHostName() == "vusolo4k" or getBoxHostName() == "vuuno4k" or getBoxHostName() == "vuuno4kse" or getBoxHostName() == "vuzer4k" :
             self.CopyKernel = ConfigYesNo(default=True)
+        elif getCPUtype() == "MIPS" and getBoxHostName() == 'vuultimo' or getBoxHostName() == 'bm750' or getBoxHostName() == 'vuduo' or getBoxHostName() == 'vuuno' or getBoxHostName() == 'vusolo' or getBoxHostName() == 'vuduo':
+            self.CopyKernel = ConfigYesNo(default=True)            
         else:
             self.CopyKernel = ConfigYesNo(default=False)
         self.TvList = ConfigYesNo(default=False)
