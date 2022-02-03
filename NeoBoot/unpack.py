@@ -149,11 +149,8 @@ class InstallImage(Screen, ConfigListScreen):
         self.SoftCam = ConfigYesNo(default=False)
         self.MediaPortal = ConfigYesNo(default=False)
         self.PiconR = ConfigYesNo(default=False)
-        self.Kodi = ConfigYesNo(default=False)
-        if getCPUtype() == 'MIPS' and fileExists('/proc/stb/info/vumodel') and not fileExists('/proc/stb/info/boxtype'):
-            self.BlackHole = ConfigYesNo(default=True)
-        else:        
-            self.BlackHole = ConfigYesNo(default=False)
+        self.Kodi = ConfigYesNo(default=False)        
+        self.BlackHole = ConfigYesNo(default=False)
         if getCPUtype() == 'MIPS':
             self.Nandsim = ConfigYesNo(default=True)
         else:        
