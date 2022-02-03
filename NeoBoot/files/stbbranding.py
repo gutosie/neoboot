@@ -1104,9 +1104,11 @@ def getMyUUID():
     return _('unavailable')
 
 def getImageBootNow():
-    try:
-        return open('/.multinfo').read().strip().upper()
-    except:
-        return _('unknown')
+    imagefile = 'UNKNOWN'
+    if os.path.exists('/.multinfo'):
+        with open('/.multinfo' , 'r') as f:
+            imagefile = f.readline().strip()
+            f.close()
+    return imagefile
 
 boxbrand = sys.modules[__name__]
