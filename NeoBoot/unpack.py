@@ -132,24 +132,17 @@ class InstallImage(Screen, ConfigListScreen):
         self.source = ConfigSelection(choices=sourcelist)
         self.target = ConfigText(fixed_size=False)
         self.CopyFiles = ConfigYesNo(default=True)
-        if getCPUtype() == "ARMv7" and getBoxHostName() == 'vuduo4k' or getBoxHostName() == 'vuduo4kse' or getBoxHostName() == "vuultimo4k" or getBoxHostName() == "vusolo4k" or getBoxHostName() == "vuuno4k" or getBoxHostName() == "vuuno4kse" or getBoxHostName() == "vuzer4k" :
-            self.CopyKernel = ConfigYesNo(default=True)
-        elif getCPUtype() == "MIPS" and getBoxHostName() == 'vuultimo' or getBoxHostName() == 'bm750' or getBoxHostName() == 'vuduo' or getBoxHostName() == 'vuuno' or getBoxHostName() == 'vusolo' or getBoxHostName() == 'vuduo':
+        if "vu" + getBoxVuModel() == getBoxHostName():
             self.CopyKernel = ConfigYesNo(default=True)            
         else:
             self.CopyKernel = ConfigYesNo(default=False)
         self.TvList = ConfigYesNo(default=False)
         self.LanWlan = ConfigYesNo(default=False)
-        if getCPUtype() == "ARMv7" and getBoxHostName() == 'vuduo4k' or getBoxHostName() == 'vuduo4kse' or getBoxHostName() == "vuultimo4k" or getBoxHostName() == "vusolo4k" or getBoxHostName() == "vuuno4k" or getBoxHostName() == "vuuno4kse" or getBoxHostName() == "vuzer4k" :
+        if "vu" + getBoxVuModel() == getBoxHostName():    
             self.Sterowniki = ConfigYesNo(default=False)
-        elif getCPUtype() == "MIPS" and getBoxHostName() == 'vuultimo' or getBoxHostName() == 'bm750' or getBoxHostName() == 'vuduo' or getBoxHostName() == 'vuuno' or getBoxHostName() == 'vusolo' or getBoxHostName() == 'vuduo':
-            self.CopyKernel = ConfigYesNo(default=False)            
         else:
-            self.Sterowniki = ConfigYesNo(default=True)
-        if getCPUtype() == "MIPS" and getBoxHostName() == "vusolo2":
-            self.Montowanie = ConfigYesNo(default=True)
-        else:
-            self.Montowanie = ConfigYesNo(default=False)            
+            self.Sterowniki = ConfigYesNo(default=True)            
+        self.Montowanie = ConfigYesNo(default=False)
         self.InstallSettings = ConfigYesNo(default=False)
         self.ZipDelete = ConfigYesNo(default=False)
         self.RepairFTP = ConfigYesNo(default=False)
