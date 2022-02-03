@@ -151,7 +151,7 @@ class StartImage(Screen):
 
                             elif getImageNeoBoot() != 'Flash':
                                 if fileExists('/.multinfo') and getImageNeoBoot() == getImageBootNow():
-                                    self.session.open(TryQuitMainloop, 2)
+                                    os.system('reboot -d -f')
                                     
                                 elif not fileExists('/.multinfo'):
                                     if fileExists('' + getNeoLocation() + 'ImageBoot/' + getImageNeoBoot() + '/boot/' + getBoxHostName() + '.vmlinux.gz'):
