@@ -104,7 +104,7 @@ class StartImage(Screen):
             else:
                 system('touch %sImageBoot/%s/.control_boot_new_image ' % (getNeoLocation(), getImageNeoBoot()))
                 
-        system('chmod 755 /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/nandwrite')
+        system('chmod 755 /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/*')
 
         self.sel = self['list'].getCurrent()
         if self.sel:
