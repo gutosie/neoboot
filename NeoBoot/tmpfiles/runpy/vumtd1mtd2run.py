@@ -156,7 +156,7 @@ class StartImage(Screen):
                                     cmd = "echo -e '\n%s '" % _('...............NEOBOOT > REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
                                     cmd1 = 'ln -sfn /sbin/init.sysvinit /sbin/init'
                                     cmd2 = 'update-alternatives --remove vmlinux vmlinux-`uname -r` || true'
-                                    cmd3 = "echo -e '\n%s '" % _('Reboot system E2 now !\nSTB NAME: ' + getBoxHostName() + '\nNeoBoot location:' + getNeoLocation() + '\nCPU: ' + getCPUSoC() + '\nImage boot: ' + getImageNeoBoot() + ' ')
+                                    cmd3 = "echo -e '\n%s '" % _('Reboot system E2 now !\nSTB NAME: ' + getBoxHostName() + '\nNeoBoot location:' + getNeoLocation() + '\nCPU: ' + getCPUSoC() + '\nImage boot: ' + getImageNeoBoot() + '\n____Your device will REBOOT in 5 seconds !____ ')
                                     cmd4 = 'sync; sleep 8; reboot -d -f '
                                     
                                 elif not fileExists('/.multinfo'):
