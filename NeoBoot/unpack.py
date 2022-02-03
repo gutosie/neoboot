@@ -142,6 +142,8 @@ class InstallImage(Screen, ConfigListScreen):
         self.LanWlan = ConfigYesNo(default=False)
         if getCPUtype() == "ARMv7" and getBoxHostName() == 'vuduo4k' or getBoxHostName() == 'vuduo4kse' or getBoxHostName() == "vuultimo4k" or getBoxHostName() == "vusolo4k" or getBoxHostName() == "vuuno4k" or getBoxHostName() == "vuuno4kse" or getBoxHostName() == "vuzer4k" :
             self.Sterowniki = ConfigYesNo(default=False)
+        elif getCPUtype() == "MIPS" and getBoxHostName() == 'vuultimo' or getBoxHostName() == 'bm750' or getBoxHostName() == 'vuduo' or getBoxHostName() == 'vuuno' or getBoxHostName() == 'vusolo' or getBoxHostName() == 'vuduo':
+            self.CopyKernel = ConfigYesNo(default=False)            
         else:
             self.Sterowniki = ConfigYesNo(default=True)
         if getCPUtype() == "MIPS" and getBoxHostName() == "vusolo2":
