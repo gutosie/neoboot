@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from Plugins.Extensions.NeoBoot.__init__ import _
-from Plugins.Extensions.NeoBoot.files.stbbranding import getNeoLocation, getCPUtype, getCPUSoC, getImageNeoBoot, getBoxVuModel, getBoxHostName, getNeoMount, getNeoMount2, getNeoMount3, getNeoMount4, getNeoMount5, getMountPointNeo2, getNandWrite, getExtCheckHddUsb
+from Plugins.Extensions.NeoBoot.files.stbbranding import getNeoLocation, getCPUtype, getCPUSoC, getImageNeoBoot, getBoxVuModel, getBoxHostName, getNeoMount, getNeoMount2, getNeoMount3, getNeoMount4, getNeoMount5, getMountPointNeo2, getNandWrite, getExtCheckHddUsb, getImageBootNow
 from enigma import getDesktop
 from enigma import eTimer
 from Screens.Screen import Screen
@@ -117,17 +117,17 @@ class StartImage(Screen):
             #VUPLUS MIPS vu_dev_mtd1.sh
             if "vu" + getBoxVuModel() == getBoxHostName(): 
                         if getBoxHostName() == 'vuultimo' or getBoxHostName() == 'bm750' or getBoxHostName() == 'vuduo' or getBoxHostName() == 'vuuno' or getBoxHostName() == 'vusolo' or getBoxHostName() == 'vuduo':
-                            mtd = 'mtd1'                                                                 
+                            mtd = 'mtd1'
+                            if fileExists('' + getNeoLocation() + 'ImageBoot/' + getImageNeoBoot() + '/etc/vtiversion.info') and getExtCheckHddUsb() == 'ext4':
+                                if fileExists('%sImageBoot/%s/boot/%s.vmlinux.gz' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
+                                    os.system('rm -r %sImageBoot/%s/boot/%s.vmlinux.gz' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName()))
+                                    
                         elif getBoxHostName() == 'vusolo2' or getBoxHostName() == 'vusolose' or getBoxHostName() == 'vuduo2' or getBoxHostName() == 'vuzero':
                             mtd = 'mtd2'
                         else:
                             self.messagebox = self.session.open(MessageBox, _('It looks like it that multiboot does not found MTD.'), MessageBox.TYPE_INFO, 8)
-                            self.close()                              
-                                                 
-                        if fileExists('' + getNeoLocation() + 'ImageBoot/' + getImageNeoBoot() + '/etc/vtiversion.info') and getExtCheckHddUsb() == 'ext4':
-                                if fileExists('%sImageBoot/%s/boot/%s.vmlinux.gz' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
-                                    os.system('rm -r %sImageBoot/%s/boot/%s.vmlinux.gz' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName()))
-                                    
+                            self.close()
+                            
                         if not fileExists('%sImagesUpload/.kernel/%s.vmlinux.gz' % (getNeoLocation(), getBoxHostName())):
                                 self.myclose2(_('Error - in the location %sImagesUpload/.kernel/ \nkernel file not found flash kernel vmlinux.gz ' % getNeoLocation()))
                         else:
@@ -150,8 +150,10 @@ class StartImage(Screen):
                                     cmd4 = 'sleep 8; reboot -d -f'
 
                             elif getImageNeoBoot() != 'Flash':
-                                if not fileExists('/.multinfo'):
-
+                                if fileExists('/.multinfo') and getImageNeoBoot() == getImageBootNow():
+                                    self.session.open(TryQuitMainloop, 2)
+                                    
+                                elif not fileExists('/.multinfo'):
                                     if fileExists('' + getNeoLocation() + 'ImageBoot/' + getImageNeoBoot() + '/boot/' + getBoxHostName() + '.vmlinux.gz'):
                                         cmd = "echo -e '\n%s '" % _('...............NEOBOOT-REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
                                         cmd1 = 'flash_erase /dev/' + mtd + ' 0 0 > /dev/null 2>&1; flash_eraseall /dev/' + mtd + ' > /dev/null 2>&1'
