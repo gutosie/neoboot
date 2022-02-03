@@ -151,7 +151,11 @@ class StartImage(Screen):
 
                             elif getImageNeoBoot() != 'Flash':
                                 if fileExists('/.multinfo') and getImageNeoBoot() == getImageBootNow():
-                                    os.system('reboot -d -f')
+                                    cmd = "echo -e '\n%s '" % _('...............NEOBOOT > REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
+                                    cmd1 = 'ln -sfn /sbin/init.sysvinit /sbin/init'
+                                    cmd2 = 'update-alternatives --remove vmlinux vmlinux-`uname -r` || true'
+                                    cmd3 = "echo -e '\n%s '" % _('Reboot system E2 now !\nSTB NAME: ' + getBoxHostName() + '\nNeoBoot location:' + getNeoLocation() + '\nCPU: ' + getCPUSoC() + '\nImagen boot: ' + getImageNeoBoot() + ' ')
+                                    cmd4 = 'sync; sleep 8; reboot -d -f '
                                     
                                 elif not fileExists('/.multinfo'):
                                     if fileExists('' + getNeoLocation() + 'ImageBoot/' + getImageNeoBoot() + '/boot/' + getBoxHostName() + '.vmlinux.gz'):
