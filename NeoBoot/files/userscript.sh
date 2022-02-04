@@ -9,7 +9,11 @@ fi
 if [ ! -f `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`ImageBoot/.neonextboot ] ; then
         mkdir `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`
         /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/neo.sh
-        echo "_________Start mountpoint location NEOBOOT_________"
+        echo "_________Start -neo.sh- mount point location NEOBOOT_________"
+fi
+if [ ! -e /usr/bin/enigma2_pre_start.sh ]; then
+        /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/mountpoint.sh
+        echo "_________Start -mountpoint.sh- location NEOBOOT_________"	
 fi
 if [ -f /.control_boot_new_image ] ; then
     break ;
