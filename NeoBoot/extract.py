@@ -806,17 +806,9 @@ def RemoveUnpackDirs():
         rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/bootargs.bin ' + getNeoLocation() + 'ImagesUpload/amiko')
         rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/fastboot.bin ' + getNeoLocation() + 'ImagesUpload/amiko')
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/amiko')
-    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/gigablue/x1'):
-        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/gigablue') 
-    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/gigablue/x34k '):
-        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/gigablue')        
-    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/gigablue'):
-        rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/usb_update.bin ' + getNeoLocation() + 'ImagesUpload/gigablue')
-        rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/apploader.bin ' + getNeoLocation() + 'ImagesUpload/gigablue')
-        rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/bootargs.bin ' + getNeoLocation() + 'ImagesUpload/gigablue')
-        rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/fastboot.bin ' + getNeoLocation() + 'ImagesUpload/gigablue')
-        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/gigablue')
-    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/gigablue'):
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/gigablue/x1') or os.path.exists('' + getNeoLocation() + 'ImagesUpload/gigablue/x34k'):
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/gigablue')   
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/gigablue') and os.path.exists('' + getNeoLocation() + 'ImagesUpload/usb_update.bin'):
         rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/usb_update.bin ' + getNeoLocation() + 'ImagesUpload/gigablue')
         rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/apploader.bin ' + getNeoLocation() + 'ImagesUpload/gigablue')
         rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/bootargs.bin ' + getNeoLocation() + 'ImagesUpload/gigablue')
