@@ -807,6 +807,8 @@ def RemoveUnpackDirs():
         rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/fastboot.bin ' + getNeoLocation() + 'ImagesUpload/amiko')
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/amiko')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/gigablue/x1'):
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/gigablue') 
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/gigablue/x34k '):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/gigablue')        
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/gigablue'):
         rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/usb_update.bin ' + getNeoLocation() + 'ImagesUpload/gigablue')
@@ -1571,6 +1573,10 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
             os.system('echo "Please wait. System installation gbip4k 4K..."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/gigablue/ip4k; tar -jxf ' + getNeoLocation() + 'ImagesUpload/gigablue/ip4k/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd)
+        elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/gigablue/x34k'):
+            os.system('echo "Please wait. System installation Gigablue X3 4k..."')
+            cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/gigablue/x34k; tar -jxf ' + getNeoLocation() + 'ImagesUpload/gigablue/x34k/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
+            rc = os.system(cmd)            
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/protek4k'):
             os.system('echo "Please wait. System installation protek4k..."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/protek4k; tar -jxf ' + getNeoLocation() + 'ImagesUpload/protek4k/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
