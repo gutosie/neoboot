@@ -2101,7 +2101,10 @@ class BootManagers(Screen):
 
     def CreateBootManagers(self):
             cmd0 = "echo -e '\n\n%s '" % _('Creation Boot Manager , please wait...')
-            cmd1 = 'cp -af ' + LinkNeoBoot + '/bin/neoinitmips /sbin/neoinitmipsvu'
+            if getBoxHostName() == "et5x00":             
+                cmd1 = 'cp -af ' + LinkNeoBoot + '/bin/neoinitmips /sbin/neoinitmips'
+            else:
+                cmd1 = 'cp -af ' + LinkNeoBoot + '/bin/neoinitmips /sbin/neoinitmipsvu'
             cmd2 = "echo -e '\n\n%s '" % _('Creation Boot Manager complete\nThe boot manager has been activated ! ')
             self.session.open(Console, _('NeoBoot....'), [cmd0,
              cmd1,
@@ -2110,7 +2113,10 @@ class BootManagers(Screen):
             
     def RemoveBootManagers(self):
             cmd0 = "echo -e '\n\n%s '" % _('Creation Boot Manager , please wait...')
-            cmd1 = 'cp -af ' + LinkNeoBoot + '/bin/neoinitmipsvu /sbin/neoinitmipsvu'
+            if getBoxHostName() == "et5x00":            
+                cmd1 = 'cp -af ' + LinkNeoBoot + '/bin/neoinitarmvuDuo4k /sbin/neoinitmipsvu'
+            else:
+                cmd1 = 'cp -af ' + LinkNeoBoot + '/bin/neoinitmipsvu /sbin/neoinitmipsvu'
             cmd2 = "echo -e '\n\n%s '" % _('Creation Boot Manager complete\nBoot manager has been hidden !')
             self.session.open(Console, _('NeoBoot....'), [cmd0,
              cmd1,
