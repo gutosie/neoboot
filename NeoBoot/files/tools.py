@@ -2114,7 +2114,7 @@ class BootManagers(Screen):
     def RemoveBootManagers(self):
             cmd0 = "echo -e '\n\n%s '" % _('Creation Boot Manager , please wait...')
             if getBoxHostName() == "et5x00":            
-                cmd1 = 'cp -af ' + LinkNeoBoot + '/bin/neoinitarmvuDuo4k /sbin/neoinitmipsvu'
+                cmd1 = 'cp -af ' + LinkNeoBoot + '/bin/neoinitmipsvu /sbin/neoinitmips'
             else:
                 cmd1 = 'cp -af ' + LinkNeoBoot + '/bin/neoinitmipsvu /sbin/neoinitmipsvu'
             cmd2 = "echo -e '\n\n%s '" % _('Creation Boot Manager complete\nBoot manager has been hidden !')
