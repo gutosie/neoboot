@@ -106,16 +106,20 @@ else
 	    fi                
 
 	fi
+	
+	if [ $HOSTNAME  = "et5x00" ] ; then
+            break;
+	else
+	    MODPROBE=/sbin/modprobe
 
-	MODPROBE=/sbin/modprobe
+	    echo "Load video and frame buffer modules ..."
+            #modprobe dvb
 
-	echo "Load video and frame buffer modules ..."
-        #modprobe dvb
-
-	echo "NeoBoot is loading modules"
-	for mod in dvb; do
-		$MODPROBE $mod
-	done
+	    echo "NeoBoot is loading modules"
+	    for mod in dvb; do
+		    $MODPROBE $mod
+	    done
+	fi
 	
 	# Hack for loading modules which are not loaded on diffrent kernel images
 	/etc/init.d/modutils.sh
