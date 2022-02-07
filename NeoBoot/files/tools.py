@@ -2388,7 +2388,9 @@ class Opis(Screen):
             if fileExists('/etc/rcS.d/S99neo.local'):
                 system('rm -r /etc/rcS.d/S99neo.local')
             if fileExists('/etc/name'):
-                system('rm -r /etc/name')               
+                system('rm -r /etc/name')
+            if fileExists('/usr/lib/libpngneo'):
+                system('rm -r /usr/lib/libpngneo')                    
             if fileExists('/etc/fstab.org'):
                 system('rm -r /etc/fstab; mv /etc/fstab.org /etc/fstab')
             if fileExists('/etc/init.d/volatile-media.sh.org'):
