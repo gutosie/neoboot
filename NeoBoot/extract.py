@@ -1250,6 +1250,11 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
                     os.chdir('formuler3')
                 if os.path.exists('' + getNeoLocation() + 'ImagesUpload/formuler4turbo'):
                     os.chdir('formuler4turbo')
+                #AZBOX - Install image VUULTIMO MIPS It works 
+                if os.path.exists('' + getNeoLocation() + 'ImagesUpload/patch.e2'):
+                    os.system('rm -f ' + getNeoLocation() + 'ImagesUpload/patch.e2 ')
+                    os.system('echo "____NEOBOOT will not unpack this image.____"')
+                    os.system('echo "____Try to install the image vuultimo mips____"')                    
 
                 #Instalacja image ubi_reader
                 os.system('echo "Instalacja - ubi_reader w toku..."')
