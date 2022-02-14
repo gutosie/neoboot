@@ -131,7 +131,10 @@ class InstallImage(Screen, ConfigListScreen):
             sourcelist = [('None', 'None')]
         self.source = ConfigSelection(choices=sourcelist)
         self.target = ConfigText(fixed_size=False)
-        self.CopyFiles = ConfigYesNo(default=True)
+        if "dm500hd" == getBoxHostName():
+            self.CopyFiles = ConfigYesNo(default=False)            
+        else:
+            self.CopyFiles = ConfigYesNo(default=True)        
         if "vu" + getBoxVuModel() == getBoxHostName():
             self.CopyKernel = ConfigYesNo(default=True)            
         else:
