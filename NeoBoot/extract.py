@@ -885,7 +885,7 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
             os.system('rm -rf ' + sourcefile)
 
     #Instalacja MIPS
-    if getCPUtype() == 'MIPS':
+    if getCPUtype() == 'MIPS' and not os.path.exists('' + getNeoLocation() + 'ImageBoot/root.jffs2'):
         if os.path.exists('' + getNeoLocation() + 'ubi') is False:
             rc = os.system('mkdir ' + getNeoLocation() + 'ubi')
         to = '' + getNeoLocation() + 'ImageBoot/' + target
