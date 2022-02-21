@@ -199,6 +199,9 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
         if os.path.exists('' + extensions_path + 'MyUpdater'):
             cmd = 'cp -af ' + extensions_path + 'MyUpdater %s/ImageBoot/%s/usr/lib/enigma2/python/Plugins/Extensions > /dev/null 2>&1' % (media, target)
             rc = os.system(cmd)
+        if os.path.exists('' + extensions_path + 'AlternativeSoftCamManager'):
+            cmd = 'cp -af ' + extensions_path + 'AlternativeSoftCamManager %s/ImageBoot/%s/usr/lib/enigma2/python/Plugins/Extensions > /dev/null 2>&1' % (media, target)
+            rc = os.system(cmd)            
         if not os.path.exists('%s/ImageBoot/%s/usr/lib/enigma2/python/boxbranding.so' % (media, target)):
             cmd = 'cp -af /usr/lib/enigma2/python/boxbranding.so %s/ImageBoot/%s/usr/lib/enigma2/python/boxbranding.so > /dev/null 2>&1' % (media, target)
             rc = os.system(cmd)
