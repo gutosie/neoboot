@@ -1082,7 +1082,7 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
                 os.system('sleep 5; init 4; sleep 5; init 3 ')
 
         #UBI_READER
-        elif os.path.exists('' + extensions_path + 'NeoBoot/ubi_reader/ubi_extract_files.py'):
+        elif os.path.exists('' + extensions_path + 'NeoBoot/ubi_reader/ubi_extract_files.py') and not os.path.exists('' + getNeoLocation() + 'ImageBoot/root.jffs2'):
                 if os.path.exists('' + getNeoLocation() + 'ImagesUpload/venton-hdx'):
                     os.chdir('venton-hdx')
                 if os.path.exists('' + getNeoLocation() + 'ImagesUpload/hde'):
