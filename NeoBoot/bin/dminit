@@ -296,13 +296,28 @@ $MODPROBE /sbin/modprobe --force lcd > /dev/null 2>&1
 fi
 
 # boot Flash 
-
+UNIONFS=0
+   if [ -f /lib/modules/`uname -r`/kernel/fs/unionfs.ko ]; then
+      /sbin/insmod /lib/modules/`uname -r`/kernel/fs/unionfs.ko >> /dev/null 2>&1
+   fi
+   if [ -f /boot/lib/modules/`uname -r`/kernel/fs/unionfs.ko ]; then
+      /sbin/insmod /boot/lib/modules/`uname -r`/kernel/fs/unionfs.ko >> /dev/null 2>&1
+   fi
+   if [ `lsmod | grep unionfs | wc -l` -gt 0 ]; then
+      UNIONFS=1
+   fi
 if [ -f /sbin/init.sysvinit ]; then
-		#echo "Running /sbin/init.sysvinit"
-		exec /sbin/init.sysvinit $1
+   # for enigma2 support
+   if [ $UNIONFS -eq 1 -a -f /sbin/freeze ]; then
+      exec /sbin/freeze $1
+   else
+      exec /sbin/init.sysvinit $1
+   fi
+else
+   # for Neutrino and Debian Support
+   exec /sbin/init $1
 fi
-
 exit 0
 ;;
 esac
-exit
+exit 0
