@@ -56,6 +56,7 @@ chmod 755 ./ex_init.py
 chmod 755 ./files/*.sh
 chmod -R +x ./ubi_reader_arm/*
 chmod -R +x ./ubi_reader_mips/*
+rm -r /tmp/*
 if [ $PL ] ; then
   echo ""
   echo "#####################################################"
