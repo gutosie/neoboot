@@ -696,8 +696,8 @@ class NeoBootInstallation(Screen):
                             os.system('cd ' + LinkNeoBoot + '/; chmod 755 ./bin/nandwrite; mv ./bin/fontforneoboot.ttf /usr/share/fonts; mv ./bin/libpngneo /usr/lib; cp -f ./bin/neoinitmips /sbin/neoinitmips; cp -f ./bin/neoinitmipsvu /sbin/neoinitmipsvu; chmod 0755 /sbin/neoinit*; mv ./bin/neobmmips ./bin/neobm; chmod 0755 ./bin/neobm; chmod 0755 /usr/lib/libpngneo; cd; chmod 0755 /sbin/neoinitmips; ln -sf /media/neoboot/ImageBoot/.neonextboot /etc/neoimage; mv ' + LinkNeoBoot + '/tmpfiles/runpy/mips_run.py ' + LinkNeoBoot + '/run.py; cd')
                         if getBoxHostName() == "et5x00":
                                 os.system('cd ' + LinkNeoBoot + '/; cp -af ./bin/neoinitarmvuDuo4k /sbin/neoinitmips; cp -af ./bin/neoinitmips ./bin/neoinitmipsvu; cp -af ./bin/neoinitarmvuDuo4k ./bin/neoinitmips; cd')
-                        if getBoxHostName() == 'dm500hd':
-                                os.system('cd ' + LinkNeoBoot + '/; cp -af ./bin/dminit /sbin/neoinitmips; cp -af ./bin/neoinitmipsvu ./bin/neoinitmipsvu; cd')                                
+                        if getBoxHostName() == 'dm500hd' or getBoxHostName() == 'dm800se' or getBoxHostName() == 'dm800' or getBoxHostName() == 'dm8000':
+                                os.system('cd ' + LinkNeoBoot + '/; cp -af ./bin/dminit /sbin/neoinitmips; cp -af ./bin/neoinitmipsvu ./bin/neoinitmipsvu; rm -r ./ubi_reade*; cd')                                
                         os.system('chmod 755 ' + LinkNeoBoot + '/bin/nfidump; chmod 0755 ' + LinkNeoBoot + '/bin/nanddump_mips; rm -r ' + LinkNeoBoot + '/bin/neoinitar*; cd /')
                         if fileExists('' + LinkNeoBoot + '/bin/fontforneoboot.ttf'):
                             ('cd ' + LinkNeoBoot + '/;mv ./bin/fontforneoboot.ttf /usr/share/fonts; cd /')
