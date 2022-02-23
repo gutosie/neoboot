@@ -868,8 +868,8 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
             rc = os.system(cmd)
             cmd = 'touch /tmp/root_jffs2; ' + extensions_path + 'NeoBoot/bin/nfidump ' + sourcefile2 + ' ' + getNeoLocation() + 'ImageBoot/' + target
             rc = os.system(cmd)
-            if os.path.exists('%sImageBoot/%s/media/squashfs-images' % (media, target)):
-                os.system('cp -af /media/hdd/squashfs-images/* "%sImageBoot/%s/media/squashfs-images' % (media, target))            
+            if os.path.exists('%sImageBoot/%s/media/squashfs-images' % (media, target)) and os.path.exists('%s/squashfs-images' % (media)) :
+                os.system('cp -af %s/squashfs-images/* "%sImageBoot/%s/media/squashfs-images' % (media, media, target))            
             if ZipDelete == 'True':
                 rc = os.system('rm -rf ' + sourcefile2)
             else:
