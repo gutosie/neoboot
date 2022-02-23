@@ -1,6 +1,4 @@
 #!/bin/sh
-#script mod by gutosie
-#neo init DREAMBOX
 NEODEVICE=`cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`        
 IMAGEKATALOG=ImageBoot
 if [ -e /tmp/.init_reboot ]; then
@@ -8,13 +6,9 @@ if [ -e /tmp/.init_reboot ]; then
 	  break;
 else
     echo "====================================================> "
-    echo " "
     echo "	    -=*[ NEOBOOT - BOOT UP ]*=-     "
-    echo "     NEO BOOT INIT Version: gutosie   "
-    echo "	             q(-_-)p                "
-    echo " "
     echo "====================================================> "
-
+    sleep 2
 	if [ -e `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`IMAGEKATALOG/.neonextboot ]  ; then 	    
             CELBOOT=`cat $NEODEVICE$IMAGEKATALOG/.neonextboot`
 	    if [ $CELBOOT = "Flash" ]; then 
@@ -35,11 +29,6 @@ if [ `mount | grep /proc | wc -l` -lt 1 ]; then
    /bin/mount -t proc proc /proc > /dev/null 2>&1
    /bin/mount -t sysfs sysfs /sys > /dev/null 2>&1
    /sbin/depmod -Ae > /dev/null 2>&1
-   /squashfs-images/dreambox-dvb-modules-sqsh-img
-   /etc/init.d/dreambox-squashfs-support start > /dev/null 2>&1
-   /etc/init.d/udev start > /dev/null 2>&1
-   /etc/init.d/.mmodprobe start > /dev/null 2>&1
-   /etc/init.d/alsa-state
 fi   
 
 if [ `uname -r | grep 2.6.12 | wc -l` -lt 1 ]; then
@@ -47,9 +36,10 @@ if [ `uname -r | grep 2.6.12 | wc -l` -lt 1 ]; then
       /etc/init.d/udev start > /dev/null 2>&1
    fi
 fi
-
+if [ ! -e /media/squashfs-images  ]; then
+    ln -sf /media/hdd/squashfs-images /media/squashfs-images 
+fi
 MODPROBE=/sbin/modprobe
-
 $MODPROBE /sbin/modprobe fp > /dev/null 2>&1
 $MODPROBE /sbin/modprobe dreambox_rc2 > /dev/null 2>&1
 $MODPROBE /sbin/modprobe dreambox_keyboard > /dev/null 2>&1
@@ -177,7 +167,8 @@ $MODPROBE /sbin/modprobe --force lcd > /dev/null 2>&1
 	TARGET=Flash
 	if [ $NEODEVICE = "/media/hdd/" ]; then
 	        mount /dev/sda1 /media/hdd > /dev/null 2>&1
-	elif [ $NEODEVICE = "/media/usb/" ]; then
+        fi
+	if [ $NEODEVICE = "/media/usb/" ]; then
 	        mount /dev/sda1 /media/usb > /dev/null 2>&1	        
 	fi
 	if [ -f `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/.neonextboot ]; then
