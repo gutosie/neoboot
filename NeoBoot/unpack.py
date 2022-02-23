@@ -131,10 +131,7 @@ class InstallImage(Screen, ConfigListScreen):
             sourcelist = [('None', 'None')]
         self.source = ConfigSelection(choices=sourcelist)
         self.target = ConfigText(fixed_size=False)
-        if "dm500hd" == getBoxHostName():
-            self.CopyFiles = ConfigYesNo(default=False)            
-        else:
-            self.CopyFiles = ConfigYesNo(default=True)        
+        self.CopyFiles = ConfigYesNo(default=True)        
         if "vu" + getBoxVuModel() == getBoxHostName():
             self.CopyKernel = ConfigYesNo(default=True)            
         else:
@@ -154,7 +151,7 @@ class InstallImage(Screen, ConfigListScreen):
         self.PiconR = ConfigYesNo(default=False)
         self.Kodi = ConfigYesNo(default=False)        
         self.BlackHole = ConfigYesNo(default=False)
-        if getCPUtype() == 'MIPS':
+        if getCPUtype() == 'MIPS' and getBoxHostName() != 'dm500hd' or getBoxHostName() != 'dm800se' or getBoxHostName() != 'dm800' or getBoxHostName() != 'dm8000':
             self.Nandsim = ConfigYesNo(default=True)
         else:        
             self.Nandsim = ConfigYesNo(default=False)             
