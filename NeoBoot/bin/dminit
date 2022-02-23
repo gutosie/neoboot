@@ -193,11 +193,9 @@ $MODPROBE /sbin/modprobe --force lcd > /dev/null 2>&1
 	if [ -f `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/$TARGET/.control_ok ]; then
                     echo " "
 	                echo "No Error - Booting image normal..."
-                    echo "No Error - Booting image normal... " >> $neoLOG
 		else
 		    if [ -f `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/$TARGET/.control_boot_new_image ]; then
 		                echo " "
-                        echo " First start image - The first attempt to launch a new image..." >> $neoLOG
                         echo "First start image - The first attempt to launch a new image... "
 						echo "====================================================> "
                         rm -f `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/$TARGET/.control_boot_new_image > /dev/null 2>&1
@@ -205,7 +203,6 @@ $MODPROBE /sbin/modprobe --force lcd > /dev/null 2>&1
                         if [ ! -f `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/$TARGET/.control_ok ] ; then
                                 /usr/bin/showiframe /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/error.mvi > /dev/null 2>&1
                                 echo " "
-                                echo " Wrong kernel. FATAL ERROR - Back to image Flash..." >> $neoLOG
                                 echo "Wrong kernel. Press number 3"  > `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$UPLOAD/.kernel/used_flash_kernel
                                 ln -sfn /sbin/init.sysvinit /sbin/init
                                 echo "Flash "  > `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/.neonextboot
@@ -229,28 +226,24 @@ $MODPROBE /sbin/modprobe --force lcd > /dev/null 2>&1
 			else
 				/usr/bin/showiframe $NEODEVICE$IMAGEKATALOG/$TARGET/usr/share/bootlogo.mvi
 			fi
-
 			sleep 1
-			
 			/bin/mount -o bind /dev $NEODEVICE$IMAGEKATALOG/$TARGET/dev
 			/bin/mount -o bind /proc $NEODEVICE$IMAGEKATALOG/$TARGET/proc
 			/bin/mount -o bind /sys $NEODEVICE$IMAGEKATALOG/$TARGET/sys
+		        $NEODEVICE$IMAGEKATALOG/$TARGET/etc/init.d/dreambox-squashfs-support start > /dev/null 2>&1			
+			$NEODEVICE$IMAGEKATALOG/$TARGET/squashfs-images/dreambox-dvb-modules-sqsh-img
+			$NEODEVICE$IMAGEKATALOG/$TARGET/etc/init.d/.mmodprobe start > /dev/null 2>&1			
+			$NEODEVICE$IMAGEKATALOG/$TARGET/etc/init.d/udev start > /dev/null 2>&1
+			$NEODEVICE$IMAGEKATALOG/$TARGET/etc/init.d/alsa-state
 			
 			ln -sf /media/hdd/squashfs-images /media/squashfs-images
 			
-			$NEODEVICE$IMAGEKATALOG/$TARGET/squashfs-images/dreambox-dvb-modules-sqsh-img
-			$NEODEVICE$IMAGEKATALOG/$TARGET/etc/init.d/dreambox-squashfs-support start > /dev/null 2>&1
-			$NEODEVICE$IMAGEKATALOG/$TARGET/etc/init.d/udev start > /dev/null 2>&1
-			$NEODEVICE$IMAGEKATALOG/$TARGET/etc/init.d/.mmodprobe start > /dev/null 2>&1
-			$NEODEVICE$IMAGEKATALOG/$TARGET/etc/init.d/alsa-state
-			
-			if [ -f $NEODEVICE$IMAGEKATALOG/$TARGET/etc/enigma2 ]; then
+			if [ ! -e $NEODEVICE$IMAGEKATALOG/$TARGET/.control_ok]; then
 				rm -r $NEODEVICE$IMAGEKATALOG/$TARGET/etc/enigma2
-			fi			
-
+			fi
 			rm $NEODEVICE$IMAGEKATALOG/$TARGET$NEODEVICE > /dev/null 2>&1
 			mkdir $NEODEVICE$IMAGEKATALOG/$TARGET$NEODEVICE > /dev/null 2>&1
-
+			
                         rm -f $NEODEVICE$IMAGEKATALOG/$TARGET/usr/bin/enigma2_pre_start.sh                      
                                                     
                             orgimag=`mount | sed '/sd/!d' | cut -d" " -f1`
