@@ -482,7 +482,7 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
                 os.system('echo "/etc/init.d not found."')
             os.system('echo "Copied file neo_userscript.sh"')
 
-    if not os.path.exists('' + getNeoLocation() + 'ImageBoot/.without_copying'):
+    if not os.path.exists('' + getNeoLocation() + 'ImageBoot/.without_copying') and getBoxHostName() != 'dm500hd' or getBoxHostName() != 'dm800se' or getBoxHostName() != 'dm800' or getBoxHostName() != 'dm8000':
         if not os.path.exists('%s/ImageBoot/%s/etc/enigma2' % (media, target)):
                 cmd = 'mkdir -p %s/ImageBoot/%s/etc/enigma2' % (media, target)
                 rc = os.system(cmd)
