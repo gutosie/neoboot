@@ -481,27 +481,29 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
             elif not os.path.exists('%s/ImageBoot/%s/etc/init.d' % (media, target)):
                 os.system('echo "/etc/init.d not found."')
             os.system('echo "Copied file neo_userscript.sh"')
-
-    if not os.path.exists('' + getNeoLocation() + 'ImageBoot/.without_copying') and getBoxHostName() != 'dm500hd' or getBoxHostName() != 'dm800se' or getBoxHostName() != 'dm800' or getBoxHostName() != 'dm8000':
-        if not os.path.exists('%s/ImageBoot/%s/etc/enigma2' % (media, target)):
-                cmd = 'mkdir -p %s/ImageBoot/%s/etc/enigma2' % (media, target)
+               
+    if not os.path.exists('' + getNeoLocation() + 'ImageBoot/.without_copying'):
+        for line in open("/etc/hostname"):                                
+            if getCPUtype() == 'MIPS' and not "dm" in line:
+                if not os.path.exists('%s/ImageBoot/%s/etc/enigma2' % (media, target)):
+                    cmd = 'mkdir -p %s/ImageBoot/%s/etc/enigma2' % (media, target)
+                    rc = os.system(cmd)
+                    cmd = 'touch %s/ImageBoot/%s/etc/enigma2/settings' % (media, target)
+                    rc = os.system(cmd)
+                cmd = 'grep "config.Nims" /etc/enigma2/settings >> %s/ImageBoot/%s/etc/enigma2/settings' % (media, target)
                 rc = os.system(cmd)
-                cmd = 'touch %s/ImageBoot/%s/etc/enigma2/settings' % (media, target)
-                rc = os.system(cmd)
-        cmd = 'grep "config.Nims" /etc/enigma2/settings >> %s/ImageBoot/%s/etc/enigma2/settings' % (media, target)
-        rc = os.system(cmd)
-        cmd1 = 'grep "av.videomode.DVI" /etc/enigma2/settings >> %s/ImageBoot/%s/etc/enigma2/settings' % (media, target)
-        rc = os.system(cmd1)
-        cmd2 = 'grep "config.OpenWebif" /etc/enigma2/settings >> %s/ImageBoot/%s/etc/enigma2/settings' % (media, target)
-        rc = os.system(cmd2)
-        cmd3 = 'grep "config.osd" /etc/enigma2/settings >> %s/ImageBoot/%s/etc/enigma2/settings' % (media, target)
-        rc = os.system(cmd3)
-        cmd4 = 'grep "config.timezone.val" /etc/enigma2/settings >> %s/ImageBoot/%s/etc/enigma2/settings' % (media, target)
-        rc = os.system(cmd4)
-        cmd5 = 'grep "config.servicelist.startuproot" /etc/enigma2/settings >> %s/ImageBoot/%s/etc/enigma2/settings' % (media, target)
-        rc = os.system(cmd5)
-        cmd6 = 'grep "UUID=" /etc/fstab >> %s/ImageBoot/%s/etc/fstab' % (media, target)
-        rc = os.system(cmd6)
+                cmd1 = 'grep "av.videomode.DVI" /etc/enigma2/settings >> %s/ImageBoot/%s/etc/enigma2/settings' % (media, target)
+                rc = os.system(cmd1)
+                cmd2 = 'grep "config.OpenWebif" /etc/enigma2/settings >> %s/ImageBoot/%s/etc/enigma2/settings' % (media, target)
+                rc = os.system(cmd2)
+                cmd3 = 'grep "config.osd" /etc/enigma2/settings >> %s/ImageBoot/%s/etc/enigma2/settings' % (media, target)
+                rc = os.system(cmd3)
+                cmd4 = 'grep "config.timezone.val" /etc/enigma2/settings >> %s/ImageBoot/%s/etc/enigma2/settings' % (media, target)
+                rc = os.system(cmd4)
+                cmd5 = 'grep "config.servicelist.startuproot" /etc/enigma2/settings >> %s/ImageBoot/%s/etc/enigma2/settings' % (media, target)
+                rc = os.system(cmd5)
+                cmd6 = 'grep "UUID=" /etc/fstab >> %s/ImageBoot/%s/etc/fstab' % (media, target)
+                rc = os.system(cmd6)
 
 #####################################
         if not os.path.exists('' + media_target + '/boot/zImage.' + getBoxHostName() + '') and getCPUtype() == 'MIPS':
