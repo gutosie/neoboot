@@ -109,6 +109,8 @@ class StartImage(Screen):
             if fileExists('/media/InternalFlash/etc/init.d/neobootmount.sh'):
                 os.system('rm -f /media/InternalFlash/etc/init.d/neobootmount.sh;')
             if (getSupportedTuners()):
+                        if fileExists('%sImageBoot/%s/squashfs-images' % (getNeoLocation(), getImageNeoBoot())):            
+                            os.system('ln -sf "%sImageBoot/%s/squashfs-images" "//squashfs-images"' % (getNeoLocation(), getImageNeoBoot()))                
                         if getImageNeoBoot() == 'Flash':
                                 cmd = 'ln -sfn /sbin/init.sysvinit /sbin/init'
                                 rc = os.system(cmd)
