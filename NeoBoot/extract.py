@@ -3,6 +3,41 @@
 from __future__ import absolute_import
 from __future__ import print_function
 import sys
+Search or jump to…
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@gutosie 
+gutosie
+/
+neoboot
+Public
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+neoboot
+/
+NeoBoot
+/
+extract.py
+in
+main
+ 
+
+Spaces
+
+4
+
+No wrap
+
 import os
 import struct
 import shutil
@@ -869,6 +904,8 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
             rc = os.system(cmd)
             cmd = '' + extensions_path + 'NeoBoot/bin/nfidump ' + sourcefile2 + ' ' + getNeoLocation() + 'ImageBoot/' + target
             rc = os.system(cmd)
+            if os.path.exists('%sImageBoot/%s/media/squashfs-images' % (media, target)):
+                os.system('cp -af /media/hdd/squashfs-images/* "%sImageBoot/%s/media/squashfs-images' % (media, target))            
             if ZipDelete == 'True':
                 rc = os.system('rm -rf ' + sourcefile2)
             else:
