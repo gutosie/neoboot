@@ -231,16 +231,22 @@ $MODPROBE /sbin/modprobe --force lcd > /dev/null 2>&1
 			fi
 
 			sleep 1
-                       			
+			
 			/bin/mount -o bind /dev $NEODEVICE$IMAGEKATALOG/$TARGET/dev
 			/bin/mount -o bind /proc $NEODEVICE$IMAGEKATALOG/$TARGET/proc
 			/bin/mount -o bind /sys $NEODEVICE$IMAGEKATALOG/$TARGET/sys
+			
+			ln -sf /media/hdd/squashfs-images /media/squashfs-images
 			
 			$NEODEVICE$IMAGEKATALOG/$TARGET/squashfs-images/dreambox-dvb-modules-sqsh-img
 			$NEODEVICE$IMAGEKATALOG/$TARGET/etc/init.d/dreambox-squashfs-support start > /dev/null 2>&1
 			$NEODEVICE$IMAGEKATALOG/$TARGET/etc/init.d/udev start > /dev/null 2>&1
 			$NEODEVICE$IMAGEKATALOG/$TARGET/etc/init.d/.mmodprobe start > /dev/null 2>&1
 			$NEODEVICE$IMAGEKATALOG/$TARGET/etc/init.d/alsa-state
+			
+			if [ -f $NEODEVICE$IMAGEKATALOG/$TARGET/etc/enigma2 ]; then
+				rm -r $NEODEVICE$IMAGEKATALOG/$TARGET/etc/enigma2
+			fi			
 
 			rm $NEODEVICE$IMAGEKATALOG/$TARGET$NEODEVICE > /dev/null 2>&1
 			mkdir $NEODEVICE$IMAGEKATALOG/$TARGET$NEODEVICE > /dev/null 2>&1
