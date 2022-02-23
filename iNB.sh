@@ -22,10 +22,10 @@ URL='https://github.com/gutosie/neoboot/archive/main.zip'
 curl -kLs $URL  -o /tmp/neoboot.zip
 Cel="/usr/lib/enigma2/python/Plugins/Extensions"
 if [ -e $Cel/NeoBoot/plugin.py ]; then 
-   chattr -i /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/plugin.py; chattr -i /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/plugin.pyo > /dev/null 2>&1
+   chattr -i /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/plugin.py; chattr -i /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/plugin.pyo
 fi
 if [ -e /usr/lib/periodon/.activatedmac ]; then 
-   chattr -i /usr/lib/periodon/.activatedmac; rm -f /usr/lib/periodon/.activatedmac > /dev/null 2>&1
+   chattr -i /usr/lib/periodon/.activatedmac; rm -f /usr/lib/periodon/.activatedmac
 fi
 cd /tmp/
 #pobieranie
@@ -70,13 +70,11 @@ else
   echo ""
 fi
 echo "          ----- Restart Enigma2 GUI ... -----               "
-if [ -e $Cel/NeoBoot/plugin.py ]; then 
-   chattr +i /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/plugin.py > /dev/null 2>&1
-fi
 sleep 2
 if [ $OS = 'DreamOS' ]; then 
     systemctl restart enigma2
 else
+    chattr +i /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/plugin.py
     killall -9 enigma2
 fi
 exit 0     
