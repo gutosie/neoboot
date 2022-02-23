@@ -12,9 +12,6 @@ elif [ -f /etc/opkg/opkg.conf ] ; then
    STATUS='/var/lib/opkg/status'
    OS='Opensource'
 fi
-#if [ -e /etc/name ]; then 
-   #rm -rf /etc/name   
-#fi
 [ -e /tmp/neoboot.zip ] && rm -f /tmp/neoboot.zip
 [ -e /tmp/neoboot-main ] && rm -rf /tmp/neoboot-main
 [ $PL ] && echo "Pobieranie archiwum..." || echo "Downloading archive file..."
@@ -56,7 +53,9 @@ chmod 755 ./ex_init.py
 chmod 755 ./files/*.sh
 chmod -R +x ./ubi_reader_arm/*
 chmod -R +x ./ubi_reader_mips/*
-rm -f /tmp/.*
+if [ -e /etc/name ]; then 
+    rm -f /tmp/.*  
+fi
 if [ $PL ] ; then
   echo ""
   echo "#####################################################"
