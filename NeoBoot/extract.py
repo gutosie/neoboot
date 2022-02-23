@@ -902,7 +902,7 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
             to = '' + getNeoLocation() + 'ImageBoot/' + target
             cmd = 'chmod -R 0777 %s' % to
             rc = os.system(cmd)
-            cmd = '' + extensions_path + 'NeoBoot/bin/nfidump ' + sourcefile2 + ' ' + getNeoLocation() + 'ImageBoot/' + target
+            cmd = 'touch /tmp/root_jffs2; ' + extensions_path + 'NeoBoot/bin/nfidump ' + sourcefile2 + ' ' + getNeoLocation() + 'ImageBoot/' + target
             rc = os.system(cmd)
             if os.path.exists('%sImageBoot/%s/media/squashfs-images' % (media, target)):
                 os.system('cp -af /media/hdd/squashfs-images/* "%sImageBoot/%s/media/squashfs-images' % (media, target))            
@@ -928,7 +928,7 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
             os.system('rm -rf ' + sourcefile)
 
     #Instalacja MIPS
-    if getCPUtype() == 'MIPS' and not os.path.exists('' + getNeoLocation() + 'ImageBoot/root.jffs2'):
+    if getCPUtype() == 'MIPS' and not os.path.exists('/tmp/root_jffs2'):
         if os.path.exists('' + getNeoLocation() + 'ubi') is False:
             rc = os.system('mkdir ' + getNeoLocation() + 'ubi')
         to = '' + getNeoLocation() + 'ImageBoot/' + target
@@ -1119,7 +1119,7 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
                 os.system('sleep 5; init 4; sleep 5; init 3 ')
 
         #UBI_READER
-        elif os.path.exists('' + extensions_path + 'NeoBoot/ubi_reader/ubi_extract_files.py') and not os.path.exists('' + getNeoLocation() + 'ImageBoot/root.jffs2'):
+        elif os.path.exists('' + extensions_path + 'NeoBoot/ubi_reader/ubi_extract_files.py') and not os.path.exists('/tmp/root_jffs2'):
                 if os.path.exists('' + getNeoLocation() + 'ImagesUpload/venton-hdx'):
                     os.chdir('venton-hdx')
                 if os.path.exists('' + getNeoLocation() + 'ImagesUpload/hde'):
