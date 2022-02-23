@@ -3,48 +3,12 @@
 from __future__ import absolute_import
 from __future__ import print_function
 import sys
-Search or jump to…
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@gutosie 
-gutosie
-/
-neoboot
-Public
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-Settings
-neoboot
-/
-NeoBoot
-/
-extract.py
-in
-main
- 
-
-Spaces
-
-4
-
-No wrap
-
 import os
 import struct
 import shutil
 
 # ver. gutosie
-#--------------------------------------------- 2021 ---------------------------------------------#
-
+#--------------------------------------------- 2022 ---------------------------------------------#
 
 def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterowniki, Montowanie, InstallSettings, ZipDelete, RepairFTP, SoftCam, MediaPortal, PiconR, Kodi, BlackHole, Nandsim):
     NEOBootR(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterowniki, Montowanie, InstallSettings, ZipDelete, RepairFTP, SoftCam, MediaPortal, PiconR, Kodi, BlackHole, Nandsim)
@@ -1687,4 +1651,7 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
             os.system('echo "NeoBoot wykrył dłąd!!! Prawdopodobnie brak pliku instalacyjnego."')
 
     return
+   
+# ver. gutosie
+#--------------------------------------------- 2022 ---------------------------------------------#   
 #END
