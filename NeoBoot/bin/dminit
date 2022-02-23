@@ -1,6 +1,7 @@
 #!/bin/sh
 NEODEVICE=`cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`        
 IMAGEKATALOG=ImageBoot
+HOSTNAME=`cat /etc/hostname`
 if [ -e /tmp/.init_reboot ]; then
           rm /tmp/.init_reboot
 	  break;
