@@ -143,4 +143,4 @@ def getREBOOTSYSTEM():
                                     os.system('ln -sf "%sImageBoot/%s/squashfs-images" "//squashfs-images"' % (getNeoLocation(), getImageNeoBoot()))
                                 os.system('sleep 5;reboot -f; shutdown -r now &')
                         else:
-                                self.session.open(TryQuitMainloop, 2)
+                                os.system('sleep 5;reboot -f; shutdown -r now &')
