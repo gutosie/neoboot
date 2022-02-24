@@ -484,8 +484,11 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
                
     if not os.path.exists('' + getNeoLocation() + 'ImageBoot/.without_copying'):
         for line in open("/etc/hostname"):                                
-            #if getCPUtype() == 'MIPS' and not "dm" in line:
-            if getCPUtype() == 'MIPS' and not "dm500hd" in line and not "dm800se" in line and not "dm800" in line and not "dm8000" in line : 
+            if getCPUtype() == 'MIPS' and "dm500hd" in line or "dm800se" in line or "dm800" in line or "dm800se" in line or "dm8000" in line:
+                if os.path.exists('%s/ImageBoot/%s/etc/enigma2' % (media, target)):
+                    cmd = 'rm -r %s/ImageBoot/%s/etc/enigma2' % (media, target)
+                    rc = os.system(cmd)
+            else:                
                 if not os.path.exists('%s/ImageBoot/%s/etc/enigma2' % (media, target)):
                     cmd = 'mkdir -p %s/ImageBoot/%s/etc/enigma2' % (media, target)
                     rc = os.system(cmd)
