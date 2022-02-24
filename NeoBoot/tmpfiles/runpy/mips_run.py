@@ -109,22 +109,20 @@ class StartImage(Screen):
             if fileExists('/media/InternalFlash/etc/init.d/neobootmount.sh'):
                 os.system('rm -f /media/InternalFlash/etc/init.d/neobootmount.sh;')
             if (getSupportedTuners()):
-                        if fileExists('%sImageBoot/%s/squashfs-images' % (getNeoLocation(), getImageNeoBoot())):            
-                            os.system('ln -sf "%sImageBoot/%s/squashfs-images" "//squashfs-images"' % (getNeoLocation(), getImageNeoBoot()))                
                         if getImageNeoBoot() == 'Flash':
                                 cmd = 'ln -sfn /sbin/init.sysvinit /sbin/init'
                                 rc = os.system(cmd)
-                                self.session.open(TryQuitMainloop, 2)
+                                getREBOOTSYSTEM()
                         elif getImageNeoBoot() != 'Flash':
                             if fileExists('/.multinfo'):
-                                self.session.open(TryQuitMainloop, 2)
+                                getREBOOTSYSTEM()
                             elif not fileExists('/.multinfo'):
                                 cmd = 'ln -sfn /sbin/neoinitmips /sbin/init'
                                 rc = os.system(cmd)
-                                self.session.open(TryQuitMainloop, 2)
+                                getREBOOTSYSTEM()
                             else:
                                 os.system('echo "Flash "  >> ' + getNeoLocation() + 'ImageBoot/.neonextboot')
-                                self.session.open(TryQuitMainloop, 2) 
+                                getREBOOTSYSTEM() 
                         else:
                             os.system('echo "Flash "  >> ' + getNeoLocation() + 'ImageBoot/.neonextboot')
                             self.messagebox = self.session.open(MessageBox, _('It looks like it that multiboot does not support this STB.'), MessageBox.TYPE_INFO, 8)
@@ -134,3 +132,12 @@ class StartImage(Screen):
                             os.system('echo "Flash "  >> ' + getNeoLocation() + 'ImageBoot/.neonextboot')
                             self.messagebox = self.session.open(MessageBox, _('It looks like it that multiboot does not support this STB.'), MessageBox.TYPE_INFO, 8)
                             self.close()
+                            
+def getREBOOTSYSTEM():                
+                for line in open("/etc/hostname"):                                
+                        if "dm500hd" in line or "dm800se" in line or "dm800" in line or "dm800se" in line or "dm8000" in line:
+                                if fileExists('%sImageBoot/%s/squashfs-images' % (getNeoLocation(), getImageNeoBoot())):
+                                    os.system('ln -sf "%sImageBoot/%s/squashfs-images" "//squashfs-images"' % (getNeoLocation(), getImageNeoBoot()))
+                                os.system('sleep 5;reboot -f; shutdown -r now &')
+                        else:
+                                self.session.open(TryQuitMainloop, 2)
