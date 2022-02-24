@@ -65,7 +65,7 @@ $MODPROBE /sbin/modprobe --force lcd > /dev/null 2>&1
           fi;                                                             
       done;                                                                  
          cat /proc/stb/avs/0/colorformat > /proc/stb/avs/0/colorformat
-         [ -e /etc/dropbear/dropbear_rsa_host_key ] && /usr/bin/showiframe /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neowait.mvi
+         [ -e /etc/dropbear/dropbear_rsa_host_key ] && /usr/bin/showiframe /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neostart.mvi
          
    if [ -f $LIBDIR/kernel/fs/autofs4/autofs4.ko ]; then
       /sbin/insmod $LIBDIR/kernel/fs/autofs4/autofs4.ko > /dev/null 2>&1
@@ -187,9 +187,8 @@ $MODPROBE /sbin/modprobe --force lcd > /dev/null 2>&1
 	        echo "     BOOT UP IMAGE FROM FLASH     "
                 echo "----------------------------------"		
 	else
-
             echo "----------------------------------";
-		    ln -sfn /sbin/init.sysvinit /sbin/init
+		    #ln -sfn /sbin/init.sysvinit /sbin/init
 		    
         ######### test boot new imaga>>>>
 	if [ -f `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/$TARGET/.control_ok ]; then
@@ -294,17 +293,14 @@ $MODPROBE /sbin/modprobe --force lcd > /dev/null 2>&1
                                     echo "Used Kernel: Reinstall kernel !"  > `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$UPLOAD/.kernel/used_flash_kernel
                                     sleep 15 
                                     reboot -f
-
 			fi
 			exit 0
 		fi
 	fi
 fi
-
-# boot Flash 
-
 # boot Flash 
 UNIONFS=0
+    ln -sfn /sbin/init.sysvinit /sbin/init
    if [ -f /lib/modules/`uname -r`/kernel/fs/unionfs.ko ]; then
       /sbin/insmod /lib/modules/`uname -r`/kernel/fs/unionfs.ko >> /dev/null 2>&1
    fi
