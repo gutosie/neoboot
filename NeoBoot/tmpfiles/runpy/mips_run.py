@@ -112,17 +112,17 @@ class StartImage(Screen):
                         if getImageNeoBoot() == 'Flash':
                                 cmd = 'ln -sfn /sbin/init.sysvinit /sbin/init'
                                 rc = os.system(cmd)
-                                getREBOOTSYSTEM()
+                                getTurnOffOnSystem()
                         elif getImageNeoBoot() != 'Flash':
                             if fileExists('/.multinfo'):
-                                getREBOOTSYSTEM()
+                                getTurnOffOnSystem()
                             elif not fileExists('/.multinfo'):
                                 cmd = 'ln -sfn /sbin/neoinitmips /sbin/init'
                                 rc = os.system(cmd)
-                                getREBOOTSYSTEM()
+                                getTurnOffOnSystem()
                             else:
                                 os.system('echo "Flash "  >> ' + getNeoLocation() + 'ImageBoot/.neonextboot')
-                                getREBOOTSYSTEM() 
+                                getTurnOffOnSystem()
                         else:
                             os.system('echo "Flash "  >> ' + getNeoLocation() + 'ImageBoot/.neonextboot')
                             self.messagebox = self.session.open(MessageBox, _('It looks like it that multiboot does not support this STB.'), MessageBox.TYPE_INFO, 8)
@@ -133,14 +133,11 @@ class StartImage(Screen):
                             self.messagebox = self.session.open(MessageBox, _('It looks like it that multiboot does not support this STB.'), MessageBox.TYPE_INFO, 8)
                             self.close()
                             
-def getREBOOTSYSTEM():                
-    __module__ = __name__
-    def __init__(self, session):
-        Screen.__init__(self, session)                
+def getTurnOffOnSystem():               
         for line in open("/etc/hostname"):                                
                         if "dm500hd" in line or "dm800se" in line or "dm800" in line or "dm800se" in line or "dm8000" in line:
                                 if fileExists('%sImageBoot/%s/squashfs-images' % (getNeoLocation(), getImageNeoBoot())):
                                     os.system('ln -sf "%sImageBoot/%s/squashfs-images" "//squashfs-images"' % (getNeoLocation(), getImageNeoBoot()))
-                                os.system('sleep 5;reboot -f; shutdown -r now &')
-                        else:
-                                os.system('sleep 5;reboot -f; shutdown -r now &')
+                        os.system('echo 3 > /proc/sys/vm/drop_caches; shutdown -r now & sleep 2 & reboot -d -f &')
+                        
+                                
