@@ -300,7 +300,7 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
                 rc = os.system(cmd)
             cmd = 'cp -af /etc/tuxbox/* %s/ImageBoot/%s/etc/tuxbox' % (media, target)
             rc = os.system(cmd)
-            os.system('echo "System settings copied..."')
+            os.system('touch /tmp/settings_copied; echo "System settings copied..."')
 
         if RepairFTP == 'True':
             if os.path.exists('%s/ImageBoot/%s/etc/vsftpd.conf' % (media, target)):
@@ -327,7 +327,7 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
                 rc = os.system(cmd)
             if os.path.exists('/etc/tuxbox/config'):
                 cmd = 'cp -af /etc/tuxbox/config %s/ImageBoot/%s/etc/tuxbox > /dev/null 2>&1' % (media, target)
-                rc = os.system(cmd)
+                rc = os.system(cmd)                
             os.system('echo "Copied softcam files to the installed image..."')
 
         if MediaPortal == 'True':
@@ -481,8 +481,8 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
             elif not os.path.exists('%s/ImageBoot/%s/etc/init.d' % (media, target)):
                 os.system('echo "/etc/init.d not found."')
             os.system('echo "Copied file neo_userscript.sh"')
-               
-    if not os.path.exists('' + getNeoLocation() + 'ImageBoot/.without_copying'):
+            
+    if not os.path.exists('' + getNeoLocation() + 'ImageBoot/.without_copying') and not os.path.exists(' /tmp/settings_copied'):        
         for line in open("/etc/hostname"):                                
             if getCPUtype() == 'MIPS' and "dm500hd" in line or "dm800se" in line or "dm800" in line or "dm800se" in line or "dm8000" in line:
                 if os.path.exists('%s/ImageBoot/%s/etc/enigma2' % (media, target)):
