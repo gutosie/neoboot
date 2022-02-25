@@ -1,5 +1,7 @@
 # neoboot
-new version available - fix all model, arm and mipsel
+In version 9.49, tests have been added for the Dreambox MIPS receiver. 
+OpenPLi recommended in flash. For dreambox only openpli-based images work.
+To install NeoBOOT on a receiver with a small amount of flash memory, such as the DM500HD, you need to free up some space by uninstalling the plugins.
 
 recommended vuplus image for flash openpli
 
