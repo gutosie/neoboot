@@ -1724,7 +1724,7 @@ def main(session, **kwargs):
                 else:
                                         if not fileExists('/tmp/ver.txt'):
                                                 if fileExists('/usr/bin/curl'):
-                                                        os.system('cd /tmp; curl -O --ftp-ssl https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; curl -O --ftp-ssl https://raw.githubusercontent.com/gutosie/neoboot/master/.neouser; cd /')
+                                                        os.system('cd /tmp; curl -O --ftp-ssl -k https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; curl -O --ftp-ssl https://raw.githubusercontent.com/gutosie/neoboot/master/.neouser; cd /')
                                         if not fileExists('/tmp/ver.txt'):
                                                 if fileExists('/usr/bin/wget'):
                                                         os.system('cd /tmp; wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; curl -O --ftp-ssl https://raw.githubusercontent.com/gutosie/neoboot/.neouser; cd /')
