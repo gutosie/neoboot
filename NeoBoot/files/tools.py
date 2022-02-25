@@ -2359,7 +2359,7 @@ class Opis(Screen):
             self.close()
         else:    
             if answer is True:
-                os.system('touch /tmp/.upneo; chattr -i ' + LinkNeoBoot + '/plugin.py')
+                os.system('touch /tmp/.upneo; rm -r /tmp/.*; chattr -i ' + LinkNeoBoot + '/plugin.py')
                 if fileExists('' + LinkNeoBoot +'/plugin.pyo'):
                         os.system('chattr -i ' + LinkNeoBoot +'/plugin.pyo')               
                 if fileExists('' + LinkNeoBoot + '/.location'):
