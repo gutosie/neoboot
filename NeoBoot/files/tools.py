@@ -2388,9 +2388,11 @@ class Opis(Screen):
 
     def mbdelete(self, answer):
         if answer is True:
-            os.system('touch /tmp/.upneo; chattr -i ' + LinkNeoBoot + '/plugin.py')
-            if fileExists('' + LinkNeoBoot + '/plugin.pyo'):
-                os.system('chattr -i ' + LinkNeoBoot + '/plugin.pyo')
+            for line in open("/etc/hostname"):                                
+                if "dm500hd" not in line or "dm800" not in line or "dm800se" not in line or "dm8000" not in line:        
+                    os.system('touch /tmp/.upneo; chattr -i ' + LinkNeoBoot + '/plugin.py')
+                    if fileExists('' + LinkNeoBoot + '/plugin.pyo'):
+                        os.system('chattr -i ' + LinkNeoBoot + '/plugin.pyo')
             if fileExists('/etc/rcS.d/S99neo.local'):
                 system('rm -r /etc/rcS.d/S99neo.local')
             if fileExists('/etc/name'):
