@@ -151,10 +151,11 @@ class InstallImage(Screen, ConfigListScreen):
         self.PiconR = ConfigYesNo(default=False)
         self.Kodi = ConfigYesNo(default=False)        
         self.BlackHole = ConfigYesNo(default=False)
-        if getCPUtype() == 'MIPS' and not "dm500hd" in line and not "dm800se" in line and not "dm800" in line and not "dm8000" in line :  
-            self.Nandsim = ConfigYesNo(default=True)
-        else:        
-            self.Nandsim = ConfigYesNo(default=False)             
+        for line in open("/etc/hostname"):
+            if getCPUtype() == 'MIPS' and not "dm500hd" in line and not "dm800se" in line and not "dm800" in line and not "dm8000" in line :        
+                self.Nandsim = ConfigYesNo(default=True)
+            else:        
+                self.Nandsim = ConfigYesNo(default=False)             
         self.target.value = ''
         self.curselimage = ''
         try:
