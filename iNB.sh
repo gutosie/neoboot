@@ -2,6 +2,7 @@
 #
 #skrypt instaluje neoboot-a
 #
+BOXHOSTNAME=$( cat /etc/hostname)
 if `grep -q 'osd.language=pl_PL' </etc/enigma2/settings`; then
   PL=1
 fi
@@ -18,11 +19,16 @@ fi
 URL='https://github.com/gutosie/neoboot/archive/main.zip'
 curl -kLs $URL  -o /tmp/neoboot.zip
 Cel="/usr/lib/enigma2/python/Plugins/Extensions"
-if [ -e $Cel/NeoBoot/plugin.py ]; then 
-   chattr -i /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/plugin.py; chattr -i /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/plugin.pyo
-fi
-if [ -e /usr/lib/periodon/.activatedmac ]; then 
-   chattr -i /usr/lib/periodon/.activatedmac; rm -f /usr/lib/periodon/.activatedmac
+
+if [ $BOXHOSTNAME = "dm500hd" ] || [ $BOXHOSTNAME = "dm800se" ] || [ $BOXHOSTNAME = "dm800" ] || [ $BOXHOSTNAME = "dm8000" ]; then
+    break;
+else
+    if [ -e $Cel/NeoBoot/plugin.py ]; then 
+       chattr -i /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/plugin.py; chattr -i /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/plugin.pyo
+    fi
+    if [ -e /usr/lib/periodon/.activatedmac ]; then 
+       chattr -i /usr/lib/periodon/.activatedmac; rm -f /usr/lib/periodon/.activatedmac
+    fi
 fi
 cd /tmp/
 #pobieranie
@@ -37,10 +43,11 @@ fi
 unzip -qn ./neoboot.zip
 rm -f /tmp/neoboot.zip
 [ -e /tmp/main.zip ] && rm -rf /tmp/main.zip
-BOXHOSTNAME=$( cat /etc/hostname)
+
 if [ $BOXHOSTNAME = "dm500hd" ] || [ $BOXHOSTNAME = "dm800se" ] || [ $BOXHOSTNAME = "dm800" ] || [ $BOXHOSTNAME = "dm8000" ]; then
     cp -af /tmp/neoboot-main/NeoBoot/tmpfiles/runpy/mips_run.py /tmp/neoboot-main/NeoBoot/run.py; rm -r /tmp/neoboot-main/NeoBoot/ubi_reader*;  rm -r /tmp/neoboot-main/NeoBoot/tmpfiles; rm -r /tmp/neoboot-main/NeoBoot/bin/neoinitar*;  rm -r /tmp/neoboot-main/NeoBoot/bin/nanddump*; rm -r /tmp/neoboot-main/NeoBoot/bin/fbcle*
 fi
+
 #kopiowanie
 if [ -e $Cel/NeoBoot/.location ]; then 
    rm -rf $Cel/NeoBoot/.location   
@@ -55,9 +62,14 @@ cd $Cel/NeoBoot
 chmod 755 ./bin/*
 chmod 755 ./ex_init.py
 chmod 755 ./files/*.sh
-chmod -R +x ./ubi_reader_arm/*
-chmod -R +x ./ubi_reader_mips/*
-chattr +i /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/plugin.py
+if [ $BOXHOSTNAME = "dm500hd" ] || [ $BOXHOSTNAME = "dm800se" ] || [ $BOXHOSTNAME = "dm800" ] || [ $BOXHOSTNAME = "dm8000" ]; then
+    break;
+else
+    chmod -R +x ./ubi_reader_arm/*
+    chmod -R +x ./ubi_reader_mips/*
+    chattr +i /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/plugin.py    
+fi
+
 if [ $PL ] ; then
   echo ""
   echo "#####################################################"
