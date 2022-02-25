@@ -603,7 +603,7 @@ class NeoBootInstallation(Screen):
                     writefile.close()
 
             if not os.path.isfile('/etc/name'):
-                if not getBoxHostName() == 'dm500hd':                
+                if not getBoxHostName() == 'dm500hd' or not getBoxHostName() == 'dm800se' or not getBoxHostName() == 'dm800' or not getBoxHostName() == 'dm8000':                 
                     system('opkg update')
                     os.system('opkg install install --force-overwrite --force-reinstall python-subprocess')
                     os.system('opkg install install --force-overwrite --force-reinstall python-argparse')
