@@ -1084,13 +1084,9 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
 
             if '.tar.xz' not in source and not os.path.exists('%s/ImageBoot/%s/etc/issue' % (media, target)):
                 os.system("echo 3 > /proc/sys/vm/drop_caches")
-
                 os.system('echo ""; echo "Nie zainstalowano systemu ! Powodem b\xc5\x82\xc4\x99du instalacji mo\xc5\xbce by\xc4\x87 kernel-module-nandsim."')
                 os.system('echo "By uzyc innego narzedzia do rozpakowania image, ponow instalacje image jeszcze raz po restarcie tunera."')
                 os.system('echo "RESTART ZA 15 sekund..."')
-
-                rc = os.system('rm -rf /lib/modules/%s/kernel/drivers/mtd/nand/nandsim.ko ' % getKernelVersion())
-
                 os.system('rm -r %s/ImageBoot/%s' % (media, target))
                 os.system('sleep 5; init 4; sleep 5; init 3 ')
 
