@@ -755,6 +755,8 @@ def RemoveUnpackDirs():
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/xpeedl*')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/osmini'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/osmini')
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/osnino'):
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/osnino')        
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/xp1000 '):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/xp1000 ')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/et5x00'):
@@ -1053,11 +1055,15 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
                     os.chdir('zero')
                     rootfname = 'root_cfe_auto.bin'
 
-            #osmini
+            #os_Edision
             if os.path.exists('' + getNeoLocation() + 'ImagesUpload/osmini'):
                 os.chdir('osmini')
                 brand = 'osmini'
                 rootfname = 'rootfs.bin'
+            elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/osnino'):
+                os.chdir('osnino')
+                brand = 'osnino'
+                rootfname = 'rootfs.bin'                
 
             #Instalacja image nandsim
             os.system('echo "Instalacja - nandsim w toku..."')
@@ -1248,9 +1254,11 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
                         os.chdir('h7')
                 if os.path.exists('' + getNeoLocation() + 'ImagesUpload/dm900'):
                     os.chdir('dm900')
-                #osmini
+                #os_Edision
                 if os.path.exists('' + getNeoLocation() + 'ImagesUpload/osmini'):
                     os.chdir('osmini')
+                if os.path.exists('' + getNeoLocation() + 'ImagesUpload/osnino'):
+                    os.chdir('osnino')                    
                 #xp1000
                 if os.path.exists('' + getNeoLocation() + 'ImagesUpload/xp1000'):
                     os.chdir('xp1000')
