@@ -728,7 +728,7 @@ def RemoveUnpackDirs():
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/multiboxse'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/multiboxse')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/unforce_multibox.txt'):
-        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/unforce_multibox.txt')
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/unforce_multibox.txt')       
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/axas'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/axas')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/miraclebox'):
@@ -757,10 +757,8 @@ def RemoveUnpackDirs():
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/osmini')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/xp1000 '):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/xp1000 ')
-
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/et5x00'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/et5x00 ')        
-
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/dinobot '):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/dinobot ')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/e2/update'):
@@ -846,7 +844,9 @@ def RemoveUnpackDirs():
     if os.path.exists('' + getNeoLocation() + 'ImagesUpload/imageversion'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/imageversion')
     if os.path.exists('' + getNeoLocation() + 'ImagesUpload/kernel.bin'):
-        rc = os.system('rm -rf ' + getNeoLocation() + 'ImagesUpload/kernel.bin')        
+        rc = os.system('rm -rf ' + getNeoLocation() + 'ImagesUpload/kernel.bin') 
+    if os.path.exists('' + getNeoLocation() + 'ImagesUpload/force_multibox_READ.ME'):
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/force_multibox_READ.ME')         
         
 def NEOBootExtract(source, target, ZipDelete, Nandsim):
     RemoveUnpackDirs()
