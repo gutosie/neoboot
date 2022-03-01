@@ -608,17 +608,17 @@ class NeoBootInstallation(Screen):
                     os.system('opkg install install --force-overwrite --force-reinstall python-subprocess')
                     os.system('opkg install install --force-overwrite --force-reinstall python-argparse')
                     os.system('opkg install curl')
-                if getCPUtype() == 'MIPS' and not getBoxHostName() == 'dm500hd':
-                    os.system('opkg install --force-overwrite --force-reinstall kernel-module-nandsim')
-                    os.system('opkg install --force-overwrite --force-reinstall mtd-utils-jffs2')
-                    os.system('opkg install --force-overwrite --force-reinstall lzo')
-                    os.system('opkg install --force-overwrite --force-reinstall python-setuptools')
-                    os.system('opkg install --force-overwrite --force-reinstall util-linux-sfdisk')
-                    os.system('opkg install --force-overwrite --force-reinstall packagegroup-base-nfs')
-                    os.system('opkg install --force-overwrite --force-reinstall ofgwrite')
-                    os.system('opkg install --force-overwrite --force-reinstall bzip2')
-                    os.system('opkg install --force-overwrite --force-reinstall mtd-utils')
-                    os.system('opkg install --force-overwrite --force-reinstall mtd-utils-ubifs')
+                    if getCPUtype() == 'MIPS':
+                        os.system('opkg install --force-overwrite --force-reinstall kernel-module-nandsim')
+                        os.system('opkg install --force-overwrite --force-reinstall mtd-utils-jffs2')
+                        os.system('opkg install --force-overwrite --force-reinstall lzo')
+                        os.system('opkg install --force-overwrite --force-reinstall python-setuptools')
+                        os.system('opkg install --force-overwrite --force-reinstall util-linux-sfdisk')
+                        os.system('opkg install --force-overwrite --force-reinstall packagegroup-base-nfs')
+                        os.system('opkg install --force-overwrite --force-reinstall ofgwrite')
+                        os.system('opkg install --force-overwrite --force-reinstall bzip2')
+                        os.system('opkg install --force-overwrite --force-reinstall mtd-utils')
+                        os.system('opkg install --force-overwrite --force-reinstall mtd-utils-ubifs')
             # STB ARM
             if getCPUtype() == "ARMv7":
                 if getBoxHostName() == "vuduo4k" and getBoxHostName() != "ustym4kpro":
