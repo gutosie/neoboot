@@ -862,11 +862,11 @@ class NeoBootImageChoose(Screen):
                 if not fileExists('/.control_boot_new_image'):
                     os.system('echo "Image uruchomione OK\nNie kasuj tego pliku. \n\nImage started OK\nDo not delete this file."  > /.control_ok')
                     
-    def DownloadImageOnline(self): 
-            mess = _('Plug installation lost. Please try again later.')
-            self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
+    #def DownloadImageOnline(self): 
+            #mess = _('Plug installation lost. Please try again later.')
+            #self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
             
-    def OFF_DownloadImageOnline(self):
+    def DownloadImageOnline(self):
             if not os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/ImageDownloader/download.py'):
                     message = _('Plugin ImageDownloader not installed!\nInstall plugin to download new image? \and---Continue ?---')
                     ybox = self.session.openWithCallback(self.InstallImageDownloader, MessageBox, message, MessageBox.TYPE_YESNO)
@@ -887,16 +887,16 @@ class NeoBootImageChoose(Screen):
                 cmd = 'mkdir /tmp/install; touch /tmp/install/plugin.txt; rm -rf /tmp/*.ipk'
                 system(cmd)
                 if fileExists('/usr/bin/curl'):
-                            os.system('cd /tmp; curl -O --ftp-ssl http://read.cba.pl/panel_extra/enigma2-plugin-extensions-imagedownloader_2.6_all.ipk')
-                if not fileExists('/tmp/enigma2-plugin-extensions-imagedownloader_2.6_all.ipk'):
+                            os.system('cd /tmp; curl -O --ftp-ssl -k https://raw.githubusercontent.com/gutosie/neoboot/master/ImageDownloader.tar.gz')
+                if not fileExists('/tmp/ImageDownloader.tar.gz'):
                     if fileExists('/usr/bin/fullwget'):
-                        cmd1 = 'cd /tmp; fullwget --no-check-certificate http://read.cba.pl/panel_extra/enigma2-plugin-extensions-imagedownloader_2.6_all.ipk'
+                        cmd1 = 'cd /tmp; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ImageDownloader.tar.gz'
                         system(cmd1)
-                if not fileExists('/tmp/enigma2-plugin-extensions-imagedownloader_2.6_all.ipk'):
+                if not fileExists('/tmp/ImageDownloader.tar.gz'):
                     if fileExists('/usr/bin/wget'):
-                            os.system('cd /tmp; wget --no-check-certificate http://read.cba.pl/panel_extra/enigma2-plugin-extensions-imagedownloader_2.6_all.ipk')
-                if fileExists('/tmp/enigma2-plugin-extensions-imagedownloader_2.6_all.ipk'):
-                    cmd2 = 'opkg install --force-overwrite --force-reinstall --force-downgrade /tmp/enigma2-plugin-extensions-imagedownloader_2.6_all.ipk'
+                            os.system('cd /tmp; wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ImageDownloader.tar.gz')
+                if fileExists('/tmp/ImageDownloader.tar.gz'):
+                    cmd2 = '/bin/tar -xzvf /tmp/ImageDownloader.tar.gz -C /'
                     system(cmd2)
                     self.session.open(MessageBox, _('The plug-in has been successfully installed.'), MessageBox.TYPE_INFO, 5)
                     self.close()
@@ -1578,17 +1578,17 @@ class NeoBootImageChoose(Screen):
                 cmd = 'mkdir /tmp/install; touch /tmp/install/plugin.txt; rm -rf /tmp/*.ipk'
                 system(cmd)
                 if fileExists('/usr/bin/fullwget'):
-                            os.system('cd /tmp; wget http://read.cba.pl/panel_extra/enigma2-plugin-extensions-imagedownloader_2.6_all.ipk')
-                if not fileExists('/tmp/enigma2-plugin-extensions-imagedownloader_2.6_all.ipk'):
+                            os.system('cd /tmp; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ImageDownloader.tar.gz')
+                if not fileExists('/tmp/ImageDownloader.tar.gz'):
                     if fileExists('/usr/bin/curl'):
-                            os.system('sync; cd /tmp; curl -O --ftp-ssl http://read.cba.pl/panel_extra/enigma2-plugin-extensions-imagedownloader_2.6_all.ipk')
-                if not fileExists('/tmp/enigma2-plugin-extensions-imagedownloader_2.6_all.ipk'):
+                            os.system('sync; cd /tmp; curl -O --ftp-ssl -k https://raw.githubusercontent.com/gutosie/neoboot/master/ImageDownloader.tar.gz')
+                if not fileExists('/tmp/ImageDownloader.tar.gz'):
                     if fileExists('/usr/bin/wget'):
-                            os.system('cd /tmp;rm ./*.zip; wget --no-check-certificate http://read.cba.pl/panel_extra/enigma2-plugin-extensions-imagedownloader_2.6_all.ipk')
-                if not fileExists('/tmp/enigma2-plugin-extensions-imagedownloader_2.6_all.ipk'):
+                            os.system('cd /tmp;rm ./*.zip; wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ImageDownloader.tar.gz')
+                if not fileExists('/tmp/ImageDownloader.tar.gz'):
                         self.session.open(MessageBox, _('Unfortunately, at the moment not found an update, try again later.'), MessageBox.TYPE_INFO, 10)
                 else:
-                    cmd2 = 'opkg install --force-overwrite --force-reinstall --force-downgrade /tmp/enigma2-plugin-extensions-imagedownloader_2.6_all.ipk'
+                    cmd2 = '/bin/tar -xzvf /tmp/ImageDownloader.tar.gz -C /'
                     system(cmd2)
                     self.session.open(MessageBox, _('The plug-in has been successfully installed.'), MessageBox.TYPE_INFO, 5)
                     self.close()
