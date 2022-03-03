@@ -91,13 +91,15 @@ else
     if [ $PL ] ; then
       echo ""
       echo "#####################################################"
-      echo ">>>>       Error! To nie jest image flash.       <<<<"
+      echo ">>>>     Błąd!    To nie jest image flash.       <<<<"
+      echo ">>>>   By zainstalować NeoBoot powróć do Flash.  <<<<"
       echo "#####################################################"
       echo ""
     else
       echo ""
       echo "#####################################################"
-      echo ">>>>      Error!  Go back to image flash.       <<<<#"
+      echo ">>>>     Error!   Go back to image flash.        <<<<"
+      echo ">>>>     To install NeoBoot go back to Flash.    <<<<"
       echo "#####################################################"
       echo ""
     fi
