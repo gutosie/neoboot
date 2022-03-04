@@ -755,6 +755,8 @@ def RemoveUnpackDirs():
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/xpeedl*')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/osmini'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/osmini')
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/osminiplus'):
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/osminiplus')        
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/osnino'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/osnino')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/osninoplus'):
@@ -1072,6 +1074,14 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
                 os.chdir('osmini')
                 brand = 'osmini'
                 rootfname = 'rootfs.bin'
+            if os.path.exists('' + getNeoLocation() + 'ImagesUpload/osminiplus'):
+                os.chdir('osminiplus')
+                brand = 'osmini'
+                rootfname = 'rootfs.bin' 
+            if os.path.exists('' + getNeoLocation() + 'ImagesUpload/osmega'):
+                os.chdir('osmega')
+                brand = 'osmini'
+                rootfname = 'rootfs.bin'                
             elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/osnino'):
                 os.chdir('osnino')
                 brand = 'osnino'
@@ -1273,6 +1283,10 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
                 #os_Edision
                 if os.path.exists('' + getNeoLocation() + 'ImagesUpload/osmini'):
                     os.chdir('osmini')
+                if os.path.exists('' + getNeoLocation() + 'ImagesUpload/osminiplus'):
+                    os.chdir('osminiplus')
+                if os.path.exists('' + getNeoLocation() + 'ImagesUpload/osmega'):
+                    os.chdir('osmega')                     
                 if os.path.exists('' + getNeoLocation() + 'ImagesUpload/osnino'):
                     os.chdir('osnino')
                 if os.path.exists('' + getNeoLocation() + 'ImagesUpload/osninoplus'):
