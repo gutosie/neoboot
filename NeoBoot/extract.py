@@ -756,7 +756,13 @@ def RemoveUnpackDirs():
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/osmini'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/osmini')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/osnino'):
-        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/osnino')        
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/osnino')
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/osninoplus'):
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/osninoplus')
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/osninopro'):
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/osninopro')
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/osmini4k'):
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/osmini4k')        
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/xp1000 '):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/xp1000 ')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/et5x00'):
@@ -1069,6 +1075,14 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
             elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/osnino'):
                 os.chdir('osnino')
                 brand = 'osnino'
+                rootfname = 'rootfs.bin'
+            elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/osninoplus'):
+                os.chdir('osninoplus')
+                brand = 'osnino'
+                rootfname = 'rootfs.bin'
+            elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/osninopro'):
+                os.chdir('osninopro')
+                brand = 'osnino'
                 rootfname = 'rootfs.bin'                
 
             #Instalacja image nandsim
@@ -1260,7 +1274,11 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
                 if os.path.exists('' + getNeoLocation() + 'ImagesUpload/osmini'):
                     os.chdir('osmini')
                 if os.path.exists('' + getNeoLocation() + 'ImagesUpload/osnino'):
-                    os.chdir('osnino')                    
+                    os.chdir('osnino')
+                if os.path.exists('' + getNeoLocation() + 'ImagesUpload/osninoplus'):
+                    os.chdir('osninoplus')
+                if os.path.exists('' + getNeoLocation() + 'ImagesUpload/osninopro'):
+                    os.chdir('osninopro')                     
                 #xp1000
                 if os.path.exists('' + getNeoLocation() + 'ImagesUpload/xp1000'):
                     os.chdir('xp1000')
@@ -1417,6 +1435,10 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
             os.system('echo "Please wait. System installation EDISION osmio4kplus"')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/osmio4kplus/rootfs.tar.bz2; tar -jxf ' + getNeoLocation() + 'ImagesUpload/osmio4kplus/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd)
+        elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/osmini4k'):
+            os.system('echo "Please wait. System installation Edision OS mini 4K"')
+            cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/osmini4k/rootfs.tar.bz2; tar -jxf ' + getNeoLocation() + 'ImagesUpload/osmini4k/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
+            rc = os.system(cmd)            
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/dm900'):
             os.system('echo "Please wait. System installation Dreambox DM900."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/dm900/rootfs.tar.bz2; tar -jxf ' + getNeoLocation() + 'ImagesUpload/dm900/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
