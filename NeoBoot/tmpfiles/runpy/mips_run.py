@@ -138,6 +138,6 @@ def getTurnOffOnSystem():
                         if "dm500hd" in line or "dm800se" in line or "dm800" in line or "dm800se" in line or "dm8000" in line:
                                 if fileExists('%sImageBoot/%s/squashfs-images' % (getNeoLocation(), getImageNeoBoot())):
                                     os.system('ln -sf "%sImageBoot/%s/squashfs-images" "//squashfs-images"' % (getNeoLocation(), getImageNeoBoot()))
-                        os.system('echo 3 > /proc/sys/vm/drop_caches; shutdown -r now & sleep 2 & reboot -d -f &')
+                        os.system('echo 3 > /proc/sys/vm/drop_caches; shutdown -r now & sleep 2 & reboot -d -h -i &')
                         
                                 
