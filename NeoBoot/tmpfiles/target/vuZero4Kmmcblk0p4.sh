@@ -74,7 +74,7 @@ if [ $VUMODEL = "zero4k" ]   ; then
                 echo "...............shutdown now..............." 
                 sleep 5 
                 echo -n "Rebooting... "
-                reboot -d -h -i
+                reboot -d -i; shutdown now -r
     else              	    
         if [ $TARGET != "Flash" ]; then                                             
                         if [ -e /.multinfo ] ; then
@@ -126,7 +126,7 @@ if [ $VUMODEL = "zero4k" ]   ; then
                         echo "...............Shutdown Now..............."
                         sleep 5
                         PATH=/sbin:/bin:/usr/sbin:/usr/bin
-                        reboot -d -h -i 
+                        reboot -d -i; shutdown now -r 
         fi
     fi                               
 else
