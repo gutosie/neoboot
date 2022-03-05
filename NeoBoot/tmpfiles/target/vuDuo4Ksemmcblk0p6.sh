@@ -70,7 +70,7 @@ if [ $VUMODEL = "duo4kse" ] ; then
                 sync && echo 3 > /proc/sys/vm/drop_caches
                 sleep 5
                 echo -n "Rebooting... "
-                /sbin/reboot
+                reboot -d -f
     else              	    
         if [ $TARGET != "Flash" ]; then                    
                         [ $PL ] && echo "Przenoszenie pliku kernel do /tmp..." || echo "Moving the kernel file to..."
@@ -121,7 +121,7 @@ if [ $VUMODEL = "duo4kse" ] ; then
                         echo "...............Shutdown Now..............."
                         sleep 5
                         PATH=/sbin:/bin:/usr/sbin:/usr/bin
-                        /sbin/reboot
+                        reboot -d -f 
  
         fi
     fi                               
