@@ -75,7 +75,7 @@ if [ $BOXHOSTNAME = "vuultimo4k" ] || [ $BOXHOSTNAME = "vusolo4k" ] || [ $BOXHOS
                 echo -n "Rebooting... "
                 sync && echo 3 > /proc/sys/vm/drop_caches
                 PATH=/sbin:/bin:/usr/sbin:/usr/bin
-                reboot
+                /sbin/reboot
     else              	    
         if [ $TARGET != "Flash" ]; then                                             
                         if [ -e /.multinfo ] ; then
@@ -130,7 +130,7 @@ if [ $BOXHOSTNAME = "vuultimo4k" ] || [ $BOXHOSTNAME = "vusolo4k" ] || [ $BOXHOS
                         echo "... - Shutdown Now -  ..."
                         sleep 5
                         PATH=/sbin:/bin:/usr/sbin:/usr/bin
-                        reboot
+                        /sbin/reboot
         fi
     fi                               
 else
