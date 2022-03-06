@@ -1159,45 +1159,30 @@ class NeoBootImageChoose(Screen):
 
     def aktualizacjamboot(self, yesno):
         if yesno:
-            os.system('chattr -i ' + LinkNeoBoot + '/plugin.py; chattr -i ' + LinkNeoBoot + '/plugin.pyo')
-            if fileExists('/tmp/*.zip'):
-                    os.system('rm /tmp/*.zip')
-            if fileExists('/usr/bin/curl'):
-                    os.system('cd /tmp; curl -O --ftp-ssl -k https://github.com/gutosie/neoboot/archive/main.zip; unzip -qn ./main.zip; sleep 2;cd /')
-            if not fileExists('/tmp/neoboot-main/NeoBoot'):
-                    if fileExists('/tmp/main.zip'):
-                            os.system('rm -r /tmp/main.zip')
-                    if fileExists('/usr/bin/fullwget'):
-                            os.system('cd /tmp; fullwget --no-check-certificate https://github.com/gutosie/neoboot/archive/main.zip; unzip -qn ./main.zip; sleep 2;cd /')
-            if not fileExists('/tmp/neoboot-main/NeoBoot'):
-                    if fileExists('/tmp/main.zip'):
-                            os.system('rm -r /tmp/main.zip')
-                    if fileExists('/usr/bin/wget'):
-                            os.system('cd /tmp; rm ./*.zip; wget --no-check-certificate https://github.com/gutosie/neoboot/archive/main.zip; unzip -qn ./main.zip; sleep 2;cd / ')
-            if not fileExists('/tmp/neoboot-main/NeoBoot'):
-                    self.session.open(MessageBox, _('Unfortunately, at the moment not found an update, try again later.'), MessageBox.TYPE_INFO, 10)
+            if fileExists('/.multinfo'):
+                self.myClose(_('Sorry, Neoboot can be installed or upgraded only when booted from Flash'))
+                self.close()
             else:
-                self.goUpdateNEO()
+                os.system('touch /tmp/.upneo; rm -r /tmp/.*; chattr -i ' + LinkNeoBoot + '/plugin.py')
+                if fileExists('' + LinkNeoBoot +'/plugin.pyo'):
+                        os.system('chattr -i ' + LinkNeoBoot +'/plugin.pyo')
+                if fileExists('/usr/bin/curl'):
+                        cmd1 = 'curl -kLs -k https://raw.githubusercontent.com/gutosie/neoboot/master/iNB.sh|sh'
+                        self.session.open(Console, _('NeoBoot....'), [cmd1])
+                        self.close()
+                elif fileExists('/usr/bin/wget'):
+                        cmd1 = 'cd /tmp; rm ./*.sh; wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/iNB.sh;chmod 755 ./iNB.sh;sh ./iNB.sh; rm ./iNB.sh; cd /'
+                        self.session.open(Console, _('NeoBoot....'), [cmd1])
+                        self.close()
+                elif fileExists('/usr/bin/fullwget'):
+                        cmd1 = 'cd /tmp; rm ./*.sh; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/iNB.sh;chmod 755 ./iNB.sh;sh ./iNB.sh; rm ./iNB.sh; cd /'
+                        self.session.open(Console, _('NeoBoot....'), [cmd1])
+                        self.close()
+                else:
+                        self.session.open(MessageBox, _('Unfortunately, at the moment not found an update, try again later.'), MessageBox.TYPE_INFO, 10)
         else:
             os.system('rm -f ' + LinkNeoBoot + '/ver.txt')
             self.session.open(MessageBox, _('The update has been canceled.'), MessageBox.TYPE_INFO, 8)
-
-    def goUpdateNEO(self):
-                if fileExists('' + LinkNeoBoot + '/wget-log'):
-                        os.system('touch /tmp/.upneo; rm ' + LinkNeoBoot + '/wget-log')
-                os.system('chattr -i ' + LinkNeoBoot + '/plugin.py; chattr -i ' + LinkNeoBoot + '/plugin.pyo; cd /tmp/; cp -af ./neoboot-main/NeoBoot /usr/lib/enigma2/python/Plugins/Extensions; rm -rf /tmp/neoboot*;  rm ' + LinkNeoBoot + '/ver.txt; cd ' + LinkNeoBoot + '/; chmod 0755 ./bin/neoini*;  chmod 0755 ./ex_init.py; chmod 0755 ./tmpfiles/target/*; chmod 0755 ./files/userscript.sh; cd /; date %s  > /usr/lib/periodon/.accessdate' % UPDATEDATE)
-                if getCPUtype() == 'MIPS' and getBoxHostName() != 'vusolo2':
-                    os.system('cd ' + LinkNeoBoot + '/; cp -af ./bin/neoinitmipsvu /sbin; chmod 755 /sbin/neoinitmipsvu; cp -af ./bin/neoinitmips /sbin; chmod 755 /sbin/neoinitmips; cd')
-                os.system('cd ' + LinkNeoBoot + '/; rm ./bin/install; rm -f ./files/testinout; rm ./files/mountpoint.sh; rm ./files/neo.sh; rm -f /usr/lib/periodon/.kodn; rm -f /tmp/.nkod; rm -rf /tmp/main.zip')
-                restartbox = self.session.openWithCallback(self.restartGUI, MessageBox, _('Completed update NeoBoot.\nYou need to restart the E2 and re-enter your pin code VIP!!!\nRestart now ?'), MessageBox.TYPE_YESNO)
-                restartbox.setTitle(_('Restart GUI now ?'))
-
-    def restartGUI(self, answer):
-        if answer is True:
-            os.system('rm -f ' + LinkNeoBoot + '/.location; rm -r ' + LinkNeoBoot + '/ubi_reader; chattr +i ' + LinkNeoBoot + '/plugin.py')
-            self.session.open(TryQuitMainloop, 3)
-        else:
-            self.close()
 
     def MBBackup(self):
             try:
