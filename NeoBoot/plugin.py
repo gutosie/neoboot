@@ -1130,7 +1130,7 @@ class NeoBootImageChoose(Screen):
 
     def chackupdate3(self):
         if fileExists('/usr/bin/curl'):
-                            os.system('cd ' + LinkNeoBoot + ';curl -O --ftp-ssl https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt;sleep 3;cd /')
+                            os.system('cd ' + LinkNeoBoot + ';curl -O --ftp-ssl -k https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt;sleep 3;cd /')
         if not fileExists('' + LinkNeoBoot + '/ver.txt'):
                     if fileExists('/usr/bin/wget'):
                             os.system('cd ' + LinkNeoBoot + ';wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; sleep 3;cd /')
@@ -1163,7 +1163,7 @@ class NeoBootImageChoose(Screen):
             if fileExists('/tmp/*.zip'):
                     os.system('rm /tmp/*.zip')
             if fileExists('/usr/bin/curl'):
-                    os.system('cd /tmp; curl -O --ftp-ssl https://github.com/gutosie/neoboot/archive/main.zip; unzip -qn ./main.zip; sleep 2;cd /')
+                    os.system('cd /tmp; curl -O --ftp-ssl -k https://github.com/gutosie/neoboot/archive/main.zip; unzip -qn ./main.zip; sleep 2;cd /')
             if not fileExists('/tmp/neoboot-main/NeoBoot'):
                     if fileExists('/tmp/main.zip'):
                             os.system('rm -r /tmp/main.zip')
