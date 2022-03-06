@@ -1129,14 +1129,14 @@ class NeoBootImageChoose(Screen):
             self.session.open(MessageBox, _('Canceled update.'), MessageBox.TYPE_INFO, 7)
 
     def chackupdate3(self):
-        if fileExists('/usr/bin/fullwget'):
-                            os.system('cd ' + LinkNeoBoot + ';fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; sleep 3;cd /')
-        if not fileExists('' + LinkNeoBoot + '/ver.txt'):
-                    if fileExists('/usr/bin/curl'):
+        if fileExists('/usr/bin/curl'):
                             os.system('cd ' + LinkNeoBoot + ';curl -O --ftp-ssl https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt;sleep 3;cd /')
         if not fileExists('' + LinkNeoBoot + '/ver.txt'):
                     if fileExists('/usr/bin/wget'):
                             os.system('cd ' + LinkNeoBoot + ';wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; sleep 3;cd /')
+        if not fileExists('' + LinkNeoBoot + '/ver.txt'):
+                    if fileExists('/usr/bin/fullwget'):
+                            os.system('cd ' + LinkNeoBoot + ';fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; sleep 3;cd /')
         if fileExists('' + LinkNeoBoot + '/ver.txt'):
                 mypath = ''
                 version = open('' + LinkNeoBoot + '/ver.txt', 'r')
