@@ -862,12 +862,11 @@ class NeoBootImageChoose(Screen):
                 if not fileExists('/.control_boot_new_image'):
                     os.system('echo "Image uruchomione OK\nNie kasuj tego pliku. \n\nImage started OK\nDo not delete this file."  > /.control_ok')
                     
-    #def DownloadImageOnline(self): 
-            #mess = _('Plug installation lost. Please try again later.')
-            #self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
-            
     def DownloadImageOnline(self):
-            if not os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/ImageDownloader/download.py'):
+            if not fileExists('/usr/lib/python2.7'):
+                mess = _('Plug installation lost.The plugin doesnt work on python 3 yet. Please try again later.')
+                self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)        
+            elif not os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/ImageDownloader/download.py'):
                     message = _('Plugin ImageDownloader not installed!\nInstall plugin to download new image? \and---Continue ?---')
                     ybox = self.session.openWithCallback(self.InstallImageDownloader, MessageBox, message, MessageBox.TYPE_YESNO)
                     ybox.setTitle(_('Installation'))
