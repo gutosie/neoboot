@@ -323,7 +323,7 @@ else
 fi
 # boot Flash
 if [ -f /sbin/init.sysvinit ]; then
-		echo "Running /sbin/init.sysvinit - boot Flash"
+		#echo "Running /sbin/init.sysvinit - boot Flash"
 		exec /sbin/init.sysvinit $1
 fi
 exit 0
