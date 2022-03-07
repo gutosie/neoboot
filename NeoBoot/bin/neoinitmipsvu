@@ -1,6 +1,6 @@
 #!/bin/sh
 #script mod by gutosie
-#neo init arm 
+#neo init mips 
 
 NEODEVICE=`cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`        
 IMAGEKATALOG=ImageBoot
