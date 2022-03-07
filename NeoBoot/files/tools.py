@@ -663,7 +663,11 @@ class MenagerDevices(Screen):
                 self.session.open(ManagerDevice)
 
         except:
-            False
+            self.myClose(_('Sorry, the operation is not possible from Flash or not supported.'))
+
+    def myClose(self, message):
+            self.session.open(MessageBox, message, MessageBox.TYPE_INFO)
+            self.close()
 
 class SetDiskLabel(Screen):
     __module__ = __name__
@@ -689,7 +693,11 @@ class SetDiskLabel(Screen):
                     from Plugins.Extensions.NeoBoot.files.tools import DiskLabelSet
                     self.session.open(DiskLabelSet)
         except:
-            False         
+            self.myClose(_('Sorry, the operation is not possible from Flash or not supported.'))
+
+    def myClose(self, message):
+            self.session.open(MessageBox, message, MessageBox.TYPE_INFO)
+            self.close()        
 
 class MBDeleUpload(Screen):
     __module__ = __name__
