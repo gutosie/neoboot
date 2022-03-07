@@ -2303,7 +2303,7 @@ class Opis(Screen):
     def __init__(self, session):
         Screen.__init__(self, session)
         self['key_red'] = Label(_('Remove NeoBoot of STB'))
-        self['key_green'] = Label(_('Instal neoobot from github'))
+        self['key_green'] = Label(_('Install NeoBOOT from github'))
         self['lab1'] = ScrollLabel('') 
         self['lab2'] = Label(_('' + getNeoActivatedtest() + ''))        
         self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'DirectionActions'], {'back': self.close,
