@@ -862,7 +862,9 @@ def RemoveUnpackDirs():
     if os.path.exists('' + getNeoLocation() + 'ImagesUpload/rootfs.bin'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/rootfs.bin')  
     if os.path.exists('' + getNeoLocation() + 'ImagesUpload/splash.bin'):
-        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/splash.bin')        
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/splash.bin')
+    if os.path.exists('' + getNeoLocation() + 'ImagesUpload/gigablue'):
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/gigablue')        
         
 def NEOBootExtract(source, target, ZipDelete, Nandsim):
     RemoveUnpackDirs()
