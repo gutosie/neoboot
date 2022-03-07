@@ -70,7 +70,7 @@ class ManagerDevice(Screen):
         Screen.__init__(self, session)
         Screen.setTitle(self, _('Mount Manager'))
         self['key_red'] = Label(_('Initialize ext3'))
-        self['key_green'] = Label(_('SetupMounts'))
+        self['key_green'] = Label(_('Mounts UUID'))
         self['key_yellow'] = Label(_('Initialize ext4'))
         self['key_blue'] = Label(_('Formatting Disk'))
         self['lab1'] = Label()
