@@ -95,6 +95,7 @@ class StartImage(Screen):
             os.system('echo "nandwrite" > /tmp/check_nandwrite')            
         #---------------------------------------------
         getMountPointNeo2()
+        system('touch /tmp/.init_reboot')
         #---------------------------------------------
 
     def StartImageInNeoBoot(self):
