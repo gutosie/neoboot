@@ -92,7 +92,7 @@ else
       echo ""
       echo "#####################################################"
       echo ">>>>     Błąd!    To nie jest image flash.       <<<<"
-      echo ">>>>   By zainstalować NeoBoot powróć do Flash.  <<<<"
+      echo ">>>>   By zainstalować NeoBoot, powróć do Flash.  <<<<"
       echo "#####################################################"
       echo ""
     else
