@@ -70,7 +70,7 @@ if [ ! -e /.multinfo ]; then
     if [ $PL ] ; then
       echo ""
       echo "#####################################################"
-      echo "#          NEOBOOT ZOSTAL ZAINSTALOWANY             #"
+      echo "#          NEOBOOT ZOSTAŁ ZAINSTALOWANY             #"
       echo "#####################################################"
       echo ""
     else
@@ -80,7 +80,8 @@ if [ ! -e /.multinfo ]; then
       echo "#####################################################"
       echo ""
     fi
-    echo "          ----- Restart Enigma2 GUI ... -----               "
+    echo "          ----- Restart Enigma2 GUI ... -----          "
+    echo "                N  E  O  B  O  O  T                    "  
     sleep 2
     if [ $OS = 'DreamOS' ]; then 
         systemctl restart enigma2
@@ -92,7 +93,7 @@ else
       echo ""
       echo "#####################################################"
       echo ">>>>     Błąd!    To nie jest image flash.       <<<<"
-      echo ">>>>   By zainstalować NeoBoot, powróć do Flash.  <<<<"
+      echo ">>>>   By zainstalować NeoBoot, powróć do Flash. <<<<"
       echo "#####################################################"
       echo ""
     else
