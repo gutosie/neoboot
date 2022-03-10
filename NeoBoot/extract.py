@@ -841,6 +841,10 @@ def RemoveUnpackDirs():
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.bz2')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/et10000'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/et10000')
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/vs1000'):
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/vs1000')
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/vs1500'):
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/vs1500')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/pulse4k'):
         if os.path.exists('' + getNeoLocation() + 'ImagesUpload/pulse4k/force_pulse4k_READ.ME'):
             rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/pulse4k/force_pulse4k_READ.ME; rm -r ' + getNeoLocation() + 'ImagesUpload/pulse4k/unforce_pulse4k.txt')    
@@ -1086,18 +1090,23 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
                 os.chdir('osmega')
                 brand = 'osmini'
                 rootfname = 'rootfs.bin'                
-            elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/osnino'):
+            if os.path.exists('' + getNeoLocation() + 'ImagesUpload/osnino'):
                 os.chdir('osnino')
                 brand = 'osnino'
                 rootfname = 'rootfs.bin'
-            elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/osninoplus'):
+            if os.path.exists('' + getNeoLocation() + 'ImagesUpload/osninoplus'):
                 os.chdir('osninoplus')
                 brand = 'osnino'
                 rootfname = 'rootfs.bin'
-            elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/osninopro'):
+            if os.path.exists('' + getNeoLocation() + 'ImagesUpload/osninopro'):
                 os.chdir('osninopro')
                 brand = 'osnino'
-                rootfname = 'rootfs.bin'                
+                rootfname = 'rootfs.bin'
+            #Vimastec
+            if os.path.exists('' + getNeoLocation() + 'ImagesUpload/osninopro'):
+                os.chdir('vs1000')
+                brand = 'vs1000'
+                rootfname = 'rootfs.bin'               
 
             #Instalacja image nandsim
             os.system('echo "Instalacja - nandsim w toku..."')
@@ -1313,7 +1322,10 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
                 if os.path.exists('' + getNeoLocation() + 'ImagesUpload/patch.e2'):
                     os.system('rm -f ' + getNeoLocation() + 'ImagesUpload/patch.e2 ')
                     os.system('echo "____NEOBOOT will not unpack this image.____"')
-                    os.system('echo "____Try to install the image vuultimo mips____"')                    
+                    os.system('echo "____Try to install the image vuultimo mips____"')
+                #Vimastec                    
+                if os.path.exists('' + getNeoLocation() + 'ImagesUpload/vs1000'):
+                    os.chdir('vs1000')                    
 
                 #Instalacja image ubi_reader
                 os.system('echo "Instalacja - ubi_reader w toku..."')
@@ -1658,6 +1670,11 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/bre2ze4k'):
             os.system('echo "Please wait. System installation WWIO BRE2ZE 4K."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/bre2ze4k; tar -jxf ' + getNeoLocation() + 'ImagesUpload/bre2ze4k/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
+            rc = os.system(cmd)
+        #Vimastec    
+        elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/vs1500'):
+            os.system('echo "Please wait. System installation Vimastec"')
+            cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/vs1500; tar -jxf ' + getNeoLocation() + 'ImagesUpload/vs1500/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd)
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/' + source + '.tar.xz'):
             os.system('echo "Please wait. System installation spakowanego w plik tar.xz w toku..."')
