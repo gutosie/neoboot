@@ -1673,7 +1673,7 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
             rc = os.system(cmd)
         #Vimastec    
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/vs1500'):
-            os.system('echo "Please wait. System installation Vimastec"')
+            os.system('echo "Please wait. System installation VIMASTEC VS1500 4K"')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/vs1500; tar -jxf ' + getNeoLocation() + 'ImagesUpload/vs1500/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd)
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/' + source + '.tar.xz'):
