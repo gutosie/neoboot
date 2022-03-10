@@ -864,7 +864,9 @@ def RemoveUnpackDirs():
     if os.path.exists('' + getNeoLocation() + 'ImagesUpload/splash.bin'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/splash.bin')
     if os.path.exists('' + getNeoLocation() + 'ImagesUpload/gigablue'):
-        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/gigablue')        
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/gigablue')
+    if os.path.exists('' + getNeoLocation() + 'ImagesUpload/update_bootargs_h8'):
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/update_bootargs_h8')        
         
 def NEOBootExtract(source, target, ZipDelete, Nandsim):
     RemoveUnpackDirs()
@@ -1332,8 +1334,11 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
 #ARM
     elif getCPUtype() == 'ARMv7':
         os.chdir('' + getNeoLocation() + 'ImagesUpload')
-        if os.path.exists('' + getNeoLocation() + 'ImagesUpload/h9/rootfs.ubi'):
-            os.chdir('h9')
+        if os.path.exists('' + getNeoLocation() + 'ImagesUpload/h9/rootfs.ubi') or os.path.exists('' + getNeoLocation() + 'ImagesUpload/h8/rootfs.ubi'):
+            if os.path.exists('' + getNeoLocation() + 'ImagesUpload/h9/rootfs.ubi'):
+                os.chdir('h9')
+            elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/h8/rootfs.ubi'):
+                os.chdir('h8')
             os.system('mv -f rootfs.ubi rootfs.bin')
             os.system('echo "Instalacja - ubi_reader w toku..."')
             print("[NeoBoot] Extracting UBIFS image and moving extracted image to our target")
@@ -1523,8 +1528,11 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
             os.system('echo "Please wait. System installation Zgemma H7."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/zgemma/h7/rootfs.tar.bz2; tar -jxf ' + getNeoLocation() + 'ImagesUpload/zgemma/h7/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd)
-        elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/h9/rootfs.ubi'):
-            os.chdir('h9')
+        elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/h9/rootfs.ubi') or os.path.exists('' + getNeoLocation() + 'ImagesUpload/h8/rootfs.ubi'):
+            if os.path.exists('' + getNeoLocation() + 'ImagesUpload/h9/rootfs.ubi'):
+                os.chdir('h9')
+            elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/h8/rootfs.ubi'):
+                os.chdir('h8')
             os.system('mv -f rootfs.ubi rootfs.bin')
             os.system('echo "Instalacja - ubi_reader w toku..."')
             print("[NeoBoot] Extracting UBIFS image and moving extracted image to our target")
