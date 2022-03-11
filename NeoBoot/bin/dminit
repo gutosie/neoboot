@@ -20,57 +20,57 @@ else
                 break;
             fi
 	fi      
-########################################  DM    
-LIBDIR=/lib/modules/`uname -r`
-if [ ! -d $LIBDIR ]; then
-   LIBDIR=/lib/modules/`ls /lib/modules | tail -n 1`
-fi
-if [ `mount | grep /proc | wc -l` -lt 1 ]; then
-    /bin/mount -t auto 
-   /bin/mount -t proc proc /proc > /dev/null 2>&1
-   /bin/mount -t sysfs sysfs /sys > /dev/null 2>&1
-   /sbin/depmod -Ae > /dev/null 2>&1
-fi   
+    ########################################  DM    
+    LIBDIR=/lib/modules/`uname -r`
+    if [ ! -d $LIBDIR ]; then
+       LIBDIR=/lib/modules/`ls /lib/modules | tail -n 1`
+    fi
+    if [ `mount | grep /proc | wc -l` -lt 1 ]; then
+        /bin/mount -t auto 
+       /bin/mount -t proc proc /proc > /dev/null 2>&1
+       /bin/mount -t sysfs sysfs /sys > /dev/null 2>&1
+       /sbin/depmod -Ae > /dev/null 2>&1
+    fi   
 
-if [ `uname -r | grep 2.6.12 | wc -l` -lt 1 ]; then
-   if [ ! -e /dev/.udev -a -e /etc/init.d/udev ]; then
-      /etc/init.d/udev start > /dev/null 2>&1
-   fi
-fi
-if [ ! -e /media/squashfs-images  ]; then
-    ln -sf /media/hdd/squashfs-images /media/squashfs-images 
-fi
-MODPROBE=/sbin/modprobe
-$MODPROBE /sbin/modprobe fp > /dev/null 2>&1
-$MODPROBE /sbin/modprobe dreambox_rc2 > /dev/null 2>&1
-$MODPROBE /sbin/modprobe dreambox_keyboard > /dev/null 2>&1
-$MODPROBE /sbin/modprobe lcd > /dev/null 2>&1
-$MODPROBE /sbin/modprobe --force dreambox_keyboard > /dev/null 2>&1
-$MODPROBE /sbin/modprobe --force lcd > /dev/null 2>&1
-      if [ -f $LIBDIR/extra/head.ko ]; then
-         /sbin/insmod $LIBDIR/extra/head.ko > /dev/null 2>&1
-      else
-         $MODPROBE xilleon > /dev/null 2>&1
-         # for dm800
-		 $MODPROBE bcm7401 > /dev/null 2>&1
-		 $MODPROBE --force bcm7401 > /dev/null 2>&1
-         # for dm8000
-         $MODPROBE bcm7400 > /dev/null 2>&1
-         # for dm500hd and probably dm800se
-         $MODPROBE bcm7405 > /dev/null 2>&1
-      fi                                 
-      while true; do                                                          
-          if [ -e /dev/dvb/adapter0/video0 ]; then                        
-                 break;                                                  
-          fi;                                                             
-      done;                                                                  
-         cat /proc/stb/avs/0/colorformat > /proc/stb/avs/0/colorformat
-         [ -e /etc/dropbear/dropbear_rsa_host_key ] && /usr/bin/showiframe /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neostart.mvi
+    if [ `uname -r | grep 2.6.12 | wc -l` -lt 1 ]; then
+       if [ ! -e /dev/.udev -a -e /etc/init.d/udev ]; then
+          /etc/init.d/udev start > /dev/null 2>&1
+       fi
+    fi
+    if [ ! -e /media/squashfs-images  ]; then
+        ln -sf /media/hdd/squashfs-images /media/squashfs-images 
+    fi
+    MODPROBE=/sbin/modprobe
+    $MODPROBE /sbin/modprobe fp > /dev/null 2>&1
+    $MODPROBE /sbin/modprobe dreambox_rc2 > /dev/null 2>&1
+    $MODPROBE /sbin/modprobe dreambox_keyboard > /dev/null 2>&1
+    $MODPROBE /sbin/modprobe lcd > /dev/null 2>&1
+    $MODPROBE /sbin/modprobe --force dreambox_keyboard > /dev/null 2>&1
+    $MODPROBE /sbin/modprobe --force lcd > /dev/null 2>&1
+          if [ -f $LIBDIR/extra/head.ko ]; then
+             /sbin/insmod $LIBDIR/extra/head.ko > /dev/null 2>&1
+          else
+             $MODPROBE xilleon > /dev/null 2>&1
+             # for dm800
+		     $MODPROBE bcm7401 > /dev/null 2>&1
+		     $MODPROBE --force bcm7401 > /dev/null 2>&1
+             # for dm8000
+             $MODPROBE bcm7400 > /dev/null 2>&1
+             # for dm500hd and probably dm800se
+             $MODPROBE bcm7405 > /dev/null 2>&1
+          fi                                 
+          while true; do                                                          
+              if [ -e /dev/dvb/adapter0/video0 ]; then                        
+                     break;                                                  
+              fi;                                                             
+          done;                                                                  
+             cat /proc/stb/avs/0/colorformat > /proc/stb/avs/0/colorformat
+             [ -e /etc/dropbear/dropbear_rsa_host_key ] && /usr/bin/showiframe /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neostart.mvi
          
-   if [ -f $LIBDIR/kernel/fs/autofs4/autofs4.ko ]; then
-      /sbin/insmod $LIBDIR/kernel/fs/autofs4/autofs4.ko > /dev/null 2>&1
-   fi
-#######################  DM
+       if [ -f $LIBDIR/kernel/fs/autofs4/autofs4.ko ]; then
+          /sbin/insmod $LIBDIR/kernel/fs/autofs4/autofs4.ko > /dev/null 2>&1
+       fi
+       #######################  DM END
 	echo "NeoBoot is starting mdev and mout HDD USB ..."	
 	sleep 5
 	mnttest="nouuid"
