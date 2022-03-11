@@ -300,7 +300,9 @@ else
 fi
 # boot Flash 
 UNIONFS=0
-    ln -sfn /sbin/init.sysvinit /sbin/init
+	if [ $TARGET = "Flash" ]; then
+		ln -sfn /sbin/init.sysvinit /sbin/init		
+	fi
    if [ -f /lib/modules/`uname -r`/kernel/fs/unionfs.ko ]; then
       /sbin/insmod /lib/modules/`uname -r`/kernel/fs/unionfs.ko >> /dev/null 2>&1
    fi
