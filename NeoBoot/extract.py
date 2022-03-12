@@ -852,7 +852,9 @@ def RemoveUnpackDirs():
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/pulse4kmin'):
         if os.path.exists('' + getNeoLocation() + 'ImagesUpload/pulse4kmin/force_pulse4kmini_READ.ME'):
             rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/pulse4kmini/force_pulse4kmini_READ.ME; rm -r ' + getNeoLocation() + 'ImagesUpload/pulse4kmini/unforce_pulse4kmini.txt')    
-        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/pulse4kmin')     
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/pulse4kmin')
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/dm520'):
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/dm520')        
     if os.path.exists('' + getNeoLocation() + 'ImagesUpload/unforce_h9combo.txt'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/unforce_h9combo.txt')
     if os.path.exists('' + getNeoLocation() + 'ImagesUpload/imageversion'):
@@ -1103,9 +1105,14 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
                 brand = 'osnino'
                 rootfname = 'rootfs.bin'
             #Vimastec
-            if os.path.exists('' + getNeoLocation() + 'ImagesUpload/osninopro'):
+            if os.path.exists('' + getNeoLocation() + 'ImagesUpload/vs1000'):
                 os.chdir('vs1000')
                 brand = 'vs1000'
+                rootfname = 'rootfs.bin'
+            #Dreambox
+            if os.path.exists('' + getNeoLocation() + 'ImagesUpload/dm520'):
+                os.chdir('dm520')
+                brand = 'dm520'
                 rootfname = 'rootfs.bin'               
 
             #Instalacja image nandsim
@@ -1325,7 +1332,10 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
                     os.system('echo "____Try to install the image vuultimo mips____"')
                 #Vimastec                    
                 if os.path.exists('' + getNeoLocation() + 'ImagesUpload/vs1000'):
-                    os.chdir('vs1000')                    
+                    os.chdir('vs1000')
+                #Dreambox                   
+                if os.path.exists('' + getNeoLocation() + 'ImagesUpload/odm520'):
+                    os.chdir('odm520')                    
 
                 #Instalacja image ubi_reader
                 os.system('echo "Instalacja - ubi_reader w toku..."')
