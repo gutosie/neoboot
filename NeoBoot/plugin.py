@@ -603,7 +603,9 @@ class NeoBootInstallation(Screen):
                     writefile.close()
 
             if not os.path.isfile('/etc/name'):
-                if getBoxHostName() != "dm500hd" or getBoxHostName() != "dm800se" or getBoxHostName() != "dm800" or getBoxHostName() != "dm8000":                 
+                if getBoxHostName() == "dm500hd" or getBoxHostName() == "dm800se" or getBoxHostName() == "dm800" or getBoxHostName() == "dm8000":
+                    system('chmod 755 ' + LinkNeoBoot + '/bin/dminit')
+                else:                
                     system('opkg update')
                     os.system('opkg install install --force-overwrite --force-reinstall python-subprocess')
                     os.system('opkg install install --force-overwrite --force-reinstall python-argparse')
