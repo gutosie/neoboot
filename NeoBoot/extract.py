@@ -1034,18 +1034,13 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
             if os.path.exists('' + getNeoLocation() + 'ImagesUpload/formuler4turbo'):
                 os.chdir('formuler4turbo')
                 brand = 'formuler4turbo'
-            #inne
-            if os.path.exists('' + getNeoLocation() + 'ImagesUpload/sf3038'):
-                os.chdir('sf3038')
+            #   Golden Interstar 
             if os.path.exists('' + getNeoLocation() + 'ImagesUpload/xpeedlx'):
                 os.chdir('xpeedlx')
                 brand = 'xpeedlx'
             if os.path.exists('' + getNeoLocation() + 'ImagesUpload/xpeedlx3'):
                 os.chdir('xpeedlx3')
                 brand = 'xpeedlx3'
-            if os.path.exists('' + getNeoLocation() + 'ImagesUpload/xp1000'):
-                os.chdir('xp1000')
-                brand = 'xp1000'
             #GigaBlue    
             if os.path.exists('' + getNeoLocation() + 'ImagesUpload/gigablue'):
                 os.chdir('gigablue')
@@ -1113,7 +1108,13 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
             if os.path.exists('' + getNeoLocation() + 'ImagesUpload/dm520'):
                 os.chdir('dm520')
                 brand = 'dm520'
-                rootfname = 'rootfs.bin'               
+                rootfname = 'rootfs.bin'
+            #
+            if os.path.exists('' + getNeoLocation() + 'ImagesUpload/sf3038'):
+                os.chdir('sf3038')                
+            if os.path.exists('' + getNeoLocation() + 'ImagesUpload/xp1000'):
+                os.chdir('xp1000')
+                brand = 'xp1000'  
 
             #Instalacja image nandsim
             os.system('echo "Instalacja - nandsim w toku..."')
