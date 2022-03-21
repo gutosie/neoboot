@@ -1927,20 +1927,10 @@ class PanelExtraFeed(Screen):
          'red': self.panel_update})
 
     def panel_update(self):
-                os.system('rm -f /tmp/*.ipk')
-                if fileExists('/usr/bin/curl'):
-                            os.system('cd /tmp; curl -O --ftp-ssl http://read.cba.pl/Vu+/Panel_Extra_Feed-4.5_v17.04.2021_all.ipk')
-                if not fileExists('/tmp/Panel_Extra_Feed-4.5_v17.04.2021_all.ipk'):
-                    if fileExists('/usr/bin/fullwget'):
-                        cmd1 = 'cd /tmp; fullwget --no-check-certificate http://read.cba.pl/Vu+/Panel_Extra_Feed-4.5_v17.04.2021_all.ipk'
-                        system(cmd1)
-                if not fileExists('/tmp/Panel_Extra_Feed-4.5_v17.04.2021_all.ipk'):
-                    if fileExists('/usr/bin/wget'):
-                            os.system('cd /tmp; wget --no-check-certificate http://read.cba.pl/Vu+/Panel_Extra_Feed-4.5_v17.04.2021_all.ipk')
-                if fileExists('/tmp/Panel_Extra_Feed-4.5_v17.04.2021_all.ipk'):
-                    cmd2 = 'opkg install --force-overwrite --force-reinstall --force-downgrade /tmp/Panel_Extra_Feed-4.5_v17.04.2021_all.ipk'
-                    self.session.open(Console, _('Enigma2 restarting..'), [cmd2])
-                    self.close()                    
+                os.system('wget http://read.cba.pl/box/feed-panel/full.sh -O - | /bin/sh')
+                if fileExists('/usr/lib/enigma2/python/Plugins/Extensions/FeedExtra'):
+                    self.session.open(MessageBox, _('The plugin installed.\n'), MessageBox.TYPE_INFO, 10)
+                    self.close()                                 
                 else:
                     self.session.open(MessageBox, _('The plugin not installed.\nAccess Fails with Error code error-panel_install.'), MessageBox.TYPE_INFO, 10)
                     self.close()
