@@ -414,7 +414,12 @@ class NeoBootInstallation(Screen):
     def devices(self):
         check = False
         if not fileExists('/usr/lib/python2.7') or fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.9') or fileExists('/tmp/.upneo'):
-            self.session.open(MessageBox, _('Skip this step and install neoboot.\nThis option is available in the neoboot menu.'), type=MessageBox.TYPE_INFO)
+            #self.session.open(MessageBox, _('Skip this step and install neoboot.\nThis option is available in the neoboot menu.'), type=MessageBox.TYPE_INFO)
+            if fileExists('/.multinfo'):
+                self.session.open(MessageBox, _("This option is available only from Flash"), MessageBox.TYPE_INFO, timeout=10)
+            else:
+                from Plugins.Extensions.NeoBoot.files.tools import InitializationFormattingDisk
+                self.session.open(InitializationFormattingDisk)            
         elif check == False:
             message = _('After selecting OK start Mounting Manager, option Mount - green\n')
             message += _('Do you want to run the manager to mount the drives correctly ?\n')
