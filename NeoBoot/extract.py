@@ -69,10 +69,16 @@ def getCPUtype():
 
 
 def getKernelVersion():
-    try:
-        return open('/proc/version', 'r').read().split(' ', 4)[2].split('-', 2)[0]
-    except:
-        return _('unknown')
+    if os.path.exists('' + getNeoLocation() + 'ImagesUpload/dm520') or os.path.exists('' + getNeoLocation() + 'ImagesUpload/dm525') :
+            result = popen('uname -r', 'r').read().strip('\n').split('-')
+            kernel_version = result[0]
+            return kernel_version
+    else:                        
+        try:
+            return open('/proc/version', 'r').read().split(' ', 4)[2].split('-', 2)[0]
+        except:
+            os.system('uname -r > /tmp/.uname_r') 
+            return open('/tmp/.uname_r').read().strip().upper()
 
 
 def getNeoLocation():
