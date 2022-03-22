@@ -445,16 +445,12 @@ class NeoBootInstallation(Screen):
 
     def checkinstall2(self):
         if fileExists('/media/usb/ImageBoot/') and fileExists('/media/hdd/ImageBoot/'):
-            os.system('umount -l /media/usb; sleep 2')            
+            os.system('umount -l /media/usb; sleep 2')
+            mess = _('An error was encountered, you have neoboot installed on usb and hdd.\nUninstall one directories from one drive.')
+            self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)            
         if len(os.listdir('/media/usb') ) == 0:
             #print("Directory is empty")
-            os.system('rm -r /media/usb ')
-        if fileExists('/media/hdd/ImageBoot/'):
-            self.checkinstall3()            
-        elif not fileExists('/media/hdd/ImageBoot/'):
-            os.system('umount -l /media/hdd; sleep 2; mkdir -p /media/usb')                        
-            mess = _('An error was encountered, you have neoboot installed on usb and hdd.\nUninstall one directories from one drive.')
-            self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
+            os.system('rm -r /media/usb')           
         else:
              self.checkinstall3()
 
