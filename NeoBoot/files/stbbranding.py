@@ -1094,12 +1094,13 @@ def getNandWrite():
     return NandWrite
 
 def getMyUUID():
-    os.system("tune2fs -l /dev/sd?? | awk '/UUID/ {print $NF}' > /tmp/.myuuid") 
+    os.system("tune2fs -l %s | awk '/UUID/ {print $NF}' > /tmp/.myuuid" % (getLocationMultiboot()))
     try:
         if os.path.isfile('/tmp/.myuuid'):
             return open('/tmp/.myuuid').read().strip().upper()
     except:
-        pass
+        os.system("tune2fs -l /dev/sd?? | awk '/UUID/ {print $NF}' > /tmp/.myuuid")
+	return open('/tmp/.myuuid').read().strip().upper()
 
     return _('unavailable')
 
