@@ -2188,11 +2188,19 @@ class DiskLabelSet(Screen):
             if lines.find('/dev/sdf1 /media/usb') != -1:
                 os.system('tune2fs -L usb /dev/sdf1')                                            
             cmd2 = "echo -e '\n\n%s '" % _('Label set OK')
-            os.system('echo UUID=' + getMyUUID() + '	    ' + locatin_neo + '	auto	defaults	0 0 >> /etc/fstab') 
-            cmd3 = "echo -e '\n\n%s '" % _('UUID set OK')                                  
-            self.session.open(Console, _('Disk Label...!'), [cmd, cmd1, cmd2,cmd3])          
-
-
+          
+            with open('/etc/fstab', 'r') as f:
+                flines = f.read()
+                f.close()
+                    
+            if flines.find('' + getMyUUID() + '') != -1:
+                cmd3 = "echo -e '\n%s '" % _('UUID already exists')
+            else:            
+                os.system('echo UUID=' + getMyUUID() + '	    ' + locatin_neo + '	auto	defaults	0 0 >> /etc/fstab') 
+                cmd3 = "echo -e '\n%s '" % _('UUID set OK')                                  
+            self.session.open(Console, _('Disk Label...!'), [cmd, cmd1, cmd2,cmd3])
+          
+          
 class MultiBootMyHelp(Screen):
     if isFHD():
         skin = """<screen name="MultiBootMyHelp" position="center,center" size="1920,1080" title="NeoBoot - Opis" flags="wfNoBorder">
