@@ -179,7 +179,7 @@ class NeoBootInstallation(Screen):
         self['config'] = MenuList(self.list)
         self['key_red'] = Label(_('Instruction'))
         self['key_green'] = Label(_('Installation'))
-        self['key_yellow'] = Label(_('SetDiskLabel'))
+        self['key_yellow'] = Label(_('Set UUID Label'))
         self['key_blue'] = Label(_('Device Manager'))
         self['label1'] = Label(_('Welcome to NeoBoot %s Plugin installation.') % PLUGINVERSION)
         self['label2'] = Label(_('Here is the list of mounted devices in Your STB\nPlease choose a device where You would like to install NeoBoot'))        
