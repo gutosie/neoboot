@@ -864,6 +864,16 @@ class NeoBootImageChoose(Screen):
             
         if fileExists('/tmp/.init_reboot'):
             system('rm /tmp/.init_reboot')
+            
+        if fileExists('/media/sda1'):            
+            if len(os.listdir('/media/sda1') ) == 0:
+                #print("Directory sda1 is empty")
+                os.system('rm -r /media/sda1')
+                
+        if fileExists('/media/sda1'):
+            if len(os.listdir('/media/sdb1') ) == 0:
+                #print("Directory sdb1 is empty")
+                os.system('rm -r /media/sdb1')            
 
         if fileExists('/.multinfo'):
             if not fileExists('/.control_ok'):
