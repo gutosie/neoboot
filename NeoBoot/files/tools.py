@@ -2143,6 +2143,8 @@ class DiskLabelSet(Screen):
          'red': self.SetLabelDisk})
 
     def SetLabelDisk(self):
+        #os.system("tune2fs -l /dev/sd?? | awk '/UUID/ {print $NF}' > /tmp/.myuuid")
+        #os.system("tune2fs -l %s | awk '/UUID/ {print $NF}' > /tmp/.myuuid" % (getLocationMultiboot()))  
         if os.path.exists('/media/hdd/ImageBoot'):
             locatin_neo = '/media/hdd'
         elif os.path.exists('/media/usb/ImageBoot'):
