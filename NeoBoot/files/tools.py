@@ -2143,6 +2143,10 @@ class DiskLabelSet(Screen):
          'red': self.SetLabelDisk})
 
     def SetLabelDisk(self):
+        if os.path.exists('/media/hdd/ImageBoot'):
+            locatin_neo = '/media/hdd'
+        elif os.path.exists('/media/usb/ImageBoot'):
+            locatin_neo = '/media/usb'     
         if os.path.exists('/proc/mounts'):
             with open('/proc/mounts', 'r') as f:
                 lines = f.read()
@@ -2181,9 +2185,10 @@ class DiskLabelSet(Screen):
                 os.system('tune2fs -L usb /dev/sde1')                        
             if lines.find('/dev/sdf1 /media/usb') != -1:
                 os.system('tune2fs -L usb /dev/sdf1')                                            
-            cmd2 = "echo -e '\n\n%s '" % _('Label set OK')                                  
-            self.session.open(Console, _('Disk Label...!'), [cmd, cmd1, cmd2])
-            self.close()             
+            cmd2 = "echo -e '\n\n%s '" % _('Label set OK')
+            os.system('echo UUID=' + getMyUUID() + '	    ' + locatin_neo + '	auto	defaults	0 0 >> /etc/fstab') 
+            cmd3 = "echo -e '\n\n%s '" % _('UUID set OK')                                  
+            self.session.open(Console, _('Disk Label...!'), [cmd, cmd1, cmd2,cmd3])          
 
 
 class MultiBootMyHelp(Screen):
