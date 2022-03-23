@@ -633,14 +633,14 @@ class NeoBootInstallation(Screen):
             if getCPUtype() == "ARMv7":
                 if getBoxHostName() == "vuduo4k" and getBoxHostName() != "ustym4kpro":
                         os.system('cd ' + LinkNeoBoot + '/')
-                        os.system('cp -Rf ' + LinkNeoBoot + '/bin/neoinitarm /sbin/neoinitarm; cp -Rf ' + LinkNeoBoot + '/bin/neoinitarmvuDuo4k /sbin/neoinitarmvu; mv ' + LinkNeoBoot + '/tmpfiles/runpy/duo4k_run.py ' + LinkNeoBoot + '/run.py; cd')
+                        os.system('cp -Rf ' + LinkNeoBoot + '/bin/neoinitarm /sbin/neoinitarm; cp -Rf ' + LinkNeoBoot + '/bin/neoinitarmvuDuo4k /sbin/neoinitarmvu; mv ' + LinkNeoBoot + '/tmpfiles/runpy/vu4Krun.py ' + LinkNeoBoot + '/run.py; cd')
                         os.system('chmod 755 /sbin/neoinitarm; chmod 755 /sbin/neoinitarmvu')
                         os.system('dd if=/dev/mmcblk0p6 of=%sImagesUpload/.kernel/flash-kernel-%s.bin' % (getNeoLocation(), getBoxHostName()))
                         os.system('mv ' + LinkNeoBoot + '/tmpfiles/target/vuDuo4Kmmcblk0p6.sh ' + LinkNeoBoot + '/files/kernel.sh; cd')
 
                 elif getBoxHostName() == "vuduo4kse" and getBoxHostName() != "vuultimo4k" and getBoxHostName() != "ustym4kpro":
                         os.system('cd ' + LinkNeoBoot + '/')
-                        os.system('cp -Rf ' + LinkNeoBoot + '/bin/neoinitarm /sbin/neoinitarm; cp -Rf ' + LinkNeoBoot + '/bin/neoinitarmvuDuo4k /sbin/neoinitarmvu; mv ' + LinkNeoBoot + '/tmpfiles/runpy/duo4kse_run.py ' + LinkNeoBoot + '/run.py; cd')
+                        os.system('cp -Rf ' + LinkNeoBoot + '/bin/neoinitarm /sbin/neoinitarm; cp -Rf ' + LinkNeoBoot + '/bin/neoinitarmvuDuo4k /sbin/neoinitarmvu; mv ' + LinkNeoBoot + '/tmpfiles/runpy/vu4Krun.py ' + LinkNeoBoot + '/run.py; cd')
                         os.system('chmod 755 /sbin/neoinitarm; chmod 755 /sbin/neoinitarmvu')
                         os.system('dd if=/dev/mmcblk0p6 of=%sImagesUpload/.kernel/flash-kernel-%s.bin' % (getNeoLocation(), getBoxHostName()))
                         os.system('mv ' + LinkNeoBoot + '/tmpfiles/target/vuDuo4Ksemmcblk0p6.sh ' + LinkNeoBoot + '/files/kernel.sh; cd')
@@ -650,14 +650,14 @@ class NeoBootInstallation(Screen):
                         os.system('cp -af ' + LinkNeoBoot + '/bin/neoinitarm /sbin/neoinitarm; cp -Rf ' + LinkNeoBoot + '/bin/neoinitarmvu /sbin/neoinitarmvu; cd')
                         os.system('chmod 755 /sbin/neoinitarm; chmod 755 /sbin/neoinitarmvu')
                         os.system('dd if=/dev/mmcblk0p4 of=%sImagesUpload/.kernel/flash-kernel-%s.bin' % (getNeoLocation(), getBoxHostName()))
-                        os.system('mv ' + LinkNeoBoot + '/tmpfiles/target/vuZero4Kmmcblk0p4.sh ' + LinkNeoBoot + '/files/kernel.sh; mv ' + LinkNeoBoot + '/tmpfiles/runpy/zero4k_run.py ' + LinkNeoBoot + '/run.py; rm -f ' + LinkNeoBoot + '/bin/neoinitarmvuDuo4k; cd')
+                        os.system('mv ' + LinkNeoBoot + '/tmpfiles/target/vuZero4Kmmcblk0p4.sh ' + LinkNeoBoot + '/files/kernel.sh; mv ' + LinkNeoBoot + '/tmpfiles/runpy/vu4Krun.py ' + LinkNeoBoot + '/run.py; rm -f ' + LinkNeoBoot + '/bin/neoinitarmvuDuo4k; cd')
 
                 elif getBoxHostName() == "vuultimo4k" or getBoxHostName() == "vusolo4k" or getBoxHostName() == "vuuno4k" or getBoxHostName() == "vuuno4kse" and getBoxHostName() != "ustym4kpro":
                         os.system('cd ' + LinkNeoBoot + '/')
                         os.system('cp -af ' + LinkNeoBoot + '/bin/neoinitarm /sbin/neoinitarm; cp -Rf ' + LinkNeoBoot + '/bin/neoinitarmvu /sbin/neoinitarmvu; cd')
                         os.system('chmod 755 /sbin/neoinitarm; chmod 755 /sbin/neoinitarmvu')
                         os.system('dd if=/dev/mmcblk0p1 of=%sImagesUpload/.kernel/flash-kernel-%s.bin' % (getNeoLocation(), getBoxHostName()))
-                        os.system('mv ' + LinkNeoBoot + '/tmpfiles/target/vu_mmcblk0p1.sh ' + LinkNeoBoot + '/files/kernel.sh; mv ' + LinkNeoBoot + '/tmpfiles/runpy/vu4k_run.py ' + LinkNeoBoot + '/run.py; rm -f; rm -f ' + LinkNeoBoot + '/bin/neoinitarmvuDuo4k; cd')
+                        os.system('mv ' + LinkNeoBoot + '/tmpfiles/target/vu_mmcblk0p1.sh ' + LinkNeoBoot + '/files/kernel.sh; mv ' + LinkNeoBoot + '/tmpfiles/runpy/vu4Krun.py ' + LinkNeoBoot + '/run.py; rm -f; rm -f ' + LinkNeoBoot + '/bin/neoinitarmvuDuo4k; cd')
 
                 elif getBoxHostName() == "lunix4k" and getCPUSoC() == "72604" and getBoxHostName() != "vuzero4k":
                         os.system('cp -af ' + LinkNeoBoot + '/bin/neoinitarmvu /sbin/neoinitarm; chmod 0755 /sbin/neoinitarm; ln -sfn /sbin/neoinitarm /sbin/init; mv ' + LinkNeoBoot + '/tmpfiles/runpy/arm_run.py ' + LinkNeoBoot + '/run.py; rm -f ' + LinkNeoBoot + '/bin/neoinitarmvuDuo4k; cd') 
