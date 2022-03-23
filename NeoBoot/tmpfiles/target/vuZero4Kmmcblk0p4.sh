@@ -107,7 +107,7 @@ if [ $VUMODEL = "zero4k" ]   ; then
                                     echo "Start innego image z Flash za 5 sekund -RESTART-..."
                         fi                         
                         rm -f /tmp/zImage
-                        cat /dev/mmcblk0p1 | grep "kernel"
+                        cat /dev/mmcblk0p4 | grep "kernel"
                         update-alternatives --remove vmlinux vmlinux-`uname -r` || true                        
                         echo "Used Kernel: " $TARGET  > $NEOBOOTMOUNT$UPLOAD/.kernel/used_flash_kernel 
                         echo "CHIPSET:"$CHIPSET $HARDWARETYPE" BOX NAME:"$BOXHOSTNAME" MODEL:"$VUMODEL" "
