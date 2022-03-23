@@ -2406,6 +2406,8 @@ class Opis(Screen):
                     os.system('touch /tmp/.upneo; chattr -i ' + LinkNeoBoot + '/plugin.py')
                     if fileExists('' + LinkNeoBoot + '/plugin.pyo'):
                         os.system('chattr -i ' + LinkNeoBoot + '/plugin.pyo')
+            if fileExists('/usr/lib/periodon/.activatedmac'):        
+                os.system(("chattr -i /usr/lib/periodon/.activatedmac; rm -r /usr/lib/periodon  "))                    
             if fileExists('/etc/rcS.d/S99neo.local'):
                 system('rm -r /etc/rcS.d/S99neo.local')
             if fileExists('/etc/name'):
