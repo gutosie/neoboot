@@ -448,9 +448,10 @@ class NeoBootInstallation(Screen):
             os.system('umount -l /media/usb; sleep 2')
             mess = _('An error was encountered, you have neoboot installed on usb and hdd.\nUninstall one directories from one drive.')
             self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)            
-        if len(os.listdir('/media/usb') ) == 0:
-            #print("Directory is empty")
-            os.system('rm -r /media/usb')           
+        if fileExists('/media/usb'):
+            if len(os.listdir('/media/usb') ) == 0:
+                #print("Directory is empty")
+                os.system('rm -r /media/usb')           
         else:
              self.checkinstall3()
 
