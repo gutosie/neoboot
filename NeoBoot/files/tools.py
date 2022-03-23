@@ -181,7 +181,7 @@ class MBTools(Screen):
         self.list.append(res)
         self['list']. list = self.list
 
-        res = (_('Set Disk Label'), png, 3)
+        res = (_('Set the disk label and uuid'), png, 3)
         self.list.append(res)
         self['list']. list = self.list       
 
@@ -2194,7 +2194,7 @@ class DiskLabelSet(Screen):
                 f.close()
                     
             if flines.find('' + getMyUUID() + '') != -1:
-                cmd3 = "echo -e '\n%s '" % _('UUID already exists')
+                cmd3 = "echo -e '\n%s '" % _('UUID exists or neoboot not installed yet\nAfter installing the plugin, give uuid')
             else:            
                 os.system('echo UUID=' + getMyUUID() + '	    ' + locatin_neo + '	auto	defaults	0 0 >> /etc/fstab') 
                 cmd3 = "echo -e '\n%s '" % _('UUID set OK')                                  
