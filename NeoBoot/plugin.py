@@ -190,6 +190,8 @@ class NeoBootInstallation(Screen):
         self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'MenuActions', 'NumberActionMap', 'SetupActions', 'number' 'DirectionActions'], {'red': self.Instrukcja,
          'green': self.checkinstall,
          'ok': self.checkinstall,
+         '3': self.checkinstall,
+         '4': self.checkinstall,         
          'menu': self.helpneo,
          '1': self.datadrive,
          '2': self.deleteneo,         
