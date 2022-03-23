@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NeoBoot\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2022-03-23 19:28+0200\n"
+"PO-Revision-Date: 2022-03-23 19:51+0200\n"
 "Last-Translator: gutosie <Krzysio Gutosie>\n"
 "Language-Team: gutosie- GaduGadu nr. 5111900 <http://all-forum.cba.pl >\n"
 "Language: pl\n"
@@ -2864,13 +2864,16 @@ msgid "Set the disk label and uuid"
 msgstr "Ustaw etykietę-label dysku i uuid"
 
 msgid "Set Disk Label"
-msgstr "Etykieta label nadana, OK"
+msgstr "Ustaw etykietę-label"
 
 msgid "Set UUID Label"
 msgstr "Ustaw label i uuid"
 
-msgid "UUID set OK'"
-msgstr "UUID przypisany, OK'"
+msgid "Label set OK"
+msgstr "Etykieta label nadana OK"
+
+msgid "UUID set OK"
+msgstr "UUID przypisany OK"
 
 msgid ""
 "UUID exists or neoboot not installed yet\n"
