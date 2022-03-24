@@ -1024,6 +1024,8 @@ class NeoBootImageChoose(Screen):
                     self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
 
     def touch5(self):
+        if fileExists('/tmp/.testneo'):
+            os.system('rm -f /tmp/.testneo')        
         if fileExists('/usr/lib/periodon/.kodn'):
             if getTestIn() == getTestOut():
                     pass
