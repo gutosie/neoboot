@@ -16,8 +16,8 @@ fi
 if [ ! -e /.multinfo ]; then
     [ -e /tmp/neoboot.zip ] && rm -f /tmp/neoboot.zip
     [ -e /tmp/neoboot-main ] && rm -rf /tmp/neoboot-main
-    [ $PL ] && echo "Pobieranie archiwum..." || echo "Downloading archive file..."
-    echo "          multiboot image          "
+    echo "Multiboot image"    
+    [ $PL ] && echo " Pobieranie archiwum..." || echo " Downloading archive file..."
     URL='https://github.com/gutosie/neoboot/archive/main.zip'
     curl -kLs $URL  -o /tmp/neoboot.zip
     Cel="/usr/lib/enigma2/python/Plugins/Extensions"
@@ -54,8 +54,8 @@ if [ ! -e /.multinfo ]; then
     if [ -e $Cel/NeoBoot/.location ]; then 
        rm -rf $Cel/NeoBoot/.location   
     fi
-    [ $PL ] && echo "Instalowanie..." || echo "Instaling..."
-    echo "          n  e  o  b  o  o  t          "
+    [ $PL ] && echo "  Instalowanie..." || echo "  Instaling..."
+    echo ""
     [ -e $Cel/NeoBoot ] && rm -rf $Cel/NeoBoot/* || mkdir -p $Cel/NeoBoot
     mv -f /tmp/neoboot-main/NeoBoot/files/testinout /usr/lib/enigma2/python/Tools/Testinout.py
     mkdir -p /usr/lib/periodon
@@ -86,7 +86,7 @@ if [ ! -e /.multinfo ]; then
       echo ""
     fi
     echo "                N  E  O  B  O  O  T                    "    
-    echo "          ----- Restart Enigma2 GUI ... -----          "  
+    echo "          ----- Restart Enigma2 GUI -----              "  
     sleep 2
     if [ $OS = 'DreamOS' ]; then 
         systemctl restart enigma2
