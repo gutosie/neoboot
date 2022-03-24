@@ -816,7 +816,7 @@ class NeoBootImageChoose(Screen):
         self['label11'] = Label('')
         self['label12'] = Label('')
         self['label13'] = Label(_('Version update: '))
-        if getCheckActivateVip() == getBoxMacAddres() and fileExists('/usr/lib/periodon/.accessdate'):
+        if getCheckActivateVip() == getBoxMacAddres() and fileExists('/usr/lib/periodon/.kodn'):
             self['label14'] = Label(_('NeoBoot ver. VIP-on : '))
         else:        
             self['label14'] = Label(_('NeoBoot ver. VIP-off : '))
@@ -826,8 +826,8 @@ class NeoBootImageChoose(Screen):
         self['label18'] = Label('')
         self['label19'] = Label('')
         self['label20'] = Label('')
-        if getCheckActivateVip() == getBoxMacAddres() and fileExists('/usr/lib/periodon/.accessdate'):
-            self['label21'] = Label('VIP - OK!')
+        if getCheckActivateVip() == getBoxMacAddres() and fileExists('/usr/lib/periodon/.kodn'):
+            self['label21'] = Label('VIP-OK!')
         else:                
             self['label21'] = Label('Enter pin code')          
         self['actions'] = ActionMap(['WizardActions',
