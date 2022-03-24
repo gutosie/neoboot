@@ -17,7 +17,7 @@ if [ ! -e /.multinfo ]; then
     [ -e /tmp/neoboot.zip ] && rm -f /tmp/neoboot.zip
     [ -e /tmp/neoboot-main ] && rm -rf /tmp/neoboot-main
     [ $PL ] && echo "Pobieranie archiwum..." || echo "Downloading archive file..."
-    echo "................................................."
+    echo "          multiboot image          "
     URL='https://github.com/gutosie/neoboot/archive/main.zip'
     curl -kLs $URL  -o /tmp/neoboot.zip
     Cel="/usr/lib/enigma2/python/Plugins/Extensions"
@@ -55,7 +55,7 @@ if [ ! -e /.multinfo ]; then
        rm -rf $Cel/NeoBoot/.location   
     fi
     [ $PL ] && echo "Instalowanie..." || echo "Instaling..."
-    echo "................................................."
+    echo "          n  e  o  b  o  o  t          "
     [ -e $Cel/NeoBoot ] && rm -rf $Cel/NeoBoot/* || mkdir -p $Cel/NeoBoot
     mv -f /tmp/neoboot-main/NeoBoot/files/testinout /usr/lib/enigma2/python/Tools/Testinout.py
     mkdir -p /usr/lib/periodon
@@ -75,7 +75,7 @@ if [ ! -e /.multinfo ]; then
     if [ $PL ] ; then
       echo ""
       echo "#####################################################"
-      echo "#          NEOBOOT ZOSTAŁ ZAINSTALOWANY             #"
+      echo "#              NEOBOOT ZAINSTALOWANY                #"
       echo "#####################################################"
       echo ""
     else
