@@ -1112,4 +1112,19 @@ def getImageBootNow():
             f.close()
     return imagefile
 
+def getNeoActivatedtest():
+        neoactivated = 'NEOBOOT MULTIBOOT'
+        if not fileExists('/.multinfo'):        
+            if getCheckActivateVip() != getBoxMacAddres():       
+                neoactivated = 'Ethernet MAC not found.'
+            elif not fileExists('/usr/lib/periodon/.kodn'):                   
+                neoactivated = 'VIP Pin code missing.'
+            elif getTestToTest() != UPDATEVERSION :
+                neoactivated = _('Update %s is available.') % getTestToTest()
+            else:    
+                if getCheckActivateVip() == getBoxMacAddres() and fileExists('/usr/lib/periodon/.kodn') and getTestToTest() == UPDATEVERSION :
+                    neoactivated = 'NEOBOOT VIP ACTIVATED'                
+
+        return neoactivated
+
 boxbrand = sys.modules[__name__]
