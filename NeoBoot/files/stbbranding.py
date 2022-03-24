@@ -977,8 +977,14 @@ def getMountPointNeo2():
         os.system('echo "\n\nexit 0"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
 	
 def getBoxMacAddres():
-    os.system('%s > /tmp/.mymac' % ("ifconfig -a"))          
-    if fileExists('/tmp/.mymac'):
+    os.system('%s > /tmp/.mymac' % ("ifconfig -a"))
+    if fileExists('/etc/.nameneo'):
+        os.system('cp -r /etc/.nameneo /tmp/.mymac; sleep 1')        
+        with open('/tmp/.mymac', 'r') as f:
+            myboxmac = f.read()
+            f.close()
+        EthernetMac = myboxmac
+    elif fileExists('/tmp/.mymac'):
                     f = open("/tmp/.mymac", 'r')
                     myboxmac = f.readline().strip().replace("eth0      Link encap:Ethernet  HWaddr ", "")
                     f.close()
@@ -986,7 +992,7 @@ def getBoxMacAddres():
                     writefile = open('/tmp/.mymac' , 'w')
                     writefile.write(myboxmac)
                     writefile.close()
-    if not fileExists('/tmp/.mymac'):
+    elif not fileExists('/tmp/.mymac'):
             EthernetMac = '12:34:56:78:91:02'
                         
     return EthernetMac    
