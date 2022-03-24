@@ -36,7 +36,7 @@ from Tools.Testinout import getTestToTest
 from os import system, listdir, mkdir, chdir, getcwd, rename as os_rename, remove as os_remove, popen
 from os.path import dirname, isdir, isdir as os_isdir
 from enigma import eTimer
-from Plugins.Extensions.NeoBoot.files.stbbranding import fileCheck, getMyUUID, getNeoLocation, getImageNeoBoot, getKernelVersionString, getBoxHostName, getCPUtype, getBoxVuModel, getTunerModel, getCPUSoC, getImageATv, getBoxModelVU, getBoxMacAddres, getMountDiskSTB, getCheckActivateVip, getBoxMacAddres, getChipSetString, getNeoActivatedtest
+from Plugins.Extensions.NeoBoot.files.stbbranding import fileCheck, getMyUUID, getNeoLocation, getImageNeoBoot, getKernelVersionString, getBoxHostName, getCPUtype, getBoxVuModel, getTunerModel, getCPUSoC, getImageATv, getBoxModelVU, getBoxMacAddres, getMountDiskSTB, getCheckActivateVip, getBoxMacAddres, getChipSetString
 from Components.Harddisk import harddiskmanager, getProcMounts
 import os
 import time
@@ -85,6 +85,21 @@ def getCPUtype():
         elif lines.find('mips') != -1:
             cpu = 'MIPS'
     return cpu
+
+def getNeoActivatedtest():
+        neoactivated = 'NEOBOOT MULTIBOOT'
+        if not fileExists('/.multinfo'):        
+            if getCheckActivateVip() != getBoxMacAddres():       
+                neoactivated = 'Ethernet MAC not found.'
+            elif not fileExists('/usr/lib/periodon/.kodn'):                   
+                neoactivated = 'VIP Pin code missing.'
+            elif getTestToTest() != UPDATEVERSION :
+                neoactivated = _('Update %s is available.') % getTestToTest()
+            else:    
+                if getCheckActivateVip() == getBoxMacAddres() and fileExists('/usr/lib/periodon/.kodn') and getTestToTest() == UPDATEVERSION :
+                    neoactivated = 'NEOBOOT VIP ACTIVATED'                
+
+        return neoactivated
 
 if os.path.exists('/etc/hostname'):
     with open('/etc/hostname', 'r') as f:
