@@ -124,20 +124,19 @@ class StartImage(Screen):
 
             # VUPLUS Arm mmc block device
             if getCPUtype() == "ARMv7" and "vu" + getBoxVuModel() == getBoxHostName(): 
-                        if getBoxHostName() == 'vuultimo4k' or getBoxHostName() == 'vusolo4k' or getBoxHostName() == 'vuuno4kse' or getBoxHostName() == 'vuuno4k' and getBoxHostName() != "ustym4kpro":
-                            mmcblockdevice = 'mmcblk0p1'       
-                        elif getBoxHostName() == 'vuzero4k' and getBoxVuModel() == 'zero4k' and getCPUSoC() == '72604' and getBoxHostName() != "ustym4kpro":
-                            mmcblockdevice = 'mmcblk0p4'
-                        elif getBoxHostName() == 'vuduo4k' or getBoxHostName() == 'duo4kse' and getBoxHostName() != "vuultimo4k" and getBoxHostName() != "ustym4kpro":
-                            mmcblockdevice = 'mmcblk0p6'                             
-                        else:
-                            self.messagebox = self.session.open(MessageBox, _('It looks like it that multiboot does not found MTD.'), MessageBox.TYPE_INFO, 8)
-                            self.close()
-                            
                         if not fileExists('%sImagesUpload/.kernel/flash-kernel-%s.bin' % (getNeoLocation(), getBoxHostName())):
                             mess = (_('Error - in the location %sImagesUpload/.kernel/ \nkernel file not found flash-kernel-%s.bin') % (getNeoLocation(), getBoxHostName()))
                             self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
                         else:
+                            if getBoxHostName() == 'vuultimo4k' or getBoxHostName() == 'vusolo4k' or getBoxHostName() == 'vuuno4kse' or getBoxHostName() == 'vuuno4k' and getBoxHostName() != "ustym4kpro":
+                                mmcblockdevice = 'mmcblk0p1'
+                            elif getBoxHostName() == 'vuzero4k' and getBoxVuModel() == 'zero4k' and getCPUSoC() == '72604' and getBoxHostName() != "ustym4kpro":
+                                mmcblockdevice = 'mmcblk0p4'
+                            elif getBoxHostName() == 'vuduo4k' or getBoxHostName() == 'duo4kse' and getBoxHostName() != "vuultimo4k" and getBoxHostName() != "ustym4kpro":
+                                mmcblockdevice = 'mmcblk0p6'
+                            else:
+                                self.messagebox = self.session.open(MessageBox, _('It looks like it that multiboot does not found MTD.'), MessageBox.TYPE_INFO, 8)
+                                self.close()                            
                             if getImageNeoBoot() == "Flash":
                                 if fileExists("/.multinfo"):
                                         cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT - REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
