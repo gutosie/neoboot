@@ -36,7 +36,7 @@ from Tools.Testinout import getTestToTest
 from os import system, listdir, mkdir, chdir, getcwd, rename as os_rename, remove as os_remove, popen
 from os.path import dirname, isdir, isdir as os_isdir
 from enigma import eTimer
-from Plugins.Extensions.NeoBoot.files.stbbranding import fileCheck, getMyUUID, getNeoLocation, getImageNeoBoot, getKernelVersionString, getBoxHostName, getCPUtype, getBoxVuModel, getTunerModel, getCPUSoC, getImageATv, getBoxModelVU, getBoxMacAddres, getMountDiskSTB, getCheckActivateVip, getBoxMacAddres, getChipSetString
+from Plugins.Extensions.NeoBoot.files.stbbranding import fileCheck, getMyUUID, getNeoLocation, getImageNeoBoot, getKernelVersionString, getBoxHostName, getCPUtype, getBoxVuModel, getTunerModel, getCPUSoC, getImageATv, getBoxModelVU, getBoxMacAddres, getMountDiskSTB, getCheckActivateVip, getBoxMacAddres, getChipSetString, getNeoActivatedtest
 from Components.Harddisk import harddiskmanager, getProcMounts
 import os
 import time
@@ -52,34 +52,28 @@ neoboot = getNeoLocation()
 media = getNeoLocation()
 mediahome = media + '/ImageBoot/'
 
-
 def getDS():
     s = getDesktop(0).size()
     return (s.width(), s.height())
-
 
 def isFHD():
     desktopSize = getDS()
     return desktopSize[0] == 1920
 
-
 def isHD():
     desktopSize = getDS()
     return desktopSize[0] >= 1280 and desktopSize[0] < 1920
 
-
 def isUHD():
     desktopSize = getDS()
     return desktopSize[0] >= 1920 and desktopSize[0] < 3840
-
 
 def getKernelVersion():
     try:
         return open('/proc/version', 'r').read().split(' ', 4)[2].split('-', 2)[0]
     except:
         return _('unknown')
-
-
+     
 def getCPUtype():
     cpu = 'UNKNOWN'
     if os.path.exists('/proc/cpuinfo'):
@@ -92,21 +86,6 @@ def getCPUtype():
             cpu = 'MIPS'
     return cpu
 
-def getNeoActivatedtest():
-        neoactivated = 'NEOBOOT MULTIBOOT'
-        if not fileExists('/.multinfo'):        
-            if getCheckActivateVip() != getBoxMacAddres():       
-                neoactivated = 'Ethernet MAC not found.'
-            elif not fileExists('/usr/lib/periodon/.kodn'):                   
-                neoactivated = 'VIP Pin code missing.'
-            elif getTestToTest() != UPDATEVERSION :
-                neoactivated = _('Update %s is available.') % getTestToTest()
-            else:    
-                if getCheckActivateVip() == getBoxMacAddres() and fileExists('/usr/lib/periodon/.kodn') and getTestToTest() == UPDATEVERSION :
-                    neoactivated = 'NEOBOOT VIP ACTIVATED'                
-
-        return neoactivated
-    
 if os.path.exists('/etc/hostname'):
     with open('/etc/hostname', 'r') as f:
         myboxname = f.readline().strip()
@@ -122,7 +101,6 @@ if os.path.exists('/proc/stb/info/boxtype'):
         boxtype = f.readline().strip()
         f.close()
 
-
 class BoundFunction:
     __module__ = __name__
 
@@ -132,7 +110,6 @@ class BoundFunction:
 
     def __call__(self):
         self.fnc(*self.args)
-
 
 class MBTools(Screen):
     if isFHD():
