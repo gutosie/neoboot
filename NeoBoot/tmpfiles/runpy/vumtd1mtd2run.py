@@ -31,6 +31,15 @@ import os
 import time
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
 
+def getMmcBlockDevice():
+    if getBoxHostName() == 'vuultimo' or getBoxHostName() == 'bm750' or getBoxHostName() == 'vuduo' or getBoxHostName() == 'vuuno' or getBoxHostName() == 'vusolo' or getBoxHostName() == 'vuduo':
+                                mmcblockdevice = 'mtd1'
+                                if fileExists('' + getNeoLocation() + 'ImageBoot/' + getImageNeoBoot() + '/etc/vtiversion.info') and getExtCheckHddUsb() == 'ext4':
+                                    if fileExists('%sImageBoot/%s/boot/%s.vmlinux.gz' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
+                                        os.system('rm -r %sImageBoot/%s/boot/%s.vmlinux.gz' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName()))
+    elif getBoxHostName() == 'vusolo2' or getBoxHostName() == 'vusolose' or getBoxHostName() == 'vuduo2' or getBoxHostName() == 'vuzero':
+                                mmcblockdevice = 'mtd2'
+    return mmcblockdevice
 
 class StartImage(Screen):
     screenwidth = getDesktop(0).size().width()
@@ -119,29 +128,17 @@ class StartImage(Screen):
 
             #VUPLUS MIPS vu_dev_mtd1.sh
             if "vu" + getBoxVuModel() == getBoxHostName(): 
-                        if getBoxHostName() == 'vuultimo' or getBoxHostName() == 'bm750' or getBoxHostName() == 'vuduo' or getBoxHostName() == 'vuuno' or getBoxHostName() == 'vusolo' or getBoxHostName() == 'vuduo':
-                            mtd = 'mtd1'
-                            if fileExists('' + getNeoLocation() + 'ImageBoot/' + getImageNeoBoot() + '/etc/vtiversion.info') and getExtCheckHddUsb() == 'ext4':
-                                if fileExists('%sImageBoot/%s/boot/%s.vmlinux.gz' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
-                                    os.system('rm -r %sImageBoot/%s/boot/%s.vmlinux.gz' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName()))
-                                    
-                        elif getBoxHostName() == 'vusolo2' or getBoxHostName() == 'vusolose' or getBoxHostName() == 'vuduo2' or getBoxHostName() == 'vuzero':
-                            mtd = 'mtd2'
-                        else:
-                            self.messagebox = self.session.open(MessageBox, _('It looks like it that multiboot does not found MTD.'), MessageBox.TYPE_INFO, 8)
-                            self.close()
-                            
                         if not fileExists('%sImagesUpload/.kernel/%s.vmlinux.gz' % (getNeoLocation(), getBoxHostName())):
                                 self.myclose2(_('Error - in the location %sImagesUpload/.kernel/ \nkernel file not found flash kernel vmlinux.gz ' % getNeoLocation()))
                         else:
                             if getImageNeoBoot() == 'Flash':
                                 if fileExists('/.multinfo'):
                                     cmd = "echo -e '\n%s '" % _('...............NeoBoot  REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
-                                    cmd1 = 'flash_erase /dev/' + mtd + ' 0 0 > /dev/null 2>&1 ; flash_eraseall /dev/' + mtd + ' 0 0 > /dev/null 2>&1'
+                                    cmd1 = 'flash_erase /dev/' + getMmcBlockDevice() + ' 0 0 > /dev/null 2>&1 ; flash_eraseall /dev/' + getMmcBlockDevice() + ' 0 0 > /dev/null 2>&1'
                                     if getNandWrite() == 'nandwrite':
-                                        cmd2 = 'nandwrite -p /dev/' + mtd + ' ' + getNeoLocation() + 'ImagesUpload/.kernel/' + getBoxHostName() + '.vmlinux.gz > /dev/null 2>&1'
+                                        cmd2 = 'nandwrite -p /dev/' + getMmcBlockDevice() + ' ' + getNeoLocation() + 'ImagesUpload/.kernel/' + getBoxHostName() + '.vmlinux.gz > /dev/null 2>&1'
                                     else:
-                                        cmd2 = '' + LinkNeoBoot + '/bin/nandwrite -p /dev/' + mtd + ' ' + getNeoLocation() + 'ImagesUpload/.kernel/' + getBoxHostName() + '.vmlinux.gz > /dev/null 2>&1'                                                                        
+                                        cmd2 = '' + LinkNeoBoot + '/bin/nandwrite -p /dev/' + getMmcBlockDevice() + ' ' + getNeoLocation() + 'ImagesUpload/.kernel/' + getBoxHostName() + '.vmlinux.gz > /dev/null 2>&1'                                                                        
                                     cmd3 = "echo -e '\n%s '" % _('Start image FLASH - kernel flash !\n' + getNandWrite() + '\nSTB NAME: ' + getBoxHostName() + '\nNeoBoot location:' + getNeoLocation() + '\nCPU: ' + getCPUSoC() + '\nImage boot: ' + getImageNeoBoot() + '\n____Your device will reboot in 5 seconds !____ ')
                                     cmd4 = 'update-alternatives --remove vmlinux vmlinux-`uname -r` || true; sync; sleep 8; reboot -d -f' 
                                     
@@ -163,11 +160,11 @@ class StartImage(Screen):
                                 elif not fileExists('/.multinfo'):
                                     if fileExists('' + getNeoLocation() + 'ImageBoot/' + getImageNeoBoot() + '/boot/' + getBoxHostName() + '.vmlinux.gz'):
                                         cmd = "echo -e '\n%s '" % _('...............NEOBOOT-REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
-                                        cmd1 = 'flash_erase /dev/' + mtd + ' 0 0 > /dev/null 2>&1; flash_eraseall /dev/' + mtd + ' 0 0 > /dev/null 2>&1'
+                                        cmd1 = 'flash_erase /dev/' + getMmcBlockDevice() + ' 0 0 > /dev/null 2>&1; flash_eraseall /dev/' + getMmcBlockDevice() + ' 0 0 > /dev/null 2>&1'
                                         if getNandWrite() == 'nandwrite':
-                                            cmd2 = 'nandwrite -p /dev/' + mtd + ' ' + getNeoLocation() + 'ImageBoot/' + getImageNeoBoot() + '/boot/' + getBoxHostName() + '.vmlinux.gz > /dev/null 2>&1'
+                                            cmd2 = 'nandwrite -p /dev/' + getMmcBlockDevice() + ' ' + getNeoLocation() + 'ImageBoot/' + getImageNeoBoot() + '/boot/' + getBoxHostName() + '.vmlinux.gz > /dev/null 2>&1'
                                         else:
-                                            cmd2 = '' + LinkNeoBoot + '/bin/nandwrite -p /dev/' + mtd + ' ' + getNeoLocation() + 'ImageBoot/' + getImageNeoBoot() + '/boot/' + getBoxHostName() + '.vmlinux.gz > /dev/null 2>&1'                                         
+                                            cmd2 = '' + LinkNeoBoot + '/bin/nandwrite -p /dev/' + getMmcBlockDevice() + ' ' + getNeoLocation() + 'ImageBoot/' + getImageNeoBoot() + '/boot/' + getBoxHostName() + '.vmlinux.gz > /dev/null 2>&1'                                         
                                         cmd3 = "echo -e '\n%s '" % _('Changed kernel COMPLETE ! ' + getNandWrite() + '\nSTB NAME: ' + getBoxHostName() + '\nNeoBoot location:' + getNeoLocation() + '\nCPU: ' + getCPUtype() + ' ' + getCPUSoC() + '\nImage boot: ' + getImageNeoBoot() + '\n____Your device will reboot in 5 seconds !____ ')
                                         cmd4 = 'ln -sfn /sbin/neoinitmipsvu /sbin/init; update-alternatives --remove vmlinux vmlinux-`uname -r` || true; sync; sleep 8; reboot -d -f'                                        
                                                                                                                                          
@@ -178,25 +175,24 @@ class StartImage(Screen):
                                         cmd3 = "echo -e '\n%s '" % _('Start image without changing the kernel!\nSTB NAME: ' + getBoxHostName() + '\nNeoBoot location:' + getNeoLocation() + '\nCPU: ' + getCPUSoC() + '\nImage boot: ' + getImageNeoBoot() + '\n____Your device will reboot in 5 seconds !____ ')
                                         cmd4 = 'sync; sleep 8; reboot -d -f'                                        
  
-
                                 elif fileExists('/.multinfo'):
                                     if not fileExists('%sImageBoot/%s/boot/%s.vmlinux.gz' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
                                         cmd = "echo -e '\n%s '" % _('...............NeoBoot  REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
-                                        cmd1 = 'flash_erase /dev/' + mtd + ' 0 0 > /dev/null 2>&1 ; flash_eraseall /dev/' + mtd + ' 0 0 > /dev/null 2>&1'
+                                        cmd1 = 'flash_erase /dev/' + getMmcBlockDevice() + ' 0 0 > /dev/null 2>&1 ; flash_eraseall /dev/' + getMmcBlockDevice() + ' 0 0 > /dev/null 2>&1'
                                         if getNandWrite() == 'nandwrite':
-                                            cmd2 = 'nandwrite -p /dev/' + mtd + ' ' + getNeoLocation() + 'ImagesUpload/.kernel/' + getBoxHostName() + '.vmlinux.gz > /dev/null 2>&1'
+                                            cmd2 = 'nandwrite -p /dev/' + getMmcBlockDevice() + ' ' + getNeoLocation() + 'ImagesUpload/.kernel/' + getBoxHostName() + '.vmlinux.gz > /dev/null 2>&1'
                                         else:
-                                            cmd2 = '' + LinkNeoBoot + '/bin/nandwrite -p /dev/' + mtd + ' ' + getNeoLocation() + 'ImagesUpload/.kernel/' + getBoxHostName() + '.vmlinux.gz > /dev/null 2>&1'                                                                        
+                                            cmd2 = '' + LinkNeoBoot + '/bin/nandwrite -p /dev/' + getMmcBlockDevice() + ' ' + getNeoLocation() + 'ImagesUpload/.kernel/' + getBoxHostName() + '.vmlinux.gz > /dev/null 2>&1'                                                                        
                                         cmd3 = "echo -e '\n%s '" % _('Changed kernel COMPLETE ! ' + getNandWrite() + '\nSTB NAME: ' + getBoxHostName() + '\nNeoBoot location:' + getNeoLocation() + '\nCPU: ' + getCPUSoC() + '\nImage boot: ' + getImageNeoBoot() + '\n____Your device will reboot in 5 seconds !____ ')
                                         cmd4 = 'update-alternatives --remove vmlinux vmlinux-`uname -r` || true; sync; sleep 8; reboot -d -f'
                                         
                                     elif fileExists('%sImageBoot/%s/boot/%s.vmlinux.gz' % (getNeoLocation(), getImageNeoBoot(), getBoxHostName())):
                                         cmd = "echo -e '\n%s '" % _('...............REBOOT now...............\nPlease wait, in a moment the decoder will be restarted...')
-                                        cmd1 = 'flash_erase /dev/' + mtd + ' 0 0 > /dev/null 2>&1 ; flash_eraseall /dev/' + mtd + ' 0 0 > /dev/null 2>&1 '
+                                        cmd1 = 'flash_erase /dev/' + getMmcBlockDevice() + ' 0 0 > /dev/null 2>&1 ; flash_eraseall /dev/' + getMmcBlockDevice() + ' 0 0 > /dev/null 2>&1 '
                                         if getNandWrite() == 'nandwrite':
-                                            cmd2 = 'nandwrite -p /dev/' + mtd + ' ' + getNeoLocation() + 'ImageBoot/' + getImageNeoBoot() + '/boot/' + getBoxHostName() + '.vmlinux.gz > /dev/null 2>&1'
+                                            cmd2 = 'nandwrite -p /dev/' + getMmcBlockDevice() + ' ' + getNeoLocation() + 'ImageBoot/' + getImageNeoBoot() + '/boot/' + getBoxHostName() + '.vmlinux.gz > /dev/null 2>&1'
                                         else:
-                                            cmd2 = '' + LinkNeoBoot + '/bin/nandwrite -p /dev/' + mtd + ' ' + getNeoLocation() + 'ImageBoot/' + getImageNeoBoot() + '/boot/' + getBoxHostName() + '.vmlinux.gz > /dev/null 2>&1'
+                                            cmd2 = '' + LinkNeoBoot + '/bin/nandwrite -p /dev/' + getMmcBlockDevice() + ' ' + getNeoLocation() + 'ImageBoot/' + getImageNeoBoot() + '/boot/' + getBoxHostName() + '.vmlinux.gz > /dev/null 2>&1'
                                         cmd3 = "echo -e '\n%s '" % _('Changed kernel COMPLETE ! ' + getNandWrite() + '\nSTB NAME: ' + getBoxHostName() + '\nNeoBoot location:' + getNeoLocation() + '\nCPU: ' + getCPUSoC() + '\nImage boot: ' + getImageNeoBoot() + '\n____Your device will reboot in 5 seconds !____ ') 
                                         cmd4 = 'update-alternatives --remove vmlinux vmlinux-`uname -r` || true; sync; sleep 8; reboot -d -f'
                                         
