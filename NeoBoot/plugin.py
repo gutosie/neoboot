@@ -642,7 +642,7 @@ class NeoBootInstallation(Screen):
 
                 elif getBoxHostName() == "vuduo4kse" and getBoxHostName() != "vuultimo4k" and getBoxHostName() != "ustym4kpro":
                         os.system('cd ' + LinkNeoBoot + '/')
-                        os.system('cp -Rf ' + LinkNeoBoot + '/bin/neoinitarm /sbin/neoinitarm; cp -Rf ' + LinkNeoBoot + '/bin/neoinitarmvuDuo4k /sbin/neoinitarmvu; mv ' + LinkNeoBoot + '/tmpfiles//vu4Krun.py ' + LinkNeoBoot + '/run.py; cd')
+                        os.system('cp -Rf ' + LinkNeoBoot + '/bin/neoinitarm /sbin/neoinitarm; cp -Rf ' + LinkNeoBoot + '/bin/neoinitarmvuDuo4k /sbin/neoinitarmvu; mv ' + LinkNeoBoot + '/tmpfiles/vu4Krun.py ' + LinkNeoBoot + '/run.py; cd')
                         os.system('chmod 755 /sbin/neoinitarm; chmod 755 /sbin/neoinitarmvu')
                         os.system('dd if=/dev/mmcblk0p6 of=%sImagesUpload/.kernel/flash-kernel-%s.bin' % (getNeoLocation(), getBoxHostName()))
 
