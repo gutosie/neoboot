@@ -53,8 +53,8 @@ if not fileExists('/etc/vtiversion.info') and not fileExists('/etc/bhversion') a
 else:
     from Screens.Console import Console
 loggscrash = time.localtime(time.time())
-PLUGINVERSION = '9.52'
-UPDATEVERSION = '9.52'
+PLUGINVERSION = '9.53'
+UPDATEVERSION = '9.53'
 UPDATEDATE = '"+%Y11%d"'
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
 
