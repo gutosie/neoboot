@@ -17,8 +17,8 @@ if [ ! -e /.multinfo ]; then
     [ -e /tmp/neoboot.zip ] && rm -f /tmp/neoboot.zip
     [ -e /tmp/neoboot-main ] && rm -rf /tmp/neoboot-main
     echo "Multiboot image"
-    echo "_______________"
-    [ $PL ] && echo " Pobieranie archiwum..." || echo " Downloading archive file..."
+    echo ":"
+    [ $PL ] && echo "Pobieranie archiwum..." || echo "Downloading archive file..."
     URL='https://github.com/gutosie/neoboot/archive/main.zip'
     curl -kLs $URL  -o /tmp/neoboot.zip
     Cel="/usr/lib/enigma2/python/Plugins/Extensions"
@@ -55,8 +55,8 @@ if [ ! -e /.multinfo ]; then
     if [ -e $Cel/NeoBoot/.location ]; then 
        rm -rf $Cel/NeoBoot/.location   
     fi
-    [ $PL ] && echo "  Instalowanie..." || echo "  Instaling..."
-    echo " - - - - - - - - "
+    [ $PL ] && echo "Instalowanie..." || echo "Instaling..."
+    echo ":"
     [ -e $Cel/NeoBoot ] && rm -rf $Cel/NeoBoot/* || mkdir -p $Cel/NeoBoot
     mv -f /tmp/neoboot-main/NeoBoot/files/testinout /usr/lib/enigma2/python/Tools/Testinout.py
     mkdir -p /usr/lib/periodon
@@ -99,7 +99,7 @@ else
       echo ""
       echo "#####################################################"
       echo ">>>>     Błąd!    To nie jest image flash.       <<<<"
-      echo ">>>>   By zainstalować NeoBoot, powróć do Flash. <<<<"
+      echo ">>>>     Instaluj neoboot-a tylko z Flash.       <<<<"
       echo "#####################################################"
       echo ""
     else
