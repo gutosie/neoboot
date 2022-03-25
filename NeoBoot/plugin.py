@@ -817,9 +817,9 @@ class NeoBootImageChoose(Screen):
         self['label12'] = Label('')
         self['label13'] = Label(_('Version update: '))
         if getCheckActivateVip() == getBoxMacAddres() and fileExists('/usr/lib/periodon/.kodn'):
-            self['label14'] = Label(_('NeoBoot ver. VIP-on : '))
+            self['label14'] = Label(_('VIP-on  NeoBoot: '))
         else:        
-            self['label14'] = Label(_('NeoBoot ver. VIP-off : '))
+            self['label14'] = Label(_('VIP-off  NeoBoot: '))
         self['label15'] = Label(_('Memory disc:'))
         self['label16'] = Label(_('Kernel'))       
         self['label17'] = Label('')
