@@ -1809,7 +1809,7 @@ def main(session, **kwargs):
 
 def menu(menuid, **kwargs):
     if menuid == 'mainmenu':
-        return [(_('N e o B o o t'),
+        return [(_('NeoBOOT'),
           main,
           'neo_boot',
           1)]
