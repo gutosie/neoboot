@@ -1090,13 +1090,16 @@ def getExtCheckHddUsb():
 
 def getNandWrite():
     NandWrite = 'NandWrite'
-    if os.path.exists('/usr/sbin/nandwrite'):
-        with open('/usr/sbin/nandwrite', 'r') as f:
-            lines = f.read()
-            f.close()
-        if lines.find('nandwrite') != -1:
-            NandWrite = 'nandwrite'
-                        
+    if fileExists('/usr/lib/python2.7'):    
+        if os.path.exists('/usr/sbin/nandwrite'):
+            with open('/usr/sbin/nandwrite', 'r') as f:
+                lines = f.read()
+                f.close()
+            if lines.find('nandwrite') != -1:
+                NandWrite = 'nandwrite'
+    else:
+        NandWrite = 'nandwrite'
+	
     return NandWrite
 
 def getMyUUID():
@@ -1106,7 +1109,7 @@ def getMyUUID():
         if os.path.isfile('/tmp/.myuuid'):
             return open('/tmp/.myuuid').read().strip().upper()
     except:
-        pass	    
+        pass
 
     return _('unavailable')
 
