@@ -815,8 +815,10 @@ class NeoBootImageChoose(Screen):
         self['label11'] = Label('')
         self['label12'] = Label('')
         self['label13'] = Label(_('Version update: '))
-        if getCheckActivateVip() == getBoxMacAddres() and fileExists('/usr/lib/periodon/.kodn'):
+        if fileExists('/.multinfo') and getImageNeoBoot() != "Flash":
             self['label14'] = Label(_('VIP-on  NeoBoot: '))
+        elif getCheckActivateVip() == getBoxMacAddres() and fileExists('/usr/lib/periodon/.kodn'):
+            self['label14'] = Label(_('VIP-on  NeoBoot: '))            
         else:        
             self['label14'] = Label(_('VIP-off  NeoBoot: '))
         self['label15'] = Label(_('Memory disc:'))
@@ -825,7 +827,9 @@ class NeoBootImageChoose(Screen):
         self['label18'] = Label('')
         self['label19'] = Label('')
         self['label20'] = Label('')
-        if getCheckActivateVip() == getBoxMacAddres() and fileExists('/usr/lib/periodon/.kodn'):
+        if fileExists('/.multinfo') and getImageNeoBoot() != "Flash":
+            self['label21'] = Label('VIP-OK!')            
+        elif getCheckActivateVip() == getBoxMacAddres() and fileExists('/usr/lib/periodon/.kodn'):
             self['label21'] = Label('VIP-OK!')
         else:                
             self['label21'] = Label('Enter pin code')          
