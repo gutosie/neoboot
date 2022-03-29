@@ -1140,6 +1140,8 @@ class NeoBootImageChoose(Screen):
                     message = _('\n\n\n')
                     message += _('WARNING !: The update brings with it the risk of errors.\n')
                     message += _('Before upgrading it is recommended that you make a backup NeoBoot.\n')
+                    message += _('Select No to do backup\n')
+                    message += _('Select Yes to do update\n')
                     message += _('Do you want to run the update now ?\n')
                     message += _('\n')
                     ybox = self.session.openWithCallback(self.chackupdate2, MessageBox, message, MessageBox.TYPE_YESNO)
@@ -1152,7 +1154,9 @@ class NeoBootImageChoose(Screen):
         if yesno:
             self.chackupdate3()
         else:
-            self.session.open(MessageBox, _('Canceled update.'), MessageBox.TYPE_INFO, 7)
+            from Plugins.Extensions.NeoBoot.files.tools import BackupMultiboot
+            self.session.open(BackupMultiboot)            
+            #self.session.open(MessageBox, _('Canceled update.'), MessageBox.TYPE_INFO, 7)
 
     def chackupdate3(self):
         if fileExists('/usr/bin/curl'):
