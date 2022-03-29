@@ -973,6 +973,7 @@ class NeoBootImageChoose(Screen):
         if fileExists('/usr/lib/python2.7'):
             self.close_exit2()            
         else:
+            system('touch /tmp/.init_reboot')
             self.close()
             
     def close_exit2(self):
@@ -986,7 +987,7 @@ class NeoBootImageChoose(Screen):
                 self.close()
 
             except:
-                False
+                self.close()
 
         if not fileExists('/tmp/.finishdate') or not fileExists('/tmp/.nkod') or fileExists('/.multinfo'):
             if checkInternet():
