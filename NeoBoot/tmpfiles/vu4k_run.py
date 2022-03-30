@@ -121,7 +121,6 @@ class StartImage(Screen):
                 elif getBoxVuModel() == 'zero4k':
                     os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p7 /media/InternalFlash')
                     
-        system('chmod 755 ' + LinkNeoBoot + '/files/kernel.sh')
         self.sel = self['list'].getCurrent()
         if self.sel:
             self.sel = self.sel[2]
