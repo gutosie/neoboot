@@ -1618,6 +1618,18 @@ class NeoBootImageChoose(Screen):
                 self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
 
     def bootIMG(self):
+        count = 0
+        for fn in listdir('' + getNeoLocation() + '/ImageBoot'):
+                    dirfile = '' + getNeoLocation() + '/ImageBoot/' + fn
+                    if os_isdir(dirfile):
+                        count = count + 1
+        if count > 1:
+                    myerror = _('Sorry, this is not neoboot vip version.\nGet NEO-VIP version, more info press blue button.')
+                    self.session.open(MessageBox, myerror, MessageBox.TYPE_INFO)
+        else:
+            self.bootIMG2()
+
+    def bootIMG2(self):
         if getCheckActivateVip() == getBoxMacAddres():
             self.bootIMG2()        
         elif not fileExists('/.multinfo'):
