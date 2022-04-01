@@ -1627,9 +1627,9 @@ class NeoBootImageChoose(Screen):
                     myerror = _('Sorry, this is not neoboot vip version.\nGet NEO-VIP version, more info press blue button.')
                     self.session.open(MessageBox, myerror, MessageBox.TYPE_INFO)
         else:
-            self.bootIMG2()
+            self.bootIMG1()
 
-    def bootIMG2(self):
+    def bootIMG1(self):
         if getCheckActivateVip() == getBoxMacAddres():
             self.bootIMG2()        
         elif not fileExists('/.multinfo'):
