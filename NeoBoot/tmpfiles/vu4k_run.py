@@ -39,9 +39,9 @@ def getMmcBlockDevice():
                                 mmcblockdevice = 'mmcblk0p1'
     elif getBoxHostName() == 'vuzero4k' and getBoxVuModel() == 'zero4k' and getCPUSoC() == '72604' and getBoxHostName() != "ustym4kpro":
                                 mmcblockdevice = 'mmcblk0p4'
-    elif getBoxHostName() == 'vuduo4k' or getBoxHostName() == 'duo4kse' and getBoxHostName() != "vuultimo4k" and getBoxHostName() != "ustym4kpro":
+    elif getBoxHostName() == 'vuduo4k' or getBoxHostName() == 'vuduo4kse' and getBoxHostName() != "vuultimo4k" and getBoxHostName() != "ustym4kpro":
                                 mmcblockdevice = 'mmcblk0p6'
-    return mmcblockdevice
+    return mmcblockdevice 
 
 class StartImage(Screen):
     screenwidth = getDesktop(0).size().width()
