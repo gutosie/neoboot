@@ -601,8 +601,8 @@ class SetDiskLabel(Screen):
         self['key_green'] = Button(_('Set label'))
         self['key_yellow'] = Button(_('Add label'))
         self['key_blue'] = Button(_('Delete label'))
-        self['actions'] = ActionMap(['OkCancelActions', 'ColorActions', 'DirectionActions'], {'cancel': self.cancel,
-         'red': self.cancel,
+        self['actions'] = ActionMap(['OkCancelActions', 'ColorActions', 'DirectionActions'], {'cancel': self.myclose,
+         'red': self.myclose,
          'green': self.wlacz,
          'yellow': self.addlabel,
          'blue': self.dellabel,
@@ -711,6 +711,10 @@ class SetDiskLabel(Screen):
             j += 1
 
         return jest
+    
+    def myclose(self):
+        if answer is True:
+            system('reboot -f')    
 
 
 class DeviceManagerSummary(Screen):
