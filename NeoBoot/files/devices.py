@@ -472,7 +472,8 @@ class DevicesConf(Screen, ConfigListScreen):
     def myclose(self, answer):
         if answer is True:
             self.messagebox = self.session.open(MessageBox, _('Return to installation...'), MessageBox.TYPE_INFO)
-            self.close()
+            #self.close()
+            system('reboot -f')
         else:
             self.messagebox = self.session.open(MessageBox, _('Return to installation...'), MessageBox.TYPE_INFO)
             self.close()
