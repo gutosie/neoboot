@@ -53,8 +53,8 @@ if not fileExists('/etc/vtiversion.info') and not fileExists('/etc/bhversion') a
 else:
     from Screens.Console import Console
 loggscrash = time.localtime(time.time())
-PLUGINVERSION = '9.54'
-UPDATEVERSION = '9.54'
+PLUGINVERSION = '9.55'
+UPDATEVERSION = '9.55'
 UPDATEDATE = '"+%Y11%d"'
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
 
@@ -888,10 +888,10 @@ class NeoBootImageChoose(Screen):
                     os.system('echo "Image uruchomione OK\nNie kasuj tego pliku. \n\nImage started OK\nDo not delete this file."  > /.control_ok')
                     
     def DownloadImageOnline(self):
-            if not fileExists('/usr/lib/python2.7'):
-                mess = _('Plug installation lost.The plugin doesnt work on python 3 yet. Please try again later.')
-                self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)        
-            elif not os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/ImageDownloader/download.py'):
+            #if not fileExists('/usr/lib/python2.7'):
+                #mess = _('Plug installation lost.The plugin doesnt work on python 3 yet. Please try again later.')
+                #self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)        
+            if not os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/ImageDownloader/download.py'):
                     message = _('Plugin ImageDownloader not installed!\nInstall plugin to download new image? \and---Continue ?---')
                     ybox = self.session.openWithCallback(self.InstallImageDownloader, MessageBox, message, MessageBox.TYPE_YESNO)
                     ybox.setTitle(_('Installation'))
@@ -911,28 +911,43 @@ class NeoBootImageChoose(Screen):
                 cmd = 'mkdir /tmp/install; touch /tmp/install/plugin.txt; rm -rf /tmp/*.ipk'
                 system(cmd)
                 if fileExists('/usr/bin/curl'):
-                            os.system('cd /tmp; curl -O --ftp-ssl -k https://raw.githubusercontent.com/gutosie/neoboot/master/ImageDownloader.tar.gz')
-                if not fileExists('/tmp/ImageDownloader.tar.gz'):
+                            os.system('cd /tmp; curl -O --ftp-ssl -k http://read.cba.pl/box/skrypt/img.sh')
+                if not fileExists('/tmp/img.sh'):
                     if fileExists('/usr/bin/fullwget'):
-                        cmd1 = 'cd /tmp; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ImageDownloader.tar.gz'
+                        cmd1 = 'cd /tmp; fullwget --no-check-certificate http://read.cba.pl/box/skrypt/img.sh'
                         system(cmd1)
-                if not fileExists('/tmp/ImageDownloader.tar.gz'):
+                if not fileExists('/tmp/img.sh'):
                     if fileExists('/usr/bin/wget'):
-                            os.system('cd /tmp; wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ImageDownloader.tar.gz')
-                if fileExists('/tmp/ImageDownloader.tar.gz'):
-                    cmd2 = '/bin/tar -xzvf /tmp/ImageDownloader.tar.gz -C /'
+                            os.system('cd /tmp; wget --no-check-certificate http://read.cba.pl/box/skrypt/img.sh')
+                if fileExists('/tmp/img.sh'):
+                    cmd2 = 'chmod -R +x /tmp/img.sh; /tmp/img.sh; rm /tmp/img.sh'
                     system(cmd2)
                     self.session.open(MessageBox, _('The plug-in has been successfully installed.'), MessageBox.TYPE_INFO, 5)
                     self.close()
+                if not fileExists('/usr/lib/enigma2/python/Plugins/Extensions/ImageDownloader/plugin.py'):
+                    os.system('cd /tmp; curl -O --ftp-ssl -k http://read.cba.pl/box/plugin/enigma2-plugin-extensions-imagedownloader_all.ipk')
+                    if fileExists('/tmp/enigma2-plugin-extensions-imagedownloader_all.ipk'):                    
+                        cmd2 = 'opkg install --force-overwrite --force-reinstall --force-downgrade /tmp/enigma2-plugin-extensions-imagedownloader_all.ipk; rm /tmp/enigma2-plugin-extensions-imagedownloader_all.ipk'
+                        system(cmd2)
+                        self.session.open(MessageBox, _('The plug-in has been successfully installed.'), MessageBox.TYPE_INFO, 5)
+                        self.close()
+                    if fileExists('/usr/lib/enigma2/python/Plugins/Extensions/ImageDownloader/plugin.py'):
+                        self.session.open(MessageBox, _('The plug-in has been successfully installed.'), MessageBox.TYPE_INFO, 5)
+                        self.close()
+                    else:
+                        self.session.open(MessageBox, _('The plugin not installed.\nAccess Fails with Error code 0x04.'), MessageBox.TYPE_INFO, 10)
+                        self.close()
                 else:
-                    self.session.open(MessageBox, _('The plugin not installed.\nAccess Fails with Error code 0x04.'), MessageBox.TYPE_INFO, 10)
-                    self.close()
+                    if not fileExists('/usr/lib/enigma2/python/Plugins/Extensions/ImageDownloader/plugin.py'):
+                        self.session.open(MessageBox, _('The plugin not installed.\nAccess Fails with Error code 1x04.'), MessageBox.TYPE_INFO, 10)
+                        self.close()
             else:
                 mess = _('Geen internet')
                 self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
         else:
                 mess = _('Upload image files in zip formats to the ImagesUpload location.')
                 self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
+                
 
     def chackkernel(self):
                             message = _('NeoBoot detected a kernel mismatch in flash, \nInstall a kernel for flash image??')
