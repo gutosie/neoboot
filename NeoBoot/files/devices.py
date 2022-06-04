@@ -78,12 +78,12 @@ class ManagerDevice(Screen):
         self.list = []
         self['list'] = List(self.list)
         self['list'].onSelectionChanged.append(self.selectionChanged)
-        self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'MenuActions'], {'back': self.close,
+        self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'MenuActions'], {'back': self.myclose,
          'red': self.Format_ext3,
          'green': self.SetupMounts,
          'yellow': self.Format_ext4,
          'blue': self.InitializationNeoB,
-         'back': self.close})
+         'back': self.myclose})
         self.activityTimer = eTimer()
         self.activityTimer.timeout.get().append(self.updateList2)
         self.updateList()
@@ -310,8 +310,11 @@ class ManagerDevice(Screen):
         else:
             self.updateList()
             self.selectionChanged()
+            
+    def myclose(self):
+            system('reboot -f')            
 
-
+            
 class DevicesConf(Screen, ConfigListScreen):
     screenwidth = getDesktop(0).size().width()
     if screenwidth and screenwidth == 1920:
