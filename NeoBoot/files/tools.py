@@ -2028,7 +2028,7 @@ class InitializationFormattingDisk(Screen):
         self['lab1'] = Label(_('Select disk.'))
         self['key_red'] = Label(_('Formatting'))
         self['list'] = List([])
-        self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'back': self.close,
+        self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'back': self.myClose,
          'ok': self.deleteback,
          'red': self.deleteback})
         self.backupdir = '/tmp/disk'
@@ -2071,6 +2071,9 @@ class InitializationFormattingDisk(Screen):
             self.updateInfo()
         else:
             self.close()
+               
+    def myClose(selfe):
+        os.system('reboot -f')               
                
 class BootManagers(Screen):
     __module__ = __name__
