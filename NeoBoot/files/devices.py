@@ -713,10 +713,9 @@ class SetDiskLabel(Screen):
         return jest
     
     def myclose(self):
-        if answer is True:
             system('reboot -f')    
 
-
+            
 class DeviceManagerSummary(Screen):
     def __init__(self, session, parent):
         Screen.__init__(self, session, parent=parent)
