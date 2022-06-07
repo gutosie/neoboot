@@ -16,6 +16,7 @@ fi
 if [ ! -e /.multinfo ]; then
     [ -e /tmp/neoboot.zip ] && rm -f /tmp/neoboot.zip
     [ -e /tmp/neoboot-main ] && rm -rf /tmp/neoboot-main
+    echo ""
     echo "M U L T I B O O T"
     echo ""
     [ $PL ] && echo "Pobieranie archiwum..." || echo "Downloading archive file..."
