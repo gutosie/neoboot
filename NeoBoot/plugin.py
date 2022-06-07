@@ -850,8 +850,8 @@ class NeoBootImageChoose(Screen):
          '3': self.ReinstallKernel,
          '4': self.touch4,        #hidden option
          '5': self.touch5,        #hidden option
-         '6': self.touch6,        #hidden option
-         '7': self.touch7,        #hidden option
+         #'6': self.touch6,        #hidden option
+         #'7': self.touch7,        #hidden option
          '8': self.touch8,        #hidden option
          '9': self.touch9,        #hidden option
          '0': self.touch0,        #hidden option
