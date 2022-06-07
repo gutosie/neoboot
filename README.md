@@ -14,7 +14,9 @@ Installation of neoboot.  Run the following command in the terminal of a support
  
 Instalacja neoboot. Uruchom poniższą komendę w terminalu wspieranego tunera
 
+
 #
+#    !!!!  PIN CODE in ver. 9.56 is CHANGED !!!
 
 opkg update 
 
