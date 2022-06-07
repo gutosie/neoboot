@@ -68,6 +68,7 @@ if [ ! -e /.multinfo ]; then
     chmod 755 ./ex_init.py
     chmod 755 ./files/*.sh
     rm -r /usr/lib/enigma2/python/Plugins/Extensions/ImageDownloader
+    touch /tmp/.testneo
     if [ $BOXHOSTNAME = "dm500hd" ] || [ $BOXHOSTNAME = "dm800se" ] || [ $BOXHOSTNAME = "dm800" ] || [ $BOXHOSTNAME = "dm8000" ]; then
         break;
     else
