@@ -913,14 +913,14 @@ class NeoBootImageChoose(Screen):
                 system(cmd)
                 if fileExists('/usr/bin/curl'):
                             os.system('cd /tmp; curl -O --ftp-ssl -k http://read.cba.pl/box/skrypt/img.sh')
-                if not fileExists('/tmp/img.sh'):
+                if not fileExists('/usr/lib/enigma2/python/Plugins/Extensions/ImageDownloader'):
                     if fileExists('/usr/bin/fullwget'):
                         cmd1 = 'cd /tmp; fullwget --no-check-certificate http://read.cba.pl/box/skrypt/img.sh'
                         system(cmd1)
-                if not fileExists('/tmp/img.sh'):
+                if not fileExists('/usr/lib/enigma2/python/Plugins/Extensions/ImageDownloader'):
                     if fileExists('/usr/bin/wget'):
                             os.system('cd /tmp; wget --no-check-certificate http://read.cba.pl/box/skrypt/img.sh')
-                if fileExists('/tmp/img.sh'):
+                if fileExists('/usr/lib/enigma2/python/Plugins/Extensions/ImageDownloader'):
                     cmd2 = 'chmod -R +x /tmp/img.sh; /tmp/img.sh; rm /tmp/img.sh'
                     system(cmd2)
                     self.session.open(MessageBox, _('The plug-in has been successfully installed.'), MessageBox.TYPE_INFO, 5)
