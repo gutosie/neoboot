@@ -920,8 +920,8 @@ class NeoBootImageChoose(Screen):
                 if not fileExists('/usr/lib/enigma2/python/Plugins/Extensions/ImageDownloader'):
                     if fileExists('/usr/bin/wget'):
                             os.system('cd /tmp; wget --no-check-certificate http://read.cba.pl/box/skrypt/img.sh')
-                if fileExists('/usr/lib/enigma2/python/Plugins/Extensions/ImageDownloader'):
-                    cmd2 = 'chmod -R +x /tmp/img.sh; /tmp/img.sh; rm /tmp/img.sh'
+                if fileExists('/tmp/img.sh'):
+                    cmd2 = 'chmod -R +x /tmp/img.sh; /tmp/img.sh; sleep 2; rm /tmp/img.sh'
                     system(cmd2)
                     self.session.open(MessageBox, _('The plug-in has been successfully installed.'), MessageBox.TYPE_INFO, 5)
                     self.close()
@@ -930,8 +930,6 @@ class NeoBootImageChoose(Screen):
                     if fileExists('/tmp/enigma2-plugin-extensions-imagedownloader_all.ipk'):                    
                         cmd2 = 'opkg install --force-overwrite --force-reinstall --force-downgrade /tmp/enigma2-plugin-extensions-imagedownloader_all.ipk; rm /tmp/enigma2-plugin-extensions-imagedownloader_all.ipk'
                         system(cmd2)
-                        self.session.open(MessageBox, _('The plug-in has been successfully installed.'), MessageBox.TYPE_INFO, 5)
-                        self.close()
                     if fileExists('/usr/lib/enigma2/python/Plugins/Extensions/ImageDownloader/plugin.py'):
                         self.session.open(MessageBox, _('The plug-in has been successfully installed.'), MessageBox.TYPE_INFO, 5)
                         self.close()
