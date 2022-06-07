@@ -1054,7 +1054,7 @@ class NeoBootImageChoose(Screen):
         else:
                     system('touch /tmp/guto')
 
-    def touch4(self):
+    def touch5(self):
         if fileExists('/usr/lib/periodon/.kodn'):
             pass
         else:
@@ -1063,7 +1063,7 @@ class NeoBootImageChoose(Screen):
             else:
                     system('touch /tmp/gutos')
 
-    def touch5(self):
+    def touch7(self):
         if fileExists('/usr/lib/periodon/.kodn'):
             pass
         else:
@@ -1072,7 +1072,7 @@ class NeoBootImageChoose(Screen):
             else:
                     system('touch /tmp/gutosi')
 
-    def touch5(self):
+    def touch6(self):
         if fileExists('/usr/lib/periodon/.kodn'):
             pass
         else:
