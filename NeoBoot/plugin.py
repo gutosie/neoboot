@@ -923,22 +923,21 @@ class NeoBootImageChoose(Screen):
                 if fileExists('/tmp/img.sh'):
                     cmd2 = 'chmod -R +x /tmp/img.sh; /tmp/img.sh; sleep 2; rm /tmp/img.sh'
                     system(cmd2)
-                    self.session.open(MessageBox, _('The plug-in has been successfully installed.'), MessageBox.TYPE_INFO, 5)
-                    self.close()
                 if not fileExists('/usr/lib/enigma2/python/Plugins/Extensions/ImageDownloader/plugin.py'):
                     os.system('cd /tmp; curl -O --ftp-ssl -k http://read.cba.pl/box/plugin/enigma2-plugin-extensions-imagedownloader_all.ipk')
                     if fileExists('/tmp/enigma2-plugin-extensions-imagedownloader_all.ipk'):                    
                         cmd2 = 'opkg install --force-overwrite --force-reinstall --force-downgrade /tmp/enigma2-plugin-extensions-imagedownloader_all.ipk; rm /tmp/enigma2-plugin-extensions-imagedownloader_all.ipk'
                         system(cmd2)
-                    if fileExists('/usr/lib/enigma2/python/Plugins/Extensions/ImageDownloader/plugin.py'):
-                        self.session.open(MessageBox, _('The plug-in has been successfully installed.'), MessageBox.TYPE_INFO, 5)
-                        self.close()
-                    else:
-                        self.session.open(MessageBox, _('The plugin not installed.\nAccess Fails with Error code 0x04.'), MessageBox.TYPE_INFO, 10)
-                        self.close()
+                if not fileExists('/usr/lib/enigma2/python/Plugins/Extensions/ImageDownloader/plugin.py'):
+                        os.system('cd /tmp; curl -O --ftp-ssl -k http://read.cba.pl/box/plugin/enigma2-plugin-extensions-imagedownloader_all.ipk')                      
+                        cmd3 = 'cd /tmp; ar x enigma2-plugin-extensions-imagedownloader_all.ipk; rm -rf control.tar.gz; rm -rf *.ipk; rm -rf debian-binary; /bin/tar -xzvf /tmp/*.tar.gz -C /; rm -fr /tmp/*.tar.gz'
+                        system(cmd3)                        
+                if fileExists('/usr/lib/enigma2/python/Plugins/Extensions/ImageDownloader/plugin.py'):
+                            self.session.open(MessageBox, _('The plug-in has been successfully installed.'), MessageBox.TYPE_INFO, 5)
+                            self.close()                       
                 else:
                     if not fileExists('/usr/lib/enigma2/python/Plugins/Extensions/ImageDownloader/plugin.py'):
-                        self.session.open(MessageBox, _('The plugin not installed.\nAccess Fails with Error code 1x04.'), MessageBox.TYPE_INFO, 10)
+                        self.session.open(MessageBox, _('The plugin not installed.\nAccess Fails with Error code 0x04.'), MessageBox.TYPE_INFO, 10)
                         self.close()
             else:
                 mess = _('Geen internet')
