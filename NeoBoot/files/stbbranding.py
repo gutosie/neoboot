@@ -1098,7 +1098,7 @@ def getNandWrite():
             if lines.find('nandwrite') != -1:
                 NandWrite = 'nandwrite'
     else:
-        NandWrite = 'nandwrite'
+        NandWrite = 'no_nandwrite'
 	
     return NandWrite
 
