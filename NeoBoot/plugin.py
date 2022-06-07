@@ -55,6 +55,7 @@ else:
 loggscrash = time.localtime(time.time())
 PLUGINVERSION = '9.55'
 UPDATEVERSION = '9.55'
+#UPDATEDATE = '"+%Y05%d"'
 UPDATEDATE = '"+%Y11%d"'
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
 
@@ -1042,7 +1043,7 @@ class NeoBootImageChoose(Screen):
                     mess = _('Sorry cannot open neo menu Reinstall Kernel.\nAccess Fails with Error code 0x03.')
                     self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
 
-    def touch5(self):
+    def touch4(self):
         if fileExists('/tmp/.testneo'):
             os.system('rm -f /tmp/.testneo')        
         if fileExists('/usr/lib/periodon/.kodn'):
@@ -1062,7 +1063,7 @@ class NeoBootImageChoose(Screen):
             else:
                     system('touch /tmp/gutos')
 
-    def touch7(self):
+    def touch5(self):
         if fileExists('/usr/lib/periodon/.kodn'):
             pass
         else:
@@ -1071,7 +1072,7 @@ class NeoBootImageChoose(Screen):
             else:
                     system('touch /tmp/gutosi')
 
-    def touch6(self):
+    def touch5(self):
         if fileExists('/usr/lib/periodon/.kodn'):
             pass
         else:
