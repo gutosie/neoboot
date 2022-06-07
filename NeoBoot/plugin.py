@@ -1043,7 +1043,7 @@ class NeoBootImageChoose(Screen):
                     mess = _('Sorry cannot open neo menu Reinstall Kernel.\nAccess Fails with Error code 0x03.')
                     self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
 
-    def touch4(self):
+    def touch5(self):
         if fileExists('/tmp/.testneo'):
             os.system('rm -f /tmp/.testneo')        
         if fileExists('/usr/lib/periodon/.kodn'):
@@ -1054,7 +1054,7 @@ class NeoBootImageChoose(Screen):
         else:
                     system('touch /tmp/guto')
 
-    def touch5(self):
+    def touch7(self):
         if fileExists('/usr/lib/periodon/.kodn'):
             pass
         else:
@@ -1063,7 +1063,7 @@ class NeoBootImageChoose(Screen):
             else:
                     system('touch /tmp/gutos')
 
-    def touch7(self):
+    def touch6(self):
         if fileExists('/usr/lib/periodon/.kodn'):
             pass
         else:
@@ -1072,7 +1072,7 @@ class NeoBootImageChoose(Screen):
             else:
                     system('touch /tmp/gutosi')
 
-    def touch6(self):
+    def touch4(self):
         if fileExists('/usr/lib/periodon/.kodn'):
             pass
         else:
