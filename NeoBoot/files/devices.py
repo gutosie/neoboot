@@ -78,12 +78,12 @@ class ManagerDevice(Screen):
         self.list = []
         self['list'] = List(self.list)
         self['list'].onSelectionChanged.append(self.selectionChanged)
-        self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'MenuActions'], {'back': self.myclose,
+        self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'MenuActions'], {'back': self.close,
          'red': self.Format_ext3,
          'green': self.SetupMounts,
          'yellow': self.Format_ext4,
          'blue': self.InitializationNeoB,
-         'back': self.myclose})
+         'back': self.close})
         self.activityTimer = eTimer()
         self.activityTimer.timeout.get().append(self.updateList2)
         self.updateList()
@@ -303,18 +303,8 @@ class ManagerDevice(Screen):
         out.write(line)
         out.close()
         self.Console.ePopen('mount -a', self.updateList)
-
-    def restBo(self, answer):
-        if answer is True:
-            self.session.open(TryQuitMainloop, 2)
-        else:
-            self.updateList()
-            self.selectionChanged()
-            
-    def myclose(self):
-            system('reboot -f')            
-
-            
+        
+        
 class DevicesConf(Screen, ConfigListScreen):
     screenwidth = getDesktop(0).size().width()
     if screenwidth and screenwidth == 1920:
@@ -468,15 +458,13 @@ class DevicesConf(Screen, ConfigListScreen):
     def delay(self, val):
         if fileExists('/etc/init.d/volatile-media.sh') and getBoxHostName() == "vusolo2":
             system('mv /etc/init.d/volatile-media.sh /etc/init.d/volatile-media.sh.org')
-        message = _('Completed assembly of disks.\nReturn to installation ?')
+        message = _('GUI needs a restart.\nDo you want to Restart the GUI now?')
         ybox = self.session.openWithCallback(self.myclose, MessageBox, message, MessageBox.TYPE_YESNO)
         ybox.setTitle(_('MOUNTING....'))
 
     def myclose(self, answer):
         if answer is True:
-            self.messagebox = self.session.open(MessageBox, _('Return to installation...'), MessageBox.TYPE_INFO)
-            #self.close()
-            system('reboot -f')
+            os.system('reboot -f')                             
         else:
             self.messagebox = self.session.open(MessageBox, _('Return to installation...'), MessageBox.TYPE_INFO)
             self.close()
@@ -604,8 +592,8 @@ class SetDiskLabel(Screen):
         self['key_green'] = Button(_('Set label'))
         self['key_yellow'] = Button(_('Add label'))
         self['key_blue'] = Button(_('Delete label'))
-        self['actions'] = ActionMap(['OkCancelActions', 'ColorActions', 'DirectionActions'], {'cancel': self.myclose,
-         'red': self.myclose,
+        self['actions'] = ActionMap(['OkCancelActions', 'ColorActions', 'DirectionActions'], {'cancel': self.MyClose,
+         'red': self.MyClose,
          'green': self.wlacz,
          'yellow': self.addlabel,
          'blue': self.dellabel,
@@ -715,8 +703,17 @@ class SetDiskLabel(Screen):
 
         return jest
     
-    def myclose(self):
-            system('reboot -f')    
+    def MyClose(self):
+        message = _('GUI needs a restart.\nDo you want to Restart the GUI now?')
+        ybox = self.session.openWithCallback(self.mbdelete, MessageBox, message, MessageBox.TYPE_YESNO)
+        ybox.setTitle(_('Label Disc'))
+
+    def mbdelete(self, answer):
+        if answer is True:
+            os.system('reboot -f')                             
+        else:
+            self.messagebox = self.session.open(MessageBox, _('Return to installation...'), MessageBox.TYPE_INFO)
+            self.close()    
 
             
 class DeviceManagerSummary(Screen):
