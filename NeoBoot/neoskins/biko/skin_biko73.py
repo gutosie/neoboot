@@ -9,20 +9,21 @@ ImageChooseFULLHD = """
 <screen name="NeoBootImageChoose" position="center,center" size="1920,1080" title=" " flags="wfNoBorder" backgroundColor="transparent">
   <widget name="progreso" position="627,590" size="452,10" borderWidth="1" zPosition="3" />    
   <ePixmap position="center,0" size="1920,1078" zPosition="-2" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/biko/background.png" />  
-  <widget name="config" position="1265,266" size="620,688" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/biko/selektor.png" itemHeight="43" zPosition="3" font="baslk;32" scrollbarMode="showOnDemand" foregroundColor="#99FFFF" backgroundColor="#1A0F0F0F" foregroundColorSelected="yellow" backgroundColorSelected="#1A27408B" scrollbarSliderBorderWidth="1" scrollbarWidth="8" scrollbarSliderForegroundColor="#99FFFF" scrollbarSliderBorderColor="#0027408B" enableWrapAround="1" transparent="1" />
+  <widget name="config" position="1289,266" size="620,688" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/biko/selektor.png" itemHeight="43" zPosition="3" font="baslk;32" scrollbarMode="showOnDemand" foregroundColor="#99FFFF" backgroundColor="#1A0F0F0F" foregroundColorSelected="yellow" backgroundColorSelected="#1A27408B" scrollbarSliderBorderWidth="1" scrollbarWidth="8" scrollbarSliderForegroundColor="#99FFFF" scrollbarSliderBorderColor="#0027408B" enableWrapAround="1" transparent="1" />
   <ePixmap position="1865,190" size="556,122" zPosition="4" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/biko/updown.png" alphatest="on" />
-  <ePixmap position="1304,43" zPosition="4" size="556,122" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/box.png" alphatest="on" />   
-  <ePixmap position="987,95" zPosition="5" size="306,123" scale="1" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/zero4k.png" alphatest="on" /> 
+  <ePixmap position="1304,43" zPosition="4" size="556,122" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/logo.png" alphatest="on" />
+  <ePixmap position="1304,43" zPosition="5" scale="1" size="556,122" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/biko/bg.png" alphatest="on" />
+  <ePixmap position="1022,166" zPosition="5" size="258,106" scale="1" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/box.png" alphatest="on" /> 
   <eLabel position="60,615" size="1040,2" backgroundColor="#C0C0C0" foregroundColor="#C0C0C0" name="linia" /> 
   <widget name="device_icon" position="123,476" size="146,136" alphatest="on" zPosition="2" />
   
   <widget source="global.CurrentTime" render="Label" position="864,46" size="430,40" font="Console; 30" valign="center" halign="center" backgroundColor="skincolor" transparent="1">
     <convert type="ClockToText">Format:%A, %d %B %Y</convert>
   </widget>
-  <widget source="global.CurrentTime" render="Label" position="1028,325" size="200,45" font="Console; 38" valign="center" halign="center" transparent="1" foregroundColor="clock_color" backgroundColor="background">
+  <widget source="global.CurrentTime" render="Label" position="1001,100" size="269,45" font="Console; 38" valign="center" halign="center" transparent="1" foregroundColor="clock_color" backgroundColor="background">
    <convert type="ClockToText">Format:%H:%M</convert>
   </widget>
-  <widget source="global.CurrentTime" render="Label" position="1191, 324" size="55, 34" font="Console; 28" valign="top" halign="left" backgroundColor="black" foregroundColor="white" transparent="1">
+  <widget source="global.CurrentTime" render="Label" position="1205,96" size="55,34" font="Console; 28" valign="top" halign="left" backgroundColor="black" foregroundColor="white" transparent="1">
    <convert type="ClockToText">Format::%S</convert>
   </widget>
   
@@ -66,7 +67,7 @@ ImageChooseFULLHD = """
   <ePixmap position="55,639" size="105,64" scale="1" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/biko/arrowright.png" alphatest="on" />
   
   <widget name="label6" position="567,235" zPosition="1" size="357,84" font="Regular;30" halign="right" valign="center" backgroundColor="black" transparent="1" foregroundColor="yellow" />
-  <widget name="label17" position="1024,229" size="213,66" font="Regular;30" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00ff7f50" />
+  <widget name="label17" position="1049,281" size="213,66" font="Regular;30" halign="center" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="#00ff7f50" />
   <widget name="label16" position="76,924" zPosition="1" size="142,50" font="Regular;30" halign="left" valign="center" backgroundColor="black" transparent="1" foregroundColor="green" />
   <widget name="label20" position="223,924" zPosition="1" size="625,50" font="Regular;30" halign="left" valign="center" backgroundColor="black" transparent="1" foregroundColor="white" />
 </screen>
