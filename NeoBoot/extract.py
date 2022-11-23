@@ -792,7 +792,10 @@ def RemoveUnpackDirs():
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/octagon/sf8008'):
         rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/usb_update.bin ' + getNeoLocation() + 'ImagesUpload/octagon; rm -r ' + getNeoLocation() + 'ImagesUpload/octagon')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/octagon/sf8008m'):
-        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/octagon')
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/octagon') 
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/h5'):
+        rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/bootargs.bin ' + getNeoLocation() + 'ImagesUpload/h5; mv ' + getNeoLocation() + 'ImagesUpload/fastboot.bin ' + getNeoLocation() + 'ImagesUpload/h5')
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/h')          
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/h7'):
         rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/bootargs.bin ' + getNeoLocation() + 'ImagesUpload/h7; mv ' + getNeoLocation() + 'ImagesUpload/fastboot.bin ' + getNeoLocation() + 'ImagesUpload/h7')
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/h7')
@@ -814,6 +817,9 @@ def RemoveUnpackDirs():
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/h10'):
         rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/force_h10_READ.ME ' + getNeoLocation() + 'ImagesUpload/h10; mv ' + getNeoLocation() + 'ImagesUpload/unforce_h10.txt ' + getNeoLocation() + 'ImagesUpload/h10')
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/h10')
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/h11'):
+        rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/force_h11_READ.ME ' + getNeoLocation() + 'ImagesUpload/h11; mv ' + getNeoLocation() + 'ImagesUpload/unforce_h11.txt ' + getNeoLocation() + 'ImagesUpload/h11')
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/h11') 
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/uclan'):
         if os.path.exists('' + getNeoLocation() + 'ImagesUpload/usb_update.bin'):
             rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/usb_update.bin ' + getNeoLocation() + 'ImagesUpload/uclan')
@@ -1602,6 +1608,10 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
             os.system('echo "Please wait. System installation Zgemma h10 ."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/h10/rootfs.tar.bz2; tar -jxf ' + getNeoLocation() + 'ImagesUpload/h10/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd)
+        elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/h11/rootfs.tar.bz2'):
+            os.system('echo "Please wait. System installation Zgemma h11 ."')
+            cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/h11/rootfs.tar.bz2; tar -jxf ' + getNeoLocation() + 'ImagesUpload/h11/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
+            rc = os.system(cmd)            
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/miraclebox/mini4k'):
             os.system('echo "Please wait. System installation Miraclebox mini4k."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/miraclebox/mini4k/rootfs.tar.bz2; tar -jxf ' + getNeoLocation() + 'ImagesUpload/miraclebox/mini4k/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
