@@ -254,10 +254,10 @@ NeoBootInstallationFULLHD = """
         <eLabel position="15,276" size="1183,2" backgroundColor="blue" foregroundColor="blue" name="linia" />
         <widget name="label1" position="14,4" size="1180,62" zPosition="1" halign="center" font="dugme;28" backgroundColor="black" transparent="1" foregroundColor="#ffffff" />
         <widget name="label2" position="15,82" size="1178,190" zPosition="1" halign="center" font="dugme;28" backgroundColor="black" transparent="1" foregroundColor="yellow" />
-        <widget name="label3" position="623,630" size="562,115" zPosition="1" halign="center" font="dugme;28" backgroundColor="black" transparent="1" foregroundColor="#ffffff" />
+        <widget name="label3" position="762,639" size="411,99" zPosition="1" halign="center" font="dugme;28" backgroundColor="black" transparent="1" foregroundColor="#ffffff" />
         <widget name="label4" position="13,632" size="298,55" zPosition="1" halign="center" font="dugme;28" backgroundColor="black" transparent="1" foregroundColor="#ffffff" />
         <widget name="label5" position="13,686" size="298,48" zPosition="1" halign="center" font="dugme;28" backgroundColor="black" transparent="1" foregroundColor="#ffffff" />
-        <widget name="label6" position="311,656" size="310,60" zPosition="1" halign="center" font="dugme;28" backgroundColor="black" transparent="1" foregroundColor="red" />
+        <widget name="label6" position="314,659" size="440,55" zPosition="1" halign="center" font="dugme;38" backgroundColor="black" transparent="1" foregroundColor="red" />
         <widget name="config" position="15,285" size="641,329" font="dugme; 28" itemHeight="42" scrollbarMode="showOnDemand" />
         <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/redcor.png" position="48,812" size="140,28" alphatest="on" />
         <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/greencor.png" position="311,816" size="185,28" alphatest="on" />
