@@ -922,12 +922,12 @@ class NeoBootImageChoose(Screen):
                 if fileExists('/tmp/img.sh'):
                     cmd2 = 'chmod -R +x /tmp/img.sh; /tmp/img.sh; sleep 2; rm /tmp/img.sh'
                     system(cmd2)
-                if not fileExists('/usr/lib/enigma2/python/Plugins/Extensions/ImageDownloader/plugin.py'):
+                if not fileExists('/usr/lib/enigma2/python/Plugins/Extensions/ImageDownloader/plugin.py') and fileExists('/usr/bin/curl'):
                     os.system('cd /tmp; curl -O --ftp-ssl -k http://read.cba.pl/box/plugin/enigma2-plugin-extensions-imagedownloader_all.ipk')
                     if fileExists('/tmp/enigma2-plugin-extensions-imagedownloader_all.ipk'):                    
                         cmd2 = 'opkg install --force-overwrite --force-reinstall --force-downgrade /tmp/enigma2-plugin-extensions-imagedownloader_all.ipk; rm /tmp/enigma2-plugin-extensions-imagedownloader_all.ipk'
                         system(cmd2)
-                if not fileExists('/usr/lib/enigma2/python/Plugins/Extensions/ImageDownloader/plugin.py'):
+                if not fileExists('/usr/lib/enigma2/python/Plugins/Extensions/ImageDownloader/plugin.py') and fileExists('/usr/bin/curl'):
                         os.system('cd /tmp; curl -O --ftp-ssl -k http://read.cba.pl/box/plugin/enigma2-plugin-extensions-imagedownloader_all.ipk')                      
                         cmd3 = 'cd /tmp; ar x enigma2-plugin-extensions-imagedownloader_all.ipk; rm -rf control.tar.gz; rm -rf *.ipk; rm -rf debian-binary; /bin/tar -xzvf /tmp/*.tar.gz -C /; rm -fr /tmp/*.tar.gz'
                         system(cmd3)                        
