@@ -1,6 +1,5 @@
-![Screen](https://user-images.githubusercontent.com/4014580/203555818-c8c947aa-6e35-4535-a43a-2e486461a08a.jpg)
 # neoboot
-![2](https://user-images.githubusercontent.com/4014580/155754031-3bf30776-e161-467f-9717-ee9cc93bb72c.jpg)
+
 In version 9.49, tests have been added for the Dreambox MIPS receiver. 
 OpenPLi recommended in flash. For dreambox only openpli-based images work.
 To install NeoBOOT on a receiver with a small amount of flash memory, such as the DM500HD, you need to free up some space by uninstalling the plugins.
@@ -77,6 +76,9 @@ You carry out installation and modification at your own risk !!! Before installi
 Thanks to all colleagues who support the neoboot project.
 
 greetings gutosie
+
+![2](https://user-images.githubusercontent.com/4014580/155754031-3bf30776-e161-467f-9717-ee9cc93bb72c.jpg)
+![Screen](https://user-images.githubusercontent.com/4014580/203556626-c54fc55d-3eff-4ff8-a15c-b8e5d154edc9.jpg)
 
     ----------------Free donate----------------   
                     ¯\_(ツ)_/¯ 
