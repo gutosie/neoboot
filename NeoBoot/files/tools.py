@@ -155,7 +155,9 @@ class MBTools(Screen):
     def updateList(self):
         self.list = []
         mypath = '' + LinkNeoBoot + ''
-        if not fileExists('/tmp/.testneo') and getCheckActivateVip() == getBoxMacAddres() and fileExists('/usr/lib/periodon/.kodn'):        
+        if not fileExists('/tmp/.testneo') and getCheckActivateVip() == getBoxMacAddres() and fileExists('/usr/lib/periodon/.kodn') and not fileExists('/etc/.nameneo '):      
+            os.system(("chattr -i /usr/lib/periodon/.activatedmac; mv /tmp/.mymac /usr/lib/periodon/.activatedmac; chattr +i /usr/lib/periodon/.activatedmac; touch /tmp/.testneo "))
+        elif not fileExists('/tmp/.testneo') and fileExists('/usr/lib/periodon/.kodn') and fileExists('/etc/.nameneo '):
             os.system(("chattr -i /usr/lib/periodon/.activatedmac; mv /tmp/.mymac /usr/lib/periodon/.activatedmac; chattr +i /usr/lib/periodon/.activatedmac; touch /tmp/.testneo "))
         if not fileExists(mypath + 'icons'):
             mypixmap = '' + LinkNeoBoot + '/images/ok.png'
