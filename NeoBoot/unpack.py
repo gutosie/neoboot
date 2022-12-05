@@ -119,6 +119,10 @@ class InstallImage(Screen, ConfigListScreen):
                 fn = fn.replace('.tar.bz2', '')
                 sourcelist.append((fn, fn))
                 continue
+            if fn.find('.tar') != -1:
+                fn = fn.replace('.tar', '')
+                sourcelist.append((fn, fn))
+                continue                 
             if fn.find('.mb') != -1:
                 fn = fn.replace('.mb', '')
                 sourcelist.append((fn, fn))
