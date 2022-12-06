@@ -903,6 +903,33 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
     sourcefile2 = media + '/ImagesUpload/%s.nfi' % source
     sourcefile3 = media + '/ImagesUpload/%s.rar' % source
     sourcefile4 = media + '/ImagesUpload/%s.gz' % source
+    
+    #Instalacja *.tar.*
+    if getCPUtype() != 'ARMv7':
+        fn = 'NewImage'
+        sourcelist = []
+        for fn in os.listdir('%sImagesUpload' % getNeoLocation()):
+            os.system('touch /tmp/root_jffs2')
+            if fn.find('.tar.xz') != -1:
+                os.system('echo "Installing the file .tar.xz in progress..."')                
+                os.system('mv ' + getNeoLocation() + 'ImagesUpload/' + source + '.tar.xz  ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.xz')
+                cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.xz; tar -xf ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.xz -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
+                rc = os.system(cmd)           
+                rc = os.system('rm -r ' + getNeoLocation() + '/ImagesUpload/rootfs.tar.xz')
+
+            elif fn.find('.tar.gz') != -1:
+                os.system('echo "Installing the file tar.gz in progress..."')
+                os.system('mv ' + getNeoLocation() + 'ImagesUpload/' + source + '.tar.gz  ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.gz')
+                cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.gz; /bin/tar -xzvf ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.gz -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
+                rc = os.system(cmd)
+                rc = os.system('rm -r ' + getNeoLocation() + '/ImagesUpload/rootfs.tar.gz')
+                
+            elif fn.find('.tar') != -1:
+                os.system('echo "Installing the file tar in progress..."')    
+                os.system('mv ' + getNeoLocation() + 'ImagesUpload/' + source + ' ' + getNeoLocation() + 'ImagesUpload/rootfs.tar')
+                cmd = '/bin/tar -xvf ' + getNeoLocation() + 'ImagesUpload/rootfs.tar -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
+                rc = os.system(cmd)
+                rc = os.system('rm -r ' + getNeoLocation() + '/ImagesUpload/rootfs.tar')    
 
     #Instalacja *.nfi
     if os.path.exists(sourcefile2) is True:
