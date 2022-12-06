@@ -1572,6 +1572,9 @@ class NeoBootImageChoose(Screen):
                 break
             if fil.endswith(".tar"):
                 images = True
+                break
+            if fil.endswith(".tar.gz"):
+                images = True
                 break                
             if fil.endswith(".nfi"):
                 images = True
