@@ -321,7 +321,8 @@ else
 	                /bin/umount /media/hdd > /dev/null 2>&1
 				    echo -n " FATAL ERROR - Back to image Flash...\n<<<END INIT INFO Rebooting...>>>" >> $neoLOG
                     echo -n "<<<END INIT INFO Rebooting...>>>"
-				    ln -sfn /sbin/init.sysvinit /sbin/init
+				    ln -sfn /sbin/init.sysvinit /sbin/init 
+				    sleep 20
 		            reboot -d -f
 
 			fi
