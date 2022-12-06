@@ -301,6 +301,10 @@ else
                     echo " start file - init.sysvinit" >> $neoLOG
             	    exec /usr/sbin/chroot `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/$TARGET /sbin/init
 					echo "====================================================> "
+			elif [ -f `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/$TARGET/lib/systemd/systemd ]; then
+                    echo " start file - init.sysvinit" >> $neoLOG
+            	    exec /usr/sbin/chroot `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/$TARGET /lib/systemd/systemd
+					echo "====================================================> "					
 			else
                     echo "                       NEOBOOT - ERROR !!!                                 "
                     echo "Not found correctly unpacked image "$TARGET" z partycji " $DEVICE
