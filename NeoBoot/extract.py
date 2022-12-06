@@ -669,6 +669,8 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
     if os.path.exists('%s/ImageBoot/%s/usr/lib' % (media, target)):
         cmd = 'cp -af /usr/lib/periodon ' + getNeoLocation() + 'ImageBoot/%s/usr/lib/' % target
         rc = os.system(cmd)
+        cmd = 'mkdir -p ' + getNeoLocation() + 'ImageBoot/%s/usr/lib/enigma2/python/Tools/' % target
+        rc = os.system(cmd)        
         cmd = 'cp -af /usr/lib/enigma2/python/Tools/Testinout.py ' + getNeoLocation() + 'ImageBoot/%s/usr/lib/enigma2/python/Tools/' % target
         rc = os.system(cmd)
     os.system('mkdir -p ' + media_target + '/media/hdd' + dev_null)
