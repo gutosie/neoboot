@@ -115,7 +115,11 @@ else
 			if [ -f $IMAGE/$TARGET/sbin/init.sysvinit ]; then                                    
                                     exec /usr/sbin/chroot $IMAGE/$TARGET /sbin/init.sysvinit 
 			elif [ -f $IMAGE/$TARGET/sbin/init ]; then                                    
-                                    exec /usr/sbin/chroot $IMAGE/$TARGET /sbin/init        
+                                    exec /usr/sbin/chroot $IMAGE/$TARGET /sbin/init
+			elif [ -f `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/$TARGET/lib/systemd/systemd ]; then
+                                    echo " start file - init.sysvinit" >> $neoLOG
+                                    exec /usr/sbin/chroot `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/$TARGET /lib/systemd/systemd
+                                    echo "====================================================> "				    
 			else
                                     echo " "
                                     echo "                       NEOBOOT - ERROR !!!                                 "
