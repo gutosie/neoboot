@@ -169,6 +169,14 @@ class ForceReboot(Screen):
             False
 
 def main(session, **kwargs):
+        if not fileExists('' + LinkNeoBoot + '/.location'):
+            pass
+        else:
+            if not fileExists('%sImageBoot/.version' % getNeoLocation()):
+                if fileExists('' + LinkNeoBoot + '/files/neo.sh'):
+                    os.system('chmod 0755 ' + LinkNeoBoot + '/files/neo.sh; ' + LinkNeoBoot + '/files/neo.sh')
+                    if not fileExists('%sImageBoot/.version' % getNeoLocation()):
+                        os.system('chmod 0755 ' + LinkNeoBoot + '/files/mountpoint.sh; ' + LinkNeoBoot + '/files/mountpoint.sh') 
         try:
             session.open(NBIChoose2)
         except:
