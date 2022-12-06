@@ -910,7 +910,7 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
     sourcefile4 = media + '/ImagesUpload/%s.gz' % source
     
     #Instalacja *.tar.*
-    if getCPUtype() != 'ARMv7':
+    if not os.path.exists('/tmp/xz-gz-tar'):
         fn = 'NewImage'
         sourcelist = []
         for fn in os.listdir('%sImagesUpload' % getNeoLocation()):
