@@ -315,6 +315,7 @@ else
                     echo -n "END INIT INFO Rebooting..."
 				    ln -sfn /sbin/init.sysvinit /sbin/init
 				    echo "====================================================> "
+				    sleep 20
 		            reboot -f
 			fi
 			exit 0
