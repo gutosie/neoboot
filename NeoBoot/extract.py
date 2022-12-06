@@ -888,7 +888,12 @@ def RemoveUnpackDirs():
     if os.path.exists('' + getNeoLocation() + 'ImagesUpload/gigablue'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/gigablue')
     if os.path.exists('' + getNeoLocation() + 'ImagesUpload/update_bootargs_h8'):
-        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/update_bootargs_h8')        
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/update_bootargs_h8')
+    #Finish
+    if os.path.exists('/tmp/root_jffs2'):
+        rc = os.system('rm -fr /tmp/root_jffs2')
+    if os.path.exists('/tmp/xz-gz-tar'):
+        rc = os.system('rm -fr /tmp/xz-gz-tar')
         
 def NEOBootExtract(source, target, ZipDelete, Nandsim):
     RemoveUnpackDirs()
@@ -898,7 +903,7 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
         os.system('rm -f ' + getNeoLocation() + 'ImageBoot/.without_copying')
     if os.path.exists('' + getNeoLocation() + 'image_cache'):
         os.system('rm -rf ' + getNeoLocation() + 'image_cache')
-
+        
     sourcefile = media + '/ImagesUpload/%s.zip' % source
     sourcefile2 = media + '/ImagesUpload/%s.nfi' % source
     sourcefile3 = media + '/ImagesUpload/%s.rar' % source
@@ -910,27 +915,33 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
         sourcelist = []
         for fn in os.listdir('%sImagesUpload' % getNeoLocation()):
             os.system('touch /tmp/root_jffs2')
-            if fn.find('.tar.xz') != -1:
-                os.system('echo "Installing the file .tar.xz in progress..."')                
-                os.system('mv ' + getNeoLocation() + 'ImagesUpload/' + source + '.tar.xz  ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.xz')
-                cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.xz; tar -xf ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.xz -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
-                rc = os.system(cmd)           
-                rc = os.system('rm -r ' + getNeoLocation() + '/ImagesUpload/rootfs.tar.xz')
-
+            if fn.find('.tar.xz') != -1: 
+                if not os.path.exists('/tmp/xz-gz-tar'):
+                    os.system('touch /tmp/xz-gz-tar')
+                    os.system('echo "Installing the file .tar.xz in progress..."')
+                    os.system('mv ' + getNeoLocation() + 'ImagesUpload/' + source + '.tar.xz  ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.xz')
+                    cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.xz; tar -xf ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.xz -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
+                    rc = os.system(cmd)
+                    rc = os.system('rm -r ' + getNeoLocation() + '/ImagesUpload/rootfs.tar.xz')
             elif fn.find('.tar.gz') != -1:
-                os.system('echo "Installing the file tar.gz in progress..."')
-                os.system('mv ' + getNeoLocation() + 'ImagesUpload/' + source + '.tar.gz  ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.gz')
-                cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.gz; /bin/tar -xzvf ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.gz -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
-                rc = os.system(cmd)
-                rc = os.system('rm -r ' + getNeoLocation() + '/ImagesUpload/rootfs.tar.gz')
-                
+                if not os.path.exists('/tmp/xz-gz-tar'):
+                    os.system('touch /tmp/xz-gz-tar')
+                    os.system('echo "Installing the file tar.gz in progress..."')
+                    os.system('mv ' + getNeoLocation() + 'ImagesUpload/' + source + '.tar.gz  ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.gz')
+                    cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.gz; /bin/tar -xzvf ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.gz -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
+                    rc = os.system(cmd)
+                    rc = os.system('rm -r ' + getNeoLocation() + '/ImagesUpload/rootfs.tar.gz')
             elif fn.find('.tar') != -1:
-                os.system('echo "Installing the file tar in progress..."')    
-                os.system('mv ' + getNeoLocation() + 'ImagesUpload/' + source + ' ' + getNeoLocation() + 'ImagesUpload/rootfs.tar')
-                cmd = '/bin/tar -xvf ' + getNeoLocation() + 'ImagesUpload/rootfs.tar -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
-                rc = os.system(cmd)
-                rc = os.system('rm -r ' + getNeoLocation() + '/ImagesUpload/rootfs.tar')    
-
+                if not os.path.exists('/tmp/xz-gz-tar'):
+                    os.system('touch /tmp/xz-gz-tar')
+                    os.system('echo "Installing the file tar in progress..."')
+                    os.system('mv ' + getNeoLocation() + 'ImagesUpload/' + source + ' ' + getNeoLocation() + 'ImagesUpload/rootfs.tar')
+                    cmd = '/bin/tar -xvf ' + getNeoLocation() + 'ImagesUpload/rootfs.tar -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
+                    rc = os.system(cmd)
+                    rc = os.system('rm -r ' + getNeoLocation() + '/ImagesUpload/rootfs.tar')
+            else:
+                os.system('echo "NeoBoot installing image  %s  "' % source)
+                
     #Instalacja *.nfi
     if os.path.exists(sourcefile2) is True:
         if sourcefile2.endswith('.nfi'):
