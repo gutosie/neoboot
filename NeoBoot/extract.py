@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
+
 from __future__ import print_function
 import sys
 import os
@@ -846,13 +847,7 @@ def RemoveUnpackDirs():
         rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/apploader.bin ' + getNeoLocation() + 'ImagesUpload/gigablue')
         rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/bootargs.bin ' + getNeoLocation() + 'ImagesUpload/gigablue')
         rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/fastboot.bin ' + getNeoLocation() + 'ImagesUpload/gigablue')
-        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/gigablue')
-    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/rootfs.tar.gz'):
-        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.gz')
-    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/rootfs.tar.xz'):
-        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.xz')
-    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/rootfs.tar.bz2'):
-        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.bz2')
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/gigablue')    
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/et10000'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/et10000')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/vs1000'):
@@ -870,7 +865,15 @@ def RemoveUnpackDirs():
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/xpeedlx'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/xpeedlx')        
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/dm520'):
-        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/dm520')        
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/dm520')
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/rootfs.tar.gz'):
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.gz')
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/rootfs.tar.xz'):
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.xz')
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/rootfs.tar.bz2'):
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.bz2')
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/rootfs.tar'):
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/rootfs.tar')        
     if os.path.exists('' + getNeoLocation() + 'ImagesUpload/unforce_h9combo.txt'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/unforce_h9combo.txt')
     if os.path.exists('' + getNeoLocation() + 'ImagesUpload/imageversion'):
@@ -1745,39 +1748,39 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
             os.system('echo "Please wait. System installation VIMASTEC VS1500 4K"')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/vs1500; tar -jxf ' + getNeoLocation() + 'ImagesUpload/vs1500/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd)
-        elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/' + source + '.tar.xz'):
-            os.system('echo "Please wait. System installation spakowanego w plik tar.xz w toku..."')
-            os.system('cp -af ' + getNeoLocation() + 'ImagesUpload/' + source + '.tar.xz  ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.xz')
-            cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.xz; tar -jjxf ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.xz -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
-            rc = os.system(cmd)
-        elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/' + source + '.tar.gz'):
-            os.system('echo "Please wait. System installation spakowanego w plik tar.gz w toku..."')
-            os.system('cp -af ' + getNeoLocation() + 'ImagesUpload/' + source + '.tar.gz  ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.gz')
-            cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.gz; /bin/tar -xzvf ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.gz -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
-            rc = os.system(cmd)
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/' + source + '.tar.bz2'):
             os.system('echo "Please wait. System installation spakowanego w plik tar.bz2 w toku..."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.bz2; tar -jxf ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd)
-        elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/rootfs.tar.bz2'):
-            os.system('echo "Please wait. System installation spakowanego w plik tar.bz2 w toku..."')
-            cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.bz2; tar -jxf ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
-            rc = os.system(cmd)
-            
-        elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/' + source + '.mb'):
+        if not os.path.exists('/tmp/xz-gz-tar'):
+            if os.path.exists('' + getNeoLocation() + 'ImagesUpload/' + source + '.tar.xz'):
+                os.system('echo "Please wait. System installation spakowanego w plik tar.xz w toku..."')
+                os.system('cp -af ' + getNeoLocation() + 'ImagesUpload/' + source + '.tar.xz  ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.xz')
+                cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.xz; tar -xf ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.xz -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
+                rc = os.system(cmd)
+            elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/' + source + '.tar.gz'):
+                os.system('echo "Please wait. System installation spakowanego w plik tar.gz w toku..."')
+                os.system('cp -af ' + getNeoLocation() + 'ImagesUpload/' + source + '.tar.gz  ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.gz')
+                cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.gz; /bin/tar -xzvf ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.gz -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
+                rc = os.system(cmd)
+            elif '.gz' in sourcefile4:
+                os.system('cp -af ' + getNeoLocation() + 'ImagesUpload/' + sourcefile4 + '  ' + getNeoLocation() + 'ImagesUpload/rootfs.tar')
+                cmd = '/bin/tar -xvf ' + getNeoLocation() + 'ImagesUpload/' + sourcefile4 + '.tar -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
+                rc = os.system(cmd)
+                cmd = 'rm -rf ' + getNeoLocation() + 'ImagesUpload/' + sourcefile4 + ' '  ' > /dev/null 2>&1'
+                rc = os.system(cmd)
+                cmd = 'rm -f ' + getNeoLocation() + 'ImagesUpload/*.jpg '  ' > /dev/null 2>&1'
+                rc = os.system(cmd)
+        if not os.path.exists('/tmp/xz-gz-tar'):
+            if os.path.exists('' + getNeoLocation() + 'ImagesUpload/rootfs.tar.bz2'):
+                os.system('echo "Please wait. System installation spakowanego w plik tar.bz2 w toku..."')
+                cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.bz2; tar -jxf ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
+                rc = os.system(cmd)
+        if os.path.exists('' + getNeoLocation() + 'ImagesUpload/' + source + '.mb'):
             os.system('echo "Please wait. System installation spakowanego w plik .mb w toku..."')
             os.system('cp -af ' + getNeoLocation() + 'ImagesUpload/' + source + '.mb  ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.gz')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/*.tar.gz; tar -xzvf ' + getNeoLocation() + 'ImagesUpload/*.tar.gz -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd)
-        elif '.gz' in sourcefile4:
-            os.system('cp -af ' + getNeoLocation() + 'ImagesUpload/*.tar.gz  ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.gz')
-            cmd = '/bin/tar -xzvf ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.gz -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
-            rc = os.system(cmd)
-            if '.gz' in sourcefile4:
-                cmd = 'rm -rf ' + getNeoLocation() + 'ImagesUpload/*.gz '  ' > /dev/null 2>&1'
-                rc = os.system(cmd)
-                cmd = 'rm -f ' + getNeoLocation() + 'ImagesUpload/*.jpg '  ' > /dev/null 2>&1'
-                rc = os.system(cmd)
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/rootfs.bin'):
             os.chdir('ImagesUpload')
             os.system('mv -f rootfs.bin rootfs.bin')
