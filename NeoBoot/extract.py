@@ -70,6 +70,10 @@ def getCPUtype():
 
 
 def getKernelVersion():
+    if not os.path.exists('/tmp/.isnandsim'):
+        if os.system('opkg list-installed | grep kernel-module-nandsim') != 0:
+            os.system('touch /tmp/.isnandsim')
+            
     if os.path.exists('' + getNeoLocation() + 'ImagesUpload/dm520') or os.path.exists('' + getNeoLocation() + 'ImagesUpload/dm525') :
         try:
             result = popen('uname -r', 'r').read().strip('\n').split('-')
@@ -981,15 +985,20 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
         rc = os.system(cmd)
         rootfname = 'rootfs.bin'
         brand = ''
+        
         #NANDSIM
-        if Nandsim == 'True' and os.path.exists('/lib/modules/%s/kernel/drivers/mtd/nand/nandsim.ko' % getKernelVersion()):
+        #if Nandsim == 'True' and os.path.exists('/lib/modules/%s/kernel/drivers/mtd/nand/nandsim.ko' % getKernelVersion()):
+        if not os.path.exists('/lib/modules/%s/kernel/drivers/mtd/nand/nandsim.ko' % getKernelVersion()):
+            os.system('cp -r /lib/modules/*/kernel/drivers/mtd/nand/nandsim.ko /tmp')
+            
+        if Nandsim == 'True' or os.path.exists('/tmp/.isnandsim') or os.path.exists('/lib/modules/%s/kernel/drivers/mtd/nand/nandsim.ko' % getKernelVersion()):            
             for i in range(0, 20):
                     mtdfile = '/dev/mtd' + str(i)
                     if os.path.exists(mtdfile) is False:
                         break
-
             mtd = str(i)
             os.chdir(media + '/ImagesUpload')
+            
             #zgemma
             if os.path.exists('' + getNeoLocation() + 'ImagesUpload/zgemma'):
                 os.chdir('zgemma')
@@ -1158,15 +1167,20 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
                 brand = 'xp1000'
                 
             #Dreambox 
-            if os.path.exists('' + getNeoLocation() + 'ImagesUpload/dm520') and not os.path.exists('/tmp/dm_image'):           
-                os.system('touch /tmp/dm_image; echo "If the image installation failed, try disabling the use of nandsim installation"')
+            if os.path.exists('' + getNeoLocation() + 'ImagesUpload/dm520') and not os.path.exists('/tmp/dm_image'):
+                os.system('touch /tmp/dm_image')
                 os.chdir('dm520')
                 brand = 'dm520'
                 rootfname = 'rootfs.bin'
                 
             #Instalacja image nandsim
             os.system('echo "Instalacja - nandsim w toku..."')
-            rc = os.system('insmod /lib/modules/' + getKernelVersion() + '/kernel/drivers/mtd/nand/nandsim.ko cache_file=' + getNeoLocation() + 'image_cache first_id_byte=0x20 second_id_byte=0xaa third_id_byte=0x00 fourth_id_byte=0x15;sleep 5')#% getKernelVersion())
+            os.system('echo "If the image installation failed, try disabling the use of nandsim installation"')
+            #rc = os.system('insmod /lib/modules/' + getKernelVersion() + '/kernel/drivers/mtd/nand/nandsim.ko cache_file=' + getNeoLocation() + 'image_cache first_id_byte=0x20 second_id_byte=0xaa third_id_byte=0x00 fourth_id_byte=0x15;sleep 5')#% getKernelVersion())
+            if not os.path.exists('/lib/modules/%s/kernel/drivers/mtd/nand/nandsim.ko' % getKernelVersion()):         
+                rc = os.system('insmod /tmp/nandsim.ko cache_file=' + getNeoLocation() + 'image_cache first_id_byte=0x20 second_id_byte=0xaa third_id_byte=0x00 fourth_id_byte=0x15;sleep 5')#% getKernelVersion())
+            else:
+                rc = os.system('insmod /lib/modules/' + getKernelVersion() + '/kernel/drivers/mtd/nand/nandsim.ko cache_file=' + getNeoLocation() + 'image_cache first_id_byte=0x20 second_id_byte=0xaa third_id_byte=0x00 fourth_id_byte=0x15;sleep 5')#% getKernelVersion())
             cmd = 'dd if=%s of=/dev/mtdblock%s bs=2048' % (rootfname, mtd)
             rc = os.system(cmd)
             cmd = 'ubiattach /dev/ubi_ctrl -m %s -O 2048' % mtd
@@ -1180,6 +1194,8 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
             rc = os.system(cmd)
             rc = os.system('rmmod nandsim')
             rc = os.system('rm ' + getNeoLocation() + 'image_cache')
+            if os.path.exists('/tmp/dm_image') and os.path.exists('%s/ImageBoot/%s/etc/issue' % (media, target)):
+                        os.system('rm -f /tmp/dm_image')            
 
             if '.tar.xz' not in source and not os.path.exists('%s/ImageBoot/%s/etc/issue' % (media, target)):
                 os.system("echo 3 > /proc/sys/vm/drop_caches")
@@ -1187,6 +1203,8 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
                 os.system('echo "By uzyc innego narzedzia do rozpakowania image, ponow instalacje image jeszcze raz po restarcie tunera."')
                 os.system('echo "RESTART ZA 15 sekund..."')
                 os.system('rm -r %s/ImageBoot/%s' % (media, target))
+                if os.path.exists('/tmp/dm_image'):
+                        os.system('rm -f /tmp/dm_image')                
                 os.system('sleep 5; init 4; sleep 5; init 3 ')
 
         #UBI_READER
