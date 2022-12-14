@@ -71,17 +71,21 @@ def getCPUtype():
 
 def getKernelVersion():
     if os.path.exists('' + getNeoLocation() + 'ImagesUpload/dm520') or os.path.exists('' + getNeoLocation() + 'ImagesUpload/dm525') :
-            result = open('uname -r', 'r').read().strip('\n').split('-')
+        try:
+            result = popen('uname -r', 'r').read().strip('\n').split('-')
             kernel_version = result[0]
             return kernel_version
+        except:
+            os.system('uname -r > /tmp/.uname_r') 
+            return open('/tmp/.uname_r').read().strip().upper()
     else:                        
         try:
             return open('/proc/version', 'r').read().split(' ', 4)[2].split('-', 2)[0]
         except:
             os.system('uname -r > /tmp/.uname_r') 
             return open('/tmp/.uname_r').read().strip().upper()
-
-
+        
+        
 def getNeoLocation():
     locatino = 'UNKNOWN'
     if os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location'):
