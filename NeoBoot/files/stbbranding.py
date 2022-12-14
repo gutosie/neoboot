@@ -576,7 +576,7 @@ def getImageDistroN():
 
 def getKernelVersionString():
     try:
-        result = popen('uname -r', 'r').read().strip('\n').split('-')
+        result = open('uname -r', 'r').read().strip('\n').split('-')
         kernel_version = result[0]
         return kernel_version
     except:
