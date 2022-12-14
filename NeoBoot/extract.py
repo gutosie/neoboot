@@ -1377,8 +1377,8 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
                 if os.path.exists('' + getNeoLocation() + 'ImagesUpload/vs1000'):
                     os.chdir('vs1000')
                 #Dreambox                   
-                if os.path.exists('' + getNeoLocation() + 'ImagesUpload/odm520'):
-                    os.chdir('odm520')                    
+                if os.path.exists('' + getNeoLocation() + 'ImagesUpload/dm520'):
+                    os.chdir('dm520')                    
 
                 #Instalacja image ubi_reader
                 os.system('echo "Instalacja - ubi_reader w toku..."')
