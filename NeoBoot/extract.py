@@ -897,7 +897,9 @@ def RemoveUnpackDirs():
         rc = os.system('rm -fr /tmp/root_jffs2')
     if os.path.exists('/tmp/xz-gz-tar'):
         rc = os.system('rm -fr /tmp/xz-gz-tar')
-        
+    if os.path.exists('/tmp/other_image'):
+        rc = os.system('rm -fr /tmp/other_image')        
+
 def NEOBootExtract(source, target, ZipDelete, Nandsim):
     RemoveUnpackDirs()
     os.system('echo "Press green to hide Console or red to abort the installation\nInstallation started:"; date +%T;echo "Extracting the installation file..."')
