@@ -1739,8 +1739,10 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
                     if not os.path.exists('/tmp/xz-gz-tar'):
                         os.system('touch /tmp/xz-gz-tar')                 
                         os.system('echo "Installing the file rootfs.tar.xz in progress..."')
-                        #os.system('mv ' + getNeoLocation() + 'ImagesUpload/' + source + '.rootfs.tar.xz  ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.xz')
-                        os.system('mv ' + getNeoLocation() + 'ImagesUpload/*rootfs.tar.xz  ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.xz')
+                        cmd = 'mv ' + getNeoLocation() + 'ImagesUpload/' + source + '.rootfs.tar.xz  ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.xz > /dev/null 2>&1'
+                        rc = os.system(cmd) 
+                        cmd1 = 'mv ' + getNeoLocation() + 'ImagesUpload/*rootfs.tar.xz  ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.xz > /dev/null 2>&1'
+                        rc = os.system(cmd1)
                         cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.xz; tar -xf ' + getNeoLocation() + 'ImagesUpload/rootfs.tar.xz -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
                         rc = os.system(cmd)
                         rc = os.system('rm -r ' + getNeoLocation() + '/ImagesUpload/rootfs.tar.xz')
