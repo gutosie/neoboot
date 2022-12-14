@@ -71,7 +71,7 @@ def getCPUtype():
 
 def getKernelVersion():
     if not os.path.exists('/tmp/.isnandsim'):
-        if os.system('opkg list-installed | grep kernel-module-nandsim') != 0:
+        if os.system('opkg list-installed | grep kernel-module-nandsim' + dev_null) != 0:
             os.system('touch /tmp/.isnandsim')
             
     if os.path.exists('' + getNeoLocation() + 'ImagesUpload/dm520') or os.path.exists('' + getNeoLocation() + 'ImagesUpload/dm525') :
