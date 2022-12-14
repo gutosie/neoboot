@@ -1148,6 +1148,7 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
                 rootfname = 'rootfs.bin'
             #Dreambox
             if os.path.exists('' + getNeoLocation() + 'ImagesUpload/dm520'):
+                os.system('echo "If the image installation failed, try disabling the use of nandsim installation"')
                 os.chdir('dm520')
                 brand = 'dm520'
                 rootfname = 'rootfs.bin'
@@ -1389,7 +1390,10 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
                 cmd = 'python ' + extensions_path + 'NeoBoot/ubi_reader/ubi_extract_files.py rootfs.bin -o' + getNeoLocation() + 'ubi'
                 rc = os.system(cmd)
                 os.chdir('/home/root')
-                os.system('mv ' + getNeoLocation() + 'ubi/rootfs/* ' + getNeoLocation() + 'ImageBoot/%s/' % target)
+                if os.path.exists('' + getNeoLocation() + 'ubi/dreambox-rootfs '):                
+                    os.system('mv ' + getNeoLocation() + 'ubi/dreambox-rootfs/* ' + getNeoLocation() + 'ImageBoot/%s/' % target)
+                else:                
+                    os.system('mv ' + getNeoLocation() + 'ubi/rootfs/* ' + getNeoLocation() + 'ImageBoot/%s/' % target)                
                 cmd = 'chmod -R +x ' + getNeoLocation() + 'ImageBoot/' + target
                 rc = os.system(cmd)
 
