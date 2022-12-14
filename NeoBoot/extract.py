@@ -1146,19 +1146,20 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
                 os.chdir('vs1000')
                 brand = 'vs1000'
                 rootfname = 'rootfs.bin'
-            #Dreambox
-            if os.path.exists('' + getNeoLocation() + 'ImagesUpload/dm520'):
-                os.system('echo "If the image installation failed, try disabling the use of nandsim installation"')
-                os.chdir('dm520')
-                brand = 'dm520'
-                rootfname = 'rootfs.bin'
             #
             if os.path.exists('' + getNeoLocation() + 'ImagesUpload/sf3038'):
                 os.chdir('sf3038')                
             if os.path.exists('' + getNeoLocation() + 'ImagesUpload/xp1000'):
                 os.chdir('xp1000')
-                brand = 'xp1000'  
-
+                brand = 'xp1000'
+                
+            #Dreambox 
+            if os.path.exists('' + getNeoLocation() + 'ImagesUpload/dm520') and not os.path.exists('/tmp/dm_image'):           
+                os.system('touch /tmp/dm_image; echo "If the image installation failed, try disabling the use of nandsim installation"')
+                os.chdir('dm520')
+                brand = 'dm520'
+                rootfname = 'rootfs.bin'
+                
             #Instalacja image nandsim
             os.system('echo "Instalacja - nandsim w toku..."')
             rc = os.system('insmod /lib/modules/' + getKernelVersion() + '/kernel/drivers/mtd/nand/nandsim.ko cache_file=' + getNeoLocation() + 'image_cache first_id_byte=0x20 second_id_byte=0xaa third_id_byte=0x00 fourth_id_byte=0x15;sleep 5')#% getKernelVersion())
@@ -1379,6 +1380,8 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
                     os.chdir('vs1000')
                 #Dreambox                   
                 if os.path.exists('' + getNeoLocation() + 'ImagesUpload/dm520'):
+                    if os.path.exists('/tmp/dm_image'):
+                        os.system('rm -f /tmp/dm_image')                    
                     os.chdir('dm520')                    
 
                 #Instalacja image ubi_reader
