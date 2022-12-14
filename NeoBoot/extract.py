@@ -952,8 +952,18 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
     fn = 'NewImage'
     sourcelist = []
     for fn in os.listdir('%sImagesUpload' % getNeoLocation()):
-                if fn.find('.rootfs.tar.xz') != -1 or fn.find('.tar.xz') or fn.find('.tar.bz2') or fn.find('.tar.gz') or fn.find('.tar') or fn.find('.gz'):
-                    os.system('touch /tmp/other_image')            
+                if fn.find('.rootfs.tar.xz') != -1:
+                                    os.system('touch /tmp/other_image')
+                elif fn.find('.tar.xz') != -1:
+                                    os.system('touch /tmp/other_image') 
+                elif fn.find('.tar.bz2') != -1:
+                                    os.system('touch /tmp/other_image') 
+                elif fn.find('.tar.gz') != -1:
+                                    os.system('touch /tmp/other_image') 
+                elif fn.find('.tar') != -1:
+                                    os.system('touch /tmp/other_image') 
+                elif fn.find('.gz') != -1:
+                                    os.system('touch /tmp/other_image')           
 
     #Instalacja MIPS
     if getCPUtype() == 'MIPS' and not os.path.exists('/tmp/root_jffs2') and not os.path.exists('/tmp/other_image'):
@@ -1732,7 +1742,7 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
             os.system('echo "NeoBoot wykrył błąd!!! Prawdopodobnie brak pliku instalacyjnego."')
             
     #Instalacja other image:
-    if not os.path.exists('/tmp/xz-gz-tar'):
+    elif not os.path.exists('/tmp/xz-gz-tar'):
         fn = 'NewImage'
         sourcelist = []
         for fn in os.listdir('%sImagesUpload' % getNeoLocation()):
