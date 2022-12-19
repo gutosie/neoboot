@@ -117,7 +117,7 @@ class StartImage(Screen):
                 if getBoxVuModel() == "uno4kse" or getBoxVuModel() == "uno4k" or getBoxVuModel() == "ultimo4k" or getBoxVuModel() == "solo4k":
                     os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p4 /media/InternalFlash')
                 elif getBoxVuModel() == 'duo4kse' or getBoxVuModel() == 'duo4k':
-                    os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p9 /media/InternalFlash')
+                    os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p6 /media/InternalFlash')
                 elif getBoxVuModel() == 'zero4k':
                     os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p7 /media/InternalFlash')
                     
