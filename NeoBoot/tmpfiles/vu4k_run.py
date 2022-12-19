@@ -142,7 +142,7 @@ class StartImage(Screen):
                                         cmd1 = 'cd /media/InternalFlash; ln -sf "init.sysvinit" "/media/InternalFlash/sbin/init"'
                                         cmd2 = 'dd if=' + getNeoLocation() + 'ImagesUpload/.kernel/flash-kernel-' + getBoxHostName() + '.bin of=/dev/' + getMmcBlockDevice() + ''
                                         cmd3 = "echo -e '\n%s '" % _('Start image FLASH - kernel flash !\nSTB NAME: ' + getBoxHostName() + '\nMODEL: ' + getBoxVuModel() + '\nNeoBoot location:' + getNeoLocation() + '\nCPU: ' + getCPUSoC() + '\nImage boot: ' + getImageNeoBoot() + '\n____Your device will reboot in 5 seconds !____\n\n ------------ N E O B O O T ------------')
-                                        cmd4 = 'update-alternatives --remove vmlinux vmlinux-`uname -r` || true; cat /dev/mmcblk0p1 | grep "kernel"; echo "Used Kernel: " ' + getImageNeoBoot() + ' > ' + getNeoLocation() + 'ImagesUpload/.kernel/used_flash_kernel; sleep 8; reboot -d -f'
+                                        cmd4 = 'update-alternatives --remove vmlinux vmlinux-`uname -r` || true; cat /dev/' + getMmcBlockDevice() + ' | grep "kernel"; echo "Used Kernel: " ' + getImageNeoBoot() + ' > ' + getNeoLocation() + 'ImagesUpload/.kernel/used_flash_kernel; sleep 8; reboot -d -f'
                                 elif not fileExists("/.multinfo"):
                                         cmd = "echo -e '\n\n%s '" % _('...............NEOBOOT - REBOOT...............\nPlease wait, in a moment the decoder will be restarted...')
                                         cmd1 = 'sleep 5; ln -sf "init.sysvinit" "/sbin/init"'
