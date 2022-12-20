@@ -169,6 +169,11 @@ else
 	if [ $NEODEVICE = "/media/hdd/" ]; then
 	        /bin/mount /dev/sda1 /media/hdd > /dev/null 2>&1
 	fi
+		if [ $NEODEVICE = "/media/usb/" ]; then
+	        /bin/mount /dev/sdb1 /media/usb > /dev/null 2>&1
+	fi
+	#/bin/mount /dev/sda1 /media/hdd > /dev/null 2>&1
+	#/bin/mount /dev/sdb1 /media/usb > /dev/null 2>&1
 	if [ ! -e $NEODEVICE$IMAGEKATALOG ]; then
                 echo "Error mounting, Return to image Flash..."
                 sleep 2
@@ -249,19 +254,23 @@ else
                                     echo "----------------------------------------"                                                                                                                     
                                     exec /usr/sbin/chroot `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/$TARGET /sbin/init.sysvinit
 			elif [ -f `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/$TARGET/sbin/init ]; then                                    
-                                    exec /usr/sbin/chroot `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/$TARGET /sbin/init        
+                                    exec /usr/sbin/chroot `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/$TARGET /sbin/init
+			elif [ -f `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/$TARGET/lib/systemd/systemd ]; then
+                                    echo " start file - systemd" >> $neoLOG
+                                    exec /usr/sbin/chroot `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/$TARGET /lib/systemd/systemd
+					echo "====================================================> "        
 			else
-                                    echo " "                  
+                                    echo " " 
                                     echo "                       NEOBOOT - ERROR !!!                                 "
                                     echo "Not found correctly unpacked image "$TARGET" z partycji " $DEVICE
                                     echo "Check the correctness of unpacked catalogs in the selected one image.      "
                                     echo "                      Back to image Flash...                             "
-                                                                    
+
                                     /usr/bin/showiframe /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/error.mvi > /dev/null 2>&1
                                     sync; ln -sfn /sbin/init.sysvinit /sbin/init
                                     echo "Flash "  > `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/.neonextboot
                                     echo "Used Kernel: Reinstall kernel !"  > `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$UPLOAD/.kernel/used_flash_kernel
-                                    sleep 15; reboot -f
+                                    sleep 20; reboot -f
 
 			fi
 			exit 0
