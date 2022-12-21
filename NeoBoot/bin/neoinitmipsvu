@@ -2,7 +2,8 @@
 #script mod by gutosie
 #neo init mips 
 
-NEODEVICE=`cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`        
+NEODEVICE=`cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`
+INSTALLDEVICE=`cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/install`        
 IMAGEKATALOG=ImageBoot
 
 
@@ -170,9 +171,14 @@ else
 
 
 	TARGET=Flash
-	if [ $NEODEVICE = "/media/hdd/" ]; then
+	if [ $NEODEVICE = "/media/hdd/" ] && [ $INSTALLDEVICE = "/dev/sda1" ] ; then
 	        /bin/mount /dev/sda1 /media/hdd > /dev/null 2>&1
 	fi
+		if [ $NEODEVICE = "/media/usb/" ] && [ $INSTALLDEVICE = "/dev/sdb1" ] ; then
+	        /bin/mount /dev/sdb1 /media/usb > /dev/null 2>&1
+	fi
+	#/bin/mount /dev/sda1 /media/hdd > /dev/null 2>&1
+	#/bin/mount /dev/sdb1 /media/usb > /dev/null 2>&1
 	if [ -f `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/.neonextboot ]; then
 	  TARGET=`cat $NEODEVICE$IMAGEKATALOG/.neonextboot`
 	fi

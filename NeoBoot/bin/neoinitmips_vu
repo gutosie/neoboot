@@ -4,6 +4,7 @@ IMAGE=/media/neoboot/ImageBoot
 IMAGEBOOT=/media/neoboot/ImageBoot/.neonextboot          
 NEO=/media/neoboot
 NEOBOOT=/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot
+INSTALLDEVICE=`cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/install`
 MODPROBE=/sbin/modprobe
 BOXNAME=`cat /etc/hostname`
 FINDBOOT=/media/*/ImageBoot/.neonextboot
@@ -71,7 +72,17 @@ else
                   echo "Flash "  > $IMAGEBOOT
                   echo "Used Kernel: Reinstall kernel !"  > /media/neoboot/ImagesUpload/.kernel/used_flash_kernel
 		  reboot -f
-	fi    
+	fi
+	
+	if [ $NEODEVICE = "/media/hdd/" ] && [ $INSTALLDEVICE = "/dev/sda1" ] ; then
+	        /bin/mount /dev/sda1 /media/hdd > /dev/null 2>&1
+	fi
+		if [ $NEODEVICE = "/media/usb/" ] && [ $INSTALLDEVICE = "/dev/sdb1" ] ; then
+	        /bin/mount /dev/sdb1 /media/usb > /dev/null 2>&1
+	fi
+	#/bin/mount /dev/sda1 /media/hdd > /dev/null 2>&1
+	#/bin/mount /dev/sdb1 /media/usb > /dev/null 2>&1
+	
 	TARGET=Flash
 	if [ -f $IMAGEBOOT ]; then
 	  TARGET=`cat $IMAGEBOOT`
