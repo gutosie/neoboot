@@ -1686,47 +1686,47 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/update/lunix4k; tar -jxf ' + getNeoLocation() + 'ImagesUpload/update/lunix4k/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd)            
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/dinobot/u5'):
-            os.system('echo "Please wait. System installation dinobot w toku..."')
+            os.system('echo "Please wait. System installation dinobot u5 w toku..."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/dinobot/u5; tar -jxf ' + getNeoLocation() + 'ImagesUpload/dinobot/u5/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd)
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/dinobot/u51'):
-            os.system('echo "Please wait. System installation dinobot w toku..."')
+            os.system('echo "Please wait. System installation dinobot u51 w toku..."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/dinobot/u51; tar -jxf ' + getNeoLocation() + 'ImagesUpload/dinobot/u51/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd)            
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/dinobot/u53'):
-            os.system('echo "Please wait. System installation dinobot w toku..."')
+            os.system('echo "Please wait. System installation dinobot u53 w toku..."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/dinobot/u53; tar -jxf ' + getNeoLocation() + 'ImagesUpload/dinobot/u53/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd)
-        elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/dinobot/u55'):
-            os.system('echo "Please wait. System installation dinobot w toku..."')
+        elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/dinobot/u55/rootfs.tar.bz2'):
+            os.system('echo "Please wait. System installation dinobot u55 w toku..."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/dinobot/uu55; tar -jxf ' + getNeoLocation() + 'ImagesUpload/dinobot/u55/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd)
             
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/dinobot/u55'):
-            os.chdir('u55')
-            if os.path.exists('' + getNeoLocation() + 'ImagesUpload/dinobot/u55'):
-                os.chdir('u55')
-                os.system('echo "Instalacja - ubi_reader w toku..."')
-                print("[NeoBoot] Extracting UBIFS image and moving extracted image to our target")
-                cmd = 'chmod 777 ' + extensions_path + 'NeoBoot/ubi_reader/ubi_extract_files.py'
-                rc = os.system(cmd)
-                cmd = 'python ' + extensions_path + 'NeoBoot/ubi_reader/ubi_extract_files.py rootfs.bin -o ' + getNeoLocation() + 'ubi'
-                rc = os.system(cmd)
-                os.chdir('/home/root')
-                cmd = 'cp -af -p ' + getNeoLocation() + 'ubi/rootfs/* ' + getNeoLocation() + 'ImageBoot/' + target
-                rc = os.system(cmd)
-                cmd = 'chmod -R +x ' + getNeoLocation() + 'ImageBoot/' + target
-                rc = os.system(cmd)
-                cmd = 'rm -rf ' + getNeoLocation() + 'ubi'
-                rc = os.system(cmd)            
-            
-            
+            if os.path.exists('' + getNeoLocation() + 'ImagesUpload/dinobot'):
+                os.chdir('dinobot')
+                if os.path.exists('' + getNeoLocation() + 'ImagesUpload/dinobot/u55'):
+                    os.chdir('u55')
+                    os.system('echo "Instalacja - ubi_reader w toku..."')
+                    print("[NeoBoot] Extracting image HITUBE4k")
+                    cmd = 'chmod 777 ' + extensions_path + 'NeoBoot/ubi_reader/ubi_extract_files.py'
+                    rc = os.system(cmd)
+                    cmd = 'python ' + extensions_path + 'NeoBoot/ubi_reader/ubi_extract_files.py rootfs.bin -o ' + getNeoLocation() + 'ubi'
+                    rc = os.system(cmd)
+                    os.chdir('/home/root')
+                    cmd = 'cp -af -p ' + getNeoLocation() + 'ubi/rootfs/* ' + getNeoLocation() + 'ImageBoot/' + target
+                    rc = os.system(cmd)
+                    cmd = 'chmod -R +x ' + getNeoLocation() + 'ImageBoot/' + target
+                    rc = os.system(cmd)
+                    cmd = 'rm -rf ' + getNeoLocation() + 'ubi'
+                    rc = os.system(cmd)
+                    
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/dinobot/u5pvr'):
-            os.system('echo "Please wait. System installation dinobot w toku..."')
+            os.system('echo "Please wait. System installation dinobot u5pvr w toku..."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/dinobot/u5pvr; tar -jxf ' + getNeoLocation() + 'ImagesUpload/dinobot/u5pvr/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd)
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/dinobot/u57'):
-            os.system('echo "Please wait. System installation dinobot w toku..."')
+            os.system('echo "Please wait. System installation dinobot u57 w toku..."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/dinobot/u57; tar -jxf ' + getNeoLocation() + 'ImagesUpload/dinobot/u57/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd)
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/uclan/ustym4kpro'):
