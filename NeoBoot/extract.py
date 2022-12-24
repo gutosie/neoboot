@@ -1708,7 +1708,7 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
                 if os.path.exists('' + getNeoLocation() + 'ImagesUpload/dinobot/u55'):
                     os.chdir('u55')
                     os.system('echo "Instalacja - ubi_reader w toku..."')
-                    print("[NeoBoot] Extracting image HITUBE4k")
+                    os.system('echo "[NeoBoot] Extracting image HITUBE4k"')
                     cmd = 'chmod 777 ' + extensions_path + 'NeoBoot/ubi_reader/ubi_extract_files.py'
                     rc = os.system(cmd)
                     cmd = 'python ' + extensions_path + 'NeoBoot/ubi_reader/ubi_extract_files.py rootfs.bin -o ' + getNeoLocation() + 'ubi'
