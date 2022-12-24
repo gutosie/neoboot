@@ -67,7 +67,7 @@ if __name__ == '__main__':
             uubifs.log.log_file = log_file
             uubifs.log.log_to_file = log_to_file
             uubifs.log.quiet = quiet
-           #print "Wait almost over ...\nLoading the image to: %s" % vol_out_path
+           print "Wait almost over ...\nLoading the image to: %s" % vol_out_path
             extract_files(uubifs, vol_out_path, perms)
 
     sys.exit(0)
