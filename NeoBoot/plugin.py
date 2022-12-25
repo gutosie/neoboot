@@ -620,6 +620,7 @@ class NeoBootInstallation(Screen):
                     system('opkg update')
                     os.system('opkg install install --force-overwrite --force-reinstall python-subprocess')
                     os.system('opkg install install --force-overwrite --force-reinstall python-argparse')
+                    os.system('opkg install liblzo2-2')
                     os.system('opkg install curl')
                     if getCPUtype() == 'MIPS':
                         os.system('opkg install --force-overwrite --force-reinstall kernel-module-nandsim')
