@@ -1742,7 +1742,7 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/et1x000; tar -jxf ' + getNeoLocation() + 'ImagesUpload/et1x000/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd)
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/e2/update'):
-            os.system('echo "Please wait. System installation Ferguson Ariva 4K Combo w toku..."')
+            os.system('echo "Please wait. System installation..."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/e2/update; tar -jxf ' + getNeoLocation() + 'ImagesUpload/e2/update/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd)
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/beyonwiz/v2'):
