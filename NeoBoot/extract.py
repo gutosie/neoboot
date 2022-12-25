@@ -953,7 +953,7 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
 
     #Instalacja *.zip
     elif os.path.exists(sourcefile) is True:
-        os.system('unzip -f -o ' + sourcefile)
+        os.system('unzip -o ' + sourcefile)
         if ZipDelete == 'True':
             os.system('rm -rf ' + sourcefile)
             
