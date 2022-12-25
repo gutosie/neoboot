@@ -51,7 +51,7 @@ if [ ! -e /.multinfo ]; then
     rm -f /tmp/neoboot.zip
     [ -e /tmp/main.zip ] && rm -rf /tmp/main.zip
     if [ $BOXHOSTNAME = "dm500hd" ] || [ $BOXHOSTNAME = "dm800se" ] || [ $BOXHOSTNAME = "dm800" ] || [ $BOXHOSTNAME = "dm8000" ]; then
-        cp -af /tmp/neoboot-main/NeoBoot/tmpfiles/runpy/mips_run.py /tmp/neoboot-main/NeoBoot/run.py; rm -r /tmp/neoboot-main/NeoBoot/ubi_reader*;  rm -r /tmp/neoboot-main/NeoBoot/tmpfiles; rm -r /tmp/neoboot-main/NeoBoot/bin/neoinitar*;  rm -r /tmp/neoboot-main/NeoBoot/bin/nanddump*; rm -r /tmp/neoboot-main/NeoBoot/bin/fbcle*; rm -r /tmp/neoboot-main/NeoBoot/bin/neob*; rm -r /tmp/neoboot-main/NeoBoot/bin/nandwrite; rm -r /tmp/neoboot-main/NeoBoot/bin/neoinitmips_vu
+        cp -af /tmp/neoboot-main/NeoBoot/tmpfiles/mips_run.py /tmp/neoboot-main/NeoBoot/run.py; rm -r /tmp/neoboot-main/NeoBoot/ubi_reader*;  rm -r /tmp/neoboot-main/NeoBoot/tmpfiles; rm -r /tmp/neoboot-main/NeoBoot/bin/neoinitar*;  rm -r /tmp/neoboot-main/NeoBoot/bin/nanddump*; rm -r /tmp/neoboot-main/NeoBoot/bin/fbcle*; rm -r /tmp/neoboot-main/NeoBoot/bin/neob*; rm -r /tmp/neoboot-main/NeoBoot/bin/nandwrite; rm -r /tmp/neoboot-main/NeoBoot/bin/neoinitmips_vu
     fi
     #kopiowanie
     if [ -e $Cel/NeoBoot/.location ]; then 
