@@ -1884,7 +1884,9 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
                         cmd = 'rm -f ' + getNeoLocation() + 'ImagesUpload/*.jpg '  ' > /dev/null 2>&1'
                         rc = os.system(cmd)
     else:
-        os.system('echo "Image  %s  not installed  "' % source)            
+        os.system('echo "Image  %s  not installed  "' % source)
+        
+    RemoveUnpackDirs()        
 
     return
    
