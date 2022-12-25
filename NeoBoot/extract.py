@@ -980,7 +980,6 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
         to = '' + getNeoLocation() + 'ImageBoot/' + target
         cmd = 'mkdir %s > /dev/null 2<&1' % to
         rc = os.system(cmd)
-        to = '' + getNeoLocation() + 'ImageBoot/' + target
         cmd = 'chmod -R 0777 %s' % to
         rc = os.system(cmd)
         rootfname = 'rootfs.bin'
