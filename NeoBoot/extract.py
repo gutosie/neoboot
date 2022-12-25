@@ -1197,6 +1197,7 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
                         os.system('rm -f /tmp/dm_image')            
 
             if '.tar.xz' not in source and not os.path.exists('%s/ImageBoot/%s/etc/issue' % (media, target)):
+                RemoveUnpackDirs()
                 os.system("echo 3 > /proc/sys/vm/drop_caches")
                 os.system('echo ""; echo "Nie zainstalowano systemu ! Powodem b\xc5\x82\xc4\x99du instalacji mo\xc5\xbce by\xc4\x87 kernel-module-nandsim."')
                 os.system('echo "By uzyc innego narzedzia do rozpakowania image, ponow instalacje image jeszcze raz po restarcie tunera."')
