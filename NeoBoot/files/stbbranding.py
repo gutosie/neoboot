@@ -258,13 +258,29 @@ def getINSTALLNeo():
             neoinstall = '/dev/sdb2'
         elif lines.find('/dev/sdc1') != -1:
             neoinstall = '/dev/sdc1'
+        elif lines.find('/dev/sdc2') != -1:
+            neoinstall = '/dev/sdc2'
         elif lines.find('/dev/sdd1') != -1:
             neoinstall = '/dev/sdd1'
+        elif lines.find('/dev/sdd2') != -1:
+            neoinstall = '/dev/sdd2'
         elif lines.find('/dev/sde1') != -1:
             neoinstall = '/dev/sde1'
+        elif lines.find('/dev/sde2') != -1:
+            neoinstall = '/dev/sde2'
         elif lines.find('/dev/sdf1') != -1:
             neoinstall = '/dev/sdf1'
-
+        elif lines.find('/dev/sdf1') != -1:
+            neoinstall = '/dev/sdf1'
+        elif lines.find('/dev/sdg1') != -1:
+            neoinstall = '/dev/sdg1'
+        elif lines.find('/dev/sdg2') != -1:
+            neoinstall = '/dev/sdg2'
+        elif lines.find('/dev/sdh1') != -1:
+            neoinstall = '/dev/sdh1'
+        elif lines.find('/dev/sdh2') != -1:
+            neoinstall = '/dev/sdh2'
+	
     return neoinstall
 
 
@@ -280,12 +296,28 @@ def getLocationMultiboot():
             LocationMultiboot = '/dev/sdb2'
     if os.path.exists('/media/sdc1/ImageBoot'):
             LocationMultiboot = '/dev/sdc1'
+    if os.path.exists('/media/sdc2/ImageBoot'):
+            LocationMultiboot = '/dev/sdc2'
     if os.path.exists('/media/sdd1/ImageBoot'):
             LocationMultiboot = '/dev/sdd1'
+    if os.path.exists('/media/sdd2/ImageBoot'):
+            LocationMultiboot = '/dev/sdd2'		
     if os.path.exists('/media/sde1/ImageBoot'):
             LocationMultiboot = '/dev/sde1'
+    if os.path.exists('/media/sde2/ImageBoot'):
+            LocationMultiboot = '/dev/sde2'		
     if os.path.exists('/media/sdf1/ImageBoot'):
             LocationMultiboot = '/dev/sdf1'
+    if os.path.exists('/media/sdf2/ImageBoot'):
+            LocationMultiboot = '/dev/sdf2'
+    if os.path.exists('/media/sdg1/ImageBoot'):
+            LocationMultiboot = '/dev/sdg1'
+    if os.path.exists('/media/sdg2/ImageBoot'):
+            LocationMultiboot = '/dev/sdg2'     
+    if os.path.exists('/media/sdh1/ImageBoot'):
+            LocationMultiboot = '/dev/sdh1'
+    if os.path.exists('/media/sdh2/ImageBoot'):
+            LocationMultiboot = '/dev/sdh2'	
 
     return LocationMultiboot
 
@@ -329,12 +361,26 @@ def getNeoMount():
             neo = 'hdd_install_/dev/sdb2'
         elif lines.find('/dev/sdc1 /media/hdd') != -1:
             neo = 'hdd_install_/dev/sdc1'
+        elif lines.find('/dev/sdc2 /media/hdd') != -1:
+            neo = 'hdd_install_/dev/sdc2'
         elif lines.find('/dev/sdd1 /media/hdd') != -1:
             neo = 'hdd_install_/dev/sdd1'
+        elif lines.find('/dev/sdd2 /media/hdd') != -1:
+            neo = 'hdd_install_/dev/sdd2'
         elif lines.find('/dev/sde1 /media/hdd') != -1:
             neo = 'hdd_install_/dev/sde1'
+        elif lines.find('/dev/sde2 /media/hdd') != -1:
+            neo = 'hdd_install_/dev/sde2'
         elif lines.find('/dev/sdf1 /media/hdd') != -1:
             neo = 'hdd_install_/dev/sdf1'
+        elif lines.find('/dev/sdg1 /media/hdd') != -1:
+            neo = 'hdd_install_/dev/sdg1'
+        elif lines.find('/dev/sdg2 /media/hdd') != -1:
+            neo = 'hdd_install_/dev/sdg2'
+        elif lines.find('/dev/sdh1 /media/hdd') != -1:
+            neo = 'hdd_install_/dev/sdh1'
+        elif lines.find('/dev/sdh2 /media/hdd') != -1:
+            neo = 'hdd_install_/dev/sdh2'
 
     return neo
     
