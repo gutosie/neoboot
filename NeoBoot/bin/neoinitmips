@@ -205,12 +205,15 @@ else
 		          break;
 	fi
 	TARGET=Flash
-	if [ $NEODEVICE = "/media/hdd/" ] && [ $INSTALLDEVICE = "/dev/sda1" ] ; then
+	if [ $NEODEVICE = "/media/hdd/" ]; then
 	        /bin/mount /dev/sda1 /media/hdd > /dev/null 2>&1
-	fi
-		if [ $NEODEVICE = "/media/usb/" ] && [ $INSTALLDEVICE = "/dev/sdb1" ] ; then
-	        /bin/mount /dev/sdb1 /media/usb > /dev/null 2>&1
-	fi
+	fi	
+	#if [ $NEODEVICE = "/media/hdd/" ] && [ $INSTALLDEVICE = "/dev/sda1" ] ; then
+	        #/bin/mount /dev/sda1 /media/hdd > /dev/null 2>&1
+	#fi
+		#if [ $NEODEVICE = "/media/usb/" ] && [ $INSTALLDEVICE = "/dev/sdb1" ] ; then
+	        #/bin/mount /dev/sdb1 /media/usb > /dev/null 2>&1
+	#fi
 	#/bin/mount /dev/sda1 /media/hdd > /dev/null 2>&1
 	#/bin/mount /dev/sdb1 /media/usb > /dev/null 2>&1	
 
