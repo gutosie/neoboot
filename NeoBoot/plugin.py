@@ -1011,10 +1011,11 @@ class NeoBootImageChoose(Screen):
 
         if not fileExists('/.multinfo'):
             system('ln -sfn /sbin/init.sysvinit /sbin/init')
-            out = open('%sImageBoot/.neonextboot' % getNeoLocation(), 'w')
-            out.write('Flash')
-            out.close()
-            self.close()
+            os.system('echo "Flash" > %sImageBoot/.neonextboot' % getNeoLocation() )           
+            #out = open('%sImageBoot/.neonextboot' % getNeoLocation(), 'w')
+            #out.write('Flash')
+            #out.close()
+            #self.close()
 
         elif fileExists('/.multinfo'):
             with open('/.multinfo', 'r') as f:
