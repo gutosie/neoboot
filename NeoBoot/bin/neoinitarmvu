@@ -2,8 +2,7 @@
 #script mod by gutosie
 #neo init arm 
 
-NEODEVICE=`cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`
-INSTALLDEVICE=`cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/install`
+NEODEVICE=`cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`        
 IMAGEKATALOG=ImageBoot
 HOSTNAME=`cat /etc/hostname`
 
@@ -202,20 +201,11 @@ else
 		
         /usr/lib/enigma2/python/Plugins/Extensions/NFR4XBoot/bin/fbclear > /dev/null 2>&1
 	fi
-	
-	HARDWARETYPE=`uname -m`
+
+	HARDWARETYPE=`uname -m` 
 	if [ $NEODEVICE = "/media/hdd/" ]; then
 	        /bin/mount /dev/sda1 /media/hdd > /dev/null 2>&1
-	fi	
-	#if [ $NEODEVICE = "/media/hdd/" ] && [ $INSTALLDEVICE = "/dev/sda1" ] ; then
-	        #/bin/mount /dev/sda1 /media/hdd > /dev/null 2>&1
-	#fi
-		#if [ $NEODEVICE = "/media/usb/" ] && [ $INSTALLDEVICE = "/dev/sdb1" ] ; then
-	        #/bin/mount /dev/sdb1 /media/usb > /dev/null 2>&1
-	#fi
-	#/bin/mount /dev/sda1 /media/hdd > /dev/null 2>&1
-	#/bin/mount /dev/sdb1 /media/usb > /dev/null 2>&1
-	
+	fi
 	if [ $TARGET = "Flash" ]; then
 		    echo "NEOBOOT is booting image from " $TARGET
 		    /bin/umount /media/usb > /dev/null 2>&1
@@ -319,10 +309,6 @@ else
                     echo " start file - init.sysvinit" >> $neoLOG                       
             	    exec /usr/sbin/chroot `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/$TARGET /sbin/init  
 					echo "====================================================> "
-			elif [ -f `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/$TARGET/lib/systemd/systemd ]; then
-                                    echo " start file - systemd" >> $neoLOG
-                                    exec /usr/sbin/chroot `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`$IMAGEKATALOG/$TARGET /lib/systemd/systemd
-					echo "====================================================> "					
 			else			                             
                     echo "                       NEOBOOT - ERROR !!!                                 "
                     echo "Not found correctly unpacked image "$TARGET" z partycji " $DEVICE
@@ -335,8 +321,7 @@ else
 	                /bin/umount /media/hdd > /dev/null 2>&1
 				    echo -n " FATAL ERROR - Back to image Flash...\n<<<END INIT INFO Rebooting...>>>" >> $neoLOG
                     echo -n "<<<END INIT INFO Rebooting...>>>"
-				    ln -sfn /sbin/init.sysvinit /sbin/init 
-				    sleep 20
+				    ln -sfn /sbin/init.sysvinit /sbin/init
 		            reboot -d -f
 
 			fi
