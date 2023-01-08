@@ -1886,10 +1886,9 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
     else:
         os.system('echo "Image  %s  not installed  "' % source)
         
-    RemoveUnpackDirs()        
 
     return
    
 # ver. gutosie
-#--------------------------------------------- 2022 ---------------------------------------------#   
+#--------------------------------------------- 2023 ---------------------------------------------#   
 #END
