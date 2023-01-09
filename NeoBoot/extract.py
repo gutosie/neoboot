@@ -869,7 +869,7 @@ def RemoveUnpackDirs():
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/pulse4kmin'):
         if os.path.exists('' + getNeoLocation() + 'ImagesUpload/pulse4kmin/force_pulse4kmini_READ.ME'):
             rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/pulse4kmini/force_pulse4kmini_READ.ME; rm -r ' + getNeoLocation() + 'ImagesUpload/pulse4kmini/unforce_pulse4kmini.txt')    
-        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/pulse4kmin')
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/pulse4kmini')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/xpeedlx'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/xpeedlx')        
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/dm520'):
