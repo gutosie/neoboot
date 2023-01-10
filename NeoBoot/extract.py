@@ -1447,7 +1447,7 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
             cmd = 'rm -rf ' + getNeoLocation() + 'ubi'
             rc = os.system(cmd)
 
-        elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/axas'):
+        elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/axas/axashistwin'):
             os.chdir('axas')
             if os.path.exists('' + getNeoLocation() + 'ImagesUpload/axas/axashistwin'):
                 os.chdir('axashistwin')
