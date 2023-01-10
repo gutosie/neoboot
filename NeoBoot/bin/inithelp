@@ -7,6 +7,7 @@ if [ -f /proc/stb/info/vumodel ];  then
 fi
 NEOBOOT=/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/
 NEODEVICE=`cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`
+INSTALLDEVICE=`cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/install`
 IMAGEKATALOG=ImageBoot
 BOXHOSTNAME=`cat /etc/hostname`        
 TARGET=Flash       
@@ -79,6 +80,16 @@ else
 		    echo "_______________________ NeoBoot mount by LOCATION _______________________  "
 	fi
     fi
+    if [ $NEODEVICE = "/media/hdd/" ] && [ $INSTALLDEVICE = "/dev/sda1" ] ; then
+                /bin/mount /dev/sda1 /media/hdd > /dev/null 2>&1
+    elif [ $NEODEVICE = "/media/hdd/" ] && [ $INSTALLDEVICE = "/dev/sdb1" ] ; then
+                /bin/mount /dev/sdb1 /media/hdd > /dev/null 2>&1
+    fi
+    if [ $NEODEVICE = "/media/usb/" ] && [ $INSTALLDEVICE = "/dev/sda1" ] ; then
+                /bin/mount /dev/sda1 /media/usb > /dev/null 2>&1
+    elif [ $NEODEVICE = "/media/usb/" ] && [ $INSTALLDEVICE = "/dev/sdb1" ] ; then
+                /bin/mount /dev/sdb1 /media/usb > /dev/null 2>&1
+    fi    
     if [ ! -f  $NEODEVICE$IMAGEKATALOG/.neonextboot ]; then
             ln -sfn /sbin/init.sysvinit /sbin/init
             echo "Flash " > $NEODEVICE$IMAGEKATALOG/.neonextboot
