@@ -1744,7 +1744,7 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
             os.system('echo "Please wait. System installation GI ET-11000 4K w toku..."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/et1x000; tar -jxf ' + getNeoLocation() + 'ImagesUpload/et1x000/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd)
-        elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/e2/update'):
+        elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/e2/update/rootfs.tar.bz2'):
             os.system('echo "Please wait. System installation..."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/e2/update; tar -jxf ' + getNeoLocation() + 'ImagesUpload/e2/update/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd)
