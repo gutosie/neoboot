@@ -199,7 +199,7 @@ else
 		    /sbin/insmod $LIBDIR/kernel/fs/autofs4/autofs4.ko > /dev/null 2>&1
 	    fi
 		
-        /usr/lib/enigma2/python/Plugins/Extensions/NFR4XBoot/bin/fbclear > /dev/null 2>&1
+        /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/fbclear > /dev/null 2>&1
 	fi
 
 	HARDWARETYPE=`uname -m` 
