@@ -985,11 +985,7 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
         rootfname = 'rootfs.bin'
         brand = ''
         
-        #NANDSIM
-        #if Nandsim == 'True' and os.path.exists('/lib/modules/%s/kernel/drivers/mtd/nand/nandsim.ko' % getKernelVersion()):
-        if not os.path.exists('/lib/modules/%s/kernel/drivers/mtd/nand/nandsim.ko' % getKernelVersion()):
-            os.system('cp -r /lib/modules/*/kernel/drivers/mtd/nand/nandsim.ko /tmp')
-            
+        #NANDSIM 
         if Nandsim == 'True' or os.path.exists('/tmp/.isnandsim') or os.path.exists('/lib/modules/%s/kernel/drivers/mtd/nand/nandsim.ko' % getKernelVersion()):            
             for i in range(0, 20):
                     mtdfile = '/dev/mtd' + str(i)
@@ -1434,7 +1430,7 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
             elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/h8/rootfs.ubi'):
                 os.chdir('h8')
             elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/e2/update/rootfs.ubi'):
-                os.system('mv -f ' + getNeoLocation() + 'ImagesUpload/e2/update/rootfs.ubi/rootfs.ubi ' + getNeoLocation() + 'ImagesUpload/e2')
+                os.system('mv -f ' + getNeoLocation() + 'ImagesUpload/e2/update/rootfs.ubi ' + getNeoLocation() + 'ImagesUpload/e2')
                 os.chdir('e2')                
             os.system('mv -f rootfs.ubi rootfs.bin')
             os.system('echo "Instalacja - ubi_reader w toku..."')
