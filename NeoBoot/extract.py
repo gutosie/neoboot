@@ -900,13 +900,17 @@ def RemoveUnpackDirs():
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/gigablue')
     if os.path.exists('' + getNeoLocation() + 'ImagesUpload/update_bootargs_h8'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/update_bootargs_h8')
-    #Finish
+    if os.path.exists('' + getNeoLocation() + 'ImagesUpload/force_hd60_READ.ME'):
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/force_hd60_READ.ME')        
+    if os.path.exists('' + getNeoLocation() + 'ImagesUpload/unforce_hd60.txt'):
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/unforce_hd60.txt')        
     if os.path.exists('/tmp/root_jffs2'):
         rc = os.system('rm -fr /tmp/root_jffs2')
     if os.path.exists('/tmp/xz-gz-tar'):
         rc = os.system('rm -fr /tmp/xz-gz-tar')
     if os.path.exists('/tmp/other_image'):
-        rc = os.system('rm -fr /tmp/other_image')        
+        rc = os.system('rm -fr /tmp/other_image')
+    #Finish        
 
 def NEOBootExtract(source, target, ZipDelete, Nandsim):
     RemoveUnpackDirs()
