@@ -1692,6 +1692,10 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/dinobot/u51'):
             os.system('echo "Please wait. System installation dinobot u51 w toku..."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/dinobot/u51; tar -jxf ' + getNeoLocation() + 'ImagesUpload/dinobot/u51/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
+            rc = os.system(cmd)
+        elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/dinobot/u52'):
+            os.system('echo "Please wait. System installation dinobot u52 w toku..."')
+            cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/dinobot/u52; tar -jxf ' + getNeoLocation() + 'ImagesUpload/dinobot/u52/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd)            
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/dinobot/u53'):
             os.system('echo "Please wait. System installation dinobot u53 w toku..."')
