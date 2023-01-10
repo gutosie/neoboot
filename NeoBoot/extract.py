@@ -783,11 +783,11 @@ def RemoveUnpackDirs():
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/osmini4k'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/osmini4k')        
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/xp1000 '):
-        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/xp1000 ')
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/xp1000')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/et5x00'):
-        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/et5x00 ')        
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/et5x00')        
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/dinobot '):
-        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/dinobot ')
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/dinobot')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/e2/update'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/e2')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/et1x000'):
@@ -795,7 +795,7 @@ def RemoveUnpackDirs():
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/protek4k'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/protek4k')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/dm920 '):
-        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/dm920 ')
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/dm920')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/dreamtwo '):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/dreamtwo ')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/multibox') or os.path.exists('' + getNeoLocation() + 'ImagesUpload/multiboxse'):
