@@ -269,7 +269,6 @@ class NeoBootInstallation(Screen):
 
     def mbdelete(self, answer):
         if answer is True:
-            os.system('chattr -i ' + LinkNeoBoot + '/plugin.py; chattr -i ' + LinkNeoBoot + '/plugin.pyo; chattr -i /usr/lib/periodon/.activatedmac')
             if fileExists('/etc/fstab.org'):
                 system('rm -r /etc/fstab; mv /etc/fstab.org /etc/fstab')
             if fileExists('/etc/rcS.d/S99neo.local'):
@@ -731,7 +730,7 @@ class NeoBootInstallation(Screen):
             elif getCPUtype() == 'MIPS':
                         os.system('cd ' + LinkNeoBoot + '/;rm -f ./files/findsk.sh; mv ./bin/fbclearmips ./bin/fbclear; chmod 755 ./bin/fbclear; rm -f ./bin/fbcleararm; mv ./ubi_reader_mips ./ubi_reader; rm -r ./ubi_reader_arm; rm -f /bin/neoinitarm; rm -f /bin/neoinitarmvu; rm -r ./bin/nanddump_arm; rm -f /bin/neoinitarmvuDuo4k; rm -f ./bin/neobmarm')
                     
-            os.system(' ln -sfn ' + LinkNeoBoot + '/files/userscript.sh /etc/rcS.d/S99neo.local; ln -sfn ' + getNeoLocation() + 'ImageBoot/.neonextboot /etc/neoimage; chmod 644 ' + getNeoLocation() + 'ImagesUpload/.kernel/*; ln -sfn ' + getNeoLocation() + 'ImageBoot /etc/imageboot; rm -r ' + LinkNeoBoot + '/tmpfiles; chmod 0755 ' + LinkNeoBoot + '/files/kernel.sh; chattr +i ' + LinkNeoBoot + '/plugin.py; chattr +i ' + LinkNeoBoot + '/plugin.pyo')
+            os.system(' ln -sfn ' + LinkNeoBoot + '/files/userscript.sh /etc/rcS.d/S99neo.local; ln -sfn ' + getNeoLocation() + 'ImageBoot/.neonextboot /etc/neoimage; chmod 644 ' + getNeoLocation() + 'ImagesUpload/.kernel/*; ln -sfn ' + getNeoLocation() + 'ImageBoot /etc/imageboot; rm -r ' + LinkNeoBoot + '/tmpfiles; chmod 0755 ' + LinkNeoBoot + '/files/kernel.sh')
 
             if os.path.isfile('' + LinkNeoBoot + '/.location'):
                 if getLabelDisck() != 'LABEL=':
@@ -1116,7 +1115,6 @@ class NeoBootImageChoose(Screen):
                 system('touch /tmp/gut3')
             elif fileExists('/tmp/gut3'):
                 system('rm -f /tmp/gut*; rm -f /usr/lib/periodon/.kodn; rm -f /usr/lib/periodon/.accessdate; rm -f /tmp/.finishdate; rm -f /tmp/.nkod')
-                os.system('chattr +i ' + LinkNeoBoot + '/plugin.py; chattr +i ' + LinkNeoBoot + '/plugin.pyo')
                 restartbox = self.session.openWithCallback(self.GUIRestart, MessageBox, _('Bravo - pin code removed!\nPlease re-enter your pin code.'), MessageBox.TYPE_YESNO, 10)
                 restartbox.setTitle(_('Restart GUI now !!')) 
             else:
@@ -1210,9 +1208,7 @@ class NeoBootImageChoose(Screen):
                 self.myClose(_('Sorry, Neoboot can be installed or upgraded only when booted from Flash'))
                 self.close()
             else:
-                os.system('touch /tmp/.upneo; rm -r /tmp/.*; chattr -i ' + LinkNeoBoot + '/plugin.py')
-                if fileExists('' + LinkNeoBoot +'/plugin.pyo'):
-                        os.system('chattr -i ' + LinkNeoBoot +'/plugin.pyo')
+                os.system('touch /tmp/.upneo; rm -r /tmp/.*')
                 if fileExists('/usr/bin/curl'):
                         cmd1 = 'curl -kLs -k https://raw.githubusercontent.com/gutosie/neoboot/master/iNB.sh|sh'
                         self.session.open(Console, _('NeoBoot....'), [cmd1])
@@ -1477,13 +1473,8 @@ class NeoBootImageChoose(Screen):
     def RemoveIMAGE(self, yesno):
         if yesno:
             cmd = _("echo -e 'Deleting in progress...\n'")
-            cmd1 = 'chattr -i %sImageBoot/' % getNeoLocation() + self.mysel            
-            cmd2 = 'chattr -i %sImageBoot/' % getNeoLocation() + self.mysel + '/usr/lib/periodon/.activatedmac'
-            cmd3 = 'chattr -i %sImageBoot/' % getNeoLocation() + self.mysel + '' + LinkNeoBoot +'/plugin.py'
-            if fileExists('%sImageBoot/' % getNeoLocation() + self.mysel + '' + LinkNeoBoot +'/plugin.pyo'):
-                cmd4 = 'chattr -i %sImageBoot/' % getNeoLocation() + self.mysel + '' + LinkNeoBoot +'/plugin.pyo'
-            cmd5 = 'rm -r %sImageBoot/' % getNeoLocation() + self.mysel
-            self.session.openWithCallback(self.up, Console, _('NeoBoot: Deleting Image'), [cmd, cmd1, cmd2, cmd3, cmd5])
+            cmd1 = 'rm -r %sImageBoot/' % getNeoLocation() + self.mysel
+            self.session.openWithCallback(self.up, Console, _('NeoBoot: Deleting Image'), [cmd, cmd1])
         else:
             self.session.open(MessageBox, _('Removing canceled!'), MessageBox.TYPE_INFO)
 
@@ -1778,9 +1769,7 @@ def main(session, **kwargs):
                                                 if fileExists('/usr/bin/fullwget'):
                                                         os.system('cd /tmp; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ver.txt; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoscript/master/.neouser; cd /')
                                         if fileExists('/tmp/ver.txt'):
-                                                        if fileExists('/usr/lib/periodon/.activatedmac'):
-                                                            os.system('chattr -i /usr/lib/periodon/.activatedmac')
-                                                        os.system('mv /tmp/ver.txt /tmp/.nkod; mv /tmp/.neouser /usr/lib/periodon/.activatedmac; chattr +i /usr/lib/periodon/.activatedmac; cd /')                                            
+                                                        os.system('mv /tmp/ver.txt /tmp/.nkod; mv /tmp/.neouser /usr/lib/periodon/.activatedmac; cd /')                                            
                                         else:
                                                         os.system(_('echo %s  > /tmp/.nkod') % UPDATEVERSION)
             from Plugins.Extensions.NeoBoot.files.stbbranding import getCheckInstal1, getCheckInstal2, getCheckInstal3
