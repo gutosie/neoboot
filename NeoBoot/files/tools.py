@@ -1,4 +1,4 @@
-     #!/usr/bin/python
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 # system modules
 
@@ -2365,7 +2365,7 @@ class Opis(Screen):
             self.close()
         else:    
             if answer is True:
-                os.system('touch /tmp/.upneo; rm -r /tmp/.*; chattr -i ' + LinkNeoBoot + '/plugin.py')              
+                os.system('touch /tmp/.upneo; rm -r /tmp/.*')              
                 if fileExists('' + LinkNeoBoot + '/.location'):
                         system('rm -f ' + LinkNeoBoot + '/.location')
                 if fileExists('/usr/bin/curl'):
