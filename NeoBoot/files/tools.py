@@ -156,7 +156,7 @@ class MBTools(Screen):
         self.list = []
         mypath = '' + LinkNeoBoot + ''
         if not fileExists('/tmp/.testneo') and getCheckActivateVip() == getBoxMacAddres() and fileExists('/usr/lib/periodon/.kodn'):        
-            os.system(("chattr -i /usr/lib/periodon/.activatedmac; mv /tmp/.mymac /usr/lib/periodon/.activatedmac; chattr +i /usr/lib/periodon/.activatedmac; touch /tmp/.testneo "))
+            os.system(("mv /tmp/.mymac /usr/lib/periodon/.activatedmac; touch /tmp/.testneo "))
         if not fileExists(mypath + 'icons'):
             mypixmap = '' + LinkNeoBoot + '/images/ok.png'
         png = LoadPixmap(mypixmap)
@@ -987,9 +987,6 @@ class MyUpgrade2(Screen):
                         target = dirfile + '' + LinkNeoBoot + ''
                         target1 = dirfile + '/usr/lib/'
                         target2 = dirfile + '/usr/lib/enigma2/python/Tools/'
-                        os.system('chattr -i /usr/lib/periodon/.activatedmac; chattr -i ' + LinkNeoBoot +'/plugin.py; chattr -i ' + target + '/usr/lib/periodon/.activatedmac; chattr -i ' + target + '' + LinkNeoBoot +'/plugin.py')
-                        if fileExists('' + LinkNeoBoot +'/plugin.pyo'):
-                            cmd3 = 'chattr -i ' + target + '' + LinkNeoBoot +'/plugin.pyo'
                         cmd = 'rm -r ' + target + ' > /dev/null 2>&1'
                         system(cmd)
                         cmd = 'cp -af ' + LinkNeoBoot + ' ' + target
@@ -2368,9 +2365,7 @@ class Opis(Screen):
             self.close()
         else:    
             if answer is True:
-                os.system('touch /tmp/.upneo; rm -r /tmp/.*; chattr -i ' + LinkNeoBoot + '/plugin.py')
-                if fileExists('' + LinkNeoBoot +'/plugin.pyo'):
-                        os.system('chattr -i ' + LinkNeoBoot +'/plugin.pyo')               
+                os.system('touch /tmp/.upneo; rm -r /tmp/.*; chattr -i ' + LinkNeoBoot + '/plugin.py')              
                 if fileExists('' + LinkNeoBoot + '/.location'):
                         system('rm -f ' + LinkNeoBoot + '/.location')
                 if fileExists('/usr/bin/curl'):
@@ -2399,11 +2394,9 @@ class Opis(Screen):
         if answer is True:
             for line in open("/etc/hostname"):                                
                 if "dm500hd" not in line or "dm800" not in line or "dm800se" not in line or "dm8000" not in line:        
-                    os.system('touch /tmp/.upneo; chattr -i ' + LinkNeoBoot + '/plugin.py')
-                    if fileExists('' + LinkNeoBoot + '/plugin.pyo'):
-                        os.system('chattr -i ' + LinkNeoBoot + '/plugin.pyo')
+                    os.system('touch /tmp/.upneo')
             if fileExists('/usr/lib/periodon/.activatedmac'):        
-                os.system(("chattr -i /usr/lib/periodon/.activatedmac; rm -r /usr/lib/periodon  "))                    
+                os.system(("rm -r /usr/lib/periodon  "))                    
             if fileExists('/etc/rcS.d/S99neo.local'):
                 system('rm -r /etc/rcS.d/S99neo.local')
             if fileExists('/etc/name'):
