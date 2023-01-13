@@ -979,11 +979,17 @@ class NeoBootImageChoose(Screen):
                 False
 
     def close_exit(self):
-        if fileExists('/usr/lib/python2.7'):
-            self.close_exit2()            
-        else:
-            system('touch /tmp/.init_reboot')
-            self.close()
+            try:
+                    self.close_exit2()           
+            except:
+                    system('touch /tmp/.init_reboot')
+                    self.close()
+                    
+        #if fileExists('/usr/lib/python2.7'):
+            #self.close_exit2()            
+        #else:
+            #system('touch /tmp/.init_reboot')
+            #self.close()
             
     def close_exit2(self):
         system('touch /tmp/.init_reboot')
