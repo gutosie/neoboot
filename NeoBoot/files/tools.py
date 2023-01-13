@@ -2131,7 +2131,7 @@ class DiskLabelSet(Screen):
     def __init__(self, session):
         Screen.__init__(self, session)
         self['lab1'] = Label(_('Label'))
-        self['key_red'] = Label(_('Installation'))
+        self['key_red'] = Label(_('Set Label'))
         self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'back': self.close,
          'red': self.SetLabelDisk})
 
@@ -2187,11 +2187,11 @@ class DiskLabelSet(Screen):
                 f.close()
                     
             if flines.find('' + getMyUUID() + '') != -1:
-                cmd3 = "echo -e '\n%s '" % _('UUID exists or neoboot not installed yet\nAfter installing the plugin, give uuid')
+                cmd3 = "echo -e '\n%s '" % _('UUID exists or neoboot not installed yet\nAfter installing the plugin, give uuid\n\nReboot...')
             else:            
                 os.system('echo UUID=' + getMyUUID() + '	    ' + locatin_neo + '	auto	defaults	0 0 >> /etc/fstab') 
-                cmd3 = "echo -e '\n%s '" % _('UUID set OK')                                  
-            cmd4 = 'sleep 5; reboot -f'                                  
+                cmd3 = "echo -e '\n%s '" % _('UUID set OK\n\nReboot...')                                  
+            cmd4 = 'sleep 10; reboot -f'                                  
             self.session.open(Console, _('Disk Label...!'), [cmd, cmd1, cmd2,cmd3, cmd4])
           
           
