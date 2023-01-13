@@ -546,7 +546,7 @@ class NeoBootInstallation(Screen):
             out.close()
 
             if os.path.isfile('%sImageBoot/.neonextboot' % getNeoLocation()):
-                        os.system('rm -f /etc/neoimage; rm -f /etc/imageboot; rm -f %sImageBoot/.neonextboot; rm -f %sImageBoot/.Flash; rm -f %sImageBoot/.imagedistro; rm -f %sImageBoot/.initneo.log; rm -f %sImageBoot/.updateversion' % (getNeoLocation(), getNeoLocation(), getNeoLocation(), getNeoLocation(), getNeoLocation(), getNeoLocation()))
+                        os.system('rm -f /etc/neoimage; rm -f /etc/imageboot; rm -f %sImageBoot/.neonextboot; rm -f %sImageBoot/.Flash; rm -f %sImageBoot/.imagedistro; rm -f %sImageBoot/.initneo.log; rm -f %sImageBoot/.updateversion' % (getNeoLocation(),getNeoLocation(), getNeoLocation(), getNeoLocation(), getNeoLocation()))
                     
             if os.path.isfile('%sImagesUpload/.kernel/zImage*.ipk or %sImagesUpload/.kernel/zImage*.bin' % (getNeoLocation(), getNeoLocation())):
                         os.system('rm -f %sImagesUpload/.kernel/zImage*.ipk; rm -f %sImagesUpload/.kernel/zImage*.bin' % (getNeoLocation(), getNeoLocation()))
