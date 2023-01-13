@@ -2068,10 +2068,11 @@ class InitializationFormattingDisk(Screen):
             self.updateInfo()
         else:
             self.close()
-               
-    def myClose(selfe):
-        os.system('reboot -f')               
-               
+            
+    def myClose(self):
+            self.close()
+            
+            
 class BootManagers(Screen):
     __module__ = __name__
     skin = """<screen name="Boot Managers" title="Boot" position="center,center" size="892,198" flags="wfNoBorder">
