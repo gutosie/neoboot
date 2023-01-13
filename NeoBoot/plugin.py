@@ -562,7 +562,7 @@ class NeoBootInstallation(Screen):
 
             if not fileExists('/usr/lib/periodon/.accessdate'):
                     os.system('date %s  > /usr/lib/periodon/.accessdate' % UPDATEDATE)
-            if not fileExists('/usr/lib/periodon/.accessdate') or not fileExistse('/etc/name'):
+            if not fileExists('/usr/lib/periodon/.accessdate') or not fileExists('/etc/name'):
                     out1 = open('%sImageBoot/.version' % getNeoLocation(), 'w')
                     out1.write(PLUGINVERSION)
                     out1.close()
