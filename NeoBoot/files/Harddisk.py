@@ -7,13 +7,13 @@ from Tools.Directories import fileExists, pathExists
 from Tools.CList import CList
 from Components.SystemInfo import SystemInfo
 from Components.Console import Console
-from Plugins.Extensions.NeoBoot.files import Task
+#from Plugins.Extensions.NeoBoot.files import Task
 if fileExists('/usr/lib/python2.7'):
-    import Task
+    from Plugins.Extensions.NeoBoot.files import Task
 else:
     from Components import Task
 try:
-    from Task import LoggingTask
+    from Plugins.Extensions.NeoBoot.files.Task import LoggingTask
 except:
     from Components.Task import LoggingTask
 from Screens.Screen import Screen
