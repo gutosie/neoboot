@@ -24,6 +24,22 @@ if [ ! -e /.multinfo ]; then
     URL='https://github.com/gutosie/neoboot/archive/main.zip'
     curl -kLs $URL  -o /tmp/neoboot.zip
     Cel="/usr/lib/enigma2/python/Plugins/Extensions"
+    if [ $BOXHOSTNAME = "dm500hd" ] || [ $BOXHOSTNAME = "dm800se" ] || [ $BOXHOSTNAME = "dm800" ] || [ $BOXHOSTNAME = "dm8000" ]; then
+        break;
+    else
+        if [ -e $Cel/NeoBoot/plugin.py ]; then 
+           chattr -i /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/plugin.py
+        fi
+        if [ -e $Cel/NeoBoot/plugin.pyo ]; then 
+           chattr -i /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/plugin.pyo
+        fi
+        if [ -e $Cel/NeoBoot/plugin.pyc ]; then 
+           chattr -i /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/plugin.pyc
+        fi        
+        if [ -e /usr/lib/periodon/.activatedmac ]; then 
+           chattr -i /usr/lib/periodon/.activatedmac; rm -f /usr/lib/periodon/.activatedmac
+        fi
+    fi    
     cd /tmp/
     #pobieranie
     if [ ! -e /tmp/neoboot.zip ]; then 
