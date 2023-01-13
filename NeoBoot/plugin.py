@@ -278,7 +278,7 @@ class NeoBootInstallation(Screen):
             if fileExists('/etc/init.d/volatile-media.sh.org'):
                 system(' mv /etc/init.d/volatile-media.sh.org /etc/init.d/volatile-media.sh; rm -r /etc/init.d/volatile-media.sh.org; chmod 755 /etc/init.d/volatile-media.sh ')
             if os.path.isfile('%sImageBoot/.neonextboot' % getNeoLocation()):
-                os.system('rm -f /etc/neoimage; rm -f /etc/imageboot; rm -f %sImageBoot/.neonextboot; rm -f %sImageBoot/.version; rm -f %sImageBoot/.Flash; ' % (getNeoLocation(), getNeoLocation(), getNeoLocation()))
+                os.system('rm -f /etc/neoimage; rm -f /etc/imageboot; rm -f %sImageBoot/.neonextboot; rm -f %sImageBoot/.Flash; ' % (getNeoLocation(), getNeoLocation(), getNeoLocation()))
             if os.path.isfile('%sImagesUpload/.kernel ' % getNeoLocation()):
                 os.system('rm -r %sImagesUpload/.kernel' % getNeoLocation())
             cmd = "echo -e '\n\n%s '" % _('Recovering setting....\n')
@@ -546,11 +546,8 @@ class NeoBootInstallation(Screen):
             out.close()
 
             if os.path.isfile('%sImageBoot/.neonextboot' % getNeoLocation()):
-                        os.system('rm -f /etc/neoimage; rm -f /etc/imageboot; rm -f %sImageBoot/.neonextboot; rm -f %sImageBoot/.version; rm -f %sImageBoot/.Flash; rm -f %sImageBoot/.imagedistro; rm -f %sImageBoot/.initneo.log; rm -f %sImageBoot/.updateversion' % (getNeoLocation(), getNeoLocation(), getNeoLocation(), getNeoLocation(), getNeoLocation(), getNeoLocation()))
-
-            if os.path.isfile('%sImageBoot/.neonextboot' % getNeoLocation()):
-                    os.system('rm -f /etc/neoimage; rm -f /etc/imageboot; rm -f %sImageBoot/.neonextboot; rm -f %sImageBoot/.version; rm -f %sImageBoot/.Flash; ' % (getNeoLocation(), getNeoLocation(), getNeoLocation()))
-
+                        os.system('rm -f /etc/neoimage; rm -f /etc/imageboot; rm -f %sImageBoot/.neonextboot; rm -f %sImageBoot/.Flash; rm -f %sImageBoot/.imagedistro; rm -f %sImageBoot/.initneo.log; rm -f %sImageBoot/.updateversion' % (getNeoLocation(), getNeoLocation(), getNeoLocation(), getNeoLocation(), getNeoLocation(), getNeoLocation()))
+                    
             if os.path.isfile('%sImagesUpload/.kernel/zImage*.ipk or %sImagesUpload/.kernel/zImage*.bin' % (getNeoLocation(), getNeoLocation())):
                         os.system('rm -f %sImagesUpload/.kernel/zImage*.ipk; rm -f %sImagesUpload/.kernel/zImage*.bin' % (getNeoLocation(), getNeoLocation()))
 
@@ -565,10 +562,10 @@ class NeoBootInstallation(Screen):
 
             if not fileExists('/usr/lib/periodon/.accessdate'):
                     os.system('date %s  > /usr/lib/periodon/.accessdate' % UPDATEDATE)
-
-            out1 = open('%sImageBoot/.version' % getNeoLocation(), 'w')
-            out1.write(PLUGINVERSION)
-            out1.close()
+            if not fileExists('/usr/lib/periodon/.accessdate'):
+                    out1 = open('%sImageBoot/.version' % getNeoLocation(), 'w')
+                    out1.write(PLUGINVERSION)
+                    out1.close()
             out2 = open('%sImageBoot/.neonextboot' % getNeoLocation(), 'w')
             out2.write('Flash ')
             out2.close()
