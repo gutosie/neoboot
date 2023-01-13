@@ -159,7 +159,22 @@ else
 		  break;
 	fi      	
         UPLOAD=ImagesUpload
-        #mount /dev/sda1 /media/hdd
+	if [ $NEODEVICE = "/media/hdd/" ] && [ $INSTALLDEVICE = "/dev/sda1" ] ; then
+	        /bin/mount /dev/sda1 /media/hdd > /dev/null 2>&1
+	elif [ $NEODEVICE = "/media/hdd/" ] && [ $INSTALLDEVICE = "/dev/sdb1" ] ; then
+	        /bin/mount /dev/sdb1 /media/hdd > /dev/null 2>&1
+	fi
+	if [ $NEODEVICE = "/media/usb/" ] && [ $INSTALLDEVICE = "/dev/sda1" ] ; then
+	        /bin/mount /dev/sda1 /media/usb > /dev/null 2>&1
+	elif [ $NEODEVICE = "/media/usb/" ] && [ $INSTALLDEVICE = "/dev/sdb1" ] ; then
+	        /bin/mount /dev/sdb1 /media/usb > /dev/null 2>&1
+	else
+                if [ $NEODEVICE = "/media/hdd/" ]; then
+	                /bin/mount /dev/sda1 /media/hdd > /dev/null 2>&1
+	        fi     
+	fi
+	#/bin/mount /dev/sda1 /media/hdd > /dev/null 2>&1
+	#/bin/mount /dev/sdb1 /media/usb > /dev/null 2>&1
 	if [ ! -e $NEODEVICE$IMAGEKATALOG ]; then
                 echo "Error mounting, Return to image Flash..."
                 ln -sfn /sbin/init.sysvinit /sbin/init
