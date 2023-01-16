@@ -79,8 +79,7 @@ if [ ! -e /.multinfo ]; then
         break;
     else
         chmod -R +x ./ubi_reader_arm/*
-        chmod -R +x ./ubi_reader_mips/*
-        chattr +i /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/plugin.py    
+        chmod -R +x ./ubi_reader_mips/*    
     fi
     if [ $PL ] ; then
       echo ""
