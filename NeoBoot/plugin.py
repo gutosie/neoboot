@@ -885,10 +885,10 @@ class NeoBootImageChoose(Screen):
                     os.system('echo "Image uruchomione OK\nNie kasuj tego pliku. \n\nImage started OK\nDo not delete this file."  > /.control_ok')
                     
     def DownloadImageOnline(self):
-            #if not fileExists('/usr/lib/python2.7'):
-                #mess = _('Plug installation lost.The plugin doesnt work on python 3 yet. Please try again later.')
-                #self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)        
-            if not os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/ImageDownloader/download.py'):
+            if not fileExists('/usr/lib/python2.7'):
+                mess = _('Plug installation lost.The plugin doesnt work on python 3 yet. Please try again later.')
+                self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)        
+            elif not os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/ImageDownloader/download.py'):
                     message = _('Plugin ImageDownloader not installed!\nInstall plugin to download new image? \and---Continue ?---')
                     ybox = self.session.openWithCallback(self.InstallImageDownloader, MessageBox, message, MessageBox.TYPE_YESNO)
                     ybox.setTitle(_('Installation'))
@@ -897,10 +897,10 @@ class NeoBootImageChoose(Screen):
                                 from Plugins.Extensions.ImageDownloader.main import STBmodelsScreen
                                 self.session.open(STBmodelsScreen)
                 except Exception as e:
+                                system('rm -f ' + getNeoLocation() + 'ImageBoot/neoboot.log')
                                 loggscrash = time.localtime(time.time())
                                 LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
-                                mess = _('Sorry cannot open Image Downloader.\nAccess Fails with Error code 0x05.')
-                                self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
+                                self.CRASHlogNeo()
 
     def InstallImageDownloader(self, yesno):
         if yesno:
@@ -1700,7 +1700,10 @@ class NeoBootImageChoose(Screen):
     def myClose(self, message):
         self.session.open(MessageBox, message, MessageBox.TYPE_INFO)
         self.close()
-
+        
+    def CRASHlogNeo(self):
+            showlog = 'echo "\nCRARSH LOG-neoboot startup error!"  >> ' + getNeoLocation() + 'ImageBoot/neoboot.log; cat ' + getNeoLocation() + 'ImageBoot/neoboot.log' 
+            self.session.openWithCallback(self.close, Console, _('NeoBoot ERROR !!!'), [showlog])
 
 def readline(filename, iferror=''):
     if iferror[:3] == 'or:':
