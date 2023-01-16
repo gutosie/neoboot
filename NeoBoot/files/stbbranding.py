@@ -45,11 +45,13 @@ def clearMemory():
 
 
 def LogCrashGS(line):
-	log_file = open('%sImageBoot/neoboot.log' % getNeoLocation(), 'a')
-	log_file.write(line)
-	log_file.close()
-
-
+        if os.path.isfile('' + getNeoLocation() + 'ImageBoot/neoboot.log'):
+                os.system(' rm -f ' + getNeoLocation() + 'ImageBoot/neoboot.log;')
+        log_file = open('%sImageBoot/neoboot.log' % getNeoLocation(), 'a')
+        log_file.write(line)
+        log_file.close()
+	
+	
 def fileCheck(f, mode='r'):
     return fileExists(f, mode) and f
 
