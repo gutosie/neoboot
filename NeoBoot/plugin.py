@@ -160,8 +160,11 @@ class MyUpgrade(Screen):
             except Exception as e:
                     loggscrash = time.localtime(time.time())
                     LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
-                    self.session.open(MessageBox, _('Sorry cannot open neo menu.'), MessageBox.TYPE_INFO, 5)
+                    self.CRASHlogNeo()
 
+    def CRASHlogNeo(self):
+            showlog = 'echo "\nCRARSH LOG-neoboot startup error!"  >> ' + getNeoLocation() + 'ImageBoot/neoboot.log; cat ' + getNeoLocation() + 'ImageBoot/neoboot.log' 
+            self.session.openWithCallback(self.close, Console, _('NeoBoot ERROR !!!'), [showlog])
 
 class NeoBootInstallation(Screen):
     if isFHD():
@@ -220,8 +223,7 @@ class NeoBootInstallation(Screen):
             except Exception as e:
                     loggscrash = time.localtime(time.time())
                     LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
-                    mess = _('Sorry cannot open menu set disk label\nAccess Fails with Error code 0x01.')
-                    self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
+                    self.CRASHlogNeo()
         else:
             self.session.open(MessageBox, _('Disk the directory HDD or USB is not a ext2, ext3 or ext4.\nMake sure you select a valid partition type to install neoboot.'), type=MessageBox.TYPE_ERROR)                     
 
@@ -232,8 +234,7 @@ class NeoBootInstallation(Screen):
             except Exception as e:
                     loggscrash = time.localtime(time.time())
                     LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
-                    mess = _('Sorry cannot open menu set disk label\nAccess Fails with Error code 0x01.')
-                    self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
+                    self.CRASHlogNeo()
 
     def datadrive(self):
         try:
@@ -955,8 +956,7 @@ class NeoBootImageChoose(Screen):
             except Exception as e:
                     loggscrash = time.localtime(time.time())
                     LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
-                    mess = _('Sorry cannot open neo menu.\nAccess Fails with Error code 0x02.')
-                    self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
+                    self.CRASHlogNeo()
 
     def ReinstallNeoBoot(self):
         INSTALLbox = self.session.openWithCallback(self.reinstallboot, MessageBox, _('Select Yes to reinstall the neoboot.\n     NEOBOOT.'), MessageBox.TYPE_YESNO)
@@ -1040,8 +1040,7 @@ class NeoBootImageChoose(Screen):
             except Exception as e:
                     loggscrash = time.localtime(time.time())
                     LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
-                    mess = _('Sorry cannot open neo menu Reinstall Kernel.\nAccess Fails with Error code 0x03.')
-                    self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
+                    self.CRASHlogNeo()
 
     def touch5(self):
         if fileExists('/tmp/.testneo'):
@@ -1237,8 +1236,7 @@ class NeoBootImageChoose(Screen):
             except Exception as e:
                     loggscrash = time.localtime(time.time())
                     LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
-                    mess = _('Sorry cannot open neo menu Backup.\nAccess Fails with Error code 0x60.')
-                    self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
+                    self.CRASHlogNeo()
 
     def MBRestore(self):
             try:
@@ -1247,8 +1245,7 @@ class NeoBootImageChoose(Screen):
             except Exception as e:
                     loggscrash = time.localtime(time.time())
                     LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
-                    mess = _('Sorry cannot open neo menu Restore.\nAccess Fails with Error code 0x61.')
-                    self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
+                    self.CRASHlogNeo()
 
     def updateList(self):
         self.list = []
@@ -1395,8 +1392,7 @@ class NeoBootImageChoose(Screen):
                         except Exception as e:
                             loggscrash = time.localtime(time.time())
                             LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
-                            mess = _('Sorry cannot open neo menu. Access Fails with Error code 0x50.')
-                            self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)        
+                            self.CRASHlogNeo()
         elif not fileExists('/.multinfo'):
             if getTestIn() == getTestOut() :
                 if ('1234%s' % getTestToTest()) == getAccessN():
@@ -1408,11 +1404,10 @@ class NeoBootImageChoose(Screen):
                         except Exception as e:
                             loggscrash = time.localtime(time.time())
                             LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
-                            mess = _('Sorry cannot open neo menu. Access Fails with Error code 0x50.')
-                            self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
+                            self.CRASHlogNeo()
                     else:
-                                mess = _('Sorry cannot open neo menu. Access Fails with Error code 0x60.')
-                                self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
+                            mess = _('Sorry cannot open neo menu. Open Error Menu.')
+                            self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
                 else:
                     myerror = _('Sorry, this is not neoboot vip version.\nGet NEO-VIP version, more info press blue button.')
                     self.session.open(MessageBox, myerror, MessageBox.TYPE_INFO)
@@ -1428,8 +1423,7 @@ class NeoBootImageChoose(Screen):
                         except Exception as e:
                             loggscrash = time.localtime(time.time())
                             LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
-                            mess = _('Sorry cannot open neo menu. Access Fails with Error code 0x50.')
-                            self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
+                            self.CRASHlogNeo()
 
     def removeIMG(self):
         self.mysel = self['config'].getCurrent()
@@ -1520,10 +1514,9 @@ class NeoBootImageChoose(Screen):
                     except Exception as e:
                         loggscrash = time.localtime(time.time())
                         LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
-                        mess = _('Sorry, cannot open neo menu image install. Access Fails with Error code 0x70.')
-                        self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
+                        self.CRASHlogNeo()
                 else:
-                    mess = _('Your receiver is not on the list of supported tuners.\nAccess error with error code 0x71.')
+                    mess = _('Your receiver is not on the list of supported tuners.\nAccess stb error.')
                     self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
 
     def GOImageInstall(self):
@@ -1672,8 +1665,7 @@ class NeoBootImageChoose(Screen):
                             except Exception as e:
                                 loggscrash = time.localtime(time.time())
                                 LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
-                                mess = _('Sorry cannot open run.py file - Access Fails with Error code 0x30.')
-                                self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
+                                self.CRASHlogNeo()
                     else:
                         try:
                                 from Plugins.Extensions.NeoBoot.run import StartImage
@@ -1681,8 +1673,7 @@ class NeoBootImageChoose(Screen):
                         except Exception as e:
                             loggscrash = time.localtime(time.time())
                             LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
-                            mess = _('Sorry cannot open run file - Access Fails with Error code 0x40.')
-                            self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
+                            self.CRASHlogNeo()
 
     def StartReboot(self, yesno):
         if yesno:
@@ -1692,8 +1683,7 @@ class NeoBootImageChoose(Screen):
                 except Exception as e:
                     loggscrash = time.localtime(time.time())
                     LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
-                    mess = _('Sorry cannot open neo menu. Hymmm...\nAccess Fails with Error code 0x73.')
-                    self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
+                    self.CRASHlogNeo()
         else:
             self.close()
 
