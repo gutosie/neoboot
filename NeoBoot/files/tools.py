@@ -2091,18 +2091,22 @@ class BootManagers(Screen):
          'green': self.CreateBootManagers})
 
     def CreateBootManagers(self):
-            cmd0 = "echo -e '\n\n%s '" % _('Creation Boot Manager , please wait...')
-            if getBoxHostName() == "et5x00":             
-                cmd1 = 'cp -af ' + LinkNeoBoot + '/bin/neoinitmips /sbin/neoinitmips'
+            if not fileExists('/.multinfo'):
+                    cmd0 = "echo -e '\n\n%s '" % _('Creation Boot Manager , please wait...')
+                    if getBoxHostName() == "et5x00":             
+                        cmd1 = 'cp -af ' + LinkNeoBoot + '/bin/neoinitmips /sbin/neoinitmips'
+                    else:
+                        cmd1 = 'cp -af ' + LinkNeoBoot + '/bin/neoinitmips /sbin/neoinitmipsvu'
+                    cmd2 = "echo -e '\n\n%s '" % _('Creation Boot Manager complete\nThe boot manager has been activated ! ')
+                    self.session.open(Console, _('NeoBoot....'), [cmd0,
+                     cmd1,
+                     cmd2])
+                    self.close()
             else:
-                cmd1 = 'cp -af ' + LinkNeoBoot + '/bin/neoinitmips /sbin/neoinitmipsvu'
-            cmd2 = "echo -e '\n\n%s '" % _('Creation Boot Manager complete\nThe boot manager has been activated ! ')
-            self.session.open(Console, _('NeoBoot....'), [cmd0,
-             cmd1,
-             cmd2])
-            self.close()
+                    self.myClose(_('Sorry, Neoboot can be installed or upgraded only when booted from Flash'))
             
     def RemoveBootManagers(self):
+        if not fileExists('/.multinfo'):
             cmd0 = "echo -e '\n\n%s '" % _('Creation Boot Manager , please wait...')
             if getBoxHostName() == "et5x00":            
                 cmd1 = 'cp -af ' + LinkNeoBoot + '/bin/neoinitmipsvu /sbin/neoinitmips'
@@ -2113,10 +2117,12 @@ class BootManagers(Screen):
              cmd1,
              cmd2])
             self.close()
+        else:
+                self.myClose(_('Sorry, Neoboot can be installed or upgraded only when booted from Flash'))
                                             
     def myClose(self, message):
-        self.session.open(MessageBox, message, MessageBox.TYPE_INFO)
-        self.close()
+            self.session.open(MessageBox, message, MessageBox.TYPE_INFO)
+            self.close()
                
                
 class DiskLabelSet(Screen):
