@@ -1,0 +1,2905 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: NeoBoot\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2023-01-18 15:45+0200\n"
+"Last-Translator: gutosie <Krzysio Gutosie>\n"
+"Language-Team: giorbak\n"
+"Language: el\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.2\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+msgid ""
+"\n"
+"Completely uninstall NeoBota: \n"
+"If you think NeoBot not you need it, you can uninstall it.\n"
+"To uninstall now press the red button on the remote control.\n"
+"\n"
+msgstr ""
+"Πλήρης απεγκατάσταση του NeoBoot: \n"
+"Αν νομίζετε ότι δεν χρειάζεστε το NeoBoot, μπορείτε να το απεγκαταστήσετε.\n"
+"Για απεγκατάσταση τώρα πατήστε το κόκκινο κουμπί στο τηλεχειριστήριο.\n"
+"\n"
+
+msgid "Start the chosen system now ?"
+msgstr "Να γίνει εκκίνηση του επιλεγμένου συστήματος τώρα;"
+
+msgid ""
+" is already installed.\n"
+" Please try another name."
+msgstr ""
+" είναι ήδη εγκατεστημένο.\n"
+" Παρακαλώ δοκιμάστε ένα άλλο όνομα."
+
+msgid ""
+"   \n"
+"   Available: "
+msgstr ""
+"   \n"
+"       Διαθέσιμα: "
+
+#, fuzzy
+msgid "Boot Image"
+msgstr "Εκκίνηση image"
+
+msgid "Cancel"
+msgstr "Άκυρο"
+
+msgid "Install"
+msgstr "Εγκατάσταση"
+
+msgid "Delete Confirmation"
+msgstr "Επιβεβαίωση διαγραφής"
+
+msgid "Devices Panel"
+msgstr "Πίνακας συσκευών"
+
+msgid ""
+"Do You really want to install NeoBoot in:\n"
+" "
+msgstr ""
+"Θέλετε πραγματικά να εγκαταστήσετε το NeoBoot στο:\n"
+" "
+
+msgid "Help"
+msgstr "Βοήθεια"
+
+msgid "Please choose an image to boot"
+msgstr "Επιλέξτε ένα image για εκκίνηση"
+
+msgid "WARNING !: The update brings with it the risk of errors.\n"
+msgstr "ΠΡΟΣΟΧΗ !: Η ενημέρωση φέρνει μαζί της τον κίνδυνο σφαλμάτων.\n"
+
+msgid "Before upgrading it is recommended that you make a backup NeoBoot.\n"
+msgstr "Πριν από την αναβάθμιση, συνιστάται να δημιουργήσετε ένα αντίγραφο ασφαλείας του NeoBoot.\n"
+
+msgid "Do you want to run the update now ?\n"
+msgstr "Θέλετε να εκτελέσετε την ενημέρωση τώρα;\n"
+
+msgid "Select Yes to do update\n"
+msgstr "Επιλέξτε Ναι για να κάνετε ενημέρωση\n"
+
+msgid "Select No to do backup\n"
+msgstr "Επιλέξτε Όχι για να κάνετε αντίγραφα ασφαλείας\n"
+
+msgid "Canceled update."
+msgstr "Η ενημέρωση ακυρώθηκε."
+
+msgid ""
+"NeoBoot has detected update.\n"
+"Do you want to update NeoBoota now ?"
+msgstr ""
+"Το NeoBoot εντόπισε ενημέρωση.\n"
+"Θέλετε να ενημερώσετε το NeoBoot τώρα;"
+
+msgid "Image Name"
+msgstr "Ονομασία του image"
+
+msgid "Image will be booted on the next STB boot!"
+msgstr "Το image θα εκκινήσει στην επόμενη εκκίνηση του δέκτη!"
+
+msgid "Info"
+msgstr "Πληροφορίες"
+
+msgid "Install & run multiple images."
+msgstr "Εγκατάσταση & εκτέλεση πολλαπλών images."
+
+msgid "Install Confirmation"
+msgstr "Επιβεβαίωση εγκατάστασης"
+
+msgid "Install Image"
+msgstr "Εγκατάσταση image"
+
+msgid "Installation aborted !"
+msgstr "Η εγκατάσταση ματαιώθηκε!"
+
+msgid "NeoBoot - Image Installation"
+msgstr "NeoBoot - Εγκατάσταση image"
+
+msgid "NeoBoot - Installation"
+msgstr "NeoBoot - Εγκατάσταση"
+
+msgid "NeoBoot - Menu"
+msgstr "NeoBoot - Μενού"
+
+msgid "Deleting in progress...\n"
+msgstr "Διαγραφή σε εξέλιξη...\n"
+
+msgid "NeoBoot has been installed succesfully !"
+msgstr "Το NeoBoot εγκαταστάθηκε με επιτυχία!"
+
+msgid "NeoBoot is running from:"
+msgstr "Το NeoBoot εκτελείται από:"
+
+msgid "NeoBoot is running image:"
+msgstr "Το NeoBoot εκτελεί το image:"
+
+msgid ""
+"NeoBoot successfully updated. You can restart the plugin now.\n"
+"Have fun !!!"
+msgstr ""
+"Το NeoBoot ενημερώθηκε με επιτυχία. Μπορείτε να επανεκκινήσετε το πρόσθετο τώρα.\n"
+"Διασκεδάστε το !!"
+
+msgid ""
+"NeoBoot successfully updated list tv.\n"
+"Have fun !!"
+msgstr ""
+"Το NeoBoot ενημέρωσε με επιτυχία τη λίστα tv.\n"
+"Διασκεδάστε το !!"
+
+msgid "NeoBot started installing new image.\n"
+msgstr "Το NeoBoot ξεκίνησε την εγκατάσταση νέου image.\n"
+
+msgid "NeoBoot: Deleting Image"
+msgstr "NeoBoot: Διαγραφή image"
+
+msgid "NeoBoot: Install new image"
+msgstr "NeoBoot: Εγκατάσταση νέου image"
+
+msgid "Number of images installed:"
+msgstr "Αριθμός εγκατεστημένων images:"
+
+msgid "Please: DO NOT reboot your STB and turn off the power.\n"
+msgstr "Παρακαλώ: ΜΗΝ επανεκκινήσετε τον δέκτη σας ούτε απενεργοποιήσετε την παροχή ενέργειας.\n"
+
+msgid "Remove Image "
+msgstr "Αφαίρεση image "
+
+msgid "Download Image"
+msgstr "Λήψη image"
+
+msgid "Removing canceled!"
+msgstr "Η αφαίρεση ακυρώθηκε!"
+
+msgid "Delete password"
+msgstr "Διαγραφή κωδικού πρόσβασης"
+
+msgid "Update NeoBot"
+msgstr "Ενημέρωση NeoBoot"
+
+msgid "Make copy"
+msgstr "Δημιουργία αντιγράφου"
+
+msgid "Restoring backup"
+msgstr "Επαναφορά αντιγράφου ασφαλείας"
+
+msgid "The update has been canceled."
+msgstr "Η ενημέρωση ακυρώθηκε."
+
+msgid "Install the new images from the Internet"
+msgstr "Εγκατάσταση των νέων images από το διαδίκτυο"
+
+msgid "Sorry it seems that there are not Linux formatted devices mounted on your STB. To install NeoBoot you need a Linux formatted part1 device."
+msgstr "Λυπούμαστε, φαίνεται ότι δεν υπάρχουν συσκευές με μορφοποίηση Linux τοποθετημένες στον δέκτη σας. Για να εγκαταστήσετε το NeoBoot χρειάζεστε μια συσκευή Part1 με μορφοποίηση Linux."
+
+msgid "Sorry the name of the new Image is too long."
+msgstr "Λυπούμαστε, το όνομα του νέου image είναι πολύ μεγάλο."
+
+msgid "Sorry this name is reserved. Choose another name for the new Image."
+msgstr "Λυπούμαστε, αυτό το όνομα είναι δεσμευμένο. Επιλέξτε ένα άλλο όνομα για το νέο image."
+
+msgid "Sorry you cannot delete Flash image"
+msgstr "Λυπούμαστε, δεν μπορείτε να διαγράψετε το image της flash"
+
+msgid "Sorry you cannot delete the image currently booted from."
+msgstr "Λυπούμαστε, δεν μπορείτε να διαγράψετε το image από το οποίο πραγματοποιήθηκε εκκίνηση."
+
+msgid "Sorry, Neoboot can be installed or upgraded only when booted from Flash"
+msgstr "Λυπούμαστε, το NeoBoot μπορεί να εγκατασταθεί ή να αναβαθμιστεί μόνο κατά την εκκίνηση από τη flash"
+
+msgid "Sorry, an Image with the name "
+msgstr "Λυπούμαστε, ένα image με το όνομα "
+
+msgid ""
+"Sorry, there is not any connected devices in your STB.\n"
+"Please connect HDD or USB to install NeoBoot!"
+msgstr ""
+"Λυπούμαστε, δεν υπάρχουν συνδεδεμένες συσκευές στον δέκτη σας.\n"
+"Παρακαλώ συνδέστε HDD ή USB για να εγκαταστήσετε το NeoBoot!"
+
+msgid ""
+"Sorry, Unable to install, bad satellite receiver or you do not have the full plug-in version\n"
+" The full version of the NEO VIP plugin is on address:\n"
+"krzysztofgutosie@.gmail.com"
+msgstr ""
+"Λυπούμαστε, δεν είναι δυνατή η εγκατάσταση, είναι κακός ο δορυφορικός δέκτης ή δεν έχετε την πλήρη έκδοση του πρόσθετου\n"
+"Η πλήρης έκδοση του πρόσθετου NEO VIP είναι στη διεύθυνση:\n"
+"krzysztofgutosie@.gmail.com"
+
+msgid "Source Image file"
+msgstr "Αρχείο image προέλευσης"
+
+msgid "NeoBoot has not been installed !  :("
+msgstr "Το NeoBoot δεν έχει εγκατασταθεί !  :("
+
+msgid "Would you like to download the image from the network now ?"
+msgstr "Θα θέλατε να κατεβάσετε το image από το δίκτυο τώρα;"
+
+msgid "The directory %s is not a ext2, ext3, ext4 or nfs partition.Make sure you select a valid partition type to install."
+msgstr "Ο κατάλογος %s δεν είναι διαμέρισμα ext2, ext3, ext4 ή nfs. Βεβαιωθείτε ότι έχετε επιλέξει έναν έγκυρο τύπο διαμερίσματος για εγκατάσταση."
+
+msgid ""
+"The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\n"
+"Make sure you select a valid partition type."
+msgstr ""
+"Ο κατάλογος %s δεν είναι ένα διαμέρισμα EXT2, EXT3, EXT4, ή NFS.\n"
+"Βεβαιωθείτε ότι έχετε επιλέξει έναν έγκυρο τύπο διαμερίσματος."
+
+msgid ""
+"The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\n"
+"Make sure you select a valid partition type.\n"
+"It may be helpful to restart the stb device completely."
+msgstr ""
+"Ο κατάλογος %s δεν είναι διαμέρισμα EXT2, EXT3, EXT4 ήγ NFS.\n"
+"Βεβαιωθείτε ότι έχετε επιλέξει έναν έγκυρο τύπο διαμερίσματος.\n"
+"Ίσως είναι χρήσιμο να επανεκκινήσετε πλήρως τη συσκευή δέκτη."
+
+msgid "Do you want install NeoBoot ?"
+msgstr "Θέλετε να εγκαταστήσετε το NeoBoot;"
+
+msgid "Please, wait..."
+msgstr "Παρακαλώ περιμένετε..."
+
+msgid "Keyboard"
+msgstr "Πληκτρολόγιο"
+
+msgid "Copy the channel list ?"
+msgstr "Αντιγραφή της λίστας καναλιών;"
+
+msgid "Copy CamdMenager ?"
+msgstr "Αντιγραφή του CamdManager;"
+
+msgid "Copy the drivers ? (Recommended only other image.)"
+msgstr "Αντιγραφή των drivers; (Συνιστάται μόνο για άλλο image)"
+
+msgid "Copy mounting disks ? (Recommended)"
+msgstr "Αντιγραφή των προσαρτημένων δίσκων; (Συνιστάται)"
+
+msgid "Remove zip file after installation ?"
+msgstr "Αφαίρεση του αρχείου zip μετά την εγκατάσταση;"
+
+msgid "Used: "
+msgstr "Σε χρήση: "
+
+msgid "Capacity : "
+msgstr "Χωρητικότητα: "
+
+msgid "Select skin."
+msgstr "Επιλογή θέματος"
+
+msgid "Block or unlock skins."
+msgstr "Μπλοκάρισμα ή ξεμπλοκάρισμα θεμάτων"
+
+msgid "Block or unblock the neoboot skin display in the system skin."
+msgstr "Μπλοκάρισμα ή ξεμπλοκάρισμα της εμφάνισης του θέματος NeoBoot στο θέμα συστήματος."
+
+msgid ""
+"Select Yes to lock or No to unlock.\n"
+"  %s     ?"
+msgstr ""
+"Επιλέξτε Ναι για κλείδωμα ή Όχι για ξεκλείδωμα.\n"
+"  %s     ;"
+
+msgid "Free Space : "
+msgstr "Ελεύθερος χώρος: "
+
+msgid " Full"
+msgstr " πλήρης"
+
+msgid "Copy the network settings DNS ? (Not recommended for VTi)"
+msgstr "Αντιγραφή των ρυθμίσεων δικτύου DNS; (Δεν συνιστάται για VTi)"
+
+msgid "Start the new image after installation ?"
+msgstr "Εκκίνηση του νέου image μετά την εγκατάσταση;"
+
+msgid "Stop E2 processes during installation?"
+msgstr "Διακοπή των διεργασιών E2 κατά την εγκατάσταση;"
+
+msgid "Overwrite the files of the module and firmware ?"
+msgstr "Αντικατάσταση των αρχείων της λειτουργική μονάδας και του λογισμικού;"
+
+msgid "Welcome to NeoBoot %s Plugin installation."
+msgstr "Καλώς ήρθατε στην εγκατάσταση του πρόσθετου NeoBoot %s."
+
+msgid "You are not running OpenSPA Image. You must mount devices Your self."
+msgstr "Δεν εκτελείτε image OpenSPA. Πρέπει να προσαρτήσετε τις συσκευές μόνοι σας."
+
+msgid "You have to provide a name for the new Image."
+msgstr "Πρέπει να δώσετε ένα όνομα για το νέο image."
+
+msgid ""
+"You have to select one Image to install.\n"
+"Please, upload your zip file in the folder: /media/neoboot/ImagesUpload and select the image to install."
+msgstr ""
+"Πρέπει να επιλέξετε ένα image για εγκατάσταση.\n"
+"Παρακαλώ, ανεβάστε το αρχείο zip στο φάκελο: /media/neoboot/ImagesUpload και επιλέξτε το image που θέλετε να εγκαταστήσετε."
+
+msgid "You really want to install NeoBoot in:"
+msgstr "Θέλετε πραγματικά να εγκαταστήσετε το NeoBoot στο:"
+
+msgid "no image to remove"
+msgstr "δεν υπάρχει image για αφαίρεση"
+
+msgid "remove"
+msgstr "αφαίρεση"
+
+msgid "unknown"
+msgstr "άγνωστο"
+
+msgid "/proc/mounts"
+msgstr ""
+
+msgid " Failed to open /proc/mounts"
+msgstr " Αποτυχία ανοίγματος του /proc/mounts"
+
+msgid " /proc/filesystems"
+msgstr ""
+
+msgid " Failed to read /proc/filesystems:"
+msgstr " Αποτυχία ανάγνωσης του /proc/filesystems:"
+
+msgid "device"
+msgstr "συσκευή"
+
+msgid "/part"
+msgstr ""
+
+msgid "part"
+msgstr "μέρος"
+
+msgid "disc"
+msgstr "δίσκος"
+
+msgid "/sys/block/"
+msgstr ""
+
+msgid "/dev"
+msgstr ""
+
+msgid "Unable to determine structure of /dev"
+msgstr "Δεν είναι δυνατός ο προσδιορισμός της δομής του /dev"
+
+msgid "new Harddisk"
+msgstr "νέος σκληρός δίσκος"
+
+msgid "External (CF)"
+msgstr "Εξωτερικό (CF)"
+
+msgid "Internal"
+msgstr "Εσωτερικό"
+
+msgid "External"
+msgstr "Εξωτερικό"
+
+msgid "size"
+msgstr "μέγεθος"
+
+msgid "/model"
+msgstr ""
+
+msgid "/vendor"
+msgstr ""
+
+msgid " Failed to get model:"
+msgstr " Αποτυχία λήψης μοντέλου:"
+
+msgid "umount "
+msgstr "αποπροσάρτηση:"
+
+msgid "[Harddisk]"
+msgstr ""
+
+msgid " mounting:"
+msgstr " προσάρτηση:"
+
+msgid "Initializing storage device..."
+msgstr "Αρχικοποίηση συσκευής αποθήκευσης..."
+
+msgid "Removing partition table"
+msgstr "Αφαίρεση πίνακα διαμερισμάτων"
+
+msgid "Rereading partition table"
+msgstr "Αναδιαμόρφωση πίνακα διαμερισμάτων"
+
+msgid "Waiting for partition"
+msgstr "Αναμονή για διαμέριση"
+
+msgid "Creating partition"
+msgstr "Δημιουργία διαμερίσματος"
+
+msgid "Creating filesystem"
+msgstr "Δημιουργίας συστήματος αρχείων"
+
+msgid "/proc/version"
+msgstr ""
+
+msgid "Failed to detect Linux version:"
+msgstr "Αποτυχία ανίχνευσης έκδοσης Linux:"
+
+msgid "largefile"
+msgstr ""
+
+msgid "Waiting for mount"
+msgstr "Αναμονή για προσάρτηση"
+
+msgid "Checking filesystem..."
+msgstr "Έλεγχος συστήματος αρχείων..."
+
+msgid "You system does not support ext4"
+msgstr "Το σύστημά σας δεν υποστηρίζει ext4"
+
+msgid "Converting ext3 to ext4..."
+msgstr "Μετατροπή ext3 σε ext4..."
+
+msgid "Partition(mountpoint=%s,description=%s,device=%s)"
+msgstr ""
+
+msgid "Device %s is not mounted"
+msgstr "Η συσκευή %s δεν είναι προσαρτημένη"
+
+msgid "update packages"
+msgstr "ενημέρωση πακέτων"
+
+msgid "update"
+msgstr "ενημέρωση"
+
+msgid "Internal flash"
+msgstr "Εσωτερική flash"
+
+msgid " enumerating block devices..."
+msgstr ""
+
+msgid " enumerating network mounts..."
+msgstr ""
+
+msgid "new Network Mount"
+msgstr ""
+
+msgid "new Network Mount being used as HDD replacement -> /media/hdd/"
+msgstr ""
+
+msgid "couldn't determine blockdev physdev for device"
+msgstr ""
+
+msgid "External Storage %s"
+msgstr "Εξωτερικός χώρος αποθήκευσης %s"
+
+msgid "couldn't read model: "
+msgstr ""
+
+msgid "Partition %d"
+msgstr "Διαμέρισμα %d"
+
+msgid " Failed to set %s speed to %s"
+msgstr " Αποτυχία ορισμού %s ταχύτητας στο %s"
+
+msgid "Unmount"
+msgstr "Αποπροσάρτηση"
+
+msgid "Mount"
+msgstr "Προσάρτηση"
+
+msgid "/dev/nomount.%s"
+msgstr ""
+
+msgid "ERROR: Failed to create /dev/nomount file:"
+msgstr "ΣΦΑΛΜΑ: Αποτυχία δημιουργίας αρχείου /dev/nomount:"
+
+msgid "ERROR: Failed to remove /dev/nomount file:"
+msgstr "ΣΦΑΛΜΑ: Αποτυχία αφαίρεσης του αρχείου /dev/nomount:"
+
+msgid "Writing inode tables:"
+msgstr "Εγγραφή πινάκων inode:"
+
+msgid "Creating journal"
+msgstr "Δημιουργία ημερολογίου"
+
+msgid "inode"
+msgstr ""
+
+msgid "journal"
+msgstr ""
+
+msgid " No mountpoints found?"
+msgstr " Δεν βρέθηκαν σημεία προσάρτησης;"
+
+msgid "Failed to remove path '%s':"
+msgstr "Αποτυχία αφαίρεσης διαδρομής '%s':"
+
+msgid "unavailable"
+msgstr "Μη διαθέσιμο"
+
+msgid "system type"
+msgstr "τύπος συστήματος"
+
+msgid "Processor"
+msgstr "Επεξεργαστής"
+
+msgid "processor"
+msgstr "επεξεργαστής"
+
+msgid "undefined"
+msgstr "Απροσδιόριστο"
+
+msgid "Extract contents of UBI image."
+msgstr "Εξαγωγή περιεχομένων του UBI image."
+
+msgid ""
+"\n"
+"[NeoBoot] Zip file unzipped.\n"
+"Installation in progress, please wait ..."
+msgstr ""
+"\n"
+"[NeoBoot] Το αρχειο Zip file αποσυμπιέστηκε.\n"
+"Εγκατάσταση σε εξέλιξη, παρακαλώ περιμένετε..."
+
+msgid ""
+"Wait almost over ...\n"
+"Loading the image to: %s"
+msgstr ""
+"Περιμένετε έως να τελειώσει...\n"
+"Φόρτωση του image στο: %s"
+
+msgid "Maintain file permissions, requires running as root. (default: False)"
+msgstr "Διατήρηση δικαιωμάτων αρχείων, απαιτεί εκτέλεση ως root. (προεπιλογή: False)"
+
+msgid "Suppress warnings and non-fatal errors. (default: False)"
+msgstr "Απόκρυψη προειδοποιήσεων και μη ανεπανόρθωτων σφαλμάτων. (προεπιλογή: False)"
+
+msgid "Specify PEB size"
+msgstr "Καθορισμός μεγέθους PEB"
+
+msgid "Specify output directory path."
+msgstr "Καθορισμός διαδρομής καταλόγου εξόδου."
+
+msgid "filepath"
+msgstr ""
+
+msgid "File to extract contents of."
+msgstr "Αρχείο για την εξαγωγή περιεχομένων του."
+
+msgid "File path doesn't exist."
+msgstr "Η διαδρομή αρχείου δεν υπάρχει."
+
+msgid "Volume output directory is not empty. %s"
+msgstr "Ο κατάλογος εξόδου τόμου δεν είναι κενός. %s"
+
+msgid "Writing to: %s"
+msgstr "Εγγραφή στο: %s"
+
+msgid "errors"
+msgstr ""
+
+msgid "Error Count Header"
+msgstr "Σφάλμα κεφαλίδας καταμέτρησης"
+
+msgid "Volume Table Record: %s"
+msgstr "Εγγραφή πίνακα τόμου: %s"
+
+msgid "name"
+msgstr "όνομα"
+
+msgid "Volume: %s"
+msgstr "Τόμος: %s"
+
+msgid "No blocks found."
+msgstr "Δεν βρέθηκαν μπλοκ."
+
+msgid "Delete"
+msgstr "Διαγραφή"
+
+msgid "Read Only"
+msgstr "Μόνο για ανάγνωση"
+
+msgid "Preserve"
+msgstr "Διατήρηση"
+
+msgid "Reject"
+msgstr "Απόρριψη"
+
+msgid "%sUBI File"
+msgstr "%sUBI αρχείο"
+
+msgid "\t%sMin I/O: %s"
+msgstr ""
+
+msgid "\t%sLEB Size: %s"
+msgstr ""
+
+msgid "\t%sPEB Size: %s"
+msgstr ""
+
+msgid "\t%sTotal Block Count: %s"
+msgstr ""
+
+msgid "\t%sData Block Count: %s"
+msgstr ""
+
+msgid "\t%sLayout Block Count: %s"
+msgstr ""
+
+msgid "\t%sInternal Volume Block Count: %s"
+msgstr ""
+
+msgid "\t%sUnknown Block Count: %s"
+msgstr ""
+
+msgid "\t%sFirst UBI PEB Number: %s"
+msgstr ""
+
+msgid "\t%sImage Sequence Num: %s"
+msgstr ""
+
+msgid "\t%sVolume Name:%s"
+msgstr ""
+
+msgid "\t%sPEB Range: %s - %s"
+msgstr ""
+
+msgid "\t%sName: %s"
+msgstr ""
+
+msgid "\t%sBlock Count: %s"
+msgstr ""
+
+msgid "\t%sVolume Record"
+msgstr ""
+
+msgid "\t%sFile Offset: %s"
+msgstr ""
+
+msgid "\t%sBlock Size: %s"
+msgstr ""
+
+msgid "\t%sInternal Volume: %s"
+msgstr ""
+
+msgid "\t%sIs Volume Table: %s"
+msgstr ""
+
+msgid "\t%sIs Valid: %s"
+msgstr ""
+
+msgid "\t%sErase Count Header"
+msgstr ""
+
+msgid "\t%sVID Header Header"
+msgstr ""
+
+msgid "autoresize"
+msgstr ""
+
+msgid "Image: %s"
+msgstr ""
+
+msgid "Start offset larger than file size!"
+msgstr "Offset έναρξης μεγαλύτερο από το μέγεθος του αρχείου!"
+
+msgid "UBIFS Common Header"
+msgstr ""
+
+msgid "UBIFS Super Block Node"
+msgstr ""
+
+msgid "UBIFS Master Block Node"
+msgstr ""
+
+msgid "UBIFS Directory Entry Node"
+msgstr ""
+
+msgid "offset"
+msgstr ""
+
+msgid "UBIFS Data Node"
+msgstr "Κόμβος δεδομένων UBIFS"
+
+msgid "UBIFS Index Node"
+msgstr "Κόμβος δείκτη UBIFS"
+
+msgid "Backup"
+msgstr "Αντίγραφο ασφαλείας"
+
+msgid "list"
+msgstr "λίστα"
+
+msgid "Backup Confirmation"
+msgstr "Επιβεβαίωση αντιγράφου ασφαλείας"
+
+msgid "NeoBoot: Backup Image"
+msgstr "NeoBoot: Αντίγραφο ασφαλείας image"
+
+msgid "Backup Image"
+msgstr "Αντίγραφο ασφαλείας image"
+
+msgid "Reinstall kernel"
+msgstr "Επανεγκατάσταση Kernel"
+
+msgid "Used Kernel:Flash"
+msgstr "Χρήση Kernel:Flash"
+
+msgid "Kernel Version: "
+msgstr "Έκδοση kernel: "
+
+msgid "Flash"
+msgstr ""
+
+msgid "Sorry you cannot overwrite the image currently booted from. Please, boot from Flash to restore this backup."
+msgstr "Λυπούμαστε, δεν μπορείτε να αντικαταστήσετε το image από το οποίο εκκινείται τώρα. Παρακαλώ, εκκινήστε από τη flash για να επαναφέρετε αυτό το αντίγραφο ασφαλείας."
+
+msgid "Restore Confirmation"
+msgstr "Επιβεβαίωση επαναφοράς"
+
+msgid "Wait please, NeoBoot is working: ....Restore in progress...."
+msgstr "Παρακαλώ περιμένετε, το NeoBoot είναι σε λειτουργία: ....Επαναφορά σε εξέλιξη...."
+
+msgid "NeoBoot: Restore COMPLETE !"
+msgstr "NeoBoot: Η επαναφορά ΟΛΟΚΛΗΡΩΘΗΚΕ !"
+
+msgid "NeoBoot: Restore Image"
+msgstr "NeoBoot: Επαναφορά Image"
+
+msgid ""
+"\n"
+"\n"
+"NeoBoot restoring media mounts...."
+msgstr ""
+"\n"
+"\n"
+"Το NeoBoot επαναφέρει τις προσαρτήσεις μέσων...."
+
+msgid ""
+"\n"
+"\n"
+"NeoBoot remove complete...."
+msgstr ""
+"\n"
+"\n"
+"Το NeoBoot αφαιρέθηκε πλήρως..."
+
+msgid "NeoBoot is removing..."
+msgstr "Το NeoBoot αφαιρέθηκε..."
+
+msgid "NeoBoot: Deleting All Images"
+msgstr "NeoBoot: Διαγραφη όλων των images"
+
+msgid "NeoBoot: Download Image...."
+msgstr "NeoBoot: Λήψη image...."
+
+msgid "NeoBoot new Image download"
+msgstr "Λήψη νέoυ image NeoBoot"
+
+msgid ""
+"GUI needs a restart.\n"
+"Do you want to Restart the GUI now?"
+msgstr ""
+"Το GUI απαιτεί επανεκκίνηση.\n"
+"Θέλετε να κάνετε επανεκκίνηση του GUI τώρα;"
+
+msgid "Restart GUI now?"
+msgstr "Να γίνει επανεκκίνηση του GUI τώρα;"
+
+msgid "Backup NeoBoot"
+msgstr "Αντίγραφο ασφαλείας NeoBoot"
+
+msgid "NeoBoot is based on a egamiboot < mod by gutosie and madu >\n"
+msgstr "Το NeoBoot βασίζεται στο egamiboot < τροποποιήθηκε από gutosie και madu >\n"
+
+msgid "nfidump by gutemine - Thanks\n"
+msgstr "nfidump από gutemine - Ευχαριστούμε\n"
+
+msgid "Sorry, NeoBot installs new images only from the Flash"
+msgstr "Λυπούμαστε, το NeoBoot εγκαθιστά νέα images μόνο από τη flash"
+
+msgid ""
+"NeoBot has detected that it is not running image from the memory of the decoder.\n"
+"Start selected image now ?"
+msgstr ""
+"Το NeoBoot εντόπισε ότι δεν εκτελείtai image από τη μνήμη του αποκωδικοποιητή.\n"
+"Να εκκινήσει το επιλεγμένο image τώρα;"
+
+msgid "Download additional images from the network"
+msgstr "Λήψη πρόσθετων images από το δίκτυο"
+
+msgid "The installation process may take a few minutes.\n"
+msgstr "Η διαδικασία εγκατάστασης ενδέχεται να διαρκέσει μερικά λεπτά.\n"
+
+msgid "Please, wait...\n"
+msgstr "Παρακαλώ περιμένετε...\n"
+
+msgid "Stop action"
+msgstr "Διακοπή ενέργειας"
+
+msgid "Deleting languages"
+msgstr "Διαγραφή γλωσσών"
+
+msgid "Select to delete."
+msgstr "Επιλέξτε για διαγραφή"
+
+msgid "File:  %s  remove ?"
+msgstr "Αρχείο:  %s  να αφαιρεθεί;"
+
+msgid "Copy the system settings ? (Not recommended)"
+msgstr "Αντιγραφή των πρόσθετων συστήματος; (Δεν συνιστάται)"
+
+msgid "Multi image"
+msgstr "Πολλαπλά images"
+
+msgid "NeoBoot installation image"
+msgstr "Εγκατάσταση image NeoBoot"
+
+msgid "STB name:"
+msgstr "Όνομα δέκτη:"
+
+msgid "Reboot stb now  ?"
+msgstr "Να γίνει επανεκκίνηση του δέκτη τώρα;"
+
+msgid ""
+"An error was encountered, you have neoboot installed on usb and hdd.\n"
+"Uninstall one directories from one drive."
+msgstr ""
+"Παρουσιάστηκε σφάλμα, έχετε εγκαταστήσει το NeoBoot σε usb και hdd.\n"
+"Απεγκαταστήστε τους καταλόγους από τη μία μονάδα δίσκου."
+
+msgid ""
+"Catalog %sImagesUpload directory is empty\n"
+"Please upload the image files in zip or nfi formats to install"
+msgstr ""
+"Ο κατάλογος Catalog %sImagesUpload είναι κενός\n"
+"Παρακαλώ ανεβάστε τα αρχεία image σε μορφή zip ή nfi για εγκατάσταση"
+
+msgid ""
+"Directory %sImagesUpload  is empty\n"
+"Please upload the image files in zip or nfi formats to install"
+msgstr ""
+"Ο κατάλογος %sImagesUpload  είναι κενός\n"
+"Παρακαλώ ανεβάστε τα αρχεία image σε μορφή zip ή nfi για εγκατάσταση"
+
+msgid "The operation has been canceled or meoboot is not running in stb VuPlus"
+msgstr "Η λειτουργία έχει ακυρωθεί ή το MeoBoot δεν εκτελείται σε δέκτη VuPlus"
+
+msgid ""
+"NeoBoot successfully updated IPTVPlayer.\n"
+"Have fun !!"
+msgstr ""
+"Το NeoBoot ενημέρωσε με επιτυχία το IPTVPlayer.\n"
+"Διασκεδάστε το !!"
+
+msgid "Instruction"
+msgstr "Οδηγίες"
+
+msgid "Device Manager"
+msgstr "Διαχείριση συσκευών"
+
+msgid "Info disc"
+msgstr "Πληροφορίες δίσκου"
+
+msgid ""
+"NeoBot checks the connected media.\n"
+"WAIT ...\n"
+"\n"
+"DISCS:"
+msgstr ""
+"Το NeoBoot ελέγχει τα συνδεδεμένα μέσα.\n"
+"ΠΕΡΙΜΕΝΕΤΕ ...\n"
+"\n"
+"ΔΙΣΚΟΙ:"
+
+msgid "    NeoBot - Available media:"
+msgstr "    NeoBoot - Διαθέσιμα μέσα:"
+
+msgid "After selecting OK start Mounting Manager, option Mount - green\n"
+msgstr "Αφού επιλέξετε OK ξεκινήστε τη Διαχείριση προσαρτήσεων, επιλέξτε Προσάρτηση - πράσινο\n"
+
+msgid "Do you want to run the manager to mount the drives correctly ?\n"
+msgstr "Θέλετε να εκτελέσετε τη Διαχείριση για να προσαρτήσετε σωστά τις μονάδες δίσκου;\n"
+
+msgid "Device Manager encountered an error, disk drives not installed correctly !!!"
+msgstr "Η Διαχείριση συσκευών αντιμετώπισε σφάλμα, οι μονάδες δίσκου δεν εγκαταστάθηκαν σωστά !!!"
+
+msgid ""
+"\n"
+" ... q(-_-)p ...\n"
+"NeoBot to function properly need additional packages.\n"
+"Select Yes and wait ...\n"
+"Proces installation may take a few moments ...\n"
+"Install ?"
+msgstr ""
+"\n"
+" ... q(-_-)p ...\n"
+"Το NeoBoot για να λειτουργήσει σωστά χρειάζεται επιπλέον πακέτα.\n"
+"Επιλέξτε Ναι και περιμένετε...\n"
+"Η διαδικασία εγκατάστασης μπορεί να διαρκέσει μερικά λεπτά...\n"
+"Να εγκατασταθούν;"
+
+msgid "Installing packages ..."
+msgstr "Εγκατάσταση πακέτων..."
+
+msgid "Installation operation canceled. This is not a vuplus box !!!"
+msgstr "Η λειτουργία εγκατάστασης ακυρώθηκε. Αυτός δεν είναι δέκτης VuPlus !!!"
+
+msgid "Canceled ... NeoBoot will not work properly !!! NeoBoot works only on VuPlus box, Ultimo4k, Solo4k, Uno4k !!!"
+msgstr "Ακυρώθηκε ... Το NeoBoot δεν θα λειτουργήσει σωστά !!! Το NeoBoot λειτουργεί μόνο σε VuPlus box, Ultimo4k, Solo4k, Uno4k !!!"
+
+msgid "The download neoboot update."
+msgstr "Η λήψη ενημέρωσης neoboot."
+
+msgid "Installation"
+msgstr "Εγκατάσταση"
+
+msgid "Version update: "
+msgstr "Έκδοση ενημέρωσης:"
+
+msgid "NeoBoot version: "
+msgstr "Έκδοση NeoBoot: "
+
+msgid "It is recommended to give a label to the disk."
+msgstr "Συνιστάται να δώσετε μια ετικέτα στο δίσκο."
+
+msgid ""
+"Here is the list of mounted devices in Your STB\n"
+"Please choose a device where You would like to install NeoBoot"
+msgstr ""
+"Ακολουθεί η λίστα των προσαρτημένων συσκευών στον δέκτη σας\n"
+"Παρακαλώ επιλέξτε μια συσκευή στην οποία θέλετε να εγκαταστήσετε το NeoBoot"
+
+msgid "Tools Neoboot"
+msgstr "Εργαλεία NeoBoot"
+
+msgid "No file location NeoBot, do re-install the plugin."
+msgstr "Δεν υπάρχει τοποθεσία αρχείου NeoBoot, εγκαταστήστε ξανά το πρόσθετο."
+
+msgid ""
+"  Enigma2\n"
+"\n"
+"During the entire installation process does not restart the receiver !!!\n"
+"\n"
+msgstr ""
+"  Enigma2\n"
+"\n"
+"Κατά τη διάρκεια ολόκληρης της διαδικασίας εγκατάστασης μην επανεκκινήσετε τον δέκτη !!!\n"
+"\n"
+
+msgid "NeoBoot Ver. updates     "
+msgstr "Ενημερώσεις έκδοσης NeoBoot     "
+
+msgid "NeoBoot Ver. updates    "
+msgstr "Ενημερώσεις έκδοσης NeoBoot    "
+
+msgid "Ver. updates    "
+msgstr "Έκδοση ενημερώσεων    "
+
+msgid ""
+"2. NeoBot is fully automated\n"
+"\n"
+msgstr ""
+"2. Το NeoBoοt είναι πλήρως αυτοματοποιημένο.\n"
+"\n"
+
+msgid ""
+"For proper operation NeoBota type device is required USB stick or HDD, formatted on your system files Linux ext3 or ext4..\n"
+"\n"
+msgstr ""
+"Για τη σωστή λειτουργία απαιτείται συσκευή τύπου NeoBoot USB στικ ή HDD, μορφοποιημένη στα αρχεία του συστήματος Linux ext3 ή ext4..\n"
+"\n"
+
+msgid ""
+"1. If you do not have a media formatted with the ext3 or ext4 is open to the Device Manager <Initialize>, select the drive and format it.\n"
+"\n"
+msgstr ""
+"1. Εάν δεν έχετε μορφοποιημένο μέσο με ext3 ή ext4 στη Διαχείριση συσκευών <Αρχικοποίηση>, επιλέξτε τη μονάδα δίσκου και διαμορφώστε τη.\n"
+"\n"
+
+msgid ""
+"2. Go to the device manager and install correctly hdd and usb ...\n"
+"\n"
+msgstr ""
+"2. Μεταβείτε στη Διαχείριση συσκευών και εγκαταστήστε σωστά το hdd και το usb...\n"
+"\n"
+
+msgid ""
+"3. Install NeoBota on the selected device.\n"
+"\n"
+msgstr ""
+"3. Εγκαταστήστε το NeoBoot στην επιλεγμένη συσκευή.\n"
+"\n"
+
+msgid ""
+"4. Install the needed packages...\n"
+"\n"
+msgstr ""
+"4. Εγκαταστήστε τα απαραίτητα πακέτα...\n"
+"\n"
+
+msgid ""
+"5. For proper installation NenoBota receiver must be connected to the Internet.\n"
+"\n"
+msgstr ""
+"5. Για σωστή εγκατάσταση ο δέκτης NeoBoot πρέπει να είναι συνδεδεμένος στο διαδίκτυο.\n"
+"\n"
+
+msgid ""
+"6. In the event of a problem with the installation cancel and  inform the author of the plug of a problem.\n"
+"\n"
+msgstr ""
+"6. Σε περίπτωση προβλήματος με την εγκατάσταση ακυρώστε και ενημερώστε τον συντάκτη του πρόσθετου για το πρόβλημα.\n"
+"\n"
+
+msgid "NeoBoot Ver. "
+msgstr "Έκδοση NeoBoot "
+
+msgid "Have fun !!!"
+msgstr "Διασκεδάστε το !!!"
+
+msgid "Remove NeoBoot of STB"
+msgstr "Αφαίρεση NeoBoot από δέκτη"
+
+msgid ""
+"1. Requirements: For proper operation of the device NeoBota are required USB stick or HDD.\n"
+"\n"
+msgstr ""
+"1. Απαιτήσεις: Για τη σωστή λειτουργία της συσκευής NeoBoot απαιτείται στικάκι USB ή HDD.\n"
+"\n"
+
+msgid ""
+"3. To install a new image in MultiBocie should be sent by FTP software file compressed in ZIP or NIF to the folder: \n"
+"/media/neoboot/ImagesUpload and remote control plugin NeoBoot use the green button <Installation>\n"
+"\n"
+msgstr ""
+"3. Για να εγκαταστήσετε ένα νέο image στο MultiBoot θα πρέπει να αποστείλετε με FTP το αρχείο λογισμικού συμπιεσμένο σε ZIP ή NIF στο φάκελο: \n"
+"/media/neoboot/ImagesUpload και χειριστείτε το πρόσθετο NeoBoot χρησιμοποιώντας το πράσινο κουμπί <Εγκατάσταση>\n"
+"\n"
+
+msgid ""
+"4. For proper installation and operation of additional image multiboot, use only the image intended for your receiver. !!!\n"
+"\n"
+msgstr ""
+"4. Για σωστή εγκατάσταση και λειτουργία πρόσθετου image στο MultiBoot, χρησιμοποιήστε μόνο το image που προορίζεται για τον δέκτη σας !!!\n"
+"\n"
+
+msgid ""
+"5. By installing the multiboot images of a different type than for your model STB DOING THIS AT YOUR OWN RISK !!!\n"
+"\n"
+msgstr ""
+"5. Εγκαθιστώντας MultiBoot images διαφορετικού τύπου από ότι για το μοντέλο του δέκτη σας, ΤΟ ΚΑΝΕΤΕ ΜΕ ΔΙΚΗ ΣΑΣ ΕΥΘΥΝΗ !!!\n"
+"\n"
+
+msgid ""
+"6. The installed to multiboot images, it is not indicated update to a newer version.\n"
+"\n"
+msgstr ""
+"6. Στα εγκατεστημένα MultiBoot images, δεν ενδείκνυται ενημέρωση σε νεότερη έκδοση.\n"
+"\n"
+
+msgid ""
+"The authors plug NeoBot not liable for damage a receiver, NeoBoota incorrect use or installation of unauthorized additions or images.!!!\n"
+"\n"
+msgstr ""
+"Οι συντάκτες του πρόσθετου NeoBoοt δεν ευθύνονται για ζημιά στον δέκτη, εσφαλμένη χρήση του NeoBoot ή εγκατάσταση μη εξουσιοδοτημένων πρόσθετων ή images !!!\n"
+"\n"
+
+msgid ""
+"Are you sure you want to completely remove NeoBoota of your image?\n"
+"\n"
+"If you choose so all directories NeoBoota will be removed.\n"
+"A restore the original image settings Flash."
+msgstr ""
+"Είστε σίγουροι ότι θέλετε να αφαιρέσετε εντελώς το NeoBoot από το image σας;\n"
+"\n"
+"Εάν το επιλέξετε, όλοι οι κατάλογοι του NeoBoot θα αφαιρεθούν.\n"
+"Θα γίνει επαναφορά των αρχικών ρυθμίσεων του image της flash."
+
+msgid "Delete the selected image - "
+msgstr "Διαγραφή του επιλεγμένου image - "
+
+msgid "Start the device manager"
+msgstr "Εκκίνηση της διαχείρισης συσκευών"
+
+msgid ""
+"\n"
+"Delete ?"
+msgstr ""
+"\n"
+"Να γίνει διαγραφή;"
+
+msgid ""
+"NeoBot was removed !!! \n"
+"The changes will be visible only after complete restart of the receiver."
+msgstr ""
+"Το NeoBoot αφαιρέθηκε !!! \n"
+"Οι αλλαγές θα είναι ορατές μόνο μετά από πλήρη επανεκκίνηση του δέκτη."
+
+msgid "Removed successfully."
+msgstr "Αφαιρέθηκε με επιτυχία."
+
+msgid "Recovering setting....\n"
+msgstr "Ανάκτηση ρύθμισης....\n"
+
+msgid "Update neoboot in all images ?"
+msgstr "Να γίνει ενημέρωση του NeoBoot σε όλα τα images;"
+
+msgid ""
+"NeoBoot: Upgrading in progress\n"
+"Please wait..."
+msgstr ""
+"NeoBoot: Αναβάθμιση σε εξέλιξη\n"
+"Παρακαλώ περιμένετε..."
+
+msgid ""
+"[NeoBoot] For proper operation of the image blackhole in neobot, you need to install additional packages. \n"
+"\n"
+" Install now ?"
+msgstr ""
+"[NeoBoot] Για τη σωστή λειτουργία του image BlackHole στην εκκίνηση, πρέπει να εγκαταστήσετε πρόσθετα πακέτα. \n"
+"\n"
+" Να εγκατασταθούν τώρα;"
+
+msgid "Cancelled ... [meoboot] detected no file vmlinuz.gz. You can not run image BlackHole \\ nImage BlackHole without the module will not be work properly !!!"
+msgstr "Ακυρώθηκε ... Το [meoboot] δεν εντόπισε κανένα αρχείο vmlinuz.gz. Δεν μπορείτε να εκτελέσετε το image BlackHole \\nΤο image BlackHole χωρίς τη λειτουργική μονάδα δεν θα λειτουργεί σωστά !!!"
+
+msgid ""
+"Neoboot detected that you want to run the image blackhole. \\Warning!!!  - BlackHole not run without the boot manager !!!\n"
+"If you are running an image blackhole not converted to another during the restart from the boot manager !!!\n"
+"Start the selected image now ?"
+msgstr ""
+"Το NeoBoot εντόπισε ότι θέλετε να εκτελέσετε το image BlackHole. \\Προσοσχή!!!  - Το BlackHole δεν εκτελείται χωρίς τη Διαχείριση εκκινήσεων !!!\n"
+"Εάν εκτελείτε ένα image BlackHole δεν μετατρέπεται σε άλλο κατά την επανεκκίνηση από τη Διαχείριση εκκινήσεων !!!\n"
+"Να εκκινήσει το επιλεγμένο image΄τώρα;"
+
+msgid "Neoboot detected that is not installed on the model VuPlus, you can not run an image BlackHole !!!"
+msgstr "Το NeoBoot εντόπισε ότι δεν είναι εγκατεστημένο στο μοντέλο VuPlus, δεν μπορείτε να εκτελέσετε ένα image BlackHole !!!"
+
+msgid ""
+"NeoBoot has detected that it is running image blackhole.\n"
+"To change the image should return to Flash !!! \n"
+"\n"
+"Start selected image now ?"
+msgstr ""
+"Το NeoBoot εντόπισε ότι εκτελείται το image BlackHole.\n"
+"Για να αλλάξετε το image θα πρέπει να επιστρέψετε στη flash !!! \n"
+"\n"
+"Να ξεκινήσει το επιλεγμένο image τώρα;"
+
+msgid "Download image..."
+msgstr "Λήψη image..."
+
+msgid "Not Detected kernel-module-nandsim, install ?"
+msgstr "Δεν εντοπίστηκε kernel-module-nandsim, να εγκατασταθεί;"
+
+msgid ""
+"The installation has encountered an error !!!.\n"
+"This may be no connection to the server or the link has expired.\n"
+"When installing a new image use options ubi_reader..."
+msgstr ""
+"Η εγκατάσταση αντιμετώπισε σφάλμα !!!.\n"
+"Αυτό μπορεί να μην είναι σύνδεση με το διακομιστή ή η σύνδεση έχει λήξει.\n"
+"Κατά την εγκατάσταση ενός νέου image Χρησιμοποιήστε τις επιλογές ubi_reader..."
+
+msgid "Cancelled ... Image BlackHole without the module will not work properly !!!"
+msgstr "Ακυρώθηκε ... Το Image BlackHole χωρίς τη λειτουργική μονάδα δεν θα λειτουργεί σωστά !!!"
+
+msgid "Package installation is complete. You can test image BlackHole ..."
+msgstr "Η εγκατάσταση του πακέτου ολοκληρώθηκε. Μπορείτε να δοκιμάσετε το image BlackHole ..."
+
+msgid "Cancelled ... neoboot without the module will not work properly !!!"
+msgstr "Ακυρώθηκε ... Το NeoBoot χωρίς τη λειτουργική μονάδα δεν θα λειτουργεί σωστά !!!"
+
+msgid "Package installation is complete. You can test new image."
+msgstr "Η εγκατάσταση του πακέτου ολοκληρώθηκε. Μπορείτε να δοκιμάσετε νέο image."
+
+msgid "Cancelled"
+msgstr "Ακυρώθηκε"
+
+msgid "Canceled start off the image ..."
+msgstr "Ακυρώθηκε η έναρξη του image..."
+
+msgid "Exit"
+msgstr "Έξοδος"
+
+msgid "Start the device manager ?"
+msgstr "Να γίνει εκκίνηση της Διαχείρισης συσκευών;"
+
+msgid "Select OK to run the image."
+msgstr "Επιλέξτε OK για να εκτελέσετε το image."
+
+msgid "Use options without the boot manager."
+msgstr "Χρήση επιλογών χωρίς τη Διαχείριση εκκινήσεων."
+
+msgid "Use options with the boot manager."
+msgstr "Χρήση επιλογών με τη Διαχείριση εκκινήσεων."
+
+msgid "Use the next start."
+msgstr "Χρήση στην επόμενη εκκίνηση."
+
+msgid "Use nandsim"
+msgstr "Χρήση nandsim"
+
+msgid "Use  ubi_reader"
+msgstr "Χρήση  ubi_reader"
+
+msgid "Unpack the image tar.bz2 4K"
+msgstr "Αποσυσκευασία του image tar.bz2 4K"
+
+msgid "Unpack the image - no change."
+msgstr "Αποσυσκευασία του image - καμία αλλαγή."
+
+msgid "Choose option to extract image"
+msgstr "Ορίστε την επιλογή για εξαγωγή image"
+
+msgid "Installing multiple images"
+msgstr "Εγκατάσταση πολλών images"
+
+msgid ""
+"[NeoBoot]\n"
+"We detected that you want to install more than 14 images, be sure to use options without the boot manager.\n"
+"\n"
+msgstr ""
+"[NeoBoot]\n"
+"Εντοπίσαμε ότι θέλετε να εγκαταστήσετε περισσότερα από 14 images, βεβαιωθείτε ότι χρησιμοποιείτε επιλογές χωρίς τη Διαχείριση εκκινήσεων.\n"
+"\n"
+
+msgid "Do you want to install ?"
+msgstr "Θέλετε να το εγκαταστήσετε;"
+
+msgid "Sorry there is not enought available space on your device. You need at least 800 Mb free to install a new image."
+msgstr "Λυπούμαστε, δεν υπάρχει αρκετός διαθέσιμος χώρος στη συσκευή σας. Χρειάζεστε τουλάχιστον 800 MB ελεύθερα για να εγκαταστήσετε ένα νέο image."
+
+msgid "Downloading available only from the image Flash."
+msgstr "Η λήψη είναι διαθέσιμη μόνο από το image της flash."
+
+msgid "Information available only when running Flash."
+msgstr "Οι πληροφορίες είναι διαθέσιμες μόνο κατά την εκτέλεση της flash."
+
+msgid "Sorry, NeoBoot can installed or upgraded only when booted from Flash."
+msgstr "Λυπούμαστε, το NeoBoot μπορεί να εγκατασταθεί ή να αναβαθμιστεί μόνο όταν εκκινηθεί από τη flash."
+
+msgid "Delete the selected image  :"
+msgstr "Διαγραφή του επιλεγμένου image  :"
+
+msgid "More options"
+msgstr "Άλλες επιλογές"
+
+msgid "NeoBot - First use the Device Manager and mount the drives correctly !!!"
+msgstr "NeoBoot - Πρώτα χρησιμοποιήστε τη Διαχείριση συσκευών και προσαρτήστε σωστά τις μονάδες δίσκου !!!"
+
+msgid ""
+"\n"
+"[NeoBoot] The installation image is ready.\n"
+"Return to test the installed image.\n"
+"Press EXIT!"
+msgstr ""
+"\n"
+"[NeoBoot] Το image εγκατάστασης είναι έτοιμο.\n"
+"Επιστρέψτε για να ελέγξετε το image εγκατάστασης.\n"
+"Πατήστε EXIT !"
+
+msgid "[NeoBoot]From the installation, you can not run an image BlackHole."
+msgstr "[NeoBoot] Από την εγκατάσταση, δεν μπορείτε να εκτελέσετε ένα image BlackHole."
+
+msgid "Updated unnecessary, you have the latest version. Please try again later."
+msgstr "Δεν χρειάζεται ενημέρωση, έχετε την πιο πρόσφατη έκδοση. Προσπαθήστε ξανά αργότερα."
+
+msgid "MOUNTING. Restart image.'"
+msgstr "ΠΡΟΣΑΡΤΗΣΗ. Επακεννίνηση του image.'"
+
+msgid ""
+"\n"
+"Completed assembly of disks.\n"
+"To save the setting, switch the STB in deep standby !!!\n"
+"Restart ?"
+msgstr ""
+"\n"
+"Ολοκληρώθηκε η συναρμολόγηση δίσκων.\n"
+"Για να αποθηκεύσετε τη ρύθμιση, αλλάξτε τον δέκτη σε βαθιά αναμονή !!!\n"
+"Να γίνει επανεκκίνηση;"
+
+msgid "Please, wait...."
+msgstr "Παρακαλώ περιμένετε..."
+
+msgid "Continues mounting equipment..."
+msgstr "Συνεχίζεται η προσάρτηση εξοπλισμού..."
+
+msgid "Installing a proven and successful !!!!"
+msgstr "Εγκατάσταση αποδεδειγμένου και επιτυχημένου !!!!"
+
+msgid "The selected image starts after you hard reboot tuner."
+msgstr "Το επιλεγμένο image ξεκινά μετά τη ολική επανεκκίνηση του δέκτη."
+
+msgid "Welcome to the world of Python"
+msgstr "Καλώς ήρθατε στον κόσμο της Python"
+
+msgid "Wait please while scanning for devices..."
+msgstr "Παρακαλώ περιμένετε κατά τη σάρωση για συσκευές..."
+
+msgid "Unfortunately, at the moment not found an update, try again later."
+msgstr "Δυστυχώς, προς το παρόν δεν βρέθηκε ενημέρωση, δοκιμάστε ξανά αργότερα."
+
+msgid "Initialize"
+msgstr "Αρχικοποίηση"
+
+msgid "Initialize ext3"
+msgstr "Αρχικοποίηση ext3"
+
+msgid "Initialize ext4"
+msgstr "Αρχικοποίηση ext4"
+
+msgid "Mount Manager."
+msgstr "Διαχείριση προσαρτήσεων."
+
+msgid "Mounts UUID"
+msgstr "Προσαρτήσεις UUID"
+
+msgid "Save"
+msgstr "Αποθήκευση"
+
+msgid "Memory disc:"
+msgstr "Δίσκος μνήμης:"
+
+msgid ""
+"Completed update NeoBoot.\n"
+"You need to restart the E2 and re-enter your pin code VIP!!!\n"
+"Restart now ?"
+msgstr ""
+"Ολοκληρώθηκε η ενημέρωση του NeoBoot.\n"
+"Πρέπει να επανεκκινήσετε το E2 και εισάγετε ξανά τον κωδικό pin VIP!!!\n"
+"Να γίνει επανεκκίνηση τώρα;"
+
+msgid ""
+"Bravo - pin code removed!\n"
+"Please re-enter your pin code."
+msgstr ""
+"Μπράβο - ο κωδικός PIN αφαιρέθηκε!\n"
+"Παρακαλώ εισάγετε ξανά τον κωδικό PIN σας."
+
+msgid "Copy the boxbranding  ?"
+msgstr "Αντιγραφή του boxbranding;"
+
+msgid ""
+"Completed assembly of disks.\n"
+"Return to installation ?"
+msgstr ""
+"Ολοκληρώθηκε η συναρμολόγηση δίσκων.\n"
+"Επιστροφή στην εγκατάσταση;"
+
+msgid "Return to installation..."
+msgstr "Επιστροφή στην εγκατάσταση..."
+
+msgid "Repair FTP ? (Recommended only other image if it does not work.)"
+msgstr "Επιδιόρθωση του FTP; (Συνιστάται μόνο άλλο image εάν δεν λειτουργεί)"
+
+msgid "Copy the extensions plugins  ?"
+msgstr "Αντιγραφή των επεκτάσεων πρόσθετων;"
+
+msgid "Copy the system plugins ?"
+msgstr "Αντιγραφή των πρόσθετων συστήματος;"
+
+msgid "Deep standby"
+msgstr "Βαθιά αναμονή"
+
+msgid "Start with change kernel - Recommended"
+msgstr "Εκκίνηση με αλλαγή kernel - Συνιστάται"
+
+msgid "Copy Settings to the new Image"
+msgstr "Αντιγραφή των ρυθμίσεων στο νέο image;"
+
+msgid "Boot new Image directly ?"
+msgstr "Εκκίνηση νέου image απευθείας;"
+
+msgid "Delete Image zip after Install ?"
+msgstr "Διαγραφή zip του image μετά την εγκατάσταση;"
+
+msgid "Remove password ftp for the new Image ?"
+msgstr "Αφαίρεση του κωδικού πρόσβασης ftp για το νέο image;"
+
+msgid "OK Start image..."
+msgstr "OK - Εκκίνηση του image..."
+
+msgid "Copy network settings LAN-WLAN ?"
+msgstr "Αντιγραφή των ρυθμίσεων δικτύου LAN-WLAN;"
+
+msgid "There is no NeoBootUpdate.tar.gz to install.\n"
+msgstr "Δεν υπάρχει NeoBootUpdate.tar.gz για εγκατάσταση.\n"
+
+msgid "The update file is available at http://all-forum.cba.pl\n"
+msgstr "Το αρχείο ενημέρωσης είναι διαθέσιμο στο http://all-forum.cba.pl\n"
+
+msgid "Please name NeoBootUpdate.tar.gz for the downloaded file and upload to / tmp and try again.\n"
+msgstr "Παρακαλώ ονομάστε το NeoBootUpdate.tar.gz για το αρχείο που κατεβάσατε και ανεβάστε το στο / tmp και ξαναπροσπαθήστε.\n"
+
+msgid "Copy the kernel of the installed system (recommended ?"
+msgstr "Αντιγραφή του kernel του εγκατεστημένου συστήματος; (Συνιστάται)"
+
+msgid "Copy files from Flash to the installed image ?"
+msgstr "Αντιγραφή αρχείων από τη flash στο image εγκατάστασης;"
+
+msgid "Copy settings SoftCam ?"
+msgstr "Αντιγραφή των ρυθμίσεων SoftCam;"
+
+msgid "Path BlackHole ? (Not recommended for VuPlus)"
+msgstr "Διαδρομή του BlackHole; (Δεν συνιστάται για VuPlus)"
+
+msgid ""
+"NeoBoot has detected that the disks have been labeled.\n"
+"Zalecany calkowity rstart tunera"
+msgstr ""
+"Το NeoBoot εντόπισε ότι οι δίσκοι έχουν επισημανθεί.\n"
+"Συνιστάται επανεκκίνηση του δέκτη"
+
+msgid ""
+"NeoBoot detected a kernel mismatch in flash, \n"
+"Install a kernel for flash image? ?"
+msgstr ""
+"Το NeoBoot εντόπισε μια αναντιστοιχία kernel στη flash, \n"
+"Να εγκατασταθεί ένα kernel για το image της flash;"
+
+msgid ""
+"Select Yes to reinstall the neoboot.\n"
+"     NEOBOOT."
+msgstr ""
+"Επιλέξτε Ναι για να επανεγκαταστήσετε το NeoBoot.\n"
+"     NEOBOOT."
+
+msgid "Resignation."
+msgstr "Παραίτηση."
+
+msgid ""
+"Installing new neoboot software, only recommended from Flash!!!\n"
+"---Continue ?---"
+msgstr ""
+"Η εγκατάσταση νέου λογισμικού NeoBoot, συνιστάται μόνο από τη flash !!!\n"
+"---Θα συνεχίσετε;---"
+
+msgid ""
+"Installation from Flash!!!\n"
+"---Continue ?---"
+msgstr ""
+"Εγκατάσταση από τη flash !!!\n"
+"---Θέλετε να συνεχίσετε;---"
+
+msgid ""
+"The tuner is not supported by NeoBoot.\n"
+"Contact the author.\n"
+"No proper STB for installation !!!!"
+msgstr ""
+"Ο δέκτης δεν υποστηρίζεται από το NeoBoot.\n"
+"Επικοινωνήστε με τον συντάκτη.\n"
+"Δεν υπάρχει κατάλληλος δέκτης για εγκατάσταση !!!!"
+
+msgid ""
+"It is recommended to install new software only from a flash system.\n"
+"---NEOBOOT EXIT---"
+msgstr ""
+"Συνιστάται η εγκατάσταση νέου λογισμικού μόνο από τη flash συστήματος.\n"
+"---ΕΞΟΔΟΣ NEOBOOT---"
+
+msgid ""
+" - Select the software to be installed with the cursor (left or right).\n"
+"\n"
+msgstr ""
+" - Επιλέξτε το λογισμικό που θα εγκατασταθεί με τον δρομέα (αριστερά ή δεξιά).\n"
+"\n"
+
+msgid ""
+" - to change, press blue on the remote control.\n"
+"\n"
+msgstr ""
+" - Για αλλαγή, πατήστε το μπλε πλήκτρο στο τηλεχειριστήριο.\n"
+"\n"
+
+msgid ""
+" - the option copies the channel list from the flash to the installed image in the neobot.\n"
+"\n"
+msgstr ""
+" - Η επιλογή αντιγράφει τη λίστα καναλιών από τη flash στο image εγκατάστασης στο NeoBoot.\n"
+"\n"
+
+msgid ""
+" - the option moves files with the settings for lan and wlan.\n"
+"\n"
+msgstr ""
+" - Η επιλογή μετακινεί αρχεία με τις ρυθμίσεις για LAN και WLAN.\n"
+"\n"
+
+msgid ""
+" - the option copies the software settings from the flashlight to the system being installed in the neobot.\n"
+"\n"
+msgstr ""
+" - Η επιλογή αντιγράφει τις ρυθμίσεις λογισμικού από τη flash στο σύστημα που εγκαθίσταται στο NeoBoot.\n"
+"\n"
+
+msgid ""
+" - after installation,the option deletes the zip image file from the ImagesUpload directory.\n"
+"\n"
+msgstr ""
+" - Μετά την εγκατάσταση, η επιλογή διαγράφει το αρχείο zip του image από τον κατάλογο ImagesUpload.\n"
+"\n"
+
+msgid ""
+" - the option in some cases repairs the File Transfer Protocol connection in the installed image.\n"
+"\n"
+msgstr ""
+" - Η επιλογή σε ορισμένες περιπτώσεις, επιδιορθώνει τη σύνδεση File Transfer Protocol στο image εγκατάστασης.\n"
+"\n"
+
+msgid ""
+" -  the option copies oscam configi and cccam, openpli default.\n"
+"\n"
+msgstr ""
+" -  Η επιλογή αντιγράφει τις προεπιλογές oscam config και cccam, OpenPLi.\n"
+"\n"
+
+msgid ""
+" -  option for image blackhole,helps to run BH in neoboot.\n"
+"\n"
+msgstr ""
+" -  Επιλογή για image BlackHole, βοηθά στην εκτέλεση του BH στο NeoBoot.\n"
+"\n"
+
+msgid "Can't unmount partition, make sure it is not being used for swap or record/timeshift paths"
+msgstr "Δεν είναι δυνατή η αποπροσάρτηση του διαμερίσματος, βεβαιωθείτε ότι δεν χρησιμοποιείται για swap ή εγγραφή/χρονική μετατόπιση"
+
+msgid "This Device is already mounted as HDD."
+msgstr "Αυτή η συσκευή έχει ήδη προσαρτηθεί ως HDD."
+
+msgid "Choose where to mount your devices to:"
+msgstr "Επιλογή πού θα προσαρτηθούν οι συσκευές σας:"
+
+msgid "Wait please while scanning your %s %s devices...n\\ Looking for a disk..."
+msgstr "Παρακαλώ περιμένετε κατά τη σάρωση της συσκευής %s %s...n\\ Αναζήτηση δίσκου..."
+
+msgid "Install "
+msgstr "Εγκατάσταση "
+
+msgid "Hard disk"
+msgstr "Σκληρός δίσκος"
+
+msgid "Card"
+msgstr "Κάρτα"
+
+msgid "Compact flash"
+msgstr "Συμπαγής flash"
+
+msgid "MMC card"
+msgstr "Κάρτα MMC"
+
+msgid "Network mount"
+msgstr "Προσάρτηση δικτύου"
+
+msgid "Network mount %s"
+msgstr "Προσάρτηση δικτύου %s"
+
+msgid "Ram disk"
+msgstr "Δίσκος Ram"
+
+msgid "USB stick"
+msgstr "USB στικ"
+
+msgid "USB1 stick"
+msgstr "USB1 στικ"
+
+msgid "USB2 stick"
+msgstr "USB2 στικ"
+
+msgid "[Harddisk] enumerating block devices..."
+msgstr ""
+
+msgid "drive state is:  standby"
+msgstr ""
+
+msgid "drive state is:  idle"
+msgstr ""
+
+msgid "drive state is:  active/idle"
+msgstr ""
+
+msgid " (Partition %d)"
+msgstr " (Διαμέρισμα %d)"
+
+msgid "[Harddisk] Failed to set %s speed to %s"
+msgstr ""
+
+msgid "[Harddisk] Failed to open /proc/mounts"
+msgstr ""
+
+msgid "UnmountTask: No mountpoints found?"
+msgstr ""
+
+msgid "[Harddisk] Failed to read /proc/filesystems:"
+msgstr ""
+
+msgid "[Harddisk] Unable to determine structure of /dev"
+msgstr ""
+
+msgid "[Harddisk] new device"
+msgstr ""
+
+msgid "[Harddisk] no hdX or sdX or mmcX"
+msgstr ""
+
+msgid "[Harddisk] Failed to get model:"
+msgstr ""
+
+msgid "[Harddisk] mounting:"
+msgstr ""
+
+msgid "open"
+msgstr ""
+
+msgid "write"
+msgstr ""
+
+msgid "append"
+msgstr ""
+
+msgid "close"
+msgstr ""
+
+msgid "LogFile closed properly\n"
+msgstr "Το αρχείο καταγραφής έκλεισε σωστά\n"
+
+msgid "ERROR closing LogFile!!!"
+msgstr ""
+
+msgid "UNKNOWN"
+msgstr "ΑΓΝΩΣΤΟ"
+
+msgid "Waiting"
+msgstr "Αναμονή"
+
+msgid "In progress"
+msgstr "Σε εξέλιξη"
+
+msgid "Finished"
+msgstr "Ολοκληρώθηκε"
+
+msgid "Failed"
+msgstr "Αποτυχία"
+
+msgid "still waiting for %d resident task(s) %s to finish"
+msgstr ""
+
+msgid "task going resident:"
+msgstr ""
+
+msgid "task keeps staying resident:"
+msgstr ""
+
+msgid ">>> Error:"
+msgstr ">>> Σφάλμα:"
+
+msgid "resident task finished:"
+msgstr ""
+
+msgid "execute:"
+msgstr ""
+
+msgid "[Task] preconditions failed"
+msgstr ""
+
+msgid "[Task] exception:"
+msgstr ""
+
+msgid "Timeout elapsed, sorry"
+msgstr "Το χρονικό όριο παρήλθε, συγγνώμη"
+
+msgid ""
+"Error: %s\n"
+"Retry?"
+msgstr ""
+"Σφάλμα: %s\n"
+"Να γίνει προσπάθεια ξανά;"
+
+msgid "Error"
+msgstr "Σφάλμα"
+
+msgid "Delete file"
+msgstr "Διαγραφή αρχείου"
+
+msgid "completed with"
+msgstr ""
+
+msgid "in"
+msgstr "σε"
+
+msgid "retrying job"
+msgstr ""
+
+msgid "not retrying job."
+msgstr ""
+
+msgid "An unknown error occurred!"
+msgstr "Προέκυψε άγνωστο σφάλμα!"
+
+msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
+msgstr "Μη επαρκής χώρος δίσκου. Παρακαλώ ελευθερώστε χώρο και προσπαθήστε ξανά. (%d MB απαιτούνται, %d MB διαθέσιμα)"
+
+msgid "A required tool (%s) was not found."
+msgstr "Ένα απαιτούμενο εργαλείο (%s) δεν βρέθηκε."
+
+msgid "Cancelled upon user request"
+msgstr "Ακυρώθηκε με εντολή χρήστη"
+
+msgid "Error code"
+msgstr "Κωδικός σφάλματος"
+
+msgid "Wait please, NeoBoot is working: ....Restore in progress....'"
+msgstr "Παρακαλώ περιμένετε, το NeoBoot είναι σε λειτουργία: ....Επαναφορά σε εξέλιξη....'"
+
+msgid "Superboot: Restore COMPLETE !"
+msgstr "Superboot: Η επαναφορά ΟΛΟΚΛΗΡΩΘΗΚΕ !"
+
+msgid "NeoBoot is reinstall..."
+msgstr "Το NeoBoot επανεγκαταστάθηκε..."
+
+msgid "Sorry, NeoBoot can installed or upgraded only when booted from Flash STB"
+msgstr "Λυπούμαστε, το NeoBoot μπορεί να εγκατασταθεί ή να αναβαθμιστεί μόνο κατά την εκκίνηση από τη flash του δέκτη"
+
+msgid ""
+"NeoBoot successfully updated. You can restart the plugin now.\n"
+"\n"
+"Have fun !!"
+msgstr ""
+"Το NeoBoot ενημερώθηκε με επιτυχία. Μπορείτε να επανεκκινήσετε το πρόσθετο τώρα.\n"
+"\n"
+"Διασκεδάστε το !!"
+
+msgid "Sorry, IPTVPlayer not found."
+msgstr "Λυπούμαστε, το IPTVPlayer δεν βρέθηκε."
+
+msgid "NeoBoot: Start image..."
+msgstr "NeoBoot: Εκκίνηση του image..."
+
+msgid ""
+"NEOBOOT - Restart image flash....\n"
+"Please wait, in a moment the decoder will be restarted...\n"
+msgstr ""
+"NEOBOOT - Επανεκκίνηση του image της flash....\n"
+"Παρακαλώ περιμένετε, σε λίγο θα γίνει επανεκκίνηση του αποκωδικοποιητή...\n"
+
+msgid ""
+"...............NEOBOOT - REBOOT...............\n"
+"Please wait, in a moment the decoder will be restarted..."
+msgstr ""
+"...............NEOBOOT - ΕΠΑΝΕΚΚΙΝΗΣΗ...............\n"
+"Παρακαλώ περιμένετε, σε λίγο ο αποκωδικοποιητής θα επανεκκινήσει..."
+
+msgid "DIR Fail: %s"
+msgstr "Αποτυχία DIR: %s"
+
+msgid "FILE Fail: %s"
+msgstr "Αποτυχία FILE: %s"
+
+msgid "SYMLINK Fail: %s : %s"
+msgstr ""
+
+msgid "Failed File Permissions: %s"
+msgstr "Αποτυχία δικαιωμάτων αρχείου: %s"
+
+msgid "unknown action \"%s"
+msgstr "άγνωστη ενέργεια \"%s"
+
+msgid "%r is not callable"
+msgstr "Δεν είναι δυνατή η κλήση του %r"
+
+msgid "conflicting option string(s): %s"
+msgstr "Συμβολοσειρές επιλογής σε διένεξη: %s"
+
+msgid "mutually exclusive arguments must be optional"
+msgstr "τα αμοιβαία αποκλειστικά ορίσματα πρέπει να είναι προαιρετικά"
+
+msgid "cannot have multiple subparser arguments"
+msgstr "Δεν είναι δυνατό να έχουν πολλαπλά ορίσματα δευτερεύουσας ανάλυσης"
+
+msgid "unrecognized arguments: %s"
+msgstr "Μη αναγνωρίσιμα ορίσματα: %s"
+
+msgid "not allowed with argument %s"
+msgstr "Δεν επιτρέπεται με το όρισμα %s"
+
+msgid "too few arguments"
+msgstr "πολύ λίγα ορίσματα"
+
+msgid "argument %s is required"
+msgstr "απαιτείται το όρισμα %s"
+
+msgid "one of the arguments %s is required"
+msgstr "Απαιτείται ένα από τα ορίσματα %s"
+
+msgid "expected one argument"
+msgstr "Αναμενόταν ένα όρισμα"
+
+msgid "expected at most one argument"
+msgstr "Αναμενόταν το πολύ ένα όρισμα"
+
+msgid "expected at least one argument"
+msgstr "Αναμενόταν τουλάχιστον ένα όρισμα"
+
+msgid "expected %s argument(s)"
+msgstr "Αναμενόταν %s ορίσματα"
+
+msgid "ambiguous option: %s could match %s"
+msgstr "ασαφής επιλογή: το %s μπορεί να ταιριάζει με το %s"
+
+msgid "unexpected option string: %s"
+msgstr "Μη αναμενόμενη συμβολοσειρά επιλογής: %s"
+
+msgid "invalid %s value: %r"
+msgstr "Μη έγκυρη τιμή %s: %r"
+
+msgid "invalid choice: %r (choose from %s)"
+msgstr "Μη έγκυρη επιλογή: %r (Επιλέξτε από %s)"
+
+msgid "The format_version method is deprecated -- the \"version\" argument to ArgumentParser is no longer supported."
+msgstr ""
+
+msgid "The print_version method is deprecated -- the \"version\" argument to ArgumentParser is no longer supported."
+msgstr ""
+
+msgid "%s: error: %s\n"
+msgstr "%s: Σφάλμα: %s\n"
+
+msgid ""
+"\n"
+"NeoBoot zainstalowano w lokalizacji: "
+msgstr ""
+"\n"
+"Το NeoBoot είναι εγκατεστημένο στο: "
+
+msgid ""
+"Warning!!! after successfully running the selected software in neoboot\n"
+"you must run NEOBOOT to confirm the correct operation of the image.\n"
+"Press OK or exit on the remote control to continue..."
+msgstr ""
+"Προσοχή!!! Μετά την επιτυχή εκτέλεση του επιλεγμένου λογισμικού στο NeoBoot\n"
+"πρέπει να εκτελέσετε το NEOBOOT για να επιβεβαιώσετε τη σωστή λειτουργία του image.\n"
+"Πατήστε OK ή Exit στο τηλεχειριστήριο για να συνεχίσετε..."
+
+msgid ""
+"\n"
+"\n"
+"\n"
+"Error - in the location %sImagesUpload/.kernel/  \n"
+"no file found kernel flash-kernel-%s.bin"
+msgstr ""
+"\n"
+"\n"
+"\n"
+"Σφάλμα - στην τοποθεσία %sImagesUpload/.kernel/  \n"
+"Το αρχείο kernel δεν βρέθηκε flash-kernel-%s.bin"
+
+msgid "Please wait, in a moment the decoder will be restarted..."
+msgstr "Παρακαλώ περιμένετε, σε μια στιγμή ο αποκωδικοποιητής θα επανεκκινηθεί..."
+
+msgid "Multiboot does not support this STB !!!"
+msgstr "Το MultiBoot δεν υποστηρίζει αυτόν τον δέκτη !!!"
+
+msgid "Copy config SoftCam ?"
+msgstr "Αντιγραφή της διαμόρφωσης SoftCam;"
+
+msgid ""
+"-Select the software to be installed with the cursor (left or right).\n"
+"\n"
+msgstr ""
+"-Επιλέξτε το λογισμικό που θα εγκατασταθεί με το δρομέα (αριστερά ή δεξιά).\n"
+"\n"
+
+msgid ""
+"-Rename image - to change, press blue on the remote control.\n"
+"\n"
+msgstr ""
+"-Μετονομασία image - για αλλαγή, πατήστε το μπλε πλήκτρο στο τηλεχειριστήριο.\n"
+"\n"
+
+msgid ""
+" - this checking this option on it nothing will be copied from the image flash to the installed image in neoboot.\n"
+"\n"
+msgstr ""
+" - Ξεμαρκάροντας αυτή την επιλογή, δεν θα αντιγραφεί τίποτα από το image της flash στo image εγκατάστασης στο NeoBoot.\n"
+"\n"
+
+msgid ""
+"- after selecting this option, the kernel of the installed image will be copied to neoboot, only recommended for STB vuplus\n"
+"\n"
+msgstr ""
+"- Με την ενεργοποίηση αυτής της επιλογής, το kernel του εγκατεστημένο image θα αντιγραφεί στο NeoBoot, συνιστάται μόνο για δέκτες VuPlus\n"
+"\n"
+
+msgid ""
+" - Option to copy channel list from flash to image installed in neoboot.\n"
+"\n"
+msgstr ""
+" - Επιλογή αντιγραφής λίστας καναλιών από τη flash στο image εγκατάστασης στο NeoBoot.\n"
+"\n"
+
+msgid ""
+"- the option moves files with the settings for lan and wlan.\n"
+"\n"
+msgstr ""
+"- Η επιλογή μετακινεί αρχεία με τις ρυθμίσεις για LAN και WLAN.\n"
+"\n"
+
+msgid ""
+" - the option transfers mounts to the image installed in neoboot from the flashlight, recommended only if you are installing an image from a different model than you have.\n"
+"\n"
+msgstr ""
+" - Η επιλογή μεταφέρει τις προσαρτήσεις στο image εγκατάστασης στο NeoBoot από τη flash, συνιστάται μόνο εάν εγκαθιστάτε ένα image από διαφορετικό μοντέλο από αυτό που έχετε.\n"
+"\n"
+
+msgid ""
+"- the option copies the software settings from the flashlight to the system being installed in the neobot.\n"
+"\n"
+msgstr ""
+"- Η επιλογή αντιγράφει τις ρυθμίσεις λογισμικού από τη flash στο σύστημα που εγκαθίσταται στο NeoBoot.\n"
+"\n"
+
+msgid ""
+"- after installation, the option deletes the zip image file from the ImagesUpload directory.\n"
+"\n"
+msgstr ""
+"- Μετά την εγκατάσταση, η επιλογή διαγράφει το αρχείο zip του image από τον κατάλογο ImagesUpload.\n"
+"\n"
+
+msgid ""
+" - option for image blackhole, helps to run BH in neoboot\n"
+"\n"
+msgstr ""
+" - Επιλογή για image BlackHole, βοηθά στην εκτέλεση του BH στο NeoBoot\n"
+"\n"
+
+msgid "Copy MediaPortal ?"
+msgstr "Αντιγραφή του MediaPortal;"
+
+msgid "Make a copy of the image from NeoBoot"
+msgstr "Δημιουργία αντιγράφου του image από το NeoBoot"
+
+msgid "Restore a copy of the image to NeoBoot"
+msgstr "Επαναφορά αντιγράφου του image στο NeoBoot"
+
+msgid "Device manager"
+msgstr "Διαχείριση συσκευών"
+
+msgid "Delete image ZIP from the ImagesUpload directory"
+msgstr "Διαγραφή zip του image από τον κατάλογο ImagesUpload"
+
+msgid "Uninstall NeoBoot"
+msgstr "Απεγκατάσταση του NeoBoot"
+
+msgid "Reinstall NeoBoot"
+msgstr "Επανεγκατάσταση NeoBoot"
+
+msgid "Restore neoboot backup"
+msgstr "Επαναφορά αντιγράφου ασφαλείας του NeoBoot"
+
+msgid "Update NeoBoot on all images."
+msgstr "Ενημέρωση του NeoBoot σε όλα τα images"
+
+msgid "NeoBoot Backup"
+msgstr "Αντίγραφο ασφαλείας του NeoBoot"
+
+msgid "Update TV list on installed image."
+msgstr "Ενημέρωση της λίστας TV στο image εγκατάστασης"
+
+msgid "Update IPTVPlayer on installed image."
+msgstr "Ενημέρωση του IPTVPlayer στο image εγκατάστασης"
+
+msgid "Removing the root password."
+msgstr "Αφαίρεση του κωδικού πρόσβασης ρίζας"
+
+msgid "Check the correctness of neoboot installation"
+msgstr "Έλεγχος ορθότητας της εγκατάστασης του NeoBoot"
+
+msgid "NeoBoot Information"
+msgstr "Πληροφορίες του NeoBoot"
+
+msgid "Skin change"
+msgstr "Αλλαγή θέματος"
+
+msgid "Supported sat tuners"
+msgstr "Υποστηριζόμενοι δορυφορικοί δέκτες"
+
+msgid "Choose the skin you want to make."
+msgstr "Επιλέξτε το θέμα που θέλετε να εφαρμοστεί."
+
+msgid "Skin Change confirmation"
+msgstr "Επιβεβαίωση αλλαγής θέματος"
+
+msgid "Please wait, NeoBot is working, skin change is progress..."
+msgstr "Παρακαλώ περιμένετε, το NeoBoot είναι σε λειτουργία, η αλλαγή του θέματος είναι σε εξέλιξη..."
+
+msgid "NeoBoot: Complete Skin Change!"
+msgstr "NeoBoot: Ολοκλήρωση αλλαγής θέματος!"
+
+msgid "NeoBoot Skin Change"
+msgstr "Αλλαγή Θέματος NeoBoot"
+
+msgid "Skin Change: %s now ?"
+msgstr "Να γίνει αλλαγή θέματος: %s τώρα;"
+
+msgid " now ?"
+msgstr " τώρα;"
+
+msgid ""
+"After successful launch of the selected software\n"
+"you must run the neoboot plugin\n"
+"if the software does not start or neoboot is not confirmed\n"
+"the system will return to the internal flash memory\n"
+"\n"
+"Press OK or exit on the remote control to continue..."
+msgstr ""
+"Μετά την επιτυχή εκκίνηση του επιλεγμένου λογισμικού\n"
+"πρέπει να εκτελέσετε το πρόσθετο NeoBoot\n"
+"Εάν το λογισμικό δεν ξεκινήσει ή δεν επιβεβαιωθεί η εκκίνηση του NeoBoot\n"
+"το σύστημα θα επιστρέψει στην εσωτερική μνήμη flash\n"
+"\n"
+"Πατήστε OK ή Exit στο τηλεχειριστήριο για να συνεχίσετε..."
+
+msgid ""
+"Error - in the location %sImagesUpload/.kernel/ \n"
+"kernel file not found flash-kernel-%s.bin"
+msgstr ""
+"Σφάλμα - στην τοποθεσία %sImagesUpload/.kernel/ \n"
+"Το αρχείο kernel δεν βρέθηκε flash-kernel-%s.bin"
+
+msgid "It looks like it that multiboot does not support this STB."
+msgstr "Φαίνεται ότι το MultiBoot δεν υποστηρίζει αυτόν τον δέκτη."
+
+msgid "There is no space to make a copy of the image. You need 150 Mb of free space for copying the image."
+msgstr "Δεν υπάρχει χώρος για δημιουργία αντιγράφου του image. Χρειάζεστε 150 Mb ελεύθερου χώρου για την αντιγραφή του image."
+
+msgid ""
+"Not enough free space on /media/ !!\n"
+"You need at least 500Mb free space.\n"
+"\n"
+"Exit plugin."
+msgstr ""
+"Δεν υπάρχει αρκετός ελεύθερος χώρος στο /media/ !!\n"
+"Χρειάζεστε τουλάχιστον 500Mb ελεύθερο χώρο.\n"
+"\n"
+"Έξοδος από το πρόσθετο."
+
+msgid ""
+"Unfortunately you cannot backup from flash with this plugin. \n"
+"Install backupsuite to a copy of the image from flash memory."
+msgstr ""
+"Δυστυχώς δεν μπορείτε να δημιουργήσετε αντίγραφα ασφαλείας από τη flash με αυτό το πρόσθετο. \n"
+"Εγκαταστήστε το Backupsuite σε ένα αντίγραφο του image από τη μνήμη της flash."
+
+msgid "Please wait, NeoBoot is working, the backup may take a few moments, the process is in progress ..."
+msgstr "Παρακαλώ περιμένετε, το NeoBoot είναι σε λειτουργία, το αντίγραφο ασφαλείας μπορεί να διαρκέσει λίγα λεπτά, η διαδικασία βρίσκεται σε εξέλιξη..."
+
+msgid "Choose copy you want to restore or delete."
+msgstr "Ορίστε την επιλογή που θέλετε για επαναφορά ή διαγραφή."
+
+msgid "Software selected: %s remove ?"
+msgstr "Επιλεγμένο λογισμικό: %s να αφαιρεθεί;"
+
+msgid "Confirmation of Deletion..."
+msgstr "Επιβεβαίωση διαγραφής..."
+
+msgid "NeoBoot - deleting backup files ....."
+msgstr "NeoBoot - διαγραφή αρχείων αντιγράφων ασφαλείας ....."
+
+msgid "NeoBoot: Backup files deleted!"
+msgstr "NeoBoot: Τα αρχεία αντιγράφων ασφαλείας διαγράφηκαν!"
+
+msgid ""
+"\n"
+"\n"
+"Restoring settings..."
+msgstr ""
+"\n"
+"\n"
+"Επαναφορά ρυθμίσεων..."
+
+msgid ""
+"\n"
+"NeoBoot removal of the boot manager ...."
+msgstr ""
+"\n"
+"NeoBoot αφαίρεση της Διαχείρισης εκκινήσεων...."
+
+msgid ""
+"\n"
+"\n"
+"Uninstalling neoboot..."
+msgstr ""
+"\n"
+"\n"
+"Απεγκατάσταση του NeoBoot..."
+
+msgid ""
+"\n"
+"\n"
+"Restore mount."
+msgstr ""
+"\n"
+"\n"
+"Επαναφορά προσάρτησης."
+
+msgid ""
+"\n"
+"\n"
+"NeoBoot uninstalled, you can do reinstallation."
+msgstr ""
+"\n"
+"\n"
+"Το NeoBoot απεγκαταστάθηκε, μπορείτε να κάνετε επανεγκατάσταση."
+
+msgid "[NeoBoot]Please wait, updating in progress ..."
+msgstr "[NeoBoot] Παρακαλώ περιμένετε, ενημέρωση σε εξέλιξη..."
+
+msgid "Wait, deleting ....."
+msgstr "Περιμένετε, γίνεται διαγραφή....."
+
+msgid "Deleting downloaded image zip files ...."
+msgstr "Διαγραφή ληφθέντων αρχείων zip του image...."
+
+msgid "The backup will be saved to /media/neoboot. Performing ..."
+msgstr "Το αντίγραφο ασφαλείας θα αποθηκευτεί στο /media/NeoBoot. Εκτέλεση..."
+
+msgid ""
+"Re-installing the kernel. \n"
+"\n"
+"Install?"
+msgstr ""
+"Επανεγκατάσταση του kernel. \n"
+"\n"
+"Να εγκατασταθεί;"
+
+msgid ""
+"EGAMIBoot author allowed neoboot development and editing - Thanks\n"
+"\n"
+msgstr ""
+"Ο συντάκτης του EGAMIBoot επέτρεψε την ανάπτυξη και επεξεργασία του NeoBoot - Ευχαριστούμε\n"
+"\n"
+
+msgid ""
+"Translation by gutosie and other people!\n"
+"\n"
+msgstr ""
+"Μετάφραση από gutosie και άλλους ανθρώπους!\n"
+"\n"
+
+msgid "Buy a satellite tuner in the store: http://www.expert-tvsat.com/\n"
+msgstr "Αγοράστε ένα δορυφορικό δέκτη στο κατάστημα: http://www.expert-tvsat.com/\n"
+
+msgid ""
+"NeoBoot has been installed succesfully!\n"
+"NeoBoot has detected that the disks do not have a label.\n"
+"For correct neo boot operation, please give the disks the name LABEL\n"
+"Recommended total restart of the tuner.\n"
+msgstr ""
+"Το NeoBoot εγκαταστάθηκε με επιτυχία!\n"
+"Το NeoBoot εντόπισε ότι οι δίσκοι δεν έχουν ετικέτα.\n"
+"Για σωστή λειτουργία εκκίνησης neo, δώστε στους δίσκους το όνομα LABEL\n"
+"Συνιστάται ολική επανεκκίνηση του δέκτη.\n"
+
+msgid ""
+"Installed succesfully NEOBOOT!\n"
+"NeoBoot has detected that the disks have been marked.\n"
+"Recommended total restart of the tuner\n"
+msgstr ""
+"Εγκατάσταση με επιτυχία του NEOBOOT!\n"
+"Το NeoBoot εντόπισε ότι οι δίσκοι έχουν επισημανθεί.\n"
+"Συνιστάται ολική επανεκκίνηση του δέκτη.\n"
+
+msgid ""
+"Plugin ImageDownloader not installed!\n"
+"Install plugin to download new image? \and---Continue ?---"
+msgstr ""
+"Το πρόσθετο ImageDownloader δεν εγκαταστάθηκε!\n"
+"Να γίνει εγκατάσταση του πρόσθετου για λήψη νέου image και συνέχιση;"
+
+msgid "First start of software"
+msgstr "Πρώτη εκκίνηση του λογισμικού"
+
+msgid "The plug-in has been successfully installed."
+msgstr "Το πρόσθετο εγκαταστάθηκε με επιτυχία."
+
+msgid ""
+"The plugin not installed.\n"
+"Access Fails with Error code 0x04."
+msgstr ""
+"Το πρόσθετο δεν εγκαταστάθηκε.\n"
+"Η πρόσβαση απέτυχε με κωδικό σφάλματος 0x04."
+
+msgid "Reinstall neoboot?"
+msgstr "Να γίνει επανεγκατάσταση του NeoBoot;"
+
+msgid ""
+"The %sImagesUpload directory is EMPTY!!!\n"
+"Install the plugin to download new image online ?\n"
+" --- Continue? ---"
+msgstr ""
+"Ο κατάλογος %sImagesUpload είναι ΚΕΝΟΣ !!!\n"
+"Εγκαταστήστε το πρόσθετο για να κατεβάσετε νέο image διαδικτυακά.\n"
+" --- Θα συνεχίσετε; ---"
+
+msgid "Geen internet"
+msgstr ""
+
+msgid ""
+"NeoBot - First use yellow button and Set Disk Label!\n"
+"Without labeling disc neoboot may not work properly"
+msgstr ""
+"NeoBoot - Πρώτα χρησιμοποιήστε το κίτρινο κουμπί και ορίστε την ετικέτα δίσκου!\n"
+"Χωρίς την επισήμανση του δίσκου, η εκκίνηση NeoBoot ενδέχεται να μην λειτουργεί σωστά"
+
+msgid ""
+"Disk UUID not found\n"
+" - Universally unique identifier (UUID) is not required.\n"
+"You can proceed with further installation or give an ID to your disk.\n"
+"To continue the installation neoboo, press OK or No to abort."
+msgstr ""
+"Δεν βρέθηκε UUID για το δίσκο.\n"
+"- Δεν απαιτείται Universally unique identifier (UUID). -\n"
+"Μπορείτε να προχωρήσετε στην εγκατάσταση ή να δώσετε ένα ID στο δίσκο σας.\n"
+"Για να συνεχίσετε την εγκατάσταση του NeoBoot, πατήστε OK ή Όχι για ματαίωση."
+
+msgid "NeoBot - choose what you want to do, install or not !!!"
+msgstr "NeoBoot - Επιλέξτε τι θέλετε να κάνετε, να εγκαταστήσετε ή όχι !!!"
+
+msgid "Proceed with further installation without providing a unique identifier for the disks ?"
+msgstr "Θα συνεχίστε με την εγκατάσταση χωρίς να δώσετε ένα μοναδικό αναγνωριστικό για τους δίσκους;"
+
+msgid "NeoBoot has not been installed ! :"
+msgstr "Το NeoBoot δεν έχει εγκατασταθεί ! :"
+
+msgid "Delete label"
+msgstr "Διαγραφή ετικέτας"
+
+msgid "Add label"
+msgstr "Προσθήκη ετικέτας"
+
+msgid "Set label"
+msgstr "Ορισμός ετικέτας"
+
+msgid "!!!Do not set the label for /dev/mmcblk0p !!!"
+msgstr "!!! Μην ορίσετε ετικέτα στο /dev/mmcblk0p !!!"
+
+msgid "Select partition to set label:"
+msgstr "Επιλογή διαμερίσματος για ορισμό ετικέτας:"
+
+msgid "Choice label to set:"
+msgstr "Επιλογή ετικέτας για ορισμό:"
+
+msgid "Current partition label:"
+msgstr "Τρέχουσα ετικέτα διαμερίσματος:"
+
+msgid "Selected label is set"
+msgstr "Η επιλεγμένη ετικέτα έχει οριστεί"
+
+msgid "Set label on %s?"
+msgstr "Να γίνει ορισμός ετικέτας στο %s;"
+
+msgid "Add new partition label:"
+msgstr "Προσθήκη νέας ετικέτας διαμερίσματος:"
+
+msgid "Delete label from %s?"
+msgstr "Να γίνει διαγραφή ετικέτας από το %s;"
+
+msgid "Label is delete"
+msgstr "Η ετικέτα διαγράφηκε"
+
+msgid "Change"
+msgstr "Αλλαγή"
+
+msgid "Backup the image from NeoBoot"
+msgstr "Αντίγραφο ασφαλείας του image από το NeoBoot"
+
+msgid ""
+" - Option to copy drivers to the image installed in neoboot from the flashlight, recommended only if you are installing an image from a different model than you have.\n"
+"\n"
+msgstr ""
+" - Επιλογή αντιγραφής των drivers στο image εγκατάστασης στο NeoBoot από τη flash, συνιστάται μόνο εάν εγκαθιστάτε ένα image από διαφορετικό μοντέλο από αυτό που έχετε.\n"
+"\n"
+
+msgid "Choose the image you want to make a copy of"
+msgstr "Επιλέξτε το image του οποίαυ θέλετε να δημιουργήσετε αντίγραφο"
+
+msgid "You have the following images installed"
+msgstr "Έχετε εγκαταστήσει τα ακόλουθα images"
+
+msgid "You still have free: "
+msgstr "Έχετε ακόμα ελεύθερα:"
+
+msgid "NeoBoot: COMPLETE Backup!"
+msgstr "NeoBoot: ΟΛΟΚΛΗΡΩΣΗ αντιγράφου ασφαλείας!"
+
+msgid "NeoBoot: Image Backup"
+msgstr "NeoBoot: Αντίγραφο ασφαλείας image"
+
+msgid "Backup confirmation"
+msgstr "Επιβεβαίωση αντιγράφου ασφαλείας"
+
+msgid "Make copies of the image: %s now ?"
+msgstr "Να γίνει δημιουργία αντιγράφων του image: %s τώρα;"
+
+msgid ""
+"The required space on the device is 300 MB.\n"
+"Do you want to take this image: %s \n"
+"now ?"
+msgstr ""
+"Ο απαιτούμενος χώρος στη συσκευή είναι 300 MB.\n"
+"Θέλετε να λάβετε αυτό image: %s \n"
+"τώρα;"
+
+msgid "Neoboot: Restore COMPLETE !"
+msgstr "NeoBoot: Η επαναφορά ΟΛΟΚΛΗΡΩΘΗΚΕ !"
+
+msgid "Launch Device Manager?"
+msgstr "Να γίνει εκκίνηση της Διαχείρισης συσκευών;"
+
+msgid "Remove the plug"
+msgstr "Αφαίρεση του πρόσθετου"
+
+msgid "Uninstall"
+msgstr "Απεγκατάσταση"
+
+msgid "If you choose Yes, the Multibot image settings will be restored and only uninstalled. You can reinstall it"
+msgstr "Εάν επιλέξετε Ναι, οι ρυθμίσεις του MultiBoot image θα αποκατασταθούν και θα απεγκατασταθεί μόνο. Μπορείτε να το εγκαταστήσετε ξανά"
+
+msgid "Restore copy NeoBoot"
+msgstr "Επαναφορά αντιγράφου NeoBoot"
+
+msgid "Wait, deleting ..."
+msgstr "Περιμένετε, γίνεται διαγραφή..."
+
+msgid "Install neobot from flash memory to all images"
+msgstr "Εγκατάσταση του NeoBoot από τη μνήμη flash σε όλα τα images"
+
+msgid ""
+"NeoBoot successfully updated. You can restart the plugin now.\n"
+"Have fun !!"
+msgstr ""
+"Το NeoBoot ενημερώθηκε με επιτυχία. Μπορείτε να επανεκκινήσετε το πρόσθετο τώρα.\n"
+"Διασκεδάστε το !!"
+
+msgid "Do you really want to clear"
+msgstr "Θέλετε πραγματικά να το καθαρίσετε"
+
+msgid "Update available only from the image Flash."
+msgstr "Η ενημέρωση είναι διαθέσιμη μόνο από το image της flash."
+
+msgid "List of supported stb."
+msgstr "Λίστα υποστηριζόμενων δεκτών."
+
+msgid "Run"
+msgstr "Εκτέλεση"
+
+msgid "Your image flash cannot be mounted."
+msgstr "Δεν είναι δυνατή η προσάρτηση του ιimage της flash."
+
+msgid "Sorry you can delete only from the image Flash."
+msgstr "Λυπούμαστε, μπορείτε να διαγράψετε μόνο από το image της flash."
+
+msgid ""
+"\n"
+"Restoring settings...\n"
+msgstr ""
+"\n"
+"Επαναφορά ρυθμίσεων...\n"
+
+msgid "Removing boot manager from NeoBoot....\n"
+msgstr "Αφαίρεση διαχείρισης εκκινήσεων από το NeoBoot....\n"
+
+msgid "NeoBoot restoring media mounts...\n"
+msgstr "Το NeoBoot επαναφέρει τις προσαρτήσεις μέσων...\n"
+
+msgid "Cancel execution?"
+msgstr "Να ακυρωθεί η εκτέλεση;"
+
+msgid "Path to save not exist: '/tmp/'"
+msgstr "Η διαδρομή για αποθήκευση δεν υπάρχει: '/tmp/'"
+
+msgid "File write error: '%s'"
+msgstr "Σφάλμα εγγραφής αρχείου: '%s'"
+
+msgid ""
+"Save the commands and the output to a file?\n"
+"('%s')"
+msgstr ""
+"Να γίνει αποθήκευση των εντολών και η έξοδος σε ένα αρχείο;\n"
+"('%s')"
+
+msgid "Hide Console"
+msgstr "Απόκρυψη κονσόλας"
+
+msgid "Upload image files in zip formats to the ImagesUpload location."
+msgstr "Ανεβάστε αρχεία image σε μορφές zip στη θέση ImagesUpload."
+
+msgid ""
+"3. To install the new software in multiboot, you must send the software file compressed in zip format via ftp to the ImagesUpload directory, or download from the network.\n"
+"\n"
+msgstr ""
+"3. Για να εγκαταστήσετε νέο λογισμικό στο MultiBoot, πρέπει να στείλετε το αρχείο λογισμικού συμπιεσμένο σε μορφή zip μέσω ftp στον κατάλογο ImagesUpload ή να κάνετε λήψη από το δίκτυο.\n"
+"\n"
+
+msgid "Reinstall neoboot"
+msgstr "Επανεγκατάσταση του NeoBoot"
+
+msgid "Your image flash is mounted in the media location"
+msgstr "Το image της flash είναι προσαρτημένο στη θέση του μέσου"
+
+msgid "Copy the tv list with flash on all image"
+msgstr "Αντιγραφή της λίστα tv της flash σε όλα τα images"
+
+msgid "Sorry, the operation is not possible from Flash"
+msgstr "Λυπούμαστε, η λειτουργία δεν είναι δυνατή από τη flash"
+
+msgid "Mount Internal Flash"
+msgstr "Προσάρτηση της εσωτερικής flash"
+
+msgid "Install software internal flash memory in media"
+msgstr "Εγκατάσταση λογισμικού της εσωτερικής μνήμης flash σε μέσα"
+
+msgid "To use the new skin please restart enigma2"
+msgstr "Για να χρησιμοποιήσετε το νέο θέμα, παρακαλώ επανεκκινήστε το enigma2"
+
+msgid "Sorry, There is no neobot backup to restore"
+msgstr "Λυπούμαστε, δεν υπάρχει αντίγραφο ασφαλείας NeoBoot για επαναφορά"
+
+msgid "Install the tv list with flash on all images"
+msgstr "Εγκατάσταση της λίστας tv της flash σε όλα τα images"
+
+msgid "Copy the IPTV Player plugin from flash to all images"
+msgstr "Αντιγραφή του πρόσθετου IPTV Player από τη flash σε όλα τα images"
+
+msgid ""
+"Are you sure you want to delete the image from the ImagesUpload directory\n"
+"If you choose the red button on the remote control then you will delete all zip images from the ImagesUpload directory"
+msgstr ""
+"Είστε βέβαιοι ότι θέλετε να διαγράψετε το image από τον κατάλογο ImagesUpload\n"
+"Εάν επιλέξετε το κόκκινο κουμπί στο τηλεχειριστήριο, τότε θα διαγράψετε όλα τα zip των images από τον κατάλογο ImagesUpload"
+
+msgid "Make complete copy NeoBoot"
+msgstr "Δημιουργία πλήρους αντιγράφου του NeoBoot"
+
+msgid "Select Install to continue"
+msgstr "Επιλέξτε Εγκατάσταση για να συνεχίσετε"
+
+msgid ""
+"Successful fun :)\n"
+"\n"
+msgstr ""
+"Επιτυχημένη διασκέδαση :)\n"
+"\n"
+
+msgid "This option is available only from openpli or derivatives."
+msgstr "Αυτή η επιλογή είναι διαθέσιμη μόνο από OpenPLi ή παράγωγα."
+
+msgid ""
+"Do you really want to initialize the device?\n"
+"All data on the disk will be lost!"
+msgstr ""
+"Θέλετε πραγματικά να γίνει αρχικοποίηση της συσκευής;\n"
+"Όλα τα δεδομένα στον δίσκο θα χαθούν!"
+
+msgid "Install NeoBOOT from github"
+msgstr "Εγκατάσταση NeoBoot από github"
+
+msgid "Are you sure you want to reinstall neoboot from github."
+msgstr "Είστε βέβαιοι ότι θέλετε να επανεγκαταστήσετε το NeoBoot από το github."
+
+msgid "NeoBoot donate"
+msgstr "Δωρεά για το NeoBoot"
+
+msgid "Donate to the project\n"
+msgstr "Κάνοντας δωρεά στο έργο, έχετε:\n"
+
+msgid "- Access to the latest version\n"
+msgstr "- Πρόσβαση στην τελευταία έκδοση\n"
+
+msgid "- Full version\n"
+msgstr "- Πλήρη έκδοση\n"
+
+msgid "- Online support\n"
+msgstr "- Διαδικτυακή υποστήριξη\n"
+
+msgid "- More information email\n"
+msgstr "- Περισσότερες πληροφορίες σε e-mail\n"
+
+msgid "We thank you for any help\n"
+msgstr "Σας ευχαριστούμε για οποιαδήποτε βοήθεια.\n"
+
+msgid "If you want to support the neoboot project, you can do so by contacting us by e-mail:\n"
+msgstr "Αν θέλετε να υποστηρίξετε το έργο NeoBoot, μπορείτε να το κάνετε επικοινωνώντας μαζί μας μέσω e-mail:\n"
+
+msgid "Copy picon flash to image install ?"
+msgstr "Αντιγραφή των picons της flash στο image εγκατάστασης;"
+
+msgid "Transfer kodi settings ?"
+msgstr "Μεταφορά των ρυθμίσεων του Kodi;"
+
+msgid "Updates feed cam OpenATV softcam"
+msgstr "Ενημερώσεις τροφοδοσίας cam OpenATV softcam"
+
+msgid "Add softcam download from feed."
+msgstr "Προσθήκη λήψης softcam από την τροφοδοσία."
+
+msgid "Update FeedExtra on the installed image."
+msgstr "Ενημέρωση του FeedExtra στο image εγκατάστασης"
+
+msgid ""
+"Sorry, you can install up to 2 images, this is not neoboot vip version.\n"
+"Get unlimited image installations in VIP version"
+msgstr ""
+"Λυπούμαστε, μπορείτε να εγκαταστήσετε έως και 2 images, αυτή δεν είναι VIP έκδοση του NeoBoot.\n"
+"Λάβετε απεριόριστες εγκαταστάσεις images σε έκδοση VIP"
+
+msgid ""
+"Sorry, this is not neoboot vip version.\n"
+"Get NEO-VIP version, more info press blue button or try to update."
+msgstr ""
+"Λυπούμαστε, αυτή δεν είναι η έκδοση VIP του NeoBoot.\n"
+"Λάβετε την έκδοση NEO-VIP, για περισσότερες πληροφορίες πατήστε το μπλε κουμπί ή προσπαθήστε να ενημερώσετε."
+
+msgid ""
+"\n"
+"VIP - Try entering the pin code again."
+msgstr ""
+"\n"
+"VIP - Δοκιμάστε να εισάγετε ξανά τον κωδικό PIN."
+
+msgid ""
+"Sorry, this is not neoboot vip version.\n"
+"Get NEO-VIP version, more info press blue button."
+msgstr ""
+"Λυπούμαστε, αυτή δεν είναι η έκδοση VIP του NeoBoot.\n"
+"Λάβετε την έκδοση NEO-VIP, για περισσότερες πληροφορίες πατήστε το μπλε κουμπί."
+
+msgid "Sorry cannot open neo menu. Access Fails with Error code 0x50."
+msgstr "Λυπούμαστε, δεν είναι δυνατό το άνοιγμα του μενού neo. Η πρόσβαση απέτυχε με κωδικό σφάλματος 0x50."
+
+msgid ""
+"Sorry cannot open neo menu.\n"
+"Access Fails with Error code 0x02."
+msgstr ""
+"Λυπούμαστε, δεν είναι δυνατό το άνοιγμα του μενού neo.\n"
+"Η πρόσβαση απέτυχε με κωδικό σφάλματος 0x02."
+
+msgid ""
+"Sorry cannot open neo menu Backup.\n"
+"Access Fails with Error code 0x60."
+msgstr ""
+"Λυπούμαστε, δεν είναι δυνατό το άνοιγμα του μενού neo \"Αντίγραφα ασφαλείας\".\n"
+"Η πρόσβαση απέτυχε με κωδικό σφάλματος 0x60."
+
+msgid ""
+"Sorry cannot open neo menu Restore.\n"
+"Access Fails with Error code 0x61."
+msgstr ""
+"Λυπούμαστε, δεν είναι δυνατό το άνοιγμα του μενού neo \"Επαναφορά\".\n"
+"Η πρόσβαση απέτυχε με κωδικό σφάλματος 0x61."
+
+msgid ""
+"Sorry, cannot open instalation menu.\n"
+"Access error with error code 0x72."
+msgstr ""
+"Λυπούμαστε, δεν είναι δυνατό το άνοιγμα του μενού εγκατάστασης.\n"
+"Σφάλμα πρόσβασης με κωδικό σφάλματος 0x72."
+
+msgid "Sorry, cannot open neo menu install image."
+msgstr "Λυπούμαστε, δεν είναι δυνατό το άνοιγμα του μενού neo \"Εγκατάσταση image\"."
+
+msgid ""
+"Sorry cannot open neo menu Reinstall Kernel.\n"
+"Access Fails with Error code 0x03."
+msgstr ""
+"Λυπούμαστε, δεν είναι δυνατό το άνοιγμα του μενού neo \"Επανεγκατάσταση kernel\".\n"
+"Η πρόσβαση απέτυχε με κωδικό σφάλματος 0x03."
+
+msgid "Sorry cannot open neo menu. Not supported tuners. "
+msgstr "Λυπούμαστε, δεν είναι δυνατό το άνοιγμα του μενού neo. Δεν υποστηρίζονται οι δέκτες. "
+
+msgid "Sorry, cannot open neo menu image install. Access Fails with Error code 0x70."
+msgstr "Λυπούμαστε, δεν είναι δυνατό το άνοιγμα του μενού neo \"Εγκατάσταση image\".  Η πρόσβαση απέτυχε με κωδικό σφάλματος 0x70."
+
+msgid ""
+"Sorry, could not open image install menu.\n"
+"No access to VIP version.\n"
+"Access error with error code 0x71."
+msgstr ""
+"Λυπούμαστε, δεν ήταν δυνατό το άνοιγμα του μενού neo \"Εγκατάσταση image\".\n"
+"Δεν υπάρχει πρόσβαση στην έκδοση VIP.\n"
+"Σφάλμα πρόσβασης με κωδικό σφάλματος 0x71."
+
+msgid "Sorry cannot open neo menu - no flash"
+msgstr "Λυπούμαστε, δεν είναι δυνατό το άνοιγμα του μενού neo - δεν υπάρχει flash"
+
+msgid ""
+"Sorry cannot open menu set disk label\n"
+"Access Fails with Error code 0x01."
+msgstr ""
+"Λυπούμαστε, δεν είναι δυνατό το άνοιγμα του μενού \"Ορισμός ετικέτας δίσκου\"\n"
+"Η πρόσβαση απέτυχε με κωδικό σφάλματος 0x01."
+
+msgid "Sorry cannot open run.py file - Access Fails with Error code 0x30."
+msgstr "Λυπούμαστε, δεν είναι δυνατό το άνοιγμα του αρχείου run.py - Η πρόσβαση απέτυχε με κωδικό σφάλματος 0x30."
+
+msgid "Sorry cannot open run file - Access Fails with Error code 0x40."
+msgstr "Λυπούμαστε, δεν είναι δυνατό το άνοιγμα του αρχείου εκτέλεσης - Η πρόσβαση απέτυχε με κωδικό σφάλματος 0x40."
+
+msgid ""
+"Sorry cannot open neo menu. Hymmm...\n"
+"Access Fails with Error code 0x73."
+msgstr ""
+"Λυπούμαστε, δεν είναι δυνατό το άνοιγμα του μενού neo. Χμμμ...\n"
+"Η πρόσβαση απέτυχε με κωδικό σφάλματος 0x73."
+
+msgid ""
+"Sorry cannot open neo menu.\n"
+"Access Fails with Error code 0x60."
+msgstr ""
+"Λυπούμαστε, δεν είναι δυνατό το άνοιγμα του μενού neo.\n"
+"Η πρόσβαση απέτυχε με κωδικό σφάλματος 0x60."
+
+msgid "Neoboot vip version has expired, please re-access."
+msgstr "Η έκδοση NeoBoot vip έχει λήξει, παρακαλώ αποκτήστε ξανά πρόσβαση."
+
+msgid "Get a free test to the full vip version."
+msgstr "Λάβετε μια δωρεάν δοκιμή στην πλήρη έκδοση vip."
+
+msgid ""
+"New version update neoboot is available!\n"
+"Please upgrade your flash plugin."
+msgstr ""
+"Νέα ενημερωμένη έκδοση του NeoBoot είναι διαθέσιμη!\n"
+"Παρακαλώ αναβαθμίστε το πρόσθετο στη flash."
+
+msgid ""
+"Bravo! Neoboot vip full version activated OK!\n"
+"Please restart your system E2."
+msgstr ""
+"Μπράβο! Η πλήρης έκδοση NeoBoot vip ενεργοποιήθηκε OK!\n"
+"Παρακαλώ επανεκκινήστε το σύστημά σας E2."
+
+msgid "Get the full version of the multiboot plugin.\n"
+msgstr "Λάβετε την πλήρη έκδοση του πρόσθετου MultiBoot.\n"
+
+msgid "Send an e-mail request for the neoboot vip version.\n"
+msgstr "Στείλτε ένα αίτημα e-mail για την έκδοση vip NeoBoot.\n"
+
+msgid "VIP Access Activation Fails with Error code 0x10."
+msgstr "Η ενεργοποίηση πρόσβασης VIP απέτυχε με κωδικό σφάλματος 0x10."
+
+msgid "VIP Access Activation Fails with Error code 0x20."
+msgstr "Η ενεργοποίηση πρόσβασης VIP απέτυχε με κωδικό σφάλματος 0x20."
+
+msgid "Create swap- file."
+msgstr "Δημιουργία αρχείου swap"
+
+msgid "Create swap-file."
+msgstr "Δημιουργία αρχείου swap."
+
+msgid "Remove file swap."
+msgstr "Αφαίρεση αρχείου swap"
+
+msgid "Start create file swap."
+msgstr "Έναρξη δημιουργίας αρχείου swap."
+
+msgid "The plug-in not installed"
+msgstr "Το πρόσθετο δεν είναι εγκατεστημένο"
+
+msgid "The file swapfile already exists!"
+msgstr "Το αρχείο swapfile υπάρχει ήδη!"
+
+msgid "The swap not exists."
+msgstr "Το swap δεν υπάρχει."
+
+msgid "Remove swap, please wait..."
+msgstr "Αφαίρεση του swap, παρακαλώ περιμένετε..."
+
+msgid "Creation complete swap "
+msgstr "Δημιουργία πλήρους swap"
+
+msgid "Creation swap ' + myfile+ ', please wait..."
+msgstr "Δημιουργία swap ' + myfile+ ', παρακαλώ περιμένετε..."
+
+msgid "Select the Swap File Size:"
+msgstr "Επιλογή μεγέθους του αρχείου swap:"
+
+msgid "Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"
+msgstr "Λυπούμαστε, δεν έχουν συνδεθεί συσκευές που υποστηρίζουν SWAP. Δεν είναι δυνατή η δημιουργία αρχείου swap στο δίκτυο ή σε συστήματα αρχείων fat32"
+
+msgid "Please select device to use as swapfile location"
+msgstr "Παρακαλώ επιλέξτε συσκευή για χρήση ως θέση αρχείου swap"
+
+msgid ""
+"Your receiver is not on the list of supported tuners.\n"
+"Access error with error code 0x71."
+msgstr ""
+"Ο δέκτης σας δεν περιλαμβάνεται στη λίστα των υποστηριζόμενων δεκτών.\n"
+"Σφάλμα πρόσβασης με κωδικό σφάλματος 0x71."
+
+msgid "The folder hdd or usb not  exists!"
+msgstr "Ο φάκελος hdd ή usb δεν υπάρχει!"
+
+msgid "VIP access error. Reinstall the plugin."
+msgstr "Σφάλμα πρόσβασης VIP. Επανεγκαταστήστε το πρόσθετο."
+
+msgid ""
+"Sorry cannot open Image Downloader.\n"
+"Access Fails with Error code 0x05."
+msgstr ""
+"Λυπούμαστε, δεν είναι δυνατό το άνοιγμα \"Λήψη image\".\n"
+"Η πρόσβαση απέτυχε με κωδικό σφάλματος 0x05."
+
+msgid ""
+"Sorry cannot open neo menu My Upgrade.\n"
+"Access Fails with Error code 0x06."
+msgstr ""
+"Λυπούμαστε, δεν είναι δυνατό το άνοιγμα του μενού neo \"Η αναβάθμισή μου\".\n"
+"Η πρόσβαση απέτυχε με κωδικό σφάλματος 0x06."
+
+msgid ""
+"Sorry cannot open neo menu Neo Boot Image Choose.\n"
+"Access Fails with Error code 0x07."
+msgstr ""
+"Λυπούμαστε, δεν είναι δυνατό το άνοιγμα του μενού neo \"Επιλογή εκίνησης image\".\n"
+"Η πρόσβαση απέτυχε με κωδικό σφάλματος 0x07."
+
+msgid ""
+"Sorry cannot open neo menu NeoBoot Installation.\n"
+"Access Fails with Error code 0x08."
+msgstr ""
+"Λυπούμαστε, δεν είναι δυνατό το άνοιγμα του μενού neo \"Εγκατάσταση του NeoBoot\".\n"
+"Η πρόσβαση απέτυχε με κωδικό σφάλματος 0x08."
+
+msgid "Sorry it seems that there are not Linux formatted devices mounted on your STB. To install NeoBoot you need a Linux formatted part1 device. Click on the blue button to open Devices Panel."
+msgstr "Λυπούμαστε, φαίνεται ότι δεν υπάρχουν συσκευές με μορφοποίηση Linux τοποθετημένες στον δέκτη σας. Για να εγκαταστήσετε το NeoBoot χρειάζεστε μια συσκευή Part1 με μορφοποίηση Linux. Κάντε κλικ στο μπλε κουμπί για να ανοίξετε τον Πίνακα συσκευών."
+
+msgid ""
+"Disk the directory HDD or USB is not a ext2, ext3 or ext4.\n"
+"Make sure you select a valid partition type to install neoboot."
+msgstr ""
+"Ο κατάλογος του δίσκου HDD ή USB δεν είναι ext2, ext3 ή ext4.\n"
+"Βεβαιωθείτε ότι επιλέξατε έναν έγκυρο τύπο διαμερίσματος για εγκατάσταση του NeoBoot."
+
+msgid "Please wait and dont disconnect the power !!! ...."
+msgstr "Παρακαλώ περιμένετε και μην αποσυνδέετε την παροχή ενέργειας !!! ...."
+
+msgid "Receiver reboot in 5 seconds... !!!"
+msgstr "Επανεκκίνηση δέκτη σε 5 δευτερόλεπτα... !!!"
+
+msgid "Formatting"
+msgstr "Διαμόρφωση"
+
+msgid "Formatting Disk"
+msgstr "Διαμόρφωση δίσκου"
+
+msgid "Select disk."
+msgstr "Επιλογή δίσκου."
+
+msgid "Install Panel Extra Feed"
+msgstr "Εγκατάσταση του Panel Extra Feed"
+
+msgid "Install Multi Stalker"
+msgstr "Εγκατάσταση του Multi Stalker"
+
+msgid "Install Multiboot Flash Online"
+msgstr "Εγκατάσταση του MultiBoot Flash Online"
+
+msgid "Initialization - formatting disk for neoboot."
+msgstr "Αρχικοποίηση - διαμόρφωση δίσκου για το NeoBoot"
+
+msgid "Install Dream Sat Panel"
+msgstr "Εγκατάσταση του Dream Sat Panel"
+
+msgid "Hard disk:  %s  Formatting ? Attention! All data will be lost !!!"
+msgstr "Σκληρός δίσκος:  %s  Διαμόρφωση; Προσοχή! Όλα τα δεδομένα θα χαθούν !!!"
+
+msgid ""
+"Skip this step and install neoboot.\n"
+"This option is available in the neoboot menu."
+msgstr ""
+"Παραλείψτε αυτό το βήμα και εγκαταστήστε το NeoBoot.\n"
+"Αυτή η επιλογή είναι διαθέσιμη στο μενού του NeoBoot."
+
+msgid " Email your receiver Ethernet MAC and get a neoboto VIP\n"
+msgstr " Email τον δέκτη σας Ethernet MAC και λάβετε NeoBoot VIP\n"
+
+msgid "Ethernet MAC not found."
+msgstr "Το Ethernet MAC δεν βρέθηκε."
+
+msgid "VIP Pin code missing."
+msgstr "Λείπει ο κωδικός PIN VIP."
+
+msgid "NEOBOOT VIP ACTIVATED"
+msgstr "NeoBoot VIP ΕΝΕΡΓΟΠΟΙΗΘΗΚΕ"
+
+msgid "Update %s is available."
+msgstr "Η ενημέρωση %s είναι διαθέσιμη."
+
+msgid "Set the disk label and uuid"
+msgstr "Ορισμός ετικέτας του δίσκου και UUID"
+
+msgid "Set Disk Label"
+msgstr "Ορισμός ετικέτα δίσκου"
+
+msgid "Set UUID Label"
+msgstr "Ετικέτα UUID"
+
+msgid "Label set OK"
+msgstr "Ορισμός ετικέτας OK"
+
+msgid "UUID set OK"
+msgstr "Ορισμός UUID OK"
+
+msgid ""
+"UUID exists or neoboot not installed yet\n"
+"After installing the plugin, give uuid"
+msgstr ""
+"Το UUID υπάρχει ή το NeoBoot δεν εγκαταστάθηκε ακόμα\n"
+"Μετά την εγκατάσταση του πρόσθετου, δώστε uuid"
+
+msgid "Start the set disk label"
+msgstr "Έναρξη ορισμού ετικέτας του δίσκου"
+
+msgid "Copy the FeedExtra Player plugin from flash to all images"
+msgstr "Αντιγραφή του πρόσθετου FeedExtra Player από τη flash σε όλα τα images"
+
+msgid "Sorry, the operation is not possible from Flash or not supported."
+msgstr "Λυπούμαστε, η λειτουργία δεν είναι δυνατή από τη flash ή δεν υποστηρίζεται."
+
+msgid "Disk Formatting...!"
+msgstr "Διαμόρφωση δίσκου...!"
+
+msgid "Press MENU - Backup"
+msgstr "MENU: Αντίγρ. ασφαλείας"
+
+msgid "Press 1 - Mounting"
+msgstr "Κουμπί 1: Προσάρτηση"
+
+msgid "Press 2 - Delete NeoBoot"
+msgstr "Κουμπί 2: Διαγραφή NeoBoot"
+
+msgid "No label"
+msgstr "Χωρίς ετικέτα"
+
+msgid "Label Disc"
+msgstr "Ετικέτα δίσκου"
+
+msgid "Installation new image. "
+msgstr "Εγκατάσταση νέου image"
+
+msgid ""
+" - po instalacji, opcja kasuje plik zip image z katalogu ImagesUpload.\n"
+"\n"
+msgstr ""
+"- Μετά την εγκατάσταση, η επιλογή διαγράφει το αρχείο zip του image από τον κατάλογο ImagesUpload.\n"
+"\n"
+
+msgid "Informacje instalacji image w NeoBoot"
+msgstr "Πληροφορίες εγκατάστασης image στο NeoBoot"
+
+msgid ""
+"- cpuy picon from flash to image install in neoboot\n"
+"\n"
+msgstr ""
+"- Αντιγραφή picons από τη flash στο image εγκατάστασης στο NeoΒoot\n"
+"\n"
