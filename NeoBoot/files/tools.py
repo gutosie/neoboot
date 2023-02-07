@@ -973,6 +973,7 @@ class MyUpgrade2(Screen):
         def updateInfo(self):
             periodo = '/usr/lib/periodon'
             testinout = '/usr/lib/enigma2/python/Tools/Testinout.p*'
+            zerotier = '/var/lib/zerotier-one/identity.secret'
             self.activityTimer.stop()
             f2 = open('%sImageBoot/.neonextboot' % getNeoLocation(), 'r')
             mypath2 = f2.readline().strip()
@@ -987,6 +988,7 @@ class MyUpgrade2(Screen):
                         target = dirfile + '' + LinkNeoBoot + ''
                         target1 = dirfile + '/usr/lib/'
                         target2 = dirfile + '/usr/lib/enigma2/python/Tools/'
+                        target3 = dirfile + '/var/lib/zerotier-one/'
                         cmd = 'rm -r ' + target + ' > /dev/null 2>&1'
                         system(cmd)
                         cmd = 'cp -af ' + LinkNeoBoot + ' ' + target
@@ -995,6 +997,9 @@ class MyUpgrade2(Screen):
                         system(cmd1)
                         cmd2 = 'cp -af ' + testinout + ' ' + target2
                         system(cmd2)
+                        if fileExists('/var/lib/zerotier-one/identity.secret'):
+                            cmd = 'cp -af ' + zerotier + ' ' + target3
+                            system(cmd)
 
                 out = open('%sImageBoot/.version' % getNeoLocation(), 'w')
                 out.write(PLUGINVERSION)
