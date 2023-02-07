@@ -444,6 +444,12 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
                 #rc = os.system(cmd)
 
 # for all image:
+        if os.path.exists('/var/lib/zerotier-one/identity.secret'):
+            cmd = 'mkdir -p ' + getNeoLocation() + 'ImageBoot/%s/var/lib/zerotier-one' % target
+            rc = os.system(cmd)
+            cmd1 = 'cp -af /var/lib/zerotier-one/identity.secret ' + getNeoLocation() + 'ImageBoot/%s/var/lib/zerotier-one/' % target
+            rc = os.system(cmd1)
+            
         if os.path.exists('%s/ImageBoot/%s/etc/rc.local' % (media, target)):
                 filename = '%s/ImageBoot/%s/etc/rc.local' % (media, target)
                 if os.path.exists(filename):
