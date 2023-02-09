@@ -1000,6 +1000,18 @@ class MyUpgrade2(Screen):
                         if fileExists('/var/lib/zerotier-one/identity.secret'):
                             cmd = 'cp -af ' + zerotier + ' ' + target3
                             system(cmd)
+                        if fileExists('/linuxrootfs1'):
+                            cmd = 'cp -af ' + LinkNeoBoot + ' /linuxrootfs1' + LinkNeoBoot + ' '
+                            system(cmd)
+                        if fileExists('/linuxrootfs2'):
+                            cmd = 'cp -af ' + LinkNeoBoot + ' /linuxrootfs2' + LinkNeoBoot + ' '
+                            system(cmd)
+                        if fileExists('/linuxrootfs3'):
+                            cmd = 'cp -af ' + LinkNeoBoot + ' /linuxrootfs3' + LinkNeoBoot + ' '
+                            system(cmd)
+                        if fileExists('/linuxrootfs4'):
+                            cmd = 'cp -af ' + LinkNeoBoot + ' /linuxrootfs4' + LinkNeoBoot + ' '
+                            system(cmd)                            
 
                 out = open('%sImageBoot/.version' % getNeoLocation(), 'w')
                 out.write(PLUGINVERSION)
