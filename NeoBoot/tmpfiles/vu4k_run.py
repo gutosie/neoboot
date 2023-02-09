@@ -120,6 +120,8 @@ class StartImage(Screen):
                     os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p9 /media/InternalFlash')
                 elif getBoxVuModel() == 'zero4k':
                     os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p7 /media/InternalFlash')
+        elif fileExists('/boot/linuxrootfs1') and getCPUtype() == "ARMv7":
+                    os.system('ln -sf "neoinitarmvu" "/boot/linuxrootfs1/sbin/init"')                    
                     
         self.sel = self['list'].getCurrent()
         if self.sel:
