@@ -122,8 +122,8 @@ class StartImage(Screen):
                     os.system('mkdir -p /media/InternalFlash; mount /dev/mmcblk0p7 /media/InternalFlash')
                 else:
                         os.system(' ' + LinkNeoBoot + '/files/findsk.sh; mkdir -p /media/InternalFlash; mount /tmp/root /media/InternalFlash')
-        #elif fileExists('/boot/linuxrootfs1') and getCPUtype() == "ARMv7":
-                    #os.system('ln -sf "neoinitarmvu" "/boot/linuxrootfs1/sbin/init"')                    
+        #elif fileExists('/boot/STARTUP') and getCPUtype() == "ARMv7":
+                    #os.system('ln -sf "neoinitarmvu" "/boot/sbin/init"')                    
                     
         self.sel = self['list'].getCurrent()
         if self.sel:
