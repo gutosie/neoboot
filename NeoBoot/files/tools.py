@@ -2092,10 +2092,10 @@ class InitializationFormattingDisk(Screen):
             
 class BootManagers(Screen):
     __module__ = __name__
-    skin = """<screen name="Boot Managers" title="Boot" position="center,center" size="892,198" flags="wfNoBorder">
+    skin = """<screen name="Boot Managers" title="Boot" position="center, center" size="944, 198" flags="wfNoBorder">
         <widget name="lab1" position="112,27" size="660,85" font="baslk;25" halign="center" valign="center" transparent="1" />
-        <widget name="key_green" position="490,140" zPosition="2" size="400,45" font="baslk;30" halign="left" valign="center" backgroundColor="green" transparent="1" foregroundColor="green" />        
-        <widget name="key_red" position="75,140" zPosition="2" size="405,45" font="baslk;30" halign="left" valign="center" backgroundColor="red" transparent="1" foregroundColor="red" />
+        <widget name="key_green" position="555, 138" zPosition="2" size="378, 45" font="baslk;30" halign="left" valign="center" backgroundColor="green" transparent="1" foregroundColor="green" />        
+        <widget name="key_red" position="39, 140" zPosition="2" size="509, 45" font="baslk;30" halign="left" valign="center" backgroundColor="red" transparent="1" foregroundColor="red" />
         </screen>"""
 
     def __init__(self, session):       
