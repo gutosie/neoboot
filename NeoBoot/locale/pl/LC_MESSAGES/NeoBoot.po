@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NeoBoot\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2023-12-25 14:20+0200\n"
+"PO-Revision-Date: 2023-12-25 14:25+0200\n"
 "Last-Translator: gutosie <Krzysio Gutosie>\n"
 "Language-Team: gutosie- GaduGadu nr. 5111900 <http://all-forum.cba.pl >\n"
 "Language: pl\n"
@@ -2899,3 +2899,9 @@ msgstr "Przepraszamy, operacja nie jest możliwa z Flasha lub nie jest obsługiw
 
 msgid "Plug installation lost.The plugin doesnt work on python 3 yet. Please try again later."
 msgstr "Instalacja wtyczki została zatrzymana. Wtyczka nie działa jeszcze w Pythonie 3. Spróbuj ponownie później."
+
+msgid "Do not use Boot Manager."
+msgstr "Nie używaj Menedżera rozruchu."
+
+msgid "Use Boot Manager."
+msgstr "Użyj Menedżera rozruchu."
