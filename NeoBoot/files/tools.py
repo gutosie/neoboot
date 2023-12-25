@@ -2100,7 +2100,7 @@ class BootManagers(Screen):
 
     def __init__(self, session):       
         Screen.__init__(self, session)
-        self['lab1'] = Label(_('Boot test'))
+        self['lab1'] = Label(_('Test the Boot Manager.'))
         self['key_red'] = Label(_('Do not use Boot Manager.'))
         self['key_green'] = Label(_('Use Boot Manager.'))        
         self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'back': self.close,
