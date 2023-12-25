@@ -16,6 +16,9 @@ Installation of neoboot.  Run the following command in the terminal of a support
 Instalacja neoboot. Uruchom poniższą komendę w terminalu wspieranego tunera
 
 
+recommended pendrive SanDisk Ultra Fit Pendrive 16GB
+
+
 #
 #    !!!!  PIN CODE in ver. 9.56 is CHANGED !!!
 
