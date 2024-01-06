@@ -691,6 +691,7 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
         
     #delet dir tmp
     cmd = 'rm -r ' + getNeoLocation() + 'ImageBoot/%s/tmp' % target
+    rc = os.system(cmd)
     
     os.system('mkdir -p ' + media_target + '/media/hdd' + dev_null)
     os.system('mkdir -p ' + media_target + '/media/usb' + dev_null)
