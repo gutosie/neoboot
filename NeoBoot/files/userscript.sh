@@ -37,6 +37,12 @@ else
     
     fi
 fi
+if [ -f /STARTUP ] ; then
+    rm -r /STARTU*
+fi
+if [ -f /zImage ] ; then
+    rm -r /zImage
+fi
 if [ -f /%1 ] ; then
     rm -f /%1
 fi
