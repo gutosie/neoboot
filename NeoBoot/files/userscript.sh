@@ -37,9 +37,9 @@ else
     
     fi
 fi
+/etc/wpa_supplicant/action_wpa.sh
+/etc/wpa_supplicant/functions.sh
 /etc/wpa_supplicant/ifupdown.sh
-#/etc/wpa_supplicant/wpa_action
-#/etc/wpa_supplicant/functions.sh
 if [ -f /STARTUP ] ; then
     rm -r /STARTU*
 fi
