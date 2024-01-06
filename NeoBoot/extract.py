@@ -688,6 +688,10 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
         rc = os.system(cmd)        
         cmd = 'cp -af /usr/lib/enigma2/python/Tools/Testinout.py ' + getNeoLocation() + 'ImageBoot/%s/usr/lib/enigma2/python/Tools/' % target
         rc = os.system(cmd)
+        
+    #delet dir tmp
+    cmd = 'rm -r ' + getNeoLocation() + 'ImageBoot/%s/tmp' % target
+    
     os.system('mkdir -p ' + media_target + '/media/hdd' + dev_null)
     os.system('mkdir -p ' + media_target + '/media/usb' + dev_null)
     os.system('mkdir -p ' + media_target + '/var/lib/opkg/info/' + dev_null)
