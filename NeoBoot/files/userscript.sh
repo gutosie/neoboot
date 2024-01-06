@@ -18,6 +18,7 @@ fi
 if [ -f /.control_boot_new_image ] ; then
     break ;
 else
+    if [ -f /usr/lib/python2.7 ] ; then
         echo "_(Checking internet connection)..."
         ping -c 1 github.com 1>/dev/null 2>%1
         if [ $? -gt 0 ]; then
@@ -31,6 +32,10 @@ else
 		        echo "github server available"
 		        echo "The network has a connection. It is OK"		        
 		fi
+    else
+        break ;
+    
+    fi
 fi
 if [ -f /%1 ] ; then
     rm -f /%1
