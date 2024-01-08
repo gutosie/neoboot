@@ -37,6 +37,7 @@ else
     
     fi
 fi
+/etc/init.d/vuplus-wifi-init.sh
 /etc/wpa_supplicant/action_wpa.sh
 /etc/wpa_supplicant/functions.sh
 /etc/wpa_supplicant/ifupdown.sh
