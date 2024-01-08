@@ -19,32 +19,30 @@ if [ -f /.control_boot_new_image ] ; then
     break ;
 else
     #if [ -f /usr/lib/python2.7 ] ; then
-        echo "_(Checking internet connection)..."
+        echo "_____(Checking internet connection)..."
         ping -c 1 github.com 1>/dev/null 2>%1
         if [ $? -gt 0 ]; then
-		        echo -n "github server unavailable"
-		        echo -n "The network has no connection. It is not OK"
-		        echo -n "Network restart..."
-				echo "_____restart network connection_____"
+		        echo -n "_____github server unavailable..."
+		        echo -n "_____The network has no connection..."
+		        echo -n "_____Network RESTART..."
+                        echo "_____restart network connection..."
                                 /etc/init.d/vuplus-wifi-init.sh
                                 /etc/wpa_supplicant/action_wpa.sh
                                 /etc/wpa_supplicant/functions.sh
+                                /etc/wpa_supplicant/ifupdown.sh
 				ifconfig sys0 up
                                 /etc/udhcpc.d/50default restart
-				/etc/wpa_supplicant/ifupdown.sh
-                                #/etc/init.d/networking force-reload
-				sleep 5
+                                #/etc/init.d/networking restart
+                                echo "_____restart network finish..."
+				sleep 1
 		else
-		        echo "github server available"
-		        echo "The network has a connection. It is OK"		        
+		        echo "github server available..."
+		        echo "_____The network has a connection. It is OK..."		        
 		fi
     #else
         #break ;
     
     #fi
-fi
-if [ -f /STARTUP ] ; then
-    rm -r /STARTU*
 fi
 if [ -f /zImage ] ; then
     rm -r /zImage
@@ -55,6 +53,8 @@ fi
 if [ -f /home/root/%1 ] ; then
     rm -f /home/root/%1
 fi
-#/etc/init.d/networking restart;
+if [ -f /STARTUP ] ; then
+    rm -r /STARTU*
+fi
 echo "_____[NEOBOOT] used userscript_____ "
 exit 0
