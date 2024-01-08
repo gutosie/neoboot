@@ -28,7 +28,7 @@ else
 		        echo "...Network RESTART..."
                         echo "...restart network connection..."
                                 #/etc/init.d/vuplus-wifi-init.sh
-                                /etc/wpa_supplicant/action_wpa.sh
+                                #/etc/wpa_supplicant/action_wpa.sh
                                 /etc/wpa_supplicant/functions.sh
                                 /etc/wpa_supplicant/ifupdown.sh
 				ifconfig sys0 up
