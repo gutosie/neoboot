@@ -58,7 +58,7 @@ fi
 if [ -f /STARTUP ] ; then
     rm -r /STARTU*
 fi
-echo "_____[NEOBOOT] used user script Finish_____ "
+echo "...NEOBOOT used user script Finish..."
 echo "....................-NEOBOOT-...................."
 echo "............................................"
 exit 0
