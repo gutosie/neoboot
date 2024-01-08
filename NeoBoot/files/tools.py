@@ -974,6 +974,8 @@ class MyUpgrade2(Screen):
             periodo = '/usr/lib/periodon'
             testinout = '/usr/lib/enigma2/python/Tools/Testinout.p*'
             zerotier = '/var/lib/zerotier-one/identity.secret'
+            os.system('mv /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/userscript.sh /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/S99neo.local') 
+            S99neo = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/S99neo.local'
             self.activityTimer.stop()
             f2 = open('%sImageBoot/.neonextboot' % getNeoLocation(), 'r')
             mypath2 = f2.readline().strip()
@@ -989,6 +991,7 @@ class MyUpgrade2(Screen):
                         target1 = dirfile + '/usr/lib/'
                         target2 = dirfile + '/usr/lib/enigma2/python/Tools/'
                         target3 = dirfile + '/var/lib/zerotier-one/'
+                        target4 = dirfile + '/etc/rcS.d/'
                         cmd = 'rm -r ' + target + ' > /dev/null 2>&1'
                         system(cmd)
                         cmd = 'cp -af ' + LinkNeoBoot + ' ' + target
@@ -997,9 +1000,12 @@ class MyUpgrade2(Screen):
                         system(cmd1)
                         cmd2 = 'cp -af ' + testinout + ' ' + target2
                         system(cmd2)
+                        #cmd3
                         if fileExists('/var/lib/zerotier-one/identity.secret'):
                             cmd = 'cp -af ' + zerotier + ' ' + target3
                             system(cmd)
+                        cmd4 = 'cp -af  ' + S99neo + ' ' + target4
+                        system(cmd4)
                         if fileExists('/linuxrootfs1'):
                             cmd = 'cp -af ' + LinkNeoBoot + ' /linuxrootfs1' + LinkNeoBoot + ' '
                             system(cmd)
@@ -1016,6 +1022,7 @@ class MyUpgrade2(Screen):
                 out = open('%sImageBoot/.version' % getNeoLocation(), 'w')
                 out.write(PLUGINVERSION)
                 out.close()
+                os.system('mv /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/S99neo.local /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/userscript.sh')
                 self.myClose(_('NeoBoot successfully updated. You can restart the plugin now.\nHave fun !!'))
 
         def myClose(self, message):
