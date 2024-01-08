@@ -26,13 +26,13 @@ else
 		        echo -n "The network has no connection. It is not OK"
 		        echo -n "Network restart..."
 				echo "_____restart network connection_____"
-				/etc/wpa_supplicant/ifupdown.sh
                                 /etc/init.d/vuplus-wifi-init.sh
                                 /etc/wpa_supplicant/action_wpa.sh
                                 /etc/wpa_supplicant/functions.sh
 				ifconfig sys0 up
                                 /etc/udhcpc.d/50default restart
-                                /etc/init.d/networking restart
+				/etc/wpa_supplicant/ifupdown.sh
+                                #/etc/init.d/networking force-reload
 				sleep 5
 		else
 		        echo "github server available"
