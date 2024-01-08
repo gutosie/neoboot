@@ -9,36 +9,37 @@ fi
 if [ ! -f `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`ImageBoot/.neonextboot ] ; then
         mkdir `cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`
         /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/neo.sh
-        echo "_________Start -neo.sh- mount point location NEOBOOT_________"
+        echo "...Start -neo.sh- mount point location NEOBOOT..."
 fi
 if [ ! -e /usr/bin/enigma2_pre_start.sh ]; then
         /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/mountpoint.sh
-        echo "_________Start -mountpoint.sh- location NEOBOOT_________"	
+        echo "...Start -mountpoint.sh- location NEOBOOT..."	
 fi
 if [ -f /.control_boot_new_image ] ; then
     break ;
 else
     #if [ -f /usr/lib/python2.7 ] ; then
-        echo "_____(Checking internet connection)..."
+        echo "....................-NEOBOOT-...................."
+        echo "...Checking internet connection..."
         ping -c 1 github.com 1>/dev/null 2>%1
         if [ $? -gt 0 ]; then
-		        echo "_____github server unavailable..."
-		        echo "_____The network has no connection..."
-		        echo "_____Network RESTART..."
-                        echo "_____restart network connection..."
-                                /etc/init.d/vuplus-wifi-init.sh
+		        echo "...github server unavailable..."
+		        echo "...The network has no connection..."
+		        echo "...Network RESTART..."
+                        echo "...restart network connection..."
+                                #/etc/init.d/vuplus-wifi-init.sh
                                 /etc/wpa_supplicant/action_wpa.sh
                                 /etc/wpa_supplicant/functions.sh
                                 /etc/wpa_supplicant/ifupdown.sh
 				ifconfig sys0 up
                                 /etc/udhcpc.d/50default restart
                                 #/etc/init.d/networking restart
-                                echo "_____Restart network finish..."
+                                echo "...Restart network finish..."
 				echo ".............................."
 				sleep 1
 		else
-		        echo "github server available..."
-		        echo "_____The network has a connection. It is OK..."		        
+		        echo "...github server available..."
+		        echo "...The network has a connection. It is OK..."		        
 		fi
     #else
         #break ;
@@ -58,5 +59,6 @@ if [ -f /STARTUP ] ; then
     rm -r /STARTU*
 fi
 echo "_____[NEOBOOT] used user script Finish_____ "
+echo "....................-NEOBOOT-...................."
 echo "............................................"
 exit 0
