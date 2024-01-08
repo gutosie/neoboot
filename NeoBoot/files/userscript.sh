@@ -22,9 +22,9 @@ else
         echo "_____(Checking internet connection)..."
         ping -c 1 github.com 1>/dev/null 2>%1
         if [ $? -gt 0 ]; then
-		        echo -n "_____github server unavailable..."
-		        echo -n "_____The network has no connection..."
-		        echo -n "_____Network RESTART..."
+		        echo "_____github server unavailable..."
+		        echo "_____The network has no connection..."
+		        echo "_____Network RESTART..."
                         echo "_____restart network connection..."
                                 /etc/init.d/vuplus-wifi-init.sh
                                 /etc/wpa_supplicant/action_wpa.sh
