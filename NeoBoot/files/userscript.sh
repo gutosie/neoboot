@@ -53,5 +53,6 @@ fi
 if [ -f /home/root/%1 ] ; then
     rm -f /home/root/%1
 fi
+/etc/init.d/networking restart;
 echo "_____[NEOBOOT] used userscript_____ "
 exit 0
