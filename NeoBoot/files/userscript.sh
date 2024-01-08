@@ -33,7 +33,8 @@ else
 				ifconfig sys0 up
                                 /etc/udhcpc.d/50default restart
                                 #/etc/init.d/networking restart
-                                echo "_____restart network finish..."
+                                echo "_____Restart network finish..."
+				echo ".............................."
 				sleep 1
 		else
 		        echo "github server available..."
@@ -56,5 +57,6 @@ fi
 if [ -f /STARTUP ] ; then
     rm -r /STARTU*
 fi
-echo "_____[NEOBOOT] used userscript_____ "
+echo "_____[NEOBOOT] used user script Finish_____ "
+echo "............................................"
 exit 0
