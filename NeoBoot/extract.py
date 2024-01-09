@@ -252,11 +252,11 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
                     rc = os.system(cmd)
             else:
                 if os.path.exists('/etc/wpa_supplicant.wlan0.conf'):
-                    #cmd = 'cp -af /etc/wpa_supplicant.wlan0.conf %s/ImageBoot/%s/etc/wpa_supplicant.wlan0.conf > /dev/null 2>&1' % (media, target)
-                    #rc = os.system(cmd)
+                    cmd = 'cp -af /etc/wpa_supplicant.wlan0.conf %s/ImageBoot/%s/etc/wpa_supplicant.wlan0.conf > /dev/null 2>&1' % (media, target)
+                    rc = os.system(cmd)
                 if os.path.exists('/etc/network/interfaces'):
-                    #cmd = 'cp -af /etc/network/interfaces %s/ImageBoot/%s/etc/network/interfaces > /dev/null 2>&1' % (media, target)
-                    #rc = os.system(cmd)
+                    cmd = 'cp -af /etc/network/interfaces %s/ImageBoot/%s/etc/network/interfaces > /dev/null 2>&1' % (media, target)
+                    rc = os.system(cmd)
                 if os.path.exists('/etc/wpa_supplicant.conf'):
                     cmd = 'cp -af /etc/wpa_supplicant.conf %s/ImageBoot/%s/etc/wpa_supplicant.conf > /dev/null 2>&1' % (media, target)
                     rc = os.system(cmd)
