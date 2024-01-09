@@ -27,13 +27,13 @@ else
 		        echo "...The network has no connection..."
 		        echo "...Network RESTART..."
                         echo "...restart network connection..."
-                                #/etc/init.d/vuplus-wifi-init.sh
-                                #/etc/wpa_supplicant/action_wpa.sh
+                                /etc/init.d/vuplus-wifi-init.sh
+                                /etc/wpa_supplicant/action_wpa.sh
                                 /etc/wpa_supplicant/functions.sh
                                 /etc/wpa_supplicant/ifupdown.sh
 				ifconfig sys0 up
                                 /etc/udhcpc.d/50default restart
-                                #/etc/init.d/networking restart
+                                /etc/init.d/networking restart
                                 echo "...Restart network finish..."
 				echo ".............................."
 				sleep 1
