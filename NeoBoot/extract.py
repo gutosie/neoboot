@@ -246,24 +246,19 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
                 os.system('echo "Not copied LAN-WLAN, not recommended for this image."')
             elif os.path.exists('/etc/bhversion') and os.path.exists('%s/usr/lib/enigma2/python/Plugins/PLi' % (media, target)):
                 os.system('echo "Not copied LAN-WLAN, not recommended for this image."')
-            elif getCPUtype() == "ARMv7" and getBoxHostName() == "vuultimo4k" or getBoxHostName() == "vusolo4k" or getBoxHostName() == "vuuno4k" or getBoxHostName() == "vuuno4kse" or getBoxHostName() == "vuduo4k" or getBoxHostName() == "vuduo4kse" or getBoxHostName() == "vuzero4k":
-                if os.path.exists('/etc/wl.conf.wlan3'):
-                    cmd = 'cp -af /etc/wl.conf.wlan3 %s/ImageBoot/%s/etc/wl.conf.wlan3 > /dev/null 2>&1' % (media, target)
-                    rc = os.system(cmd)
-            else:
-                if os.path.exists('/etc/wpa_supplicant.wlan0.conf'):
+            if os.path.exists('/etc/wpa_supplicant.wlan0.conf'):
                     cmd = 'cp -af /etc/wpa_supplicant.wlan0.conf %s/ImageBoot/%s/etc/wpa_supplicant.wlan0.conf > /dev/null 2>&1' % (media, target)
                     rc = os.system(cmd)
-                if os.path.exists('/etc/network/interfaces'):
+            if os.path.exists('/etc/network/interfaces'):
                     cmd = 'cp -af /etc/network/interfaces %s/ImageBoot/%s/etc/network/interfaces > /dev/null 2>&1' % (media, target)
                     rc = os.system(cmd)
-                if os.path.exists('/etc/wpa_supplicant.conf'):
+            if os.path.exists('/etc/wpa_supplicant.conf'):
                     cmd = 'cp -af /etc/wpa_supplicant.conf %s/ImageBoot/%s/etc/wpa_supplicant.conf > /dev/null 2>&1' % (media, target)
                     rc = os.system(cmd)
-                if os.path.exists('/etc/resolv.conf'):
+            if os.path.exists('/etc/resolv.conf'):
                     cmd = 'cp -af /etc/resolv.conf %s/ImageBoot/%s/etc/resolv.conf > /dev/null 2>&1' % (media, target)
                     rc = os.system(cmd)
-                if os.path.exists('/etc/wl.conf.wlan3'):
+            if os.path.exists('/etc/wl.conf.wlan3'):
                     cmd = 'cp -af /etc/wl.conf.wlan3 %s/ImageBoot/%s/etc/wl.conf.wlan3 > /dev/null 2>&1' % (media, target)
                     rc = os.system(cmd)
             os.system('echo "Copied LAN-WLAN..."')
