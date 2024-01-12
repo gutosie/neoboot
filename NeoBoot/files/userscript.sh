@@ -31,7 +31,7 @@ else
     if [ -f /.control_boot_new_image ] ; then
         break ;
     else
-        #if [ -f /usr/lib/python2.7 ] ; then
+        if [ -f /etc/wl.conf.wlan3 ] || [ -f /etc/wpa_supplicant.wlan0.conf] ; then
             echo "....................-NEOBOOT-...................."
             echo "...Checking internet connection..."
             ping -c 1 github.com 1>/dev/null 2>%1
@@ -54,9 +54,9 @@ else
 		            echo "...github server available..."
 		            echo "...The network has a connection. It is OK..."		        
 		    fi
-        #else
-                #break ;
-        #fi
+        else
+                break ;
+        fi
     fi
     if [ -f /zImage ] ; then
         rm -r /zImage
