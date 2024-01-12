@@ -14,12 +14,8 @@
     fi
     if [ ! -e /usr/bin/enigma2_pre_start.sh ]; then
             /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/mountpoint.sh
-            echo "...Start -mountpoint.sh- location NEOBOOT..."	
+            echo "...Start -mountpoint.sh- location NEOBOOT..."
     fi
-    if [ -f /.control_boot_new_image ] ; then
-        break ;
-    else
-        if [ -f /etc/wl.conf.wlan3 ] || [ -f /etc/wpa_supplicant.wlan0.conf] ; then
             echo "....................-NEOBOOT-...................."
             echo "...Checking internet connection..."
             ping -c 1 github.com 1>/dev/null 2>%1
@@ -28,28 +24,25 @@
 		            echo "...The network has no connection..."
 		            echo "...Network RESTART..."
                             echo "...restart network connection..."
-                                    /etc/init.d/avahi-daemon stop
-                                    ifdown wlan3
-                                    ip addr flush dev wlan3
-                                    ifdown eth0
-                                    ip addr flush dev eth0
-                                    /etc/init.d/networking stop
-                                    killall -9 udhcpc
-                                    rm /var/run/udhcpc*
-                                    /etc/init.d/networking start
-                                    /etc/init.d/avahi-daemon start
-                                    ip -o addr show dev wlan3
+                            /etc/init.d/avahi-daemon stop
+                            ifdown wlan3
+                            ip addr flush dev wlan3
+                            ifdown eth0
+                            ip addr flush dev eth0
+                            /etc/init.d/networking stop
+                            killall -9 udhcpc
+                            rm /var/run/udhcpc*
+                            /etc/init.d/networking start
+                            /etc/init.d/avahi-daemon start
+                            ip -o addr show dev wlan3
                                     echo "...Restart network finish..."
 				    echo ".............................."
 				    sleep 1
-		    else
-		            echo "...github server available..."
-		            echo "...The network has a connection. It is OK..."		        
-		    fi
-        else
-                break ;
-        fi
-    fi
+    		else
+    		            echo "...github server available..."
+		            echo "...The network has a connection. It is OK..."
+              fi
+	      
     if [ -f /zImage ] ; then
         rm -r /zImage
     fi
@@ -67,3 +60,4 @@
     echo "............................................"
     exit 0
 
+    
