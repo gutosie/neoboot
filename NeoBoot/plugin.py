@@ -1009,9 +1009,9 @@ class NeoBootImageChoose(Screen):
             if checkInternet():
                 pass
             else:
-                system('/etc/init.d/networking force-reload')
-                mess = _('Geen internet')
-                self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
+                    system('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/userscript.sh')
+                    mess = _('Geen internet')
+                    self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
 
         if not fileExists('/.multinfo'):
             system('ln -sfn /sbin/init.sysvinit /sbin/init')
