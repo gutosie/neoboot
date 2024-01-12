@@ -3,18 +3,6 @@
 # here you can add your own command to perform
 # line - Checking internet connection by @j00zek thank you
 
-if [ ! -f /etc/rc.local ] || [ ! -f /etc/init.d/rc.local ] || [ ! -f /etc/init.d/rcS.local ]; then
-                echo "...rc.local does not exist..."
-elif [ -f /etc/rc.local ] || [ -f /etc/init.d/rc.local ] || [ -f /etc/init.d/rcS.local ]; then
-        if [ -f /etc/rcS.d/S99neo.local ] ; then
-                chmod 755 /etc/rcS.d/S99neo.local
-                echo "...chmod S99neo.local..."
-        else
-                echo "...rc.local exist..."
-                break ;
-        fi
-else
-
     if [ -f /.control_boot_new_image ] ; then
             passwd -d root
             ln -sf "/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot" "/NeoBoot"
@@ -40,13 +28,17 @@ else
 		            echo "...The network has no connection..."
 		            echo "...Network RESTART..."
                             echo "...restart network connection..."
-                                    /etc/init.d/vuplus-wifi-init.sh
-                                    #/etc/wpa_supplicant/action_wpa.sh
-                                    #/etc/wpa_supplicant/functions.sh
-                                    /etc/wpa_supplicant/ifupdown.sh
-				    #ifconfig sys0 up
-                                    #/etc/udhcpc.d/50default restart
-                                    /etc/init.d/networking restart
+                            /etc/init.d/avahi-daemon stop
+                            ifdown wlan3
+                            ip addr flush dev wlan3
+                            ifdown eth0
+                            ip addr flush dev eth0
+                            /etc/init.d/networking stop
+                            killall -9 udhcpc
+                            rm /var/run/udhcpc*
+                            /etc/init.d/networking start
+                            /etc/init.d/avahi-daemon start
+                            ip -o addr show dev wlan3
                                     echo "...Restart network finish..."
 				    echo ".............................."
 				    sleep 1
@@ -73,6 +65,5 @@ else
     echo "...NEOBOOT used user script Finish..."
     echo "....................-NEOBOOT-...................."
     echo "............................................"
-fi
-exit 0
+    exit 0
 
