@@ -473,7 +473,13 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
                 cmd = 'chmod 0755 %s/ImageBoot/%s/etc/rc.local' % (media, target)
                 rc = os.system(cmd)
 
-        if os.path.exists('%s/ImageBoot/%s/etc/init.d/rc.local' % (media, target)):
+        if os.path.exists('%s/ImageBoot/%s/usr/lib/enigma2/python/Plugins/PLi' % (media, target)):
+                        cmd = 'cp -af /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/userscript.sh %sImageBoot/%s/etc/init.d/rcS.local' % (media, target)
+                        rc = os.system(cmd)
+                        cmd1 = 'chmod 0755 %s/ImageBoot/%s/etc/init.d/rcS.local' % (media, target)
+                        rc = os.system(cmd1)
+
+        if os.path.exists('%s/ImageBoot/%s/etc/init.d/rc.local' % (media, target)) and not os.path.exists('%s/ImageBoot/%s/etc/rcS.local' % (media, target)):
                 filename = '%s/ImageBoot/%s/etc/init.d/rc.local' % (media, target)
                 if os.path.exists(filename):
                     filename2 = filename + '.tmp'
@@ -493,16 +499,20 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
                 cmd = 'chmod 0755 %s/ImageBoot/%s/etc/init.d/rc.local' % (media, target)
                 rc = os.system(cmd)
 
-        if not os.path.exists('%s/ImageBoot/%s/etc/init.d/rc.local' % (media, target)) and not os.path.exists('%s/ImageBoot/%s/etc/rc.local' % (media, target)):
+        if not os.path.exists('%s/ImageBoot/%s/etc/init.d/rc.local' % (media, target)) and not os.path.exists('%s/ImageBoot/%s/etc/rc.local' % (media, target)) and not os.path.exists('%s/ImageBoot/%s/etc/rcS.local' % (media, target)):
             if os.path.exists('%s/ImageBoot/%s/etc/init.d' % (media, target)):
 #                cmd = 'ln -s %sImageBoot/%s/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/userscript.sh %sImageBoot/%s/etc/rcS.d/S99neo.local' % (media,
 #                 target,
 #                 media,
 #                 target)
-                cmd = 'cp -af /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/userscript.sh %sImageBoot/%s/etc/rcS.d/S99neo.local' % (media, target)
+                #cmd = 'cp -af /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/userscript.sh %sImageBoot/%s/etc/rcS.d/S99neo.local' % (media, target)
+                #rc = os.system(cmd)
+                #cmd1 = 'chmod 0755 %s/ImageBoot/%s/etc/rcS.d/S99neo.local' % (media, target)
+                #rc = os.system(cmd1)
+                cmd = 'cp -af /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/userscript.sh %sImageBoot/%s/etc/init.d/rc.local' % (media, target)
                 rc = os.system(cmd)
-                cmd1 = 'chmod 0755 %s/ImageBoot/%s/etc/rcS.d/S99neo.local' % (media, target)
-                rc = os.system(cmd1)
+                cmd1 = 'chmod 0755 %s/ImageBoot/%s/etc/init.d/rc.local' % (media, target)
+                rc = os.system(cmd)
             elif not os.path.exists('%s/ImageBoot/%s/etc/init.d' % (media, target)):
                 os.system('echo "/etc/init.d not found."')
             os.system('echo "Copied file neo_userscript.sh"')
