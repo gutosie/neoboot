@@ -28,17 +28,17 @@
 		            echo "...The network has no connection..."
 		            echo "...Network RESTART..."
                             echo "...restart network connection..."
-                            /etc/init.d/avahi-daemon stop
-                            ifdown wlan3
-                            ip addr flush dev wlan3
-                            ifdown eth0
-                            ip addr flush dev eth0
-                            /etc/init.d/networking stop
-                            killall -9 udhcpc
-                            rm /var/run/udhcpc*
-                            /etc/init.d/networking start
-                            /etc/init.d/avahi-daemon start
-                            ip -o addr show dev wlan3
+                                    /etc/init.d/avahi-daemon stop
+                                    ifdown wlan3
+                                    ip addr flush dev wlan3
+                                    ifdown eth0
+                                    ip addr flush dev eth0
+                                    /etc/init.d/networking stop
+                                    killall -9 udhcpc
+                                    rm /var/run/udhcpc*
+                                    /etc/init.d/networking start
+                                    /etc/init.d/avahi-daemon start
+                                    ip -o addr show dev wlan3
                                     echo "...Restart network finish..."
 				    echo ".............................."
 				    sleep 1
