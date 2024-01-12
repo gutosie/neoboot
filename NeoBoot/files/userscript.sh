@@ -7,8 +7,8 @@ if [ ! -f /etc/rc.local ] || [ ! -f /etc/init.d/rc.local ] || [ ! -f /etc/init.d
                 echo "...rc.local does not exist..."
 elif [ -f /etc/rc.local ] || [ -f /etc/init.d/rc.local ] || [ -f /etc/init.d/rcS.local ]; then
         if [ -f /etc/rcS.d/S99neo.local ] ; then
-                rm -f /etc/rcS.d/S99neo.local
-                echo "...rm S99neo.local..."
+                chmod 755 /etc/rcS.d/S99neo.local
+                echo "...chmod S99neo.local..."
         else
                 echo "...rc.local exist..."
                 break ;
