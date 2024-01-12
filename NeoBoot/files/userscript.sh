@@ -16,6 +16,10 @@
             /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/mountpoint.sh
             echo "...Start -mountpoint.sh- location NEOBOOT..."
     fi
+              
+    if [ -f /.control_boot_new_image ] ; then
+            break ;
+    else
             echo "....................-NEOBOOT-...................."
             echo "...Checking internet connection..."
             ping -c 1 github.com 1>/dev/null 2>%1
@@ -24,26 +28,17 @@
 		            echo "...The network has no connection..."
 		            echo "...Network RESTART..."
                             echo "...restart network connection..."
-                            /etc/init.d/avahi-daemon stop
-                            ifdown wlan3
-                            ip addr flush dev wlan3
-                            ifdown eth0
-                            ip addr flush dev eth0
-                            /etc/init.d/networking stop
-                            killall -9 udhcpc
-                            rm /var/run/udhcpc*
-                            /etc/init.d/networking start
-                            /etc/init.d/avahi-daemon start
-			    ifup wlan3
-                            ip -o addr show dev wlan3
+                                /etc/init.d/networking force-reload;
+                            sync
                                     echo "...Restart network finish..."
 				    echo ".............................."
 				    sleep 1
-    		else
-    		            echo "...github server available..."
-		            echo "...The network has a connection. It is OK..."
-              fi
-	      
+				sleep 5
+		else
+		        echo "github server available"
+		        echo "The network has a connection. It is OK"		        
+		fi
+    fi 
     if [ -f /zImage ] ; then
         rm -r /zImage
     fi
@@ -60,5 +55,4 @@
     echo "....................-NEOBOOT-...................."
     echo "............................................"
     exit 0
-
     
