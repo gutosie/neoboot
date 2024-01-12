@@ -522,7 +522,7 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
                         cmd1 = 'chmod 0755 %s/ImageBoot/%s/etc/init.d/rcS.local' % (media, target)
                         rc = os.system(cmd1)
                 else:
-                        cmd = 'cp -af /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/userscript.sh %sImageBoot/%s/etc/rcS.d/rcN.local' % (media, target)
+                        cmd = 'cp -af /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/userscript.sh %sImageBoot/%s/etc/rcS.d/S99neo.local' % (media, target)
                         rc = os.system(cmd)
                         cmd1 = 'chmod 0755 %s/ImageBoot/%s/etc/rcS.d/S99neo.local' % (media, target)
                         rc = os.system(cmd1)
