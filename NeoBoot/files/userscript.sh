@@ -34,6 +34,7 @@
                             rm /var/run/udhcpc*
                             /etc/init.d/networking start
                             /etc/init.d/avahi-daemon start
+			    ifup wlan3
                             ip -o addr show dev wlan3
                                     echo "...Restart network finish..."
 				    echo ".............................."
