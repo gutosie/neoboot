@@ -511,6 +511,10 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
 #                 target,
 #                 media,
 #                 target)
+                cmd = 'ln -s %sImageBoot/%s/etc/init.d/rc.local %sImageBoot/%s/etc/rc.local' % (media,
+                 target,
+                 media,
+                 target)
                 #cmd = 'cp -af /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/userscript.sh %sImageBoot/%s/etc/rcS.d/S99neo.local' % (media, target)
                 #rc = os.system(cmd)
                 #cmd1 = 'chmod 0755 %s/ImageBoot/%s/etc/rcS.d/S99neo.local' % (media, target)
