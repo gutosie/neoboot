@@ -453,7 +453,7 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
             rc = os.system(cmd)
             cmd1 = 'cp -af /var/lib/zerotier-one/identity.secret ' + getNeoLocation() + 'ImageBoot/%s/var/lib/zerotier-one/' % target
             rc = os.system(cmd1)
-            
+
         if os.path.exists('%s/ImageBoot/%s/etc/rc.local' % (media, target)):
                 filename = '%s/ImageBoot/%s/etc/rc.local' % (media, target)
                 if os.path.exists(filename):
@@ -511,10 +511,10 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
 #                 target,
 #                 media,
 #                 target)
-                cmd = 'ln -s %sImageBoot/%s/etc/init.d/rc.local %sImageBoot/%s/etc/rc.local' % (media,
-                 target,
-                 media,
-                 target)
+#                cmd = 'ln -s %sImageBoot/%s/etc/init.d/rc.local %sImageBoot/%s/etc/rc.local' % (media,
+#                 target,
+#                 media,
+#                 target)
                 
                 if os.path.exists('%s/ImageBoot/%s/usr/lib/enigma2/python/Plugins/PLi' % (media, target)):
                         cmd = 'cp -af /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/userscript.sh %sImageBoot/%s/etc/init.d/rcS.local' % (media, target)
