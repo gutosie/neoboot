@@ -1009,6 +1009,7 @@ class NeoBootImageChoose(Screen):
             if checkInternet():
                 pass
             else:
+                system('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/userscript.sh')
                 mess = _('Geen internet')
                 self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
 
