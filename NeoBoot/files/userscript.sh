@@ -18,7 +18,7 @@
     fi
               
     if [ -f /.control_boot_new_image ] ; then
-            break ;
+            ifdown eth0
     else
             echo "....................-NEOBOOT-...................."
             echo "...Checking internet connection..."
