@@ -863,7 +863,9 @@ def RemoveUnpackDirs():
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/h10')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/h11'):
         rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/force_h11_READ.ME ' + getNeoLocation() + 'ImagesUpload/h11; mv ' + getNeoLocation() + 'ImagesUpload/unforce_h11.txt ' + getNeoLocation() + 'ImagesUpload/h11')
-        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/h11') 
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/h11')
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/h8'):
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/h8')        
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/uclan'):
         if os.path.exists('' + getNeoLocation() + 'ImagesUpload/usb_update.bin'):
             rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/usb_update.bin ' + getNeoLocation() + 'ImagesUpload/uclan')
