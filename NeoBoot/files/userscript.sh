@@ -28,7 +28,10 @@
 		            echo "...The network has no connection..."
 		            echo "...Network RESTART..."
                             echo "...restart network connection..."
-                                /etc/init.d/networking force-reload;
+                                #/etc/init.d/networking force-reload;
+				if [ -e /sys/class/net/sys0 ]; then
+                                        ifconfig sys0 up
+				fi
                             sync
                                     echo "...Restart network finish..."
 				    echo ".............................."
