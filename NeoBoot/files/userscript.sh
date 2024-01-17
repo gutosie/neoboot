@@ -18,9 +18,12 @@
     fi
               
     if [ -f /.control_boot_new_image ] ; then
-            ifdown eth0
+            break ;
     else
             echo "....................-NEOBOOT-...................."
+	    if [ -e /sys/class/net/sys0 ]; then
+                                ifconfig sys0 up
+				fi
             echo "...Checking internet connection..."
             ping -c 1 github.com 1>/dev/null 2>%1
             if [ $? -gt 0 ]; then
@@ -28,10 +31,7 @@
 		            echo "...The network has no connection..."
 		            echo "...Network RESTART..."
                             echo "...restart network connection..."
-                                #/etc/init.d/networking force-reload;
-				if [ -e /sys/class/net/sys0 ]; then
-                                        ifconfig sys0 up
-				fi
+                                /etc/init.d/networking force-reload;
                             sync
                                     echo "...Restart network finish..."
 				    echo ".............................."
