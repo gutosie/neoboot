@@ -129,7 +129,7 @@ else
 	fi
 	
 	# Hack for loading modules which are not loaded on diffrent kernel images
-	/etc/init.d/modutils.sh
+	#/etc/init.d/modutils.sh
 	#
 
 	echo "Set BOOTLOGO ..."
@@ -229,6 +229,9 @@ else
 			/bin/mount -o bind /dev $NEODEVICE$IMAGEKATALOG/$TARGET/dev
 			/bin/mount -o bind /proc $NEODEVICE$IMAGEKATALOG/$TARGET/proc
 			/bin/mount -o bind /sys $NEODEVICE$IMAGEKATALOG/$TARGET/sys
+                        if [ $HOSTNAME  = "vuduo4k" ] ; then
+			        $NEODEVICE$IMAGEKATALOG/$TARGET/etc/init.d/modutils.sh
+                        fi
                         			
 			rm $NEODEVICE$IMAGEKATALOG/$TARGET$NEODEVICE > /dev/null 2>&1
 			mkdir $NEODEVICE$IMAGEKATALOG/$TARGET$NEODEVICE > /dev/null 2>&1
