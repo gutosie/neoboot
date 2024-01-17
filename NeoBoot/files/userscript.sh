@@ -19,6 +19,10 @@
               
     if [ -f /.control_boot_new_image ] ; then
             break ;
+    elif [ ! -f /usr/lib/python2.7 ] ; then
+            echo "Is python 3.*"
+            sleep 3
+            break ;            
     else
             echo "....................-NEOBOOT-...................."
 	    if [ -e /sys/class/net/sys0 ]; then
