@@ -25,9 +25,6 @@
             break ;            
     else
             echo "....................-NEOBOOT-...................."
-	    if [ -e /sys/class/net/sys0 ]; then
-                                ifconfig sys0 up
-				fi
             echo "...Checking internet connection..."
             ping -c 1 github.com 1>/dev/null 2>%1
             if [ $? -gt 0 ]; then
@@ -39,8 +36,7 @@
                             sync
                                     echo "...Restart network finish..."
 				    echo ".............................."
-				    sleep 1
-				sleep 5
+				sleep 2
 		else
 		        echo "github server available"
 		        echo "The network has a connection. It is OK"		        
