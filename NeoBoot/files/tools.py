@@ -1003,7 +1003,7 @@ class MyUpgrade2(Screen):
                         #cmd3
                         if fileExists('%sImageBoot/%s/var/lib/zerotier-one/' % (getNeoLocation(), getImageNeoBoot())):
                                 if fileExists('/var/lib/zerotier-one/identity.secret'):
-                                        cmd = 'cp -af ' + zerotier + ' ' + target3
+                                        cmd = 'cp -aRf ' + zerotier + ' ' + target3
                                         system(cmd)
                         cmd4 = 'cp -af  ' + S99neo + ' ' + target4
                         system(cmd4)
