@@ -992,9 +992,6 @@ class MyUpgrade2(Screen):
                         target2 = dirfile + '/usr/lib/enigma2/python/Tools/'
                         target3 = dirfile + '/var/lib/zerotier-one/'
                         target4 = dirfile + '/etc/rcS.d/'
-                        os.system('mv /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/userscript.sh /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/S99neo.local')
-                        target4 = dirfile + '/etc/rcS.d/'
-                        os.system('mv /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/S99neo.local /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/userscript.sh')
                         cmd = 'rm -r ' + target + ' > /dev/null 2>&1'
                         system(cmd)
                         cmd = 'cp -af ' + LinkNeoBoot + ' ' + target
