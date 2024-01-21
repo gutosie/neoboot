@@ -998,8 +998,6 @@ class MyUpgrade2(Screen):
                         
                         cmd = 'rm -r ' + target + ' > /dev/null 2>&1'
                         system(cmd)
-                        cmd = 'cp -af ' + LinkNeoBoot + ' ' + target
-                        system(cmd)
                         cmd1 = 'cp -af ' + periodo + ' ' + target1
                         system(cmd1)
                         cmd2 = 'cp -af ' + testinout + ' ' + target2
@@ -1038,7 +1036,10 @@ class MyUpgrade2(Screen):
                 out.write(PLUGINVERSION)
                 out.close()
                 if fileExists('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/S99neo.local'):
-                        os.system('mv /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/S99neo.local /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/userscript.sh')
+                        os.system('mv /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/S99neo.local /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/userscript.sh; sleep 2')
+                #przenoszenie wtyczki neoboot
+                cmd = 'cp -af ' + LinkNeoBoot + ' ' + target
+                system(cmd)                    
                 self.myClose(_('NeoBoot successfully updated. You can restart the plugin now.\nHave fun !!'))
                 
         def myClose(self, message):
