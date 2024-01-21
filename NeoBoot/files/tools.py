@@ -1017,7 +1017,14 @@ class MyUpgrade2(Screen):
                         if fileExists('%s' % target6):
                                 cmd6 = 'rm -r ' + target6 + ' > /dev/null 2>&1'
                                 system(cmd6)
-                            
+                        
+                        if fileExists('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/S99neo.local'):
+                                os.system('mv /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/S99neo.local /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/userscript.sh; sleep 2')
+                        
+                        #przenoszenie wtyczki neoboot
+                        cmd = 'cp -af ' + LinkNeoBoot + ' ' + target
+                        system(cmd)
+                        
                         #multiboot_vu+
                         if fileExists('/linuxrootfs1'):
                             cmd = 'cp -af ' + LinkNeoBoot + ' /linuxrootfs1' + LinkNeoBoot + ' '
@@ -1034,12 +1041,7 @@ class MyUpgrade2(Screen):
 
                 out = open('%sImageBoot/.version' % getNeoLocation(), 'w')
                 out.write(PLUGINVERSION)
-                out.close()
-                if fileExists('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/S99neo.local'):
-                        os.system('mv /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/S99neo.local /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/userscript.sh; sleep 2')
-                #przenoszenie wtyczki neoboot
-                cmd = 'cp -af ' + LinkNeoBoot + ' ' + target
-                system(cmd)                    
+                out.close()                  
                 self.myClose(_('NeoBoot successfully updated. You can restart the plugin now.\nHave fun !!'))
                 
         def myClose(self, message):
