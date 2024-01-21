@@ -286,7 +286,8 @@ else
 			/bin/mount -o bind /dev $NEODEVICE$IMAGEKATALOG/$TARGET/dev
 			/bin/mount -o bind /proc $NEODEVICE$IMAGEKATALOG/$TARGET/proc
 			/bin/mount -o bind /sys $NEODEVICE$IMAGEKATALOG/$TARGET/sys
-			if [ $HOSTNAME  = "vuultimo4k" ] || [ $HOSTNAME  = "vusolo4k" ] || [ $HOSTNAME  = "vuuno4kse" ] || [ $HOSTNAME  = "vuuno4k" ]; then 
+			if [ ! -f /usr/lib/python2.7 ]; then 
+			#if [ $HOSTNAME  = "vuultimo4k" ] || [ $HOSTNAME  = "vusolo4k" ] || [ $HOSTNAME  = "vuuno4kse" ] || [ $HOSTNAME  = "vuuno4k" ]; then 
 			            $NEODEVICE$IMAGEKATALOG/$TARGET/etc/init.d/modutils.sh
 			fi
 			rm $NEODEVICE$IMAGEKATALOG/$TARGET$NEODEVICE > /dev/null 2>&1
