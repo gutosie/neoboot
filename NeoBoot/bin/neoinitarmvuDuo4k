@@ -15,7 +15,6 @@ NEODEVICE=`cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location`
 INSTALLDEVICE=`cat /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/install`        
 IMAGEKATALOG=ImageBoot
 HOSTNAME=`cat /etc/hostname`
-CELBOOT=`cat $NEODEVICE$IMAGEKATALOG/.neonextboot`
 
 
 if [ -e /tmp/.init_reboot ]; then
@@ -45,16 +44,19 @@ else
 		/bin/mount -t proc proc /proc > /dev/null 2>&1
 		/bin/mount -t sysfs sysfs /sys > /dev/null 2>&1
 		/sbin/depmod -Ae > /dev/null 2>&1                 
-	fi
+	fi 	
+
+	sleep 5
 
 	echo "NeoBoot is starting mdev and mout HDD USB ..."
-
+	sleep 1
 	echo "/sbin/mdev" > /proc/sys/kernel/hotplug
 	/etc/init.d/mdev > /dev/null 2>&1
 
-        echo "====================================================> "
-	sleep 5
 
+############..>>>>>>>>
+	
+	sleep 5
 	mnttest="nouuid"
 	if [ -e /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/install  ]; then
         	orgimag1=`mount | sed '/sd/!d' | cut -d" " -f1`
@@ -127,12 +129,13 @@ else
 	fi
 	
 	# Hack for loading modules which are not loaded on diffrent kernel images
-	#/etc/init.d/modutils.sh
-	$NEODEVICE$IMAGEKATALOG/$CELBOOT/etc/init.d/modutils.sh
+	/etc/init.d/modutils.sh
+	#
 
 	echo "Set BOOTLOGO ..."
         sleep 1	
-               
+        
+                 
 	cat /etc/videomode > /proc/stb/video/videomode
 
 	#we must wait until udev has created the video device
@@ -146,8 +149,10 @@ else
 	fi;
 	[ -e /etc/dropbear/dropbear_rsa_host_key ] && /usr/bin/showiframe /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neowait.mvi;
 	) &
+          
+        /etc/init.d/bootlogo > /dev/null 2>&1
         
-        sleep 1
+        sleep 2
         echo "Driverload end"
 
 	if [ -f $LIBDIR/kernel/fs/autofs4/autofs4.ko ]; then
@@ -158,7 +163,8 @@ else
 		  break;
 	fi
 
-        echo "====================================================> "       	
+        
+###>>>>>>>>>>>>>>>>>        	
 	
         UPLOAD=ImagesUpload
 	if [ $NEODEVICE = "/media/hdd/" ] && [ $INSTALLDEVICE = "/dev/sda1" ] ; then
@@ -223,10 +229,7 @@ else
 			/bin/mount -o bind /dev $NEODEVICE$IMAGEKATALOG/$TARGET/dev
 			/bin/mount -o bind /proc $NEODEVICE$IMAGEKATALOG/$TARGET/proc
 			/bin/mount -o bind /sys $NEODEVICE$IMAGEKATALOG/$TARGET/sys
-                        #if [ $HOSTNAME  = "vuduo4k" ] ; then
-			        #$NEODEVICE$IMAGEKATALOG/$TARGET/etc/init.d/modutils.sh
-                        #fi
-
+                        			
 			rm $NEODEVICE$IMAGEKATALOG/$TARGET$NEODEVICE > /dev/null 2>&1
 			mkdir $NEODEVICE$IMAGEKATALOG/$TARGET$NEODEVICE > /dev/null 2>&1
 
