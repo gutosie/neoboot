@@ -53,8 +53,8 @@ if not fileExists('/etc/vtiversion.info') and not fileExists('/etc/bhversion') a
 else:
     from Screens.Console import Console
 loggscrash = time.localtime(time.time())
-PLUGINVERSION = '9.76'
-UPDATEVERSION = '9.76'
+PLUGINVERSION = '9.77'
+UPDATEVERSION = '9.77'
 UPDATEDATE = '"+%Y13%d"'
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
 
@@ -786,7 +786,7 @@ class NeoBootImageChoose(Screen):
 
     def __init__(self, session):
         Screen.__init__(self, session)
-
+        
         self.list = []
         self.setTitle('         NeoBoot  %s  - Menu' % PLUGINVERSION + '          ' + 'Ver. update:  %s' % UPDATEVERSION)
         self['device_icon'] = Pixmap()
@@ -1344,6 +1344,8 @@ class NeoBootImageChoose(Screen):
             writefile = open('%sImageBoot/.Flash' % getNeoLocation(), 'w')
             writefile.write(image)
             writefile.close()
+            image = ' [' + image + ']'
+            self.list.append('Flash' + image)
 
         elif fileExists('%sImageBoot/.Flash' % getNeoLocation()):
             f = open('%sImageBoot/.Flash', 'r' % getNeoLocation())
@@ -1364,11 +1366,23 @@ class NeoBootImageChoose(Screen):
             mypath3 = f2.readline().strip()
             f2.close()
             self['label6'].setText(mypath3)
+
+        # Retrieve the list of images and ignore the "Flash" image
         mypath = ('%sImageBoot' % getNeoLocation())
         myimages = listdir(mypath)
-        for fil in myimages:
-            if os.path.isdir(os.path.join(mypath, fil)):
-                self.list.append(fil)
+        self.list = [fil for fil in myimages if os.path.isdir(os.path.join(mypath, fil)) and fil != 'Flash']  # Ignore the "Flash" image
+
+        # Sort the list before setting it to config (case-insensitive)
+        self.list = sorted(self.list, key=lambda x: x.lower())
+     # Add the "Flash [egami]" image to the list
+        if fileExists('%sImageBoot/.Flash' % getNeoLocation()):
+            f = open('%sImageBoot/.Flash' % getNeoLocation(), 'r')
+            image = f.readline().strip()
+            f.close()
+            image = ' [' + image + ']'
+            self.list.insert(0, 'Flash' + image)  # Insert the "Flash" image at the beginning of the list
+
+        self['config'].setList(self.list)
 
         self['label7'].setText(str(len(self.list) - 1))
         self['config'].setList(self.list)
