@@ -65,6 +65,7 @@ class NBIChoose2(Screen):
         self.onShow.append(self.updateInfo)
         
     def updateInfo(self):
+        self.list = []
         pluginpath = '' + LinkNeoBoot + ''
         f = open(pluginpath + '/.location', 'r')
         mypath = f.readline().strip()
@@ -98,7 +99,7 @@ class NBIChoose2(Screen):
         self['lab2'].setText(strview)
         
         imageslist = ['Flash']
-        for fn in listdir('' + getNeoLocation() + '/ImageBoot'):
+        for fn in sorted(listdir('' + getNeoLocation() + '/ImageBoot'), key=lambda x: x.lower()):
             dirfile = '' + getNeoLocation() + '/ImageBoot/' + fn
             if os_isdir(dirfile):
                 imageslist.append(fn)
