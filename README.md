@@ -18,6 +18,14 @@ Installation of neoboot.  Run the following command in the terminal of a support
 Instalacja neoboot. Uruchom poniższą komendę w terminalu wspieranego tunera
 
 
+To check if neoboot works you can 2 images you can install via Neoboot free without need vip code
+
+After you ok, decide to use the Neoboot for more images on external
+
+just press blue button for info it will display developer Email which you can contact him
+
+
+
 #
 #    !!!!  PIN CODE in ver. 9.56 is CHANGED !!!
 
