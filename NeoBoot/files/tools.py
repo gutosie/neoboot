@@ -245,7 +245,7 @@ class MBTools(Screen):
         self.list.append(res)
         self['list']. list = self.list
         
-        res = (_('Install Panel Extra Feed'), png, 21)
+        res = (_('Install IPTVPlayer'), png, 21)
         self.list.append(res)
         self['list']. list = self.list 
               
@@ -324,7 +324,7 @@ class MBTools(Screen):
             pass
         if self.sel == 20 and self.session.open(TunerInfo):
             pass
-        if self.sel == 21 and self.session.open(PanelExtraFeed):
+        if self.sel == 21 and self.session.open(IPTVPlayerInstall):
             pass 
         if self.sel == 22 and self.session.open(MultiStalker):
             pass
@@ -1942,10 +1942,10 @@ class CreateSwap(Screen):
         self.close()
 
 
-class PanelExtraFeed(Screen):
+class IPTVPlayerInstall(Screen):
     __module__ = __name__
 
-    skin = """<screen name="Panel_Extra_Feed" title="Module kernel" position="center,center" size="700,300" >
+    skin = """<screen name="IPTVPlayer" title="Module kernel" position="center,center" size="700,300" >
     <widget name="lab1" position="20,20" size="660,210" font="baslk;25" halign="center" valign="center" transparent="1"/>
     <ePixmap position="210,250" size="34,34" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red.png" alphatest="blend" zPosition="1" />
     <widget name="key_red" position="250,250" zPosition="2" size="280,40" font="baslk;30" halign="left" valign="center" backgroundColor="red" transparent="1" />
@@ -1953,20 +1953,21 @@ class PanelExtraFeed(Screen):
 
     def __init__(self, session):
         Screen.__init__(self, session)
-        self['lab1'] = Label(_('Re-installing Panel_Extra_Feed. \n\nInstall?'))
+        self['lab1'] = Label(_('Re-installing IPTVPlayer. \n\nPress red, install and please wait...'))
         self['key_red'] = Label(_('Installation'))
         self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'back': self.close,
          'red': self.panel_update})
 
     def panel_update(self):
-                os.system('wget http://read.cba.pl/box/feed-panel/full.sh -O - | /bin/sh')
-                if fileExists('/usr/lib/enigma2/python/Plugins/Extensions/FeedExtra'):
-                    self.session.open(MessageBox, _('The plugin installed.\n'), MessageBox.TYPE_INFO, 10)
-                    self.close()                                 
-                else:
-                    self.session.open(MessageBox, _('The plugin not installed.\nAccess Fails with Error code error-panel_install.'), MessageBox.TYPE_INFO, 10)
-                    self.close()
+            os.system('cd /tmp; curl -O --ftp-ssl https://gitlab.com/zadmario/e2iplayer/-/archive/master/e2iplayer-master.tar.gz; sleep 2;')
+            if fileExists('/usr/lib/enigma2/python/Plugins/Extensions/IPTVPlayer'):
+                    os.system('rm -rf /usr/lib/enigma2/python/Plugins/Extensions/IPTVPlayer')
+            os.system('tar -xzf /tmp/e2iplayer-master.zip -C /tmp; sleep 2; tar -xzf /tmp/e2iplayer-master.tar.gz -C /tmp; sleep 2; mv -f /tmp/e2iplayer-master/IPTVPlayer /usr/lib/enigma2/python/Plugins/Extensions/') 
+            os.system('opkg update > /dev/null 2>&1 ; opkg install python-html > /dev/null 2>&1 ;opkg install python-json > /dev/null 2>&1 && opkg install python-simplejson  > /dev/null 2>&1; opkg install python-compression > /dev/null 2>&1; opkg install openssl-bin > /dev/null 2>&1;opkg install duktape > /dev/null 2>&1;opkg install python3-pycurl > /dev/null 2>&1;opkg install python3-e2icjson > /dev/null 2>&1;opkg install python-e2icjson > /dev/null 2>&1;opkg install cmdwrap > /dev/null 2>&1;opkg install exteplayer3 > /dev/null 2>&1;opkg install gstplayer > /dev/null 2>&1')
 
+            if fileExists('/usr/lib/enigma2/python/Plugins/Extensions/IPTVPlayer'):
+                    self.session.open(MessageBox, _('The plugin IPTVPlayer installed.'), MessageBox.TYPE_INFO, 10)
+                    self.close()                  
 
 class MultiStalker(Screen):
     __module__ = __name__
