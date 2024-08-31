@@ -18,7 +18,7 @@ Installation of neoboot.  Run the following command in the terminal of a support
 Instalacja neoboot. Uruchom poniższą komendę w terminalu wspieranego tunera
 
 
-To check if neoboot works you can 2 images you can install via Neoboot free without need vip code
+To check if neoboot works you can 2 images install via Neoboot free without need vip code
 
 After you ok, decide to use the Neoboot for more images on external
 
