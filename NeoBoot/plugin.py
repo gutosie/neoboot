@@ -665,7 +665,7 @@ class NeoBootInstallation(Screen):
                         os.system('cp -af ' + LinkNeoBoot + '/bin/neoinitarmvu /sbin/neoinitarm; chmod 0755 /sbin/neoinitarm; ln -sfn /sbin/neoinitarm /sbin/init; mv ' + LinkNeoBoot + '/tmpfiles/arm_run.py ' + LinkNeoBoot + '/run.py; rm -f ' + LinkNeoBoot + '/bin/neoinitarmvuDuo4k; cd')
 
                 elif getBoxHostName() == "osmio4k" or getBoxHostName() == "osmio4kplus" or getBoxHostName() == "osmini4k":
-                        os.system('cp -af ' + LinkNeoBoot + '/bin/neoinitmips /sbin/neoinitarm; chmod 0755 /sbin/neoinitarm; ln -sfn /sbin/neoinitarm /sbin/init; mv ' + LinkNeoBoot + '/tmpfiles/arm_run.py ' + LinkNeoBoot + '/run.py; rm -f ' + LinkNeoBoot + '/bin/neoinitarmvuDuo4k; cd')
+                        os.system('mv ' + LinkNeoBoot + '/bin/neoinitmips ' + LinkNeoBoot + '/bin/neoinitosmi4k; cp -af ' + LinkNeoBoot + '/bin/neoinitosmi4k /sbin/neoinitarm; chmod 0755 /sbin/neoinitarm; ln -sfn /sbin/neoinitarm /sbin/init; mv ' + LinkNeoBoot + '/tmpfiles/arm_run.py ' + LinkNeoBoot + '/run.py; rm -f ' + LinkNeoBoot + '/bin/neoinitarmvuDuo4k; cd')
                 else:
                         os.system('cp -af ' + LinkNeoBoot + '/bin/neoinitarm /sbin/neoinitarm; chmod 0755 /sbin/neoinitarm; ln -sfn /sbin/neoinitarm /sbin/init; mv ' + LinkNeoBoot + '/tmpfiles/arm_run.py ' + LinkNeoBoot + '/run.py; rm -f ' + LinkNeoBoot + '/bin/neoinitarmvuDuo4k; cd')
 
