@@ -155,8 +155,8 @@ class MBTools(Screen):
     def updateList(self):
         self.list = []
         mypath = '' + LinkNeoBoot + ''
-        if not fileExists('/tmp/.testneo') and getCheckActivateVip() == getBoxMacAddres() and fileExists('/usr/lib/periodon/.kodn'):        
-            os.system(("mv /tmp/.mymac /usr/lib/periodon/.activatedmac; touch /tmp/.testneo "))
+#        if not fileExists('/tmp/.testneo') and getCheckActivateVip() == getBoxMacAddres() and fileExists('/usr/lib/periodon/.kodn'):        
+#            os.system(("mv /tmp/.mymac /usr/lib/periodon/.activatedmac; touch /tmp/.testneo "))
         if not fileExists(mypath + 'icons'):
             mypixmap = '' + LinkNeoBoot + '/images/ok.png'
         png = LoadPixmap(mypixmap)
@@ -384,6 +384,61 @@ class MBBackup(Screen):
         self.availablespace = '0'
         self.onShow.append(self.updateInfo)
 
+    # def updateInfo(self):
+        # if pathExists('/media/usb/ImageBoot'):
+            # neoboot = 'usb'
+        # elif pathExists('/media/hdd/ImageBoot'):
+            # neoboot = 'hdd'
+        # device = '/media/' + neoboot + ''
+        # usfree = '0'
+        # devicelist = ['cf',
+         # 'hdd',
+         # 'card',
+         # 'usb',
+         # 'usb2']
+        # for d in devicelist:
+            # test = '/media/' + d + '/ImageBoot/.neonextboot'
+            # if fileExists(test):
+                # device = '/media/' + d
+
+        # rc = system('df > /tmp/ninfo.tmp')
+        # f = open('/proc/mounts', 'r')
+        # for line in f.readlines():
+            # if line.find('/hdd') != -1:
+                # self.backupdir = '/media/' + neoboot + '/CopyImageNEO'
+                # device = '/media/' + neoboot + ''
+
+        # f.close()
+        # if pathExists(self.backupdir) == 0 and createDir(self.backupdir):
+            # pass
+        # if fileExists('/tmp/ninfo.tmp'):
+            # f = open('/tmp/ninfo.tmp', 'r')
+            # for line in f.readlines():
+                # line = line.replace('part1', ' ')
+                # parts = line.strip().split()
+                # totsp = len(parts) - 1
+                # if parts[totsp] == device:
+                    # if totsp == 5:
+                        # usfree = parts[3]
+                    # else:
+                        # usfree = parts[2]
+                    # break
+
+            # f.close()
+            # os_remove('/tmp/ninfo.tmp')
+        # self.availablespace = usfree[0:-3]
+        # strview = _('You have the following images installed')
+        # self['lab1'].setText(strview)
+        # strview = _('You still have free: ') + self.availablespace + ' MB'
+        # self['lab2'].setText(strview)
+        # imageslist = ['Flash']
+        # for fn in listdir('/media/' + neoboot + '/ImageBoot'):
+            # dirfile = '/media/' + neoboot + '/ImageBoot/' + fn
+            # if os_isdir(dirfile) and imageslist.append(fn):
+                # pass
+
+        # self['list'].list = imageslist
+
     def updateInfo(self):
         if pathExists('/media/usb/ImageBoot'):
             neoboot = 'usb'
@@ -391,11 +446,7 @@ class MBBackup(Screen):
             neoboot = 'hdd'
         device = '/media/' + neoboot + ''
         usfree = '0'
-        devicelist = ['cf',
-         'hdd',
-         'card',
-         'usb',
-         'usb2']
+        devicelist = ['cf', 'hdd', 'card', 'usb', 'usb2']
         for d in devicelist:
             test = '/media/' + d + '/ImageBoot/.neonextboot'
             if fileExists(test):
@@ -431,13 +482,17 @@ class MBBackup(Screen):
         self['lab1'].setText(strview)
         strview = _('You still have free: ') + self.availablespace + ' MB'
         self['lab2'].setText(strview)
+    
         imageslist = ['Flash']
         for fn in listdir('/media/' + neoboot + '/ImageBoot'):
             dirfile = '/media/' + neoboot + '/ImageBoot/' + fn
-            if os_isdir(dirfile) and imageslist.append(fn):
-                pass
-
+            if os_isdir(dirfile):
+                imageslist.append(fn)
+    
+        imageslist[1:] = sorted(imageslist[1:])
+    
         self['list'].list = imageslist
+
 
     def backupImage(self):
         if not fileExists('/.multinfo'):
@@ -555,10 +610,16 @@ class MBRestore(Screen):
             f.close()
             os_remove('/tmp/ninfo.tmp')
 
+        # imageslist = []
+        # for fn in listdir(self.backupdir):
+            # imageslist.append(fn)
+
+        # self['list'].list = imageslist
         imageslist = []
         for fn in listdir(self.backupdir):
             imageslist.append(fn)
 
+        imageslist.sort()
         self['list'].list = imageslist
 
     def deleteback(self):
@@ -2376,7 +2437,7 @@ class Opis(Screen):
 
     def updatetext(self):
         message = _('\\  NeoBoot Ver. ' + PLUGINVERSION + ' - NeoBoot Ver. updates ' + UPDATEVERSION + '//\n\n')
-        message += _('\----------NEOBOOT - VIP FULL VERSION----------/\n')
+        message += _('\\----------NEOBOOT - VIP FULL VERSION----------/\\n')
         message += _('Get the full version of the multiboot plugin.\n')
         message += _('Send an e-mail request for the neoboot vip version.\n')
         message += _('e-mail:    krzysztofgutosie@gmail.com\n\n')
@@ -2392,7 +2453,7 @@ class Opis(Screen):
         message += _('If you want to support the neoboot project, you can do so by contacting us by e-mail:\n')
         message += _(' krzysztofgutosie@gmail.com\n\n')
         message += _(' PayPal adress:  krzysztofgutosie@gmail.com\n')
-        message += _('---------------- ¯\_(ツ)_/¯ ----------------\n\n')
+        message += _('---------------- ¯\\_(ツ)_/¯ ----------------\\n\\n')
         message += _('1. Requirements: For proper operation of the device NeoBota are required USB stick or HDD.\n\n')
         message += _('2. NeoBot is fully automated\n\n')
         message += _('3. To install the new software in multiboot, you must send the software file compressed in zip format via ftp to the ImagesUpload directory, or download from the network.\n\n')
@@ -2570,7 +2631,7 @@ class neoDONATION(Screen):
         message += _('- More information email\n')
         message += _('We thank you for any help\n')
         message += _('----------------Free donate----------------\n')
-        message += _('¯\_(ツ)_/¯ Have fun !!!')
+        message += _('¯\\_(ツ)_/¯ Have fun !!!')
         self['lab1'].show()
         self['lab1'].setText(message)
 
