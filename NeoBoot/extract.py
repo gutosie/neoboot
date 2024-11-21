@@ -443,13 +443,32 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
                 #rc = os.system(cmd)
 
 # for all image:
-        #copying zerotier identity.secret
+        #copying zerotier script
         if os.path.exists('/var/lib/zerotier-one/identity.secret'):
             cmd = 'mkdir -p ' + getNeoLocation() + 'ImageBoot/%s/var/lib/zerotier-one' % target
             rc = os.system(cmd)
             cmd1 = 'cp -af /var/lib/zerotier-one/identity.secret ' + getNeoLocation() + 'ImageBoot/%s/var/lib/zerotier-one/' % target
             rc = os.system(cmd1)
-        #copying zerotier script  
+        
+        #copying tailscale
+        if os.path.exists('/var/lib/tailscale/tailscaled.state'):
+            cmd = 'mkdir -p ' + getNeoLocation() + 'ImageBoot/%s/var/lib/tailscale' % target
+            rc = os.system(cmd)
+            cmd1 = 'cp -af /var/lib/tailscale/* ' + getNeoLocation() + 'ImageBoot/%s/var/lib/tailscale/' % target
+            rc = os.system(cmd1)
+            cmd2 = 'cp -af /var/lib/tailscale/* ' + getNeoLocation() + 'ImageBoot/%s/var/lib/tailscale/' % target
+            rc = os.system(cmd2)
+            cmd3 = 'cp -af /usr/sbin/tailscaled ' + getNeoLocation() + 'ImageBoot/%s/usr/sbin/' % target
+            rc = os.system(cmd3)
+            cmd4 = 'cp -af /usr/bin/tailscale ' + getNeoLocation() + 'ImageBoot/%s/usr/bin/' % target
+            rc = os.system(cmd4)
+            cmd5 = 'cp -af /etc/init.d/tailscal* ' + getNeoLocation() + 'ImageBoot/%s/etc/init.d/' % target
+            rc = os.system(cmd5)
+            #cmd6 = 'cp -aRf /run/tailscale/tailscaled.sock' + getNeoLocation() + 'ImageBoot/%s/run/tailscale/' % target
+            #rc = os.system(cmd6)
+            #cmd7 = 'cp -aRf /run/resolvconf/interfaces/tailscale' + getNeoLocation() + 'ImageBoot/%s/run/tailscale/' % target
+            #rc = os.system(cmd7)
+        
         if os.path.exists('%s/ImageBoot/%s/etc/init.d' % (media, target)):
                 cmd = 'ln -s %sImageBoot/%s/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/userscript.sh %sImageBoot/%s/etc/rcS.d/S99neo.local' % (media,
                  target,
