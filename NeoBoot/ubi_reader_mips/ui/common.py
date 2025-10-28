@@ -4,13 +4,15 @@ from ubi_io import leb_virtual_file
 from ubifs import ubifs, walk, output
 from ubifs.defines import PRINT_UBIFS_KEY_HASH, PRINT_UBIFS_COMPR
 from ubi.defines import PRINT_VOL_TYPE_LIST, UBI_VTBL_AUTORESIZE_FLG
-output_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'output')
+output_dir = os.path.join(os.path.dirname(
+    os.path.dirname(os.path.realpath(__file__))), 'output')
 
 
 def extract_files(ubifs, out_path, perms=False):
     try:
         inodes = {}
-        walk.index(ubifs, ubifs.master_node.root_lnum, ubifs.master_node.root_offs, inodes)
+        walk.index(ubifs, ubifs.master_node.root_lnum,
+                   ubifs.master_node.root_offs, inodes)
         for dent in inodes[1]['dent']:
             output.dents(ubifs, inodes, dent, out_path, perms)
 
@@ -22,23 +24,23 @@ def extract_files(ubifs, out_path, perms=False):
 
 def get_ubi_params(ubi):
     ubi_flags = {'min_io_size': '-m',
-     'max_bud_bytes': '-j',
-     'leb_size': '-e',
-     'default_compr': '-x',
-     'sub_page_size': '-s',
-     'fanout': '-f',
-     'key_hash': '-k',
-     'orph_lebs': '-p',
-     'log_lebs': '-l',
-     'max_leb_cnt': '-c',
-     'peb_size': '-p',
-     'sub_page_size': '-s',
-     'vid_hdr_offset': '-O',
-     'version': '-x',
-     'image_seq': '-Q',
-     'alignment': '-a',
-     'vol_id': '-n',
-     'name': '-N'}
+                 'max_bud_bytes': '-j',
+                 'leb_size': '-e',
+                 'default_compr': '-x',
+                 'sub_page_size': '-s',
+                 'fanout': '-f',
+                 'key_hash': '-k',
+                 'orph_lebs': '-p',
+                 'log_lebs': '-l',
+                 'max_leb_cnt': '-c',
+                 'peb_size': '-p',
+                 'sub_page_size': '-s',
+                 'vid_hdr_offset': '-O',
+                 'version': '-x',
+                 'image_seq': '-Q',
+                 'alignment': '-a',
+                 'vol_id': '-n',
+                 'name': '-N'}
     ubi_params = {}
     ubi_args = {}
     ini_params = {}
@@ -56,7 +58,8 @@ def get_ubi_params(ubi):
             else:
                 ini_params[img_seq][volume]['vol_flags'] = image.volumes[volume].vol_rec.flags
             ini_params[img_seq][volume]['vol_id'] = image.volumes[volume].vol_id
-            ini_params[img_seq][volume]['vol_name'] = image.volumes[volume].name.rstrip('\x00')
+            ini_params[img_seq][volume]['vol_name'] = image.volumes[volume].name.rstrip(
+                '\x00')
             ini_params[img_seq][volume]['vol_alignment'] = image.volumes[volume].vol_rec.alignment
             ini_params[img_seq][volume]['vol_size'] = image.volumes[volume].vol_rec.reserved_pebs * ubi.leb_size
             ufsfile = leb_virtual_file(ubi, image.volumes[volume])
@@ -83,7 +86,7 @@ def get_ubi_params(ubi):
             ubi_args[img_seq][volume]['peb_size'] = ubi.peb_size
             ubi_args[img_seq][volume]['vol_id'] = image.volumes[volume].vol_id
             ubi_params[img_seq][volume] = {'flags': ubi_flags,
-             'args': ubi_args[img_seq][volume],
-             'ini': ini_params[img_seq][volume]}
+                                           'args': ubi_args[img_seq][volume],
+                                           'ini': ini_params[img_seq][volume]}
 
     return ubi_params

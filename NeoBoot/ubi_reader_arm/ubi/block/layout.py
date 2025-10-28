@@ -18,7 +18,8 @@ def group_pairs(blocks, layout_blocks_list):
 def associate_blocks(blocks, layout_pairs, start_peb_num):
     seq_blocks = []
     for layout_pair in layout_pairs:
-        seq_blocks = sort.by_image_seq(blocks, blocks[layout_pair[0]].ec_hdr.image_seq)
+        seq_blocks = sort.by_image_seq(
+            blocks, blocks[layout_pair[0]].ec_hdr.image_seq)
         layout_pair.append(seq_blocks)
 
     return layout_pairs

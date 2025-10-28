@@ -5,27 +5,27 @@ from Components.Pixmap import Pixmap
 import os
 
 
-#Colors (#AARRGGBB)
-#____Recommended colors - Zalecane kolory :
-#color name="white" value="#ffffff"
-#color name="darkwhite" value="#00dddddd"
-#color name="red" value="#f23d21"
-#color name="green" value="#389416"
-#color name="blue" value="#0064c7"
-#color name="yellow" value="#bab329"
-#color name="orange" value="#00ffa500"
-#color name="gray" value="#808080"
-#color name="lightgrey" value="#009b9b9b"
+# Colors (#AARRGGBB)
+# ____Recommended colors - Zalecane kolory :
+# color name="white" value="#ffffff"
+# color name="darkwhite" value="#00dddddd"
+# color name="red" value="#f23d21"
+# color name="green" value="#389416"
+# color name="blue" value="#0064c7"
+# color name="yellow" value="#bab329"
+# color name="orange" value="#00ffa500"
+# color name="gray" value="#808080"
+# color name="lightgrey" value="#009b9b9b"
 
 #   font genel
 #   font baslk
 #   font tasat
 #   font dugme
 
-#jak by chcial ktos wlasny selektor, to przyklad:
+# jak by chcial ktos wlasny selektor, to przyklad:
 #  <widget name="label19" position="73,422" size="596,25" font="tasat;22" halign="left" valign="center" zPosition="1" backgroundColor="black" transparent="1" foregroundColor="orange" />
 
-### ImageChooseFULLHD
+# ImageChooseFULLHD
 ImageChooseFULLHD = """
 <screen name="NeoBootImageChoose" position="center,center" size="1920,1080" title=" " flags="wfNoBorder" backgroundColor="transparent">
   <eLabel backgroundColor="black" font="tasat;30" foregroundColor="red" position="75,50" size="309,45" valign="center" text="NEOBoot Multi-image" transparent="1" />
@@ -121,4 +121,4 @@ ImageChooseFULLHD = """
 """
 
 
-###ImageChoose-HD
+# ImageChoose-HD

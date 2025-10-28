@@ -4,7 +4,7 @@ from Components.Pixmap import Pixmap
 import os
 # biko73 = ./neoskins/biko/skin_biko73.py
 
-### ImageChooseFULLHD  - biko73
+# ImageChooseFULLHD  - biko73
 ImageChooseFULLHD = """
 <screen name="NeoBootImageChoose" position="center,center" size="1920,1080" title=" " flags="wfNoBorder" backgroundColor="transparent">
   <widget name="progreso" position="560,525" size="450,10" borderWidth="1" zPosition="3" />

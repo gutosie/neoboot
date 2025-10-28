@@ -17,16 +17,18 @@ class ubi:
         self._block_count = len(self.blocks)
         if self._block_count <= 0:
             raise Exception('No blocks found.')
-        layout_list, data_list, int_vol_list, unknown_list = sort.by_type(self.blocks)
+        layout_list, data_list, int_vol_list, unknown_list = sort.by_type(
+            self.blocks)
         self._layout_blocks_list = layout_list
         self._data_blocks_list = data_list
         self._int_vol_blocks_list = int_vol_list
         self._unknown_blocks_list = unknown_list
-        arbitrary_block = self.blocks.itervalues().next()
+        arbitrary_block = next(iter(self.blocks.values()))
         self._min_io_size = arbitrary_block.ec_hdr.vid_hdr_offset
         self._leb_size = self.file.block_size - arbitrary_block.ec_hdr.data_offset
         layout_pairs = layout.group_pairs(self.blocks, self.layout_blocks_list)
-        layout_infos = layout.associate_blocks(self.blocks, layout_pairs, self.first_peb_num)
+        layout_infos = layout.associate_blocks(
+            self.blocks, layout_pairs, self.first_peb_num)
         self._images = []
         for i in range(0, len(layout_infos)):
             self._images.append(image(self.blocks, layout_infos[i]))

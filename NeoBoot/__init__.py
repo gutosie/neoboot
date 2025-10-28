@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from __future__ import print_function
+
 from Components.Language import language
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_LANGUAGE
 import os
@@ -13,7 +13,8 @@ def localeInit():
     lang = language.getLanguage()[:2]
     os.environ['LANGUAGE'] = lang
     print("[NeoBoot] set language to "), lang
-    gettext.bindtextdomain(PluginLanguageDomain, resolveFilename(SCOPE_PLUGINS, PluginLanguagePath))
+    gettext.bindtextdomain(PluginLanguageDomain, resolveFilename(
+        SCOPE_PLUGINS, PluginLanguagePath))
 
 
 def _(txt):

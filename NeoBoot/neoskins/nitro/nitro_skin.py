@@ -4,7 +4,7 @@ from Screens.Screen import Screen
 from Components.Pixmap import Pixmap
 import os
 
-### ImageChooseFULLHD                      
+# ImageChooseFULLHD
 ImageChooseFULLHD = """
 <screen name="ImageChooseFULLHD" position="center,center" size="1920,1080" title=" " flags="wfBorder" backgroundColor="background" >
     <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/nitro/skin/background.png" position="center,0" size="1920,1080" alphatest="blend" />

@@ -17,10 +17,12 @@ class description(object):
         self.vtbl_recs = []
         self.ec_hdr = extract_ec_hdr(block_buf[0:UBI_EC_HDR_SZ])
         if not self.ec_hdr.errors:
-            self.vid_hdr = extract_vid_hdr(block_buf[self.ec_hdr.vid_hdr_offset:self.ec_hdr.vid_hdr_offset + UBI_VID_HDR_SZ])
+            self.vid_hdr = extract_vid_hdr(
+                block_buf[self.ec_hdr.vid_hdr_offset:self.ec_hdr.vid_hdr_offset + UBI_VID_HDR_SZ])
             self.is_internal_vol = self.vid_hdr.vol_id >= UBI_INTERNAL_VOL_START
             if self.vid_hdr.vol_id >= UBI_INTERNAL_VOL_START:
-                self.vtbl_recs = extract_vtbl_rec(block_buf[self.ec_hdr.data_offset:])
+                self.vtbl_recs = extract_vtbl_rec(
+                    block_buf[self.ec_hdr.data_offset:])
             self.leb_num = self.vid_hdr.lnum
         self.is_vtbl = bool(self.vtbl_recs) or False
         self.is_valid = not self.ec_hdr.errors and not self.vid_hdr.errors

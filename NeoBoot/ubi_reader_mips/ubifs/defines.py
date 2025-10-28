@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import struct
 UBIFS_NODE_MAGIC = '1\x18\x10\x06'
-UBIFS_CRC32_INIT = 4294967295L
+UBIFS_CRC32_INIT = 4294967295
 UBIFS_MIN_COMPR_LEN = 128
 UBIFS_MIN_COMPRESS_DIFF = 64
 UBIFS_ROOT_INO = 1
@@ -88,12 +88,12 @@ UBIFS_FLG_BIGLPT = 2
 UBIFS_FLG_SPACE_FIXUP = 4
 UBIFS_COMMON_HDR_FORMAT = '<IIQIBB2s'
 UBIFS_COMMON_HDR_FIELDS = ['magic',
- 'crc',
- 'sqnum',
- 'len',
- 'node_type',
- 'group_type',
- 'padding']
+                           'crc',
+                           'sqnum',
+                           'len',
+                           'node_type',
+                           'group_type',
+                           'padding']
 UBIFS_COMMON_HDR_SZ = struct.calcsize(UBIFS_COMMON_HDR_FORMAT)
 UBIFS_KEY_OFFSET = UBIFS_COMMON_HDR_SZ
 UBIFS_DEV_DESC_FORMAT = '<IQ'
@@ -101,119 +101,119 @@ UBIFS_DEV_DESC_FIELDS = ['new', 'huge']
 UBIFS_DEV_DESC_SZ = struct.calcsize(UBIFS_DEV_DESC_FORMAT)
 UBIFS_INO_NODE_FORMAT = '<%ssQQQQQIIIIIIIIIII4sIH26s' % UBIFS_MAX_KEY_LEN
 UBIFS_INO_NODE_FIELDS = ['key',
- 'creat_sqnum',
- 'size',
- 'atime_sec',
- 'ctime_sec',
- 'mtime_sec',
- 'atime_nsec',
- 'ctime_nsec',
- 'mtime_nsec',
- 'nlink',
- 'uid',
- 'gid',
- 'mode',
- 'flags',
- 'data_len',
- 'xattr_cnt',
- 'xattr_size',
- 'padding1',
- 'xattr_names',
- 'compr_type',
- 'padding2']
+                         'creat_sqnum',
+                         'size',
+                         'atime_sec',
+                         'ctime_sec',
+                         'mtime_sec',
+                         'atime_nsec',
+                         'ctime_nsec',
+                         'mtime_nsec',
+                         'nlink',
+                         'uid',
+                         'gid',
+                         'mode',
+                         'flags',
+                         'data_len',
+                         'xattr_cnt',
+                         'xattr_size',
+                         'padding1',
+                         'xattr_names',
+                         'compr_type',
+                         'padding2']
 UBIFS_INO_NODE_SZ = struct.calcsize(UBIFS_INO_NODE_FORMAT)
 UBIFS_DENT_NODE_FORMAT = '<%ssQBBH4s' % UBIFS_MAX_KEY_LEN
 UBIFS_DENT_NODE_FIELDS = ['key',
- 'inum',
- 'padding1',
- 'type',
- 'nlen',
- 'padding2']
+                          'inum',
+                          'padding1',
+                          'type',
+                          'nlen',
+                          'padding2']
 UBIFS_DENT_NODE_SZ = struct.calcsize(UBIFS_DENT_NODE_FORMAT)
 UBIFS_DATA_NODE_FORMAT = '<%ssIH2s' % UBIFS_MAX_KEY_LEN
 UBIFS_DATA_NODE_FIELDS = ['key',
- 'size',
- 'compr_type',
- 'padding']
+                          'size',
+                          'compr_type',
+                          'padding']
 UBIFS_DATA_NODE_SZ = struct.calcsize(UBIFS_DATA_NODE_FORMAT)
 UBIFS_TRUN_NODE_FORMAT = '<I12sQQ'
 UBIFS_TRUN_NODE_FIELDS = ['inum',
- 'padding',
- 'old_size',
- 'new_size']
+                          'padding',
+                          'old_size',
+                          'new_size']
 UBIFS_TRUN_NODE_SZ = struct.calcsize(UBIFS_TRUN_NODE_FORMAT)
 UBIFS_PAD_NODE_FORMAT = '<I'
 UBIFS_PAD_NODE_FIELDS = ['pad_len']
 UBIFS_PAD_NODE_SZ = struct.calcsize(UBIFS_PAD_NODE_FORMAT)
 UBIFS_SB_NODE_FORMAT = '<2sBBIIIIIQIIIIIIIH2sIIQI16sI3968s'
 UBIFS_SB_NODE_FIELDS = ['padding',
- 'key_hash',
- 'key_fmt',
- 'flags',
- 'min_io_size',
- 'leb_size',
- 'leb_cnt',
- 'max_leb_cnt',
- 'max_bud_bytes',
- 'log_lebs',
- 'lpt_lebs',
- 'orph_lebs',
- 'jhead_cnt',
- 'fanout',
- 'lsave_cnt',
- 'fmt_version',
- 'default_compr',
- 'padding1',
- 'rp_uid',
- 'rp_gid',
- 'rp_size',
- 'time_gran',
- 'uuid',
- 'ro_compat_version',
- 'padding2']
+                        'key_hash',
+                        'key_fmt',
+                        'flags',
+                        'min_io_size',
+                        'leb_size',
+                        'leb_cnt',
+                        'max_leb_cnt',
+                        'max_bud_bytes',
+                        'log_lebs',
+                        'lpt_lebs',
+                        'orph_lebs',
+                        'jhead_cnt',
+                        'fanout',
+                        'lsave_cnt',
+                        'fmt_version',
+                        'default_compr',
+                        'padding1',
+                        'rp_uid',
+                        'rp_gid',
+                        'rp_size',
+                        'time_gran',
+                        'uuid',
+                        'ro_compat_version',
+                        'padding2']
 UBIFS_SB_NODE_SZ = struct.calcsize(UBIFS_SB_NODE_FORMAT)
 UBIFS_MST_NODE_FORMAT = '<QQIIIIIIIIQQQQQQIIIIIIIIIIII344s'
 UBIFS_MST_NODE_FIELDS = ['highest_inum',
- 'cmt_no',
- 'flags',
- 'log_lnum',
- 'root_lnum',
- 'root_offs',
- 'root_len',
- 'gc_lnum',
- 'ihead_lnum',
- 'ihead_offs',
- 'index_size',
- 'total_free',
- 'total_dirty',
- 'total_used',
- 'total_dead',
- 'total_dark',
- 'lpt_lnum',
- 'lpt_offs',
- 'nhead_lnum',
- 'nhead_offs',
- 'ltab_lnum',
- 'ltab_offs',
- 'lsave_lnum',
- 'lsave_offs',
- 'lscan_lnum',
- 'empty_lebs',
- 'idx_lebs',
- 'leb_cnt',
- 'padding']
+                         'cmt_no',
+                         'flags',
+                         'log_lnum',
+                         'root_lnum',
+                         'root_offs',
+                         'root_len',
+                         'gc_lnum',
+                         'ihead_lnum',
+                         'ihead_offs',
+                         'index_size',
+                         'total_free',
+                         'total_dirty',
+                         'total_used',
+                         'total_dead',
+                         'total_dark',
+                         'lpt_lnum',
+                         'lpt_offs',
+                         'nhead_lnum',
+                         'nhead_offs',
+                         'ltab_lnum',
+                         'ltab_offs',
+                         'lsave_lnum',
+                         'lsave_offs',
+                         'lscan_lnum',
+                         'empty_lebs',
+                         'idx_lebs',
+                         'leb_cnt',
+                         'padding']
 UBIFS_MST_NODE_SZ = struct.calcsize(UBIFS_MST_NODE_FORMAT)
 UBIFS_REF_NODE_FORMAT = '<III28s'
 UBIFS_REF_NODE_FIELDS = ['lnum',
- 'offs',
- 'jhead',
- 'padding']
+                         'offs',
+                         'jhead',
+                         'padding']
 UBIFS_REF_NODE_SZ = struct.calcsize(UBIFS_REF_NODE_FORMAT)
 UBIFS_BRANCH_FORMAT = '<III%ss' % UBIFS_SK_LEN
 UBIFS_BRANCH_FIELDS = ['lnum',
- 'offs',
- 'len',
- 'key']
+                       'offs',
+                       'len',
+                       'key']
 UBIFS_BRANCH_SZ = struct.calcsize(UBIFS_BRANCH_FORMAT)
 UBIFS_IDX_NODE_FORMAT = '<HH'
 UBIFS_IDX_NODE_FIELDS = ['child_cnt', 'level']

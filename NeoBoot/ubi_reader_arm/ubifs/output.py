@@ -42,7 +42,8 @@ def dents(ubifs, inodes, dent_node, path='', perms=False):
         try:
             os.symlink('%s' % inode['ino'].data, dent_path)
         except Exception as e:
-            ubifs.log.write('SYMLINK Fail: %s : %s' % (inode['ino'].data, dent_path))
+            ubifs.log.write('SYMLINK Fail: %s : %s' %
+                            (inode['ino'].data, dent_path))
 
     elif dent_node.type in [UBIFS_ITYPE_BLK, UBIFS_ITYPE_CHR]:
         try:
