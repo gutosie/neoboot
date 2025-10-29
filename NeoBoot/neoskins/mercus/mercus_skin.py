@@ -5,7 +5,7 @@ import os
 
 # mercus = /neoskins/mercus/mercus_skin.py
 
-### ImageChooseFULLHD  - mercus
+# ImageChooseFULLHD  - mercus
 ImageChooseFULLHD = """
 <screen name="ImageChooseFULLHD" position="center,center" size="1920,1080" title=" " flags="wfNoBorder" backgroundColor="transparent">
   <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/test1.png" alphatest="blend" position="15,center" size="1920,1080" zPosition="-2" />

@@ -18,7 +18,7 @@ class description(object):
         return 'Image: %s' % self.image_seq
 
     def get_blocks(self, blocks):
-        return get_blocks_in_list(blocks, range(self._start_peb, self._end_peb + 1))
+        return get_blocks_in_list(blocks, list(range(self._start_peb, self._end_peb + 1)))
 
     def _get_peb_range(self):
         return [self._start_peb, self._end_peb]

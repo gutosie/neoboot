@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-#from __init__ import _
-from __future__ import absolute_import
-from __future__ import print_function
+# from __init__ import _
+
+
 from Plugins.Extensions.NeoBoot.__init__ import _
 from Plugins.Extensions.NeoBoot.files.stbbranding import getNeoLocation, getKernelVersionString, getKernelImageVersion, getCPUtype, getCPUSoC, getImageNeoBoot, getBoxVuModel, getBoxHostName, getTunerModel
 from enigma import getDesktop
@@ -77,7 +77,7 @@ class InstallImage(Screen, ConfigListScreen):
                   <widget name="key_blue" position="1233,760" zPosition="1" size="272,56" font="baslk; 35" halign="center" valign="center" backgroundColor="#0000FF" transparent="1" foregroundColor="blue" />\
                </screen>"""
     else:
-          skin = """<screen position="0,0" size="1280,720" title="NeoBoot - Installation">
+        skin = """<screen position="0,0" size="1280,720" title="NeoBoot - Installation">
                     <ePixmap position="0,0" zPosition="-1" size="1280,720" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/1frame_base-fs8.png"  />
                     <eLabel text="NeoBoot opcje dla instalowanego obrazu" font="Regular; 28" position="10,30" size="700,30" halign="center" foregroundColor="#58ccff" backgroundColor="black" transparent="1" />
                     <widget name="config" position="0,150" size="780,450" font="Regular; 22" itemHeight="32" scrollbarMode="showOnDemand" transparent="1" backgroundColor="transpBlack" />
@@ -126,7 +126,7 @@ class InstallImage(Screen, ConfigListScreen):
             if fn.find('.tar') != -1:
                 fn = fn.replace('.tar.gz', '')
                 sourcelist.append((fn, fn))
-                continue                
+                continue
             if fn.find('.mb') != -1:
                 fn = fn.replace('.mb', '')
                 sourcelist.append((fn, fn))
@@ -139,17 +139,17 @@ class InstallImage(Screen, ConfigListScreen):
             sourcelist = [('None', 'None')]
         self.source = ConfigSelection(choices=sourcelist)
         self.target = ConfigText(fixed_size=False)
-        self.CopyFiles = ConfigYesNo(default=True)        
+        self.CopyFiles = ConfigYesNo(default=True)
         if "vu" + getBoxVuModel() == getBoxHostName():
-            self.CopyKernel = ConfigYesNo(default=True)            
+            self.CopyKernel = ConfigYesNo(default=True)
         else:
             self.CopyKernel = ConfigYesNo(default=False)
         self.TvList = ConfigYesNo(default=False)
         self.LanWlan = ConfigYesNo(default=False)
-        if "vu" + getBoxVuModel() == getBoxHostName():    
+        if "vu" + getBoxVuModel() == getBoxHostName():
             self.Sterowniki = ConfigYesNo(default=False)
         else:
-            self.Sterowniki = ConfigYesNo(default=True)            
+            self.Sterowniki = ConfigYesNo(default=True)
         self.Montowanie = ConfigYesNo(default=False)
         self.InstallSettings = ConfigYesNo(default=False)
         self.ZipDelete = ConfigYesNo(default=False)
@@ -157,13 +157,13 @@ class InstallImage(Screen, ConfigListScreen):
         self.SoftCam = ConfigYesNo(default=False)
         self.MediaPortal = ConfigYesNo(default=False)
         self.PiconR = ConfigYesNo(default=False)
-        self.Kodi = ConfigYesNo(default=False)        
+        self.Kodi = ConfigYesNo(default=False)
         self.BlackHole = ConfigYesNo(default=False)
         for line in open("/etc/hostname"):
-            if getCPUtype() == 'MIPS' and not "dm500hd" in line and not "dm800se" in line and not "dm800" in line and not "dm8000" in line :        
+            if getCPUtype() == 'MIPS' and not "dm500hd" in line and not "dm800se" in line and not "dm800" in line and not "dm8000" in line:
                 self.Nandsim = ConfigYesNo(default=True)
-            else:        
-                self.Nandsim = ConfigYesNo(default=False)             
+            else:
+                self.Nandsim = ConfigYesNo(default=False)
         self.target.value = ''
         self.curselimage = ''
         try:
@@ -177,13 +177,13 @@ class InstallImage(Screen, ConfigListScreen):
         ConfigListScreen.__init__(self, self.list, session=session)
         self.source.addNotifier(self.typeChange)
         self['actions'] = ActionMap(['OkCancelActions',
-         'ColorActions',
-         'CiSelectionActions',
-         'VirtualKeyboardActions'], {'cancel': self.cancel,
-         'red': self.cancel,
-         'green': self.imageInstall,
-         'yellow': self.HelpInstall,
-         'blue': self.openKeyboard}, -2)
+                                     'ColorActions',
+                                     'CiSelectionActions',
+                                     'VirtualKeyboardActions'], {'cancel': self.cancel,
+                                                                 'red': self.cancel,
+                                                                 'green': self.imageInstall,
+                                                                 'yellow': self.HelpInstall,
+                                                                 'blue': self.openKeyboard}, -2)
         self['key_green'] = Label(_('Install'))
         self['key_red'] = Label(_('Cancel'))
         self['key_yellow'] = Label(_('Help'))
@@ -193,27 +193,43 @@ class InstallImage(Screen, ConfigListScreen):
 
     def createSetup(self):
         self.list = []
-        self.list.append(getConfigListEntry(_('Source Image file'), self.source))
+        self.list.append(getConfigListEntry(
+            _('Source Image file'), self.source))
         self.list.append(getConfigListEntry(_('Image Name'), self.target))
-        self.list.append(getConfigListEntry(_('Copy files from Flash to the installed image ?'), self.CopyFiles))
-        self.list.append(getConfigListEntry(_('Copy the kernel of the installed system (recommended ?'), self.CopyKernel))
-        self.list.append(getConfigListEntry(_('Copy the channel list ?'), self.TvList))
-        self.list.append(getConfigListEntry(_('Copy network settings LAN-WLAN ?'), self.LanWlan))
-        self.list.append(getConfigListEntry(_('Copy the drivers ? (Recommended only other image.)'), self.Sterowniki))
-        self.list.append(getConfigListEntry(_('Copy mounting disks ? (Recommended)'), self.Montowanie))
-        self.list.append(getConfigListEntry(_('Copy Settings to the new Image'), self.InstallSettings))
-        self.list.append(getConfigListEntry(_('Delete Image zip after Install ?'), self.ZipDelete))
-        self.list.append(getConfigListEntry(_('Repair FTP ? (Recommended only other image if it does not work.)'), self.RepairFTP))
-        self.list.append(getConfigListEntry(_('Copy config SoftCam ?'), self.SoftCam))
-        self.list.append(getConfigListEntry(_('Copy MediaPortal ?'), self.MediaPortal))
-        self.list.append(getConfigListEntry(_('Copy picon flash to image install ?'), self.PiconR))
-        self.list.append(getConfigListEntry(_('Transfer kodi settings ?'), self.Kodi))
-        self.list.append(getConfigListEntry(_('Path BlackHole ? (Not recommended for VuPlus)'), self.BlackHole))
+        self.list.append(getConfigListEntry(
+            _('Copy files from Flash to the installed image ?'), self.CopyFiles))
+        self.list.append(getConfigListEntry(
+            _('Copy the kernel of the installed system (recommended ?'), self.CopyKernel))
+        self.list.append(getConfigListEntry(
+            _('Copy the channel list ?'), self.TvList))
+        self.list.append(getConfigListEntry(
+            _('Copy network settings LAN-WLAN ?'), self.LanWlan))
+        self.list.append(getConfigListEntry(
+            _('Copy the drivers ? (Recommended only other image.)'), self.Sterowniki))
+        self.list.append(getConfigListEntry(
+            _('Copy mounting disks ? (Recommended)'), self.Montowanie))
+        self.list.append(getConfigListEntry(
+            _('Copy Settings to the new Image'), self.InstallSettings))
+        self.list.append(getConfigListEntry(
+            _('Delete Image zip after Install ?'), self.ZipDelete))
+        self.list.append(getConfigListEntry(
+            _('Repair FTP ? (Recommended only other image if it does not work.)'), self.RepairFTP))
+        self.list.append(getConfigListEntry(
+            _('Copy config SoftCam ?'), self.SoftCam))
+        self.list.append(getConfigListEntry(
+            _('Copy MediaPortal ?'), self.MediaPortal))
+        self.list.append(getConfigListEntry(
+            _('Copy picon flash to image install ?'), self.PiconR))
+        self.list.append(getConfigListEntry(
+            _('Transfer kodi settings ?'), self.Kodi))
+        self.list.append(getConfigListEntry(
+            _('Path BlackHole ? (Not recommended for VuPlus)'), self.BlackHole))
         if getCPUtype() == 'MIPS':
-            self.list.append(getConfigListEntry(_('Use Nandsim to install image ?'), self.Nandsim))        
+            self.list.append(getConfigListEntry(
+                _('Use Nandsim to install image ?'), self.Nandsim))
 
     def HelpInstall(self):
-            self.session.open(HelpInstall)
+        self.session.open(HelpInstall)
 
     def typeChange(self, value):
         self.createSetup()
@@ -230,7 +246,8 @@ class InstallImage(Screen, ConfigListScreen):
                     self['config'].getCurrent()[1].help_window.hide()
             self.vkvar = sel[0]
             if self.vkvar == _('Image Name'):
-                self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title=self['config'].getCurrent()[0], text=self['config'].getCurrent()[1].value)
+                self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title=self['config'].getCurrent()[
+                                              0], text=self['config'].getCurrent()[1].value)
         return
 
     def VirtualKeyBoardCallback(self, callback=None):
@@ -240,56 +257,62 @@ class InstallImage(Screen, ConfigListScreen):
         return
 
     def imageInstall(self):
-            pluginpath = '' + LinkNeoBoot + ''
-            myerror = ''
-            source = self.source.value.replace(' ', '')
-            target = self.target.value.replace(' ', '')
-            for fn in os.listdir('%sImageBoot' % getNeoLocation()):
-                if fn == target:
-                    myerror = _('Sorry, an Image with the name ') + target + _(' is already installed.\n Please try another name.')
-                    continue
+        pluginpath = '' + LinkNeoBoot + ''
+        myerror = ''
+        source = self.source.value.replace(' ', '')
+        target = self.target.value.replace(' ', '')
+        for fn in os.listdir('%sImageBoot' % getNeoLocation()):
+            if fn == target:
+                myerror = _('Sorry, an Image with the name ') + target + \
+                    _(' is already installed.\n Please try another name.')
+                continue
 
-            if source == 'None':
-                myerror = _('You have to select one Image to install.\nPlease, upload your zip file in the folder: %sImagesUpload and select the image to install.')
-            if target == '':
-                myerror = _('You have to provide a name for the new Image.')
-            if target == 'Flash':
-                myerror = _('Sorry this name is reserved. Choose another name for the new Image.')
-            if len(target) > 30:
-                myerror = _('Sorry the name of the new Image is too long.')
-            if myerror:
-                myerror
-                self.session.open(MessageBox, myerror, MessageBox.TYPE_INFO)
-            else:
-                myerror
-                message = "echo -e '"
-                message += _('NeoBot started installing new image.\n')
-                message += _('The installation process may take a few minutes.\n')
-                message += _('Please: DO NOT reboot your STB and turn off the power.\n')
-                message += _('Please, wait...\n')
-                message += "'"
-                cmd1 = 'python ' + pluginpath + '/ex_init.py'
-                cmd = '%s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s ' % (cmd1,
-                 source,
-                 target.replace(' ', '.'),
-                 str(self.CopyFiles.value),
-                 str(self.CopyKernel.value),
-                 str(self.TvList.value),
-                 str(self.LanWlan.value),
-                 str(self.Sterowniki.value),
-                 str(self.Montowanie.value),
-                 str(self.InstallSettings.value),
-                 str(self.ZipDelete.value),
-                 str(self.RepairFTP.value),
-                 str(self.SoftCam.value),
-                 str(self.MediaPortal.value),
-                 str(self.PiconR.value),
-                 str(self.Kodi.value),
-                 str(self.BlackHole.value),
-                 str(self.Nandsim.value))
-                print("[MULTI-BOOT]: "), cmd
-                from Plugins.Extensions.NeoBoot.plugin import PLUGINVERSION
-                self.session.open(Console, _('NeoBoot v.%s - Install new image') % PLUGINVERSION, [message, cmd])
+        if source == 'None':
+            myerror = _(
+                'You have to select one Image to install.\nPlease, upload your zip file in the folder: %sImagesUpload and select the image to install.')
+        if target == '':
+            myerror = _('You have to provide a name for the new Image.')
+        if target == 'Flash':
+            myerror = _(
+                'Sorry this name is reserved. Choose another name for the new Image.')
+        if len(target) > 30:
+            myerror = _('Sorry the name of the new Image is too long.')
+        if myerror:
+            myerror
+            self.session.open(MessageBox, myerror, MessageBox.TYPE_INFO)
+        else:
+            myerror
+            message = "echo -e '"
+            message += _('NeoBot started installing new image.\n')
+            message += _('The installation process may take a few minutes.\n')
+            message += _('Please: DO NOT reboot your STB and turn off the power.\n')
+            message += _('Please, wait...\n')
+            message += "'"
+            cmd1 = 'python ' + pluginpath + '/ex_init.py'
+            cmd = '%s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s ' % (cmd1,
+                                                                              source,
+                                                                              target.replace(
+                                                                                  ' ', '.'),
+                                                                              str(self.CopyFiles.value),
+                                                                              str(self.CopyKernel.value),
+                                                                              str(self.TvList.value),
+                                                                              str(self.LanWlan.value),
+                                                                              str(self.Sterowniki.value),
+                                                                              str(self.Montowanie.value),
+                                                                              str(
+                                                                                  self.InstallSettings.value),
+                                                                              str(self.ZipDelete.value),
+                                                                              str(self.RepairFTP.value),
+                                                                              str(self.SoftCam.value),
+                                                                              str(self.MediaPortal.value),
+                                                                              str(self.PiconR.value),
+                                                                              str(self.Kodi.value),
+                                                                              str(self.BlackHole.value),
+                                                                              str(self.Nandsim.value))
+            print("[MULTI-BOOT]: "), cmd
+            from Plugins.Extensions.NeoBoot.plugin import PLUGINVERSION
+            self.session.open(Console, _(
+                'NeoBoot v.%s - Install new image') % PLUGINVERSION, [message, cmd])
 
     def cancel(self):
         self.close()
@@ -312,11 +335,11 @@ class HelpInstall(Screen):
         Screen.__init__(self, session)
         self['lab1'] = ScrollLabel('')
         self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'DirectionActions'], {'back': self.close,
-         'ok': self.close,
-         'up': self['lab1'].pageUp,
-         'left': self['lab1'].pageUp,
-         'down': self['lab1'].pageDown,
-         'right': self['lab1'].pageDown})
+                                                                                            'ok': self.close,
+                                                                                            'up': self['lab1'].pageUp,
+                                                                                            'left': self['lab1'].pageUp,
+                                                                                            'down': self['lab1'].pageDown,
+                                                                                            'right': self['lab1'].pageDown})
         self['lab1'].hide()
         self.updatetext()
 

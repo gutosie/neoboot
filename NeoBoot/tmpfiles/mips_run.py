@@ -69,7 +69,7 @@ class StartImage(Screen):
         self['list'] = List(self.list)
         self.select()
         self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.KeyOk,
-         'back': self.close})
+                                                                        'back': self.close})
         self['label1'] = Label(_('Start the chosen system now ?'))
         self['label2'] = Label(_('Select OK to run the image.'))
 
@@ -85,60 +85,70 @@ class StartImage(Screen):
 
     def KeyOk(self):
         if getImageNeoBoot() != 'Flash':
-                os.system('rm -rf %sImageBoot/%s/usr/bin/enigma2_pre_start.sh' % (getNeoLocation(), getImageNeoBoot()))
-                self.StartImageInNeoBoot()
-        else:
-            os.system('rm -rf %sImageBoot/%s/usr/bin/enigma2_pre_start.sh' % (getNeoLocation(), getImageNeoBoot()))
+            os.system('rm -rf %sImageBoot/%s/usr/bin/enigma2_pre_start.sh' %
+                      (getNeoLocation(), getImageNeoBoot()))
             self.StartImageInNeoBoot()
-        #---------------------------------------------
+        else:
+            os.system('rm -rf %sImageBoot/%s/usr/bin/enigma2_pre_start.sh' %
+                      (getNeoLocation(), getImageNeoBoot()))
+            self.StartImageInNeoBoot()
+        # ---------------------------------------------
         getMountPointNeo2()
         system('touch /tmp/.init_reboot')
-        #---------------------------------------------
+        # ---------------------------------------------
 
     def StartImageInNeoBoot(self):
         if getImageNeoBoot() != 'Flash':
             if fileExists('%sImageBoot/%s/.control_ok' % (getNeoLocation(), getImageNeoBoot())):
                 system('touch /tmp/.control_ok ')
             else:
-                system('touch %sImageBoot/%s/.control_boot_new_image ' % (getNeoLocation(), getImageNeoBoot()))
+                system('touch %sImageBoot/%s/.control_boot_new_image ' %
+                       (getNeoLocation(), getImageNeoBoot()))
 
-        #system('chmod 755 /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/kernel.sh')
+        # system('chmod 755 /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/kernel.sh')
         self.sel = self['list'].getCurrent()
         if self.sel:
             self.sel = self.sel[2]
         if self.sel == 0:
             if fileExists('/media/InternalFlash/etc/init.d/neobootmount.sh'):
-                os.system('rm -f /media/InternalFlash/etc/init.d/neobootmount.sh;')
+                os.system(
+                    'rm -f /media/InternalFlash/etc/init.d/neobootmount.sh;')
             if (getSupportedTuners()):
-                        if getImageNeoBoot() == 'Flash':
-                                cmd = 'ln -sfn /sbin/init.sysvinit /sbin/init'
-                                rc = os.system(cmd)
-                                getTurnOffOnSystem()
-                        elif getImageNeoBoot() != 'Flash':
-                            if fileExists('/.multinfo'):
-                                getTurnOffOnSystem()
-                            elif not fileExists('/.multinfo'):
-                                cmd = 'ln -sfn /sbin/neoinitmips /sbin/init'
-                                rc = os.system(cmd)
-                                getTurnOffOnSystem()
-                            else:
-                                os.system('echo "Flash "  >> ' + getNeoLocation() + 'ImageBoot/.neonextboot')
-                                getTurnOffOnSystem()
-                        else:
-                            os.system('echo "Flash "  >> ' + getNeoLocation() + 'ImageBoot/.neonextboot')
-                            self.messagebox = self.session.open(MessageBox, _('It looks like it that multiboot does not support this STB.'), MessageBox.TYPE_INFO, 8)
-                            self.close()
+                if getImageNeoBoot() == 'Flash':
+                    cmd = 'ln -sfn /sbin/init.sysvinit /sbin/init'
+                    rc = os.system(cmd)
+                    getTurnOffOnSystem()
+                elif getImageNeoBoot() != 'Flash':
+                    if fileExists('/.multinfo'):
+                        getTurnOffOnSystem()
+                    elif not fileExists('/.multinfo'):
+                        cmd = 'ln -sfn /sbin/neoinitmips /sbin/init'
+                        rc = os.system(cmd)
+                        getTurnOffOnSystem()
+                    else:
+                        os.system('echo "Flash "  >> ' +
+                                  getNeoLocation() + 'ImageBoot/.neonextboot')
+                        getTurnOffOnSystem()
+                else:
+                    os.system('echo "Flash "  >> ' +
+                              getNeoLocation() + 'ImageBoot/.neonextboot')
+                    self.messagebox = self.session.open(MessageBox, _(
+                        'It looks like it that multiboot does not support this STB.'), MessageBox.TYPE_INFO, 8)
+                    self.close()
 
             else:
-                            os.system('echo "Flash "  >> ' + getNeoLocation() + 'ImageBoot/.neonextboot')
-                            self.messagebox = self.session.open(MessageBox, _('It looks like it that multiboot does not support this STB.'), MessageBox.TYPE_INFO, 8)
-                            self.close()
-                            
-def getTurnOffOnSystem():               
-        for line in open("/etc/hostname"):                                
-                        if "dm500hd" in line or "dm800se" in line or "dm800" in line or "dm800se" in line or "dm8000" in line:
-                                if fileExists('%sImageBoot/%s/squashfs-images' % (getNeoLocation(), getImageNeoBoot())):
-                                    os.system('ln -sf "%sImageBoot/%s/squashfs-images" "//squashfs-images"' % (getNeoLocation(), getImageNeoBoot()))
-                        os.system('echo 3 > /proc/sys/vm/drop_caches; shutdown now -r; reboot -f -d -h -i')
-                        
-                                
+                os.system('echo "Flash "  >> ' + getNeoLocation() +
+                          'ImageBoot/.neonextboot')
+                self.messagebox = self.session.open(MessageBox, _(
+                    'It looks like it that multiboot does not support this STB.'), MessageBox.TYPE_INFO, 8)
+                self.close()
+
+
+def getTurnOffOnSystem():
+    for line in open("/etc/hostname"):
+        if "dm500hd" in line or "dm800se" in line or "dm800" in line or "dm800se" in line or "dm8000" in line:
+            if fileExists('%sImageBoot/%s/squashfs-images' % (getNeoLocation(), getImageNeoBoot())):
+                os.system('ln -sf "%sImageBoot/%s/squashfs-images" "//squashfs-images"' %
+                          (getNeoLocation(), getImageNeoBoot()))
+        os.system(
+            'echo 3 > /proc/sys/vm/drop_caches; shutdown now -r; reboot -f -d -h -i')

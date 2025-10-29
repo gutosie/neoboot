@@ -4,7 +4,7 @@ from Screens.Screen import Screen
 from Components.Pixmap import Pixmap
 import os
 
-### ImageChooseFULLHD                      
+# ImageChooseFULLHD
 ImageChooseFULLHD = """
 	 <screen name="NeoBootImageChoose" position="center,center" size="1920,1080" title="NeoBoot" flags="wfNoBorder" backgroundColor="background" transparent="0">
 	 		  <ePixmap position="0,0" zPosition="-10" size="1920,1080" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/cobaltfhd/channel.png" transparent="1" />

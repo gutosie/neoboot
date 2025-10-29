@@ -29,11 +29,8 @@ import os
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 import gettext
 from Plugins.Extensions.NeoBoot.files.stbbranding import getTunerModel, getCheckExt, getBoxHostName, getMyUUID
-if not fileExists('/usr/lib/python2.7'):
-    open = file
-    getoutput = "os.system"    
-else:
-    from commands import getoutput
+import subprocess
+    
 LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
 
 class ManagerDevice(Screen):
@@ -605,29 +602,37 @@ class SetDiskLabel(Screen):
     def sprDev(self):
         global lista
         lista = ['']
-        if getTunerModel() in ('sf8008', 'sf8008s', 'sf8008t'):
+        tuner_model = getTunerModel()
+        blackL = ''
+        if tuner_model in ('sf8008', 'sf8008s', 'sf8008t'):
             blackL = 'mmcblk0'
-        if getTunerModel() in ('h9se'):
+        elif tuner_model in ('h9se'):
             blackL = 'mmcblk1'
         else:
-            blackL = getoutput('cat /etc/udev/mount-helper.sh | grep "BLACKLISTED="')
-            blackL = blackL[13:-1]
-        devL = getoutput('cat /proc/partitions | grep "sd\\|mmc" | awk \'{print $4}\'')
-        devL = devL.split('\n')
+            try:
+                blackL_output = subprocess.getoutput('cat /etc/udev/mount-helper.sh | grep "BLACKLISTED="')
+                blackL = blackL_output[13:-1]
+            except Exception:
+                blackL = ''
+        try:
+            devL_output = subprocess.getoutput('cat /proc/partitions | grep "sd\\|mmc" | awk \'{print $4}\'')
+            devL = devL_output.split('\n')
+        except Exception:
+            devL = []
+
         ilosc = len(devL)
         i = 0
         while i < ilosc:
             if len(devL[i]) == 9 or len(devL[i]) == 4:
                 if devL[i][:7] != blackL:
-                    if self.sprLinux(devL[i]) == True:
+                    if self.sprLinux(devL[i]) is True:
                         lista.append(devL[i])
             i += 1
 
-        if ilosc > 0:
+        if ilosc > 0 and '' in lista:
             lista.remove('')
-        elif lista[0] == '':
-            lista.remove('')
-            lista.insert(0, 'No Disk')
+        elif not lista and not ilosc:
+            lista.append('No Disk')
 
     def cancel(self):
         self.close()
@@ -676,20 +681,26 @@ class SetDiskLabel(Screen):
         return
 
     def sprLabel(self):
-        lab = getoutput('blkid /dev/' + self['devlist'].getCurrent())
-        lab1 = lab.split(' ')
-        licz1 = len(lab1)
-        i = 0
-        while i < licz1:
-            if lab1[i][:5] == 'LABEL':
-                self['disklabel'].setText(lab1[i][7:-1])
-                break
-            else:
-                self['disklabel'].setText(_('No label'))
-            i += 1
+        current_device = self['devlist'].getCurrent()
+        if not current_device:
+            self['disklabel'].setText(_('No device selected'))
+            return
+        try:
+            lab_output = subprocess.getoutput('blkid /dev/' + current_device)
+        except Exception:
+            lab_output = ''
+        if lab_output:
+            lab1 = lab_output.split(' ')
+            for item in lab1:
+                if item.startswith('LABEL='):
+                    label = item.split('"')[1]
+                    self['disklabel'].setText(label)
+                    return
+                    
+        self['disklabel'].setText(_('No label'))
 
     def sprLinux(self, dev):
-        lab = getoutput('blkid /dev/' + dev)
+        lab = subprocess.getoutput('blkid /dev/' + dev)
         lab1 = lab.split(' ')
         licz1 = len(lab1)
         jest = False
@@ -700,7 +711,6 @@ class SetDiskLabel(Screen):
                 return jest
             jest = False
             j += 1
-
         return jest
     
     def MyClose(self):

@@ -68,7 +68,8 @@ class ubi_file(object):
 
     def read_block_data(self, block):
         self.seek(block.file_offset + block.ec_hdr.data_offset)
-        buf = self._fhandle.read(block.size - block.ec_hdr.data_offset - block.vid_hdr.data_pad)
+        buf = self._fhandle.read(
+            block.size - block.ec_hdr.data_offset - block.vid_hdr.data_pad)
         return buf
 
 
@@ -91,7 +92,8 @@ class leb_virtual_file:
             self.seek(self.tell() + i)
             return self._last_buf[offset:offset + i]
         else:
-            buf = self._ubi.file.read_block_data(self._ubi.blocks[self._blocks[leb]])
+            buf = self._ubi.file.read_block_data(
+                self._ubi.blocks[self._blocks[leb]])
             self._last_buf = buf
             self._last_leb = leb
             self.seek(self.tell() + i)

@@ -17,7 +17,8 @@ def index(ubifs, lnum, offset, inodes={}):
             inodes[ino_num] = {}
         inodes[ino_num]['ino'] = inon
     elif chdr.node_type == UBIFS_DATA_NODE:
-        datn = extract.data_node(ubifs, lnum, offset + UBIFS_COMMON_HDR_SZ, chdr.len)
+        datn = extract.data_node(
+            ubifs, lnum, offset + UBIFS_COMMON_HDR_SZ, chdr.len)
         ino_num = datn.key['ino_num']
         if ino_num not in inodes:
             inodes[ino_num] = {}
