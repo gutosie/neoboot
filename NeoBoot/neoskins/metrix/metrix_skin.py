@@ -1,11 +1,8 @@
-
 from Screens.Screen import Screen
 from Components.Pixmap import Pixmap
 import os
 
-# skin /neoskins/matrix/matrix_skin.py - mod.gutosie
 
-# ImageChooseFULLHD
 ImageChooseFULLHD = """
 <screen name="NeoBootImageChoose" position="0,0" size="1920,1080" flags="wfNoBorder" backgroundColor="#ff111111">
 <widget source="Title" render="Label" position="97,50" size="1067,72" font="baslk;41" valign="bottom" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" noWrap="1" transparent="1" />

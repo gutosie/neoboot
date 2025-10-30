@@ -1,4 +1,3 @@
-#!/usr/bin/python
 import re
 from ubi import display
 from ubi.defines import *
@@ -18,7 +17,11 @@ class description(object):
         self.ec_hdr = extract_ec_hdr(block_buf[0:UBI_EC_HDR_SZ])
         if not self.ec_hdr.errors:
             self.vid_hdr = extract_vid_hdr(
-                block_buf[self.ec_hdr.vid_hdr_offset:self.ec_hdr.vid_hdr_offset + UBI_VID_HDR_SZ])
+                block_buf[
+                    self.ec_hdr.vid_hdr_offset: self.ec_hdr.vid_hdr_offset
+                    + UBI_VID_HDR_SZ
+                ]
+            )
             self.is_internal_vol = self.vid_hdr.vol_id >= UBI_INTERNAL_VOL_START
             if self.vid_hdr.vol_id >= UBI_INTERNAL_VOL_START:
                 self.vtbl_recs = extract_vtbl_rec(
@@ -29,9 +32,9 @@ class description(object):
         return
 
     def __repr__(self):
-        return 'Block: PEB# %s: LEB# %s' % (self.peb_num, self.leb_num)
+        return "Block: PEB# %s: LEB# %s" % (self.peb_num, self.leb_num)
 
-    def display(self, tab=''):
+    def display(self, tab=""):
         display.block(self, tab)
 
 
@@ -45,7 +48,10 @@ def extract_blocks(ubi):
     ubi.file.seek(ubi.file.start_offset)
     peb_count = 0
     cur_offset = 0
-    for i in range(ubi.file.start_offset, ubi.file.end_offset, ubi.file.block_size):
+    for i in range(
+            ubi.file.start_offset,
+            ubi.file.end_offset,
+            ubi.file.block_size):
         buf = ubi.file.read(ubi.file.block_size)
         if buf.startswith(UBI_EC_HDR_MAGIC):
             blk = description(buf)

@@ -1,11 +1,10 @@
-#!/usr/bin/python
 from ubi.block import sort
 
 
 class ubi_file(object):
 
     def __init__(self, path, block_size, start_offset=0, end_offset=None):
-        self._fhandle = open(path, 'rb')
+        self._fhandle = open(path, "rb")
         self._start_offset = start_offset
         if end_offset:
             self._end_offset = end_offset
@@ -14,7 +13,7 @@ class ubi_file(object):
             self._end_offset = self.tell()
         self._block_size = block_size
         if start_offset >= self._end_offset:
-            raise Exception('Start offset larger than file size!')
+            raise Exception("Start offset larger than file size!")
         self._fhandle.seek(self._start_offset)
 
     def _set_start(self, i):
@@ -69,7 +68,8 @@ class ubi_file(object):
     def read_block_data(self, block):
         self.seek(block.file_offset + block.ec_hdr.data_offset)
         buf = self._fhandle.read(
-            block.size - block.ec_hdr.data_offset - block.vid_hdr.data_pad)
+            block.size - block.ec_hdr.data_offset - block.vid_hdr.data_pad
+        )
         return buf
 
 
@@ -82,22 +82,22 @@ class leb_virtual_file:
         self._seek = 0
         self.leb_data_size = len(self._blocks) * self._ubi.leb_size
         self._last_leb = -1
-        self._last_buf = ''
+        self._last_buf = ""
 
     def read(self, i):
-        buf = ''
+        buf = ""
         leb = int(self.tell() / self._ubi.leb_size)
         offset = self.tell() % self._ubi.leb_size
         if leb == self._last_leb:
             self.seek(self.tell() + i)
-            return self._last_buf[offset:offset + i]
+            return self._last_buf[offset: offset + i]
         else:
             buf = self._ubi.file.read_block_data(
                 self._ubi.blocks[self._blocks[leb]])
             self._last_buf = buf
             self._last_leb = leb
             self.seek(self.tell() + i)
-            return buf[offset:offset + i]
+            return buf[offset: offset + i]
 
     def reset(self):
         self.seek(0)
@@ -113,7 +113,7 @@ class leb_virtual_file:
         for block in self._blocks:
             while 0 != self._ubi.blocks[block].leb_num - last_leb:
                 last_leb += 1
-                yield '\xff' * self._ubi.leb_size
+                yield "\xff" * self._ubi.leb_size
 
             last_leb += 1
             yield self._ubi.file.read_block_data(self._ubi.blocks[block])
