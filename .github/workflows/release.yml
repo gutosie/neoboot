@@ -1,0 +1,62 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version'
+        required: true
+        default: '9.80'
+      py_version:
+        description: 'Python Version'
+        required: true
+        default: 3.13.9
+
+jobs:
+  build_and_release:
+    runs-on: ubuntu-latest
+    # This permission is required to create a release.
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create release tar.gz file (NeoBoot only)
+        id: create_archive
+        run: |
+          # 1. Get the workflow inputs
+          # Replaced BRANCH_NAME with the new PY_VERSION input
+          PY_VERSION="${{ github.event.inputs.py_version }}"
+          VERSION="${{ github.event.inputs.version }}"
+
+          # 2. Define the new .tar.gz filename using the version and py_version
+          FILENAME="NeoBoot_${VERSION}_${PY_VERSION}.tar.gz"
+
+          # 3. Check if the NeoBoot directory exists
+          if [ ! -d "NeoBoot" ]; then
+            echo "::error::The 'NeoBoot' directory was not found in the repository root. Cannot create archive."
+            exit 1
+          fi
+
+          # 4. Create the .tar.gz archive containing ONLY the NeoBoot directory
+          # -c: create, -z: gzip, -f: filename. Specify 'NeoBoot' as the only file/directory to archive.
+          echo "Creating archive: $FILENAME"
+          tar -czf $FILENAME NeoBoot
+
+          # 5. Set the output variable for the next step to use
+          echo "ARCHIVE_FILENAME=${FILENAME}" >> "$GITHUB_OUTPUT"
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: "v${{ github.event.inputs.version }}"
+          name: "Release v${{ github.event.inputs.version }}"
+          draft: false
+          prerelease: false
+          # Use the new output variable from the previous step
+          files: ${{ steps.create_archive.outputs.ARCHIVE_FILENAME }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

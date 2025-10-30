@@ -1,4 +1,3 @@
-#!/usr/bin/python
 from ubifs import extract
 from ubifs.defines import *
 
@@ -12,24 +11,28 @@ def index(ubifs, lnum, offset, inodes={}):
 
     elif chdr.node_type == UBIFS_INO_NODE:
         inon = extract.ino_node(ubifs, lnum, offset + UBIFS_COMMON_HDR_SZ)
-        ino_num = inon.key['ino_num']
+        ino_num = inon.key["ino_num"]
         if ino_num not in inodes:
             inodes[ino_num] = {}
-        inodes[ino_num]['ino'] = inon
+        inodes[ino_num]["ino"] = inon
     elif chdr.node_type == UBIFS_DATA_NODE:
         datn = extract.data_node(
-            ubifs, lnum, offset + UBIFS_COMMON_HDR_SZ, chdr.len)
-        ino_num = datn.key['ino_num']
+            ubifs,
+            lnum,
+            offset +
+            UBIFS_COMMON_HDR_SZ,
+            chdr.len)
+        ino_num = datn.key["ino_num"]
         if ino_num not in inodes:
             inodes[ino_num] = {}
-        if 'data' not in inodes[ino_num]:
-            inodes[ino_num]['data'] = []
-        inodes[ino_num]['data'].append(datn)
+        if "data" not in inodes[ino_num]:
+            inodes[ino_num]["data"] = []
+        inodes[ino_num]["data"].append(datn)
     elif chdr.node_type == UBIFS_DENT_NODE:
         dn = extract.dent_node(ubifs, lnum, offset + UBIFS_COMMON_HDR_SZ)
-        ino_num = dn.key['ino_num']
+        ino_num = dn.key["ino_num"]
         if ino_num not in inodes:
             inodes[ino_num] = {}
-        if 'dent' not in inodes[ino_num]:
-            inodes[ino_num]['dent'] = []
-        inodes[ino_num]['dent'].append(dn)
+        if "dent" not in inodes[ino_num]:
+            inodes[ino_num]["dent"] = []
+        inodes[ino_num]["dent"].append(dn)

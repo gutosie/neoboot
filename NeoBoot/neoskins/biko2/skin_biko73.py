@@ -1,10 +1,7 @@
-
 from Screens.Screen import Screen
 from Components.Pixmap import Pixmap
 import os
-# biko73 = ./neoskins/biko/skin_biko73.py
 
-# ImageChooseFULLHD  - biko73
 ImageChooseFULLHD = """
 <screen name="NeoBootImageChoose" position="center,center" size="1920,1080" title=" " flags="wfNoBorder" backgroundColor="transparent">
   <widget name="progreso" position="560,525" size="450,10" borderWidth="1" zPosition="3" />
@@ -32,8 +29,8 @@ ImageChooseFULLHD = """
   <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/biko2/button_blue.png" position="1475,1030" size="317,27" zPosition="1" alphatest="blend" />
   <ePixmap position="30,650" size="60,40" scale="1" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/biko2/key_Menu.png" alphatest="on" zPosition="2" />
   <ePixmap position="30,1020" size="60,40" scale="1" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/biko2/key_Exit.png" alphatest="on" zPosition="2" />
-  <ePixmap position="635,625" size="450,330" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/biko2/video1.png" alphatest="on" zPosition="3" /> 
-  <ePixmap position="center,0" size="1920,1078" zPosition="-2" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/biko2/background.png" />  
+  <ePixmap position="635,625" size="450,330" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/biko2/video1.png" alphatest="on" zPosition="3" />
+  <ePixmap position="center,0" size="1920,1078" zPosition="-2" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/biko2/background.png" />
   <ePixmap position="45,130" size="30,30" scale="1" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/biko2/icon_1.png" alphatest="on" />
   <ePixmap position="45,210" size="30,30" scale="1" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/biko2/icon_1.png" alphatest="on" />
   <ePixmap position="45,300" size="30,30" scale="1" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/biko2/icon_1.png" alphatest="on" />
@@ -46,7 +43,7 @@ ImageChooseFULLHD = """
   <ePixmap position="1178,835" zPosition="5" size="562,113" scale="1" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/box.png" alphatest="on" />
   <ePixmap position="45,725" size="40,40" scale="1" zPosition="3" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/biko2/key_1.png" alphatest="blend" />
   <ePixmap position="45,785" size="40,40" scale="1" zPosition="3" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/biko2/key_2.png" alphatest="blend" />
-  <ePixmap position="45,850" size="40,40" scale="1" zPosition="3" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/biko2/key_3.png" alphatest="blend" />  
+  <ePixmap position="45,850" size="40,40" scale="1" zPosition="3" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/neoskins/biko2/key_3.png" alphatest="blend" />
   <widget name="key_1" position="135,720" zPosition="1" size="405,45" font="Regular;30" halign="left" valign="center" backgroundColor="black" transparent="1" foregroundColor="#036dc1" />
   <widget name="key_2" position="135,787" zPosition="1" size="405,45" font="Regular;30" halign="left" valign="center" backgroundColor="black" transparent="1" foregroundColor="#fb353d" />
   <widget name="key_3" position="135,851" zPosition="1" size="405,45" font="Regular;30" halign="left" valign="center" backgroundColor="black" transparent="1" foregroundColor="#fdba2b" />
@@ -72,5 +69,3 @@ ImageChooseFULLHD = """
 </screen>
 
 """
-
-###

@@ -1,4 +1,3 @@
-#!/usr/bin/python
 import struct
 from ubi.defines import *
 from ubi.headers import errors
@@ -12,14 +11,14 @@ class ec_hdr(object):
         for key in fields:
             setattr(self, key, fields[key])
 
-        setattr(self, 'errors', [])
+        setattr(self, "errors", [])
 
     def __repr__(self):
-        return 'Error Count Header'
+        return "Error Count Header"
 
     def __iter__(self):
         for key in dir(self):
-            if not key.startswith('_'):
+            if not key.startswith("_"):
                 yield (key, getattr(self, key))
 
 
@@ -31,15 +30,15 @@ class vid_hdr(object):
         for key in fields:
             setattr(self, key, fields[key])
 
-        setattr(self, 'errors', [])
+        setattr(self, "errors", [])
 
     def __iter__(self):
         for key in dir(self):
-            if not key.startswith('_'):
+            if not key.startswith("_"):
                 yield (key, getattr(self, key))
 
     def __repr__(self):
-        return 'VID Header'
+        return "VID Header"
 
 
 class vtbl_rec(object):
@@ -50,15 +49,15 @@ class vtbl_rec(object):
         for key in fields:
             setattr(self, key, fields[key])
 
-        setattr(self, 'errors', [])
-        setattr(self, 'rec_index', -1)
+        setattr(self, "errors", [])
+        setattr(self, "rec_index", -1)
 
     def __repr__(self):
-        return 'Volume Table Record: %s' % getattr(self, 'name')
+        return "Volume Table Record: %s" % getattr(self, "name")
 
     def __iter__(self):
         for key in dir(self):
-            if not key.startswith('_'):
+            if not key.startswith("_"):
                 yield (key, getattr(self, key))
 
 
@@ -79,10 +78,10 @@ def extract_vid_hdr(buf):
 def extract_vtbl_rec(buf):
     data_buf = buf
     vtbl_recs = []
-    vtbl_rec_ret = ''
+    vtbl_rec_ret = ""
     for i in range(0, UBI_MAX_VOLUMES):
         offset = i * UBI_VTBL_REC_SZ
-        vtbl_rec_buf = data_buf[offset:offset + UBI_VTBL_REC_SZ]
+        vtbl_rec_buf = data_buf[offset: offset + UBI_VTBL_REC_SZ]
         if len(vtbl_rec_buf) == UBI_VTBL_REC_SZ:
             vtbl_rec_ret = vtbl_rec(vtbl_rec_buf)
             errors.vtbl_rec(vtbl_rec_ret, vtbl_rec_buf)

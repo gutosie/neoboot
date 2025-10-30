@@ -1,7 +1,4 @@
-# -*- coding: utf-8 -*-
-
 from Plugins.Extensions.NeoBoot.__init__ import _
-# from __future__ import print_function
 from enigma import eConsoleAppContainer
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
@@ -16,29 +13,39 @@ class Console(Screen):
     <widget name="text" position="-2,-1" size="1015,230" font="Console;14" />
     </screen>"""
 
-#    def __init__(self, session, title = 'Console', cmdlist = None, finishedCallback = None, closeOnSuccess = False):
-#        Screen.__init__(self, session)
-
-    def __init__(self, session, title=_('Console'), cmdlist=None, finishedCallback=None, closeOnSuccess=False):
+    def __init__(
+        self,
+        session,
+        title=_("Console"),
+        cmdlist=None,
+        finishedCallback=None,
+        closeOnSuccess=False,
+    ):
         Screen.__init__(self, session)
         self.finishedCallback = finishedCallback
         self.closeOnSuccess = closeOnSuccess
         self.errorOcurred = False
-        self['key_red'] = Label(_('Stop action'))
-        self['key_green'] = Label(_('Hide Console'))
-        self['text'] = ScrollLabel('')
-        self['summary_description'] = StaticText('')
-        self['actions'] = ActionMap(['WizardActions', 'DirectionActions', 'ColorActions'], {'ok': self.cancel,
-                                                                                            'back': self.cancel,
-                                                                                            'up': self.key_up,
-                                                                                            'down': self.key_down,
-                                                                                            'green': self.key_green,
-                                                                                            'red': self.key_red}, -1)
+        self["key_red"] = Label(_("Stop action"))
+        self["key_green"] = Label(_("Hide Console"))
+        self["text"] = ScrollLabel("")
+        self["summary_description"] = StaticText("")
+        self["actions"] = ActionMap(
+            ["WizardActions", "DirectionActions", "ColorActions"],
+            {
+                "ok": self.cancel,
+                "back": self.cancel,
+                "up": self.key_up,
+                "down": self.key_down,
+                "green": self.key_green,
+                "red": self.key_red,
+            },
+            -1,
+        )
         self.cmdlist = cmdlist
         self.newtitle = title
         self.screen_hide = False
         self.cancel_msg = None
-        self.output_file = ''
+        self.output_file = ""
         self.onShown.append(self.updateTitle)
         self.container = eConsoleAppContainer()
         self.run = 0
@@ -57,10 +64,14 @@ class Console(Screen):
             return self.container.execute(cmd)
 
     def startRun(self):
-        self['text'].setText(_('Execution progress:') + '\n\n')
-        self['summary_description'].setText(_('Execution progress:'))
-        print(("[Console] executing in run"), self.run,
-              (" the command:"), self.cmdlist[self.run])
+        self["text"].setText(_("Execution progress:") + "\n\n")
+        self["summary_description"].setText(_("Execution progress:"))
+        print(
+            ("[Console] executing in run"),
+            self.run,
+            (" the command:"),
+            self.cmdlist[self.run],
+        )
         if self.doExec(self.cmdlist[self.run]):
             self.runFinished(-1)
 
@@ -73,21 +84,20 @@ class Console(Screen):
             if self.doExec(self.cmdlist[self.run]):
                 self.runFinished(-1)
         else:
-            #            self['key_red'].setText(_('Close'))
-            #            self['key_green'].setText(_('Save'))
             self.toggleScreenHide(True)
             if self.cancel_msg:
                 self.cancel_msg.close()
             from Tools.Directories import fileExists
-            if not fileExists('/etc/vtiversion.info'):
-                lastpage = self['text'].isAtLastPage()
-            self['text'].appendText('\n' + _('Execution finished!!'))
-            self['summary_description'].setText(
-                '\n' + _('Execution finished!!'))
+
+            if not fileExists("/etc/vtiversion.info"):
+                lastpage = self["text"].isAtLastPage()
+            self["text"].appendText("\n" + _("Execution finished!!"))
+            self["summary_description"].setText(
+                "\n" + _("Execution finished!!"))
             if self.finishedCallback is not None:
                 self.finishedCallback()
             if not self.errorOcurred and self.closeOnSuccess:
-                self.output_file = 'end'
+                self.output_file = "end"
                 self.cancel()
         return
 
@@ -95,27 +105,26 @@ class Console(Screen):
         if self.screen_hide:
             self.toggleScreenHide()
             return
-        self['text'].pageUp()
+        self["text"].pageUp()
 
     def key_down(self):
         if self.screen_hide:
             self.toggleScreenHide()
             return
-        self['text'].pageDown()
+        self["text"].pageDown()
 
     def key_green(self):
         if self.screen_hide:
             self.toggleScreenHide()
             return
-        if self.output_file == 'end':
+        if self.output_file == "end":
             pass
-        elif self.output_file.startswith('/tmp/'):
-            self['text'].setText(self.readFile(self.output_file))
-            self['key_green'].setText(_(' '))
-            self.output_file = 'end'
+        elif self.output_file.startswith("/tmp/"):
+            self["text"].setText(self.readFile(self.output_file))
+            self["key_green"].setText(_(" "))
+            self.output_file = "end"
         elif self.run == len(self.cmdlist):
             self.saveOutputText()
-            # self.toggleScreenHide()
         else:
             self.toggleScreenHide()
 
@@ -126,8 +135,13 @@ class Console(Screen):
         if self.run == len(self.cmdlist):
             self.cancel()
         else:
-            self.cancel_msg = self.session.openWithCallback(self.cancelCB, MessageBox, _(
-                'Cancel execution?'), type=MessageBox.TYPE_YESNO, default=False)
+            self.cancel_msg = self.session.openWithCallback(
+                self.cancelCB,
+                MessageBox,
+                _("Cancel execution?"),
+                type=MessageBox.TYPE_YESNO,
+                default=False,
+            )
 
     def cancelCB(self, ret=None):
         self.cancel_msg = None
@@ -137,11 +151,18 @@ class Console(Screen):
 
     def saveOutputText(self):
         from time import time, localtime
+
         lt = localtime(time())
-        self.output_file = '/tmp/%02d%02d%02d_console.txt' % (
+        self.output_file = "/tmp/%02d%02d%02d_console.txt" % (
             lt[3], lt[4], lt[5])
-        self.session.openWithCallback(self.saveOutputTextCB, MessageBox, _(
-            "Save the commands and the output to a file?\n('%s')") % self.output_file, type=MessageBox.TYPE_YESNO, default=True)
+        self.session.openWithCallback(
+            self.saveOutputTextCB,
+            MessageBox,
+            _("Save the commands and the output to a file?\n('%s')") %
+            self.output_file,
+            type=MessageBox.TYPE_YESNO,
+            default=True,
+        )
 
     def formatCmdList(self, source):
         if isinstance(source, (list, tuple)):
@@ -155,44 +176,47 @@ class Console(Screen):
     def saveOutputTextCB(self, ret=None):
         if ret:
             from os import path
+
             failtext = _("Path to save not exist: '/tmp/'")
-            if path.exists('/tmp/'):
-                text = 'commands ...\n\n'
+            if path.exists("/tmp/"):
+                text = "commands ...\n\n"
                 try:
                     cmdlist = list(self.formatCmdList(self.cmdlist))
-                    text += 'command line: %s\n\n' % cmdlist[0]
-                    script = ''
+                    text += "command line: %s\n\n" % cmdlist[0]
+                    script = ""
                     for cmd in cmdlist[0].split():
-                        if '.' in cmd:
-                            if cmd[-3:] in ('.py', '.sh'):
+                        if "." in cmd:
+                            if cmd[-3:] in (".py", ".sh"):
                                 script = cmd
                             break
 
                     if script and path.isfile(script):
-                        text += 'script listing: %s\n\n%s\n\n' % (
-                            script, self.readFile(script))
+                        text += "script listing: %s\n\n%s\n\n" % (
+                            script,
+                            self.readFile(script),
+                        )
                     if len(cmdlist) > 1:
-                        text += 'next commands:\n\n' + \
-                            '\n'.join(cmdlist[1:]) + '\n\n'
-                except:
-                    text += 'error read commands!!!\n\n'
+                        text += "next commands:\n\n" + \
+                            "\n".join(cmdlist[1:]) + "\n\n"
+                except BaseException:
+                    text += "error read commands!!!\n\n"
 
-                text += '-' * 50 + \
-                    '\n\noutputs ...\n\n%s' % self['text'].getText()
+                text += "-" * 50 + \
+                    "\n\noutputs ...\n\n%s" % self["text"].getText()
                 try:
-                    f = open(self.output_file, 'w')
+                    f = open(self.output_file, "w")
                     f.write(text)
                     f.close()
-                    self['key_green'].setText(_('Load'))
+                    self["key_green"].setText(_("Load"))
                     return
-                except:
+                except BaseException:
                     failtext = _("File write error: '%s'") % self.output_file
 
-            self.output_file = 'end'
-            self['key_green'].setText(_(' '))
+            self.output_file = "end"
+            self["key_green"].setText(_(" "))
             self.session.open(MessageBox, failtext, type=MessageBox.TYPE_ERROR)
         else:
-            self.output_file = ''
+            self.output_file = ""
 
     def toggleScreenHide(self, setshow=False):
         if self.screen_hide or setshow:
@@ -203,12 +227,12 @@ class Console(Screen):
 
     def readFile(self, file):
         try:
-            with open(file, 'r') as rdfile:
+            with open(file, "r") as rdfile:
                 rd = rdfile.read()
             rdfile.close()
-        except:
+        except BaseException:
             if file == self.output_file:
-                rd = self['text'].getText()
+                rd = self["text"].getText()
             else:
                 rd = "File read error: '%s'\n" % file
 
@@ -226,4 +250,4 @@ class Console(Screen):
                 self.container.kill()
 
     def dataAvail(self, str):
-        self['text'].appendText(str)
+        self["text"].appendText(str)
