@@ -1,4 +1,3 @@
-#!/usr/bin/python
 from ubi.block import sort
 
 

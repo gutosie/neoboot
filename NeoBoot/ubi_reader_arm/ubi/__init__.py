@@ -1,4 +1,3 @@
-#!/usr/bin/python
 import re
 from ubi.volume import get_volumes
 from ubi.block import sort, get_blocks_in_list, extract_blocks
@@ -16,7 +15,7 @@ class ubi:
         self._blocks = extract_blocks(self)
         self._block_count = len(self.blocks)
         if self._block_count <= 0:
-            raise Exception('No blocks found.')
+            raise Exception("No blocks found.")
         layout_list, data_list, int_vol_list, unknown_list = sort.by_type(
             self.blocks)
         self._layout_blocks_list = layout_list
@@ -28,7 +27,8 @@ class ubi:
         self._leb_size = self.file.block_size - arbitrary_block.ec_hdr.data_offset
         layout_pairs = layout.group_pairs(self.blocks, self.layout_blocks_list)
         layout_infos = layout.associate_blocks(
-            self.blocks, layout_pairs, self.first_peb_num)
+            self.blocks, layout_pairs, self.first_peb_num
+        )
         self._images = []
         for i in range(0, len(layout_infos)):
             self._images.append(image(self.blocks, layout_infos[i]))
@@ -96,14 +96,14 @@ class ubi:
 
     blocks = property(_get_blocks)
 
-    def display(self, tab=''):
+    def display(self, tab=""):
         display.ubi(self, tab)
 
 
 def get_peb_size(path):
     file_offset = 0
     offsets = []
-    f = open(path, 'rb')
+    f = open(path, "rb")
     f.seek(0, 2)
     file_size = f.tell() + 1
     f.seek(0)
@@ -125,7 +125,7 @@ def get_peb_size(path):
     for i in range(0, len(offsets)):
         try:
             diff = offsets[i] - offsets[i - 1]
-        except:
+        except BaseException:
             diff = offsets[i]
 
         if diff not in occurances:

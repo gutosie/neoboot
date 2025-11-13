@@ -1,4 +1,3 @@
-#!/usr/bin/python
 from ubifs import nodes
 from ubifs.defines import *
 
@@ -28,7 +27,7 @@ def sb_node(ubifs, offset=0):
 def dent_node(ubifs, lnum, offset=0):
     ubifs.file.seek(ubifs.leb_size * lnum + offset)
     den = nodes.dent_node(ubifs.file.read(UBIFS_DENT_NODE_SZ))
-    den.name = '%s' % ubifs.file.read(den.nlen)
+    den.name = "%s" % ubifs.file.read(den.nlen)
     return den
 
 

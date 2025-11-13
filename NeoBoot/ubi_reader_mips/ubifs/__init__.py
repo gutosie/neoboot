@@ -1,4 +1,3 @@
-#!/usr/bin/python
 import re
 import struct
 from ubifs.defines import *
@@ -50,7 +49,7 @@ class ubifs:
 
 
 def get_leb_size(path):
-    f = open(path, 'rb')
+    f = open(path, "rb")
     f.seek(0, 2)
     file_size = f.tell() + 1
     f.seek(0)
@@ -59,7 +58,7 @@ def get_leb_size(path):
         buf = f.read(FILE_CHUNK_SZ)
         for m in re.finditer(UBIFS_NODE_MAGIC, buf):
             start = m.start()
-            chdr = nodes.common_hdr(buf[start:start + UBIFS_COMMON_HDR_SZ])
+            chdr = nodes.common_hdr(buf[start: start + UBIFS_COMMON_HDR_SZ])
             if chdr and chdr.node_type == UBIFS_SB_NODE:
                 sb_start = start + UBIFS_COMMON_HDR_SZ
                 sb_end = sb_start + UBIFS_SB_NODE_SZ

@@ -1,10 +1,7 @@
-
 from Screens.Screen import Screen
 from Components.Pixmap import Pixmap
 import os
-# darog69 = ./neoskins/darog69/skin_darog69.py
 
-# ImageChooseFULLHD  - darog69
 ImageChooseFULLHD = """
 <screen name="NeoBootImageChoose" position="center,center" size="1920,1080" title=" " flags="wfNoBorder" backgroundColor="transparent">
   <widget name="progreso" position="594,590" size="530,10" borderWidth="1" zPosition="3" />
@@ -55,5 +52,3 @@ ImageChooseFULLHD = """
 </screen>
 
 """
-
-###
