@@ -1,4 +1,3 @@
-#!/usr/bin/python
 def list_by_list(blist, slist):
     slist_blocks = []
     for block in blist:
@@ -24,11 +23,11 @@ def by_range(blocks, block_range):
 
 def by_leb(blocks):
     slist_len = len(blocks)
-    slist = ['x'] * slist_len
+    slist = ["x"] * slist_len
     for block in blocks:
         if blocks[block].leb_num >= slist_len:
             add_elements = blocks[block].leb_num - slist_len + 1
-            slist += ['x'] * add_elements
+            slist += ["x"] * add_elements
             slist_len = len(slist)
         slist[blocks[block].leb_num] = block
 
@@ -78,7 +77,4 @@ def by_type(blocks, slist=None):
         else:
             unknown.append(i)
 
-    return (layout,
-            data,
-            int_vol,
-            unknown)
+    return (layout, data, int_vol, unknown)
