@@ -16,6 +16,10 @@
             /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/mountpoint.sh
             echo "...Start -mountpoint.sh- location NEOBOOT..."
     fi
+
+    if [ -e /var/lib/tailscale ] || [ -e /.multinfo ] ; then
+       opkg install kernel-module-tun
+    fi
               
     if [ -f /.control_boot_new_image ] ; then
             break ;
