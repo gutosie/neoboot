@@ -2733,19 +2733,20 @@ def NEOBootMainEx(
             )
             rc = os.system(cmd5)
             if not os.path.exists(
-                "%s/ImageBoot/%s/lib/modules/kernel/drivers/net/tun.ko"
+                "%s/ImageBoot/%s/lib/modules/" +
+                        getKernelVersion() +
+                        "/kernel/drivers/net/tun.ko"
                 % (media, target)
             ):
-                if not os.path.exists(
-                    "%s/ImageBoot/%s/lib/modules/kernel/drivers/net" %
-                        (media, target)):
-                    cmd = "mkdir -p %s/ImageBoot/%s/lib/modules/kernel/drivers/net/" % (
-                        media, target, )
+                if not os.path.exists("%s/ImageBoot/%s/lib/modules/" +getKernelVersion()+"/kernel/drivers/net" %(media, target)):
+                    cmd = "mkdir -p %s/ImageBoot/%s/lib/modules/"+getKernelVersion()+"/kernel/drivers/net/" % (media, target,)
                     rc = os.system(cmd)
                     cmd = (
                         "cp -af /lib/modules/" +
                         getKernelVersion() +
-                        "/kernel/drivers/net/tun.ko %s/ImageBoot/%s/lib/modules/kernel/drivers/net/" %
+                        "/kernel/drivers/net/tun.ko %s/ImageBoot/%s/lib/modules/" +
+                        getKernelVersion() +
+                        "/kernel/drivers/net/" %
                         (media,
                          target))
                     rc = os.system(cmd)
