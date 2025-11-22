@@ -1362,6 +1362,14 @@ def RemoveUnpackDirs():
             "rm -r " +
             getNeoLocation() +
             "ImagesUpload/multiboxpro")
+        if os.path.exists("" + getNeoLocation() + "ImagesUpload/force_multiboxpro_READ.ME"):
+            rc = os.system(
+                "rm -r " + getNeoLocation() + "ImagesUpload/unforce_multiboxpro.txt"
+            )            
+        if os.path.exists("" + getNeoLocation() + "ImagesUpload/unforce_multibox.txt"):
+            rc = os.system(
+                "rm -r " + getNeoLocation() + "ImagesUpload/unforce_multibox.txt"
+            )
     elif os.path.exists("" + getNeoLocation() + "ImagesUpload/unforce_multibox.txt"):
         rc = os.system(
             "rm -r " + getNeoLocation() + "ImagesUpload/unforce_multibox.txt"
