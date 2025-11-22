@@ -118,9 +118,12 @@ class Job(object):
         self.abort()
 
     def __str__(self):
-        return "Components.Task.Job name=%s #tasks=%s" % (
-            self.name, len(self.tasks))
-
+        try:
+            return "Components.Task.Job name=%s #tasks=%s" % (
+                self.name, len(self.tasks))
+        except Exception as ex:
+            return 'Components.Task.Job name=%s #tasks=%s' % (
+                self.name, len(self.tasks))
 
 class Task(object):
 
@@ -283,7 +286,10 @@ class Task(object):
     progress = property(getProgress, setProgress)
 
     def __str__(self):
-        return "Components.Task.Task name=%s" % self.name
+        try:
+            return "Components.Task.Task name=%s" % self.name
+        except Exception as ex:
+            return 'Components.Task.Task name=%s' % self.name
 
 
 class LoggingTask(Task):

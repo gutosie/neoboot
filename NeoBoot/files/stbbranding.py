@@ -576,13 +576,12 @@ def getVuModel():
             procmodel = f.readline().strip()
             f.close()
             model = procmodel.title().replace("olose", "olo SE").replace(
-                "olo2se", "olo2 SE").replace("2", "Â˛")
+                "olo2se", "olo2 SE").replace("2", "²")
         return model
         
     except Exception:
         pass
     return "unknown"
-
 
 def getBoxHostName():
     try:
