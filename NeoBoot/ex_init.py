@@ -31,5 +31,5 @@ else:
         sys.argv[14],
         sys.argv[15],
         sys.argv[16],
-        sys.argv[17],
+        sys.argv[17]
     )
