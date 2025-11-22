@@ -1,16 +1,18 @@
 import sys
 import extract
 
-if len(sys.argv) < 18:
-    print(
-        f"Error: Incorrect number of arguments. Expected 17, got {
-            len(
-                sys.argv) -
-            1}",
-        file=sys.stderr,
-    )
-    print(f"Usage: {sys.argv[0]} <arg1> <arg2> ... <arg17>", file=sys.stderr)
-    sys.exit(1)
+if len(sys.argv) < 17:
+    pass
+#if len(sys.argv) < 18:
+    #print(
+        #f"Error: Incorrect number of arguments. Expected 17, got {
+            #len(
+                #sys.argv) -
+            #1}",
+        #file=sys.stderr,
+    #)
+    #print(f"Usage: {sys.argv[0]} <arg1> <arg2> ... <arg17>", file=sys.stderr)
+    #sys.exit(1)
 else:
     extract.NEOBootMainEx(
         sys.argv[1],
