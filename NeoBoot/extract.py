@@ -890,105 +890,55 @@ def NEOBootMainEx(
                     except Exception as e:
                         os.system(f'echo "Failed to write {localfile2}: {e}"')
 
-        if os.path.exists("/var/lib/zerotier-one/identity.secret"):
-            cmd = (
-                "mkdir -p "
-                + getNeoLocation()
-                + "ImageBoot/%s/var/lib/zerotier-one" % target
-            )
+# for all image:
+        # copying zerotier script if exists
+        if os.path.exists('/var/lib/zerotier-one/identity.secret'):
+            cmd = 'mkdir -p ' + getNeoLocation() + 'ImageBoot/%s/var/lib/zerotier-one' % target
             rc = os.system(cmd)
-            cmd1 = (
-                "cp -af /var/lib/zerotier-one/identity.secret "
-                + getNeoLocation()
-                + "ImageBoot/%s/var/lib/zerotier-one/" % target
-            )
+            cmd1 = 'cp -af /var/lib/zerotier-one/identity.secret ' + \
+                getNeoLocation() + 'ImageBoot/%s/var/lib/zerotier-one/' % target
             rc = os.system(cmd1)
 
-        if os.path.exists("/var/lib/tailscale/tailscaled.state"):
-            cmd = (
-                "mkdir -p "
-                + getNeoLocation()
-                + "ImageBoot/%s/var/lib/tailscale" % target
-            )
+        # copying tailscale if exists
+        if os.path.exists('/var/lib/tailscale/tailscaled.state'):
+            cmd = 'mkdir -p ' + getNeoLocation() + 'ImageBoot/%s/var/lib/tailscale' % target
             rc = os.system(cmd)
-            cmd1 = (
-                "cp -af /var/lib/tailscale/* "
-                + getNeoLocation()
-                + "ImageBoot/%s/var/lib/tailscale/" % target
-            )
+            cmd1 = 'cp -af /var/lib/tailscale/* ' + \
+                getNeoLocation() + 'ImageBoot/%s/var/lib/tailscale/' % target
             rc = os.system(cmd1)
-            cmd2 = (
-                "cp -af /var/lib/tailscale/* "
-                + getNeoLocation()
-                + "ImageBoot/%s/var/lib/tailscale/" % target
-            )
+            cmd2 = 'cp -af /var/lib/tailscale/* ' + \
+                getNeoLocation() + 'ImageBoot/%s/var/lib/tailscale/' % target
             rc = os.system(cmd2)
-            if os.path.exists("/usr/sbin/tailscaled"):
-                cmd3 = (
-                    "cp -af /usr/sbin/tailscaled "
-                    + getNeoLocation()
-                    + "ImageBoot/%s/susr/sbin/" % target
-                )
+            if os.path.exists('/usr/sbin/tailscaled'):
+                cmd3 = 'cp -af /usr/sbin/tailscaled ' + \
+                    getNeoLocation() + 'ImageBoot/%s/susr/sbin/' % target
                 rc = os.system(cmd3)
-            elif os.path.exists("/usr/bin/tailscaled"):
-                cmd3 = (
-                    "cp -af /usr/bin/tailscaled "
-                    + getNeoLocation()
-                    + "ImageBoot/%s/usr/bin/" % target
-                )
+            elif os.path.exists('/usr/bin/tailscaled'):
+                cmd3 = 'cp -af /usr/bin/tailscaled ' + \
+                    getNeoLocation() + 'ImageBoot/%s/usr/bin/' % target
                 rc = os.system(cmd3)
-            cmd4 = (
-                "cp -af /usr/bin/tailscale "
-                + getNeoLocation()
-                + "ImageBoot/%s/usr/bin/" % target
-            )
+            cmd4 = 'cp -af /usr/bin/tailscale ' + \
+                getNeoLocation() + 'ImageBoot/%s/usr/bin/' % target
             rc = os.system(cmd4)
-            cmd5 = (
-                "cp -af /etc/init.d/tailscal* "
-                + getNeoLocation()
-                + "ImageBoot/%s/etc/init.d/" % target
-            )
+            cmd5 = 'cp -af /etc/init.d/tailscal* ' + \
+                getNeoLocation() + 'ImageBoot/%s/etc/init.d/' % target
             rc = os.system(cmd5)
-            if not os.path.exists(
-                "%s/ImageBoot/%s/lib/modules/kernel/drivers/net/tun.ko"
-                % (media, target)
-            ):
-                if not os.path.exists(
-                    "%s/ImageBoot/%s/lib/modules/kernel/drivers/net" %
-                        (media, target)):
-                    cmd = "mkdir -p %s/ImageBoot/%s/lib/modules/kernel/drivers/net/" % (
-                        media, target, )
-                    rc = os.system(cmd)
-                    cmd = (
-                        "cp -af /lib/modules/" +
-                        getKernelVersion() +
-                        "/kernel/drivers/net/tun.ko %s/ImageBoot/%s/lib/modules/kernel/drivers/net/" %
-                        (media,
-                         target))
-                    rc = os.system(cmd)
-            if not os.path.exists(
-                "%s/ImageBoot/%s/var/run/tailscale" % (media, target)
-            ):
-                cmd = (
-                    "mkdir -p "
-                    + getNeoLocation()
-                    + "/ImageBoot/%s/run/tailscale/" % target
-                )
-                rc = os.system(cmd)
-            if os.path.exists("/run/tailscale"):
-                cmd = (
-                    "cp -aRf /run/tailscale/tailscaled.sock "
-                    + getNeoLocation()
-                    + "ImageBoot/%s/run/tailscale/" % target
-                )
-                rc = os.system(cmd)
-                cmd1 = (
-                    "cp -aRf /run/resolvconf/interfaces/tailscale "
-                    + getNeoLocation()
-                    + "ImageBoot/%s/run/tailscale/" % target
-                )
-                rc = os.system(cmd1)
+            
+            if not os.path.exists('%s/ImageBoot/%s/lib/modules/' + getKernelVersion() + '/kernel/drivers/net/tun.ko' % (media, target)):
+                    if not os.path.exists('%s/ImageBoot/%s/lib/modules/' + getKernelVersion() + '/kernel/drivers/net' % (media, target)):
+                            cmd = 'mkdir -p %s/ImageBoot/%s/lib/modules/' + getKernelVersion() + '/kernel/drivers/net/' % (media, target) 
+                            rc = os.system(cmd)                    
+                            cmd = 'cp -af /lib/modules/' + getKernelVersion() + '/kernel/drivers/net/tun.ko %s/ImageBoot/%s/lib/modules' + getKernelVersion() + 'kernel/drivers/net/' % (media, target) 
+                            rc = os.system(cmd) 
 
+            if not os.path.exists('%s/ImageBoot/%s/var/run/tailscale' % (media, target)):
+                cmd = 'mkdir -p ' + getNeoLocation() + '/ImageBoot/%s/run/tailscale/' % target
+                rc = os.system(cmd)
+            if os.path.exists('/run/tailscale'):
+                cmd = 'cp -aRf /run/tailscale/tailscaled.sock ' + \
+                    getNeoLocation() + 'ImageBoot/%s/run/tailscale/' % target
+                rc = os.system(cmd)
+                
         if os.path.exists("%s/ImageBoot/%s/etc/init.d" % (media, target)):
             cmd = (
                 "ln -s %sImageBoot/%s/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/userscript.sh %sImageBoot/%s/etc/rcS.d/S99neo.local" %
@@ -1362,10 +1312,6 @@ def RemoveUnpackDirs():
             "rm -r " +
             getNeoLocation() +
             "ImagesUpload/multiboxpro")
-    elif os.path.exists("" + getNeoLocation() + "ImagesUpload/unforce_multibox.txt"):
-        rc = os.system(
-            "rm -r " + getNeoLocation() + "ImagesUpload/unforce_multibox.txt"
-        )
     elif os.path.exists("" + getNeoLocation() + "ImagesUpload/axas"):
         rc = os.system("rm -r " + getNeoLocation() + "ImagesUpload/axas")
     elif os.path.exists("" + getNeoLocation() + "ImagesUpload/miraclebox"):
@@ -1427,17 +1373,11 @@ def RemoveUnpackDirs():
     elif (
         os.path.exists("" + getNeoLocation() + "ImagesUpload/multibox")
         or os.path.exists("" + getNeoLocation() + "ImagesUpload/multiboxse")
-        or os.path.exists("" + getNeoLocation() + "ImagesUpload/multiboxpro")
-    ):
-        rc = os.system(
-            "mv "
-            + getNeoLocation()
-            + "ImagesUpload/multibox "
-            + getNeoLocation()
-            + "ImagesUpload/multibox; rm -r "
-            + getNeoLocation()
-            + "ImagesUpload/multibox"
-        )
+        or os.path.exists("" + getNeoLocation() + "ImagesUpload/multiboxpro")):
+            rc = os.system( "rm -r "+ getNeoLocation()+ "ImagesUpload/multibox")
+            rc = os.system( "rm -r "+ getNeoLocation()+ "ImagesUpload/multiboxse")
+            rc = os.system( "rm -r "+ getNeoLocation()+ "ImagesUpload/multiboxpro")
+         
     elif os.path.exists("" + getNeoLocation() + "ImagesUpload/octagon/sf8008"):
         rc = os.system(
             "mv "
@@ -1747,20 +1687,6 @@ def RemoveUnpackDirs():
             "rm -rf " +
             getNeoLocation() +
             "ImagesUpload/kernel.bin")
-    if os.path.exists("" +getNeoLocation() +"ImagesUpload/force_multibox_READ.ME"):
-        rc = os.system("rm -r " + getNeoLocation() + "ImagesUpload/force_multibox_READ.ME")
-    if os.path.exists("" + getNeoLocation() + "ImagesUpload/force_multiboxpro_READ.ME"):
-        rc = os.system("rm -r " + getNeoLocation() + "ImagesUpload/force_multiboxpro_READ.ME")        
-    if os.path.exists("" + getNeoLocation() + "ImagesUpload/unforce_multiboxpro.txt"):
-        rc = os.system("rm -r " + getNeoLocation() + "ImagesUpload/unforce_multiboxpro.txt") 
-    if os.path.exists("" + getNeoLocation() + "ImagesUpload/force"):
-        rc = os.system("rm -r " + getNeoLocation() + "ImagesUpload/force")
-    if os.path.exists("" + getNeoLocation() + "ImagesUpload/rootfs.bin"):
-        rc = os.system("rm -r " + getNeoLocation() + "ImagesUpload/rootfs.bin")
-    if os.path.exists("" + getNeoLocation() + "ImagesUpload/splash.bin"):
-        rc = os.system("rm -r " + getNeoLocation() + "ImagesUpload/splash.bin")
-    if os.path.exists("" + getNeoLocation() + "ImagesUpload/gigablue"):
-        rc = os.system("rm -r " + getNeoLocation() + "ImagesUpload/gigablue")
     if os.path.exists(
         "" +
         getNeoLocation() +
@@ -1788,6 +1714,21 @@ def RemoveUnpackDirs():
         rc = os.system("rm -fr /tmp/xz-gz-tar")
     if os.path.exists("/tmp/other_image"):
         rc = os.system("rm -fr /tmp/other_image")
+        
+    if os.path.exists("" +getNeoLocation() +"ImagesUpload/force_multibox_READ.ME"):
+        rc = os.system("rm -r " + getNeoLocation() + "ImagesUpload/force_multibox_READ.ME")
+    if os.path.exists("" + getNeoLocation() + "ImagesUpload/force_multiboxpro_READ.ME"):
+        rc = os.system("rm -r " + getNeoLocation() + "ImagesUpload/force_multiboxpro_READ.ME")        
+    if os.path.exists("" + getNeoLocation() + "ImagesUpload/unforce_multiboxpro.txt"):
+        rc = os.system("rm -r " + getNeoLocation() + "ImagesUpload/unforce_multiboxpro.txt")        
+    if os.path.exists("" + getNeoLocation() + "ImagesUpload/force"):
+        rc = os.system("rm -r " + getNeoLocation() + "ImagesUpload/force")
+    if os.path.exists("" + getNeoLocation() + "ImagesUpload/rootfs.bin"):
+        rc = os.system("rm -r " + getNeoLocation() + "ImagesUpload/rootfs.bin")
+    if os.path.exists("" + getNeoLocation() + "ImagesUpload/splash.bin"):
+        rc = os.system("rm -r " + getNeoLocation() + "ImagesUpload/splash.bin")
+    if os.path.exists("" + getNeoLocation() + "ImagesUpload/gigablue"):
+        rc = os.system("rm -r " + getNeoLocation() + "ImagesUpload/gigablue")
 
 
 def NEOBootMainEx(
@@ -2732,24 +2673,7 @@ def NEOBootMainEx(
                 + "ImageBoot/%s/etc/init.d/" % target
             )
             rc = os.system(cmd5)
-            if not os.path.exists(
-                "%s/ImageBoot/%s/lib/modules/" +
-                        getKernelVersion() +
-                        "/kernel/drivers/net/tun.ko"
-                % (media, target)
-            ):
-                if not os.path.exists("%s/ImageBoot/%s/lib/modules/" +getKernelVersion()+"/kernel/drivers/net" %(media, target)):
-                    cmd = "mkdir -p %s/ImageBoot/%s/lib/modules/"+getKernelVersion()+"/kernel/drivers/net/" % (media, target,)
-                    rc = os.system(cmd)
-                    cmd = (
-                        "cp -af /lib/modules/" +
-                        getKernelVersion() +
-                        "/kernel/drivers/net/tun.ko %s/ImageBoot/%s/lib/modules/" +
-                        getKernelVersion() +
-                        "/kernel/drivers/net/" %
-                        (media,
-                         target))
-                    rc = os.system(cmd)
+
             if not os.path.exists(
                 "%s/ImageBoot/%s/var/run/tailscale" % (media, target)
             ):
@@ -2766,12 +2690,11 @@ def NEOBootMainEx(
                     + "ImageBoot/%s/run/tailscale/" % target
                 )
                 rc = os.system(cmd)
-                cmd1 = (
-                    "cp -aRf /run/resolvconf/interfaces/tailscale "
-                    + getNeoLocation()
-                    + "ImageBoot/%s/run/tailscale/" % target
-                )
-                rc = os.system(cmd1)
+                 
+        if os.path.exists('/lib/modules/' + getKernelVersion() + '/kernel/drivers/net/tun.ko'):
+                cmd = 'cp -af /lib/modules/' + getKernelVersion() + '/kernel/drivers/net/tun.ko %s/ImageBoot/%s/lib/modules' + getKernelVersion() + 'kernel/drivers/net/' % (media, target)
+                rc = os.system(cmd)
+
 
         if os.path.exists("%s/ImageBoot/%s/etc/init.d" % (media, target)):
             cmd = (
