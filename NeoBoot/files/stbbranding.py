@@ -570,21 +570,15 @@ def getBoxVuModel():
 
 def getVuModel():
     try:
-        if fileExists("/proc/stb/info/vumodel") and not fileExists(
-            "/proc/stb/info/boxtype"
-        ):
+        if fileExists("/proc/stb/info/vumodel") and not fileExists("/proc/stb/info/boxtype"):
             brand = "Vu+"
-            with open(
-                "/proc/stb/info/vumodel", "r", encoding="utf-8", errors="ignore"
-            ) as f:
-                procmodel = f.readline().strip()
-            model = (
-                procmodel.title()
-                .replace("olose", "olo SE")
-                .replace("olo2se", "olo2 SE")
-                .replace("2", "²")
-            )
-            return model
+            f = open("/proc/stb/info/vumodel", 'r')
+            procmodel = f.readline().strip()
+            f.close()
+            model = procmodel.title().replace("olose", "olo SE").replace(
+                "olo2se", "olo2 SE").replace("2", "Â˛")
+        return model
+        
     except Exception:
         pass
     return "unknown"
