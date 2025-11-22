@@ -159,7 +159,7 @@ def getKernelVersion():
                     return f.read().strip().upper()
             except IOError:
                 return "UNKNOWN"
-
+                
 
 def getNeoLocation():
     locatino = "UNKNOWN"
@@ -924,13 +924,6 @@ def NEOBootMainEx(
                 getNeoLocation() + 'ImageBoot/%s/etc/init.d/' % target
             rc = os.system(cmd5)
             
-            if not os.path.exists('%s/ImageBoot/%s/lib/modules/' + getKernelVersion() + '/kernel/drivers/net/tun.ko' % (media, target)):
-                    if not os.path.exists('%s/ImageBoot/%s/lib/modules/' + getKernelVersion() + '/kernel/drivers/net' % (media, target)):
-                            cmd = 'mkdir -p %s/ImageBoot/%s/lib/modules/' + getKernelVersion() + '/kernel/drivers/net/' % (media, target) 
-                            rc = os.system(cmd)                    
-                            cmd = 'cp -af /lib/modules/' + getKernelVersion() + '/kernel/drivers/net/tun.ko %s/ImageBoot/%s/lib/modules' + getKernelVersion() + 'kernel/drivers/net/' % (media, target) 
-                            rc = os.system(cmd) 
-
             if not os.path.exists('%s/ImageBoot/%s/var/run/tailscale' % (media, target)):
                 cmd = 'mkdir -p ' + getNeoLocation() + '/ImageBoot/%s/run/tailscale/' % target
                 rc = os.system(cmd)
@@ -938,7 +931,7 @@ def NEOBootMainEx(
                 cmd = 'cp -aRf /run/tailscale/tailscaled.sock ' + \
                     getNeoLocation() + 'ImageBoot/%s/run/tailscale/' % target
                 rc = os.system(cmd)
-                
+                          
         if os.path.exists("%s/ImageBoot/%s/etc/init.d" % (media, target)):
             cmd = (
                 "ln -s %sImageBoot/%s/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/userscript.sh %sImageBoot/%s/etc/rcS.d/S99neo.local" %
@@ -2691,19 +2684,15 @@ def NEOBootMainEx(
                 )
                 rc = os.system(cmd)
                  
-        if os.path.exists('/lib/modules/' + getKernelVersion() + '/kernel/drivers/net/tun.ko'):
-                cmd = 'cp -af /lib/modules/' + getKernelVersion() + '/kernel/drivers/net/tun.ko %s/ImageBoot/%s/lib/modules' + getKernelVersion() + 'kernel/drivers/net/' % (media, target)
-                rc = os.system(cmd)
-
-
         if os.path.exists("%s/ImageBoot/%s/etc/init.d" % (media, target)):
             cmd = (
                 "ln -s %sImageBoot/%s/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/userscript.sh %sImageBoot/%s/etc/rcS.d/S99neo.local" %
                 (media, target, media, target))
+            os.system('echo "Copied file neo_userscript.sh"')
 
         elif not os.path.exists("%s/ImageBoot/%s/etc/init.d" % (media, target)):
             os.system('echo "/etc/init.d not found."')
-        os.system('echo "Copied file neo_userscript.sh"')
+        
 
     if not os.path.exists(
         "" + getNeoLocation() + "ImageBoot/.without_copying"
