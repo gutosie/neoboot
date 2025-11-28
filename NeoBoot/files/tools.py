@@ -2950,11 +2950,13 @@ class Opis(Screen):
         <widget source="session.VideoPicture" render="Pig" position=" 1253,134" size="556,313" zPosition="3" backgroundColor="#ff000000"/>
         <eLabel text="INFORMATION NeoBoot" position="340,50"  size="500,55" font="baslk;40" halign="left" foregroundColor="#58bcff" backgroundColor="black" transparent="1"/>
         <widget name="key_red" position="30,950" size="430,50" zPosition="1" font="baslk; 30" halign="center" backgroundColor="red" transparent="1" foregroundColor="#ffffff" />
+        <widget name="key_blue" position="1212,947" size="550,50" zPosition="1" font="baslk; 30" halign="center" backgroundColor="red" transparent="1" foregroundColor="#ffffff" />
         <widget name="key_green" position="660,950" size="538,50" zPosition="1" font="baslk; 30" halign="center" backgroundColor="green" transparent="1" foregroundColor="#ffffff" />
         <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/scroll.png" position="1144,160" size="26,685" zPosition="5" alphatest="blend"/>
-        <ePixmap position="1350,750" zPosition="1" size="400,241" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/matrixhd.png" />
+        <ePixmap position="1356,704" zPosition="1" size="400,241" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/matrixhd.png" />
         <ePixmap position="1475,530" zPosition="1" size="330,85" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/ico_neo.png" />
         <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red25.png" position="100,1000" size="230,36" alphatest="blend" />
+        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/blue25.png" position="1401,1001" size="250,36" alphatest="blend" />
         <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/green25.png" position="785,1000" size="230,36" alphatest="blend" />
         <widget name="lab1" position="100,160" size="1070,680" font="baslk; 30"  backgroundColor="black" transparent="1" />
         <widget name="lab2" position="1280,595" zPosition="1" size="560,60" font="Regular; 35" halign="center" valign="center" backgroundColor="black" transparent="1" foregroundColor="green" />
@@ -2963,8 +2965,10 @@ class Opis(Screen):
         skin = """<screen position="center,center" size="1280,720" title="NeoBoot - INFORMATION">
         <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/1frame_base-fs8.png"  position="0,0" zPosition="-1" size="1280,720" />
         <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red25.png" position="50,680" size="230,36" alphatest="blend"  />
+        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/blue25.png" position="889,676" size="250,36" alphatest="blend"  />
         <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/green25.png" position="480,680" size="230,36" alphatest="blend" />
         <widget name="key_red" position="35,630" zPosition="1" size="270,40" font="Regular;20" halign="center" valign="center" backgroundColor="red" transparent="1" />
+        <widget name="key_blue" position="879,630" zPosition="1" size="270,40" font="Regular;20" halign="center" valign="center" backgroundColor="red" transparent="1" />
         <widget name="key_green" position="380,630" zPosition="1" size="401,40" font="Regular;20" halign="center" valign="center" backgroundColor="green" transparent="1" />
         <widget name="lab1" position="50,100" size="730,450" font="Regular;20" backgroundColor="black"  />
         <widget source="session.VideoPicture" render="Pig" position=" 836,89" size="370,208" zPosition="3" backgroundColor="#ff000000" />
@@ -2980,6 +2984,7 @@ class Opis(Screen):
         Screen.__init__(self, session)
         self["key_red"] = Label(_("Remove NeoBoot of STB"))
         self["key_green"] = Label(_("Install NeoBOOT from github"))
+        self["key_blue"] = Label(_("Install NeoBOOT Stable"))
         self["lab1"] = ScrollLabel("")
         self["lab2"] = Label(_("" + getNeoActivatedtest() + ""))
         self["actions"] = ActionMap(
@@ -2988,6 +2993,7 @@ class Opis(Screen):
                 "back": self.close,
                 "red": self.delete,
                 "green": self.neoinstallgithub,
+                "blue": self.installneostable,
                 "ok": self.close,
                 "up": self["lab1"].pageUp,
                 "left": self["lab1"].pageUp,
@@ -3088,6 +3094,65 @@ class Opis(Screen):
                     pass
             else:
                 self.close()
+
+##############################################
+
+    def installneostable(self):
+        message = _("Are you sure you want to reinstall neoboot from github.")
+        ybox = self.session.openWithCallback(
+            self.neostable, MessageBox, message, MessageBox.TYPE_YESNO
+        )
+        ybox.setTitle(_("Install."))
+
+    def neostable(self, answer):
+        if fileExists("/.multinfo"):
+            self.myClose(
+                _("Sorry, Neoboot can be installed or upgraded only when booted from Flash"))
+            self.close()
+        else:
+            if answer is True:
+                if fileExists("/usr/bin/fullwget"):
+                    os.system(
+                        "cd /tmp; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/NeoBoot_Stable.tar.gz"
+                    )
+                if not fileExists("/tmp/NeoBoot_Stable.tar.gz"):
+                    if fileExists("/usr/bin/curl"):
+                        os.system(
+                            "sync; cd /tmp; curl -O --ftp-ssl -k https://raw.githubusercontent.com/gutosie/neoboot/master/NeoBoot_Stable.tar.gz"
+                        )
+                if not fileExists("/tmp/NeoBoot_Stable.tar.gz"):
+                    if fileExists("/usr/bin/wget"):
+                        os.system(
+                            "cd /tmp;rm ./*.zip; wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/NeoBoot_Stable.tar.gz"
+                        )
+                if not fileExists("/tmp/NeoBoot_Stable.tar.gz"):
+                    self.session.open(
+                        MessageBox,
+                        _("Unfortunately, at the moment not found an update, try again later."),
+                        MessageBox.TYPE_INFO,
+                        10,
+                    )
+                if fileExists("/tmp/NeoBoot_Stable.tar.gz"):
+                    cmd2 = "tar -czf /tmp/NEOBootLastcOPY.tar.gz /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot; sleep 2; rm -r /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot;sleep 2; /bin/tar -xzvf /tmp/NeoBoot_Stable.tar.gz -C /"
+                    system(cmd2)
+                    self.session.open(
+                        MessageBox,
+                        _("The plug-in has been successfully installed."),
+                        MessageBox.TYPE_INFO,
+                        5,
+                    )
+                    self.close()                
+                else:
+                    self.session.open(
+                        MessageBox,
+                        _("The plug-in not installed."),
+                        MessageBox.TYPE_INFO,
+                        5,
+                    )
+                    self.close()
+
+
+###################################################################
 
     def delete(self):
         message = _(
