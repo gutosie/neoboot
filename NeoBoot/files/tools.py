@@ -3133,7 +3133,7 @@ class Opis(Screen):
                         10,
                     )
                 if fileExists("/tmp/NeoBoot_Stable.tar.gz"):
-                    cmd2 = "tar -czf /tmp/NEOBootLastcOPY.tar.gz /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot; sleep 2; rm -r /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot;sleep 2; /bin/tar -xzvf /tmp/NeoBoot_Stable.tar.gz -C /"
+                    cmd2 = "tar -czf /tmp/NEOBootLastcOPY.tar.gz /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot; sleep 2; rm -r /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot;sleep 2; /bin/tar -xzvf /tmp/NeoBoot_Stable.tar.gz -C /; sleep 10; killall -9 enigma2"
                     system(cmd2)
                     self.session.open(
                         MessageBox,
@@ -3150,9 +3150,6 @@ class Opis(Screen):
                         5,
                     )
                     self.close()
-
-
-###################################################################
 
     def delete(self):
         message = _(
