@@ -1722,7 +1722,9 @@ def RemoveUnpackDirs():
         rc = os.system("rm -r " + getNeoLocation() + "ImagesUpload/splash.bin")
     if os.path.exists("" + getNeoLocation() + "ImagesUpload/gigablue"):
         rc = os.system("rm -r " + getNeoLocation() + "ImagesUpload/gigablue")
-
+        
+    rc = os("rm -r " + getNeoLocation() + "ImagesUpload/*.ME'; rm -r " + getNeoLocation() + "ImagesUpload/*.txt")
+    
 
 def NEOBootMainEx(
     source,
