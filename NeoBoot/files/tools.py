@@ -3095,8 +3095,6 @@ class Opis(Screen):
             else:
                 self.close()
 
-##############################################
-
     def installneostable(self):
         message = _("Are you sure you want to reinstall neoboot from github.")
         ybox = self.session.openWithCallback(
@@ -3133,7 +3131,7 @@ class Opis(Screen):
                         10,
                     )
                 if fileExists("/tmp/NeoBoot_Stable.tar.gz"):
-                    cmd2 = "tar -czf /tmp/NEOBootLastcOPY.tar.gz /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot; sleep 2; rm -r /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot;sleep 2; /bin/tar -xzvf /tmp/NeoBoot_Stable.tar.gz -C /; sleep 10; killall -9 enigma2"
+                    cmd2 = "tar -czf /tmp/NEOBootLastcOPY.tar.gz /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot; sleep 2; rm -r /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot;sleep 2; /bin/tar -xzvf /tmp/NeoBoot_Stable.tar.gz -C /"
                     system(cmd2)
                     self.session.open(
                         MessageBox,
