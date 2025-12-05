@@ -81,6 +81,11 @@ if [ ! -e /.multinfo ]; then
         chmod -R +x ./ubi_reader_arm/*
         chmod -R +x ./ubi_reader_mips/*    
     fi
+    
+    if [ -f /etc/fstab.org ] ; then
+            rm -r /etc/fstab; mv /etc/fstab.org /etc/fstab
+    fi
+    
     if [ $PL ] ; then
       echo ""
       echo "#####################################################"
