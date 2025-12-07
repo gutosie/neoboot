@@ -1,84 +1,36 @@
+# -*- coding: utf-8 -*-
+
+#from __init__ import _
 from Plugins.Extensions.NeoBoot.__init__ import _
-from Plugins.Extensions.NeoBoot.files.stbbranding import (
-    getSupportedTuners,
-    getCPUtype,
-    getCPUSoC,
-    getImageNeoBoot,
-    getBoxHostName,
-    getNeoLocation,
-    getMountPointNeo2,
-)
+from Plugins.Extensions.NeoBoot.files.stbbranding import getSupportedTuners, getCPUtype, getCPUSoC, getImageNeoBoot, getBoxHostName, getTunerModel, getNeoLocation, getNeoMount, getNeoMount2, getNeoMount3, getNeoMount4, getNeoMount5, getMountPointNeo2
 from enigma import getDesktop
+from enigma import eTimer
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
+from Screens.ChoiceBox import ChoiceBox
+from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Screens.Standby import TryQuitMainloop
+from Components.About import about
+from Screens.Console import Console
 from Components.Sources.List import List
-from Components.ActionMap import ActionMap
+from Components.Button import Button
+from Components.ActionMap import ActionMap, NumberActionMap
 from Components.GUIComponent import *
+from Components.MenuList import MenuList
+from Components.Input import Input
 from Components.Label import Label
-from Components.Pixmap import Pixmap
+from Components.ProgressBar import ProgressBar
+from Components.ScrollLabel import ScrollLabel
+from Components.Pixmap import Pixmap, MultiPixmap
 from Components.config import *
+from Components.ConfigList import ConfigListScreen
 from Tools.LoadPixmap import LoadPixmap
-from Tools.Directories import fileExists
+from Tools.Directories import fileExists, pathExists, createDir, resolveFilename, SCOPE_PLUGINS
+from os import system, listdir, mkdir, chdir, getcwd, rename as os_rename, remove as os_remove, popen
+from os.path import dirname, isdir, isdir as os_isdir
 import os
-import subprocess
-
-
-def run_shell_command(cmd):
-    """
-    Modern replacement for os.system(cmd) using subprocess.run.
-    Returns the exit code, mimicking os.system's behavior.
-    """
-    try:
-        result = subprocess.run(cmd, shell=True, check=False)
-        return result.returncode
-    except Exception as e:
-        print(f"[run_shell_command] Failed to run '{cmd}'. Error: {e}")
-        return -1  # Return a non-zero code to indicate failure
-
-
-def _is_device_mounted(
-        device="/dev/mmcblk0p23",
-        mount_point="/media/InternalFlash"):
-    """
-    Checks if the specified device is currently mounted on the given mount point.
-    """
-    try:
-        with open("/proc/mounts", "r") as f:
-            for line in f:
-                parts = line.split()
-                if len(
-                        parts) >= 2 and parts[0] == device and parts[1] == mount_point:
-                    return True
-        return False
-    except FileNotFoundError:
-        return False
-
-
-def _append_fstab_entry(device, mount_point, fstab_file="/etc/fstab"):
-    """
-    Appends the required fstab line if it's not already present.
-    """
-    FSTAB_LINE = f"{device}\t\t{mount_point}\t\tauto\t\tdefaults\t\t\t\t\t\t0\t0\n"
-    try:
-        with open(fstab_file, "r") as f:
-            if any(line.strip().startswith(device) for line in f):
-                print(
-                    f"Fstab entry for {device} already exists or device is in use.")
-                return False
-    except OSError as e:
-        print(f"Error reading {fstab_file}: {e}")
-        return False
-    try:
-        with open(fstab_file, "a") as f:
-            f.write(FSTAB_LINE)
-        return True
-    except OSError as e:
-        print(f"Error writing to {fstab_file}. Check permissions. Error: {e}")
-        return False
-
-
-LinkNeoBoot = "/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot"
+import time
+LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
 
 
 class StartImage(Screen):
@@ -115,217 +67,124 @@ class StartImage(Screen):
     def __init__(self, session):
         Screen.__init__(self, session)
         self.list = []
-        self["list"] = List(self.list)
+        self['list'] = List(self.list)
         self.select()
-        self["actions"] = ActionMap(["WizardActions", "ColorActions"], {
-            "ok": self.KeyOk, "back": self.close})
-        self["label1"] = Label(_("Start the chosen system now ?"))
-        self["label2"] = Label(_("Select OK to run the image."))
+        self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.KeyOk,
+         'back': self.close})
+        self['label1'] = Label(_('Start the chosen system now ?'))
+        self['label2'] = Label(_('Select OK to run the image.'))
 
     def select(self):
         self.list = []
-        mypath = "/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot"
-        if not fileExists(mypath + "icons"):
-            mypixmap = (
-                "/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/ok.png"
-            )
+        mypath = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
+        if not fileExists(mypath + 'icons'):
+            mypixmap = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/ok.png'
         png = LoadPixmap(mypixmap)
-        res = (_("OK Start image..."), png, 0)
+        res = (_('OK Start image...'), png, 0)
         self.list.append(res)
-        self["list"].list = self.list
+        self['list'].list = self.list
 
     def KeyOk(self):
-        image = getImageNeoBoot()
-        neo_location = getNeoLocation()
-        cmd = f"rm -rf {neo_location}ImageBoot/{image}/usr/bin/enigma2_pre_start.sh"
-        run_shell_command(cmd)
+        if getImageNeoBoot() != 'Flash':
+                os.system('rm -rf %sImageBoot/%s/usr/bin/enigma2_pre_start.sh' % (getNeoLocation(), getImageNeoBoot()))
+                self.StartImageInNeoBoot()
+        else:
+            os.system('rm -rf %sImageBoot/%s/usr/bin/enigma2_pre_start.sh' % (getNeoLocation(), getImageNeoBoot()))
+            self.StartImageInNeoBoot()
 
-        self.StartImageInNeoBoot()
+        #---------------------------------------------
         getMountPointNeo2()
-        run_shell_command("touch /tmp/.init_reboot")
-
-    def novalerReboot(self, result):
-        """Callback to reboot after the fstab edit message."""
-        self.session.open(TryQuitMainloop, 2)
+        system('touch /tmp/.init_reboot')
+        #---------------------------------------------
 
     def StartImageInNeoBoot(self):
-        DEVICE = "/dev/mmcblk0p23"
-        MOUNT_POINT = "/media/InternalFlash"
-
-        if getBoxHostName() == "novaler4kpro":
-            if not _is_device_mounted(DEVICE, MOUNT_POINT):
-                print(
-                    f"Novaler4kpro: {DEVICE} not mounted on {MOUNT_POINT}. Checking fstab...")
-                if not os.path.isdir(MOUNT_POINT):
-                    try:
-                        os.mkdir(MOUNT_POINT)
-                        print(f"Created mount point {MOUNT_POINT}")
-                    except OSError as e:
-                        print(f"Error creating mount point: {e}")
-
-                if _append_fstab_entry(DEVICE, MOUNT_POINT):
-                    print("fstab file edited. rebooting your novaler4kpro")
-                    self.session.open(
-                        MessageBox,
-                        _("fstab file edited. rebooting your novaler4kpro"),
-                        MessageBox.TYPE_INFO,
-                        5,  # <--- TIMEOUT PASSED POSITIONALLY
-                        self.novalerReboot,
-                    )
-                    return  # Exit the function after scheduling the reboot
-                else:
-                    print(
-                        "Novaler4kpro: fstab entry already present or write failed. Proceeding."
-                    )
-
-        if getImageNeoBoot() != "Flash":
-            if fileExists(
-                "%sImageBoot/%s/.control_ok" %
-                    (getNeoLocation(), getImageNeoBoot())):
-                run_shell_command("touch /tmp/.control_ok ")
+        if getImageNeoBoot() != 'Flash':
+            if fileExists('%sImageBoot/%s/.control_ok' % (getNeoLocation(), getImageNeoBoot())):
+                system('touch /tmp/.control_ok ')
             else:
-                run_shell_command(
-                    "touch %sImageBoot/%s/.control_boot_new_image "
-                    % (getNeoLocation(), getImageNeoBoot())
-                )
+                system('touch %sImageBoot/%s/.control_boot_new_image ' % (getNeoLocation(), getImageNeoBoot()))
+        if fileExists('/.multinfo') and getCPUtype() == 'ARMv7':
+                os.system(' ' + LinkNeoBoot + '/files/findsk.sh; mkdir -p /media/InternalFlash; mount /tmp/root /media/InternalFlash; sleep 1')
 
-        if fileExists("/.multinfo") and getCPUtype() == "ARMv7":
-            run_shell_command(
-                f"{LinkNeoBoot}/files/findsk.sh; mkdir -p /media/InternalFlash; mount /tmp/root /media/InternalFlash; sleep 1")
-
-        self.sel = self["list"].getCurrent()
+        self.sel = self['list'].getCurrent()
         if self.sel:
             self.sel = self.sel[2]
         if self.sel == 0:
-            if not fileExists("/bin/busybox.nosuid"):
-                run_shell_command('ln -sf "busybox" "/bin/busybox.nosuid" ')
-            if fileExists("/media/InternalFlash/etc/init.d/neomountboot.sh"):
-                run_shell_command(
-                    "rm -f /media/InternalFlash/etc/init.d/neomountboot.sh;"
-                )
-            if fileExists(
-                "/media/InternalFlash/linuxrootfs1/etc/init.d/neomountboot.sh"
-            ):
-                run_shell_command(
-                    "rm -f /media/InternalFlash/linuxrootfs1/etc/init.d/neomountboot.sh;"
-                )
-            if fileExists(
-                "/media/InternalFlash/linuxrootfs2/etc/init.d/neomountboot.sh"
-            ):
-                run_shell_command(
-                    "rm -f /media/InternalFlash/linuxrootfs2/etc/init.d/neomountboot.sh;"
-                )
-            if fileExists(
-                "/media/InternalFlash/linuxrootfs3/etc/init.d/neomountboot.sh"
-            ):
-                run_shell_command(
-                    "rm -f /media/InternalFlash/linuxrootfs3/etc/init.d/neomountboot.sh;"
-                )
-            if fileExists(
-                "/media/InternalFlash/linuxrootfs4/etc/init.d/neomountboot.sh"
-            ):
-                run_shell_command(
-                    "rm -f /media/InternalFlash/linuxrootfs4/etc/init.d/neomountboot.sh;"
-                )
-
-            if getSupportedTuners():
-                if getImageNeoBoot() == "Flash":
-                    if fileExists("/.multinfo"):
-                        if fileExists(
-                            "/media/InternalFlash/linuxrootfs1/sbin/neoinitarm"
-                        ):
-                            run_shell_command(
-                                'ln -sf "init.sysvinit" "/media/InternalFlash/linuxrootfs1/sbin/init"'
-                            )
-                        if fileExists(
-                            "/media/InternalFlash/linuxrootfs2/sbin/neoinitarm"
-                        ):
-                            run_shell_command(
-                                'ln -sf "init.sysvinit" "/media/InternalFlash/linuxrootfs2/sbin/init"'
-                            )
-                        if fileExists(
-                            "/media/InternalFlash/linuxrootfs3/sbin/neoinitarm"
-                        ):
-                            run_shell_command(
-                                'ln -sf "init.sysvinit" "/media/InternalFlash/linuxrootfs3/sbin/init"'
-                            )
-                        if fileExists(
-                            "/media/InternalFlash/linuxrootfs4/sbin/neoinitarm"
-                        ):
-                            run_shell_command(
-                                'ln -sf "init.sysvinit" "/media/InternalFlash/linuxrootfs4/sbin/init"'
-                            )
-                        if fileExists("/media/InternalFlash/sbin/init"):
-                            run_shell_command(
-                                'ln -sfn "init.sysvinit" "/media/InternalFlash/sbin/init"'
-                            )
-
-                        self.session.open(TryQuitMainloop, 2)
-
-                    else:
-                        cmd = "ln -sfn /sbin/init.sysvinit /sbin/init"
-                        run_shell_command(cmd)  # Removed unused 'rc'
-                        self.session.open(TryQuitMainloop, 2)
-
-                elif getImageNeoBoot() != "Flash":
-                    if fileExists("/.multinfo"):
-                        if fileExists(
-                            "/media/InternalFlash/linuxrootfs1/sbin/neoinitarm"
-                        ):
-                            cmd = "cd /media/InternalFlash/linuxrootfs1; ln -sfn /sbin/neoinitarm /media/InternalFlash/linuxrootfs1/sbin/init"
-                            run_shell_command(cmd)  # Removed unused 'rc'
-                            self.session.open(TryQuitMainloop, 2)
-                        elif fileExists(
-                            "/media/InternalFlash/linuxrootfs2/sbin/neoinitarm"
-                        ):
-                            cmd = "cd /media/InternalFlash/linuxrootfs2; ln -sfn /sbin/neoinitarm /media/InternalFlash/linuxrootfs2/sbin/init"
-                            run_shell_command(cmd)  # Removed unused 'rc'
-                            self.session.open(TryQuitMainloop, 2)
-                        elif fileExists(
-                            "/media/InternalFlash/linuxrootfs3/sbin/neoinitarm"
-                        ):
-                            cmd = "cd /media/InternalFlash/linuxrootfs3; ln -sfn /sbin/neoinitarm /media/InternalFlash/linuxrootfs3/sbin/init"
-                            run_shell_command(cmd)  # Removed unused 'rc'
-                            self.session.open(TryQuitMainloop, 2)
-                        elif fileExists(
-                            "/media/InternalFlash/linuxrootfs4/sbin/neoinitarm"
-                        ):
-                            cmd = "cd /media/InternalFlash/linuxrootfs4; ln -sfn /sbin/neoinitarm /media/InternalFlash/linuxrootfs4/sbin/init"
-                            run_shell_command(cmd)  # Removed unused 'rc'
-                            self.session.open(TryQuitMainloop, 2)
+            if not fileExists('/bin/busybox.nosuid'):
+                os.system('ln -sf "busybox" "/bin/busybox.nosuid" ')
+            if fileExists('/media/InternalFlash/etc/init.d/neomountboot.sh'):
+                os.system('rm -f /media/InternalFlash/etc/init.d/neomountboot.sh;')
+            if fileExists('/media/InternalFlash/linuxrootfs1/etc/init.d/neomountboot.sh'):
+                os.system('rm -f /media/InternalFlash/linuxrootfs1/etc/init.d/neomountboot.sh;')
+            if fileExists('/media/InternalFlash/linuxrootfs2/etc/init.d/neomountboot.sh'):
+                os.system('rm -f /media/InternalFlash/linuxrootfs2/etc/init.d/neomountboot.sh;')
+            if fileExists('/media/InternalFlash/linuxrootfs3/etc/init.d/neomountboot.sh'):
+                os.system('rm -f /media/InternalFlash/linuxrootfs3/etc/init.d/neomountboot.sh;')
+            if fileExists('/media/InternalFlash/linuxrootfs4/etc/init.d/neomountboot.sh'):
+                os.system('rm -f /media/InternalFlash/linuxrootfs4/etc/init.d/neomountboot.sh;')
+#            else:
+#                pass
+            #_____ARM procesor____
+            if (getSupportedTuners()):
+                        if getImageNeoBoot() == 'Flash':
+                            if fileExists('/.multinfo'):                    
+                                if fileExists('/media/InternalFlash/linuxrootfs1/sbin/neoinitarm'):
+                                        os.system('ln -sf "init.sysvinit" "/media/InternalFlash/linuxrootfs1/sbin/init"')
+                                if fileExists('/media/InternalFlash/linuxrootfs2/sbin/neoinitarm'):
+                                        os.system('ln -sf "init.sysvinit" "/media/InternalFlash/linuxrootfs2/sbin/init"')
+                                if fileExists('/media/InternalFlash/linuxrootfs3/sbin/neoinitarm'):
+                                        os.system('ln -sf "init.sysvinit" "/media/InternalFlash/linuxrootfs3/sbin/init"')
+                                if fileExists('/media/InternalFlash/linuxrootfs4/sbin/neoinitarm'):
+                                        os.system('ln -sf "init.sysvinit" "/media/InternalFlash/linuxrootfs4/sbin/init"')
+                                if fileExists('/media/InternalFlash/sbin/init'):
+                                        os.system('ln -sfn "init.sysvinit" "/media/InternalFlash/sbin/init"')
+                                if fileExists('/media/InternalFlash'):
+                                        self.session.open(TryQuitMainloop, 2)
+                                else:
+                                        self.session.open(TryQuitMainloop, 2)
+                            elif not fileExists('/.multinfo'):
+                                cmd = 'ln -sfn /sbin/init.sysvinit /sbin/init'
+                                rc = os.system(cmd)
+                                self.session.open(TryQuitMainloop, 2)
+                            else:
+                                cmd = 'ln -sfn /sbin/init.sysvinit /sbin/init'
+                                rc = os.system(cmd)
+                                self.session.open(TryQuitMainloop, 2)
+                        elif getImageNeoBoot() != 'Flash':
+                            if fileExists('/.multinfo'):
+                                if fileExists('/media/InternalFlash/linuxrootfs1/sbin/neoinitarm'):
+                                        cmd = 'cd /media/InternalFlash/linuxrootfs1; ln -sfn /sbin/neoinitarm /media/InternalFlash/linuxrootfs1/sbin/init'
+                                        rc = os.system(cmd)
+                                        self.session.open(TryQuitMainloop, 2)
+                                elif fileExists('/media/InternalFlash/linuxrootfs2/sbin/neoinitarm'):
+                                        cmd = 'cd /media/InternalFlash/linuxrootfs2; ln -sfn /sbin/neoinitarm /media/InternalFlash/linuxrootfs2/sbin/init'
+                                        rc = os.system(cmd)
+                                        self.session.open(TryQuitMainloop, 2)
+                                elif fileExists('/media/InternalFlash/linuxrootfs3/sbin/neoinitarm'):
+                                        cmd = 'cd /media/InternalFlash/linuxrootfs3; ln -sfn /sbin/neoinitarm /media/InternalFlash/linuxrootfs3/sbin/init'
+                                        rc = os.system(cmd)
+                                        self.session.open(TryQuitMainloop, 2)
+                                elif fileExists('/media/InternalFlash/linuxrootfs4/sbin/neoinitarm'):
+                                        cmd = 'cd /media/InternalFlash/linuxrootfs4; ln -sfn /sbin/neoinitarm /media/InternalFlash/linuxrootfs4/sbin/init'
+                                        rc = os.system(cmd)
+                                        self.session.open(TryQuitMainloop, 2)
+                                else:                            
+                                    self.session.open(TryQuitMainloop, 2) 
+                            elif not fileExists('/.multinfo'):
+                                cmd = 'ln -sfn /sbin/neoinitarm /sbin/init'
+                                rc = os.system(cmd)
+                                self.session.open(TryQuitMainloop, 2)
+                            else:
+                                cmd = 'ln -sfn /sbin/init.sysvinit /sbin/init'
+                                rc = os.system(cmd)
+                                self.session.open(TryQuitMainloop, 2)
                         else:
-                            self.session.open(TryQuitMainloop, 2)
+                            os.system('echo "Flash "  >> ' + getNeoLocation() + 'ImageBoot/.neonextboot')
+                            self.messagebox = self.session.open(MessageBox, _('It looks like it that multiboot does not support this STB.'), MessageBox.TYPE_INFO, 8)
+                            self.close()
 
-                    elif not fileExists("/.multinfo"):
-                        cmd = "ln -sfn /sbin/neoinitarm /sbin/init"
-                        run_shell_command(cmd)  # Removed unused 'rc'
-                        self.session.open(TryQuitMainloop, 2)
-                    else:
-                        cmd = "ln -sfn /sbin/init.sysvinit /sbin/init"
-                        run_shell_command(cmd)  # Removed unused 'rc'
-                        self.session.open(TryQuitMainloop, 2)
-                else:
-                    run_shell_command(
-                        'echo "Flash "  >> '
-                        + getNeoLocation()
-                        + "ImageBoot/.neonextboot"
-                    )
-                    self.messagebox = self.session.open(
-                        MessageBox,
-                        _("It looks like it that multiboot does not support this STB."),
-                        MessageBox.TYPE_INFO,
-                        8,
-                    )
-                    self.close()
             else:
-                run_shell_command(
-                    'echo "Flash "  >> ' +
-                    getNeoLocation() +
-                    "ImageBoot/.neonextboot")
-                self.messagebox = self.session.open(
-                    MessageBox,
-                    _("It looks like it that multiboot does not support this STB."),
-                    MessageBox.TYPE_INFO,
-                    8,
-                )
-                self.close()
+                            os.system('echo "Flash "  >> ' + getNeoLocation() + 'ImageBoot/.neonextboot')
+                            self.messagebox = self.session.open(MessageBox, _('It looks like it that multiboot does not support this STB.'), MessageBox.TYPE_INFO, 8)
+                            self.close()
+                            
