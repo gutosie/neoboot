@@ -1,1297 +1,1223 @@
+# -*- coding: utf-8 -*-
+
+#from Plugins.Extensions.NeoBoot.__init__ import _
 import sys
 import os
 import time
-import subprocess
-from glob import glob
+from Tools.Directories import fileExists, SCOPE_PLUGINS
+LinkNeoBoot = '/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot'
 
-try:
-    from Tools.Directories import fileExists, SCOPE_PLUGINS
-except Exception:
-
-    def fileExists(path, mode="r"):
-        return os.path.exists(path)
-
-
-LinkNeoBoot = "/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot"
-
-LogFile = "/tmp/NeoBoot.log"
 LogFileObj = None
 
-try:
-    _  # noqa: F401
-except NameError:
-
-    def _(s):
-        return s
-
-
-def Log(param=""):
-    """
-    Basic file-backed logger handler. Modes: 'open', 'write', 'append', 'close', 'flush'.
-    Returns the file object or None.
-    """
+def Log(param=''):
     global LogFileObj
-    p = str(param).lower()
-    if p in ("open", "write", "append", "close"):
+    #first close object if exists
+    if param.lower() in ['open', 'write', 'append', 'close']:
         if LogFileObj is not None:
-            try:
-                LogFileObj.close()
-            except Exception:
-                pass
-            try:
-                if LogFileObj.closed:
-                    LogFileObj = None
-                    try:
-                        with open(LogFile, "a", encoding="utf-8", errors="ignore") as f:
-                            f.write("LogFile closed properly\n")
-                    except Exception:
-                        print("ERROR closing LogFile!!!")
-                else:
-                    print("ERROR closing LogFile!!!")
-            except Exception:
+            LogFileObj.close()
+            if LogFileObj.closed:
                 LogFileObj = None
-
+                try:
+                    with open('/tmp/NeoBoot.log', 'a') as f:
+                        f.write('LogFile closed properly\n')
+                        f.close()
+                except Exception:
+                    print("ERROR closing LogFile!!!")
+            else:
+                print("ERROR closing LogFile!!!")
+    #second create object if does not exist
     if LogFileObj is None:
-        if p in ("open", "write"):
-            LogFileObj = open(LogFile, "w", encoding="utf-8", errors="ignore")
-        elif p == "append":
-            LogFileObj = open(LogFile, "a", encoding="utf-8", errors="ignore")
-        elif p == "close":
+        if param.lower() in ['open', 'write']:
+            LogFileObj = open(LogFile, "w")
+        elif param.lower() in ['append']:
+            LogFileObj = open(LogFile, "a")
+        elif param.lower() in ['close']:
             pass
-    elif p == "flush":
-        try:
-            LogFileObj.flush()
-        except Exception:
-            pass
-
+    elif param.lower() in ['flush']:
+        LogFileObj.flush()
     return LogFileObj
 
 
 def clearMemory():
-    try:
-        with open(
-            "/proc/sys/vm/drop_caches", "w", encoding="utf-8", errors="ignore"
-        ) as f:
-            f.write("1\n")
-    except Exception:
-        pass
+    with open("/proc/sys/vm/drop_caches", "w") as f:
+        f.write("1\n")
+        f.close()
 
 
 def LogCrashGS(line):
-    try:
-        location = getNeoLocation()
-        target = os.path.join(location, "ImageBoot", "neoboot.log")
-        if os.path.isfile(target):
-            try:
-                os.remove(target)
-            except Exception:
-                pass
-        with open(target, "a", encoding="utf-8", errors="ignore") as log_file:
-            log_file.write(str(line))
-    except Exception:
-        pass
-
-
-def fileCheck(f, mode="r"):
+        if os.path.isfile('' + getNeoLocation() + 'ImageBoot/neoboot.log'):
+                os.system(' rm -f ' + getNeoLocation() + 'ImageBoot/neoboot.log;')
+        log_file = open('%sImageBoot/neoboot.log' % getNeoLocation(), 'a')
+        log_file.write(line)
+        log_file.close()
+	
+	
+def fileCheck(f, mode='r'):
     return fileExists(f, mode) and f
+
+#		if not IsImageName():
+#			from Components.PluginComponent import plugins
+#			plugins.reloadPlugins()
 
 
 def IsImageName():
-    try:
-        if fileExists("/etc/issue"):
-            with open("/etc/issue", "r", encoding="utf-8", errors="ignore") as fh:
-                for line in fh:
-                    if "BlackHole" in line or "vuplus" in line:
-                        return True
-    except Exception:
-        pass
-    return False
+	if fileExists("/etc/issue"):
+		for line in open("/etc/issue"):
+			if "BlackHole" in line or "vuplus" in line:
+				return True
+	return False
 
 
 def mountp():
-    pathmp = []
-    try:
-        if os.path.isfile("/proc/mounts"):
-            with open("/proc/mounts", "r", encoding="utf-8", errors="ignore") as fh:
-                for line in fh:
-                    if (
-                        "/dev/sd" in line
-                        or "/dev/disk/by-uuid/" in line
-                        or "/dev/mmc" in line
-                        or "/dev/mtdblock" in line
-                    ):
-                        pathmp.append(
-                            line.split()[1].replace(
-                                "\\040", " ") + "/")
-    except Exception:
-        pass
-
-    pathmp.append("/usr/share/enigma2/")
-    pathmp.append("/etc/enigma2/")
-    pathmp.append("/tmp/")
-    return pathmp
+	pathmp = []
+	if os.path.isfile('/proc/mounts'):
+		for line in open('/proc/mounts'):
+			if '/dev/sd' in line or '/dev/disk/by-uuid/' in line or '/dev/mmc' in line or '/dev/mtdblock' in line:
+				pathmp.append(line.split()[1].replace('\\040', ' ') + '/')
+	pathmp.append('/usr/share/enigma2/')
+	pathmp.append('/etc/enigma2/')
+	pathmp.append('/tmp/')
+	return pathmp
 
 
 def getSupportedTuners():
-    supportedT = ""
-    cfg = "/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/stbinfo.cfg"
-    try:
-        if os.path.exists(cfg):
-            with open(cfg, "r", encoding="utf-8", errors="ignore") as f:
-                lines = f.read()
-            if getBoxHostName() and ("%s" % getBoxHostName()) in lines:
-                supportedT = "%s" % getBoxHostName()
-    except Exception:
-        pass
+    supportedT = ''
+    if os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/stbinfo.cfg'):
+        with open('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/stbinfo.cfg', 'r') as f:
+            lines = f.read()
+            f.close()
+        if lines.find("%s" % getBoxHostName()) != -1:
+            supportedT = '%s' % getBoxHostName()
     return supportedT
 
 
 def getFreespace(dev):
-    try:
-        statdev = os.statvfs(dev)
-        space = statdev.f_bavail * statdev.f_frsize // 1024
-        print(("[NeoBoot] Free space on %s = %i kilobytes") % (dev, space))
-        return space
-    except Exception:
-        return 0
+    statdev = os.statvfs(dev)
+    space = statdev.f_bavail * statdev.f_frsize / 1024
+    print("[NeoBoot] Free space on %s = %i kilobytes") % (dev, space)
+    return space
+
+#check install
 
 
 def getCheckInstal1():
-    neocheckinstal = "UNKNOWN"
-    path = "/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/install"
-    try:
-        if os.path.exists(path):
-            with open(path, "r", encoding="utf-8", errors="ignore") as f:
-                lines1 = f.read()
-            if "/dev/" not in lines1:
-                neocheckinstal = "1"
-    except Exception:
-        pass
+    neocheckinstal = 'UNKNOWN'
+    if os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/install'):
+        with open('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/install', 'r') as f:
+            lines1 = f.read()
+            f.close()
+        if not lines1.find('/dev/') != -1:
+            neocheckinstal = '1'
     return neocheckinstal
 
 
 def getCheckInstal2():
-    neocheckinstal = "UNKNOWN"
-    path = "/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location"
-    try:
-        if os.path.exists(path):
-            with open(path, "r", encoding="utf-8", errors="ignore") as f:
-                lines2 = f.read()
-            if "/media/" not in lines2:
-                neocheckinstal = "2"
-    except Exception:
-        pass
+    neocheckinstal = 'UNKNOWN'
+    if os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location'):
+        with open('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location', 'r') as f:
+            lines2 = f.read()
+            f.close()
+        if not lines2.find('/media/') != -1:
+            neocheckinstal = '2'
     return neocheckinstal
 
 
 def getCheckInstal3():
-    neocheckinstal = "UNKNOWN"
-    path = "/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/neo.sh"
-    try:
-        if os.path.exists(path):
-            with open(path, "r", encoding="utf-8", errors="ignore") as f:
-                lines3 = f.read()
-            if "/bin/mount" not in lines3:
-                neocheckinstal = "3"
-    except Exception:
-        pass
+    neocheckinstal = 'UNKNOWN'
+    if os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/neo.sh'):
+        with open('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/neo.sh', 'r') as f:
+            lines3 = f.read()
+            f.close()
+        if not lines3.find('/bin/mount') != -1:
+            neocheckinstal = '3'
+
     return neocheckinstal
+
+#check imageATV
 
 
 def getImageATv():
-    atvimage = "UNKNOWN"
-    try:
-        if os.path.exists("/etc/issue.net"):
-            with open("/etc/issue.net", "r", encoding="utf-8", errors="ignore") as f:
-                lines = f.read()
-            if "openatv" in lines:
-                atvimage = "okfeedCAMatv"
-    except Exception:
-        pass
+    atvimage = 'UNKNOWN'
+    if os.path.exists('/etc/issue.net'):
+        with open('/etc/issue.net', 'r') as f:
+            lines = f.read()
+            f.close()
+        if lines.find('openatv') != -1:
+            atvimage = 'okfeedCAMatv'
     return atvimage
+
+#check install
 
 
 def getNeoLocation():
-    locatinoneo = "UNKNOWN"
-    path = "/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location"
-    try:
-        if os.path.exists(path):
-            with open(path, "r", encoding="utf-8", errors="ignore") as f:
-                locatino = f.readline().strip()
-            if os.path.exists("/media/hdd/ImageBoot"):
-                locatinoneo = "/media/hdd/"
-            elif os.path.exists("/media/usb/ImageBoot"):
-                locatinoneo = "/media/usb/"
-            else:
-                locatinoneo = locatino
-    except Exception:
-        pass
+    locatinoneo = 'UNKNOWN'
+    if os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location'):
+        with open('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/.location', 'r') as f:
+            locatino = f.readline().strip()
+            f.close()
+        if os.path.exists('/media/hdd/ImageBoot'):
+            locatinoneo = '/media/hdd/'
+        elif os.path.exists('/media/usb/ImageBoot'):
+            locatinoneo = '/media/usb/'
+        else:
+            locatinoneo = locatino    		
     return locatinoneo
 
 
+#check ext
 def getFormat():
-    neoformat = "UNKNOWN"
-    try:
-        if os.path.exists("/proc/mounts"):
-            with open("/proc/mounts", "r", encoding="utf-8", errors="ignore") as f:
-                lines = f.read()
-            if "ext2" in lines:
-                neoformat = "ext2"
-            elif "ext3" in lines:
-                neoformat = "ext3"
-            elif "ext4" in lines:
-                neoformat = "ext4"
-            elif "nfs" in lines:
-                neoformat = "nfs"
-    except Exception:
-        pass
+    neoformat = 'UNKNOWN'
+    if os.path.exists('/proc/mounts'):
+        with open('/proc/mounts', 'r') as f:
+            lines = f.read()
+            f.close()
+        if lines.find('ext2') != -1:
+            neoformat = 'ext2'
+        elif lines.find('ext3') != -1:
+            neoformat = 'ext3'
+        elif lines.find('ext4') != -1:
+            neoformat = 'ext4'
+        elif lines.find('nfs') != -1:
+            neoformat = 'nfs'
+
     return neoformat
 
 
 def getNEO_filesystems():
-    neo_filesystems = "UNKNOWN"
-    try:
-        if os.path.exists("/tmp/.neo_format"):
-            with open("/tmp/.neo_format", "r", encoding="utf-8", errors="ignore") as f:
-                lines = f.read()
-            if any(x in lines for x in ("ext2", "ext3", "ext4", "nfs")):
-                neo_filesystems = "1"
-    except Exception:
-        pass
+    neo_filesystems = 'UNKNOWN'
+    if os.path.exists('/tmp/.neo_format'):
+        with open('/tmp/.neo_format', 'r') as f:
+            lines = f.read()
+            f.close()
+        if lines.find('ext2') != -1:
+            neo_filesystems = '1'
+        elif lines.find('ext3') != -1:
+            neo_filesystems = '1'
+        elif lines.find('ext4') != -1:
+            neo_filesystems = '1'
+        elif lines.find('nfs') != -1:
+            neo_filesystems = '1'
+
     return neo_filesystems
+
+#typ procesora arm lub mips
 
 
 def getCPUtype():
-    cpu = "UNKNOWN"
-    try:
-        if os.path.exists("/proc/cpuinfo"):
-            with open("/proc/cpuinfo", "r", encoding="utf-8", errors="ignore") as f:
-                lines = f.read()
-            if "ARMv7" in lines:
-                cpu = "ARMv7"
-            elif "mips" in lines:
-                cpu = "MIPS"
-    except Exception:
-        pass
+    cpu = 'UNKNOWN'
+    if os.path.exists('/proc/cpuinfo'):
+        with open('/proc/cpuinfo', 'r') as f:
+            lines = f.read()
+            f.close()
+        if lines.find('ARMv7') != -1:
+            cpu = 'ARMv7'
+        elif lines.find('mips') != -1:
+            cpu = 'MIPS'
     return cpu
+
+#check install
 
 
 def getFSTAB():
-    install = "UNKNOWN"
-    path = "/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/reading_blkid"
-    try:
-        if os.path.exists(path):
-            with open(path, "r", encoding="utf-8", errors="ignore") as f:
-                lines = f.read()
-            if "UUID" in lines:
-                install = "UUID"
-            else:
-                install = "NOUUID"
-    except Exception:
-        pass
+    install = 'UNKNOWN'
+    if os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/reading_blkid'):
+        with open('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/reading_blkid', 'r') as f:
+            lines = f.read()
+            f.close()
+        if lines.find('UUID') != -1:
+            install = 'UUID'
+        elif not lines.find('UUID') != -1:
+            install = 'NOUUID'
     return install
 
 
 def getFSTAB2():
-    install = "UNKNOWN"
-    try:
-        if os.path.exists("/etc/fstab"):
-            with open("/etc/fstab", "r", encoding="utf-8", errors="ignore") as f:
-                lines = f.read()
-            if "UUID" in lines:
-                install = "OKinstall"
-            else:
-                install = "NOUUID"
-    except Exception:
-        pass
+    install = 'UNKNOWN'
+    if os.path.exists('/etc/fstab'):
+        with open('/etc/fstab', 'r') as f:
+            lines = f.read()
+            f.close()
+        if lines.find('UUID') != -1:
+            install = 'OKinstall'
+        elif not lines.find('UUID') != -1:
+            install = 'NOUUID'
     return install
 
 
 def getINSTALLNeo():
-    neoinstall = "UNKNOWN"
-    path = "/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/installNeo"
-    try:
-        if os.path.exists(path):
-            with open(path, "r", encoding="utf-8", errors="ignore") as f:
-                lines = f.read()
-            for candidate in (
-                "/dev/sda1",
-                "/dev/sda2",
-                "/dev/sdb1",
-                "/dev/sdb2",
-                "/dev/sdc1",
-                "/dev/sdc2",
-                "/dev/sdd1",
-                "/dev/sdd2",
-                "/dev/sde1",
-                "/dev/sde2",
-                "/dev/sdf1",
-                "/dev/sdg1",
-                "/dev/sdg2",
-                "/dev/sdh1",
-                "/dev/sdh2",
-            ):
-                if candidate in lines:
-                    neoinstall = candidate
-                    break
-    except Exception:
-        pass
+    neoinstall = 'UNKNOWN'
+    if os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/installNeo'):
+        with open('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/installNeo', 'r') as f:
+            lines = f.read()
+            f.close()
+        if lines.find('/dev/sda1') != -1:
+            neoinstall = '/dev/sda1'
+        elif lines.find('/dev/sda2') != -1:
+            neoinstall = '/dev/sda2'
+        elif lines.find('/dev/sdb1') != -1:
+            neoinstall = '/dev/sdb1'
+        elif lines.find('/dev/sdb2') != -1:
+            neoinstall = '/dev/sdb2'
+        elif lines.find('/dev/sdc1') != -1:
+            neoinstall = '/dev/sdc1'
+        elif lines.find('/dev/sdc2') != -1:
+            neoinstall = '/dev/sdc2'
+        elif lines.find('/dev/sdd1') != -1:
+            neoinstall = '/dev/sdd1'
+        elif lines.find('/dev/sdd2') != -1:
+            neoinstall = '/dev/sdd2'
+        elif lines.find('/dev/sde1') != -1:
+            neoinstall = '/dev/sde1'
+        elif lines.find('/dev/sde2') != -1:
+            neoinstall = '/dev/sde2'
+        elif lines.find('/dev/sdf1') != -1:
+            neoinstall = '/dev/sdf1'
+        elif lines.find('/dev/sdf1') != -1:
+            neoinstall = '/dev/sdf1'
+        elif lines.find('/dev/sdg1') != -1:
+            neoinstall = '/dev/sdg1'
+        elif lines.find('/dev/sdg2') != -1:
+            neoinstall = '/dev/sdg2'
+        elif lines.find('/dev/sdh1') != -1:
+            neoinstall = '/dev/sdh1'
+        elif lines.find('/dev/sdh2') != -1:
+            neoinstall = '/dev/sdh2'
+	
     return neoinstall
 
 
 def getLocationMultiboot():
-    LocationMultiboot = "UNKNOWN"
-    try:
-        for dev in (
-            "/media/sda1",
-            "/media/sda2",
-            "/media/sdb1",
-            "/media/sdb2",
-            "/media/sdc1",
-            "/media/sdc2",
-            "/media/sdd1",
-            "/media/sdd2",
-            "/media/sde1",
-            "/media/sde2",
-            "/media/sdf1",
-            "/media/sdf2",
-            "/media/sdg1",
-            "/media/sdg2",
-            "/media/sdh1",
-            "/media/sdh2",
-        ):
-            if os.path.exists(os.path.join(dev, "ImageBoot")):
-                LocationMultiboot = dev.replace("/media/", "/dev/")
-                break
-    except Exception:
-        pass
+    LocationMultiboot = 'UNKNOWN'
+    if os.path.exists('/media/sda1/ImageBoot'):
+            LocationMultiboot = '/dev/sda1'
+    if os.path.exists('/media/sda2/ImageBoot'):
+            LocationMultiboot = '/dev/sda2'
+    if os.path.exists('/media/sdb1/ImageBoot'):
+            LocationMultiboot = '/dev/sdb1'
+    if os.path.exists('/media/sdb2/ImageBoot'):
+            LocationMultiboot = '/dev/sdb2'
+    if os.path.exists('/media/sdc1/ImageBoot'):
+            LocationMultiboot = '/dev/sdc1'
+    if os.path.exists('/media/sdc2/ImageBoot'):
+            LocationMultiboot = '/dev/sdc2'
+    if os.path.exists('/media/sdd1/ImageBoot'):
+            LocationMultiboot = '/dev/sdd1'
+    if os.path.exists('/media/sdd2/ImageBoot'):
+            LocationMultiboot = '/dev/sdd2'		
+    if os.path.exists('/media/sde1/ImageBoot'):
+            LocationMultiboot = '/dev/sde1'
+    if os.path.exists('/media/sde2/ImageBoot'):
+            LocationMultiboot = '/dev/sde2'		
+    if os.path.exists('/media/sdf1/ImageBoot'):
+            LocationMultiboot = '/dev/sdf1'
+    if os.path.exists('/media/sdf2/ImageBoot'):
+            LocationMultiboot = '/dev/sdf2'
+    if os.path.exists('/media/sdg1/ImageBoot'):
+            LocationMultiboot = '/dev/sdg1'
+    if os.path.exists('/media/sdg2/ImageBoot'):
+            LocationMultiboot = '/dev/sdg2'     
+    if os.path.exists('/media/sdh1/ImageBoot'):
+            LocationMultiboot = '/dev/sdh1'
+    if os.path.exists('/media/sdh2/ImageBoot'):
+            LocationMultiboot = '/dev/sdh2'	
+
     return LocationMultiboot
 
 
 def getLabelDisck():
-    label = "UNKNOWN"
-    path = "/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/reading_blkid"
-    try:
-        if os.path.exists(path):
-            with open(path, "r", encoding="utf-8", errors="ignore") as f:
-                lines = f.read()
-            if "LABEL=" in lines:
-                label = "LABEL="
-    except Exception:
-        pass
+    label = 'UNKNOWN'
+    if os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/reading_blkid'):
+        with open('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/reading_blkid', 'r') as f:
+            lines = f.read()
+            f.close()
+        if lines.find('LABEL=') != -1:
+            label = 'LABEL='
     return label
+
+#checking device  neo
 
 
 def getNeoMountDisc():
-    lines_mount = "UNKNOWN"
-    try:
-        if os.path.exists("/proc/mounts"):
-            with open("/proc/mounts", "r", encoding="utf-8", errors="ignore") as f:
-                lines_mount = f.read()
-    except Exception:
-        pass
-    return lines_mount
+    lines_mount = 'UNKNOWN'
+    if os.path.exists('/proc/mounts'):
+        with open('/proc/mounts', 'r') as f:
+            lines_mount = f.read()
+            f.close()
 
+    return lines_mount
+    
 
 def getNeoMount():
-    neo = "UNKNOWN"
-    try:
-        if os.path.exists("/proc/mounts"):
-            with open("/proc/mounts", "r", encoding="utf-8", errors="ignore") as f:
-                lines = f.read()
-            mapping = {
-                "/dev/sda1 /media/hdd": "hdd_install_/dev/sda1",
-                "/dev/sdb1 /media/hdd": "hdd_install_/dev/sdb1",
-                "/dev/sda2 /media/hdd": "hdd_install_/dev/sda2",
-                "/dev/sdb2 /media/hdd": "hdd_install_/dev/sdb2",
-                "/dev/sdc1 /media/hdd": "hdd_install_/dev/sdc1",
-                "/dev/sdc2 /media/hdd": "hdd_install_/dev/sdc2",
-                "/dev/sdd1 /media/hdd": "hdd_install_/dev/sdd1",
-                "/dev/sdd2 /media/hdd": "hdd_install_/dev/sdd2",
-                "/dev/sde1 /media/hdd": "hdd_install_/dev/sde1",
-                "/dev/sde2 /media/hdd": "hdd_install_/dev/sde2",
-                "/dev/sdf1 /media/hdd": "hdd_install_/dev/sdf1",
-                "/dev/sdg1 /media/hdd": "hdd_install_/dev/sdg1",
-                "/dev/sdg2 /media/hdd": "hdd_install_/dev/sdg2",
-                "/dev/sdh1 /media/hdd": "hdd_install_/dev/sdh1",
-                "/dev/sdh2 /media/hdd": "hdd_install_/dev/sdh2",
-            }
-            for k, v in mapping.items():
-                if k in lines:
-                    neo = v
-                    break
-    except Exception:
-        pass
+    neo = 'UNKNOWN'
+    if os.path.exists('/proc/mounts'):
+        with open('/proc/mounts', 'r') as f:
+            lines = f.read()
+            f.close()
+        if lines.find('/dev/sda1 /media/hdd') != -1:
+            neo = 'hdd_install_/dev/sda1'
+        elif lines.find('/dev/sdb1 /media/hdd') != -1:
+            neo = 'hdd_install_/dev/sdb1'
+        elif lines.find('/dev/sda2 /media/hdd') != -1:
+            neo = 'hdd_install_/dev/sda2'
+        elif lines.find('/dev/sdb2 /media/hdd') != -1:
+            neo = 'hdd_install_/dev/sdb2'
+        elif lines.find('/dev/sdc1 /media/hdd') != -1:
+            neo = 'hdd_install_/dev/sdc1'
+        elif lines.find('/dev/sdc2 /media/hdd') != -1:
+            neo = 'hdd_install_/dev/sdc2'
+        elif lines.find('/dev/sdd1 /media/hdd') != -1:
+            neo = 'hdd_install_/dev/sdd1'
+        elif lines.find('/dev/sdd2 /media/hdd') != -1:
+            neo = 'hdd_install_/dev/sdd2'
+        elif lines.find('/dev/sde1 /media/hdd') != -1:
+            neo = 'hdd_install_/dev/sde1'
+        elif lines.find('/dev/sde2 /media/hdd') != -1:
+            neo = 'hdd_install_/dev/sde2'
+        elif lines.find('/dev/sdf1 /media/hdd') != -1:
+            neo = 'hdd_install_/dev/sdf1'
+        elif lines.find('/dev/sdg1 /media/hdd') != -1:
+            neo = 'hdd_install_/dev/sdg1'
+        elif lines.find('/dev/sdg2 /media/hdd') != -1:
+            neo = 'hdd_install_/dev/sdg2'
+        elif lines.find('/dev/sdh1 /media/hdd') != -1:
+            neo = 'hdd_install_/dev/sdh1'
+        elif lines.find('/dev/sdh2 /media/hdd') != -1:
+            neo = 'hdd_install_/dev/sdh2'
+
     return neo
-
-
+    
+    
 def getNeoMount2():
-    neo = "UNKNOWN"
-    try:
-        if os.path.exists("/proc/mounts"):
-            with open("/proc/mounts", "r", encoding="utf-8", errors="ignore") as f:
-                lines = f.read()
-            mapping = {
-                "/dev/sda1 /media/usb": "usb_install_/dev/sda1",
-                "/dev/sdb1 /media/usb": "usb_install_/dev/sdb1",
-                "/dev/sdb2 /media/usb": "usb_install_/dev/sdb2",
-                "/dev/sdc1 /media/usb": "usb_install_/dev/sdc1",
-                "/dev/sdd1 /media/usb": "usb_install_/dev/sdd1",
-                "/dev/sde1 /media/usb": "usb_install_/dev/sde1",
-                "/dev/sdf1 /media/usb": "usb_install_/dev/sdf1",
-                "/dev/sdg1 /media/usb": "usb_install_/dev/sdg1",
-                "/dev/sdh1 /media/usb": "usb_install_/dev/sdh1",
-                "/dev/sda1 /media/usb2": "usb_install_/dev/sda1",
-                "/dev/sdb1 /media/usb2": "usb_install_/dev/sdb1",
-                "/dev/sdb2 /media/usb2": "usb_install_/dev/sdb2",
-                "/dev/sdc1 /media/usb2": "usb_install_/dev/sdc1",
-                "/dev/sdd1 /media/usb2": "usb_install_/dev/sdd1",
-                "/dev/sde1 /media/usb2": "usb_install_/dev/sde1",
-                "/dev/sdf1 /media/usb2": "usb_install_/dev/sdf1",
-                "/dev/sdg1 /media/usb2": "usb_install_/dev/sdg1",
-                "/dev/sdh1 /media/usb2": "usb_install_/dev/sdh1",
-            }
-            for k, v in mapping.items():
-                if k in lines:
-                    neo = v
-                    break
-    except Exception:
-        pass
+    neo = 'UNKNOWN'
+    if os.path.exists('/proc/mounts'):
+        with open('/proc/mounts', 'r') as f:
+            lines = f.read()
+            f.close()
+        if lines.find('/dev/sda1 /media/usb') != -1:
+            neo = 'usb_install_/dev/sda1'
+        elif lines.find('/dev/sdb1 /media/usb') != -1:
+            neo = 'usb_install_/dev/sdb1'
+        elif lines.find('/dev/sdb2 /media/usb') != -1:
+            neo = 'usb_install_/dev/sdb2'
+        elif lines.find('/dev/sdc1 /media/usb') != -1:
+            neo = 'usb_install_/dev/sdc1'
+        elif lines.find('/dev/sdd1 /media/usb') != -1:
+            neo = 'usb_install_/dev/sdd1'
+        elif lines.find('/dev/sde1 /media/usb') != -1:
+            neo = 'usb_install_/dev/sde1'
+        elif lines.find('/dev/sdf1 /media/usb') != -1:
+            neo = 'usb_install_/dev/sdf1'
+        elif lines.find('/dev/sdg1 /media/usb') != -1:
+            neo = 'usb_install_/dev/sdg1'
+        elif lines.find('/dev/sdh1 /media/usb') != -1:
+            neo = 'usb_install_/dev/sdh1'
+        elif lines.find('/dev/sda1 /media/usb2') != -1:
+            neo = 'usb_install_/dev/sda1'
+        elif lines.find('/dev/sdb1 /media/usb2') != -1:
+            neo = 'usb_install_/dev/sdb1'
+        elif lines.find('/dev/sdb2 /media/usb2') != -1:
+            neo = 'usb_install_/dev/sdb2'
+        elif lines.find('/dev/sdc1 /media/usb2') != -1:
+            neo = 'usb_install_/dev/sdc1'
+        elif lines.find('/dev/sdd1 /media/usb2') != -1:
+            neo = 'usb_install_/dev/sdd1'
+        elif lines.find('/dev/sde1 /media/usb2') != -1:
+            neo = 'usb_install_/dev/sde1'
+        elif lines.find('/dev/sdf1 /media/usb2') != -1:
+            neo = 'usb_install_/dev/sdf1'
+        elif lines.find('/dev/sdg1 /media/usb2') != -1:
+            neo = 'usb_install_/dev/sdg1'
+        elif lines.find('/dev/sdh1 /media/usb2') != -1:
+            neo = 'usb_install_/dev/sdh1'	
+
     return neo
 
 
 def getNeoMount3():
-    neo = "UNKNOWN"
-    try:
-        if os.path.exists("/proc/mounts"):
-            with open("/proc/mounts", "r", encoding="utf-8", errors="ignore") as f:
-                lines = f.read()
-            if "/dev/sda1 /media/cf" in lines:
-                neo = "cf_install_/dev/sda1"
-            elif "/dev/sdb1 /media/cf" in lines:
-                neo = "cf_install_/dev/sdb1"
-    except Exception:
-        pass
+    neo = 'UNKNOWN'
+    if os.path.exists('/proc/mounts'):
+        with open('/proc/mounts', 'r') as f:
+            lines = f.read()
+            f.close()
+        if lines.find('/dev/sda1 /media/cf') != -1:
+            neo = 'cf_install_/dev/sda1'
+        elif lines.find('/dev/sdb1 /media/cf') != -1:
+            neo = 'cf_install_/dev/sdb1'
     return neo
 
 
 def getNeoMount4():
-    neo = "UNKNOWN"
-    try:
-        if os.path.exists("/proc/mounts"):
-            with open("/proc/mounts", "r", encoding="utf-8", errors="ignore") as f:
-                lines = f.read()
-            if "/dev/sda1 /media/card" in lines:
-                neo = "card_install_/dev/sda1"
-            elif "/dev/sdb1 /media/card" in lines:
-                neo = "card_install_/dev/sdb1"
-    except Exception:
-        pass
+    neo = 'UNKNOWN'
+    if os.path.exists('/proc/mounts'):
+        with open('/proc/mounts', 'r') as f:
+            lines = f.read()
+            f.close()
+        if lines.find('/dev/sda1 /media/card') != -1:
+            neo = 'card_install_/dev/sda1'
+        elif lines.find('/dev/sdb1 /media/card') != -1:
+            neo = 'card_install_/dev/sdb1'
     return neo
 
 
 def getNeoMount5():
-    neo = "UNKNOWN"
-    try:
-        if os.path.exists("/proc/mounts"):
-            with open("/proc/mounts", "r", encoding="utf-8", errors="ignore") as f:
-                lines = f.read()
-            if "/dev/sda1 /media/mmc" in lines:
-                neo = "mmc_install_/dev/sda1"
-            elif "/dev/sdb1 /media/mmc" in lines:
-                neo = "mmc_install_/dev/sdb1"
-    except Exception:
-        pass
+    neo = 'UNKNOWN'
+    if os.path.exists('/proc/mounts'):
+        with open('/proc/mounts', 'r') as f:
+            lines = f.read()
+            f.close()
+        if lines.find('/dev/sda1 /media/mmc') != -1:
+            neo = 'mmc_install_/dev/sda1'
+        elif lines.find('/dev/sdb1 /media/mmc') != -1:
+            neo = 'mmc_install_/dev/sdb1'
     return neo
 
 
+#zwraca typ chipa prcesora
 def getCPUSoC():
-    chipset = "UNKNOWN"
-    try:
-        if os.path.exists("/proc/stb/info/chipset"):
-            with open(
-                "/proc/stb/info/chipset", "r", encoding="utf-8", errors="ignore"
-            ) as f:
-                chipset = f.readline().strip()
-            if chipset == "7405(with 3D)":
-                chipset = "7405"
-    except Exception:
-        pass
+    chipset = 'UNKNOWN'
+    if os.path.exists('/proc/stb/info/chipset'):
+        with open('/proc/stb/info/chipset', 'r') as f:
+            chipset = f.readline().strip()
+            f.close()
+        if chipset == '7405(with 3D)':
+                chipset = '7405'
     return chipset
 
 
 def getCPUSoCModel():
-    devicetree = "UNKNOWN"
-    try:
-        if os.path.exists("/proc/device-tree/model"):
-            with open(
-                "/proc/device-tree/model", "r", encoding="utf-8", errors="ignore"
-            ) as f:
-                devicetree = f.readline().strip()
-    except Exception:
-        pass
+    devicetree = 'UNKNOWN'
+    if os.path.exists('/proc/device-tree/model'):
+        with open('/proc/device-tree/model', 'r') as f:
+            devicetree = f.readline().strip()
+            f.close()
     return devicetree
+
+#zwraca wybrane image w neoboot do uruchomienia
 
 
 def getImageNeoBoot():
-    imagefile = "UNKNOWN"
-    try:
-        location = getNeoLocation()
-        path = os.path.join(location, "ImageBoot", ".neonextboot")
-        if os.path.exists(path):
-            with open(path, "r", encoding="utf-8", errors="ignore") as f:
-                imagefile = f.readline().strip()
-    except Exception:
-        pass
+    imagefile = 'UNKNOWN'
+    if os.path.exists('%sImageBoot/.neonextboot' % getNeoLocation()):
+        with open('%sImageBoot/.neonextboot' % getNeoLocation(), 'r') as f:
+            imagefile = f.readline().strip()
+            f.close()
     return imagefile
+
+#zwraca model vuplus
 
 
 def getBoxVuModel():
-    vumodel = "UNKNOWN"
-    try:
-        if fileExists("/proc/stb/info/vumodel") and not fileExists(
-            "/proc/stb/info/boxtype"
-        ):
-            with open(
-                "/proc/stb/info/vumodel", "r", encoding="utf-8", errors="ignore"
-            ) as f:
-                vumodel = f.readline().strip()
-        elif fileExists("/proc/stb/info/boxtype") and not fileExists(
-            "/proc/stb/info/vumodel"
-        ):
-            with open(
-                "/proc/stb/info/boxtype", "r", encoding="utf-8", errors="ignore"
-            ) as f:
-                vumodel = f.readline().strip()
-    except Exception:
-        pass
+    vumodel = 'UNKNOWN'
+    if fileExists("/proc/stb/info/vumodel") and not fileExists("/proc/stb/info/boxtype"):
+        with open('/proc/stb/info/vumodel', 'r') as f:
+            vumodel = f.readline().strip()
+            f.close()
+    elif fileExists("/proc/stb/info/boxtype") and not fileExists("/proc/stb/info/vumodel"):
+        with open('/proc/stb/info/boxtype', 'r') as f:
+            vumodel = f.readline().strip()
+            f.close()
     return vumodel
 
 
 def getVuModel():
-    try:
-        if fileExists("/proc/stb/info/vumodel") and not fileExists("/proc/stb/info/boxtype"):
-            brand = "Vu+"
-            f = open("/proc/stb/info/vumodel", 'r')
-            procmodel = f.readline().strip()
-            f.close()
-            model = procmodel.title().replace("olose", "olo SE").replace(
-                "olo2se", "olo2 SE").replace("2", "Â˛")
-        return model
-        
-    except Exception:
-        pass
-    return "unknown"
+    if fileExists("/proc/stb/info/vumodel") and not fileExists("/proc/stb/info/boxtype"):
+        brand = "Vu+"
+        f = open("/proc/stb/info/vumodel", 'r')
+        procmodel = f.readline().strip()
+        f.close()
+        model = procmodel.title().replace("olose", "olo SE").replace("olo2se", "olo2 SE").replace("2", "²")
+    return model
+
+#zwraca nazwe stb z pliku hostname
 
 
 def getBoxHostName():
-    try:
-        if os.path.exists("/etc/hostname"):
-            with open("/etc/hostname", "r", encoding="utf-8", errors="ignore") as f:
-                myboxname = f.readline().strip()
-            return myboxname
-    except Exception:
-        pass
-    return "unknown"
+    if os.path.exists('/etc/hostname'):
+        with open('/etc/hostname', 'r') as f:
+            myboxname = f.readline().strip()
+            f.close()
+    return myboxname
+
+#zwraca vuplus/vumodel
 
 
-def getTunerModel():
-    BOX_NAME = ""
-    try:
-        if os.path.isfile("/proc/stb/info/vumodel") and not os.path.isfile(
-            "/proc/stb/info/boxtype"
-        ):
-            BOX_NAME = (
-                open(
-                    "/proc/stb/info/vumodel",
-                    "r",
-                    encoding="utf-8",
-                    errors="ignore") .read() .strip())
-        elif os.path.isfile("/proc/stb/info/boxtype"):
-            BOX_NAME = (
-                open(
-                    "/proc/stb/info/boxtype",
-                    "r",
-                    encoding="utf-8",
-                    errors="ignore") .read() .strip())
-        elif os.path.isfile("/proc/stb/info/model") and not os.path.isfile(
-            "/proc/stb/info/mid"
-        ):
-            BOX_NAME = (
-                open(
-                    "/proc/stb/info/model",
-                    "r",
-                    encoding="utf-8",
-                    errors="ignore") .read() .strip())
-    except Exception:
-        pass
+def getTunerModel(): #< neoboot.py
+    BOX_NAME = ''
+    if os.path.isfile('/proc/stb/info/vumodel') and not os.path.isfile("/proc/stb/info/boxtype"):
+        BOX_NAME = open('/proc/stb/info/vumodel').read().strip()
+        ImageFolder = 'vuplus/%s' % BOX_NAME
+    elif os.path.isfile('proc/stb/info/boxtype'):
+        BOX_NAME = open('/proc/stb/info/boxtype').read().strip()
+    elif os.path.isfile('proc/stb/info/model') and not os.path.isfile("/proc/stb/info/mid"):
+        BOX_NAME = open('/proc/stb/info/model').read().strip()
     return BOX_NAME
+
+#zwraca strukture folderu zip - vuplus/vumodel
 
 
 def getImageFolder():
-    ImageFolder = None
-    try:
-        if os.path.isfile("/proc/stb/info/vumodel"):
-            BOX_NAME = getBoxModelVU()
-            ImageFolder = "vuplus/" + BOX_NAME
-    except Exception:
-        pass
+    if os.path.isfile('/proc/stb/info/vumodel'):
+        BOX_NAME = getBoxModelVU()
+        ImageFolder = 'vuplus/' + BOX_NAME
     return ImageFolder
+
+#zwraca nazwe kernela z /lib/modules
 
 
 def getKernelVersion():
     try:
-        with open("/proc/version", "r", encoding="utf-8", errors="ignore") as f:
-            return f.read().split(" ", 4)[2].split("-", 2)[0]
-    except Exception:
-        return _("unknown")
+        return open('/proc/version', 'r').read().split(' ', 4)[2].split('-', 2)[0]
+    except:
+        return _('unknown')
+
+# czysci pamiec
 
 
 def runCMDS(cmdsList):
-    """
-    Run commands. Accepts a string or list/tuple of strings.
-    Returns the return code (int).
-    """
     clearMemory()
     if isinstance(cmdsList, (list, tuple)):
-        myCMD = "\n".join(str(x) for x in cmdsList)
-    else:
-        myCMD = str(cmdsList)
-    try:
-        result = subprocess.run(myCMD, shell=True)
-        return result.returncode
-    except Exception:
-        return -1
+        myCMD = '\n'.join(cmdsList)# + '\n'
+    ret = os.system(myCMD)
+    return rett
 
 
 def getImageDistroN():
-    image = "Internal storage"
-    try:
-        if fileExists("/.multinfo") and fileExists(
-            "%sImageBoot/.imagedistro" % getNeoLocation()
-        ):
-            with open(
-                "%sImageBoot/.imagedistro" % getNeoLocation(),
-                "r",
-                encoding="utf-8",
-                errors="ignore",
-            ) as f:
-                image = f.readline().strip()
-        elif not fileExists("/.multinfo") and fileExists("/etc/vtiversion.info"):
-            with open(
-                "/etc/vtiversion.info", "r", encoding="utf-8", errors="ignore"
-            ) as f:
-                imagever = f.readline().strip().replace("Release ", " ")
-            image = imagever
-        elif not fileExists("/.multinfo") and fileExists("/etc/bhversion"):
-            with open("/etc/bhversion", "r", encoding="utf-8", errors="ignore") as f:
-                imagever = f.readline().strip()
-            image = imagever
-        elif fileExists("/.multinfo") and fileExists("/etc/bhversion"):
-            image = "Flash " + " " + getBoxHostName()
-        elif fileExists("/.multinfo") and fileExists("/etc/vtiversion.info"):
-            image = "Flash " + " " + getBoxHostName()
-        elif fileExists("/usr/lib/enigma2/python/boxbranding.so") and not fileExists(
-            "/.multinfo"
-        ):
-            try:
-                from boxbranding import getImageDistro
+    image = 'Internal storage'
 
-                image = getImageDistro()
-            except Exception:
-                pass
-        elif (
-            fileExists("/media/InternalFlash/etc/issue.net")
-            and fileExists("/.multinfo")
-            and not fileExists("%sImageBoot/.imagedistro" % getNeoLocation())
-        ):
-            with open(
-                "/media/InternalFlash/etc/issue.net",
-                "r",
-                encoding="utf-8",
-                errors="ignore",
-            ) as f:
-                obraz = f.readlines()
-            imagetype = obraz[0][:-3] if obraz else ""
-            image = imagetype
-        elif fileExists("/etc/issue.net") and not fileExists("/.multinfo"):
-            with open("/etc/issue.net", "r", encoding="utf-8", errors="ignore") as f:
-                obraz = f.readlines()
-            imagetype = obraz[0][:-3] if obraz else ""
-            image = imagetype
-        else:
-            image = "Inernal Flash " + " " + getBoxHostName()
-    except Exception:
-        pass
+    if fileExists('/.multinfo') and fileExists('%sImageBoot/.imagedistro' % getNeoLocation()):
+                    with open('%sImageBoot/.imagedistro' % getNeoLocation(), 'r') as f:
+                        image = f.readline().strip()
+                        f.close()
+
+    elif not fileExists('/.multinfo') and fileExists('/etc/vtiversion.info'):
+                    f = open("/etc/vtiversion.info", 'r')
+                    imagever = f.readline().strip().replace("Release ", " ")
+                    f.close()
+                    image = imagever
+
+    elif not fileExists('/.multinfo') and fileExists('/etc/bhversion'):
+                    f = open("/etc/bhversion", 'r')
+                    imagever = f.readline().strip()
+                    f.close()
+                    image = imagever
+
+#    elif not fileExists('/.multinfo') and fileExists('/etc/vtiversion.info'):
+#                    image = 'VTI Team Image '
+
+    elif fileExists('/.multinfo') and fileExists('/etc/bhversion'):
+                    image = 'Flash ' + ' ' + getBoxHostName()
+
+    elif fileExists('/.multinfo') and fileExists('/etc/vtiversion.info'):
+                    image = 'Flash ' + ' ' + getBoxHostName()
+
+    elif fileExists('/usr/lib/enigma2/python/boxbranding.so') and not fileExists('/.multinfo'):
+                    from boxbranding import getImageDistro
+                    image = getImageDistro()
+
+    elif fileExists('/media/InternalFlash/etc/issue.net') and fileExists('/.multinfo') and not fileExists('%sImageBoot/.imagedistro' % getNeoLocation()):
+                    obraz = open('/media/InternalFlash/etc/issue.net', 'r').readlines()
+                    imagetype = obraz[0][:-3]
+                    image = imagetype
+
+    elif fileExists('/etc/issue.net') and not fileExists('/.multinfo'):
+                    obraz = open('/etc/issue.net', 'r').readlines()
+                    imagetype = obraz[0][:-3]
+                    image = imagetype
+
+    else:
+                    image = 'Inernal Flash ' + ' ' + getBoxHostName()
+
     return image
 
 
 def getKernelVersionString():
-    """
-    Preferred: use uname -r. Fallback to /proc/version parsing.
-    """
     try:
-        out = subprocess.check_output(["uname", "-r"])
-        kernel_version = out.decode(
-            "utf-8", errors="ignore").strip().split("-")[0]
+        result = open('uname -r', 'r').read().strip('\n').split('-')
+        kernel_version = result[0]
         return kernel_version
-    except Exception:
-        try:
-            with open("/proc/version", "r", encoding="utf-8", errors="ignore") as f:
-                return f.read().split(" ", 4)[2].split("-", 2)[0]
-        except Exception:
-            return "unknown"
+    except:
+        pass
+
+    return 'unknown'
 
 
 def getKernelImageVersion():
     try:
-        ctrl_files = glob("/var/lib/opkg/info/kernel-*.control")
-        if ctrl_files:
-            lines = open(
-                ctrl_files[0], "r", encoding="utf-8", errors="ignore"
-            ).readlines()
-            if len(lines) > 1:
-                kernelimage = lines[1].rstrip("\n")
-                return kernelimage
-    except Exception:
-        pass
-    return getKernelVersionString()
+        from glob import glob
+        lines = open(glob('/var/lib/opkg/info/kernel-*.control')[0], 'r').readlines()
+        kernelimage = lines[1][:-1]
+    except:
+        kernelimage = getKernelVersionString
+
+    return kernelimage
 
 
 def getTypBoxa():
+    if not fileExists('/etc/typboxa'):
+        os.system('touch /etc/typboxa')
+        f2 = open('/etc/hostname', 'r')
+        mypath2 = f2.readline().strip()
+        f2.close()
+        if mypath2 == 'vuuno':
+            out = open('/etc/typboxa ', 'w')
+            out.write('Vu+Uno ')
+            out.close()
+        elif mypath2 == 'vuultimo':
+            out = open('/etc/typboxa', 'w')
+            out.write('Vu+Ultimo ')
+            out.close()
+        elif mypath2 == 'vuduo':
+            out = open('/etc/typboxa ', 'w')
+            out.write('Vu+Duo ')
+            out.close()
+        elif mypath2 == 'vuduo2':
+            out = open('/etc/typboxa ', 'w')
+            out.write('Vu+Duo2 ')
+            out.close()
+        elif mypath2 == 'vusolo':
+            out = open('/etc/typboxa ', 'w')
+            out.write('Vu+Solo ')
+            out.close()
+        elif mypath2 == 'vusolo2':
+            out = open('/etc/typboxa ', 'w')
+            out.write('Vu+Solo2 ')
+            out.close()
+        elif mypath2 == 'vusolose':
+            out = open('/etc/typboxa ', 'w')
+            out.write('Vu+Solo-SE ')
+            out.close()
+        elif mypath2 == 'vuvzero':
+            out = open('/etc/typboxa ', 'w')
+            out.write('Vu+Zero ')
+            out.close()
+        elif mypath2 == 'vuuno4k':
+            out = open('/etc/typboxa ', 'w')
+            out.write('Vu+Uno4k ')
+            out.close()
+        elif mypath2 == 'vuultimo4k':
+            out = open('/etc/typboxa ', 'w')
+            out.write('Vu+Ultimo4k ')
+            out.close()
+        elif mypath2 == 'vusolo4k':
+            out = open('/etc/typboxa ', 'w')
+            out.write('Vu+Solo4k ')
+            out.close()
+        elif mypath2 == 'mbmini':
+            out = open('/etc/typboxa', 'w')
+            out.write('Miraclebox-Mini ')
+            out.close()
+        elif mypath2 == 'mutant51':
+            out = open('/etc/typboxa', 'w')
+            out.write('Mutant 51 ')
+            out.close()
+        elif mypath2 == 'sf4008':
+            out = open('/etc/typboxa', 'w')
+            out.write('Ocatgon sf4008 ')
+            out.close()
+        elif mypath2 == 'ax51':
+            out = open('/etc/typboxa', 'w')
+            out.write('ax51 ')
+            out.close()
+
     try:
-        if not fileExists("/etc/typboxa"):
-            with open("/etc/hostname", "r", encoding="utf-8", errors="ignore") as f2:
-                mypath2 = f2.readline().strip()
-            mapping = {
-                "vuuno": "Vu+Uno ",
-                "vuultimo": "Vu+Ultimo ",
-                "vuduo": "Vu+Duo ",
-                "vuduo2": "Vu+Duo2 ",
-                "vusolo": "Vu+Solo ",
-                "vusolo2": "Vu+Solo2 ",
-                "vusolose": "Vu+Solo-SE ",
-                "vuvzero": "Vu+Zero ",
-                "vuuno4k": "Vu+Uno4k ",
-                "vuultimo4k": "Vu+Ultimo4k ",
-                "vusolo4k": "Vu+Solo4k ",
-                "mbmini": "Miraclebox-Mini ",
-                "mutant51": "Mutant 51 ",
-                "sf4008": "Ocatgon sf4008 ",
-                "novaler4kpro": "Novaler Multibox Pro ",
-                "ax51": "ax51 ",
-            }
-            val = mapping.get(mypath2, None)
-            with open("/etc/typboxa", "w", encoding="utf-8", errors="ignore") as out:
-                if val:
-                    out.write(val)
-                else:
-                    out.write("unknown")
-        with open("/etc/typboxa", "r", encoding="utf-8", errors="ignore") as fh:
-            lines = fh.readlines()
-            typboxa = lines[0].rstrip("\n") if lines else "not detected"
-        return typboxa
-    except Exception:
-        return "not detected"
+        lines = open('/etc/typboxa', 'r').readlines()
+        typboxa = lines[0][:-1]
+    except:
+        typboxa = 'not detected'
+
+    return typboxa
 
 
 def getImageVersionString():
     try:
-        st = None
-        if os.path.isfile("/var/lib/opkg/status"):
-            st = os.stat("/var/lib/opkg/status")
-        elif os.path.isfile("/usr/lib/ipkg/status"):
-            st = os.stat("/usr/lib/ipkg/status")
-        if st:
-            tm = time.localtime(st.st_mtime)
-            if tm.tm_year >= 2015:
-                return time.strftime("%Y-%m-%d %H:%M:%S", tm)
-    except Exception:
+        if os.path.isfile('/var/lib/opkg/status'):
+            st = os.stat('/var/lib/opkg/status')
+        else:
+            st = os.stat('/usr/lib/ipkg/status')
+        tm = time.localtime(st.st_mtime)
+        if tm.tm_year >= 2015:
+            return time.strftime('%Y-%m-%d %H:%M:%S', tm)
+    except:
         pass
-    return _("unavailable")
+
+    return _('unavailable')
 
 
 def getModelString():
     try:
-        with open(
-            "/proc/stb/info/boxtype", "r", encoding="utf-8", errors="ignore"
-        ) as file:
-            model = file.readline().strip()
+        file = open('/proc/stb/info/boxtype', 'r')
+        model = file.readline().strip()
+        file.close()
         return model
-    except Exception:
-        return "unknown"
+    except IOError:
+        return 'unknown'
 
 
 def getChipSetString():
     try:
-        with open(
-            "/proc/stb/info/chipset", "r", encoding="utf-8", errors="ignore"
-        ) as f:
-            chipset = f.read()
-        return str(chipset.lower().replace("\n", "").replace("bcm", ""))
-    except Exception:
-        return "unavailable"
+        f = open('/proc/stb/info/chipset', 'r')
+        chipset = f.read()
+        f.close()
+        return str(chipset.lower().replace('\n', '').replace('bcm', ''))
+    except IOError:
+        return 'unavailable'
 
 
 def getCPUString():
     try:
-        system = "unavailable"
-        with open("/proc/cpuinfo", "r", encoding="utf-8", errors="ignore") as file:
-            lines = file.readlines()
-            for x in lines:
-                splitted = x.split(": ")
-                if len(splitted) > 1:
-                    splitted[1] = splitted[1].replace("\n", "")
-                    if splitted[0].startswith("system type"):
-                        system = splitted[1].split(" ")[0]
-                    elif splitted[0].startswith("Processor"):
-                        system = splitted[1].split(" ")[0]
+        file = open('/proc/cpuinfo', 'r')
+        lines = file.readlines()
+        for x in lines:
+            splitted = x.split(': ')
+            if len(splitted) > 1:
+                splitted[1] = splitted[1].replace('\n', '')
+                if splitted[0].startswith('system type'):
+                    system = splitted[1].split(' ')[0]
+                elif splitted[0].startswith('Processor'):
+                    system = splitted[1].split(' ')[0]
+
+        file.close()
         return system
-    except Exception:
-        return "unavailable"
+    except IOError:
+        return 'unavailable'
 
 
 def getCpuCoresString():
     try:
-        cores = 1
-        with open("/proc/cpuinfo", "r", encoding="utf-8", errors="ignore") as file:
-            lines = file.readlines()
-            for x in lines:
-                splitted = x.split(": ")
-                if len(splitted) > 1:
-                    splitted[1] = splitted[1].replace("\n", "")
-                    if splitted[0].startswith("processor"):
-                        if int(splitted[1]) > 0:
-                            cores = 2
-                        else:
-                            cores = 1
+        file = open('/proc/cpuinfo', 'r')
+        lines = file.readlines()
+        for x in lines:
+            splitted = x.split(': ')
+            if len(splitted) > 1:
+                splitted[1] = splitted[1].replace('\n', '')
+                if splitted[0].startswith('processor'):
+                    if int(splitted[1]) > 0:
+                        cores = 2
+                    else:
+                        cores = 1
+
+        file.close()
         return cores
-    except Exception:
-        return "unavailable"
+    except IOError:
+        return 'unavailable'
 
 
 def getEnigmaVersionString():
-    try:
-        import enigma
+    import enigma
+    enigma_version = enigma.getEnigmaVersionString()
+    if '-(no branch)' in enigma_version:
+        enigma_version = enigma_version[:-12]
+    return enigma_version
 
-        enigma_version = enigma.getEnigmaVersionString()
-        if "-(no branch)" in enigma_version:
-            enigma_version = enigma_version[:-12]
-        return enigma_version
-    except Exception:
-        return _("unavailable")
+
+def getKernelVersionString():
+    try:
+        f = open('/proc/version', 'r')
+        kernelversion = f.read().split(' ', 4)[2].split('-', 2)[0]
+        f.close()
+        return kernelversion
+    except:
+        return _('unknown')
 
 
 def getHardwareTypeString():
     try:
-        if os.path.isfile("/proc/stb/info/boxtype"):
-            boxtype = (
-                open(
-                    "/proc/stb/info/boxtype",
-                    "r",
-                    encoding="utf-8",
-                    errors="ignore") .read() .strip())
-            board_rev = (
-                open(
-                    "/proc/stb/info/board_revision",
-                    "r",
-                    encoding="utf-8",
-                    errors="ignore",
-                )
-                .read()
-                .strip()
-            )
-            version = (
-                open(
-                    "/proc/stb/info/version",
-                    "r",
-                    encoding="utf-8",
-                    errors="ignore") .read() .strip())
-            return boxtype.upper() + " (" + board_rev + "-" + version + ")"
-        if os.path.isfile("/proc/stb/info/vumodel"):
-            return (
-                "VU+" +
-                open(
-                    "/proc/stb/info/vumodel",
-                    "r",
-                    encoding="utf-8",
-                    errors="ignore") .read() .strip() .upper() +
-                "(" +
-                open(
-                    "/proc/stb/info/version",
-                    "r",
-                    encoding="utf-8",
-                    errors="ignore") .read() .strip() .upper() +
-                ")")
-        if os.path.isfile("/proc/stb/info/model"):
-            return (
-                open(
-                    "/proc/stb/info/model",
-                    "r",
-                    encoding="utf-8",
-                    errors="ignore") .read() .strip() .upper())
-    except Exception:
+        if os.path.isfile('/proc/stb/info/boxtype'):
+            return open('/proc/stb/info/boxtype').read().strip().upper() + ' (' + open('/proc/stb/info/board_revision').read().strip() + '-' + open('/proc/stb/info/version').read().strip() + ')'
+        if os.path.isfile('/proc/stb/info/vumodel'):
+            return 'VU+' + open('/proc/stb/info/vumodel').read().strip().upper() + '(' + open('/proc/stb/info/version').read().strip().upper() + ')'
+        if os.path.isfile('/proc/stb/info/model'):
+            return open('/proc/stb/info/model').read().strip().upper()
+    except:
         pass
-    return _("unavailable")
+
+    return _('unavailable')
 
 
 def getImageTypeString():
     try:
-        lines = open(
-            "/etc/issue",
-            "r",
-            encoding="utf-8",
-            errors="ignore").readlines()
-        if len(lines) >= 2:
-            return lines[-2].capitalize().strip()[:-6]
-    except Exception:
+        return open('/etc/issue').readlines()[-2].capitalize().strip()[:-6]
+    except:
         pass
-    return _("undefined")
+
+    return _('undefined')
 
 
 def getMachineBuild():
     try:
-        with open("/proc/version", "r", encoding="utf-8", errors="ignore") as f:
-            return f.read().split(" ", 4)[2].split("-", 2)[0]
-    except Exception:
-        return "unknown"
+        return open('/proc/version', 'r').read().split(' ', 4)[2].split('-', 2)[0]
+    except:
+        return 'unknown'
 
 
 def getVuBoxModel():
-    BOX_MODEL = "not detected"
-    try:
-        if fileExists("/proc/stb/info/vumodel"):
-            with open(
-                "/proc/stb/info/vumodel", "r", encoding="utf-8", errors="ignore"
-            ) as l:
-                model = l.read()
+    if fileExists('/proc/stb/info/vumodel'):
+        try:
+            l = open('/proc/stb/info/vumodel')
+            model = l.read()
+            l.close()
             BOX_NAME = str(model.lower().strip())
-            BOX_MODEL = "vuplus"
-    except Exception:
-        BOX_MODEL = "not detected"
+            l.close()
+            BOX_MODEL = 'vuplus'
+        except:
+            BOX_MODEL = 'not detected'
+
     return BOX_MODEL
 
 
 def getBoxModelVU():
     try:
-        if os.path.isfile("/proc/stb/info/vumodel"):
-            return (
-                open(
-                    "/proc/stb/info/vumodel",
-                    "r",
-                    encoding="utf-8",
-                    errors="ignore") .read() .strip() .upper())
-    except Exception:
+        if os.path.isfile('/proc/stb/info/vumodel'):
+            return open('/proc/stb/info/vumodel').read().strip().upper()
+    except:
         pass
-    return _("unavailable")
+
+    return _('unavailable')
 
 
 def getMachineProcModel():
-    procmodel = "unknown"
-    try:
-        if os.path.isfile("/proc/stb/info/vumodel"):
-            BOX_NAME = getBoxModelVU().lower()
-            BOX_MODEL = getVuBoxModel()
-            if BOX_MODEL == "vuplus":
-                mapping = {
-                    "duo": "bcm7335",
-                    "solo": "bcm7325",
-                    "solo2": "bcm7346",
-                    "solose": "bcm7241",
-                    "ultimo": "bcm7413",
-                    "uno": "bcm7413",
-                    "zero": "bcm7362",
-                    "duo2": "bcm7425",
-                    "ultimo4k": "bcm7444S",
-                    "uno4k": "bcm7252S",
-                    "solo4k": "bcm7376",
-                    "zero4k": "bcm72604",
-                    "uno4kse": "",
-                }
-                procmodel = mapping.get(BOX_NAME, "unknown")
-    except Exception:
-        pass
+    if os.path.isfile('/proc/stb/info/vumodel'):
+        BOX_NAME = getBoxModelVU()
+        BOX_MODEL = getVuBoxModel()
+        if BOX_MODEL == 'vuplus':
+            if BOX_NAME == 'duo':
+                GETMACHINEPROCMODEL = 'bcm7335'
+            elif BOX_NAME == 'solo':
+                GETMACHINEPROCMODEL = 'bcm7325'
+            elif BOX_NAME == 'solo2':
+                GETMACHINEPROCMODEL = 'bcm7346'
+            elif BOX_NAME == 'solose':
+                GETMACHINEPROCMODEL = 'bcm7241'
+            elif BOX_NAME == 'ultimo' or BOX_NAME == 'uno':
+                GETMACHINEPROCMODEL = 'bcm7413'
+            elif BOX_NAME == 'zero':
+                GETMACHINEPROCMODEL = 'bcm7362'
+            elif BOX_NAME == 'duo2':
+                GETMACHINEPROCMODEL = 'bcm7425'
+            elif BOX_NAME == 'ultimo4k':
+                GETMACHINEPROCMODEL = 'bcm7444S'
+            elif BOX_NAME == 'uno4k':
+                GETMACHINEPROCMODEL = 'bcm7252S'
+            elif BOX_NAME == 'solo4k':
+                GETMACHINEPROCMODEL = 'bcm7376'
+            elif BOX_NAME == 'zero4K':
+                GETMACHINEPROCMODEL = 'bcm72604'
+            elif BOX_NAME == 'uno4kse':
+                GETMACHINEPROCMODEL = ''
+            procmodel = getMachineProcModel()
     return procmodel
 
 
 def getMountPointAll():
-    try:
-        script = os.path.join(LinkNeoBoot, "files", "mountpoint.sh")
-        os.makedirs(os.path.dirname(script), exist_ok=True)
-        with open(script, "w", encoding="utf-8", errors="ignore") as f:
-            f.write("#!/bin/sh\n")
-        os.chmod(script, 0o755)
-
-        nm = getNeoMount()
-        if nm.startswith("hdd_install_"):
-            dev = nm.split("_")[-1]
-            os.system(
-                'echo "umount -l /media/hdd\nmkdir -p /media/hdd\nmkdir -p %s\n/bin/mount %s /media/hdd\n/bin/mount %s %s"  >> %s' %
-                (dev.replace(
-                    "/dev/",
-                    "/media/"),
-                    dev,
-                    dev,
-                    dev.replace(
-                    "/dev/",
-                    "/"),
-                    script,
-                 ))
-        with open(script, "a", encoding="utf-8", errors="ignore") as f:
-            f.write("\n\nexit 0\n")
-    except Exception:
-        pass
+            os.system('touch ' + LinkNeoBoot + '/files/mountpoint.sh; echo "#!/bin/sh\n"  >> ' + LinkNeoBoot + '/files/mountpoint.sh; chmod 0755 ' + LinkNeoBoot + '/files/mountpoint.sh')
+            if getNeoMount() == 'hdd_install_/dev/sda1':
+                    os.system('echo "umount -l /media/hdd\nmkdir -p /media/hdd\nmkdir -p /media/sda1\n/bin/mount /dev/sda1 /media/hdd\n/bin/mount /dev/sda1 /media/sda1"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+            elif getNeoMount() == 'hdd_install_/dev/sdb1':
+                    os.system('echo "umount -l /media/hdd\nmkdir -p /media/hdd\nmkdir -p /media/sdb1\n/bin/mount /dev/sdb1 /media/hdd\n/bin/mount /dev/sdb1 /media/sdb1"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+            elif getNeoMount() == 'hdd_install_/dev/sda2':
+                    os.system('echo "umount -l /media/hdd\nmkdir -p /media/hdd\nmkdir -p /media/sda2\n/bin/mount /dev/sda2 /media/hdd\n/bin/mount /dev/sda2 /media/sda2"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+            elif getNeoMount() == 'hdd_install_/dev/sdb2':
+                    os.system('echo "umount -l /media/hdd\nmkdir -p /media/hdd\nmkdir -p /media/sdb2\n/bin/mount /dev/sdb2 /media/hdd\n/bin/mount /dev/sdb2 /media/sdb2"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+            #---------------------------------------------
+            if getNeoMount2() == 'usb_install_/dev/sdb1':
+                    os.system('echo "\numount -l /media/usb\nmkdir -p /media/usb\nmkdir -p /media/sdb1\n/bin/mount /dev/sdb1 /media/usb\n/bin/mount /dev/sdb1 /media/sdb1"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+            elif getNeoMount2() == 'usb_install_/dev/sda1':
+                    os.system('echo "umount -l /media/usb\nmkdir -p /media/usb\nmkdir -p /media/sda1\n/bin/mount /dev/sda1 /media/sda1\n/bin/mount /dev/sda1 /media/usb"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+            elif getNeoMount2() == 'usb_install_/dev/sdb2':
+                    os.system('echo "umount -l /media/usb\nmkdir -p /media/usb\nmkdir -p /media/sdb2\n/bin/mount /dev/sdb2 /media/sdb2\n/bin/mount /dev/sdb2 /media/usb"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+            elif getNeoMount2() == 'usb_install_/dev/sdc1':
+                    os.system('echo "umount -l /media/usb\nmkdir -p /media/usb\nmkdir -p /media/sdc1\n/bin/mount /dev/sdc1 /media/sdb2\n/bin/mount /dev/sdc1 /media/usb"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+            elif getNeoMount2() == 'usb_install_/dev/sdd1':
+                    os.system('echo "umount -l /media/usb\nmkdir -p /media/usb\nmkdir -p /media/sdd1\n/bin/mount /dev/sdd1 /media/sdd1\n/bin/mount /dev/sdd1 /media/usb"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+            elif getNeoMount2() == 'usb_install_/dev/sde1':
+                    os.system('echo "umount -l /media/usb\nmkdir -p /media/usb\nmkdir -p /media/sde1\n/bin/mount /dev/sde1 /media/sde1\n/bin/mount /dev/sde1 /media/usb"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+            elif getNeoMount2() == 'usb_install_/dev/sdf1':
+                    os.system('echo "umount -l /media/usb\nmkdir -p /media/usb\nmkdir -p /media/sdf1\n/bin/mount /dev/sdf1 /media/sdf1\n/bin/mount /dev/sdf1 /media/usb"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+            elif getNeoMount2() == 'usb_install_/dev/sdg1':
+                    os.system('echo "umount -l /media/usb\nmkdir -p /media/usb\nmkdir -p /media/sdg1\n/bin/mount /dev/sdg1 /media/sdg1\n/bin/mount /dev/sdg1 /media/usb"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+            elif getNeoMount2() == 'usb_install_/dev/sdh1':
+                    os.system('echo "umount -l /media/usb\nmkdir -p /media/usb\nmkdir -p /media/sdh1\n/bin/mount /dev/sdh1 /media/sdh1\n/bin/mount /dev/sdh1 /media/usb"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+            #---------------------------------------------
+            elif getNeoMount3() == 'cf_install_/dev/sda1':
+                    os.system('echo "umount -l /media/cf\nmkdir -p /media/cf\nmkdir -p /media/sdb1\n/bin/mount /dev/sda1 /media/cf\n/bin/mount /dev/sda1 /media/sda1"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+            elif getNeoMount3() == 'cf_install_/dev/sdb1':
+                    os.system('echo "umount -l /media/cf\nmkdir -p /media/cf\nmkdir -p /media/sdb1\n/bin/mount /dev/sdb1 /media/cf\n/bin/mount /dev/sdb1 /media/sdb1"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+            #---------------------------------------------
+            elif getNeoMount4() == 'card_install_/dev/sda1':
+                    os.system('echo "umount -l /media/card\nmkdir -p /media/card\nmkdir -p /media/sda1\n/bin/mount /dev/sda1 /media/card\n/bin/mount /dev/sda1 /media/sda1"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+            elif getNeoMount4() == 'card_install_/dev/sdb1':
+                    os.system('echo "umount -l /media/card\nmkdir -p /media/card\nmkdir -p /media/sdb1\n/bin/mount /dev/sdb1 /media/card\n/bin/mount /dev/sdb1 /media/sdb1"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+            #---------------------------------------------
+            elif getNeoMount5() == 'mmc_install_/dev/sda1':
+                    os.system('echo "umount -l /media/mmc\nmkdir -p /media/mmc\nmkdir -p /media/sda1\n/bin/mount /dev/sda1 /media/mmc\n/bin/mount /dev/sda1 /media/sda1"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+            elif getNeoMount5() == 'mmc_install_/dev/sdb1':
+                    os.system('echo "umount -l /media/mmc\nmkdir -p /media/mmc\nmkdir -p /media/sdb1\n/bin/mount /dev/sdb1 /media/mmc\n/bin/mount /dev/sdb1 /media/sdb1"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+            os.system('echo "\n\nexit 0"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
 
 
 def getMountPointNeo():
-    try:
-        script = os.path.join(LinkNeoBoot, "files", "mountpoint.sh")
-        os.system(script)
-        os.system(
-            "echo "
-            + getLocationMultiboot()
-            + " > "
-            + os.path.join(LinkNeoBoot, "bin", "install")
-            + "; chmod 0755 "
-            + os.path.join(LinkNeoBoot, "bin", "install")
-        )
-        lm = getLocationMultiboot()
-        if lm and lm != "UNKNOWN":
-            outpath = os.path.join(LinkNeoBoot, "files", "neo.sh")
-            dev = lm
-            with open(outpath, "w", encoding="utf-8", errors="ignore") as out:
-                out.write(
-                    "#!/bin/sh\n\n/bin/mount %s %s  \n\nexit 0"
-                    % (dev, getNeoLocation())
-                )
-            os.chmod(outpath, 0o755)
-    except Exception:
-        pass
+            os.system('' + LinkNeoBoot + '/files/mountpoint.sh')
+            os.system('echo ' + getLocationMultiboot() + ' > ' + LinkNeoBoot + '/bin/install; chmod 0755 ' + LinkNeoBoot + '/bin/install')
+            if getLocationMultiboot() == '/dev/sda1':
+                    out = open('' + LinkNeoBoot + '/files/neo.sh', 'w')
+                    out.write('#!/bin/sh\n\n/bin/mount /dev/sda1 ' + getNeoLocation() + '  \n\nexit 0')
+                    out.close()
+            elif getLocationMultiboot() == '/dev/sdb1':
+                    out = open('' + LinkNeoBoot + '/files/neo.sh', 'w')
+                    out.write('#!/bin/sh\n\n/bin/mount /dev/sdb1 ' + getNeoLocation() + '  \n\nexit 0')
+                    out.close()
+            elif getLocationMultiboot() == '/dev/sda2':
+                    out = open('' + LinkNeoBoot + '/files/neo.sh', 'w')
+                    out.write('#!/bin/sh\n\n/bin/mount /dev/sda2 ' + getNeoLocation() + '  \n\nexit 0')
+                    out.close()
+            elif getLocationMultiboot() == '/dev/sdb2':
+                    out = open('' + LinkNeoBoot + '/files/neo.sh', 'w')
+                    out.write('#!/bin/sh\n\n/bin/mount /dev/sdb2 ' + getNeoLocation() + '  \n\nexit 0')
+                    out.close()
+            elif getLocationMultiboot() == '/dev/sdc1':
+                    out = open('' + LinkNeoBoot + '/files/neo.sh', 'w')
+                    out.write('#!/bin/sh\n\n/bin/mount /dev/sdc1 ' + getNeoLocation() + '  \n\nexit 0')
+                    out.close()
+            elif getLocationMultiboot() == '/dev/sdd1':
+                    out = open('' + LinkNeoBoot + '/files/neo.sh', 'w')
+                    out.write('#!/bin/sh\n\n/bin/mount /dev/sdd1 ' + getNeoLocation() + '  \n\nexit 0')
+                    out.close()
+            elif getLocationMultiboot() == '/dev/sde1':
+                    out = open('' + LinkNeoBoot + '/files/neo.sh', 'w')
+                    out.write('#!/bin/sh\n\n/bin/mount /dev/sde1 ' + getNeoLocation() + '  \n\nexit 0')
+                    out.close()
+            elif getLocationMultiboot() == '/dev/sdf1':
+                    out = open('' + LinkNeoBoot + '/files/neo.sh', 'w')
+                    out.write('#!/bin/sh\n\n/bin/mount /dev/sdf1 ' + getNeoLocation() + '  \n\nexit 0')
+                    out.close()
+            elif getLocationMultiboot() == '/dev/sdg1':
+                    out = open('' + LinkNeoBoot + '/files/neo.sh', 'w')
+                    out.write('#!/bin/sh\n\n/bin/mount /dev/sdg1 ' + getNeoLocation() + '  \n\nexit 0')
+                    out.close()
+            elif getLocationMultiboot() == '/dev/sdh1':
+                    out = open('' + LinkNeoBoot + '/files/neo.sh', 'w')
+                    out.write('#!/bin/sh\n\n/bin/mount /dev/sdh1 ' + getNeoLocation() + '  \n\nexit 0')
+                    out.close()	
+			
+            os.system('chmod 755 ' + LinkNeoBoot + '/files/neo.sh')
 
 
 def getMountPointNeo2():
-    try:
-        script = os.path.join(LinkNeoBoot, "files", "mountpoint.sh")
-        with open(script, "w", encoding="utf-8", errors="ignore") as f:
-            f.write("#!/bin/sh\n")
-        os.chmod(script, 0o755)
-        nm = getNeoMount()
-        if nm != "UNKNOWN":
-            dev = nm.split("_")[-1]
-            os.system(
-                'echo "umount -l /media/hdd\nmkdir -p /media/hdd\n/bin/mount %s /media/hdd"  >> %s' %
-                (dev, script))
-        with open(script, "a", encoding="utf-8", errors="ignore") as f:
-            f.write("\n\nexit 0\n")
-    except Exception:
-        pass
-
-
+        #---------------------------------------------
+        os.system('touch ' + LinkNeoBoot + '/files/mountpoint.sh; echo "#!/bin/sh"  > ' + LinkNeoBoot + '/files/mountpoint.sh; chmod 0755 ' + LinkNeoBoot + '/files/mountpoint.sh')
+        if getNeoMount() == 'hdd_install_/dev/sda1':
+                    os.system('echo "umount -l /media/hdd\nmkdir -p /media/hdd\n/bin/mount /dev/sda1 /media/hdd"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+        elif getNeoMount() == 'hdd_install_/dev/sdb1':
+                    os.system('echo "umount -l /media/hdd\nmkdir -p /media/hdd\n/bin/mount /dev/sdb1 /media/hdd"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+        elif getNeoMount() == 'hdd_install_/dev/sda2':
+                    os.system('echo "umount -l /media/hdd\nmkdir -p /media/hdd\n/bin/mount /dev/sda2 /media/hdd"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+        elif getNeoMount() == 'hdd_install_/dev/sdb2':
+                    os.system('echo "umount -l /media/hdd\nmkdir -p /media/hdd\n/bin/mount /dev/sda2 /media/hdd"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+        #---------------------------------------------
+        if getNeoMount2() == 'usb_install_/dev/sdb1':
+                    os.system('echo "umount -l /media/usb\nmkdir -p /media/usb\n/bin/mount /dev/sdb1 /media/usb"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+        elif getNeoMount2() == 'usb_install_/dev/sda1':
+                    os.system('echo "umount -l /media/usb\nmkdir -p /media/usb\n/bin/mount /dev/sda1 /media/usb"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+        elif getNeoMount2() == 'usb_install_/dev/sdb2':
+                    os.system('echo "umount -l /media/usb\nmkdir -p /media/usb\n/bin/mount /dev/sdb2 /media/usb"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+        elif getNeoMount2() == 'usb_install_/dev/sdc1':
+                    os.system('echo "umount -l /media/usb\nmkdir -p /media/usb\n/bin/mount /dev/sdc1 /media/usb"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+        elif getNeoMount2() == 'usb_install_/dev/sdd1':
+                    os.system('echo "umount -l /media/usb\nmkdir -p /media/usb\n/bin/mount /dev/sdd1 /media/usb"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+        elif getNeoMount2() == 'usb_install_/dev/sde1':
+                    os.system('echo "umount -l /media/usb\nmkdir -p /media/usb\n/bin/mount /dev/sde1 /media/usb"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+        elif getNeoMount2() == 'usb_install_/dev/sdf1':
+                    os.system('echo "umount -l /media/usb\nmkdir -p /media/usb\n/bin/mount /dev/sdf1 /media/usb"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+        elif getNeoMount2() == 'usb_install_/dev/sdg1':
+                    os.system('echo "umount -l /media/usb\nmkdir -p /media/usb\n/bin/mount /dev/sdg1 /media/usb"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+        elif getNeoMount2() == 'usb_install_/dev/sdh1':
+                    os.system('echo "umount -l /media/usb\nmkdir -p /media/usb\n/bin/mount /dev/sdh1 /media/usb"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+        #---------------------------------------------
+        elif getNeoMount3() == 'cf_install_/dev/sda1':
+                    os.system('echo "umount -l /media/cf\nmkdir -p /media/cf\n/bin/mount /dev/sda1 /media/cf"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+        elif getNeoMount3() == 'cf_install_/dev/sdb1':
+                    os.system('echo "umount -l /media/cf\nmkdir -p /media/cf\n/bin/mount /dev/sdb1 /media/cf"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+        #---------------------------------------------
+        elif getNeoMount4() == 'card_install_/dev/sda1':
+                    os.system('echo "umount -l /media/card\nmkdir -p /media/card\n/bin/mount /dev/sda1 /media/card"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+        elif getNeoMount4() == 'card_install_/dev/sdb1':
+                    os.system('echo "umount -l /media/card\nmkdir -p /media/card\n/bin/mount /dev/sdb1 /media/card"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+        #---------------------------------------------
+        elif getNeoMount5() == 'mmc_install_/dev/sda1':
+                    os.system('echo "umount -l /media/mmc\nmkdir -p /media/mmc\n/bin/mount /dev/sda1 /media/mmc"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+        elif getNeoMount5() == 'mmc_install_/dev/sdb1':
+                    os.system('echo "umount -l /media/mmc\nmkdir -p /media/mmc\n/bin/mount /dev/sdb1 /media/mmc"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+        os.system('echo "\n\nexit 0"  >> ' + LinkNeoBoot + '/files/mountpoint.sh')
+	
 def getBoxMacAddres():
-    ethernetmac = "UNKNOWN"
-    try:
-        if not fileExists("/etc/.nameneo"):
-            try:
-                with open("/tmp/.mymac", "w", encoding="utf-8", errors="ignore") as fh:
-                    out = subprocess.check_output(
-                        ["ifconfig", "-a"], stderr=subprocess.DEVNULL
-                    )
-                    fh.write(out.decode("utf-8", errors="ignore"))
-            except Exception:
-                pass
-        if os.path.exists("/etc/.nameneo"):
-            with open("/etc/.nameneo", "r", encoding="utf-8", errors="ignore") as f:
-                ethernetmac = f.readline().strip()
-            try:
-                subprocess.run(
-                    ["cp", "-r", "/etc/.nameneo", "/tmp/.mymac"], check=False
-                )
-            except Exception:
-                pass
-        elif fileExists("/tmp/.mymac"):
-            with open("/tmp/.mymac", "r", encoding="utf-8", errors="ignore") as f:
-                myboxmac = (
-                    f.readline()
-                    .strip()
-                    .replace("eth0      Link encap:Ethernet  HWaddr ", "")
-                )
-            ethernetmac = myboxmac
-            try:
-                with open(
-                    "/tmp/.mymac", "w", encoding="utf-8", errors="ignore"
-                ) as writefile:
-                    writefile.write(myboxmac)
-            except Exception:
-                pass
-        else:
-            ethernetmac = "12:34:56:78:91:02"
-    except Exception:
-        pass
-    return ethernetmac
+    ethernetmac = 'UNKNOWN'
+    if not fileExists('/etc/.nameneo'):
+        os.system('%s > /tmp/.mymac' % ("ifconfig -a"))
+    if os.path.exists('/etc/.nameneo'):
+        with open('/etc/.nameneo', 'r') as f:
+            ethernetmac = f.readline().strip()
+            f.close()
+            os.system('cp -r /etc/.nameneo /tmp/.mymac')
+        #return ethernetmac
 
+    elif fileExists('/tmp/.mymac'):
+                    f = open("/tmp/.mymac", 'r')
+                    myboxmac = f.readline().strip().replace("eth0      Link encap:Ethernet  HWaddr ", "")
+                    f.close()
+                    ethernetmac = myboxmac                       
+                    writefile = open('/tmp/.mymac' , 'w')
+                    writefile.write(myboxmac)
+                    writefile.close()
+    elif not fileExists('/tmp/.mymac'):
+            ethernetmac = '12:34:56:78:91:02'                        
+    return ethernetmac    
 
 def getCheckActivateVip():
-    supportedvip = ""
-    try:
-        path = "/usr/lib/periodon/.activatedmac"
-        if os.path.exists(path):
-            with open(path, "r", encoding="utf-8", errors="ignore") as f:
-                lines = f.read()
-            if "%s" % getBoxMacAddres() in lines:
-                supportedvip = "%s" % getBoxMacAddres()
-    except Exception:
-        pass
+    supportedvip = ''
+    if os.path.exists('/usr/lib/periodon/.activatedmac'):
+        with open('/usr/lib/periodon/.activatedmac', 'r') as f:
+            lines = f.read()
+            f.close()
+        if lines.find("%s" % getBoxMacAddres()) != -1:
+            supportedvip = '%s' % getBoxMacAddres()
     return supportedvip
-
-
+    
 def getMountDiskSTB():
-    neo_disk = " "
-    try:
-        if os.path.exists("/proc/mounts"):
-            with open("/proc/mounts", "r", encoding="utf-8", errors="ignore") as f:
-                lines = f.read()
-            for dev in (
-                "sda1",
-                "sdb1",
-                "sda2",
-                "sdb2",
-                "sdc1",
-                "sdd1",
-                "sde1",
-                "sdf1",
-                "sdg1",
-                "sdh1",
-            ):
-                if f"/dev/{dev} /media/hdd" in lines:
-                    os.system(
-                        f"touch /tmp/disk/{dev}; touch /tmp/disk/#---Select_the_disk_HDD:")
-                if f"/dev/{dev} /media/usb" in lines:
-                    os.system(
-                        f"touch /tmp/disk/{dev}; touch /tmp/disk/#---Select_the_disk_USB:")
-    except Exception:
-        pass
-    return neo_disk
+    neo_disk = ' '
+    if os.path.exists('/proc/mounts'):
+        with open('/proc/mounts', 'r') as f:
+            lines = f.read()
+            f.close()   
+        if lines.find('/dev/sda1 /media/hdd') != -1:
+            os.system('touch /tmp/disk/sda1; touch /tmp/disk/#---Select_the_disk_HDD:')            
+        if lines.find('/dev/sdb1 /media/hdd') != -1:
+            os.system('touch /tmp/disk/sdb1; touch /tmp/disk/#---Select_the_disk_HDD:')            
+        if lines.find('/dev/sda2 /media/hdd') != -1:
+            os.system('touch /tmp/disk/sda2; touch /tmp/disk/#---Select_the_disk_HDD:')            
+        if lines.find('/dev/sdb2 /media/hdd') != -1:
+            os.system('touch /tmp/disk/sdb2; touch /tmp/disk/#---Select_the_disk_HDD:')            
+        if lines.find('/dev/sdc1 /media/hdd') != -1:
+            os.system('touch /tmp/disk/sdc1; touch /tmp/disk/#---Select_the_disk_HDD:')            
+        if lines.find('/dev/sdd1 /media/hdd') != -1:
+            os.system('touch /tmp/disk/sdd1; touch /tmp/disk/#---Select_the_disk_HDD:')            
+        if lines.find('/dev/sde1 /media/hdd') != -1:
+            os.system('touch /tmp/disk/sde1; touch /tmp/disk/#---Select_the_disk_HDD:')            
+        if lines.find('/dev/sdf1 /media/hdd') != -1:
+            os.system('touch /tmp/disk/sdf1; touch /tmp/disk/#---Select_the_disk_HDD:')
+        if lines.find('/dev/sdg1 /media/hdd') != -1:
+            os.system('touch /tmp/disk/sdg1; touch /tmp/disk/#---Select_the_disk_HDD:') 
+        if lines.find('/dev/sdh1 /media/hdd') != -1:
+            os.system('touch /tmp/disk/sdh1; touch /tmp/disk/#---Select_the_disk_HDD:')
+	#---------------------------------------------
+        if lines.find('/dev/sda1 /media/usb') != -1:
+            os.system('touch /tmp/disk/sda1; touch /tmp/disk/#---Select_the_disk_USB:')            
+        if lines.find('/dev/sdb1 /media/usb') != -1:
+            os.system('touch /tmp/disk/sdb1; touch /tmp/disk/#---Select_the_disk_USB:')            
+        if lines.find('/dev/sda2 /media/usb') != -1:
+            os.system('touch /tmp/disk/sda2; touch /tmp/disk/#---Select_the_disk_USB:')            
+        if lines.find('/dev/sdb2 /media/usb') != -1:
+            os.system('touch /tmp/disk/sdb2; touch /tmp/disk/#---Select_the_disk_USB:')            
+        if lines.find('/dev/sdc1 /media/usb') != -1:
+            os.system('touch /tmp/disk/sdc1; touch /tmp/disk/#---Select_the_disk_USB:')            
+        if lines.find('/dev/sdd1 /media/usb') != -1:
+            os.system('touch /tmp/disk/sdd1; touch /tmp/disk/#---Select_the_disk_USB:')            
+        if lines.find('/dev/sde1 /media/usb') != -1:
+            os.system('touch /tmp/disk/sde1; touch /tmp/disk/#---Select_the_disk_USB:')            
+        if lines.find('/dev/sdf1 /media/usb') != -1:
+            os.system('touch /tmp/disk/sdf1; touch /tmp/disk/#---Select_the_disk_USB:')
+        if lines.find('/dev/sdg1 /media/usb') != -1:
+            os.system('touch /tmp/disk/sdg1; touch /tmp/disk/#---Select_the_disk_USB:')
+        if lines.find('/dev/sdh1 /media/usb') != -1:
+            os.system('touch /tmp/disk/sdh1; touch /tmp/disk/#---Select_the_disk_USB:')	
 
+    return neo_disk    
 
 def getCheckExtDisk():
-    try:
-        subprocess.run(
-            "cat /proc/mounts | egrep -o '.ext.' | sort | uniq > /tmp/.myext",
-            shell=True,
-        )
-        if os.path.exists("/tmp/.myext"):
-            with open("/tmp/.myext", "r", encoding="utf-8", errors="ignore") as f:
-                myboxEXT = f.readline().strip()
-            return myboxEXT
-    except Exception:
-        pass
-    return "UNKNOWN"
-
-
+    os.system("cat /proc/mounts | egrep -o '.ext.' | sort | uniq > /tmp/.myext")
+    if os.path.exists('/tmp/.myext'):
+        with open('/tmp/.myext', 'r') as f:
+            myboxEXT = f.readline().strip()
+            f.close()
+    return myboxEXT 
+        
 def getCheckExt():
-    neoExt = "UNKNOWN"
-    try:
-        if os.path.exists("/proc/mounts"):
-            with open("/proc/mounts", "r", encoding="utf-8", errors="ignore") as f:
-                lines = f.read()
-            if "/media/usb vfat" in lines or "/media/hdd vfat" in lines:
-                neoExt = "vfat"
-            elif "/media/hdd ext3" in lines or "/media/usb ext3" in lines:
-                neoExt = "ext3"
-            elif "/media/hdd ext4" in lines or "/media/usb ext4" in lines:
-                neoExt = "ext4"
-    except Exception:
-        pass
+    neoExt = 'UNKNOWN'
+    if os.path.exists('/proc/mounts'):
+        with open('/proc/mounts', 'r') as f:
+            lines = f.read()
+            f.close()
+        if lines.find('/media/usb vfat') != -1:
+            neoExt = 'vfat'
+        elif lines.find('/media/hdd vfat') != -1:
+            neoExt = 'vfat'
+        elif lines.find('/media/hdd ext3') != -1:
+            neoExt = 'ext3'
+        elif lines.find('/media/hdd ext4') != -1:
+            neoExt = 'ext4'
+        elif lines.find('/media/usb ext3') != -1:
+            neoExt = 'ext3'
+        elif lines.find('/media/usb ext4') != -1:
+            neoExt = 'ext4'                         
     return neoExt
-
 
 def getExtCheckHddUsb():
-    neoExt = "UNKNOWN"
-    try:
-        if os.path.exists("/proc/mounts"):
-            with open("/proc/mounts", "r", encoding="utf-8", errors="ignore") as f:
-                lines = f.read()
-            if (
-                ("/media/hdd ext4" in lines) or ("/media/hdd type ext4" in lines)
-            ) and os.path.exists("/media/hdd/ImageBoot"):
-                neoExt = "ext4"
-            if (
-                ("/media/usb ext4" in lines) or ("/media/usb type ext4" in lines)
-            ) and os.path.exists("/media/usb/ImageBoot"):
-                neoExt = "ext4"
-    except Exception:
-        pass
+    neoExt = 'UNKNOWN'
+    if os.path.exists('/proc/mounts'):
+        with open('/proc/mounts', 'r') as f:
+            lines = f.read()
+            f.close()
+        if lines.find('/media/hdd ext4') != -1 or lines.find('/media/hdd type ext4') != -1 and os.path.exists('/media/hdd/ImageBoot'):
+            neoExt = 'ext4'
+        if lines.find('/media/usb ext4') != -1 or lines.find('/media/usb type ext4') != -1 and os.path.exists('/media/usb/ImageBoot'):
+            neoExt = 'ext4'                        
     return neoExt
 
-
 def getNandWrite():
-    NandWrite = "NandWrite"
-    try:
-        if os.path.exists("/usr/sbin/nandwrite"):
-            try:
-                with open(
-                    "/usr/sbin/nandwrite", "r", encoding="utf-8", errors="ignore"
-                ) as f:
-                    lines = f.read()
-                if "nandwrite" in lines:
-                    NandWrite = "nandwrite"
-            except Exception:
-                NandWrite = "nandwrite"
-        else:
-            NandWrite = "no_nandwrite"
-    except Exception:
-        pass
+    NandWrite = 'NandWrite'
+    if fileExists('/usr/lib/python2.7'):    
+        if os.path.exists('/usr/sbin/nandwrite'):
+            with open('/usr/sbin/nandwrite', 'r') as f:
+                lines = f.read()
+                f.close()
+            if lines.find('nandwrite') != -1:
+                NandWrite = 'nandwrite'
+    else:
+        NandWrite = 'no_nandwrite'
+	
     return NandWrite
 
-
 def getMyUUID():
+    #os.system("tune2fs -l /dev/sd?? | awk '/UUID/ {print $NF}' > /tmp/.myuuid")
+    os.system("tune2fs -l %s | awk '/UUID/ {print $NF}' > /tmp/.myuuid" % (getLocationMultiboot()))
     try:
-        lm = getLocationMultiboot()
-        if lm and lm != "UNKNOWN":
-            subprocess.run(
-                "tune2fs -l %s | awk '/UUID/ {print $NF}' > /tmp/.myuuid" %
-                (lm,), shell=True, )
-            if os.path.isfile("/tmp/.myuuid"):
-                return (
-                    open(
-                        "/tmp/.myuuid",
-                        "r",
-                        encoding="utf-8",
-                        errors="ignore") .read() .strip() .upper())
-    except Exception:
+        if os.path.isfile('/tmp/.myuuid'):
+            return open('/tmp/.myuuid').read().strip().upper()
+    except:
         pass
-    return _("unavailable")
 
+    return _('unavailable')
 
 def getImageBootNow():
-    imagefile = "UNKNOWN"
-    try:
-        if os.path.exists("/.multinfo"):
-            with open("/.multinfo", "r", encoding="utf-8", errors="ignore") as f:
-                imagefile = f.readline().strip()
-    except Exception:
-        pass
+    imagefile = 'UNKNOWN'
+    if os.path.exists('/.multinfo'):
+        with open('/.multinfo' , 'r') as f:
+            imagefile = f.readline().strip()
+            f.close()
     return imagefile
 
-
 def getNeoActivatedtest():
-    neoactivated = "NEOBOOT MULTIBOOT"
-    try:
-        if not fileExists("/.multinfo"):
-            if getCheckActivateVip() != getBoxMacAddres():
-                neoactivated = "Ethernet MAC not found."
-            elif not fileExists("/usr/lib/periodon/.kodn"):
-                neoactivated = "VIP Pin code missing."
-            else:
-                try:
-                    if getCheckActivateVip() == getBoxMacAddres(
-                    ) and fileExists("/usr/lib/periodon/.kodn"):
-                        neoactivated = "NEOBOOT VIP ACTIVATED"
-                except Exception:
-                    neoactivated = "NEOBOOT MULTIBOOT"
-    except Exception:
-        pass
-    return neoactivated
+        neoactivated = 'NEOBOOT MULTIBOOT'
+        if not fileExists('/.multinfo'):        
+            if getCheckActivateVip() != getBoxMacAddres():       
+                neoactivated = 'Ethernet MAC not found.'
+            elif not fileExists('/usr/lib/periodon/.kodn'):                   
+                neoactivated = 'VIP Pin code missing.'
+            elif getTestToTest() != UPDATEVERSION :
+                neoactivated = _('Update %s is available.') % getTestToTest()
+            else:    
+                if getCheckActivateVip() == getBoxMacAddres() and fileExists('/usr/lib/periodon/.kodn') and getTestToTest() == UPDATEVERSION :
+                    neoactivated = 'NEOBOOT VIP ACTIVATED'                
 
+        return neoactivated
 
 boxbrand = sys.modules[__name__]

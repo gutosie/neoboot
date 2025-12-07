@@ -1,13 +1,15 @@
+# -*- coding: utf-8 -*-
+
 from Tools.CList import CList
 
 
 class Job(object):
-    NOT_STARTED, IN_PROGRESS, FINISHED, FAILED = list(range(4))
+    NOT_STARTED, IN_PROGRESS, FINISHED, FAILED = range(4)
 
     def __init__(self, name):
         self.tasks = []
         self.resident_tasks = []
-        self.workspace = "/tmp"
+        self.workspace = '/tmp'
         self.current_task = 0
         self.callback = None
         self.name = name
@@ -31,20 +33,16 @@ class Job(object):
         if self.current_task == len(self.tasks):
             return self.end
         t = self.tasks[self.current_task]
-        jobprogress = t.weighting * t.progress / float(t.end) + sum(
-            [task.weighting for task in self.tasks[: self.current_task]]
-        )
+        jobprogress = t.weighting * t.progress / float(t.end) + sum([task.weighting for task in self.tasks[:self.current_task]])
         return int(jobprogress * self.weightScale)
 
     progress = property(getProgress)
 
     def getStatustext(self):
-        return {
-            self.NOT_STARTED: _("Waiting"),
-            self.IN_PROGRESS: _("In progress"),
-            self.FINISHED: _("Finished"),
-            self.FAILED: _("Failed"),
-        }[self.status]
+        return {self.NOT_STARTED: _('Waiting'),
+         self.IN_PROGRESS: _('In progress'),
+         self.FINISHED: _('Finished'),
+         self.FAILED: _('Failed')}[self.status]
 
     def task_progress_changed_CB(self):
         self.state_changed()
@@ -73,10 +71,7 @@ class Job(object):
                 self.callback(self, None, [])
                 self.callback = None
             else:
-                print(
-                    ("still waiting for %d resident task(s) %s to finish")
-                    % (len(self.resident_tasks), str(self.resident_tasks))
-                )
+                print("still waiting for %d resident task(s) %s to finish") % (len(self.resident_tasks), str(self.resident_tasks))
         else:
             self.tasks[self.current_task].run(self.taskCallback)
             self.state_changed()
@@ -87,18 +82,18 @@ class Job(object):
         if stay_resident:
             if cb_idx not in self.resident_tasks:
                 self.resident_tasks.append(self.current_task)
-                print(("task going resident:"), task)
+                print("task going resident:"), task
             else:
-                print(("task keeps staying resident:"), task)
+                print("task keeps staying resident:"), task
                 return
         if len(res):
-            print((">>> Error:"), res)
+            print(">>> Error:"), res
             self.status = self.FAILED
             self.state_changed()
             self.callback(self, task, res)
         if cb_idx != self.current_task:
             if cb_idx in self.resident_tasks:
-                print(("resident task finished:"), task)
+                print("resident task finished:"), task
                 self.resident_tasks.remove(cb_idx)
         if res == []:
             self.state_changed()
@@ -118,12 +113,8 @@ class Job(object):
         self.abort()
 
     def __str__(self):
-        try:
-            return "Components.Task.Job name=%s #tasks=%s" % (
-                self.name, len(self.tasks))
-        except Exception as ex:
-            return 'Components.Task.Job name=%s #tasks=%s' % (
-                self.name, len(self.tasks))
+        return 'Components.Task.Job name=%s #tasks=%s' % (self.name, len(self.tasks))
+
 
 class Task(object):
 
@@ -139,11 +130,11 @@ class Task(object):
         self.weighting = 100
         self.__progress = 0
         self.cmd = None
-        self.cwd = "/tmp"
+        self.cwd = '/tmp'
         self.args = []
         self.cmdline = None
         self.task_progress_changed = None
-        self.output_line = ""
+        self.output_line = ''
         job.addTask(self)
         self.container = None
         return
@@ -179,7 +170,6 @@ class Task(object):
             return
         else:
             from enigma import eConsoleAppContainer
-
             self.container = eConsoleAppContainer()
             self.container.appClosed.append(self.processFinished)
             self.container.stdoutAvail.append(self.processStdout)
@@ -187,25 +177,16 @@ class Task(object):
             if self.cwd is not None:
                 self.container.setCWD(self.cwd)
             if not self.cmd and self.cmdline:
-                print(
-                    ("execute:"),
-                    self.container.execute(
-                        self.cmdline),
-                    self.cmdline)
+                print("execute:"), self.container.execute(self.cmdline), self.cmdline
             else:
-                print(
-                    ("execute:"),
-                    self.container.execute(self.cmd, *self.args),
-                    " ".join(self.args),
-                )
+                print("execute:"), self.container.execute(self.cmd, *self.args), ' '.join(self.args)
             if self.initial_input:
                 self.writeInput(self.initial_input)
             return
             return
 
     def run(self, callback):
-        failed_preconditions = self.checkPreconditions(
-            True) + self.checkPreconditions(False)
+        failed_preconditions = self.checkPreconditions(True) + self.checkPreconditions(False)
         if failed_preconditions:
             print("[Task] preconditions failed")
             callback(self, failed_preconditions)
@@ -215,7 +196,7 @@ class Task(object):
             self.prepare()
             self._run()
         except Exception as ex:
-            print(("[Task] exception:"), ex)
+            print("[Task] exception:"), ex
             self.postconditions = [FailedPostcondition(ex)]
             self.finish()
 
@@ -234,14 +215,14 @@ class Task(object):
     def processOutput(self, data):
         self.output_line += data
         while True:
-            i = self.output_line.find("\n")
+            i = self.output_line.find('\n')
             if i == -1:
                 break
-            self.processOutputLine(self.output_line[: i + 1])
+            self.processOutputLine(self.output_line[:i + 1])
             self.output_line = self.output_line[i + 1:]
 
     def processOutputLine(self, line):
-        print(("[Task %s]") % self.name, line[:-1])
+        print("[Task %s]") % self.name, line[:-1]
 
     def processFinished(self, returncode):
         self.returncode = returncode
@@ -286,10 +267,7 @@ class Task(object):
     progress = property(getProgress, setProgress)
 
     def __str__(self):
-        try:
-            return "Components.Task.Task name=%s" % self.name
-        except Exception as ex:
-            return 'Components.Task.Task name=%s' % self.name
+        return 'Components.Task.Task name=%s' % self.name
 
 
 class LoggingTask(Task):
@@ -299,7 +277,7 @@ class LoggingTask(Task):
         self.log = []
 
     def processOutput(self, data):
-        print(("[%s]") % self.name, data, end=" ")
+        print("[%s]") % self.name, data,
         self.log.append(data)
 
 
@@ -308,7 +286,6 @@ class PythonTask(Task):
     def _run(self):
         from twisted.internet import threads
         from enigma import eTimer
-
         self.aborted = False
         self.pos = 0
         threads.deferToThread(self.work).addBoth(self.onComplete)
@@ -317,7 +294,7 @@ class PythonTask(Task):
         self.timer.start(5)
 
     def work(self):
-        raise NotImplemented
+        raise (NotImplemented, "work")
 
     def abort(self):
         self.aborted = True
@@ -346,13 +323,12 @@ class ConditionTask(Task):
 
     def prepare(self):
         from enigma import eTimer
-
         self.timer = eTimer()
         self.timer.callback.append(self.trigger)
         self.timer.start(1000)
 
     def cleanup(self, failed):
-        if hasattr(self, "timer"):
+        if hasattr(self, 'timer'):
             self.timer.stop()
             del self.timer
 
@@ -363,7 +339,7 @@ class ConditionTask(Task):
         self.triggerCount += 1
         try:
             if self.timeoutCount is not None and self.triggerCount > self.timeoutCount:
-                raise Exception
+                raise (Exception, "Timeout elapsed, sorry")
             res = self.check()
         except Exception as e:
             self.postconditions.append(FailedPostcondition(e))
@@ -405,27 +381,15 @@ class JobManager:
     def notifyFailed(self, job, task, problems):
         from Tools import Notifications
         from Screens.MessageBox import MessageBox
-
         if problems[0].RECOVERABLE:
-            Notifications.AddNotificationWithCallback(
-                self.errorCB,
-                MessageBox,
-                _("Error: %s\nRetry?") % problems[0].getErrorMessage(task),
-            )
+            Notifications.AddNotificationWithCallback(self.errorCB, MessageBox, _('Error: %s\nRetry?') % problems[0].getErrorMessage(task))
             return True
         else:
-            Notifications.AddNotification(
-                MessageBox,
-                job.name
-                + "\n"
-                + _("Error")
-                + ": %s" % problems[0].getErrorMessage(task),
-                type=MessageBox.TYPE_ERROR,
-            )
+            Notifications.AddNotification(MessageBox, job.name + '\n' + _('Error') + ': %s' % problems[0].getErrorMessage(task), type=MessageBox.TYPE_ERROR)
             return False
 
     def jobDone(self, job, task, problems):
-        print(("job"), job, ("completed with"), problems, ("in"), task)
+        print("job"), job, ("completed with"), problems, ("in"), task
         if problems:
             if not job.onFail(job, task, problems):
                 self.errorCB(False)
@@ -440,7 +404,6 @@ class JobManager:
         if not self.visible:
             from Tools import Notifications
             from Screens.TaskView import JobView
-
             self.visible = True
             Notifications.AddNotification(JobView, job)
 
@@ -467,10 +430,7 @@ class Condition:
     RECOVERABLE = False
 
     def getErrorMessage(self, task):
-        return _("An unknown error occurred!") + " (%s @ task %s)" % (
-            self.__class__.__name__,
-            task.__class__.__name__,
-        )
+        return _('An unknown error occurred!') + ' (%s @ task %s)' % (self.__class__.__name__, task.__class__.__name__)
 
 
 class WorkspaceExistsPrecondition(Condition):
@@ -487,7 +447,6 @@ class DiskspacePrecondition(Condition):
 
     def check(self, task):
         import os
-
         try:
             s = os.statvfs(task.job.workspace)
             self.diskspace_available = s.f_bsize * s.f_bavail
@@ -496,50 +455,34 @@ class DiskspacePrecondition(Condition):
             return False
 
     def getErrorMessage(self, task):
-        return _(
-            "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
-        ) % (
-            self.diskspace_required / 1024 / 1024,
-            self.diskspace_available / 1024 / 1024,
-        )
+        return _('Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)') % (self.diskspace_required / 1024 / 1024, self.diskspace_available / 1024 / 1024)
 
 
 class ToolExistsPrecondition(Condition):
 
     def check(self, task):
         import os
-
-        if task.cmd[0] == "/":
+        if task.cmd[0] == '/':
             self.realpath = task.cmd
-            print(
-                "[Task.py][ToolExistsPrecondition] WARNING: usage of absolute paths for tasks should be avoided!"
-            )
+            print("[Task.py][ToolExistsPrecondition] WARNING: usage of absolute paths for tasks should be avoided!")
             return os.access(self.realpath, os.X_OK)
         self.realpath = task.cmd
-        path = os.environ.get("PATH", "").split(os.pathsep)
-        path.append(task.cwd + "/")
-        absolutes = [
-            file for file in map(
-                lambda directory,
-                file=task.cmd: os.path.join(
-                    directory,
-                    file),
-                path) if os.access(
-                file,
-                os.X_OK)]
+        path = os.environ.get('PATH', '').split(os.pathsep)
+        path.append(task.cwd + '/')
+        absolutes = filter(lambda file: os.access(file, os.X_OK), map(lambda directory, file=task.cmd: os.path.join(directory, file), path))
         if absolutes:
             self.realpath = absolutes[0]
             return True
         return False
 
     def getErrorMessage(self, task):
-        return _("A required tool (%s) was not found.") % self.realpath
+        return _('A required tool (%s) was not found.') % self.realpath
 
 
 class AbortedPostcondition(Condition):
 
     def getErrorMessage(self, task):
-        return "Cancelled upon user request"
+        return 'Cancelled upon user request'
 
 
 class ReturncodePostcondition(Condition):
@@ -548,13 +491,13 @@ class ReturncodePostcondition(Condition):
         return task.returncode == 0
 
     def getErrorMessage(self, task):
-        if hasattr(task, "log") and task.log:
-            log = "".join(task.log).strip()
-            log = log.split("\n")[-3:]
-            log = "\n".join(log)
+        if hasattr(task, 'log') and task.log:
+            log = ''.join(task.log).strip()
+            log = log.split('\n')[-3:]
+            log = '\n'.join(log)
             return log
         else:
-            return _("Error code") + ": %s" % task.returncode
+            return _('Error code') + ': %s' % task.returncode
 
 
 class FailedPostcondition(Condition):
@@ -564,13 +507,13 @@ class FailedPostcondition(Condition):
 
     def getErrorMessage(self, task):
         if isinstance(self.exception, int):
-            if hasattr(task, "log"):
-                log = "".join(task.log).strip()
-                log = log.split("\n")[-4:]
-                log = "\n".join(log)
+            if hasattr(task, 'log'):
+                log = ''.join(task.log).strip()
+                log = log.split('\n')[-4:]
+                log = '\n'.join(log)
                 return log
             else:
-                return _("Error code") + " %s" % self.exception
+                return _('Error code') + ' %s' % self.exception
         return str(self.exception)
 
     def check(self, task):

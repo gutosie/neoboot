@@ -10,8 +10,8 @@ from Tools.Directories import fileExists, SCOPE_PLUGINS
 
 def getAccesDate():
     timego = ''
-    dana = getTestOutTime()  # etc   Nie! Szukana liczba jest wieksza!
-    strzal = getTestInTime()  # tmp   Nie! Szukana liczba jest mniejsza!
+    dana = getTestOutTime()   #  etc   Nie! Szukana liczba jest wieksza!
+    strzal = getTestInTime()  #  tmp   Nie! Szukana liczba jest mniejsza!
     if strzal == dana:
         timego = 'access'
     elif strzal < dana:
