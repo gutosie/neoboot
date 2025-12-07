@@ -2534,27 +2534,27 @@ class Opis(Screen):
             if answer is True:
                 if fileExists("/usr/bin/fullwget"):
                     os.system(
-                        "cd /tmp; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/NeoBoot_Stable.tar.gz"
+                        "cd /tmp; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/NEOBootPY3.tar.gz"
                     )
-                if not fileExists("/tmp/NeoBoot_Stable.tar.gz"):
+                if not fileExists("/tmp/NEOBootPY3.tar.gz"):
                     if fileExists("/usr/bin/curl"):
                         os.system(
-                            "sync; cd /tmp; curl -O --ftp-ssl -k https://raw.githubusercontent.com/gutosie/neoboot/master/NeoBoot_Stable.tar.gz"
+                            "sync; cd /tmp; curl -O --ftp-ssl -k https://raw.githubusercontent.com/gutosie/neoboot/master/NEOBootPY3.tar.gz"
                         )
-                if not fileExists("/tmp/NeoBoot_Stable.tar.gz"):
+                if not fileExists("/tmp/NEOBootPY3.tar.gz"):
                     if fileExists("/usr/bin/wget"):
                         os.system(
-                            "cd /tmp;rm ./*.zip; wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/NeoBoot_Stable.tar.gz"
+                            "cd /tmp;rm ./*.zip; wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/NEOBootPY3.tar.gz"
                         )
-                if not fileExists("/tmp/NeoBoot_Stable.tar.gz"):
+                if not fileExists("/tmp/NEOBootPY3.tar.gz"):
                     self.session.open(
                         MessageBox,
                         _("Unfortunately, at the moment not found an update, try again later."),
                         MessageBox.TYPE_INFO,
                         10,
                     )
-                if fileExists("/tmp/NeoBoot_Stable.tar.gz"):
-                    cmd2 = "tar -czf /tmp/NEOBootLastcOPY.tar.gz /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot; sleep 2; rm -r /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot;sleep 2; /bin/tar -xzvf /tmp/NeoBoot_Stable.tar.gz -C /"
+                if fileExists("/tmp/NEOBootPY3.tar.gz"):
+                    cmd2 = "tar -czf /tmp/NEOBootLastcOPY.tar.gz /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot; sleep 2; rm -r /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot;sleep 2; /bin/tar -xzvf /tmp/NEOBootPY3.tar.gz -C /"
                     system(cmd2)
                     self.session.open(
                         MessageBox,
