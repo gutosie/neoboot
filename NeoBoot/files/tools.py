@@ -2539,7 +2539,7 @@ class Opis(Screen):
                 if not fileExists("/tmp/NEOBootPY3.tar.gz"):
                             self.session.open(MessageBox,_("Unfortunately, at the moment not found an update, try again later."),MessageBox.TYPE_INFO,10,)
                 if fileExists("/tmp/NEOBootPY3.tar.gz"):
-                            cmd1 = "tar -czf /tmp/NEOBootLastcOPY.tar.gz /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot; sleep 2; rm -r /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot;sleep 2; /bin/tar -xzvf /tmp/NEOBootPY3.tar.gz -C /; sleep 5; killall -9 enigma2"
+                            cmd1 = "tar -czf /tmp/NEOBootLastCOPY" + UPDATEVERSION + ".tar.gz /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot; sleep 2; rm -r /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot;sleep 2; /bin/tar -xzvf /tmp/NEOBootPY3.tar.gz -C /; sleep 5; killall -9 enigma2"
                             system(cmd1)                
                 else:
                             self.session.open(MessageBox,_("The plug-in not installed."),MessageBox.TYPE_INFO,5,)
