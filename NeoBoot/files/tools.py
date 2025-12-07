@@ -252,31 +252,24 @@ class MBTools(Screen):
         res = (_('Install Multi Stalker'), png, 22)
         self.list.append(res)
         self['list']. list = self.list
-        
-        res = (_('Install Multiboot Flash Online'), png, 23)
-        self.list.append(res)
-        self['list']. list = self.list
-        
-        res = (_('Install Dream Sat Panel'), png, 24)
-        self.list.append(res)
-        self['list']. list = self.list
                 
-        res = (_('Initialization - formatting disk for neoboot.'), png, 25)
+        res = (_('Initialization - formatting disk for neoboot.'), png, 23)
         self.list.append(res)
         self['list']. list = self.list        
         
         if "vu" + getBoxVuModel() == getBoxHostName() or getBoxHostName() == "et5x00" and getCPUtype() == "MIPS" and not fileExists('/.multinfo'):        
-            res = (_('Boot Managers.'), png, 26)
+            res = (_('Boot Managers.'), png, 24)
             self.list.append(res)
             self['list']. list = self.list                
         
-        res = (_('NeoBoot Information'), png, 27)
+        res = (_('NeoBoot Information'), png, 25)
         self.list.append(res)
         self['list']. list = self.list
 
-        res = (_('NeoBoot donate'), png, 28)
+        res = (_('NeoBoot donate'), png, 26)
         self.list.append(res)
         self['list']. list = self.list
+        
         
     def KeyOk(self):
         self.sel = self['list'].getCurrent()
@@ -327,18 +320,14 @@ class MBTools(Screen):
         if self.sel == 21 and self.session.open(IPTVPlayerInstall):
             pass 
         if self.sel == 22 and self.session.open(MultiStalker):
-            pass
-        if self.sel == 23 and self.session.open(MultibootFlashonline):
-            pass 
-        if self.sel == 24 and self.session.open(DreamSatPanel):
-            pass                        
-        if self.sel == 25 and self.session.open(InitializationFormattingDisk):
+            pass                       
+        if self.sel == 23 and self.session.open(InitializationFormattingDisk):
             pass                                                  
-        if self.sel == 26 and self.session.open(BootManagers):
+        if self.sel == 24 and self.session.open(BootManagers):
             pass                                                                      
-        if self.sel == 27 and self.session.open(MultiBootMyHelp):
+        if self.sel == 25 and self.session.open(MultiBootMyHelp):
             pass
-        if self.sel == 28 and self.session.open(neoDONATION):
+        if self.sel == 26 and self.session.open(neoDONATION):
             pass            
 #        if self.sel == 28and self.session.open(CheckInternet):
 #            pass
@@ -2065,67 +2054,7 @@ class MultiStalker(Screen):
                 self.session.open(Console, _('Enigma2 restarting..'), [cmd1])
                 self.close()
                 
-
-class MultibootFlashonline(Screen):
-    __module__ = __name__
-
-    skin = """<screen name="MultibootFlashonline" title="Enigam2 restarting..." position="center,center" size="700,300" >
-    <widget name="lab1" position="20,20" size="660,210" font="baslk;25" halign="center" valign="center" transparent="1"/>
-    <ePixmap position="210,250" size="34,34" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red.png" alphatest="blend" zPosition="1" />
-    <widget name="key_red" position="250,250" zPosition="2" size="280,40" font="baslk;30" halign="left" valign="center" backgroundColor="red" transparent="1" />
-    </screen>"""
-
-    def __init__(self, session):
-        Screen.__init__(self, session)
-        self['lab1'] = Label(_('Re-installing MultibootFlashonline. \n\nInstall?'))
-        self['key_red'] = Label(_('Installation'))
-        self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'back': self.close,
-         'red': self.MultibootFlashonline_update})
-
-    def MultibootFlashonline_update(self):
-                os.system('rm -f /tmp/*.ipk')
-                os.system('rm -f /tmp/*.ipk')
-                if fileExists('/usr/bin/curl'):
-                            os.system('cd /tmp; curl -O --ftp-ssl http://178.63.156.75/paneladdons/Pluginsoe20/multiboot/enigma2-plugin-extensions-multiboot-flashonline_6.2_all.ipk')
-                if not fileExists('/tmp/enigma2-plugin-extensions-multiboot-flashonline_6.2_all.ipk'):
-                    if fileExists('/usr/bin/fullwget'):
-                        cmd1 = 'cd /tmp; fullwget --no-check-certificate http://178.63.156.75/paneladdons/Pluginsoe20/multiboot/enigma2-plugin-extensions-multiboot-flashonline_6.2_all.ipk'
-                        system(cmd1)
-                if not fileExists('/tmp/enigma2-plugin-extensions-multiboot-flashonline_6.2_all.ipk'):
-                    if fileExists('/usr/bin/wget'):
-                            os.system('cd /tmp; wget --no-check-certificate http://178.63.156.75/paneladdons/Pluginsoe20/multiboot/enigma2-plugin-extensions-multiboot-flashonline_6.2_all.ipk')
-                if fileExists('/tmp/enigma2-plugin-extensions-multiboot-flashonline_6.2_all.ipk'):
-                    cmd2 = 'opkg install --force-overwrite --force-reinstall --force-downgrade /tmp/enigma2-plugin-extensions-multiboot-flashonline_6.2_all.ipk'
-                    self.session.open(Console, _('Enigma2 restarting..'), [cmd2])
-                    self.close()                    
-                else:
-                    self.session.open(MessageBox, _('The plugin not installed.\nAccess Fails with Error code error-panel_install.'), MessageBox.TYPE_INFO, 10)
-                    self.close()
-                    
-                     
-class DreamSatPanel(Screen):
-    __module__ = __name__
-
-    skin = """<screen name="DreamSatPanel" title="Enigam2 restarting..." position="center,center" size="700,300" >
-    <widget name="lab1" position="20,20" size="660,210" font="baslk;25" halign="center" valign="center" transparent="1"/>
-    <ePixmap position="210,250" size="34,34" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red.png" alphatest="blend" zPosition="1" />
-    <widget name="key_red" position="250,250" zPosition="2" size="280,40" font="baslk;30" halign="left" valign="center" backgroundColor="red" transparent="1" />
-    </screen>"""
-
-    def __init__(self, session):
-        Screen.__init__(self, session)
-        self['lab1'] = Label(_('Re-installing DreamSatPanel \n\nInstall?'))
-        self['key_red'] = Label(_('Installation'))
-        self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'back': self.close,
-         'red': self.MultiStalker_update})
-
-    def MultiStalker_update(self):
-                os.system('rm -f /tmp/*.ipk')
-                cmd1 = 'wget -q "--no-check-certificate" http://ipkinstall.ath.cx/ipk-install/DreamSatPanel/installer.sh  -O - | /bin/sh'
-                self.session.open(Console, _('Enigma2 restarting..'), [cmd1])
-                self.close()
-                
-                     
+                                    
 class InitializationFormattingDisk(Screen):
     __module__ = __name__
 
