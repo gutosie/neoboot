@@ -2515,15 +2515,11 @@ class Opis(Screen):
                         pass
             else:
                     self.close()
-                    
-                                   
+                                           
     def installneoPY3(self):
         message = _("Are you sure you want to reinstall neoboot from github.")
-        ybox = self.session.openWithCallback(
-            self.neoPY3, MessageBox, message, MessageBox.TYPE_YESNO
-        )
+        ybox = self.session.openWithCallback(self.neoPY3, MessageBox, message, MessageBox.TYPE_YESNO)
         ybox.setTitle(_("Install."))
-
 
     def neoPY3(self, answer):
         if fileExists("/.multinfo"):
@@ -2533,46 +2529,22 @@ class Opis(Screen):
         else:
             if answer is True:
                 if fileExists("/usr/bin/fullwget"):
-                    os.system(
-                        "cd /tmp; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/NEOBootPY3.tar.gz"
-                    )
+                        os.system("cd /tmp; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/NEOBootPY3.tar.gz")
                 if not fileExists("/tmp/NEOBootPY3.tar.gz"):
-                    if fileExists("/usr/bin/curl"):
-                        os.system(
-                            "sync; cd /tmp; curl -O --ftp-ssl -k https://raw.githubusercontent.com/gutosie/neoboot/master/NEOBootPY3.tar.gz"
-                        )
+                        if fileExists("/usr/bin/curl"):
+                            os.system("sync; cd /tmp; curl -O --ftp-ssl -k https://raw.githubusercontent.com/gutosie/neoboot/master/NEOBootPY3.tar.gz")
                 if not fileExists("/tmp/NEOBootPY3.tar.gz"):
-                    if fileExists("/usr/bin/wget"):
-                        os.system(
-                            "cd /tmp;rm ./*.zip; wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/NEOBootPY3.tar.gz"
-                        )
+                        if fileExists("/usr/bin/wget"):
+                            os.system("cd /tmp;rm ./*.zip; wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/NEOBootPY3.tar.gz")
                 if not fileExists("/tmp/NEOBootPY3.tar.gz"):
-                    self.session.open(
-                        MessageBox,
-                        _("Unfortunately, at the moment not found an update, try again later."),
-                        MessageBox.TYPE_INFO,
-                        10,
-                    )
+                            self.session.open(MessageBox,_("Unfortunately, at the moment not found an update, try again later."),MessageBox.TYPE_INFO,10,)
                 if fileExists("/tmp/NEOBootPY3.tar.gz"):
-                    cmd2 = "tar -czf /tmp/NEOBootLastcOPY.tar.gz /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot; sleep 2; rm -r /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot;sleep 2; /bin/tar -xzvf /tmp/NEOBootPY3.tar.gz -C /"
-                    system(cmd2)
-                    self.session.open(
-                        MessageBox,
-                        _("The plug-in has been successfully installed."),
-                        MessageBox.TYPE_INFO,
-                        5,
-                    )
-                    self.close()                
+                            cmd1 = "tar -czf /tmp/NEOBootLastcOPY.tar.gz /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot; sleep 2; rm -r /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot;sleep 2; /bin/tar -xzvf /tmp/NEOBootPY3.tar.gz -C /; sleep 5; killall -9 enigma2"
+                            system(cmd1)                
                 else:
-                    self.session.open(
-                        MessageBox,
-                        _("The plug-in not installed."),
-                        MessageBox.TYPE_INFO,
-                        5,
-                    )
-                    self.close()
-                    
-                    
+                            self.session.open(MessageBox,_("The plug-in not installed."),MessageBox.TYPE_INFO,5,)
+                            self.close()
+                           
     def delete(self):
         message = _('Are you sure you want to completely remove NeoBoota of your image?\n\nIf you choose so all directories NeoBoota will be removed.\nA restore the original image settings Flash.')
         ybox = self.session.openWithCallback(self.mbdelete, MessageBox, message, MessageBox.TYPE_YESNO)
