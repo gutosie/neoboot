@@ -352,14 +352,14 @@ class DownloadImageNeo(Screen):
 
 	def downloadError(self, reason, status):
 		self.downloader.stop()
-		self.session.openWithCallback(self.abort, MessageBox, _("Error during downloading image\n%s\n%s") % (self.imagename, reason), type=MessageBox.TYPE_ERROR, simple=True)
+		self.session.openWithCallback(self.abort, MessageBox, _("Error during downloading image\n%s\n%s") % (self.imagename, reason), type=MessageBox.TYPE_ERROR, simple=True )
 
 	def downloadEnd(self):
 		self.downloader.stop()
 		self.downloadfinish()
 		
 	def downloadfinish(self):
-		self.session.openWithCallback(self.abort, MessageBox, _("Downloading image successful"), type=MessageBox.TYPE_INFO, simple=True)
+				self.abort(self.session.open(MessageBox, _("Downloading image successful. Press Exit..."), MessageBox.TYPE_INFO, 30, simple=True ))
 		
 	def abort(self, reply=None):
 		if self.getImageList or self.containerofgwrite:
