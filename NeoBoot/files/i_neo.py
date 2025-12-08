@@ -102,7 +102,7 @@ class SelectImage(Screen):
 				try:
 					self.imageBrandList = json.load(urlopen(url, timeout=3))
 				except:
-					print("[FlashImage] getImageBrandList Error: Unable to load json data from URL '%s'!" % url)
+					print("[DownloadImage] getImageBrandList Error: Unable to load json data from URL '%s'!" % url)
 				if self.imageBrandList:
 					self.imageBrandList.update({self.selectedImage[0]: self.selectedImage[1]})
 					self.models = set([self.imageBrandList[image]['model'] for image in self.imageBrandList.keys()])
@@ -113,7 +113,7 @@ class SelectImage(Screen):
 				try:
 					self.jsonlist = dict(json.load(urlopen(self.selectedImage[1]["url"], timeout=3)))
 				except:
-					print("[FlashImage] getImagesList Error: Unable to load json data from URL '%s'!" % self.selectedImage[1]["url"])
+					print("[DownloadImage] getImagesList Error: Unable to load json data from URL '%s'!" % self.selectedImage[1]["url"])
 				alternative_imagefeed = config.usage.alternative_imagefeed.value
 				if alternative_imagefeed:
 					if "http" in alternative_imagefeed:
@@ -121,7 +121,7 @@ class SelectImage(Screen):
 						try:
 							self.jsonlist.update(dict(json.load(urlopen(url, timeout=3))))
 						except:
-							print("[FlashImage] getImagesList Error: Unable to load json data from alternative URL '%s'!" % url)
+							print("[DownloadImage] getImagesList Error: Unable to load json data from alternative URL '%s'!" % url)
 
 			self.imagesList = dict(self.jsonlist)
 
@@ -139,7 +139,7 @@ class SelectImage(Screen):
 					pass
 
 		list = []
-		for catagorie in conditional_sort(self.imagesList.keys(), lambda w: _("Downloaded Images") not in w and _("Fullbackup Images") not in w):
+		for catagorie in conditional_sort(self.imagesList.keys(), lambda w: _("Downloaded Images") not in w):
 			if catagorie in self.expanded:
 				list.append(ChoiceEntryComponent('expanded', ((str(catagorie)), "Expander")))
 				for image in reversed(sorted(self.imagesList[catagorie].keys())):
@@ -282,7 +282,7 @@ class DownloadImageNeo(Screen):
 							statvfs = os.statvfs(path)
 							return (statvfs.f_bavail * statvfs.f_frsize) // (1 << 20)
 						except OSError as err:
-							print("[FlashImage] checkMedia Error %d: Unable to get status for '%s'! (%s)" % (err.errno, path, err.strerror))
+							print("[DownloadImage] checkMedia Error %d: Unable to get status for '%s'! (%s)" % (err.errno, path, err.strerror))
 					return 0
 
 				def checkIfDevice(path, diskstats):
@@ -356,7 +356,10 @@ class DownloadImageNeo(Screen):
 
 	def downloadEnd(self):
 		self.downloader.stop()
-		self.abort()
+		self.downloadfinish()
+		
+	def downloadfinish(self):
+		self.session.openWithCallback(self.abort, MessageBox, _("Downloading image successful"), type=MessageBox.TYPE_INFO, simple=True)
 		
 	def abort(self, reply=None):
 		if self.getImageList or self.containerofgwrite:
