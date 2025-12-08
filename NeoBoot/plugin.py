@@ -288,21 +288,25 @@ class NeoBootImageChoose(Screen):
                 if not fileExists('/.control_boot_new_image'):
                     os.system('echo "Image uruchomione OK\nNie kasuj tego pliku. \n\nImage started OK\nDo not delete this file."  > /.control_ok')
                     
-    def DownloadImageOnline(self):   
-            if not fileExists('/usr/lib/python2.7'):
+    def DownloadImageOnline(self):
+            if fileExists('/.multinfo'):
+                    mess = _('Downloading available only from the image Flash.')
+                    self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
+            else:
+                if not fileExists('/usr/lib/python2.7'):
                                 from Plugins.Extensions.NeoBoot.files.i_neo import SelectImage
                                 self.session.open(SelectImage)
                                 #mess = _('Plug installation lost.The plugin doesnt work on python 3 yet. Please try again later.')
                                 #self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)        
-            elif not os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/ImageDownloader/download.py'):
-                    message = _('Plugin ImageDownloader not installed!\nInstall plugin to download new image? \and---Continue ?---')
-                    ybox = self.session.openWithCallback(self.InstallImageDownloader, MessageBox, message, MessageBox.TYPE_YESNO)
-                    ybox.setTitle(_('Installation'))
-            else:
-                try:
+                elif not os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/ImageDownloader/download.py'):
+                        message = _('Plugin ImageDownloader not installed!\nInstall plugin to download new image? \and---Continue ?---')
+                        ybox = self.session.openWithCallback(self.InstallImageDownloader, MessageBox, message, MessageBox.TYPE_YESNO)
+                        ybox.setTitle(_('Installation'))
+                else:
+                    try:
                                 from Plugins.Extensions.ImageDownloader.main import STBmodelsScreen
                                 self.session.open(STBmodelsScreen)
-                except Exception as e:
+                    except Exception as e:
                                 system('rm -f ' + getNeoLocation() + 'ImageBoot/neoboot.log')
                                 loggscrash = time.localtime(time.time())
                                 LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
