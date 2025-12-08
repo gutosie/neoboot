@@ -293,11 +293,13 @@ class NeoBootImageChoose(Screen):
                     mess = _('Downloading available only from the image Flash.')
                     self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
             else:
-                if not fileExists('/usr/lib/python2.7'):
+                if not fileExists('/usr/lib/python2.7') and fileExists('/usr/lib/enigma2/python/Plugins/PLi'):
+                        try:        
                                 from Plugins.Extensions.NeoBoot.files.i_neo import SelectImage
                                 self.session.open(SelectImage)
-                                #mess = _('Plug installation lost.The plugin doesnt work on python 3 yet. Please try again later.')
-                                #self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)        
+                        except:        
+                                mess = _('Plug installation lost.The plugin doesnt work on python 3 yet. Please try again later.')
+                                self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)      
                 elif not os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/ImageDownloader/download.py'):
                         message = _('Plugin ImageDownloader not installed!\nInstall plugin to download new image? \and---Continue ?---')
                         ybox = self.session.openWithCallback(self.InstallImageDownloader, MessageBox, message, MessageBox.TYPE_YESNO)
