@@ -1,103 +1,10 @@
 try:
         from boxbranding import getBoxType, getImageType, getImageDistro, getImageVersion, getImageBuild, getImageDevBuild, getImageFolder, getImageFileSystem, getBrandOEM, getMachineBrand, getMachineName, getMachineBuild, getMachineMake, getMachineMtdRoot, getMachineRootFile, getMachineMtdKernel, getMachineKernelFile, getMachineMKUBIFS, getMachineUBINIZE
-except :
-        pass
-from os import path, stat, system, mkdir, makedirs, listdir, remove, rename, rmdir, sep as ossep, statvfs, chmod, walk, symlink, unlink
-from shutil import copy, copyfile, move, rmtree
-from time import localtime, time, strftime, mktime
-
-from . import _, PluginLanguageDomain
-from Components.Button import Button
-from Components.Harddisk import harddiskmanager, getProcMounts
-from Components.MenuList import MenuList
-import Components.Task
-from Screens.Standby import TryQuitMainloop
-from Screens.Setup import Setup
-from Screens.TaskView import JobView
-from Screens.TextBox import TextBox
-try:
         import Tools.CopyFiles
-except :
-        pass
-from Screens.ChoiceBox import ChoiceBox
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
-try:
-    from Screens.Standby import getReasons
-except :
-    pass
-from Components.Sources.StaticText import StaticText
-from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
-from Components.config import config, ConfigSubsection, ConfigYesNo, ConfigSelection, ConfigText, ConfigNumber, NoSave, ConfigClock, configfile
-from Components.ActionMap import ActionMap
-from Components.Console import Console
-from Components.Label import Label
-from Components.Pixmap import Pixmap
-from Components.ProgressBar import ProgressBar
-from Components.SystemInfo import BoxInfo, SystemInfo
-from Tools.BoundFunction import boundFunction
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS, fileExists, pathExists, fileHas
-from Tools.Downloader import downloadWithProgress
-try:
-    from Tools.Multiboot import getImagelist, getCurrentImage, getCurrentImageMode, deleteImage, restoreImages
-except :
-    pass
-import os
-import re
-from urllib.request import urlopen, Request
-from urllib.parse import urlparse
-import xml.etree.ElementTree
-import json
-import time
-import zipfile
-import shutil
-import tempfile
-import struct
-
-from enigma import eEPGCache, eEnv, eTimer, fbClass
-
-try:
-		from Tools.HardwareInfo import HardwareInfo
-except :
-		from Plugins.Extensions.NeoBoot.files import HardwareInfo
-
-try:
-                from Tools.Multiboot import GetImagelist
-except :
-                pass 
-try:
-                from Tools.Notifications import AddPopupWithCallback
-except :
-                pass 
-
-def getMountChoices():
-	choices = []
-	for p in harddiskmanager.getMountedPartitions():
-		if path.exists(p.mountpoint):
-			d = path.normpath(p.mountpoint)
-			entry = (p.mountpoint, d)
-			if p.mountpoint != "/" and entry not in choices:
-				choices.append(entry)
-	choices.sort()
-	return choices
-
-
-def getMountDefault(choices):
-	if fileExists("/media/usb/ImagesUpload/"):
-	        choices = {x[1]: x[0] for x in choices}
-	        default = choices.get("/media/usb") or choices.get("/media/hdd")
-	        return default
-	else:
-	        choices = {x[1]: x[0] for x in choices}
-	        default = choices.get("/media/hdd") or choices.get("/media/usb")
-	        return default
-
-def __onPartitionChange(*args, **kwargs):
-	global choices
-	choices = getMountChoices()
-	config.imagemanager.backuplocation.setChoices(choices=choices, default=getMountDefault(choices))
-
-try:
+        from Screens.Standby import getReasons
+        from Tools.Multiboot import getImagelist, getCurrentImage, getCurrentImageMode, deleteImage, restoreImages
+        from Tools.Multiboot import GetImagelist
+        from Tools.Notifications import AddPopupWithCallback        
         defaultprefix = getImageDistro()
         config.imagemanager = ConfigSubsection()
         config.imagemanager.autosettingsbackup = ConfigYesNo(default=True)
@@ -123,10 +30,82 @@ try:
         config.imagemanager.login_as_ViX_developer = ConfigYesNo(default=False)
         config.imagemanager.developer_username = ConfigText(default="username", fixed_size=False)
         config.imagemanager.developer_password = ConfigText(default="password", fixed_size=False)
+except:
+        pass
+        
+from os import path, stat, system, mkdir, makedirs, listdir, remove, rename, rmdir, sep as ossep, statvfs, chmod, walk, symlink, unlink
+from shutil import copy, copyfile, move, rmtree
+from time import localtime, time, strftime, mktime
 
-except :
-                pass 
+from . import _, PluginLanguageDomain
+from Components.Button import Button
+from Components.Harddisk import harddiskmanager, getProcMounts
+from Components.MenuList import MenuList
+import Components.Task
+from Screens.Standby import TryQuitMainloop
+from Screens.Setup import Setup
+from Screens.TaskView import JobView
+from Screens.TextBox import TextBox
 
+from Screens.ChoiceBox import ChoiceBox
+from Screens.Screen import Screen
+from Screens.MessageBox import MessageBox
+from Components.Sources.StaticText import StaticText
+from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
+from Components.config import config, ConfigSubsection, ConfigYesNo, ConfigSelection, ConfigText, ConfigNumber, NoSave, ConfigClock, configfile
+from Components.ActionMap import ActionMap
+from Components.Console import Console
+from Components.Label import Label
+from Components.Pixmap import Pixmap
+from Components.ProgressBar import ProgressBar
+from Components.SystemInfo import BoxInfo, SystemInfo
+from Tools.BoundFunction import boundFunction
+from Tools.Directories import resolveFilename, SCOPE_PLUGINS, fileExists, pathExists, fileHas
+from Tools.Downloader import downloadWithProgress
+import os
+import re
+from urllib.request import urlopen, Request
+from urllib.parse import urlparse
+import xml.etree.ElementTree
+import json
+import time
+import zipfile
+import shutil
+import tempfile
+import struct
+
+from enigma import eEPGCache, eEnv, eTimer, fbClass
+
+try:
+    from Tools.HardwareInfo import HardwareInfo
+except:
+    from Plugins.Extensions.NeoBoot.files import HardwareInfo
+
+def getMountChoices():
+	choices = []
+	for p in harddiskmanager.getMountedPartitions():
+		if path.exists(p.mountpoint):
+			d = path.normpath(p.mountpoint)
+			entry = (p.mountpoint, d)
+			if p.mountpoint != "/" and entry not in choices:
+				choices.append(entry)
+	choices.sort()
+	return choices
+
+def getMountDefault(choices):
+	if fileExists("/media/usb/ImagesUpload/"):
+	        choices = {x[1]: x[0] for x in choices}
+	        default = choices.get("/media/usb") or choices.get("/media/hdd")
+	        return default
+	else:
+	        choices = {x[1]: x[0] for x in choices}
+	        default = choices.get("/media/hdd") or choices.get("/media/usb")
+	        return default
+
+def __onPartitionChange(*args, **kwargs):
+	global choices
+	choices = getMountChoices()
+	config.imagemanager.backuplocation.setChoices(choices=choices, default=getMountDefault(choices))
 
 DISTRO = 0
 URL = 1
@@ -144,14 +123,11 @@ class tmp:
 	dir = None
 
 
-BackupTime = 0
-
-
 def checkimagefiles(files):
 	return len([x for x in files if 'kernel' in x and '.bin' in x or x in ('uImage', 'rootfs.bin', 'root_cfe_auto.bin', 'root_cfe_auto.jffs2', 'oe_rootfs.bin', 'e2jffs2.img', 'rootfs.tar.bz2', 'rootfs.ubi')]) == 2
 
 
-############################other image###############################################
+############################____vix, obh image____###############################################
 
 class ImageManager(Screen):
 	skin = """<screen name="ImageManager" position="center,center" size="663,195">
@@ -189,28 +165,11 @@ class ImageManager(Screen):
 		if SystemInfo["canMultiBoot"]:
 			self.mtdboot = SystemInfo["MBbootdevice"]
 		self.onChangedEntry = []
-		if choices:
-			self["list"] = MenuList(list=[((_("No images found on the selected download server...if password check validity")), "Waiter")])
-
-		else:
-			self["list"] = MenuList(list=[((_(" Press 'Menu' to select a storage device - none available")), "Waiter")])
-			self["key_red"].hide()
-			self["key_green"].hide()
-			self["key_yellow"].hide()
-			self["key_blue"].hide()
 		self.populate_List()
 		self.activityTimer = eTimer()
 		self.activityTimer.startLongTimer(10)
 		self.Console = Console()
 		self.ConsoleB = Console(binary=True)
-
-		if BackupTime > 0:
-			t = localtime(BackupTime)
-			backuptext = _("Next backup: ") + strftime(_("%a %e %b  %-H:%M"), t)
-		else:
-			backuptext = _("Next backup: ")
-		if self.selectionChanged not in self["list"].onSelectionChanged:
-			self["list"].onSelectionChanged.append(self.selectionChanged)
 
 	def selectionChanged(self):
 		# Where is this used? self.onChangedEntry does not appear to be populated anywhere. Maybe dead code.
@@ -247,10 +206,12 @@ class ImageManager(Screen):
 			self["key_green"].show()
 		else:
 			self["key_green"].hide()
-			
-		self["list"].setList(imglist)
-		self["list"].show()
-		self.selectionChanged()
+		try:	
+		    self["list"].setList(imglist)
+		    self["list"].show()
+		    self.selectionChanged()
+		except:
+                    pass
 
 	def getJobName(self, job):
 		return "%s: %s (%d%%)" % (job.getStatustext(), job.name, int(100 * job.progress / float(job.end)))
@@ -282,14 +243,14 @@ class ImageManager(Screen):
 			self.BackupDirectory = config.imagemanager.backuplocation.value + "ImagesUpload/"
 			s = statvfs(config.imagemanager.backuplocation.value)
 			free = (s.f_bsize * s.f_bavail) // (1024 * 1024)
-			self["lab1"].setText(_("Device: ") + config.imagemanager.backuplocation.value + " " + _("Free space:") + " " + str(free) + _("MB") + "\n" + _("Press the OK or green button to download iamge."))
+			self["lab1"].setText(_("Device: ") + config.imagemanager.backuplocation.value + " " + _("Free space:") + " " + str(free) + _("MB") + "\n" + _("Press OK or GREEN button to download image."))
 			
 			try:
 				if not path.exists(self.BackupDirectory):
 					mkdir(self.BackupDirectory, 0o755)
 				self.refreshList()
 			except Exception:
-				self["lab1"].setText(_("Device: ") + config.imagemanager.backuplocation.value + "\n" + _("Press the green button to download image.."))
+				self["lab1"].setText(_("Device: ") + config.imagemanager.backuplocation.value + "\n" + _("Press Green button or OK to download image"))
 			self["mainactions"].setEnabled(True)
 			self.mountAvailable = True
 			
@@ -315,7 +276,11 @@ class ImageManager(Screen):
 			return model in filename or "-" + device_name + "-" in filename
 
 		model = getMachineMake()
-		device_name = HardwareInfo().get_device_name()
+		try:
+		    device_name = HardwareInfo().get_device_name()
+		except:
+                    self.close
+                        
 		imagesFound = []
 		if config.imagemanager.extensive_location_search.value:
 			mediaList = ['/media/%s' % x for x in listdir('/media')] + (['/media/net/%s' % x for x in listdir('/media/net')] if path.isdir('/media/net') else []) + (['/media/autofs/%s' % x for x in listdir('/media/autofs')] if path.isdir('/media/autofs') else [])
