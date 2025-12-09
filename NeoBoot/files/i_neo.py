@@ -59,7 +59,7 @@ from enigma import eEPGCache, eEnv, eTimer, fbClass
 try:
 		from Tools.HardwareInfo import HardwareInfo
 except :
-		from Plugins.Extensions.NeoBoot.files.tools import HardwareInfo
+		from Plugins.Extensions.NeoBoot.files import HardwareInfo
 
 try:
                 from Tools.Multiboot import GetImagelist
