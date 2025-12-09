@@ -81,6 +81,7 @@ try:
 except:
     from Plugins.Extensions.NeoBoot.files import HardwareInfo
 
+
 def getMountChoices():
 	choices = []
 	for p in harddiskmanager.getMountedPartitions():
@@ -91,6 +92,7 @@ def getMountChoices():
 				choices.append(entry)
 	choices.sort()
 	return choices
+
 
 def getMountDefault(choices):
 	if fileExists("/media/usb/ImagesUpload/"):
@@ -106,6 +108,47 @@ def __onPartitionChange(*args, **kwargs):
 	global choices
 	choices = getMountChoices()
 	config.imagemanager.backuplocation.setChoices(choices=choices, default=getMountDefault(choices))
+
+try:
+        defaultprefix = getImageDistro()
+        config.imagemanager = ConfigSubsection()
+        config.imagemanager.autosettingsbackup = ConfigYesNo(default=True)
+        choices = getMountChoices()
+        config.imagemanager.backuplocation = ConfigSelection(choices=choices, default=getMountDefault(choices))
+        config.imagemanager.extensive_location_search = ConfigYesNo(default=True)
+        harddiskmanager.on_partition_list_change.append(__onPartitionChange) # to update backuplocation choices on mountpoint change
+        config.imagemanager.backupretry = ConfigNumber(default=30)
+        config.imagemanager.backupretrycount = NoSave(ConfigNumber(default=0))
+        config.imagemanager.folderprefix = ConfigText(default=defaultprefix, fixed_size=False)
+        config.imagemanager.nextscheduletime = NoSave(ConfigNumber(default=0))
+        config.imagemanager.repeattype = ConfigSelection(default="daily", choices=[("daily", _("Daily")), ("weekly", _("Weekly")), ("monthly", _("30 Days"))])
+        config.imagemanager.schedule = ConfigYesNo(default=False)
+        config.imagemanager.scheduletime = ConfigClock(default=0)  # 1:00
+        config.imagemanager.query = ConfigYesNo(default=True)
+        config.imagemanager.lastbackup = ConfigNumber(default=0)
+        config.imagemanager.number_to_keep = ConfigNumber(default=0)
+        # Add a method for users to download images directly from their own build servers.
+        # Script must be able to handle urls in the form http://domain/scriptname/boxname.
+        # Format of the JSON output from the script must be the same as the official urls above.
+        # The option will only show once a url has been added.
+        config.imagemanager.imagefeed_MyBuild = ConfigText(default="", fixed_size=False)
+        config.imagemanager.login_as_ViX_developer = ConfigYesNo(default=False)
+        config.imagemanager.developer_username = ConfigText(default="username", fixed_size=False)
+        config.imagemanager.developer_password = ConfigText(default="password", fixed_size=False)
+
+except :
+                pass 
+
+
+# Add a method for users to download images directly from their own build servers.
+# Script must be able to handle urls in the form http://domain/scriptname/boxname.
+# Format of the JSON output from the script must be the same as the official urls above.
+# The option will only show once a url has been added.
+config.imagemanager.imagefeed_MyBuild = ConfigText(default="", fixed_size=False)
+config.imagemanager.login_as_ViX_developer = ConfigYesNo(default=False)
+config.imagemanager.developer_username = ConfigText(default="username", fixed_size=False)
+config.imagemanager.developer_password = ConfigText(default="password", fixed_size=False)
+
 
 DISTRO = 0
 URL = 1
@@ -123,11 +166,14 @@ class tmp:
 	dir = None
 
 
+BackupTime = 0
+
+
 def checkimagefiles(files):
 	return len([x for x in files if 'kernel' in x and '.bin' in x or x in ('uImage', 'rootfs.bin', 'root_cfe_auto.bin', 'root_cfe_auto.jffs2', 'oe_rootfs.bin', 'e2jffs2.img', 'rootfs.tar.bz2', 'rootfs.ubi')]) == 2
 
 
-############################____vix, obh image____###############################################
+############################other image###############################################
 
 class ImageManager(Screen):
 	skin = """<screen name="ImageManager" position="center,center" size="663,195">
@@ -165,11 +211,28 @@ class ImageManager(Screen):
 		if SystemInfo["canMultiBoot"]:
 			self.mtdboot = SystemInfo["MBbootdevice"]
 		self.onChangedEntry = []
+		if choices:
+			self["list"] = MenuList(list=[((_("No images found on the selected download server...if password check validity")), "Waiter")])
+
+		else:
+			self["list"] = MenuList(list=[((_(" Press 'Menu' to select a storage device - none available")), "Waiter")])
+			self["key_red"].hide()
+			self["key_green"].hide()
+			self["key_yellow"].hide()
+			self["key_blue"].hide()
 		self.populate_List()
 		self.activityTimer = eTimer()
 		self.activityTimer.startLongTimer(10)
 		self.Console = Console()
 		self.ConsoleB = Console(binary=True)
+
+		if BackupTime > 0:
+			t = localtime(BackupTime)
+			backuptext = _("Next backup: ") + strftime(_("%a %e %b  %-H:%M"), t)
+		else:
+			backuptext = _("Next backup: ")
+		if self.selectionChanged not in self["list"].onSelectionChanged:
+			self["list"].onSelectionChanged.append(self.selectionChanged)
 
 	def selectionChanged(self):
 		# Where is this used? self.onChangedEntry does not appear to be populated anywhere. Maybe dead code.
@@ -206,12 +269,10 @@ class ImageManager(Screen):
 			self["key_green"].show()
 		else:
 			self["key_green"].hide()
-		try:	
-		    self["list"].setList(imglist)
-		    self["list"].show()
-		    self.selectionChanged()
-		except:
-                    pass
+			
+		self["list"].setList(imglist)
+		self["list"].show()
+		self.selectionChanged()
 
 	def getJobName(self, job):
 		return "%s: %s (%d%%)" % (job.getStatustext(), job.name, int(100 * job.progress / float(job.end)))
@@ -243,14 +304,14 @@ class ImageManager(Screen):
 			self.BackupDirectory = config.imagemanager.backuplocation.value + "ImagesUpload/"
 			s = statvfs(config.imagemanager.backuplocation.value)
 			free = (s.f_bsize * s.f_bavail) // (1024 * 1024)
-			self["lab1"].setText(_("Device: ") + config.imagemanager.backuplocation.value + " " + _("Free space:") + " " + str(free) + _("MB") + "\n" + _("Press OK or GREEN button to download image."))
+			self["lab1"].setText(_("Device: ") + config.imagemanager.backuplocation.value + " " + _("Free space:") + " " + str(free) + _("MB") + "\n" + _("Press the OK or green button to download iamge.\nTo stop the download, press the blue button."))
 			
 			try:
 				if not path.exists(self.BackupDirectory):
 					mkdir(self.BackupDirectory, 0o755)
 				self.refreshList()
 			except Exception:
-				self["lab1"].setText(_("Device: ") + config.imagemanager.backuplocation.value + "\n" + _("Press Green button or OK to download image"))
+				self["lab1"].setText(_("Device: ") + config.imagemanager.backuplocation.value + "\n" + _("Press the green button to download image.."))
 			self["mainactions"].setEnabled(True)
 			self.mountAvailable = True
 			
@@ -280,7 +341,7 @@ class ImageManager(Screen):
 		    device_name = HardwareInfo().get_device_name()
 		except:
                     self.close
-                        
+
 		imagesFound = []
 		if config.imagemanager.extensive_location_search.value:
 			mediaList = ['/media/%s' % x for x in listdir('/media')] + (['/media/net/%s' % x for x in listdir('/media/net')] if path.isdir('/media/net') else []) + (['/media/autofs/%s' % x for x in listdir('/media/autofs')] if path.isdir('/media/autofs') else [])
