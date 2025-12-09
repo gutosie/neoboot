@@ -1,35 +1,9 @@
 try:
-        from boxbranding import getBoxType, getImageType, getImageDistro, getImageVersion, getImageBuild, getImageDevBuild, getImageFolder, getImageFileSystem, getBrandOEM, getMachineBrand, getMachineName, getMachineBuild, getMachineMake, getMachineMtdRoot, getMachineRootFile, getMachineMtdKernel, getMachineKernelFile, getMachineMKUBIFS, getMachineUBINIZE
-        import Tools.CopyFiles
-        from Screens.Standby import getReasons
-        from Tools.Multiboot import getImagelist, getCurrentImage, getCurrentImageMode, deleteImage, restoreImages
-        from Tools.Multiboot import GetImagelist
-        from Tools.Notifications import AddPopupWithCallback        
-        defaultprefix = getImageDistro()
-        config.imagemanager = ConfigSubsection()
-        config.imagemanager.autosettingsbackup = ConfigYesNo(default=True)
-        choices = getMountChoices()
-        config.imagemanager.backuplocation = ConfigSelection(choices=choices, default=getMountDefault(choices))
-        config.imagemanager.extensive_location_search = ConfigYesNo(default=True)
-        harddiskmanager.on_partition_list_change.append(__onPartitionChange) # to update backuplocation choices on mountpoint change
-        config.imagemanager.backupretry = ConfigNumber(default=30)
-        config.imagemanager.backupretrycount = NoSave(ConfigNumber(default=0))
-        config.imagemanager.folderprefix = ConfigText(default=defaultprefix, fixed_size=False)
-        config.imagemanager.nextscheduletime = NoSave(ConfigNumber(default=0))
-        config.imagemanager.repeattype = ConfigSelection(default="daily", choices=[("daily", _("Daily")), ("weekly", _("Weekly")), ("monthly", _("30 Days"))])
-        config.imagemanager.schedule = ConfigYesNo(default=False)
-        config.imagemanager.scheduletime = ConfigClock(default=0)  # 1:00
-        config.imagemanager.query = ConfigYesNo(default=True)
-        config.imagemanager.lastbackup = ConfigNumber(default=0)
-        config.imagemanager.number_to_keep = ConfigNumber(default=0)
-        # Add a method for users to download images directly from their own build servers.
-        # Script must be able to handle urls in the form http://domain/scriptname/boxname.
-        # Format of the JSON output from the script must be the same as the official urls above.
-        # The option will only show once a url has been added.
-        config.imagemanager.imagefeed_MyBuild = ConfigText(default="", fixed_size=False)
-        config.imagemanager.login_as_ViX_developer = ConfigYesNo(default=False)
-        config.imagemanager.developer_username = ConfigText(default="username", fixed_size=False)
-        config.imagemanager.developer_password = ConfigText(default="password", fixed_size=False)
+    from boxbranding import getBoxType, getImageType, getImageDistro, getImageVersion, getImageBuild, getImageDevBuild, getImageFolder, getImageFileSystem, getBrandOEM, getMachineBrand, getMachineName, getMachineBuild, getMachineMake, getMachineMtdRoot, getMachineRootFile, getMachineMtdKernel, getMachineKernelFile, getMachineMKUBIFS, getMachineUBINIZE
+    import Tools.CopyFiles
+    from Tools.Multiboot import getImagelist, getCurrentImage, getCurrentImageMode, deleteImage, restoreImages
+    from Tools.Multiboot import GetImagelist
+    from Tools.Notifications import AddPopupWithCallback
 except:
         pass
         
@@ -46,7 +20,6 @@ from Screens.Standby import TryQuitMainloop
 from Screens.Setup import Setup
 from Screens.TaskView import JobView
 from Screens.TextBox import TextBox
-
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
@@ -79,8 +52,12 @@ from enigma import eEPGCache, eEnv, eTimer, fbClass
 try:
     from Tools.HardwareInfo import HardwareInfo
 except:
-    from Plugins.Extensions.NeoBoot.files import HardwareInfo
-
+    from Plugins.Extensions.NeoBoot.files import HardwareInfo    
+try:
+    from Screens.Standby import getReasons 
+except:
+    pass
+    
 
 def getMountChoices():
 	choices = []
@@ -139,17 +116,6 @@ try:
 except :
                 pass 
 
-
-# Add a method for users to download images directly from their own build servers.
-# Script must be able to handle urls in the form http://domain/scriptname/boxname.
-# Format of the JSON output from the script must be the same as the official urls above.
-# The option will only show once a url has been added.
-config.imagemanager.imagefeed_MyBuild = ConfigText(default="", fixed_size=False)
-config.imagemanager.login_as_ViX_developer = ConfigYesNo(default=False)
-config.imagemanager.developer_username = ConfigText(default="username", fixed_size=False)
-config.imagemanager.developer_password = ConfigText(default="password", fixed_size=False)
-
-
 DISTRO = 0
 URL = 1
 ACTION = 2
@@ -164,9 +130,6 @@ FEED_URLS = [
 
 class tmp:
 	dir = None
-
-
-BackupTime = 0
 
 
 def checkimagefiles(files):
@@ -226,11 +189,6 @@ class ImageManager(Screen):
 		self.Console = Console()
 		self.ConsoleB = Console(binary=True)
 
-		if BackupTime > 0:
-			t = localtime(BackupTime)
-			backuptext = _("Next backup: ") + strftime(_("%a %e %b  %-H:%M"), t)
-		else:
-			backuptext = _("Next backup: ")
 		if self.selectionChanged not in self["list"].onSelectionChanged:
 			self["list"].onSelectionChanged.append(self.selectionChanged)
 
@@ -355,7 +313,6 @@ class ImageManager(Screen):
 
 	def showInfo(self):
 		self.session.open(TextBox, self.infoText(), self.title + " - " + _("info"))
-
 
 
 class ImageManagerDownload(Screen):
