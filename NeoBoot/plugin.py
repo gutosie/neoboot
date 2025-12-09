@@ -293,10 +293,14 @@ class NeoBootImageChoose(Screen):
                     mess = _('Downloading available only from the image Flash.')
                     self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
             else:
-                if not fileExists('/usr/lib/python2.7') and fileExists('/usr/lib/enigma2/python/Plugins/PLi'):
-                        try:        
-                                from Plugins.Extensions.NeoBoot.files.i_neo import SelectImage
-                                self.session.open(SelectImage)
+                if not fileExists('/usr/lib/python2.7'):
+                        try:
+                                if fileExists('/usr/lib/enigma2/python/Plugins/PLi'):        
+                                        from Plugins.Extensions.NeoBoot.files.i_neo import SelectImage
+                                        self.session.open(SelectImage)
+                                else:     
+                                        from Plugins.Extensions.NeoBoot.files.i_neo import ImageManager
+                                        self.session.open(ImageManager)
                         except:        
                                 mess = _('Plug installation lost.The plugin doesnt work on python 3 yet. Please try again later.')
                                 self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)      
