@@ -121,8 +121,8 @@ FEED_URLS = [
 	("OpenATV", "https://images.mynonpublic.com/openatv/json/%s", "getMachineMake"), 
 	("OpenBH", "https://images.openbh.net/json/%s", "getMachineMake"),
 	("OpenPLi", "http://downloads.openpli.org/json/%s", "HardwareInfo"),
-	("OpenEight", "http://openeight.de/json/%s", "getMachineMake"),
-	("OpenATV", "http://images.mynonpublic.com/openatv/nightly/json/%s", "getMachineMake"),        	
+	("OpenSPA", "https://openspa.webhop.info/online/json.php?box=%s", "getMachineMake"),
+	("OpenEight", "http://openeight.de/json/%s", "getMachineMake"),        	
 ]
 
 
@@ -134,7 +134,7 @@ def checkimagefiles(files):
 	return len([x for x in files if 'kernel' in x and '.bin' in x or x in ('uImage', 'rootfs.bin', 'root_cfe_auto.bin', 'root_cfe_auto.jffs2', 'oe_rootfs.bin', 'e2jffs2.img', 'rootfs.tar.bz2', 'rootfs.ubi')]) == 2
 
 
-############################other image###############################################
+############################___VIX, OBH___image###############################################
 
 class ImageManager(Screen):
 	skin = """<screen name="ImageManager" position="center,center" size="663,195">
@@ -516,6 +516,7 @@ class SelectImage(Screen):
 		self.expanded = []
 		self.model = HardwareInfo().get_machine_name()
 		self.selectedImage = ["OpenPLi", {"url": "https://downloads.openpli.org/json/%s" % self.model, "model": self.model}]
+		#self.selectedImage = ["OpenSpa", {"url": "https://openspa.webhop.info/online/json.php?box=%s" % self.model, "model": self.model}]		
 		self.models = [self.model]
 		self.setTitle(_("Select image"))
 		self["key_red"] = StaticText(_("Cancel"))
@@ -580,6 +581,7 @@ class SelectImage(Screen):
 					self.models = set([self.imageBrandList[image]['model'] for image in self.imageBrandList.keys()])
 					if len(self.imageBrandList) > 1:
 						self["key_blue"].setText(_("Other Images"))
+						
 		if not self.imagesList:
 			if not self.jsonlist:
 				try:
@@ -849,6 +851,461 @@ class DownloadImageNeo(Screen):
 		else:
 			return 0
                         
+
+
+###############################____OpenATV____############################
+#ATV
+if fileExists('/usr/lib/enigma2/python/Plugins/Extensions/MyMetrixLite'):       
+    from json import load
+    from os import W_OK, access, listdir, major, makedirs, minor, mkdir, remove, sep, stat, statvfs, unlink, walk
+    from os.path import basename, exists, isdir, isfile, islink, ismount, splitext, join, getsize
+    from shutil import rmtree
+    from time import time
+    from urllib.request import Request, urlopen
+    from zipfile import ZipFile
+
+    from enigma import eEPGCache, eTimer, fbClass
+
+    from Components.ActionMap import HelpableActionMap
+    from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
+    from Components.config import config
+    from Components.Console import Console
+    from Components.Label import Label
+    from Components.ProgressBar import ProgressBar
+    from Components.SystemInfo import BoxInfo, getBoxDisplayName
+    from Components.Sources.StaticText import StaticText
+    from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen
+    from Screens.MessageBox import MessageBox
+    from Screens.MultiBootManager import MultiBootManager
+    from Screens.Screen import Screen
+    from Tools.Downloader import DownloadWithProgress
+    from Tools.MultiBoot import MultiBoot
+    from Tools.Directories import resolveFilename, SCOPE_PLUGINS, fileExists, pathExists, fileHas
+
+UMOUNT = "/bin/umount"
+OFGWRITE = "/usr/bin/ofgwrite"
+
+FEED_DISTRIBUTION = 0
+FEED_JSON_URL = 1
+
+USER_AGENT = {"User-agent": "Mozilla/5.0 (Windows; U; Windows NT 5.1; en; rv:1.9.1.5) Gecko/20091102 Firefox/3.5.5"}
+
+
+def checkImageFiles(files):
+	return sum(f.endswith((".nfi", ".tar.xz")) for f in files) == 1 or sum(("kernel" in f and f.endswith(".bin")) or f in {"zImage", "uImage", "root_cfe_auto.bin", "root_cfe_auto.jffs2", "oe_kernel.bin", "oe_rootfs.bin", "e2jffs2.img", "rootfs.ubi", "rootfs.bin", "rootfs.tar.bz2", "rootfs-one.tar.bz2", "rootfs-two.tar.bz2"} for f in files) >= 2
+
+
+class FlashManager(Screen):
+	skin = """
+	<screen name="DownloadManager" title="Download Manager" position="center,center" size="900,485" resolution="1280,720">
+		<widget name="list" position="0,0" size="e,400" scrollbarMode="showOnDemand" />
+		<widget source="description" render="Label" position="10,e-75" size="e-20,25" font="Regular;20" conditional="description" halign="center" transparent="1" valign="center" />
+		<widget source="key_red" render="Label" position="0,e-40" size="180,40" backgroundColor="key_red" conditional="key_red" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_green" render="Label" position="190,e-40" size="180,40" backgroundColor="key_green" conditional="key_green" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_yellow" render="Label" position="380,e-40" size="180,40" backgroundColor="key_yellow" conditional="key_yellow" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_blue" render="Label" position="570,e-40" size="180,40" backgroundColor="key_blue" conditional="key_blue" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_help" render="Label" position="e-80,e-40" size="80,40" backgroundColor="key_back" conditional="key_help" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>"""
+
+	def __init__(self, session):
+		Screen.__init__(self, session, enableHelp=True)
+		self.skinName = ["DownloadManager", "DownloadOnline"]
+		self.imageFeed = "OpenATV"
+		self.setTitle(_("Download Manager - %s Images") % self.imageFeed)
+		self.imagesList = {}
+		self.expanded = []
+		self.setIndex = 0
+		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "NavigationActions"], {
+			"cancel": (self.keyCancel, _("Cancel the image selection and exit")),
+			"close": (self.keyCloseRecursive, _("Cancel the image selection and exit all menus")),
+			"ok": (self.keyOk, _("Select the highlighted image and proceed")),
+			"red": (self.keyCancel, _("Cancel the image selection and exit")),
+			"green": (self.keyOk, _("Select the highlighted image and proceed to the selection")),
+			"yellow": (self.keyDistribution, _("Select a distribution from where images are to be obtained")),
+			"top": (self.keyTop, _("Move to first line / screen")),
+			"pageUp": (self.keyPageUp, _("Move up a screen")),
+			"up": (self.keyUp, _("Move up a line")),
+			"down": (self.keyDown, _("Move down a line")),
+			"pageDown": (self.keyPageDown, _("Move down a screen")),
+			"bottom": (self.keyBottom, _("Move to last line / screen"))
+		}, prio=-1, description=_("Download Manager Actions"))
+		self["deleteActions"] = HelpableActionMap(self, ["ColorActions"], {
+			"blue": (self.keyDeleteImage, _("Delete the selected locally stored image")),
+		}, prio=-1, description=_("Download Manager Actions"))
+		self["deleteActions"].setEnabled(False)
+		self["downloadActions"] = HelpableActionMap(self, ["ColorActions"], {
+			"blue": (self.keyDownloadImage, _("Download the selected image")),
+		}, prio=-1, description=_("Download Manager Actions"))
+		self["downloadActions"].setEnabled(False)
+
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText()
+		self["key_yellow"] = StaticText(_("Distribution"))
+		self["key_blue"] = StaticText()
+		self["description"] = StaticText()
+		self["list"] = ChoiceList(list=[ChoiceEntryComponent("", ((_("Retrieving image list, please wait...")), "Loading"))])
+		self.feedUrls = [
+			("OpenATV", "https://images.mynonpublic.com/openatv/json/%s" % BoxInfo.getItem("BoxName"))
+		]
+		self.callLater(self.getImagesList)
+
+	def getImagesList(self):
+		def findInList(item):
+			result = [index for index, data in enumerate(self.feedUrls) if data[FEED_DISTRIBUTION] == item]
+			return result[0] if result else None
+
+		def getImages(path, files):
+			for file in [x for x in files if splitext(x)[1] == ".zip" and not basename(x).startswith(".") and (boxname in x or machinebuild in x or model in x)]:
+				try:
+					zipData = ZipFile(file, mode="r")
+					zipFiles = zipData.namelist()
+					zipData.close()
+					if checkImageFiles([x.split(sep)[-1] for x in zipFiles]):
+						imageType = _("Downloaded images")
+						if "backup" in file.split(sep)[-1]:
+							imageType = _("Backup images")
+						if imageType not in self.imagesList:
+							self.imagesList[imageType] = {}
+						self.imagesList[imageType][file] = {
+							"link": str(file),
+							"name": str(file.split(sep)[-1])
+						}
+				except Exception:
+					print("[DownloadManager] getImagesList Error: Unable to extract file list from Zip file '%s'!" % file)
+
+		def getImagesListCallback(retVal=None):  # The retVal argument absorbs the unwanted return value from MessageBox.
+			if self.imageFeed != "OpenATV":
+				self.keyDistributionCallback("OpenATV")  # No images can be found for the selected distribution so go back to the OpenATV default.
+
+		machinebuild = BoxInfo.getItem("machinebuild")
+		model = BoxInfo.getItem("model")
+		boxname = BoxInfo.getItem("BoxName")
+
+		if not self.imagesList:
+			index = findInList(self.imageFeed)
+			box = machinebuild if index else boxname
+			feedURL = self.feedUrls[index][FEED_JSON_URL] if index else "https://images.mynonpublic.com/openatv/json/%s" % box
+			try:
+				req = Request(feedURL, None, USER_AGENT)
+				self.imagesList = dict(load(urlopen(req)))
+			except Exception:
+				print("[DownloadManager] getImagesList Error: Unable to load json data from URL '%s'!" % feedURL)
+				self.imagesList = {}
+			# searchFolders = []
+			# Get all folders of /media/ and /media/net/ and only if OpenATV
+			if not index:
+				for media in ["/media/%s" % x for x in listdir("/media")] + (["/media/net/%s" % x for x in listdir("/media/net")] if isdir("/media/net") else []):
+					# print("[DownloadManager] getImagesList DEBUG: media='%s'." % media)
+					if not (BoxInfo.getItem("HasMMC") and "/mmc" in media) and isdir(media):
+						getImages(media, [join(media, x) for x in listdir(media) if splitext(x)[1] == ".zip" and (boxname in x or machinebuild in x or model in x)])
+						for folder in ["ImagesUpload"]:
+							if folder in listdir(media):
+								subFolder = join(media, folder)
+								# print("[DownloadManager] getImagesList DEBUG: subFolder='%s'." % subFolder)
+								if isdir(subFolder) and not islink(subFolder) and not ismount(subFolder):
+									# print("[DownloadManager] getImagesList DEBUG: Next subFolder='%s'." % subFolder)
+									getImages(subFolder, [join(subFolder, x) for x in listdir(subFolder) if splitext(x)[1] == ".zip" and (boxname in x or machinebuild in x or model in x)])
+									for dir in [dir for dir in [join(subFolder, dir) for dir in listdir(subFolder)] if isdir(dir) and splitext(dir)[1] == ".unzipped"]:
+										try:
+											rmtree(dir)
+										except OSError as err:
+											print("[DownloadManager] getImagesList Error %d: Unable to remove directory '%s'!  (%s)" % (err.errno, dir, err.strerror))
+
+		imageList = []
+		for catagory in sorted(self.imagesList.keys(), reverse=True):
+			if catagory in self.expanded:
+				imageList.append(ChoiceEntryComponent("expanded", ((str(catagory)), "Expanded")))
+				for image in sorted(self.imagesList[catagory].keys(), key=lambda x: x.split(sep)[-1], reverse=True):
+					imageList.append(ChoiceEntryComponent("verticalline", ((self.imagesList[catagory][image]["name"]), self.imagesList[catagory][image]["link"])))
+			else:
+				for image in self.imagesList[catagory].keys():
+					imageList.append(ChoiceEntryComponent("expandable", ((catagory), "Expanded")))
+					break
+		if imageList:
+			self["list"].setList(imageList)
+			if self.setIndex:
+				self["list"].moveToIndex(self.setIndex if self.setIndex < len(imageList) else len(imageList) - 1)
+				if self["list"].getCurrent()[0][1] == "Expanded":
+					self.setIndex -= 1
+					if self.setIndex:
+						self["list"].moveToIndex(self.setIndex if self.setIndex < len(imageList) else len(imageList) - 1)
+				self.setIndex = 0
+			self.selectionChanged()
+		else:
+			self.session.openWithCallback(getImagesListCallback, MessageBox, _("Error: Cannot find any images!"), type=MessageBox.TYPE_ERROR, timeout=3, windowTitle=self.getTitle())
+
+	def keyCancel(self):
+		self.close()
+
+	def keyCloseRecursive(self):
+		self.close(True)
+
+	def keyOk(self):
+		def reloadImagesList():
+			self.imagesList = {}
+			self.getImagesList()
+
+		currentSelection = self["list"].getCurrent()
+		if currentSelection[0][1] == "Expanded":
+			if currentSelection[0][0] in self.expanded:
+				self.expanded.remove(currentSelection[0][0])
+			else:
+				self.expanded.append(currentSelection[0][0])
+			self.getImagesList()
+		elif currentSelection[0][1] != "Loading":
+			self.session.openWithCallback(reloadImagesList, FlashImage, currentSelection[0][0], currentSelection[0][1])
+
+	def keyTop(self):
+		self["list"].instance.goTop()
+		self.selectionChanged()
+
+	def keyPageUp(self):
+		self["list"].instance.goPageUp()
+		self.selectionChanged()
+
+	def keyUp(self):
+		self["list"].instance.goLineUp()
+		self.selectionChanged()
+
+	def keyDown(self):
+		self["list"].instance.goLineDown()
+		self.selectionChanged()
+
+	def keyPageDown(self):
+		self["list"].instance.goPageDown()
+		self.selectionChanged()
+
+	def keyBottom(self):
+		self["list"].instance.goBottom()
+		self.selectionChanged()
+
+	def keyDistribution(self):
+		self.feedUrls = [["OpenATV", "https://images.mynonpublic.com/openatv/json/%s" % BoxInfo.getItem("BoxName")]]
+		distributionList = []
+		default = 0
+		machine = BoxInfo.getItem("machinebuild")
+		try:
+			req = Request("https://raw.githubusercontent.com/OpenATV/FlashImage/gh-pages/%s.json" % machine, None, USER_AGENT)
+			responseList = load(urlopen(req, timeout=5))
+			self.feedUrls = self.feedUrls + responseList
+		except Exception as err:
+			print("[DownloadManager] Error: getavailable Distribution List for '%s'! (%s)" % (machine, err))
+		for index, distribution in enumerate([feed[FEED_DISTRIBUTION] for feed in self.feedUrls]):
+			distributionList.append((distribution, distribution))
+			if distribution == self.imageFeed:
+				default = index
+		self.session.openWithCallback(self.keyDistributionCallback, MessageBox, _("Please select a distribution from which you would like to download an image:"), list=distributionList, default=default, windowTitle=_("Download Manager - Distributions"))
+
+	def keyDistributionCallback(self, distribution):
+		if distribution:
+			self.imageFeed = distribution
+			# TRANSLATORS: The variable is the name of a distribution.  E.g. "OpenATV".
+			self.setTitle(_("Download Manager - %s Images") % self.imageFeed)
+			self.imagesList = {}
+			self.expanded = []
+			self.setIndex = 0
+			self.getImagesList()
+			self["list"].moveToIndex(self.setIndex)
+
+	def keyDeleteImage(self):
+		def keyDeleteImageCallback(result):
+			currentSelection = self["list"].getCurrent()[0][1]
+			if result:
+				try:
+					unlink(currentSelection)
+					currentSelection = ".".join([currentSelection[:-4], "unzipped"])
+					if isdir(currentSelection):
+						rmtree(currentSelection)
+					self.setIndex = self["list"].getSelectedIndex()
+					self.imagesList = {}
+					self.getImagesList()
+				except OSError as err:
+					self.session.open(MessageBox, _("Error %d: Unable to delete downloaded image '%s'!  (%s)" % (err.errno, currentSelection, err.strerror)), MessageBox.TYPE_ERROR, timeout=3, windowTitle=self.getTitle())
+
+		currentSelectionImage = self["list"].getCurrent()[0][0]
+		self.session.openWithCallback(keyDeleteImageCallback, MessageBox, _("Do you really want to delete '%s'?") % currentSelectionImage, MessageBox.TYPE_YESNO, default=False)
+
+	def keyDownloadImage(self):
+		def reloadImagesList():
+			self.imagesList = {}
+			self.getImagesList()
+
+		currentSelection = self["list"].getCurrent()
+		self.session.openWithCallback(reloadImagesList, FlashImage, currentSelection[0][0], currentSelection[0][1], True)
+
+	def selectionChanged(self):
+		currentSelection = self["list"].getCurrent()[0]
+		canDownload = False
+		canDelete = False
+		if currentSelection[1] == "Loading":
+			self["key_green"].setText("")
+		else:
+			if currentSelection[1] == "Expanded":
+				self["key_green"].setText(_("Collapse") if currentSelection[0] in self.expanded else _("Expand"))
+				self["description"].setText("")
+			else:
+				self["description"].setText(_("Location: %s") % currentSelection[1][:currentSelection[1].rfind(sep) + 1])
+				canDownload = "://" in currentSelection[1]
+				canDelete = not canDownload
+		if canDownload:
+			self["key_blue"].setText(_("Download Image"))
+		elif canDelete:
+			self["key_blue"].setText(_("Delete Image"))
+		else:
+			self["key_blue"].setText("")
+		self["downloadActions"].setEnabled(canDownload)
+		self["deleteActions"].setEnabled(canDelete)
+
+
+class FlashImage(Screen):
+	skin = """
+	<screen name="DownloadImage" title="Download Image" position="center,center" size="720,225" resolution="1280,720">
+		<widget name="header" position="0,0" size="e,50" font="Regular;35" valign="center" />
+		<widget name="info" position="0,60" size="e,130" font="Regular;25" valign="center" />
+		<widget name="progress" position="0,e-25" size="e,25" />
+	</screen>"""
+
+	def __init__(self, session, imageName, source, downloadOnly=False):
+		Screen.__init__(self, session, enableHelp=True)
+		self.imageName = imageName
+		self.source = source
+		self.setTitle(_("Download Image"))
+		self.containerBackup = None
+		self.containerOFGWrite = None
+		self.getImageList = None
+		self.downloader = None
+		self.downloadOnly = downloadOnly
+		self["header"] = Label(_("Download info"))
+		self["info"] = Label(_("Press blue button to download image."))
+		self["summary_header"] = StaticText(self["header"].getText())
+		self["progress"] = ProgressBar()
+		self["progress"].setRange((0, 100))
+		self["progress"].setValue(0)
+		self["actions"] = HelpableActionMap(self, ["OkCancelActions"], {
+			"cancel": (self.keyCancel, _("Cancel the download process")),
+			"close": (self.keyCloseRecursive, _("Cancel the download process and exit all menus")),
+			"ok": (self.keyOK, _("Continue with the download process"))
+		}, prio=-1, description=_("Image Download Actions"))
+		self.hide()
+		self.callLater(self.confirmation)
+
+	def keyCancel(self, reply=None):
+		if self.containerOFGWrite or self.getImageList:
+			return 0
+		if self.downloader:
+			self.downloader.stop()
+		self.close()
+
+	def keyCloseRecursive(self):
+		self.close(True)
+
+	def keyOK(self):
+		fbClass.getInstance().unlock()
+
+	def confirmation(self):
+			self.checkMedia(True)
+
+	def checkMedia(self, choice):
+		if choice:
+			self.recordCheck = not MultiBoot.canMultiBoot() or MultiBoot.getCurrentSlotCode() == choice[0]  # Ignore recordCheck if not the current slot
+			def findMedia(paths):
+				def availableSpace(path):
+					if isdir(path) and access(path, W_OK):
+						try:
+							fs = statvfs(path)
+							return (fs.f_bavail * fs.f_frsize) / (1 << 20)
+						except OSError as err:
+							print("[DownloadManager] checkMedia Error %d: Unable to get status for '%s'!  (%s)" % (err.errno, path, err.strerror))
+					return 0
+
+				def checkIfDevice(path, diskStats):
+					deviceID = stat(path).st_dev
+					return (major(deviceID), minor(deviceID)) in diskStats
+
+				diskStats = [(int(x[0]), int(x[1])) for x in [x.split()[0:3] for x in open("/proc/diskstats").readlines()] if x[2].startswith("sd") or x[2].startswith("mmc")]
+				for path in paths:
+					if isdir(path) and checkIfDevice(path, diskStats) and availableSpace(path) > 500:
+						return (path, True)
+				devices = []
+				mounts = []
+				for path in ["/media/%s" % x for x in listdir("/media")] + (["/media/net/%s" % x for x in listdir("/media/net")] if isdir("/media/net") else []):
+					if checkIfDevice(path, diskStats):
+						devices.append((path, availableSpace(path)))
+					else:
+						mounts.append((path, availableSpace(path)))
+				devices.sort(key=lambda x: x[1], reverse=True)
+				mounts.sort(key=lambda x: x[1], reverse=True)
+				return ((devices[0][1] > 500 and (devices[0][0], True)) if devices else mounts and mounts[0][1] > 500 and (mounts[0][0], False)) or (None, None)
+			
+			if fileExists('/media/usb/ImagesUpload'):
+			        destination, isDevice = findMedia(["/media/usb", "/media/hdd"])
+			else:
+                                destination, isDevice = findMedia(["/media/hdd", "/media/usb"])			
+			
+			if destination:
+				destination = join(destination, "ImagesUpload")
+				self.zippedImage = "://" in self.source and join(destination, self.imageName) or self.source
+				self.unzippedImage = join(destination, "%s.unzipped" % self.imageName[:-4])
+				try:
+					if isfile(destination):
+						unlink(destination)
+					if not isdir(destination):
+						mkdir(destination)
+					if self.downloadOnly:
+						self.startDownload()
+					else:
+						self.close()
+				except OSError:
+					self.session.openWithCallback(self.keyCancel, MessageBox, _("Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."), type=MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
+			else:
+				self.session.openWithCallback(self.keyCancel, MessageBox, _("Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."), type=MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
+		else:
+			self.keyCancel()
+
+	def startDownload(self, reply=True):  # DEBUG: This is never called with an argument!
+		self.show()
+		if reply:
+			if "://" in self.source:
+				self["header"].setText(_("Downloading Image"))
+				self["info"].setText(self.imageName)
+				self["summary_header"].setText(self["header"].getText())
+				self.downloader = DownloadWithProgress(self.source.replace(" ", "%20"), self.zippedImage)
+				self.downloader.addProgress(self.downloadProgress)
+				self.downloader.addEnd(self.downloadEnd)
+				self.downloader.addError(self.downloadError)
+				self.downloader.start()
+			else:
+				pass
+		else:
+			self.keyCancel()
+
+	def downloadProgress(self, current, total):
+		self["progress"].setValue(100 * current // total)
+
+	def downloadEnd(self, filename=None):
+		self.downloader.stop()
+		if self.downloadOnly:
+			self.close()
+		else:
+		        pass
+
+	def downloadError(self, error):
+		self.downloader.stop()
+		self.session.openWithCallback(self.keyCancel, MessageBox, "%s\n\n%s" % (_("Error downloading image '%s'!") % self.imageName, error.strerror), type=MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
+
+
+
+###############################___HardwareInfo___#########################
 
 from Tools.Directories import SCOPE_SKIN, resolveFilename
 from Components.SystemInfo import BoxInfo
