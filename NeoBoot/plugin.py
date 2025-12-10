@@ -289,12 +289,15 @@ class NeoBootImageChoose(Screen):
                     os.system('echo "Image uruchomione OK\nNie kasuj tego pliku. \n\nImage started OK\nDo not delete this file."  > /.control_ok')
                     
     def DownloadImageOnline(self):
-            if fileExists('/.multinfo'):
-                    mess = _('Downloading available only from the image Flash.')
-                    self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
-            else:
+            #if fileExists('/.multinfo'):
+                    #mess = _('Downloading available only from the image Flash.')
+                    #self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
+            #else:
                 if not fileExists('/usr/lib/python2.7'):
-                                if fileExists('/usr/lib/enigma2/python/Plugins/PLi'):        
+                                if fileExists('/usr/lib/enigma2/python/Plugins/Extensions/MyMetrixLite'):        
+                                        from Plugins.Extensions.NeoBoot.files.i_neo import FlashManager
+                                        self.session.open(FlashManager)                
+                                elif fileExists('/usr/lib/enigma2/python/Plugins/PLi'):        
                                         from Plugins.Extensions.NeoBoot.files.i_neo import SelectImage
                                         self.session.open(SelectImage)
                                 elif not fileExists('/usr/lib/enigma2/python/Plugins/PLi'):     
@@ -303,6 +306,7 @@ class NeoBootImageChoose(Screen):
                                 else:
                                         mess = _('Plug installation lost.The plugin doesnt work on python 3 yet. Please try again later.')
                                         self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
+                                    
                 elif not os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/ImageDownloader/download.py'):
                         message = _('Plugin ImageDownloader not installed!\nInstall plugin to download new image? \and---Continue ?---')
                         ybox = self.session.openWithCallback(self.InstallImageDownloader, MessageBox, message, MessageBox.TYPE_YESNO)
