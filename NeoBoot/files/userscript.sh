@@ -55,7 +55,7 @@
             ln -sf "../init.d/tailscale-daemon" "/etc/rc4.d/S60tailscale-daemon"
             ln -sf "../init.d/tailscale-daemon" "/etc/rc5.d/S60tailscale-daemon"
             ln -sf "../init.d/tailscale-daemon" "/etc/rc6.d/K60tailscale-daemon"
-            opkg install iptables 1>/dev/null 2>%1
+            #opkg install iptables 1>/dev/null 2>%1
             sleep 2;
             tailscale up
     fi
