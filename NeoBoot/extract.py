@@ -477,11 +477,7 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
                     rc = os.system(cmd1)
             os.system('echo "Copied file tailscale"') 
                                                                                           
-            try:                 
-                    cmd1 = 'cp -af /lib/modules/*/kernel/drivers/net/tun.ko '+media+'ImageBoot/'+target+'/' 
-                    rc = os.system(cmd1)
-                    os.system('echo "Copied file tun.ko to new image"')
-                               
+            try:           
                     if not os.path.exists(''+media+'/ImageBoot/'+target+'/var/run/tailscale'):
                                 cmd = 'mkdir -p '+media+'ImageBoot/'+target+'/run/tailscale/' 
                                 rc = os.system(cmd)
@@ -500,7 +496,7 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
                     except:
                                 os.system('echo "not found run_resolvconf_interfaces_tailscale"')
             except:
-                os.system('echo "Not found file tun.ko"')
+                os.system('echo "Not copied taiscale."')
                 
             if os.path.exists('/var/spool/cron') or os.path.exists('/etc/cron') :
                     if os.path.exists(''+media+'/ImageBoot/'+target+'/var/spool/cron'):
