@@ -443,14 +443,13 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
                 #rc = os.system(cmd)
 
 # for all image:
-        #copying zerotier script if exists
+        #copying zerotier and tailscale if exists
         if os.path.exists('/var/lib/zerotier-one/identity.secret'):
             cmd = 'mkdir -p ' + getNeoLocation() + 'ImageBoot/%s/var/lib/zerotier-one' % target
             rc = os.system(cmd)
             cmd1 = 'cp -af /var/lib/zerotier-one/identity.secret ' + getNeoLocation() + 'ImageBoot/%s/var/lib/zerotier-one/' % target
             rc = os.system(cmd1)
         
-        #copying tailscale if exists
         if os.path.exists('/var/lib/tailscale/tailscaled.state'):
             cmd = 'mkdir -p ' + getNeoLocation() + 'ImageBoot/%s/var/lib/tailscale' % target
             rc = os.system(cmd)
@@ -463,36 +462,46 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
                     rc = os.system(cmd3)
             elif os.path.exists('/usr/bin/tailscaled'):
                     cmd3 = 'cp -af /usr/bin/tailscaled ' + getNeoLocation() + 'ImageBoot/%s/usr/bin/' % target
-                    rc = os.system(cmd3)            
+                    rc = os.system(cmd3)
+                               
             cmd4 = 'cp -af /usr/bin/tailscale ' + getNeoLocation() + 'ImageBoot/%s/usr/bin/' % target
             rc = os.system(cmd4)
             cmd5 = 'cp -af /etc/init.d/tailscal* ' + getNeoLocation() + 'ImageBoot/%s/etc/init.d/' % target
-            rc = os.system(cmd5)                                                                              
-            if not os.path.exists('%s/ImageBoot/%s/lib/modules/kernel/drivers/net/tun.ko' % (media, target)):
-                    if not os.path.exists('%s/ImageBoot/%s/lib/modules/kernel/drivers/net' % (media, target)):
-                            #cmd = 'mkdir -p ' + getNeoLocation() + 'ImageBoot/%s/lib/modules/' + getKernelVersion() + '/kernel/drivers/net/' % target
-                            cmd = 'mkdir -p %s/ImageBoot/%s/lib/modules/kernel/drivers/net/' % (media, target) 
-                            rc = os.system(cmd)                    
-                            cmd = 'cp -af /lib/modules/' + getKernelVersion() + '/kernel/drivers/net/tun.ko %s/ImageBoot/%s/lib/modules/kernel/drivers/net/' % (media, target) 
-                            rc = os.system(cmd)   
-            if not os.path.exists('%s/ImageBoot/%s/var/run/tailscale' % (media, target)):
-                            cmd = 'mkdir -p ' + getNeoLocation() + '/ImageBoot/%s/run/tailscale/' % target 
-                            rc = os.system(cmd)
-            if os.path.exists('/run/tailscale'):                                 
-                            cmd = 'cp -aRf /run/tailscale/tailscaled.sock ' + getNeoLocation() + 'ImageBoot/%s/run/tailscale/' % target
-                            rc = os.system(cmd)
-                            cmd1 = 'cp -aRf /run/resolvconf/interfaces/tailscale ' + getNeoLocation() + 'ImageBoot/%s/run/tailscale/' % target
-                            rc = os.system(cmd1)
+            rc = os.system(cmd5)
+            os.system('echo "Copied file tailscale"') 
+                                                                                          
+            try:                 
+                    cmd1 = 'cp -af /lib/modules/*/kernel/drivers/net/tun.ko '+media+'ImageBoot/'+target+'/' 
+                    rc = os.system(cmd1)
+                    os.system('echo "Copied file tun.ko to new image"')
+                               
+                    if not os.path.exists(''+media+'/ImageBoot/'+target+'/var/run/tailscale'):
+                                cmd = 'mkdir -p '+media+'ImageBoot/'+target+'/run/tailscale/' 
+                                rc = os.system(cmd)
+                    try:        
+                        if os.path.exists('/run/tailscale'):                                 
+                                cmd = 'cp -aRf /run/tailscale/tailscaled.sock '+media+'ImageBoot/'+target+'/run/tailscale'
+                                rc = os.system(cmd)
+                                os.system('echo "Copied tailscaled_sock "')
+                    except:
+                                os.system('echo "in run, tailscale not found"')
+                    try:
+                                if os.path.exists('/run/resolvconf/interfaces/tailscale'):
+                                    cmd1 = 'cp -aRf /run/resolvconf/interfaces/tailscale '+media+'ImageBoot/'+target+'/run/tailscale/'
+                                    rc = os.system(cmd1)
+                                    os.system('echo "Copied run_resolvconf_interfaces_tailscale"')
+                    except:
+                                os.system('echo "not found run_resolvconf_interfaces_tailscale"')
+            except:
+                os.system('echo "Not found file tun.ko"')
         
         if os.path.exists('%s/ImageBoot/%s/etc/init.d' % (media, target)):
-                cmd = 'ln -s %sImageBoot/%s/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/userscript.sh %sImageBoot/%s/etc/rcS.d/S99neo.local' % (media,
-                 target,
-                 media,
-                 target)
+                cmd1 = 'ln -s /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/userscript.sh '+media+'ImageBoot/'+target+'/etc/rcS.d/S99neo.local'
+                rc = os.system(cmd1)
+                os.system('echo "Installed symlink userscript"')
             
         elif not os.path.exists('%s/ImageBoot/%s/etc/init.d' % (media, target)):
                 os.system('echo "/etc/init.d not found."')
-        os.system('echo "Copied file neo_userscript.sh"')
             
     if not os.path.exists('' + getNeoLocation() + 'ImageBoot/.without_copying') and not os.path.exists(' /tmp/settings_copied'):        
         for line in open("/etc/hostname"):                                
