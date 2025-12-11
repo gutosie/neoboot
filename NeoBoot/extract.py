@@ -444,17 +444,14 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
 # for all image:
         #copying zerotier and tailscale if exists
         if os.path.exists('/var/lib/zerotier-one/identity.secret'):
-            cmd = 'mkdir -p ' + getNeoLocation() + 'ImageBoot/%s/var/lib/zerotier-one' % target
+            cmd = 'mkdir -p '+media+'ImageBoot/'+target+'/var/lib/zerotier-one'
             rc = os.system(cmd)
-            cmd1 = 'cp -af /var/lib/zerotier-one/identity.secret ' + getNeoLocation() + 'ImageBoot/%s/var/lib/zerotier-one/' % target
+            cmd1 = 'cp -af /var/lib/zerotier-one/* '+media+'ImageBoot/'+target+'/var/lib/zerotier-one'
             rc = os.system(cmd1)
-            cmd2 = 'cp -af /etc/init.d/zerotier ' + getNeoLocation() + 'ImageBoot/%s/etc/init.d/' % target
+            cmd2 = 'cp -af /etc/init.d/zerotie* '+media+'ImageBoot/'+target+'/etc/init.d'
             rc = os.system(cmd2)
-            cmd3 = 'cp -af /usr/sbin/zerotie* ' + getNeoLocation() + 'ImageBoot/%s/usr/sbin/' % target
-            rc = os.system(cmd3)
-            if os.path.exists('/etc/init.d/zerotie*'):
-                    cmd1 = 'cp -af /etc/init.d/zerotie* ' + getNeoLocation() + 'ImageBoot/%s/etc/init.d/' % target
-                    rc = os.system(cmd1)          
+            cmd3 = 'cp -af /usr/sbin/zerotie* '+media+'ImageBoot/'+target+'/usr/sbin'
+            rc = os.system(cmd3)        
             os.system('echo "Copied file zerotier"')
             
         if os.path.exists('/var/lib/tailscale/tailscaled.state'):
