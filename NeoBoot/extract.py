@@ -449,7 +449,7 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
             rc = os.system(cmd)
             cmd1 = 'cp -af /var/lib/zerotier-one/identity.secret ' + getNeoLocation() + 'ImageBoot/%s/var/lib/zerotier-one/' % target
             rc = os.system(cmd1)
-        
+            
         if os.path.exists('/var/lib/tailscale/tailscaled.state'):
             cmd = 'mkdir -p ' + getNeoLocation() + 'ImageBoot/%s/var/lib/tailscale' % target
             rc = os.system(cmd)
@@ -458,16 +458,19 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
             cmd2 = 'cp -af /var/lib/tailscale/* ' + getNeoLocation() + 'ImageBoot/%s/var/lib/tailscale/' % target
             rc = os.system(cmd2)
             if os.path.exists('/usr/sbin/tailscaled'):
-                    cmd3 = 'cp -af /usr/sbin/tailscaled ' + getNeoLocation() + 'ImageBoot/%s/susr/sbin/' % target
+                    cmd3 = 'cp -af /usr/sbin/tailscaled ' + getNeoLocation() + 'ImageBoot/%s/usr/sbin/' % target
                     rc = os.system(cmd3)
             elif os.path.exists('/usr/bin/tailscaled'):
                     cmd3 = 'cp -af /usr/bin/tailscaled ' + getNeoLocation() + 'ImageBoot/%s/usr/bin/' % target
                     rc = os.system(cmd3)
-                               
+
             cmd4 = 'cp -af /usr/bin/tailscale ' + getNeoLocation() + 'ImageBoot/%s/usr/bin/' % target
             rc = os.system(cmd4)
             cmd5 = 'cp -af /etc/init.d/tailscal* ' + getNeoLocation() + 'ImageBoot/%s/etc/init.d/' % target
             rc = os.system(cmd5)
+            if os.path.exists('/etc/init.d/tailscal*'):
+                    cmd1 = 'cp -af /etc/init.d/tailscal* ' + getNeoLocation() + 'ImageBoot/%s/etc/init.d/' % target
+                    rc = os.system(cmd1)
             os.system('echo "Copied file tailscale"') 
                                                                                           
             try:                 
