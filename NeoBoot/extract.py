@@ -449,7 +449,12 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
             cmd1 = 'cp -af /var/lib/zerotier-one/identity.secret ' + getNeoLocation() + 'ImageBoot/%s/var/lib/zerotier-one/' % target
             rc = os.system(cmd1)
             cmd2 = 'cp -af /etc/init.d/zerotier ' + getNeoLocation() + 'ImageBoot/%s/etc/init.d/' % target
-            rc = os.system(cmd2)            
+            rc = os.system(cmd2)
+            cmd3 = 'cp -af /usr/sbin/zerotie* ' + getNeoLocation() + 'ImageBoot/%s/usr/sbin/' % target
+            rc = os.system(cmd3)
+            if os.path.exists('/etc/init.d/zerotie*'):
+                    cmd1 = 'cp -af /etc/init.d/zerotie* ' + getNeoLocation() + 'ImageBoot/%s/etc/init.d/' % target
+                    rc = os.system(cmd1)          
             os.system('echo "Copied file zerotier"')
             
         if os.path.exists('/var/lib/tailscale/tailscaled.state'):
