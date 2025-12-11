@@ -42,12 +42,22 @@
 		        echo "The network has a connection. It is OK"		        
 		fi
     fi
-	if [ -f /tun.ko ] ; then
+    if [ -f /tun.ko ] ; then
             if [ ! -e /lib/modules/*/kernel/drivers/net ]; then
                     mkdir -p /lib/modules/*/kernel/drivers/net
             fi
             sleep 2;
             mv /tun.ko /lib/modules/*/kernel/drivers/net
+            ln -sf "../init.d/tailscale-daemon" "/etc/rc0.d/K60tailscale-daemon"
+            ln -sf "../init.d/tailscale-daemon" "/etc/rc1.d/K60tailscale-daemon"
+            ln -sf "../init.d/tailscale-daemon" "/etc/rc2.d/S60tailscale-daemon"
+            ln -sf "../init.d/tailscale-daemon" "/etc/rc3.d/S60tailscale-daemon"
+            ln -sf "../init.d/tailscale-daemon" "/etc/rc4.d/S60tailscale-daemon"
+            ln -sf "../init.d/tailscale-daemon" "/etc/rc5.d/S60tailscale-daemon"
+            ln -sf "../init.d/tailscale-daemon" "/etc/rc6.d/K60tailscale-daemon"
+            opkg install iptables 1>/dev/null 2>%1
+            sleep 2;
+            tailscale up
     fi
     if [ -f /zImage ] ; then
         rm -r /zImage
