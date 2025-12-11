@@ -288,7 +288,7 @@ class NeoBootImageChoose(Screen):
                 if not fileExists('/.control_boot_new_image'):
                         os.system('echo "Image uruchomione OK\nNie kasuj tego pliku. \n\nImage started OK\nDo not delete this file."  > /.control_ok')
                 if fileExists('/usr/bin/tailscale') or fileExists('/etc/init.d/zerotier') :
-                        os.system('opkg update; opkg install iptables kernel-module-tun; /etc/init.d/zerotier start; taiscale up;')
+                        os.system('opkg update; opkg install iptables kernel-module-tun zerotier; /etc/init.d/zerotier start; taiscale up;')
                     
     def DownloadImageOnline(self):
             #if fileExists('/.multinfo'):
