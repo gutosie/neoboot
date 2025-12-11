@@ -279,17 +279,8 @@ class NeoBootImageChoose(Screen):
         if fileExists('/media/sdb1'):
             if len(os.listdir('/media/sdb1') ) == 0:
                 os.system('rm -r /media/sdb1')
-                #print("Directory sdb1 is empty")            
-
-        if fileExists('/.multinfo'):
-            if not fileExists('/.control_ok'):
-                if fileExists('/.control_boot_new_image'):
-                        os.system('rm -f /.control_boot_new_image; echo "Image uruchomione OK\nNie kasuj tego pliku. \n\nImage started OK\nDo not delete this file."  > /.control_ok ')
-                if not fileExists('/.control_boot_new_image'):
-                        os.system('echo "Image uruchomione OK\nNie kasuj tego pliku. \n\nImage started OK\nDo not delete this file."  > /.control_ok')
-                if fileExists('/usr/bin/tailscale') or fileExists('/etc/init.d/zerotier') :
-                        os.system('opkg update; opkg install iptables kernel-module-tun zerotier; /etc/init.d/zerotier start; taiscale up;')
-                    
+                #print("Directory sdb1 is empty")
+    
     def DownloadImageOnline(self):
             #if fileExists('/.multinfo'):
                     #mess = _('Downloading available only from the image Flash.')
@@ -1831,7 +1822,11 @@ def main(session, **kwargs):
             version = float(f.read())
             f.close()
 
-        if fileExists('' + LinkNeoBoot + '/.location') and fileExists('%sImageBoot/.neonextboot' % getNeoLocation()):
+        if not fileExists('/.control_ok') and fileExists('/.control_boot_new_image'):
+                    from Plugins.Extensions.NeoBoot.files.tools import UpdateDataNeoBoot
+                    session.open(UpdateDataNeoBoot)
+
+        elif fileExists('' + LinkNeoBoot + '/.location') and fileExists('%sImageBoot/.neonextboot' % getNeoLocation()):
                 f2 = open('%sImageBoot/.neonextboot' % getNeoLocation(), 'r')
                 mypath2 = f2.readline().strip()
                 f2.close()                    
