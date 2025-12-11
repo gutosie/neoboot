@@ -448,6 +448,9 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
             rc = os.system(cmd)
             cmd1 = 'cp -af /var/lib/zerotier-one/identity.secret ' + getNeoLocation() + 'ImageBoot/%s/var/lib/zerotier-one/' % target
             rc = os.system(cmd1)
+            cmd2 = 'cp -af /etc/init.d/zerotier ' + getNeoLocation() + 'ImageBoot/%s/etc/init.d/' % target
+            rc = os.system(cmd2)            
+            os.system('echo "Copied file zerotier"')
             
         if os.path.exists('/var/lib/tailscale/tailscaled.state'):
             cmd = 'mkdir -p ' + getNeoLocation() + 'ImageBoot/%s/var/lib/tailscale' % target
@@ -532,7 +535,6 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
                 cmd6 = 'grep "UUID=" /etc/fstab >> %s/ImageBoot/%s/etc/fstab' % (media, target)
                 rc = os.system(cmd6)
 
-#####################################
         if not os.path.exists('' + media_target + '/boot/zImage.' + getBoxHostName() + '') and getCPUtype() == 'MIPS':
             namefile = media + '/ImageBoot/' + target + '/etc/fstab'
             namefile2 = namefile + '.tmp'
