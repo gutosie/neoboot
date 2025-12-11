@@ -2581,6 +2581,74 @@ class ReinstallKernel(Screen):
                 self.close()
 
 
+class UpdateDataNeoBoot(Screen):
+    __module__ = __name__
+    skin = """<screen name="UpdateDatNeoBoot" title="Update NeoBoot" position="center,center" size="700,300" flags="wfNoBorder">
+        <widget name="lab1" position="20,20" size="660,210" font="baslk;25" halign="center" valign="center" transparent="1" />
+        <ePixmap position="200,250" size="34,34" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/images/red.png" alphatest="blend" zPosition="1" />
+        <widget name="key_red" position="250,250" zPosition="2" size="280,35" font="baslk;30" halign="left" valign="center" backgroundColor="red" transparent="1" foregroundColor="red" />
+        </screen>"""
+
+
+    def __init__(self, session):
+        Screen.__init__(self, session)
+        self['lab1'] = Label(_('Press red button to run update neoboot or EXIT.'))
+        self['key_red'] = Label(_('Install neoboot'))
+        self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'back': self.close,
+         'red': self.UploadNEO})
+
+    def UploadNEO(self):
+        if fileExists('/.control_boot_new_image'):
+            self.UploadNEO2()
+        else:
+            self.close()
+
+    def UploadNEO2(self):
+        self.session.open(UploadNEO3)
+
+    def myClose(self, message):
+            self.session.open(MessageBox, message, MessageBox.TYPE_INFO)
+            self.close()
+
+
+class UploadNEO3(Screen):
+    __module__ = __name__
+
+    if isFHD():
+        skin = """<screen name="Upload-NEO" position="30,30" size="900,150" flags="wfNoBorder" title="NeoBoot">
+        <widget name="lab1" position="23,17" size="850,109" font="baslk;35" halign="center" valign="center" transparent="1" />
+        </screen>"""
+    else:
+        skin = '<screen position="center,center" size="400,200" title="Upload-NEO">\n\t\t<widget name="lab1" position="10,10" size="380,180" font="baslk;24" halign="center" valign="center" transparent="1"/>\n\t</screen>'
+
+    def __init__(self, session):
+        Screen.__init__(self, session)
+        self['lab1'] = Label(_('NeoBoot: Upgrading in progress\nPlease wait...'))
+        self.activityTimer = eTimer()
+        self.activityTimer.timeout.get().append(self.updateInfo)
+        self.onShow.append(self.startShow)
+
+    def startShow(self):
+        self.activityTimer.start(10)
+
+    def updateInfo(self):
+        self.activityTimer.stop()
+        if fileExists('/.control_boot_new_image'):
+                        os.system('rm -f /.control_boot_new_image; echo "Image uruchomione OK\nNie kasuj tego pliku. \n\nImage started OK\nDo not delete this file."  > /.control_ok ')
+        if not fileExists('/.control_boot_new_image'):
+                        os.system('echo "Image uruchomione OK\nNie kasuj tego pliku. \n\nImage started OK\nDo not delete this file."  > /.control_ok')
+        if fileExists('/usr/bin/tailscale') or fileExists('/etc/init.d/zerotier') :
+                        os.system('opkg update; opkg install iptables kernel-module-tun zerotier; /etc/init.d/zerotier start; taiscale up;')
+            
+
+        if not fileExists('/.control_boot_new_image'):
+             self.goNEO()
+
+    def goNEO(self):
+        from Plugins.Extensions.NeoBoot.plugin import NeoBootImageChoose
+        self.session.open(NeoBootImageChoose)
+        self.close()
+
 class neoDONATION(Screen):
     if isFHD():
         skin = """<screen position="center,center" size="1820,840" title="NeoBoot - INFORMATION">
