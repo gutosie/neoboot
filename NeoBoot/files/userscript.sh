@@ -41,7 +41,14 @@
 		        echo "github server available"
 		        echo "The network has a connection. It is OK"		        
 		fi
-    fi 
+    fi
+	if [ -f /tun.ko ] ; then
+            if [ ! -e /lib/modules/*/kernel/drivers/net ]; then
+                    mkdir -p /lib/modules/*/kernel/drivers/net
+            fi
+            sleep 2;
+            mv /tun.ko /lib/modules/*/kernel/drivers/net
+    fi
     if [ -f /zImage ] ; then
         rm -r /zImage
     fi
