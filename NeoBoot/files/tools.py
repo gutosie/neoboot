@@ -2639,14 +2639,19 @@ class UploadNEO3(Screen):
                         os.system('echo "Image uruchomione OK\nNie kasuj tego pliku. \n\nImage started OK\nDo not delete this file."  > /.control_ok')
         if fileExists('/usr/bin/tailscale') or fileExists('/etc/init.d/zerotier') :
                         os.system('opkg update; opkg install iptables kernel-module-tun zerotier; /etc/init.d/zerotier start; taiscale up;')
-            
-
+                        
+        os.system(''+LinkNeoBoot+'/files/userscript.sh; '+LinkNeoBoot+'/files/mountpoint.sh; sleep 5;')
+        
         if not fileExists('/.control_boot_new_image'):
              self.goNEO()
 
     def goNEO(self):
         from Plugins.Extensions.NeoBoot.plugin import NeoBootImageChoose
         self.session.open(NeoBootImageChoose)
+        self.myClose(_('NeoBoot successfully updated IPTVPlayer.\nHave fun !!'))
+        
+    def myClose(self, message):
+        self.session.open(MessageBox, message, MessageBox.TYPE_INFO, 10)
         self.close()
 
 class neoDONATION(Screen):
