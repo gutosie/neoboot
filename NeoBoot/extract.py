@@ -8,8 +8,7 @@ import os
 import struct
 import shutil
 
-# ver. gutosie
-#--------------------------------------------- 2024 ---------------------------------------------#
+#--------------------------------------------- ver. gutosie 2026 ---------------------------------------------#
 
 def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterowniki, Montowanie, InstallSettings, ZipDelete, RepairFTP, SoftCam, MediaPortal, PiconR, Kodi, BlackHole, Nandsim):
     NEOBootR(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterowniki, Montowanie, InstallSettings, ZipDelete, RepairFTP, SoftCam, MediaPortal, PiconR, Kodi, BlackHole, Nandsim)
