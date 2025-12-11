@@ -505,9 +505,13 @@ def NEOBootMainEx(source, target, CopyFiles, CopyKernel, TvList, LanWlan, Sterow
             except:
                 os.system('echo "Not found file tun.ko"')
                 
-            if os.path.exists('/var/spool/cron'):
-                    cmd1 = 'cp -af /var/spool/* ' + getNeoLocation() + 'ImageBoot/%s/var/spool' % target
-                    rc = os.system(cmd1)
+            if os.path.exists('/var/spool/cron') or os.path.exists('/etc/cron') :
+                    try:
+                        cmd1 = 'cp -af /var/spool/* ' + getNeoLocation() + 'ImageBoot/%s/var/spool' % target
+                        rc = os.system(cmd1)
+                    except:
+                        cmd1 = 'cp -af /etc/cron/* ' + getNeoLocation() + 'ImageBoot/%s/etc/cron/' % target
+                        rc = os.system(cmd1)
         
         if os.path.exists('%s/ImageBoot/%s/etc/init.d' % (media, target)):
                 cmd1 = 'ln -s /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/userscript.sh '+media+'ImageBoot/'+target+'/etc/rcS.d/S99neo.local'
