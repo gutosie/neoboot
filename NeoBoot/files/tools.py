@@ -2648,7 +2648,7 @@ class UploadNEO3(Screen):
     def goNEO(self):
         from Plugins.Extensions.NeoBoot.plugin import NeoBootImageChoose
         self.session.open(NeoBootImageChoose)
-        self.myClose(_('NeoBoot successfully updated IPTVPlayer.\nHave fun !!'))
+        self.myClose(_('NeoBoot successfully updated.\nDo full restart STB.'))
         
     def myClose(self, message):
         self.session.open(MessageBox, message, MessageBox.TYPE_INFO, 10)
