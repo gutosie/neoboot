@@ -2466,17 +2466,17 @@ class Opis(Screen):
         else:
             if answer is True:
                 if fileExists("/usr/bin/fullwget"):
-                        os.system("cd /tmp; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/NEOBootPY3.tar.gz")
-                if not fileExists("/tmp/NEOBootPY3.tar.gz"):
+                        os.system("cd /tmp; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/neobootpy3")
+                if not fileExists("/tmp/neobootpy3"):
                         if fileExists("/usr/bin/curl"):
-                            os.system("sync; cd /tmp; curl -O --ftp-ssl -k https://raw.githubusercontent.com/gutosie/neoboot/master/NEOBootPY3.tar.gz")
-                if not fileExists("/tmp/NEOBootPY3.tar.gz"):
+                            os.system("sync; cd /tmp; curl -O --ftp-ssl -k https://raw.githubusercontent.com/gutosie/neoboot/master/neobootpy3")
+                if not fileExists("/tmp/neobootpy3"):
                         if fileExists("/usr/bin/wget"):
-                            os.system("cd /tmp;rm ./*.zip; wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/NEOBootPY3.tar.gz")
-                if not fileExists("/tmp/NEOBootPY3.tar.gz"):
+                            os.system("cd /tmp;rm ./*.zip; wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/neobootpy3")
+                if not fileExists("/tmp/neobootpy3"):
                             self.session.open(MessageBox,_("Unfortunately, at the moment not found an update, try again later."),MessageBox.TYPE_INFO,10,)
-                if fileExists("/tmp/NEOBootPY3.tar.gz"):
-                    cmd1 = "tar -czf /tmp/NEOBootLastcOPY" + UPDATEVERSION + ".tar.gz /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot; sleep 2; rm -r /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot; sleep 2; /bin/tar -xzvf /tmp/NEOBootPY3.tar.gz -C /; sleep 2;"
+                if fileExists("/tmp/neobootpy3"):
+                    cmd1 = "mv /tmp/neobootpy3 /tmp/NEOBootPY3.tar.gz; tar -czf /tmp/NEOBootLastcOPY" + UPDATEVERSION + ".tar.gz /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot; sleep 2; rm -r /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot; sleep 2; /bin/tar -xzvf /tmp/NEOBootPY3.tar.gz -C /; sleep 2;"
                     system(cmd1)
                     cmd2 = "sed -i -e ''s/"+PLUGINVERSION+"/"+getNeoPyVer()+"/g'' /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/plugin.py"
                     system(cmd2)                 
@@ -2485,7 +2485,8 @@ class Opis(Screen):
                 else:
                             self.session.open(MessageBox,_("The plug-in not installed."),MessageBox.TYPE_INFO,5,)
                             self.close()
-                           
+
+    
     def delete(self):
         message = _('Are you sure you want to completely remove NeoBoota of your image?\n\nIf you choose so all directories NeoBoota will be removed.\nA restore the original image settings Flash.')
         ybox = self.session.openWithCallback(self.mbdelete, MessageBox, message, MessageBox.TYPE_YESNO)
