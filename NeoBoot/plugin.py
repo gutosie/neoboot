@@ -1012,16 +1012,18 @@ class NeoBootImageChoose(Screen):
                 cmd = 'mkdir /tmp/install; touch /tmp/install/plugin.txt; rm -rf /tmp/*.ipk'
                 system(cmd)
                 if fileExists('/usr/bin/fullwget'):
-                            os.system('cd /tmp; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ImageDownloader.tar.gz')
-                if not fileExists('/tmp/ImageDownloader.tar.gz'):
+                            os.system('cd /tmp; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/imagedownloader')
+                if not fileExists('/tmp/imagedownloader'):
                     if fileExists('/usr/bin/curl'):
-                            os.system('sync; cd /tmp; curl -O --ftp-ssl -k https://raw.githubusercontent.com/gutosie/neoboot/master/ImageDownloader.tar.gz')
-                if not fileExists('/tmp/ImageDownloader.tar.gz'):
+                            os.system('sync; cd /tmp; curl -O --ftp-ssl -k https://raw.githubusercontent.com/gutosie/neoboot/master/imagedownloader')
+                if not fileExists('/tmp/imagedownloader'):
                     if fileExists('/usr/bin/wget'):
-                            os.system('cd /tmp;rm ./*.zip; wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/ImageDownloader.tar.gz')
-                if not fileExists('/tmp/ImageDownloader.tar.gz'):
+                            os.system('cd /tmp;rm ./*.zip; wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/imagedownloader')
+                if not fileExists('/tmp/imagedownloader'):
                         self.session.open(MessageBox, _('Unfortunately, at the moment not found an update, try again later.'), MessageBox.TYPE_INFO, 10)
                 else:
+                    cmd1 = 'mv /tmp/imagedownloader /tmp/ImageDownloader.tar.gz; sleep 2; '
+                    system(cmd1)
                     cmd2 = '/bin/tar -xzvf /tmp/ImageDownloader.tar.gz -C /'
                     system(cmd2)
                     self.session.open(MessageBox, _('The plug-in has been successfully installed.'), MessageBox.TYPE_INFO, 5)
