@@ -2635,7 +2635,6 @@ class UploadNEO3(Screen):
         self.activityTimer.start(10)
 
     def updateInfo(self):
-    def updateInfo(self):
         self.activityTimer.stop()
         if fileExists('/.control_boot_new_image'):
                         os.system('rm -f /.control_boot_new_image; echo "Image uruchomione OK\nNie kasuj tego pliku. \n\nImage started OK\nDo not delete this file."  > /.control_ok ')
