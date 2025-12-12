@@ -2639,8 +2639,8 @@ class UploadNEO3(Screen):
                         os.system('rm -f /.control_boot_new_image; echo "Image uruchomione OK\nNie kasuj tego pliku. \n\nImage started OK\nDo not delete this file."  > /.control_ok ')
         if not fileExists('/.control_boot_new_image'):
                         os.system('echo "Image uruchomione OK\nNie kasuj tego pliku. \n\nImage started OK\nDo not delete this file."  > /.control_ok')
-        if fileExists('/usr/bin/tailscale') or fileExists('/etc/init.d/zerotier') :            
-            if fileExists('/usr/bin/tailscale'):
+        if fileExists('/usr/bin/tailscale') or fileExists('/usr/sbin/tailscale') or fileExists('/etc/init.d/zerotier') :            
+            if fileExists('/usr/bin/tailscale') or fileExists('/usr/sbin/tailscale'):
                     cmd0 = 'ln -sfv /etc/init.d/tailscale-daemon /etc/rc0.d/K60tailscale-daemon'
                     os.system(cmd0)
                     cmd1 = 'ln -sfv /etc/init.d/tailscale-daemon /etc/rc1.d/K60tailscale-daemon'
@@ -2665,7 +2665,7 @@ class UploadNEO3(Screen):
                     os.system('ln -sfv /etc/init.d/zerotier /etc/rc5.d/S60zerotier') 
                     os.system('ln -sfv /etc/init.d/zerotier /etc/rc6.d/K60zerotier')
                     
-            os.system('opkg update; opkg install iptables kernel-module-tun zerotier;sleep 2;/etc/init.d/zerotier start;sleep 2; taiscale up;')
+            os.system('opkg update; opkg install iptables kernel-module-tun zerotier;sleep 2; modprobe tun; sleep 2; /etc/init.d/zerotier start;sleep 2; taiscale up;')
                            
         os.system(''+LinkNeoBoot+'/files/userscript.sh; '+LinkNeoBoot+'/files/mountpoint.sh; sleep 5;')
                                 
