@@ -1559,7 +1559,9 @@ class SkinChange(Screen):
                 elif getBoxHostName() == 'h7' or getBoxHostName() == 'zgemmah7':
                     system('cp -af ' + LinkNeoBoot + '/images/zgmmah7.png ' + LinkNeoBoot + '/images/box.png')                    
                 elif getBoxHostName() == 'zgemmah9combo':
-                    system('cp -af ' + LinkNeoBoot + '/images/zgmmah9twin.png ' + LinkNeoBoot + '/images/box.png')                     
+                    system('cp -af ' + LinkNeoBoot + '/images/zgmmah9twin.png ' + LinkNeoBoot + '/images/box.png')
+                elif getBoxHostName() == 'novaler4kpro':
+                    system('cp -af ' + LinkNeoBoot + '/images/novaler4kpro.png ' + LinkNeoBoot + '/images/box.png')                                          
                 else:
                     system('cp -af ' + LinkNeoBoot + '/images/logo.png ' + LinkNeoBoot + '/images/box.png')                    
 

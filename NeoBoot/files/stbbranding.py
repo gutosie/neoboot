@@ -718,6 +718,10 @@ def getTypBoxa():
             out = open('/etc/typboxa', 'w')
             out.write('ax51 ')
             out.close()
+        elif mypath2 == 'novaler4kpro':
+            out = open('/etc/typboxa', 'w')
+            out.write('Novaler Multibox Pro ')
+            out.close()			
 
     try:
         lines = open('/etc/typboxa', 'r').readlines()

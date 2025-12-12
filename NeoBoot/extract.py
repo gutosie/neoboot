@@ -770,10 +770,12 @@ def RemoveUnpackDirs():
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/multibox')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/multiboxse'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/multiboxse')
-    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/multiboxpro"'):
-        rc = os.system('rm -r ' +getNeoLocation() +'ImagesUpload/multiboxpro')
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/multiboxpro'):
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/multiboxpro')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/unforce_multibox.txt'):
-        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/unforce_multibox.txt')       
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/unforce_multibox.txt')
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/unforce_multiboxpro.txt'):
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/unforce_multiboxpro.txt')        
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/axas'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/axas')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/miraclebox'):
