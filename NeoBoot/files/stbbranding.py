@@ -1186,12 +1186,35 @@ def getNandWrite():
 	
     return NandWrite
 
+def getLocationHDDdir():
+    hdd_dir  = 'UNKNOWN'
+    if os.path.exists('/proc/mounts'):
+        with open('/proc/mounts', 'r') as f:
+            lines = f.read()
+            f.close()
+        if lines.find('/dev/sda1 /media/hdd') != -1:
+            hdd_dir = '/dev/sda1'
+        elif lines.find('/dev/sdb1 /media/hdd') != -1:
+            hdd_dir  = '/dev/sdb1'
+
+    return hdd_dir
+
 def getMyUUID():
     #os.system("tune2fs -l /dev/sd?? | awk '/UUID/ {print $NF}' > /tmp/.myuuid")
     os.system("tune2fs -l %s | awk '/UUID/ {print $NF}' > /tmp/.myuuid" % (getLocationMultiboot()))
     try:
         if os.path.isfile('/tmp/.myuuid'):
             return open('/tmp/.myuuid').read().strip().upper()
+    except:
+        pass
+
+    return _('unavailable')
+
+def getUUIDmy():
+    os.system("tune2fs -l %s | awk '/UUID/ {print $NF}' > /tmp/.my_uuid" % (getLocationHDDdir()))
+    try:
+        if os.path.isfile('/tmp/.my_uuid'):
+            return open('/tmp/.my_uuid').read().strip().upper()
     except:
         pass
 
