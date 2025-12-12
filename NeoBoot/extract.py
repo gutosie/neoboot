@@ -920,10 +920,14 @@ def RemoveUnpackDirs():
         rc = os.system('rm -rf ' + getNeoLocation() + 'ImagesUpload/kernel.bin') 
     if os.path.exists('' + getNeoLocation() + 'ImagesUpload/force_multibox_READ.ME'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/force_multibox_READ.ME')
+    if os.path.exists('' + getNeoLocation() + 'ImagesUpload/force_multiboxse_READ.ME'):
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/force_multiboxse_READ.ME')                
     if os.path.exists("" + getNeoLocation() + "ImagesUpload/force_multiboxpro_READ.ME"):
-        rc = os.system("rm -r " + getNeoLocation() + "ImagesUpload/force_multiboxpro_READ.ME")             
+        rc = os.system("rm -r " + getNeoLocation() + "ImagesUpload/force_multiboxpro_READ.ME")        
+    if os.path.exists("" + getNeoLocation() + "ImagesUpload/unforce_multiboxse.txt"):
+        rc = os.system("rm -r " + getNeoLocation() + "ImagesUpload/unforce_multiboxse.txt")                     
     if os.path.exists("" + getNeoLocation() + "ImagesUpload/unforce_multiboxpro.txt"):
-        rc = os.system("rm -r " + getNeoLocation() + "ImagesUpload/unforce_multiboxpro.txt")       
+        rc = os.system("rm -r " + getNeoLocation() + "ImagesUpload/unforce_multiboxpro.txt")      
     if os.path.exists('' + getNeoLocation() + 'ImagesUpload/force'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/force')
     if os.path.exists('' + getNeoLocation() + 'ImagesUpload/rootfs.bin'):
