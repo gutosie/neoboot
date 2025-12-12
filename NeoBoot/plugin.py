@@ -1008,26 +1008,41 @@ class NeoBootImageChoose(Screen):
 
     def ImageDownloader(self, yesno):
         if checkInternet():
-            if yesno:
-                cmd = 'mkdir /tmp/install; touch /tmp/install/plugin.txt; rm -rf /tmp/*.ipk'
-                system(cmd)
-                if fileExists('/usr/bin/fullwget'):
-                            os.system('cd /tmp; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/imagedownloader')
-                if not fileExists('/tmp/imagedownloader'):
-                    if fileExists('/usr/bin/curl'):
-                            os.system('sync; cd /tmp; curl -O --ftp-ssl -k https://raw.githubusercontent.com/gutosie/neoboot/master/imagedownloader')
-                if not fileExists('/tmp/imagedownloader'):
-                    if fileExists('/usr/bin/wget'):
-                            os.system('cd /tmp;rm ./*.zip; wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/imagedownloader')
-                if not fileExists('/tmp/imagedownloader'):
-                        self.session.open(MessageBox, _('Unfortunately, at the moment not found an update, try again later.'), MessageBox.TYPE_INFO, 10)
+            if yesno:            
+                if not fileExists('/usr/lib/python2.7'):
+                                if fileExists('/usr/lib/enigma2/python/Plugins/Extensions/MyMetrixLite'):        
+                                        from Plugins.Extensions.NeoBoot.files.i_neo import FlashManager
+                                        self.session.open(FlashManager)                
+                                elif fileExists('/usr/lib/enigma2/python/Plugins/PLi'):        
+                                        from Plugins.Extensions.NeoBoot.files.i_neo import SelectImage
+                                        self.session.open(SelectImage)
+                                elif not fileExists('/usr/lib/enigma2/python/Plugins/PLi'):     
+                                        from Plugins.Extensions.NeoBoot.files.i_neo import ImageManager
+                                        self.session.open(ImageManager)
+                                else:
+                                        mess = _('Plug installation lost.The plugin doesnt work on python 3 yet. Please try again later.')
+                                        self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)            
+            
                 else:
-                    cmd1 = 'mv /tmp/imagedownloader /tmp/ImageDownloader.tar.gz; sleep 2; '
-                    system(cmd1)
-                    cmd2 = '/bin/tar -xzvf /tmp/ImageDownloader.tar.gz -C /'
-                    system(cmd2)
-                    self.session.open(MessageBox, _('The plug-in has been successfully installed.'), MessageBox.TYPE_INFO, 5)
-                    self.close()
+                        cmd = 'mkdir /tmp/install; touch /tmp/install/plugin.txt; rm -rf /tmp/*.ipk'
+                        system(cmd)
+                        if fileExists('/usr/bin/fullwget'):
+                                os.system('cd /tmp; fullwget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/imagedownloader')
+                        if not fileExists('/tmp/imagedownloader'):
+                                if fileExists('/usr/bin/curl'):
+                                        os.system('sync; cd /tmp; curl -O --ftp-ssl -k https://raw.githubusercontent.com/gutosie/neoboot/master/imagedownloader')
+                        if not fileExists('/tmp/imagedownloader'):
+                                if fileExists('/usr/bin/wget'):
+                                        os.system('cd /tmp;rm ./*.zip; wget --no-check-certificate https://raw.githubusercontent.com/gutosie/neoboot/master/imagedownloader')
+                        if not fileExists('/tmp/imagedownloader'):
+                                self.session.open(MessageBox, _('Unfortunately, at the moment not found an update, try again later.'), MessageBox.TYPE_INFO, 10)
+                        else:
+                                cmd1 = 'mv /tmp/imagedownloader /tmp/ImageDownloader.tar.gz; sleep 2; '
+                                system(cmd1)
+                                cmd2 = '/bin/tar -xzvf /tmp/ImageDownloader.tar.gz -C /'
+                                system(cmd2)
+                                self.session.open(MessageBox, _('The plug-in has been successfully installed.'), MessageBox.TYPE_INFO, 5)
+                                self.close()
             else:
                 mess = (_('Directory %sImagesUpload  is empty\nPlease upload the image files in zip or nfi formats to install') % getNeoLocation())
                 self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
