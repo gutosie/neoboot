@@ -826,8 +826,12 @@ def RemoveUnpackDirs():
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/dm920')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/dreamtwo '):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/dreamtwo ')
-    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/multibox') or os.path.exists('' + getNeoLocation() + 'ImagesUpload/multiboxse') or os.path.exists('' + getNeoLocation() + 'ImagesUpload/multiboxpro'):
-        rc = os.system('rm ' + getNeoLocation() + 'ImagesUpload/multibox; rm -r ' + getNeoLocation() + 'ImagesUpload/multiboxse; rm -r ' + getNeoLocation() + 'ImagesUpload/multiboxpro')
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/multibox')
+        rc = os.system('rm ' + getNeoLocation() + 'ImagesUpload/multibox')      
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/multiboxse')
+        rc = os.system('rm ' + getNeoLocation() + 'ImagesUpload/multiboxse')     
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/multiboxpro'):
+        rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/multiboxpro')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/octagon/sf8008'):
         rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/usb_update.bin ' + getNeoLocation() + 'ImagesUpload/octagon; rm -r ' + getNeoLocation() + 'ImagesUpload/octagon')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/octagon/sf8008m'):
