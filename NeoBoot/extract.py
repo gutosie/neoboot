@@ -770,6 +770,8 @@ def RemoveUnpackDirs():
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/multibox')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/multiboxse'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/multiboxse')
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/multiboxpro"'):
+        rc = os.system('rm -r ' +getNeoLocation() +'ImagesUpload/multiboxpro')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/unforce_multibox.txt'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/unforce_multibox.txt')       
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/axas'):
@@ -824,9 +826,9 @@ def RemoveUnpackDirs():
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/dm920')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/dreamtwo '):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/dreamtwo ')
-    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/multibox') or os.path.exists('' + getNeoLocation() + 'ImagesUpload/multiboxse'):
-        rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/multibox ' + getNeoLocation() + 'ImagesUpload/multibox; rm -r ' + getNeoLocation() + 'ImagesUpload/multibox')
-    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/octagon/sf8008'):
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/multibox') or os.path.exists('' + getNeoLocation() + 'ImagesUpload/multiboxse') or os.path.exists('' + getNeoLocation() + 'ImagesUpload/multiboxpro'):
+        rc = os.system('rm ' + getNeoLocation() + 'ImagesUpload/multibox; rm -r ' + getNeoLocation() + 'ImagesUpload/multiboxse; rm -r ' + getNeoLocation() + 'ImagesUpload/multiboxpro')
+     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/octagon/sf8008'):
         rc = os.system('mv ' + getNeoLocation() + 'ImagesUpload/usb_update.bin ' + getNeoLocation() + 'ImagesUpload/octagon; rm -r ' + getNeoLocation() + 'ImagesUpload/octagon')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/octagon/sf8008m'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/octagon') 
@@ -918,6 +920,10 @@ def RemoveUnpackDirs():
         rc = os.system('rm -rf ' + getNeoLocation() + 'ImagesUpload/kernel.bin') 
     if os.path.exists('' + getNeoLocation() + 'ImagesUpload/force_multibox_READ.ME'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/force_multibox_READ.ME')
+    if os.path.exists("" + getNeoLocation() + "ImagesUpload/force_multiboxpro_READ.ME"):
+        rc = os.system("rm -r " + getNeoLocation() + "ImagesUpload/force_multiboxpro_READ.ME")             
+    if os.path.exists("" + getNeoLocation() + "ImagesUpload/unforce_multiboxpro.txt"):
+        rc = os.system("rm -r " + getNeoLocation() + "ImagesUpload/unforce_multiboxpro.txt")       
     if os.path.exists('' + getNeoLocation() + 'ImagesUpload/force'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/force')
     if os.path.exists('' + getNeoLocation() + 'ImagesUpload/rootfs.bin'):
@@ -1614,12 +1620,16 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
 #            cmd = 'chmod -R 777 ' + getNeoLocation() + 'ImagesUpload/unpackedzip; tar -jxf ' + getNeoLocation() + 'ImagesUpload/unpackedzip/hd61/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
 #            rc = os.system(cmd)
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/multibox'):
-            os.system('echo "Please wait. System installation AX multi twin or combo"')
+            os.system('echo "Please wait. System installation Maxytec Multibox"')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/multibox/rootfs.tar.bz2; tar -jxf ' + getNeoLocation() + 'ImagesUpload/multibox/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd)
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/multiboxse'):
-            os.system('echo "Please wait. System installation maxytec"')
+            os.system('echo "Please wait. System installation Maxytec Multibox SE"')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/multiboxse/rootfs.tar.bz2; tar -jxf ' + getNeoLocation() + 'ImagesUpload/multiboxse/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
+            rc = os.system(cmd)
+        elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/multiboxpro'):
+            os.system('echo "Please wait. System installation Maxytec Multibox PRO"')
+            cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/multiboxpro/rootfs.tar.bz2; tar -jxf ' + getNeoLocation() + 'ImagesUpload/multiboxpro/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd)
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/axas/axasc4k'):
             os.system('echo "Please wait. System installation Axas his c4k"')
