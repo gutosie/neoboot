@@ -1868,7 +1868,7 @@ def main(session, **kwargs):
 
 def menu(menuid, **kwargs):
     if menuid == 'mainmenu':
-        return [(_('neoboot'),
+        return [(_('NeoBoot'),
           main,
           'neo_boot',
           1)]
@@ -1880,11 +1880,11 @@ from Plugins.Plugin import PluginDescriptor
 
 def Plugins(**kwargs):
     if isFHD():
-        list = [PluginDescriptor(name='neoboot', description='neoboot', where=PluginDescriptor.WHERE_MENU, fnc=menu), PluginDescriptor(name='neoboot', description=_('Installing multiple images'), icon='neo_fhd.png', where=PluginDescriptor.WHERE_PLUGINMENU, fnc=main)]
-        list.append(PluginDescriptor(name=_('neoboot'), where=PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=main))
+        list = [PluginDescriptor(name='Neoboot', description='Neoboot', where=PluginDescriptor.WHERE_MENU, fnc=menu), PluginDescriptor(name='Neoboot', description=_('Installing multiple images'), icon='neo_fhd.png', where=PluginDescriptor.WHERE_PLUGINMENU, fnc=main)]
+        list.append(PluginDescriptor(name=_('Neoboot'), where=PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=main))
     else:
-        list = [PluginDescriptor(name='neoboot', description='neoboot', where=PluginDescriptor.WHERE_MENU, fnc=menu), PluginDescriptor(name='neoboot', description=_('Installing multiple images'), icon='neo_hd.png', where=PluginDescriptor.WHERE_PLUGINMENU, fnc=main)]
-        list.append(PluginDescriptor(name=_('neoboot'), where=PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=main))
+        list = [PluginDescriptor(name='Neoboot', description='Neoboot', where=PluginDescriptor.WHERE_MENU, fnc=menu), PluginDescriptor(name='Neoboot', description=_('Installing multiple images'), icon='neo_hd.png', where=PluginDescriptor.WHERE_PLUGINMENU, fnc=main)]
+        list.append(PluginDescriptor(name=_('Neoboot'), where=PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=main))
     return list
 
 ####################### _q(-_-)p_ gutosie _q(-_-)p_ #######################
