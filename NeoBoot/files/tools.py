@@ -36,7 +36,7 @@ from Tools.Testinout import getTestToTest
 from os import system, listdir, mkdir, chdir, getcwd, rename as os_rename, remove as os_remove, popen
 from os.path import dirname, isdir, isdir as os_isdir
 from enigma import eTimer
-from Plugins.Extensions.NeoBoot.files.stbbranding import fileCheck, getMyUUID, getNeoLocation, getImageNeoBoot, getKernelVersionString, getBoxHostName, getCPUtype, getBoxVuModel, getTunerModel, getCPUSoC, getImageATv, getBoxModelVU, getBoxMacAddres, getMountDiskSTB, getCheckActivateVip, getBoxMacAddres, getChipSetString
+from Plugins.Extensions.NeoBoot.files.stbbranding import fileCheck, getMyUUID, getUUIDmy, getNeoLocation, getImageNeoBoot, getKernelVersionString, getBoxHostName, getCPUtype, getBoxVuModel, getTunerModel, getCPUSoC, getImageATv, getBoxModelVU, getBoxMacAddres, getMountDiskSTB, getCheckActivateVip, getBoxMacAddres, getChipSetString
 from Components.Harddisk import harddiskmanager, getProcMounts
 import os
 import time
@@ -2191,8 +2191,8 @@ class DiskLabelSet(Screen):
 
     def __init__(self, session):
         Screen.__init__(self, session)
-        self['lab1'] = Label(_('Label'))
-        self['key_red'] = Label(_('Set Label'))
+        self['lab1'] = Label(_('set disk name and uuid number'))
+        self['key_red'] = Label(_('press red to set...'))
         self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'back': self.close,
          'red': self.SetLabelDisk})
 
@@ -2202,7 +2202,12 @@ class DiskLabelSet(Screen):
         if os.path.exists('/media/hdd/ImageBoot'):
             locatin_neo = '/media/hdd'
         elif os.path.exists('/media/usb/ImageBoot'):
-            locatin_neo = '/media/usb'     
+            locatin_neo = '/media/usb'
+        if not os.path.exists('/media/hdd/ImageBoot'):
+            locatIN_hdd = '/media/hdd'
+        elif not os.path.exists('/media/usb/ImageBoot'):
+            locatIN_hdd = '/media/usb' 
+                 
         if os.path.exists('/proc/mounts'):
             with open('/proc/mounts', 'r') as f:
                 lines = f.read()
@@ -2250,8 +2255,10 @@ class DiskLabelSet(Screen):
             if flines.find('' + getMyUUID() + '') != -1:
                 cmd3 = "echo -e '\n%s '" % _('UUID exists or neoboot not installed yet\nAfter installing the plugin, give uuid\n\nReboot...')
             else:            
-                os.system('echo UUID=' + getMyUUID() + '	    ' + locatin_neo + '	auto	defaults	0 0 >> /etc/fstab') 
-                cmd3 = "echo -e '\n%s '" % _('UUID set OK\n\nReboot...')                                  
+                os.system('echo UUID=' + getMyUUID() + '	    ' + locatin_neo + '	auto	defaults	0 0 >> /etc/fstab')
+                os.system('echo UUID=' + getUUIDmy() + '	    ' + locatIN_hdd  + ' auto	defaults	0 0 >> /etc/fstab')                
+                
+                cmd3 = "echo -e '\n%s '" % _('UUID set OK\n\nReboot...')                                
             cmd4 = 'sleep 10; reboot -f'                                  
             self.session.open(Console, _('Disk Label...!'), [cmd, cmd1, cmd2,cmd3, cmd4])
           
