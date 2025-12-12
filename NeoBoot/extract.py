@@ -1663,6 +1663,10 @@ def NEOBootExtract(source, target, ZipDelete, Nandsim):
             os.system('echo "Please wait. System installation Zgemma H7."')
             cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/zgemma/h7/rootfs.tar.bz2; tar -jxf ' + getNeoLocation() + 'ImagesUpload/zgemma/h7/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
             rc = os.system(cmd)
+        elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/zgemma/h17/rootfs.tar.bz2'):
+            os.system('echo "Please wait. System installation Zgemma H17."')
+            cmd = 'chmod 777 ' + getNeoLocation() + 'ImagesUpload/zgemma/h17/rootfs.tar.bz2; tar -jxf ' + getNeoLocation() + 'ImagesUpload/zgemma/h17/rootfs.tar.bz2 -C ' + getNeoLocation() + 'ImageBoot/' + target + ' > /dev/null 2>&1'
+            rc = os.system(cmd)
         elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/h9/rootfs.ubi') or os.path.exists('' + getNeoLocation() + 'ImagesUpload/h8/rootfs.ubi'):
             if os.path.exists('' + getNeoLocation() + 'ImagesUpload/h9/rootfs.ubi'):
                 os.chdir('h9')
