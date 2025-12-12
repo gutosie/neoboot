@@ -2633,16 +2633,42 @@ class UploadNEO3(Screen):
         self.activityTimer.start(10)
 
     def updateInfo(self):
+    def updateInfo(self):
         self.activityTimer.stop()
         if fileExists('/.control_boot_new_image'):
                         os.system('rm -f /.control_boot_new_image; echo "Image uruchomione OK\nNie kasuj tego pliku. \n\nImage started OK\nDo not delete this file."  > /.control_ok ')
         if not fileExists('/.control_boot_new_image'):
                         os.system('echo "Image uruchomione OK\nNie kasuj tego pliku. \n\nImage started OK\nDo not delete this file."  > /.control_ok')
-        if fileExists('/usr/bin/tailscale') or fileExists('/etc/init.d/zerotier') :
-                        os.system('opkg update; opkg install iptables kernel-module-tun zerotier;sleep 2;/etc/init.d/zerotier start;sleep 2; taiscale up;')
-                        
+        if fileExists('/usr/bin/tailscale') or fileExists('/etc/init.d/zerotier') :            
+            if fileExists('/usr/bin/tailscale'):
+                    cmd0 = 'ln -sfv /etc/init.d/tailscale-daemon /etc/rc0.d/K60tailscale-daemon'
+                    os.system(cmd0)
+                    cmd1 = 'ln -sfv /etc/init.d/tailscale-daemon /etc/rc1.d/K60tailscale-daemon'
+                    os.system(cmd1)
+                    cmd2 = 'ln -sfv /etc/init.d/tailscale-daemon /etc/rc2.d/S60tailscale-daemon'
+                    os.system(cmd2)  
+                    cmd3 = 'ln -sfv /etc/init.d/tailscale-daemon /etc/rc3.d/S60tailscale-daemon'
+                    os.system(cmd3)
+                    cmd4 = 'ln -sfv /etc/init.d/tailscale-daemon /etc/rc4.d/S60tailscale-daemon'
+                    os.system(cmd4)
+                    cmd5 = 'ln -sfv /etc/init.d/tailscale-daemon /etc/rc5.d/S60tailscale-daemon'
+                    os.system(cmd5)
+                    cmd6 = 'ln -sfv /etc/init.d/tailscale-daemon /etc/rc6.d/K60tailscale-daemon'
+                    os.system(cmd6)
+                    
+            if fileExists('/etc/init.d/zerotier'):                        
+                    os.system('ln -sfv /etc/init.d/zerotier /etc/rc0.d/K60zerotier') 
+                    os.system('ln -sfv /etc/init.d/zerotier /etc/rc1.d/K60zerotier') 
+                    os.system('ln -sfv /etc/init.d/zerotier /etc/rc2.d/S60zerotier') 
+                    os.system('ln -sfv /etc/init.d/zerotier /etc/rc3.d/S60zerotier') 
+                    os.system('ln -sfv /etc/init.d/zerotier /etc/rc4.d/S60zerotier') 
+                    os.system('ln -sfv /etc/init.d/zerotier /etc/rc5.d/S60zerotier') 
+                    os.system('ln -sfv /etc/init.d/zerotier /etc/rc6.d/K60zerotier')
+                    
+            os.system('opkg update; opkg install iptables kernel-module-tun zerotier;sleep 2;/etc/init.d/zerotier start;sleep 2; taiscale up;')
+                           
         os.system(''+LinkNeoBoot+'/files/userscript.sh; '+LinkNeoBoot+'/files/mountpoint.sh; sleep 5;')
-        
+                                
         if not fileExists('/.control_boot_new_image'):
              self.goNEO()
 
@@ -2654,6 +2680,7 @@ class UploadNEO3(Screen):
     def myClose(self, message):
         self.session.open(MessageBox, message, MessageBox.TYPE_INFO, 10)
         self.close()
+
 
 class neoDONATION(Screen):
     if isFHD():
