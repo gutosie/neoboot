@@ -826,9 +826,9 @@ def RemoveUnpackDirs():
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/dm920')
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/dreamtwo '):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/dreamtwo ')
-    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/multibox')
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/multibox'):
         rc = os.system('rm ' + getNeoLocation() + 'ImagesUpload/multibox')      
-    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/multiboxse')
+    elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/multiboxse'):
         rc = os.system('rm ' + getNeoLocation() + 'ImagesUpload/multiboxse')     
     elif os.path.exists('' + getNeoLocation() + 'ImagesUpload/multiboxpro'):
         rc = os.system('rm -r ' + getNeoLocation() + 'ImagesUpload/multiboxpro')
