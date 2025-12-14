@@ -2251,9 +2251,10 @@ class DiskLabelSet(Screen):
             with open('/etc/fstab', 'r') as f:
                 flines = f.read()
                 f.close()
-                    
-            if flines.find('' + getMyUUIDusb() + '') != -1 or flines.find('' + getMyUUIDhdd() + '') != -1 :    
-                cmd3 = "echo -e '\n%s '" % _('UUID exists or neoboot not installed yet\nAfter installing the plugin, give uuid\n\nReboot...')
+                       
+            if flines.find(''+getMyUUIDusb()+'') != -1 or flines.find(''+getMyUUIDhdd()+'') != -1 :
+                self.UUID_OK()
+
             else:
                 if fileExists('/etc/fstab.org'):
                         system('rm -r /etc/fstab; mv /etc/fstab.org /etc/fstab; sleep 2;')
@@ -2272,14 +2273,18 @@ class DiskLabelSet(Screen):
                 if getFind_hdd() == 'sdb' and getLocationHDDdir() != '/dev/sdb1':
                         os.system('echo UUID=' + getMyUUIDhdd() + '	    ' + locatIN_hdd  + ' auto	defaults	0 0 >> /etc/fstab')              
 
-                
-            cmd3 = "echo -e '\n%s '" % _('UUID set OK\nUUID in fstab:')
-            cmd4 = 'sleep 2; cat /etc/fstab'
-            cmd5 = "echo -e '\n%s '" % _('Please Reboot your STB.\n')
-                                              
-            self.session.open(Console, _('Disk Label...!'), [cmd, cmd1, cmd2,cmd3, cmd4, cmd5])
+            cmd3 = "echo -e '\n%s '" % _('UUID set OK\nUUID in fstab:')            
+            cmd4 = 'sleep 2; cat /etc/fstab'            
+            cmd5 = "echo -e '\n%s '" % _('Please Reboot your STB.\n')                           
+            self.session.open(Console, _('Disk Label...!'), [cmd, cmd1, cmd2, cmd3, cmd4, cmd5])          
           
-          
+
+    def UUID_OK(self):
+        cmd = "echo -e '\n%s '" % _("UUID exists or neoboot not installed yet\nAfter installing the plugin, give uuid\n\nReboot...")
+        self.session.open(Console, _('NeoBoot....'), [cmd])
+        self.close()
+
+
 class MultiBootMyHelp(Screen):
     if isFHD():
         skin = """<screen name="MultiBootMyHelp" position="center,center" size="1920,1080" title="NeoBoot - Opis" flags="wfNoBorder">
