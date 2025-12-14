@@ -2254,7 +2254,12 @@ class DiskLabelSet(Screen):
                     
             if flines.find('' + getMyUUIDusb() + '') != -1 or flines.find('' + getMyUUIDhdd() + '') != -1 :    
                 cmd3 = "echo -e '\n%s '" % _('UUID exists or neoboot not installed yet\nAfter installing the plugin, give uuid\n\nReboot...')
-            else:            
+            else:
+                if fileExists('/etc/fstab.org'):
+                        system('rm -r /etc/fstab; mv /etc/fstab.org /etc/fstab')
+                elif not fileExists('/etc/fstab.org'):
+                        system('cp -r /etc/fstab /etc/fstab.org ') 
+                    
                 if getFind_usb() == 'sdb' and getLocationUSBdir() == '/dev/sdb1':
                         os.system('echo UUID=' + getMyUUIDusb() + '	    ' + locatin_neo + '	auto	defaults	0 0 >> /etc/fstab')           
                 
