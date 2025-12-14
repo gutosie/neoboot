@@ -2645,7 +2645,8 @@ class UploadNEO3(Screen):
                         os.system('rm -f /.control_boot_new_image; echo "Image uruchomione OK\nNie kasuj tego pliku. \n\nImage started OK\nDo not delete this file."  > /.control_ok ')
         if not fileExists('/.control_boot_new_image'):
                         os.system('echo "Image uruchomione OK\nNie kasuj tego pliku. \n\nImage started OK\nDo not delete this file."  > /.control_ok')
-        if fileExists('/usr/bin/tailscale') or fileExists('/usr/sbin/tailscale') or fileExists('/etc/init.d/zerotier') :            
+        if fileExists('/usr/bin/tailscale') or fileExists('/usr/sbin/tailscale') or fileExists('/etc/init.d/zerotier') :
+            os.system('opkg update; opkg install kernel-module-tun;sleep 2; modprobe tun;sleep 2;')
             if fileExists('/usr/bin/tailscale') or fileExists('/usr/sbin/tailscale'):
                     cmd0 = 'ln -sfv /etc/init.d/tailscale-daemon /etc/rc0.d/K60tailscale-daemon'
                     os.system(cmd0)
@@ -2661,6 +2662,7 @@ class UploadNEO3(Screen):
                     os.system(cmd5)
                     cmd6 = 'ln -sfv /etc/init.d/tailscale-daemon /etc/rc6.d/K60tailscale-daemon'
                     os.system(cmd6)
+                    os.system('opkg install iptables;sleep 2; taiscale up;')
                     
             if fileExists('/etc/init.d/zerotier'):                        
                     os.system('ln -sfv /etc/init.d/zerotier /etc/rc0.d/K60zerotier') 
@@ -2670,10 +2672,11 @@ class UploadNEO3(Screen):
                     os.system('ln -sfv /etc/init.d/zerotier /etc/rc4.d/S60zerotier') 
                     os.system('ln -sfv /etc/init.d/zerotier /etc/rc5.d/S60zerotier') 
                     os.system('ln -sfv /etc/init.d/zerotier /etc/rc6.d/K60zerotier')
-                    
-            os.system('opkg update; opkg install iptables kernel-module-tun zerotier;sleep 2; modprobe tun; sleep 2; /etc/init.d/zerotier start;sleep 2; taiscale up;')
-                           
+                    os.system('opkg install zerotier;sleep 2; /etc/init.d/zerotier start;sleep 2;')
+                
         os.system(''+LinkNeoBoot+'/files/userscript.sh; '+LinkNeoBoot+'/files/mountpoint.sh; sleep 5;')
+        if not fileExists('/usr/bin/enigma2_pre_start.sh '):
+                    os.system('mv /usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/files/userscript.sh /usr/bin')        
                                 
         if not fileExists('/.control_boot_new_image'):
              self.goNEO()
