@@ -36,7 +36,7 @@ from Tools.Testinout import getTestToTest
 from os import system, listdir, mkdir, chdir, getcwd, rename as os_rename, remove as os_remove, popen
 from os.path import dirname, isdir, isdir as os_isdir
 from enigma import eTimer
-from Plugins.Extensions.NeoBoot.files.stbbranding import fileCheck, getMyUUID, getUUIDmy, getNeoLocation, getImageNeoBoot, getKernelVersionString, getBoxHostName, getCPUtype, getBoxVuModel, getTunerModel, getCPUSoC, getImageATv, getBoxModelVU, getBoxMacAddres, getMountDiskSTB, getCheckActivateVip, getBoxMacAddres, getChipSetString
+from Plugins.Extensions.NeoBoot.files.stbbranding import fileCheck, getMyUUIDusb, getMyUUIDhdd, getLocationUSBdir, getLocationHDDdir, getFind_hdd, getFind_usb, getNeoLocation, getImageNeoBoot, getKernelVersionString, getBoxHostName, getCPUtype, getBoxVuModel, getTunerModel, getCPUSoC, getImageATv, getBoxModelVU, getBoxMacAddres, getMountDiskSTB, getCheckActivateVip, getBoxMacAddres, getChipSetString
 from Components.Harddisk import harddiskmanager, getProcMounts
 import os
 import time
