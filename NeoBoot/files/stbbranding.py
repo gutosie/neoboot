@@ -99,6 +99,13 @@ def getFreespace(dev):
 
 #check install
 
+def getDevNeoPoint():
+    devneopoint = 'UNKNOWN'
+    if os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/install'):
+        with open('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/install' , 'r') as f:
+            devneopoint = f.readline().strip()
+            f.close()
+    return devneopoint
 
 def getCheckInstal1():
     neocheckinstal = 'UNKNOWN'
@@ -1203,11 +1210,12 @@ def getFind_hdd():
                 
             if lines.find('0') != -1:
                 hdd = device
-                os.system("echo %s > /tmp/1_MY_HDD" % hdd )
+                os.system("echo %s > /tmp/.my_hdd" % hdd )
                 break
                 
     return hdd
-                   
+                
+    
 def getFind_usb():
     usb = ''
     usbs = ['sda',
@@ -1225,10 +1233,11 @@ def getFind_usb():
                 
             if lines.find('1') != -1:
                 usb = device
-                os.system("echo %s >> /tmp/2_MY_USB" % usb )
+                os.system("echo %s > /tmp/.my_usb" % usb )
                 break
                 
     return usb
+
 
 def getLocationHDDdir():
     hdd_dir  = 'UNKNOWN'
@@ -1242,36 +1251,44 @@ def getLocationHDDdir():
             hdd_dir  = '/dev/sdb1'
 
     return hdd_dir
-
-def getDevNeoPoint():
-    devneopoint = 'UNKNOWN'
-    if os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/install'):
-        with open('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/install' , 'r') as f:
-            devneopoint = f.readline().strip()
+    
+    
+def getLocationUSBdir():
+    usb_dir  = 'UNKNOWN'
+    if os.path.exists('/proc/mounts'):
+        with open('/proc/mounts', 'r') as f:
+            lines = f.read()
             f.close()
-    return devneopoint
+        if lines.find('/dev/sda1 /media/usb') != -1:
+            usb_dir = '/dev/sda1'
+        elif lines.find('/dev/sdb1 /media/usb') != -1:
+            usb_dir  = '/dev/sdb1'
+
+    return usb_dir
     
 
-def getMyUUID():
+def getMyUUIDusb():
     #os.system("tune2fs -l /dev/sd?? | awk '/UUID/ {print $NF}' > /tmp/.myuuid")
-    os.system("tune2fs -l %s | awk '/UUID/ {print $NF}' > /tmp/.myuuid" % (getDevNeoPoint()))
+    os.system("tune2fs -l %s | awk '/UUID/ {print $NF}' > /tmp/.1myuuid" % (getLocationUSBdir()))
     try:
-        if os.path.isfile('/tmp/.myuuid'):
-            return open('/tmp/.myuuid').read().strip().upper()
+        if os.path.isfile('/tmp/.1myuuid'):
+            return open('/tmp/.1myuuid').read().strip().upper()
     except:
         pass
 
     return _('unavailable')
 
-def getUUIDmy():
-    os.system("tune2fs -l %s | awk '/UUID/ {print $NF}' > /tmp/.my_uuid" % (getLocationHDDdir()))
+
+def getMyUUIDhdd():
+    os.system("tune2fs -l %s | awk '/UUID/ {print $NF}' > /tmp/.2myuuid" % (getLocationHDDdir()))
     try:
-        if os.path.isfile('/tmp/.my_uuid'):
-            return open('/tmp/.my_uuid').read().strip().upper()
+        if os.path.isfile('/tmp/.2myuuid'):
+            return open('/tmp/.2myuuid').read().strip().upper()
     except:
         pass
 
     return _('unavailable')
+	
 
 def getImageBootNow():
     imagefile = 'UNKNOWN'
