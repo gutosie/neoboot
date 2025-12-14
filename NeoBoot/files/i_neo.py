@@ -122,6 +122,7 @@ FEED_URLS = [
 	("OpenBH", "https://images.openbh.net/json/%s", "getMachineMake"),
 	("OpenPLi", "http://downloads.openpli.org/json/%s", "HardwareInfo"),
 	("OpenSPA", "https://openspa.webhop.info/online/json.php?box=%s", "getMachineMake"),
+	("OpenDroid", "https://opendroid.org/json.php?box=%s", "getMachineMake"),
 	("OpenEight", "http://openeight.de/json/%s", "getMachineMake"),        	
 ]
 
