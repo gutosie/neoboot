@@ -1243,9 +1243,18 @@ def getLocationHDDdir():
 
     return hdd_dir
 
+def getDevNeoPoint():
+    devneopoint = 'UNKNOWN'
+    if os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/install'):
+        with open('/usr/lib/enigma2/python/Plugins/Extensions/NeoBoot/bin/install' , 'r') as f:
+            devneopoint = f.readline().strip()
+            f.close()
+    return devneopoint
+    
+
 def getMyUUID():
     #os.system("tune2fs -l /dev/sd?? | awk '/UUID/ {print $NF}' > /tmp/.myuuid")
-    os.system("tune2fs -l %s | awk '/UUID/ {print $NF}' > /tmp/.myuuid" % (getLocationMultiboot()))
+    os.system("tune2fs -l %s | awk '/UUID/ {print $NF}' > /tmp/.myuuid" % (getDevNeoPoint()))
     try:
         if os.path.isfile('/tmp/.myuuid'):
             return open('/tmp/.myuuid').read().strip().upper()
