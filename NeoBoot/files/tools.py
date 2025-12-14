@@ -2258,9 +2258,10 @@ class DiskLabelSet(Screen):
                 os.system('echo UUID=' + getMyUUID() + '	    ' + locatin_neo + '	auto	defaults	0 0 >> /etc/fstab')
                 os.system('echo UUID=' + getUUIDmy() + '	    ' + locatIN_hdd  + ' auto	defaults	0 0 >> /etc/fstab')                
                 
-                cmd3 = "echo -e '\n%s '" % _('UUID set OK\n\nReboot...')                                
-            cmd4 = 'sleep 10; reboot -f'                                  
-            self.session.open(Console, _('Disk Label...!'), [cmd, cmd1, cmd2,cmd3, cmd4])
+                cmd3 = "echo -e '\n%s '" % _('UUID set OK\nUUID in fstab:')
+                cmd4 = 'cat /etc/fstab'
+                cmd5 = "echo -e '\n%s '" % _('Please Reboot your STB.\n')                                  
+            self.session.open(Console, _('Disk Label...!'), [cmd, cmd1, cmd2,cmd3, cmd4, cmd5])
           
           
 class MultiBootMyHelp(Screen):
