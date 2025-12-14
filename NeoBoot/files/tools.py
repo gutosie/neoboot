@@ -2256,9 +2256,9 @@ class DiskLabelSet(Screen):
                 cmd3 = "echo -e '\n%s '" % _('UUID exists or neoboot not installed yet\nAfter installing the plugin, give uuid\n\nReboot...')
             else:
                 if fileExists('/etc/fstab.org'):
-                        system('rm -r /etc/fstab; mv /etc/fstab.org /etc/fstab')
+                        system('rm -r /etc/fstab; mv /etc/fstab.org /etc/fstab; sleep 2;')
                 elif not fileExists('/etc/fstab.org'):
-                        system('cp -r /etc/fstab /etc/fstab.org ') 
+                        system('cp -r /etc/fstab /etc/fstab.org; sleep 2 ') 
                     
                 if getFind_usb() == 'sdb' and getLocationUSBdir() == '/dev/sdb1':
                         os.system('echo UUID=' + getMyUUIDusb() + '	    ' + locatin_neo + '	auto	defaults	0 0 >> /etc/fstab')           
@@ -2273,9 +2273,10 @@ class DiskLabelSet(Screen):
                         os.system('echo UUID=' + getMyUUIDhdd() + '	    ' + locatIN_hdd  + ' auto	defaults	0 0 >> /etc/fstab')              
 
                 
-                cmd3 = "echo -e '\n%s '" % _('UUID set OK\nUUID in fstab:')
-                cmd4 = 'cat /etc/fstab'
-                cmd5 = "echo -e '\n%s '" % _('Please Reboot your STB.\n')                                  
+            cmd3 = "echo -e '\n%s '" % _('UUID set OK\nUUID in fstab:')
+            cmd4 = 'sleep 2; cat /etc/fstab'
+            cmd5 = "echo -e '\n%s '" % _('Please Reboot your STB.\n')
+                                              
             self.session.open(Console, _('Disk Label...!'), [cmd, cmd1, cmd2,cmd3, cmd4, cmd5])
           
           
