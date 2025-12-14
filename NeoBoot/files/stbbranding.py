@@ -1186,6 +1186,50 @@ def getNandWrite():
 	
     return NandWrite
 
+def getFind_hdd():
+    hdd = ''
+    hdds = ['sda',
+     'sdb',
+     'sdc',
+     'sdd',
+     'sde',
+     'sdf']
+    for device in hdds:
+        filename = '/sys/block/%s/removable' % device
+        if fileExists(filename):
+            with open('/sys/block/'+device+'/removable', 'r') as f:
+                lines = f.read()
+                f.close()
+                
+            if lines.find('0') != -1:
+                hdd = device
+                os.system("echo %s > /tmp/1_MY_HDD" % hdd )
+                break
+                
+    return hdd
+                   
+def getFind_usb():
+    usb = ''
+    usbs = ['sda',
+     'sdb',
+     'sdc',
+     'sdd',
+     'sde',
+     'sdf']
+    for device in usbs:
+        filename = '/sys/block/%s/removable' % device
+        if fileExists(filename):
+            with open('/sys/block/'+device+'/removable', 'r') as f:
+                lines = f.read()
+                f.close()
+                
+            if lines.find('1') != -1:
+                usb = device
+                os.system("echo %s >> /tmp/2_MY_USB" % usb )
+                break
+                
+    return usb
+
 def getLocationHDDdir():
     hdd_dir  = 'UNKNOWN'
     if os.path.exists('/proc/mounts'):
