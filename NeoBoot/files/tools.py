@@ -2252,11 +2252,21 @@ class DiskLabelSet(Screen):
                 flines = f.read()
                 f.close()
                     
-            if flines.find('' + getMyUUID() + '') != -1:
+            if flines.find('' + getMyUUIDusb() + '') != -1 or flines.find('' + getMyUUIDhdd() + '') != -1 :    
                 cmd3 = "echo -e '\n%s '" % _('UUID exists or neoboot not installed yet\nAfter installing the plugin, give uuid\n\nReboot...')
             else:            
-                os.system('echo UUID=' + getMyUUID() + '	    ' + locatin_neo + '	auto	defaults	0 0 >> /etc/fstab')
-                os.system('echo UUID=' + getUUIDmy() + '	    ' + locatIN_hdd  + ' auto	defaults	0 0 >> /etc/fstab')                
+                if getFind_usb() == 'sdb' and getLocationUSBdir() == '/dev/sdb1':
+                        os.system('echo UUID=' + getMyUUIDusb() + '	    ' + locatin_neo + '	auto	defaults	0 0 >> /etc/fstab')           
+                
+                if getFind_hdd() == 'sda' and getLocationHDDdir() == '/dev/sda1':
+                        os.system('echo UUID=' + getMyUUIDhdd() + '	    ' + locatIN_hdd  + ' auto	defaults	0 0 >> /etc/fstab')              
+                
+                if getFind_usb() == 'sda' and getLocationUSBdir() == '/dev/sda1':
+                        os.system('echo UUID=' + getMyUUIDusb() + '	    ' + locatin_neo + '	auto	defaults	0 0 >> /etc/fstab')           
+                
+                if getFind_hdd() == 'sdb' and getLocationHDDdir() != '/dev/sdb1':
+                        os.system('echo UUID=' + getMyUUIDhdd() + '	    ' + locatIN_hdd  + ' auto	defaults	0 0 >> /etc/fstab')              
+
                 
                 cmd3 = "echo -e '\n%s '" % _('UUID set OK\nUUID in fstab:')
                 cmd4 = 'cat /etc/fstab'
