@@ -1,1 +1,1 @@
-9.92
+{"OpenPLi": {"url": "https://downloads.openpli.org/json/vuduo4k", "model": "vuduo4k"}, "openATV": {"url": "https://images.mynonpublic.com/openatv/json/vuduo4k", "model": "vuduo4k"}, "OpenBh": {"url": "https://images.openbh.net/json/vuduo4k", "model": "vuduo4k"}, "OpenViX": {"url": "https://www.openvix.co.uk/json/vuduo4k", "model": "vuduo4k"}}
