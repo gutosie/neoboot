@@ -1,12 +1,1 @@
-{"OpenPLi": {"url": "https://downloads.openpli.org/json/"}, 
-"openATV": {"url": "https://images.mynonpublic.com/openatv/json/"}, 
-"OpenBh": {"url": "https://images.openbh.net/json/"}, 
-"OpenViX": {"url": "https://www.openvix.co.uk/json/"},
-("OpenViX", "https://www.openvix.co.uk/json/"),
-("OpenATV", "https://images.mynonpublic.com/openatv/json/"), 
-("OpenBH", "https://images.openbh.net/json/"),
-("OpenPLi", "http://downloads.openpli.org/json/"),
-("OpenSPA", "https://openspa.webhop.info/online/json.php?box="),
-("OpenDroid", "https://opendroid.org/json.php?box="),
-("Open Vision", "https://images.openvision.dedyn.io/json/"),
-("OpenEight", "http://openeight.de/json/")
+{"OpenPLi": {"url": "https://downloads.openpli.org/json/vuduo4k", "model": "vuduo4k"}, "openATV": {"url": "https://images.mynonpublic.com/openatv/json/vuduo4k", "model": "vuduo4k"}, "OpenBh": {"url": "https://images.openbh.net/json/vuduo4k", "model": "vuduo4k"}, "OpenViX": {"url": "https://www.openvix.co.uk/json/vuduo4k", "model": "vuduo4k"}}
