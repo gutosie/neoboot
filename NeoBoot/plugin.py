@@ -1169,7 +1169,7 @@ class NeoBootInstallation(Screen):
     def SetDiskLabel(self):
         #if fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.9') or fileExists('/tmp/.upneo') :
             #self.session.open(MessageBox, _('Skip this step and install neoboot.\nThis option is available in the neoboot menu.'), type=MessageBox.TYPE_INFO)
-        if , getCheckExtDiskt() != 'vfat' and , getCheckExtDisk() == 'ext3' or , getCheckExtDisk() == 'ext4':
+        if getCheckExtDiskt() != 'vfat' and getCheckExtDisk() == 'ext3' or getCheckExtDisk() == 'ext4':
             try:
                 if fileExists('/usr/lib/python2.7'):
                     from Plugins.Extensions.NeoBoot.files.devices import SetDiskLabel
