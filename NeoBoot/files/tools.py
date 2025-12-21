@@ -2252,10 +2252,8 @@ class DiskLabelSet(Screen):
                 flines = f.read()
                 f.close()
                        
-            if flines.find(''+getMyUUIDusb()+'') != -1 or flines.find(''+getMyUUIDhdd()+'') != -1 :
-                self.UUID_OK()
-
-            else:
+            if not flines.find(''+getMyUUIDusb()+'') != -1 or not flines.find(''+getMyUUIDhdd()+'') != -1 :
+                
                 if fileExists('/etc/fstab.org'):
                         system('rm -r /etc/fstab; mv /etc/fstab.org /etc/fstab; sleep 2;')
                 elif not fileExists('/etc/fstab.org'):
@@ -2271,7 +2269,21 @@ class DiskLabelSet(Screen):
                         os.system('echo UUID=' + getMyUUIDusb() + '	    ' + locatin_neo + '	auto	defaults	0 0 >> /etc/fstab')           
                 
                 if getFind_hdd() == 'sdb' and getLocationHDDdir() != '/dev/sdb1':
-                        os.system('echo UUID=' + getMyUUIDhdd() + '	    ' + locatIN_hdd  + ' auto	defaults	0 0 >> /etc/fstab')              
+                        os.system('echo UUID=' + getMyUUIDhdd() + '	    ' + locatIN_hdd  + ' auto	defaults	0 0 >> /etc/fstab')
+
+                if getFind_usb() == 'sda' and getLocationHDDdir() == '/dev/sda1':
+                        os.system('echo UUID=' + getMyUUIDhdd() + '	    ' + locatIN_hdd  + ' auto	defaults	0 0 >> /etc/fstab')
+                       
+                if getFind_hdd() == 'sda' and getLocationUSBdir() == '/dev/sda1':
+                        os.system('echo UUID=' + getMyUUIDusb() + '	    ' + locatIN_hdd  + ' auto	defaults	0 0 >> /etc/fstab')
+        
+                if getFind_usb() == 'sda' and getLocationHDDdir() == '/dev/sdb1':
+                        os.system('echo UUID=' + getMyUUIDhdd() + '	    ' + locatIN_hdd  + ' auto	defaults	0 0 >> /etc/fstab')
+                       
+                if getFind_hdd() == 'sda' and getLocationUSBdir() == '/dev/sdb1':
+                        os.system('echo UUID=' + getMyUUIDusb() + '	    ' + locatIN_hdd  + ' auto	defaults	0 0 >> /etc/fstab')
+            else:
+                self.UUID_OK()                    
 
             cmd3 = "echo -e '\n%s '" % _('UUID set OK\nUUID in fstab:')            
             cmd4 = 'sleep 2; cat /etc/fstab'            
