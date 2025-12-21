@@ -1195,7 +1195,7 @@ class NeoBootInstallation(Screen):
 
     def datadrive(self):
         if fileExists('/media/usb/ImageBoot/.neonextboot') or fileExists('/media/hdd/ImageBoot/.neonextboot') or fileExists('/media/sda1/ImageBoot/.neonextboot') or fileExists('/media/sdb1/ImageBoot/.neonextboot'):
-                os.system(''+LinkNeoBoot+'/files/userscript.sh; '+LinkNeoBoot+'/files/mountpoint.sh; sleep 5;')
+                os.system(''+LinkNeoBoot+'/files/mountpoint.sh; '+LinkNeoBoot+'/files/neo.sh; sleep 5;')
         try:
             message = "echo -e '\n"
             message += _('NeoBot checks the connected media.\nWAIT ...\n\nDISCS:')
