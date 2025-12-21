@@ -1240,6 +1240,8 @@ def getFind_usb():
 
 
 def getLocationHDDdir():
+    #getFind_hdd()
+    #getFind_usb()	
     hdd_dir  = 'UNKNOWN'
     if os.path.exists('/proc/mounts'):
         with open('/proc/mounts', 'r') as f:
@@ -1254,6 +1256,8 @@ def getLocationHDDdir():
     
     
 def getLocationUSBdir():
+    #getFind_hdd()
+    #getFind_usb()	
     usb_dir  = 'UNKNOWN'
     if os.path.exists('/proc/mounts'):
         with open('/proc/mounts', 'r') as f:
