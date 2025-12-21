@@ -18,7 +18,7 @@
 from __future__ import absolute_import
 from __future__ import print_function
 from . import _
-from Plugins.Extensions.NeoBoot.files.stbbranding import LogCrashGS, getSupportedTuners, getLabelDisck, getINSTALLNeo, getNeoLocation, getLocationMultiboot, getNeoMount, getNeoMount2, getNeoMount3, getNeoMount4, getNeoMount5, getFSTAB, getFSTAB2, getKernelVersionString, getKernelImageVersion, getChipSetString, getCPUtype, getCPUSoC, getImageNeoBoot, getBoxVuModel, getBoxHostName, getTunerModel, getImageDistroN, getFormat, getNEO_filesystems, getBoxModelVU, getMountPointAll, getMountPointNeo, getCheckActivateVip, getBoxMacAddres, getCheckExt
+from Plugins.Extensions.NeoBoot.files.stbbranding import LogCrashGS, getSupportedTuners, getLabelDisck, getINSTALLNeo, getNeoLocation, getLocationMultiboot, getNeoMount, getNeoMount2, getNeoMount3, getNeoMount4, getNeoMount5, getFSTAB, getFSTAB2, getKernelVersionString, getKernelImageVersion, getChipSetString, getCPUtype, getCPUSoC, getImageNeoBoot, getBoxVuModel, getBoxHostName, getTunerModel, getImageDistroN, getFormat, getNEO_filesystems, getBoxModelVU, getMountPointAll, getMountPointNeo, getCheckActivateVip, getBoxMacAddres, getCheckExt, getCheckExtDisk 
 from Plugins.Extensions.NeoBoot.files import Harddisk
 from Components.About import about
 from enigma import getDesktop, eTimer
@@ -1169,7 +1169,7 @@ class NeoBootInstallation(Screen):
     def SetDiskLabel(self):
         #if fileExists('/usr/lib/python3.8') or fileExists('/usr/lib/python3.9') or fileExists('/tmp/.upneo') :
             #self.session.open(MessageBox, _('Skip this step and install neoboot.\nThis option is available in the neoboot menu.'), type=MessageBox.TYPE_INFO)
-        if getCheckExt() != 'vfat' and getCheckExt() == 'ext3' or getCheckExt() == 'ext4':
+        if , getCheckExtDiskt() != 'vfat' and , getCheckExtDisk() == 'ext3' or , getCheckExtDisk() == 'ext4':
             try:
                 if fileExists('/usr/lib/python2.7'):
                     from Plugins.Extensions.NeoBoot.files.devices import SetDiskLabel
