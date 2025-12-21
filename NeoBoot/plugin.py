@@ -913,21 +913,20 @@ class NeoBootImageChoose(Screen):
                         self.ImageInstallTestOK()
 
     def ImageInstallTestOK(self):
-            try:
-                if int(self.availablespace) < 500:
-                    myerror = _('Not enough free space on /media/ !!\nYou need at least 500Mb free space.\n\nExit plugin.')
-                    self.session.open(MessageBox, myerror, MessageBox.TYPE_INFO)
-            except:
-                    if (getSupportedTuners()) == (getBoxHostName()):
-                        try:
-                            self.GOImageInstall()
-                        except Exception as e:
-                            loggscrash = time.localtime(time.time())
-                            LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
-                            self.CRASHlogNeo()
-                    else:
-                        mess = _('Your receiver is not on the list of supported tuners.\nAccess stb error.')
-                        self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
+            if int(self.availablespace) < 500:
+                myerror = _('Not enough free space on /media/ !!\nYou need at least 500Mb free space.\n\nExit plugin.')
+                self.session.open(MessageBox, myerror, MessageBox.TYPE_INFO)
+            else:
+                if (getSupportedTuners()) == (getBoxHostName()):
+                    try:
+                        self.GOImageInstall()
+                    except Exception as e:
+                        loggscrash = time.localtime(time.time())
+                        LogCrashGS('%02d:%02d:%d %02d:%02d:%02d - %s\r\n' % (loggscrash.tm_mday, loggscrash.tm_mon, loggscrash.tm_year, loggscrash.tm_hour, loggscrash.tm_min, loggscrash.tm_sec, str(e)))
+                        self.CRASHlogNeo()
+                else:
+                    mess = _('Your receiver is not on the list of supported tuners.\nAccess stb error.')
+                    self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
 
     def GOImageInstall(self):
         if fileExists('/.multinfo'):
