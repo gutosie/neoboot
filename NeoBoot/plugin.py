@@ -1576,7 +1576,8 @@ class NeoBootInstallation(Screen):
                     os.system('opkg install --force-overwrite --force-reinstall python-argparse')
                     os.system('opkg install liblzo2-2')
                     os.system('opkg install curl')
-                    if getCPUtype() == 'MIPS':
+            # STB ARM and MIPS       
+            if getCPUtype() == 'MIPS' or getCPUtype() == "ARMv7":
                         os.system('opkg install --force-overwrite --force-reinstall kernel-module-nandsim')
                         os.system('opkg install --force-overwrite --force-reinstall mtd-utils-jffs2')
                         os.system('opkg install --force-overwrite --force-reinstall lzo')
