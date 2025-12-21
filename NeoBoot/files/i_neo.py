@@ -175,10 +175,19 @@ class ImageManager(Screen):
 			self.mtdboot = SystemInfo["MBbootdevice"]
 		self.onChangedEntry = []
 		if choices:
-			self["list"] = MenuList(list=[((_("No images found on the selected download server...if password check validity")), "Waiter")])
-
+			# self["list"] = MenuList(list=[((_("No images found on the selected download server...if password check validity")), "Waiter")])
+			try:
+				# Python 3
+				self["list"] = MenuList([(_("No images found on the selected download server...if password check validity"), "Waiter")])
+			except TypeError:
+				# Python 2 fallback
+				self["list"] = MenuList(list=[(_("No images found on the selected download server...if password check validity"), "Waiter")])
 		else:
-			self["list"] = MenuList(list=[((_(" Press 'Menu' to select a storage device - none available")), "Waiter")])
+			# self["list"] = MenuList(list=[((_(" Press 'Menu' to select a storage device - none available")), "Waiter")])
+			try:
+				self["list"] = MenuList([(_(" Press 'Menu' to select a storage device - none available"), "Waiter")])
+			except TypeError:
+				self["list"] = MenuList(list=[(_(" Press 'Menu' to select a storage device - none available"), "Waiter")])
 			self["key_red"].hide()
 			self["key_green"].hide()
 			self["key_yellow"].hide()
