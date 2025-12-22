@@ -2277,11 +2277,12 @@ class DiskLabelSet(Screen):
                 if getFind_hdd() == 'sda' and getLocationUSBdir() == '/dev/sda1':
                         os.system('echo UUID=' + getMyUUIDusb() + '	    ' + locatIN_hdd  + ' auto	defaults	0 0 >> /etc/fstab')
         
-                if getFind_usb() == 'sda' and getLocationHDDdir() == '/dev/sdb1':
+                if getFind_usb() == 'sdb' and getLocationHDDdir() == '/dev/sdb1':
                         os.system('echo UUID=' + getMyUUIDhdd() + '	    ' + locatIN_hdd  + ' auto	defaults	0 0 >> /etc/fstab')
                        
-                if getFind_hdd() == 'sda' and getLocationUSBdir() == '/dev/sdb1':
+                if getFind_hdd() == 'sdb' and getLocationUSBdir() == '/dev/sdb1':
                         os.system('echo UUID=' + getMyUUIDusb() + '	    ' + locatIN_hdd  + ' auto	defaults	0 0 >> /etc/fstab')
+
             else:
                 self.UUID_OK()                    
 
