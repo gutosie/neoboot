@@ -294,8 +294,12 @@ class NeoBootImageChoose(Screen):
                                         from Plugins.Extensions.NeoBoot.files.i_neo import SelectImage
                                         self.session.open(SelectImage)
                                 elif not fileExists('/usr/lib/enigma2/python/Plugins/PLi'):     
+                                    try:     
                                         from Plugins.Extensions.NeoBoot.files.i_neo import ImageManager
                                         self.session.open(ImageManager)
+                                    except:
+                                        mess = _('Downloading... Could not download image.')
+                                        self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
                                 else:
                                         mess = _('Plug installation lost.The plugin doesnt work on python 3 yet. Please try again later.')
                                         self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
