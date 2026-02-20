@@ -1,0 +1,2 @@
+/dev/sda1: LABEL="hdd" UUID="175f3469-b073-4805-b6b6-290e8a990606" TYPE="ext4"
+/dev/sdb1: LABEL="usb" UUID="ae979ed8-0063-4b97-a1a9-3d707bf17d04" TYPE="ext4"
